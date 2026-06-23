@@ -1285,3 +1285,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .qos-starved{color:hsl(0 65% 45%)}
 .qos-warn{background:hsl(0 80% 96%);border:1px solid hsl(0 70% 82%);color:hsl(0 60% 38%);border-radius:9px;padding:9px 12px;font-size:12.5px;margin:8px 0;line-height:1.5}
 @media(max-width:760px){.qos-queues{grid-template-columns:1fr}}
+
+/* ---- Merkle tree ---- */
+.mk-tree{display:flex;flex-direction:column;gap:18px;align-items:center;margin:14px 0;overflow-x:auto}
+.mk-level{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.mk-node{border:1px solid var(--line);border-radius:9px;padding:7px 9px;background:var(--panel);text-align:center;min-width:110px;transition:all .2s}
+.mk-node.leaf{cursor:pointer}
+.mk-node.leaf:hover{border-color:hsl(212 70% 60%)}
+.mk-node.root{border-color:hsl(212 70% 60%);background:hsl(212 70% 97%)}
+.mk-node.path{border-color:hsl(212 70% 55%);box-shadow:0 0 0 2px hsl(212 70% 90%)}
+.mk-node.proof{border-color:hsl(28 75% 58%);background:hsl(28 75% 97%)}
+.mk-tag{font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.mk-hash{font-family:var(--mono);font-size:11px;color:hsl(212 60% 42%)}
+.mk-input{display:block;width:108px;margin-top:5px;padding:3px 5px;border:1px solid var(--line);border-radius:5px;font:inherit;font-size:10.5px}
+.mk-proof{border:1px solid var(--line);border-radius:11px;padding:12px;background:var(--panel);margin:8px 0}
+.mk-proof-h{font-size:12.5px;margin-bottom:8px}
+.mk-proof-steps{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.mk-step{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:6px;background:#eef2f7}
+.mk-step.leaf{background:hsl(212 70% 92%);color:hsl(212 60% 38%)}
+.mk-step.proof{background:hsl(28 75% 90%);color:hsl(28 60% 38%)}
+.mk-step.ok{background:hsl(145 50% 88%);color:hsl(145 55% 30%)}
+.mk-step.bad{background:hsl(0 70% 90%);color:hsl(0 60% 42%)}
+.mk-step-wrap{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mk-op{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.mk-proof-note{font-size:11.5px;color:var(--muted);margin-top:8px}
