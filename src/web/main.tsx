@@ -53,46 +53,13 @@ import { VectorClockSection } from './VectorClockSection';
 import { GossipSection } from './GossipSection';
 import { RaftSection } from './RaftSection';
 import { CapSection } from './CapSection';
+import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
 type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap';
-const SECTIONS: { id: Section; label: string; icon: string }[] = [
-  { id: 'network', label: 'Network', icon: '🌐' },
-  { id: 'routing', label: 'Routing & paths', icon: '🧭' },
-  { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
-  { id: 'congestion', label: 'TCP congestion', icon: '📈' },
-  { id: 'http2', label: 'HTTP/2 multiplexing', icon: '🧵' },
-  { id: 'quic', label: 'QUIC vs TCP', icon: '🚀' },
-  { id: 'nat', label: 'NAT / PAT', icon: '🔀' },
-  { id: 'flow', label: 'Flow control', icon: '🪟' },
-  { id: 'bufferbloat', label: 'Bufferbloat', icon: '🚰' },
-  { id: 'subnet', label: 'Subnetting', icon: '🧮' },
-  { id: 'dns', label: 'DNS journey', icon: '🔎' },
-  { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
-  { id: 'dhcp', label: 'DHCP (DORA)', icon: '📨' },
-  { id: 'switch', label: 'L2 switch', icon: '🔌' },
-  { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
-  { id: 'chash', label: 'Consistent hashing', icon: '⭕' },
-  { id: 'lb', label: 'Load balancing', icon: '⚖️' },
-  { id: 'bloom', label: 'Bloom filter', icon: '🌸' },
-  { id: 'cdn', label: 'CDN & caching', icon: '⚡' },
-  { id: 'qos', label: 'QoS scheduling', icon: '🚦' },
-  { id: 'crypto', label: 'Cryptography', icon: '🔒' },
-  { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
-  { id: 'merkle', label: 'Merkle tree', icon: '🌳' },
-  { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
-  { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
-  { id: 'raft', label: 'Raft election', icon: '👑' },
-  { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
-  { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
-  { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
-  { id: 'attacks', label: 'Attacks', icon: '⚔️' },
-  { id: 'encoding', label: 'Encoding', icon: '🔤' },
-  { id: 'errors', label: 'Error control', icon: '🛡️' },
-];
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -105,6 +72,9 @@ const TABS: { id: View; label: string }[] = [
 
 function App() {
   const [section, setSection] = useState<Section>('network');
+  const [openGroups, setOpenGroups] = useState<Set<string>>(() => new Set([groupOf('network')!]));
+  const toggleGroup = (label: string) => setOpenGroups((s) => { const n = new Set(s); n.has(label) ? n.delete(label) : n.add(label); return n; });
+  const activeGroup = groupOf(section);
   const [input, setInput] = useState('Hi');
   const [mode, setMode] = useState<Mode>('text');
   const [view, setView] = useState<View>('story');
@@ -167,11 +137,29 @@ function App() {
       <aside className="sidebar">
         <div className="brand"><span className="logo">◆</span> Apex</div>
         <nav className="sections">
-          {SECTIONS.map((s) => (
-            <button key={s.id} className={section === s.id ? 'on' : ''} onClick={() => setSection(s.id)}>
-              <span className="sec-icon">{s.icon}</span> {s.label}
-            </button>
-          ))}
+          {GROUPS.map((g) => {
+            const open = openGroups.has(g.label) || g.label === activeGroup;
+            return (
+              <div className="sec-group" key={g.label}>
+                <button className={`sec-group-h ${g.label === activeGroup ? 'active' : ''}`} onClick={() => toggleGroup(g.label)} aria-expanded={open}>
+                  <span className="sec-group-label">{g.icon} {g.label}</span>
+                  <span className="sec-caret">{open ? '▾' : '▸'}</span>
+                </button>
+                {open && (
+                  <div className="sec-group-items">
+                    {g.ids.map((id) => {
+                      const m = metaById[id];
+                      return (
+                        <button key={id} className={section === id ? 'on' : ''} onClick={() => setSection(id as Section)}>
+                          <span className="sec-icon">{m.icon}</span> {m.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
         <div className="sidebar-foot">See how the internet works — one real byte at a time.</div>
       </aside>
