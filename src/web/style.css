@@ -1385,3 +1385,17 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cap-diverge{background:hsl(28 75% 95%);border:1px solid hsl(28 70% 80%);color:hsl(28 55% 35%);border-radius:9px;padding:9px 12px;font-size:12.5px;margin:8px 0;line-height:1.5}
 .cap-banner{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:12.5px;margin:8px 0}
 @media(max-width:620px){.cap-link{width:100%;text-align:center;padding:6px 0}}
+
+/* ---- grouped, collapsible sidebar ---- */
+.sections .sec-group{margin-bottom:1px}
+.sections .sec-group-h{justify-content:space-between;gap:6px;padding:7px 10px;color:var(--muted);border-radius:8px;font-weight:600}
+.sections .sec-group-h:hover{background:#eef1f5}
+.sections .sec-group-h.active{color:hsl(212 70% 45%)}
+.sec-group-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.sec-caret{font-size:9px;flex:none;color:var(--muted)}
+.sections .sec-group-items{display:flex;flex-direction:column;gap:2px;margin:1px 0 7px;padding-left:9px;border-left:1.5px solid var(--line)}
+.sections .sec-group-items button{font-size:13px;font-weight:500;padding:6px 10px}
+@media(max-width:820px){
+  .sections{flex-direction:column}
+  .sections .sec-group-items{flex-direction:column}
+}
