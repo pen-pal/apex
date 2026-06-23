@@ -1074,3 +1074,43 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tr-table td{padding:5px 8px;border-bottom:1px solid var(--panel)}
 .tr-table tr.dest{background:hsl(145 50% 96%)}
 .tr-mono{font-family:var(--mono)}
+
+/* ---- DHCP DORA ---- */
+.dhcp-play{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.dhcp-prog{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dhcp-arc{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:12px;margin:8px 0}
+.dhcp-cols{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:8px}
+.dhcp-actor.client{color:hsl(145 55% 35%)}
+.dhcp-actor.server{color:hsl(28 70% 45%)}
+.dhcp-msg{display:flex;align-items:center;gap:8px;margin:4px 0;padding:5px 12px;border-radius:8px;font-size:12.5px}
+.dhcp-msg.client{background:linear-gradient(90deg,hsl(145 50% 95%),transparent)}
+.dhcp-msg.server{flex-direction:row-reverse;text-align:right;background:linear-gradient(270deg,hsl(28 70% 95%),transparent)}
+.dhcp-type{font-weight:700;font-family:var(--mono);font-size:12px}
+.dhcp-msg.bcast .dhcp-type{color:hsl(28 70% 42%)}
+.dhcp-msg.ucast .dhcp-type{color:hsl(212 70% 45%)}
+.dhcp-arrow{font-family:var(--mono);color:var(--muted)}
+.dhcp-tag{font-size:10.5px;color:var(--muted);font-family:var(--mono)}
+.dhcp-note{font-size:12px;color:var(--ink);line-height:1.5;margin:8px 2px 0}
+.dhcp-lease{border:1px solid hsl(145 45% 70%);border-radius:11px;background:hsl(145 50% 97%);padding:12px;margin:10px 0}
+.dhcp-lease-h{font-weight:600;color:hsl(145 55% 30%);margin-bottom:6px}
+.dhcp-lease-grid{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:12.5px}
+.dhcp-lease-grid span{color:var(--muted)}
+.dhcp-lease-grid code{font-family:var(--mono)}
+.dhcp-state.bound{color:hsl(145 55% 32%)}
+.dhcp-state.renewing{color:hsl(28 65% 42%)}
+.dhcp-state.rebinding{color:hsl(0 60% 45%)}
+.dhcp-state.expired{color:hsl(0 0% 40%)}
+.dhcp-timeline-wrap{margin:14px 0}
+.dhcp-timeline{position:relative;height:26px;border-radius:7px;overflow:visible;margin-bottom:22px}
+.dhcp-band{position:absolute;top:0;height:26px}
+.dhcp-band.bound{background:hsl(145 50% 80%);border-radius:7px 0 0 7px}
+.dhcp-band.renew{background:hsl(28 75% 80%)}
+.dhcp-band.rebind{background:hsl(0 70% 82%);border-radius:0 7px 7px 0}
+.dhcp-marker{position:absolute;top:26px;transform:translateX(-50%);font-size:9px;color:var(--muted);font-family:var(--mono);white-space:nowrap}
+.dhcp-marker::before{content:'';position:absolute;top:-26px;left:50%;width:1px;height:26px;background:var(--ink);opacity:.4}
+.dhcp-marker.end{transform:translateX(-100%)}
+.dhcp-now{position:absolute;top:-4px;width:3px;height:34px;background:hsl(212 70% 45%);border-radius:2px}
+.dhcp-slider{width:100%;margin-top:4px}
+.dhcp-elapsed{font-size:12px;color:var(--muted);margin-top:2px}
+.dhcp-expired{background:hsl(0 0% 95%);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:12.5px;color:hsl(0 50% 40%);margin:8px 0}
+.dhcp-renew{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}

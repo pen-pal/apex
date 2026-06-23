@@ -40,12 +40,13 @@ import { BufferbloatSection } from './BufferbloatSection';
 import { CookiesSection } from './CookiesSection';
 import { CertChainSection } from './CertChainSection';
 import { TracerouteSection } from './TracerouteSection';
+import { DhcpSection } from './DhcpSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -59,6 +60,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
+  { id: 'dhcp', label: 'DHCP (DORA)', icon: '📨' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -456,6 +458,16 @@ function App() {
               <p className="sub">Map the routers to a destination using only the TTL field — one hop revealed per probe.</p>
             </header>
             <TracerouteSection />
+          </>
+        )}
+
+        {section === 'dhcp' && (
+          <>
+            <header>
+              <h1>DHCP — DORA &amp; the lease</h1>
+              <p className="sub">Discover, Offer, Request, Ack — how a device gets an address from nothing, and how the lease ages.</p>
+            </header>
+            <DhcpSection />
           </>
         )}
       </main>
