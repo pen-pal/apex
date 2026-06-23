@@ -30,15 +30,17 @@ import { AttacksSection } from './AttacksSection';
 import { RoutingSection } from './RoutingSection';
 import { DnsJourneySection } from './DnsJourneySection';
 import { SubnetSection } from './SubnetSection';
+import { BgpPathSection } from './BgpPathSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
+  { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
@@ -336,6 +338,16 @@ function App() {
               <p className="sub">See where the network ends and the host begins — on the actual bits — then split a block into subnets.</p>
             </header>
             <SubnetSection />
+          </>
+        )}
+
+        {section === 'bgp' && (
+          <>
+            <header>
+              <h1>BGP best-path selection</h1>
+              <p className="sub">Step down BGP's tie-breaker ladder and watch candidate routes get eliminated until one best path wins.</p>
+            </header>
+            <BgpPathSection />
           </>
         )}
       </main>
