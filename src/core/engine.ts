@@ -39,8 +39,12 @@ export function dissect(bytes: number[], protocolId: string, registry: Registry)
   header.byteLength = spec.headerBytes ? spec.headerBytes(header) : Math.ceil(totalHeaderBits(spec.fields) / 8);
 
   const pduLen = spec.pduBytes ? Math.min(spec.pduBytes(header), bytes.length) : bytes.length;
-  const payload = bytes.slice(header.byteLength, pduLen);
-  const trailer = bytes.slice(pduLen);
+  // A protocol may reserve N bytes from the END of its PDU as a trailer (e.g. an
+  // end-anchored ICV). Clamp so it never goes negative, past pduLen, or into the header.
+  const tb = spec.trailerBytes ? Math.max(0, Math.min(spec.trailerBytes(header), pduLen - header.byteLength)) : 0;
+  const payloadEnd = pduLen - tb;
+  const payload = bytes.slice(header.byteLength, payloadEnd);
+  const trailer = bytes.slice(payloadEnd); // reserved end-anchored trailer (ICV) + any outer padding beyond pduLen
 
   let child: DissectionNode | null = null;
   if (payload.length > 0 && spec.next) {

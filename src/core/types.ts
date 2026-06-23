@@ -95,6 +95,8 @@ export interface ProtocolSpec {
   headerBytes?: (header: ParsedHeader) => number;
   /** Total PDU length (header + payload) when a length field says so (e.g. IP totalLength). */
   pduBytes?: (header: ParsedHeader) => number;
+  /** Bytes reserved from the END of the PDU as a trailer (e.g. MACsec ICV, FCoE EOF). Carved out of payload, reported as trailer. */
+  trailerBytes?: (header: ParsedHeader) => number;
   /** Build THIS layer's header bytes (generator direction). */
   encode?: (ctx: BuildCtx) => number[];
   states?: StateMachine;
