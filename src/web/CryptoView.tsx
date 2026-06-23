@@ -6,15 +6,17 @@
 // Apex never invents decrypted plaintext for real captures.
 import { useEffect, useMemo, useState } from 'react';
 import { sha256, hmacSha256, bitDifference } from './hashing';
+import { aesEcbEncrypt, aesCbcEncrypt } from './aes';
 
 const hexJoin = (b: Uint8Array) => [...b].map((x) => x.toString(16).toUpperCase().padStart(2, '0')).join(' ');
 const enc = (s: string) => new TextEncoder().encode(s);
 
-type Tool = 'encrypt' | 'hash' | 'hmac';
+type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes';
 const TOOLS: { id: Tool; label: string }[] = [
   { id: 'encrypt', label: 'Encrypt (AES-GCM)' },
   { id: 'hash', label: 'Hash (SHA-256)' },
   { id: 'hmac', label: 'HMAC' },
+  { id: 'modes', label: 'Modes (ECB vs CBC)' },
 ];
 
 export function CryptoView() {
@@ -30,6 +32,7 @@ export function CryptoView() {
         {tool === 'encrypt' && <EncryptTool />}
         {tool === 'hash' && <HashTool />}
         {tool === 'hmac' && <HmacTool />}
+        {tool === 'modes' && <ModesTool />}
       </section>
     </div>
   );
@@ -169,6 +172,82 @@ function HmacTool() {
         </>
       )}
     </>
+  );
+}
+
+// ---- Modes (ECB vs CBC): the structure leak -----------------------------------
+
+// A fixed sandbox key/IV — this whole tool is about block STRUCTURE, not secrecy.
+const MODE_KEY = new Uint8Array([0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c]);
+const MODE_IV = new Uint8Array(16);
+
+const blockHex = (b: Uint8Array) => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+
+/** Assign a stable colour to each DISTINCT block value, so repeats are visible. */
+function colourBlocks(blocks: Uint8Array[]): string[] {
+  const seen = new Map<string, number>();
+  return blocks.map((b) => {
+    const k = blockHex(b);
+    if (!seen.has(k)) seen.set(k, seen.size);
+    const idx = seen.get(k)!;
+    return `hsl(${(idx * 71) % 360} 62% 80%)`;
+  });
+}
+
+function ModesTool() {
+  const [text, setText] = useState('ATTACK AT DAWN!!ATTACK AT DAWN!!ATTACK AT DAWN!!');
+  const bytes = useMemo(() => enc(text.length ? text : ' '), [text]);
+  const pt = useMemo(() => {
+    const n = Math.ceil(Math.max(bytes.length, 1) / 16) * 16;
+    const out = new Uint8Array(n); out.set(bytes);
+    const blocks: Uint8Array[] = [];
+    for (let i = 0; i < n; i += 16) blocks.push(out.subarray(i, i + 16));
+    return blocks;
+  }, [bytes]);
+  const ecb = useMemo(() => aesEcbEncrypt(bytes, MODE_KEY), [bytes]);
+  const cbc = useMemo(() => aesCbcEncrypt(bytes, MODE_KEY, MODE_IV), [bytes]);
+
+  const distinctPt = new Set(pt.map(blockHex)).size;
+  const distinctEcb = new Set(ecb.map(blockHex)).size;
+
+  return (
+    <>
+      <h2>Cipher modes — why a block cipher isn’t enough</h2>
+      <p className="jsec-sub">
+        AES encrypts 16 bytes at a time. <strong>ECB</strong> mode encrypts each block independently — so two
+        identical plaintext blocks become two <em>identical</em> ciphertext blocks, leaking the pattern (the famous
+        “ECB penguin”). <strong>CBC</strong> mode XORs each block with the previous ciphertext first, so the same
+        input never repeats. This is real AES-128 (verified against NIST vectors). Type repeated text and watch.
+      </p>
+      <label className="crypto-input"><span>plaintext (sandbox)</span>
+        <input value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} /></label>
+
+      <BlockRow title={`plaintext — ${pt.length} blocks, ${distinctPt} distinct`} blocks={pt} />
+      <BlockRow title={`AES-ECB — ${distinctEcb} distinct ciphertext blocks (repeats leak through!)`} blocks={ecb} leak={distinctEcb < ecb.length} />
+      <BlockRow title={`AES-CBC — ${new Set(cbc.map(blockHex)).size} distinct (chaining hides the pattern)`} blocks={cbc} />
+
+      <p className="enc-note">
+        Notice ECB reuses colours exactly where the plaintext repeats — an attacker learns the structure without
+        ever breaking AES. CBC’s blocks are all different. This is why ECB is effectively never used, and why
+        WebCrypto refuses to offer it.
+      </p>
+    </>
+  );
+}
+
+function BlockRow({ title, blocks, leak }: { title: string; blocks: Uint8Array[]; leak?: boolean }) {
+  const colours = colourBlocks(blocks);
+  return (
+    <div className="mode-row">
+      <span className={`mode-title ${leak ? 'leak' : ''}`}>{title}</span>
+      <div className="mode-blocks">
+        {blocks.map((b, i) => (
+          <code key={i} className="mode-block" style={{ background: colours[i] }} title={blockHex(b)}>
+            {blockHex(b).slice(0, 8)}
+          </code>
+        ))}
+      </div>
+    </div>
   );
 }
 
