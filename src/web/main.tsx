@@ -44,12 +44,13 @@ import { DhcpSection } from './DhcpSection';
 import { SwitchSection } from './SwitchSection';
 import { TokenBucketSection } from './TokenBucketSection';
 import { ConsistentHashSection } from './ConsistentHashSection';
+import { LoadBalanceSection } from './LoadBalanceSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -67,6 +68,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'switch', label: 'L2 switch', icon: '🔌' },
   { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
   { id: 'chash', label: 'Consistent hashing', icon: '⭕' },
+  { id: 'lb', label: 'Load balancing', icon: '⚖️' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -504,6 +506,16 @@ function App() {
               <p className="sub">Add or remove a server and watch only a small arc of keys move — not the whole keyspace.</p>
             </header>
             <ConsistentHashSection />
+          </>
+        )}
+
+        {section === 'lb' && (
+          <>
+            <header>
+              <h1>Load balancing</h1>
+              <p className="sub">Round-robin, least-connections, weighted, sticky — watch each strategy spread requests differently.</p>
+            </header>
+            <LoadBalanceSection />
           </>
         )}
       </main>
