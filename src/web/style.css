@@ -963,3 +963,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bb-curve.big{stroke:hsl(0 70% 55%)}
 .bb-curve.aqm{stroke:hsl(145 55% 42%)}
 .bb-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+
+/* ---- URL anatomy ---- */
+.url-raw{font-family:var(--mono);font-size:13.5px;word-break:break-all;line-height:1.9;margin:12px 0;padding:10px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.up{border-radius:4px;padding:1px 2px}
+.up.sep{color:var(--muted)}
+.up.scheme{color:hsl(280 55% 48%);font-weight:600}
+.up.user{color:hsl(0 60% 50%)}
+.up.host{color:hsl(212 70% 45%);font-weight:600}
+.up.port{color:hsl(28 70% 45%)}
+.up.path{color:hsl(145 55% 35%)}
+.up.query{color:hsl(190 60% 38%)}
+.up.frag{color:hsl(320 50% 48%)}
+.url-parts{display:flex;flex-direction:column;gap:5px;margin:10px 0}
+.url-part{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.url-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:2px 8px;border-radius:5px;color:#fff;min-width:62px;text-align:center}
+.url-badge.scheme{background:hsl(280 55% 52%)}
+.url-badge.user{background:hsl(0 60% 55%)}
+.url-badge.host{background:hsl(212 70% 50%)}
+.url-badge.port{background:hsl(28 70% 50%)}
+.url-badge.path{background:hsl(145 55% 42%)}
+.url-badge.frag{background:hsl(320 50% 52%)}
+.url-val{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.url-note{font-size:11.5px;color:var(--muted)}
+.url-query{margin:10px 0;border:1px solid var(--line);border-radius:9px;padding:10px;background:var(--panel)}
+.url-q-head{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
+.url-q-row{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:3px 0;flex-wrap:wrap}
+.url-q-k{font-family:var(--mono);color:hsl(190 60% 35%);font-weight:600}
+.url-q-eq{color:var(--muted)}
+.url-q-v{font-family:var(--mono);color:var(--ink)}
+.url-q-raw{font-size:10.5px;color:var(--muted);margin-left:6px}
