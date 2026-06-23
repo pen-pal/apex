@@ -39,12 +39,13 @@ import { SlidingWindowSection } from './SlidingWindowSection';
 import { BufferbloatSection } from './BufferbloatSection';
 import { CookiesSection } from './CookiesSection';
 import { CertChainSection } from './CertChainSection';
+import { TracerouteSection } from './TracerouteSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -57,6 +58,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'bufferbloat', label: 'Bufferbloat', icon: '🚰' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
+  { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -444,6 +446,16 @@ function App() {
               <p className="sub">Walk the certificate chain leaf → root — and watch validation fail at the exact link you break.</p>
             </header>
             <CertChainSection />
+          </>
+        )}
+
+        {section === 'traceroute' && (
+          <>
+            <header>
+              <h1>Traceroute</h1>
+              <p className="sub">Map the routers to a destination using only the TTL field — one hop revealed per probe.</p>
+            </header>
+            <TracerouteSection />
           </>
         )}
       </main>
