@@ -3,15 +3,21 @@
 // IEEE-754 float bit layout. All transformations are real (see encoding.ts).
 import { useMemo, useState } from 'react';
 import { utf8Breakdown, toBases, base64Steps, float32Bits } from './encoding';
+import { varintEncode, zigzagEncode, derParse, type Tlv, toAscii, percentEncode, hexdump } from './encoding2';
 
 const hex2 = (v: number) => v.toString(16).toUpperCase().padStart(2, '0');
 
-type Tool = 'utf8' | 'bases' | 'base64' | 'float';
+type Tool = 'utf8' | 'bases' | 'base64' | 'float' | 'varint' | 'der' | 'puny' | 'url' | 'hexdump';
 const TOOLS: { id: Tool; label: string }[] = [
   { id: 'utf8', label: 'Text → UTF-8' },
   { id: 'bases', label: 'Number bases' },
   { id: 'base64', label: 'Base64' },
   { id: 'float', label: 'Float (IEEE-754)' },
+  { id: 'varint', label: 'Varint / ZigZag' },
+  { id: 'der', label: 'ASN.1 / DER' },
+  { id: 'puny', label: 'Punycode (IDN)' },
+  { id: 'url', label: 'URL encoding' },
+  { id: 'hexdump', label: 'Hexdump' },
 ];
 
 export function EncodingSection() {
@@ -31,8 +37,130 @@ export function EncodingSection() {
         {tool === 'bases' && <BasesTool />}
         {tool === 'base64' && <Base64Tool />}
         {tool === 'float' && <FloatTool />}
+        {tool === 'varint' && <VarintTool />}
+        {tool === 'der' && <DerTool />}
+        {tool === 'puny' && <PunyTool />}
+        {tool === 'url' && <UrlTool />}
+        {tool === 'hexdump' && <HexdumpTool />}
       </section>
     </div>
+  );
+}
+
+function VarintTool() {
+  const [text, setText] = useState('150');
+  const parsed = /^-?\d+$/.test(text.trim()) ? BigInt(text.trim()) : null;
+  const unsigned = parsed !== null && parsed >= 0n;
+  const varBytes = parsed !== null && parsed >= 0n ? varintEncode(parsed) : null;
+  const zz = parsed !== null ? zigzagEncode(parsed) : null;
+  const zzBytes = zz !== null ? varintEncode(zz) : null;
+  return (
+    <>
+      <p className="jsec-sub">
+        Protocol Buffers (and QUIC, and more) store integers as <strong>varints</strong>: 7 bits of value per byte,
+        the high bit meaning “another byte follows”. Small numbers take one byte. Signed values first go through
+        <strong> ZigZag</strong> so −1 becomes 1, not a huge unsigned number.
+      </p>
+      <input className="enc-input narrow" value={text} onChange={(e) => setText(e.target.value)} placeholder="An integer, e.g. 150 or -1" spellCheck={false} />
+      {parsed === null ? <p className="enc-err">Enter an integer.</p> : (
+        <div className="enc-grid">
+          {unsigned && varBytes && <Row k="varint(value)" val={varBytes.map(hex2).join(' ') + `  (${varBytes.length} byte${varBytes.length === 1 ? '' : 's'})`} />}
+          {!unsigned && <Row k="varint(value)" val="— negatives must use ZigZag first" />}
+          <Row k="zigzag(value)" val={zz!.toString()} />
+          <Row k="varint(zigzag)" val={zzBytes!.map(hex2).join(' ')} />
+          {varBytes && <Row k="bits" val={varBytes.map((b) => b.toString(2).padStart(8, '0')).join(' ')} />}
+        </div>
+      )}
+    </>
+  );
+}
+
+function renderTlv(t: Tlv, depth = 0) {
+  return (
+    <div className="der-node" style={{ marginLeft: depth * 16 }} key={`${depth}-${t.tag}-${t.length}`}>
+      <span className="der-tag">{t.tagName}</span>
+      <span className="der-meta">{t.cls !== 'universal' ? `${t.cls} ` : ''}len {t.length}</span>
+      {!t.constructed && <code className="der-val">{[...t.value].slice(0, 24).map(hex2).join(' ')}{t.value.length > 24 ? ' …' : ''}</code>}
+      {t.children?.map((c, i) => <div key={i}>{renderTlv(c, depth + 1)}</div>)}
+    </div>
+  );
+}
+
+function DerTool() {
+  const [text, setText] = useState('30 06 02 01 01 02 01 02');
+  const result = useMemo(() => {
+    try {
+      const bytes = new Uint8Array(text.trim().split(/\s+/).map((h) => parseInt(h, 16)));
+      if (bytes.some((b) => Number.isNaN(b))) return { err: 'Enter space-separated hex bytes.' };
+      return { tlv: derParse(bytes) };
+    } catch (e) { return { err: e instanceof Error ? e.message : 'Parse error.' }; }
+  }, [text]);
+  return (
+    <>
+      <p className="jsec-sub">
+        ASN.1 DER is <strong>Tag–Length–Value</strong>, nested. Every X.509 certificate, PKCS key and LDAP message is
+        built from it. Paste DER hex (a <code>SEQUENCE {'{'} INTEGER 1, INTEGER 2 {'}'}</code> is shown) and watch it parse.
+      </p>
+      <input className="enc-input" value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} />
+      {result.err ? <p className="enc-err">{result.err}</p> : <div className="der-tree">{renderTlv(result.tlv!)}</div>}
+    </>
+  );
+}
+
+function PunyTool() {
+  const [text, setText] = useState('münchen.de');
+  const ascii = useMemo(() => { try { return toAscii(text.trim()); } catch { return text; } }, [text]);
+  const hasUnicode = [...text].some((c) => c.codePointAt(0)! > 0x7f);
+  // crude mixed-script / confusable check for the homograph warning
+  const hasCyrillic = /[Ѐ-ӿ]/.test(text);
+  const hasLatin = /[a-z]/i.test(text);
+  const mixed = hasCyrillic && hasLatin;
+  return (
+    <>
+      <p className="jsec-sub">
+        Domain names are ASCII, so internationalized names are encoded as <code>xn--…</code> via punycode (RFC 3492).
+        This is also the <strong>homograph trap</strong>: a name using Cyrillic look-alikes can read like a brand but
+        resolve somewhere else. Type a domain — its real, on-the-wire form appears below.
+      </p>
+      <input className="enc-input" value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} />
+      <div className="enc-grid">
+        <Row k="what you see" val={text} />
+        <Row k="what DNS sees (IDNA ASCII)" val={ascii} />
+      </div>
+      {mixed && <p className="jwt-warn">⚠ Mixed Latin + Cyrillic scripts — a classic homograph spoof. Browsers show the xn-- form to defend against this.</p>}
+      {hasUnicode && !mixed && <p className="enc-note">This label is internationalized; the <code>xn--</code> form is what actually travels in DNS.</p>}
+    </>
+  );
+}
+
+function UrlTool() {
+  const [text, setText] = useState('name=José Pérez & rôle=admin');
+  return (
+    <>
+      <p className="jsec-sub">
+        URLs may only contain a limited ASCII set, so everything else — spaces, accents, reserved characters — is
+        <strong> percent-encoded</strong> as its UTF-8 bytes (RFC 3986). This is why <code>%20</code> means a space.
+      </p>
+      <input className="enc-input" value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} />
+      <div className="enc-grid">
+        <Row k="percent-encoded" val={percentEncode(text) || '—'} />
+      </div>
+    </>
+  );
+}
+
+function HexdumpTool() {
+  const [text, setText] = useState('Apex: the bytes are real.');
+  const lines = useMemo(() => hexdump(new TextEncoder().encode(text)), [text]);
+  return (
+    <>
+      <p className="jsec-sub">
+        The view every reverse-engineer lives in: byte offset, the raw hex, and the printable ASCII alongside
+        (non-printable bytes shown as <code>.</code>). Type anything.
+      </p>
+      <input className="enc-input" value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} />
+      <pre className="hexdump">{lines.join('\n') || '—'}</pre>
+    </>
   );
 }
 
