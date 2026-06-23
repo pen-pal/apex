@@ -95,10 +95,10 @@ describe('MACsec (802.1AE) SecTAG dissection', () => {
     // Encrypted Secure Data + ICV are opaque; no inner protocol is invented.
     expect(node.child).toBeNull();
     expect(macsec.next!(h, reg)).toBeNull();
-    // Per the spec's ICV note: Secure Data + 16-byte ICV fall through together as
-    // the opaque payload (the last 16 of which are the ICV trailer).
-    expect(node.payload).toEqual([...secureDataA, ...icvA]);
-    expect(node.payload.slice(-16)).toEqual(icvA);
+    // The 16-byte ICV is carved off as a trailer (generic trailerBytes hook), so
+    // node.payload is just the (opaque) Secure Data and node.trailer is the ICV.
+    expect(node.payload).toEqual(secureDataA);
+    expect(node.trailer).toEqual(icvA);
   });
 
   it('parses a 6-byte SecTAG when the SC bit is clear (implicit SCI)', () => {
@@ -125,9 +125,9 @@ describe('MACsec (802.1AE) SecTAG dissection', () => {
     // SC=0 the 8 bytes it read are actually the start of the Secure Data, NOT a
     // real SCI — which is exactly why headerBytes excludes it (byteLength = 6).
     // Proof: the 6-byte SecTAG ends right after the Packet Number, so byte 6
-    // onward is the (opaque) Secure Data + ICV.
-    expect(node.payload).toEqual([...secureDataB, ...icvB]);
-    expect(node.payload.slice(-16)).toEqual(icvB);
+    // onward is the (opaque) Secure Data, with the 16-byte ICV carved as trailer.
+    expect(node.payload).toEqual(secureDataB);
+    expect(node.trailer).toEqual(icvB);
     expect(node.child).toBeNull();
   });
 

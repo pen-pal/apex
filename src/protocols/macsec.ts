@@ -32,19 +32,12 @@
 // invent an inner protocol: next() returns null (honoring the project's
 // "encryption is opaque" creed).
 //
-// ABOUT THE 16-OCTET ICV TRAILER: the ICV sits at the very END of the frame, but
-// the SecTAG carries no field giving the total frame length (in real MACsec that
-// length comes from Layer 1 / the Ethernet frame boundary). The engine's only
-// length hook, pduBytes(header), receives just the parsed header and cannot see
-// how many bytes followed, so it cannot reserve a fixed trailer measured from the
-// END of the byte run. Rather than add MACsec-specific logic to src/core/ (which
-// the project forbids), this spec leaves the encrypted Secure Data AND the
-// trailing 16-byte ICV together as a single opaque node.payload, and documents
-// that the last 16 of those payload bytes are the ICV. This mirrors how FCoE
-// lets its EOF trailer fall through. ENGINE GAP NOTE: a generic "trailerBytes"
-// hook (a fixed number of bytes reserved from the end of a PDU, independent of
-// any length field) would let MACsec, FCoE, and Ethernet's own FCS express
-// end-anchored trailers cleanly — reported here rather than special-cased.
+// ABOUT THE 16-OCTET ICV TRAILER: the ICV sits at the very END of the frame and
+// authenticates the whole Secure Frame. It is carved off cleanly via the generic
+// engine hook `trailerBytes` (reserve N bytes from the end of a PDU, independent
+// of any length field) — so node.payload is just the encrypted Secure Data and
+// node.trailer is the 16-byte ICV. No MACsec-specific logic lives in src/core/;
+// the same hook also serves FCoE's EOF and Ethernet's FCS.
 //
 // TCI/AN bit layout (octet 1 of the SecTAG, MSB-first) — masks per the IEEE
 // 802.1AE clause-9 SecTAG figure (also packet-macsec.c in Wireshark):
@@ -193,16 +186,14 @@ failure, not a parse error.`,
     },
   ],
   // SecTAG length depends on the SC bit: 6 bytes (TCI/AN + SL + PN) without the
-  // SCI, 14 bytes with it. This is the generic conditional-field hook — the
-  // engine reads the parsed TCI flags; no MACsec-specific logic lives in core.
-  // (IEEE 802.1AE-2018, 9.5: SECTAG_LEN_WITHOUT_SC=6, SECTAG_LEN_WITH_SC=14.)
-  // SecTAG length depends on the SC bit only: 6 bytes (TCI/AN + SL + PN) without
-  // the SCI, 14 bytes with it. The Secure Data and the trailing 16-byte ICV are
-  // NOT part of this header — they fall through as opaque payload (see the
-  // top-of-file note on why the ICV cannot be cleanly carved off as a trailer
-  // without an engine change). headerBytes returns ONLY the SecTAG length.
+  // SCI, 14 bytes with it. The engine reads the parsed TCI flags via this generic
+  // conditional hook — no MACsec-specific logic lives in core. headerBytes covers
+  // ONLY the SecTAG; the Secure Data is payload and the ICV is the trailer below.
   // (IEEE 802.1AE-2018, 9.5: SECTAG_LEN_WITHOUT_SC=6, SECTAG_LEN_WITH_SC=14.)
   headerBytes: (h: ParsedHeader) => (scPresent(h) ? 14 : 6),
+  // The 16-octet ICV (IEEE 802.1AE 14.6) is end-anchored: reserve it as a trailer
+  // so node.payload is just the (opaque) Secure Data and node.trailer is the ICV.
+  trailerBytes: () => 16,
   // The Secure Data is encrypted/opaque (no SAK on the wire) and the true inner
   // EtherType lives inside that ciphertext, so we never invent an inner protocol.
   next: () => null,
