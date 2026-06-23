@@ -21,6 +21,7 @@ const PORT_TO_ID: Record<number, string> = {
   500: 'isakmp', // IKE / ISAKMP (RFC 7296)
   514: 'syslog', // Syslog (RFC 5424)
   520: 'rip', // RIP (RFC 2453)
+  646: 'ldp', // LDP Hello discovery (RFC 5036)
   1701: 'l2tp', // L2TP (RFC 2661)
   1985: 'hsrp', // HSRP (RFC 2281)
   546: 'dhcpv6', // DHCPv6 client (RFC 8415)
