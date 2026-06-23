@@ -48,12 +48,13 @@ import { LoadBalanceSection } from './LoadBalanceSection';
 import { BloomSection } from './BloomSection';
 import { CacheHierarchySection } from './CacheHierarchySection';
 import { QosSection } from './QosSection';
+import { MerkleSection } from './MerkleSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -77,6 +78,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'qos', label: 'QoS scheduling', icon: '🚦' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
+  { id: 'merkle', label: 'Merkle tree', icon: '🌳' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -552,6 +554,16 @@ function App() {
               <p className="sub">Strict priority vs weighted round robin — watch one starve a class and the other share fairly.</p>
             </header>
             <QosSection />
+          </>
+        )}
+
+        {section === 'merkle' && (
+          <>
+            <header>
+              <h1>Merkle tree</h1>
+              <p className="sub">One root hash commits to a whole dataset — click a leaf for its proof, edit one and watch its path change.</p>
+            </header>
+            <MerkleSection />
           </>
         )}
       </main>
