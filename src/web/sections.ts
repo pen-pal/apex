@@ -1,0 +1,58 @@
+// Sidebar taxonomy — the 32 sections grouped into collapsible categories so the
+// nav stays navigable. Pure data + a tiny lookup, kept here (and tested) so the
+// grouping can't silently drift out of sync with the sections themselves.
+
+export interface SectionMeta { id: string; label: string; icon: string }
+
+export const SECTION_META: SectionMeta[] = [
+  { id: 'network', label: 'Network', icon: '🌐' },
+  { id: 'switch', label: 'L2 switch', icon: '🔌' },
+  { id: 'dhcp', label: 'DHCP (DORA)', icon: '📨' },
+  { id: 'nat', label: 'NAT / PAT', icon: '🔀' },
+  { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
+  { id: 'subnet', label: 'Subnetting', icon: '🧮' },
+  { id: 'routing', label: 'Routing & paths', icon: '🧭' },
+  { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
+  { id: 'dns', label: 'DNS journey', icon: '🔎' },
+  { id: 'congestion', label: 'TCP congestion', icon: '📈' },
+  { id: 'flow', label: 'Flow control', icon: '🪟' },
+  { id: 'bufferbloat', label: 'Bufferbloat', icon: '🚰' },
+  { id: 'qos', label: 'QoS scheduling', icon: '🚦' },
+  { id: 'http2', label: 'HTTP/2 multiplexing', icon: '🧵' },
+  { id: 'quic', label: 'QUIC vs TCP', icon: '🚀' },
+  { id: 'cdn', label: 'CDN & caching', icon: '⚡' },
+  { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
+  { id: 'crypto', label: 'Cryptography', icon: '🔒' },
+  { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
+  { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
+  { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
+  { id: 'attacks', label: 'Attacks', icon: '⚔️' },
+  { id: 'merkle', label: 'Merkle tree', icon: '🌳' },
+  { id: 'encoding', label: 'Encoding', icon: '🔤' },
+  { id: 'errors', label: 'Error control', icon: '🛡️' },
+  { id: 'chash', label: 'Consistent hashing', icon: '⭕' },
+  { id: 'lb', label: 'Load balancing', icon: '⚖️' },
+  { id: 'bloom', label: 'Bloom filter', icon: '🌸' },
+  { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
+  { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
+  { id: 'raft', label: 'Raft election', icon: '👑' },
+  { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
+];
+
+export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_META.map((m) => [m.id, m]));
+
+export interface SectionGroup { label: string; icon: string; ids: string[] }
+
+export const GROUPS: SectionGroup[] = [
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'dhcp', 'nat', 'traceroute', 'subnet'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'bgp', 'dns'] },
+  { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
+  { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
+  { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap'] },
+];
+
+/** The label of the group that contains `id` (or null if ungrouped). */
+export function groupOf(id: string): string | null {
+  return GROUPS.find((g) => g.ids.includes(id))?.label ?? null;
+}
