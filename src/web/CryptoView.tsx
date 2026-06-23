@@ -7,16 +7,20 @@
 import { useEffect, useMemo, useState } from 'react';
 import { sha256, hmacSha256, bitDifference } from './hashing';
 import { aesEcbEncrypt, aesCbcEncrypt } from './aes';
+import { pbkdf2 } from './kdf';
+import { dhExchange } from './dh';
 
 const hexJoin = (b: Uint8Array) => [...b].map((x) => x.toString(16).toUpperCase().padStart(2, '0')).join(' ');
 const enc = (s: string) => new TextEncoder().encode(s);
 
-type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes';
+type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes' | 'pbkdf2' | 'dh';
 const TOOLS: { id: Tool; label: string }[] = [
   { id: 'encrypt', label: 'Encrypt (AES-GCM)' },
   { id: 'hash', label: 'Hash (SHA-256)' },
   { id: 'hmac', label: 'HMAC' },
   { id: 'modes', label: 'Modes (ECB vs CBC)' },
+  { id: 'pbkdf2', label: 'Password hashing' },
+  { id: 'dh', label: 'Key exchange (DH)' },
 ];
 
 export function CryptoView() {
@@ -33,6 +37,8 @@ export function CryptoView() {
         {tool === 'hash' && <HashTool />}
         {tool === 'hmac' && <HmacTool />}
         {tool === 'modes' && <ModesTool />}
+        {tool === 'pbkdf2' && <Pbkdf2Tool />}
+        {tool === 'dh' && <DhTool />}
       </section>
     </div>
   );
@@ -248,6 +254,124 @@ function BlockRow({ title, blocks, leak }: { title: string; blocks: Uint8Array[]
         ))}
       </div>
     </div>
+  );
+}
+
+// ---- Password hashing (PBKDF2) ------------------------------------------------
+
+const ITER_OPTS = [1, 1000, 100_000, 600_000];
+
+function Pbkdf2Tool() {
+  const [pw, setPw] = useState('hunter2');
+  const [salt, setSalt] = useState('s4lt-per-user');
+  const [iter, setIter] = useState(100_000);
+  const [dk, setDk] = useState<Uint8Array | null>(null);
+  const [naive, setNaive] = useState<Uint8Array | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const derived = await pbkdf2(enc(pw), enc(salt), iter, 'SHA-256', 32);
+        const plain = await sha256(enc(pw)); // the WRONG way, for contrast
+        if (!cancelled) { setErr(null); setDk(derived); setNaive(plain); }
+      } catch (e) { if (!cancelled) setErr(e instanceof Error ? e.message : String(e)); }
+    })();
+    return () => { cancelled = true; };
+  }, [pw, salt, iter]);
+
+  return (
+    <>
+      <h2>Password hashing — PBKDF2</h2>
+      <p className="jsec-sub">
+        Storing <code>SHA-256(password)</code> is a classic mistake: it's fast (so brute force is cheap) and
+        unsalted (so identical passwords collide and rainbow tables work). PBKDF2 fixes both — a per-user
+        <strong> salt</strong> and a tunable <strong>iteration count</strong> (work factor). OWASP suggests ~600k
+        iterations for PBKDF2-SHA256 today. Change the salt and the whole key changes.
+      </p>
+      <label className="crypto-input"><span>password (sandbox)</span>
+        <input value={pw} onChange={(e) => setPw(e.target.value)} spellCheck={false} /></label>
+      <label className="crypto-input"><span>salt (per user)</span>
+        <input value={salt} onChange={(e) => setSalt(e.target.value)} spellCheck={false} /></label>
+      <div className="hash-perturb">
+        <span className="hp-label">iterations (work factor)</span>
+        <div className="seg">
+          {ITER_OPTS.map((n) => (
+            <button key={n} className={iter === n ? 'on' : ''} onClick={() => setIter(n)}>{n.toLocaleString()}</button>
+          ))}
+        </div>
+      </div>
+      {err && <p className="crypto-err">⚠ {err}</p>}
+      {dk && naive && (
+        <>
+          <DigestRow label={`PBKDF2-SHA256, ${iter.toLocaleString()} iterations + salt (store THIS)`} digest={dk} />
+          <DigestRow label="naïve SHA-256(password) — no salt, no work factor (never store this)" digest={naive} />
+          <p className="enc-note">
+            The naïve hash never changes for a given password — an attacker precomputes it once and cracks every
+            user who chose it. The PBKDF2 output is unique per salt and costs {iter.toLocaleString()}× more to test
+            a single guess.
+          </p>
+        </>
+      )}
+    </>
+  );
+}
+
+// ---- Diffie–Hellman key exchange ----------------------------------------------
+
+function DhTool() {
+  const [p, setP] = useState(23);
+  const [g, setG] = useState(5);
+  const [a, setA] = useState(6);
+  const [b, setB] = useState(15);
+  const r = useMemo(() => dhExchange(BigInt(p || 1), BigInt(g || 1), BigInt(a || 1), BigInt(b || 1)), [p, g, a, b]);
+
+  const num = (v: number, set: (n: number) => void, label: string, hint: string) => (
+    <label className="dh-field"><span>{label}</span>
+      <input type="number" value={v} min={1} onChange={(e) => set(Math.max(1, parseInt(e.target.value) || 1))} />
+      <em>{hint}</em>
+    </label>
+  );
+
+  return (
+    <>
+      <h2>Diffie–Hellman — agreeing on a secret in public</h2>
+      <p className="jsec-sub">
+        Alice and Bob each pick a private number, exchange <code>g<sup>private</sup> mod p</code> in the clear, then
+        raise the other's public value to their own private exponent. Both land on the <strong>same</strong> shared
+        secret — yet an eavesdropper who sees p, g and both public values can't compute it (that's the discrete-log
+        problem). Real groups are 2048+ bits; small numbers here just to watch it work.
+      </p>
+      <div className="dh-params">
+        {num(p, setP, 'p (prime modulus)', 'public')}
+        {num(g, setG, 'g (generator)', 'public')}
+      </div>
+      <div className="dh-grid">
+        <div className="dh-party alice">
+          <div className="dh-name">Alice</div>
+          {num(a, setA, 'a (private)', 'secret')}
+          <div className="dh-calc">A = {g}<sup>{a}</sup> mod {p} = <strong>{r.A.toString()}</strong></div>
+          <div className="dh-shared">shares secret = B<sup>a</sup> mod p = <strong>{r.sharedAlice.toString()}</strong></div>
+        </div>
+        <div className="dh-wire">
+          <div className="dh-pub">→ A = {r.A.toString()} →</div>
+          <div className="dh-pub">← B = {r.B.toString()} ←</div>
+          <div className="dh-eve">👁 Eve sees p, g, A, B — but not the secret</div>
+        </div>
+        <div className="dh-party bob">
+          <div className="dh-name">Bob</div>
+          {num(b, setB, 'b (private)', 'secret')}
+          <div className="dh-calc">B = {g}<sup>{b}</sup> mod {p} = <strong>{r.B.toString()}</strong></div>
+          <div className="dh-shared">shares secret = A<sup>b</sup> mod p = <strong>{r.sharedBob.toString()}</strong></div>
+        </div>
+      </div>
+      <p className={r.agree ? 'ed-ok' : 'ed-bad'}>
+        {r.agree
+          ? `✓ both computed the same shared secret: ${r.sharedAlice.toString()} — never sent over the wire.`
+          : '✗ secrets differ — check that p is prime and g is a valid generator.'}
+      </p>
+    </>
   );
 }
 
