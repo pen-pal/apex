@@ -46,12 +46,13 @@ import { TokenBucketSection } from './TokenBucketSection';
 import { ConsistentHashSection } from './ConsistentHashSection';
 import { LoadBalanceSection } from './LoadBalanceSection';
 import { BloomSection } from './BloomSection';
+import { CacheHierarchySection } from './CacheHierarchySection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -71,6 +72,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'chash', label: 'Consistent hashing', icon: '⭕' },
   { id: 'lb', label: 'Load balancing', icon: '⚖️' },
   { id: 'bloom', label: 'Bloom filter', icon: '🌸' },
+  { id: 'cdn', label: 'CDN & caching', icon: '⚡' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -528,6 +530,16 @@ function App() {
               <p className="sub">A few bits and a few hashes that answer “definitely not” or “probably yes” — watch it fill and false-positive.</p>
             </header>
             <BloomSection />
+          </>
+        )}
+
+        {section === 'cdn' && (
+          <>
+            <header>
+              <h1>CDN &amp; caching</h1>
+              <p className="sub">Watch a request cascade browser → edge → origin: cold miss, warm hit, then TTL expiry and revalidation.</p>
+            </header>
+            <CacheHierarchySection />
           </>
         )}
       </main>
