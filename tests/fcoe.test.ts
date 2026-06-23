@@ -20,24 +20,29 @@ const fcoeHeader = [
   0x2e,                                                       // SOF = SOFi3 (0x2E)
 ];
 
-// Start of the encapsulated FC frame header (FC-BB-5 retains the native FC frame).
-// The first byte is R_CTL; here 0x06 with a destination/source FC ID follow. We do
+// A complete encapsulated FC frame (FC-BB-5 retains the native FC frame): the
+// 24-byte FC header, a short FC payload, and the FC frame's own 4-byte CRC. We do
 // not dissect the FC frame (no FC spec registered) — we only assert it survives as
 // the FCoE payload, intact and byte-for-byte.
-const fcFrameStart = [
-  0x06,             // R_CTL (routing control)
-  0x01, 0x02, 0x03, // D_ID (destination FC address identifier)
-  0x00,             // CS_CTL / Priority
-  0x0a, 0x0b, 0x0c, // S_ID (source FC address identifier)
-  0x08,             // TYPE (e.g. 0x08 = FCP / SCSI-FCP)
+const fcFrame = [
+  0x06, 0x01, 0x02, 0x03,             // R_CTL, D_ID
+  0x00, 0x0a, 0x0b, 0x0c,             // CS_CTL/Priority, S_ID
+  0x08, 0x00, 0x00, 0x00,             // TYPE (FCP), F_CTL
+  0x01, 0x00, 0x00, 0x01,             // SEQ_ID, DF_CTL, SEQ_CNT
+  0x12, 0x34, 0xff, 0xff,             // OX_ID, RX_ID
+  0x00, 0x00, 0x00, 0x00,             // Parameter  (end of 24-byte FC header)
+  0xde, 0xad, 0xbe, 0xef,             // FC payload (opaque, 4 bytes)
+  0x11, 0x22, 0x33, 0x44,             // FC CRC (part of the FC frame)
 ];
+// The FCoE trailer (FC-BB-5 §7.4): 1-byte EOF delimiter + 3 reserved bytes.
+const fcoeTrailer = [0x41, 0x00, 0x00, 0x00]; // 0x41 = EOFn (Normal), per RFC 3643 Table 2
 
 describe('FCoE dissection', () => {
   const reg = new ProtocolRegistry();
   reg.register(fcoe);
 
   it('parses the fixed 14-byte header (version, reserved padding, SOF)', () => {
-    const node = dissect([...fcoeHeader, ...fcFrameStart], 'fcoe', reg);
+    const node = dissect([...fcoeHeader, ...fcFrame, ...fcoeTrailer], 'fcoe', reg);
     const h = node.header;
 
     // FC-BB-5: the FCoE header is exactly 14 bytes.
@@ -57,7 +62,7 @@ describe('FCoE dissection', () => {
   });
 
   it('models the 12-byte reserved region as raw bytes (96 bits, all zero)', () => {
-    const node = dissect([...fcoeHeader, ...fcFrameStart], 'fcoe', reg);
+    const node = dissect([...fcoeHeader, ...fcFrame, ...fcoeTrailer], 'fcoe', reg);
     const reserved2 = node.header.fields.find((f) => f.field.name === 'reserved2')!;
     expect(reserved2.field.bits).toBe(96);
     expect(reserved2.bytes).toEqual([
@@ -65,12 +70,15 @@ describe('FCoE dissection', () => {
     ]);
   });
 
-  it('carries the encapsulated FC frame intact as its payload', () => {
-    const node = dissect([...fcoeHeader, ...fcFrameStart], 'fcoe', reg);
+  it('carries the encapsulated FC frame as payload and the EOF+reserved as trailer', () => {
+    const node = dissect([...fcoeHeader, ...fcFrame, ...fcoeTrailer], 'fcoe', reg);
     // No FC dissector registered, so the FC frame lands in node.payload untouched.
     expect(fcoe.next!(node.header, reg)).toBeNull();
     expect(node.child).toBeNull();
-    expect(node.payload).toEqual(fcFrameStart);
+    // The 4-byte FCoE trailer (EOF + reserved) is carved off via trailerBytes, so the
+    // payload is exactly the encapsulated FC frame and the trailer is the EOF+reserved.
+    expect(node.payload).toEqual(fcFrame);
+    expect(node.trailer).toEqual(fcoeTrailer);
     // The payload begins with the FC frame's R_CTL byte (FC-BB-5 retains the FC header).
     expect(node.payload[0]).toBe(0x06);
   });
