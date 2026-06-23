@@ -37,12 +37,13 @@ import { QuicSection } from './QuicSection';
 import { NatSection } from './NatSection';
 import { SlidingWindowSection } from './SlidingWindowSection';
 import { BufferbloatSection } from './BufferbloatSection';
+import { CookiesSection } from './CookiesSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -57,6 +58,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
+  { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
   { id: 'encoding', label: 'Encoding', icon: '🔤' },
   { id: 'errors', label: 'Error control', icon: '🛡️' },
@@ -420,6 +422,16 @@ function App() {
               <p className="sub">Why a bigger buffer makes latency worse — and how active queue management keeps it low.</p>
             </header>
             <BufferbloatSection />
+          </>
+        )}
+
+        {section === 'cookies' && (
+          <>
+            <header>
+              <h1>HTTP cookies &amp; sessions</h1>
+              <p className="sub">Craft a request and watch which cookies attach — domain, path, Secure, and SameSite rules in action.</p>
+            </header>
+            <CookiesSection />
           </>
         )}
       </main>
