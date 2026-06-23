@@ -52,12 +52,13 @@ import { MerkleSection } from './MerkleSection';
 import { VectorClockSection } from './VectorClockSection';
 import { GossipSection } from './GossipSection';
 import { RaftSection } from './RaftSection';
+import { CapSection } from './CapSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -85,6 +86,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
   { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
   { id: 'raft', label: 'Raft election', icon: '👑' },
+  { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -600,6 +602,16 @@ function App() {
               <p className="sub">Click a node to fire its election timeout — watch terms, votes, and majorities decide a single leader.</p>
             </header>
             <RaftSection />
+          </>
+        )}
+
+        {section === 'cap' && (
+          <>
+            <header>
+              <h1>CAP theorem</h1>
+              <p className="sub">Partition the network, then choose consistency or availability — and watch the trade-off you can't escape.</p>
+            </header>
+            <CapSection />
           </>
         )}
       </main>
