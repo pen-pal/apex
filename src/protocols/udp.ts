@@ -27,6 +27,9 @@ const PORT_TO_ID: Record<number, string> = {
   547: 'dhcpv6', // DHCPv6 server (RFC 8415)
   1812: 'radius', // RADIUS authentication (RFC 2865)
   1900: 'ssdp', // SSDP / UPnP discovery
+  2055: 'netflow', // NetFlow v5 export
+  3784: 'bfd', // BFD (RFC 5880)
+  6081: 'geneve', // Geneve overlay (RFC 8926)
   2152: 'gtp', // GTP-U mobile user plane (3GPP TS 29.281)
   3478: 'stun', // STUN NAT traversal (RFC 8489)
   4789: 'vxlan', // VXLAN overlay (RFC 7348)
