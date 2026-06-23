@@ -6,14 +6,14 @@ import type { ProtocolSpec, BuildCtx, ParsedHeader } from '../core/types';
 const ETHERTYPES: Record<number, string> = {
   0x0800: 'IPv4', 0x0806: 'ARP', 0x8100: '802.1Q VLAN', 0x86dd: 'IPv6',
   0x8035: 'RARP', 0x8847: 'MPLS unicast', 0x8906: 'FCoE', 0x8848: 'MPLS multicast',
-  0x8863: 'PPPoE Discovery', 0x8864: 'PPPoE Session', 0x888e: '802.1X (EAPOL)', 0x88cc: 'LLDP',
+  0x8863: 'PPPoE Discovery', 0x8864: 'PPPoE Session', 0x888e: '802.1X (EAPOL)', 0x88cc: 'LLDP', 0x88e5: 'MACsec',
 };
 const ETHERTYPE_TO_ID: Record<number, string> = {
   0x0800: 'ipv4', 0x0806: 'arp', 0x8035: 'rarp', 0x8906: 'fcoe', 0x8100: 'vlan', 0x86dd: 'ipv6', 0x8847: 'mpls', 0x8848: 'mpls',
-  0x8863: 'pppoe', 0x8864: 'pppoe', 0x888e: 'eapol', 0x88cc: 'lldp',
+  0x8863: 'pppoe', 0x8864: 'pppoe', 0x888e: 'eapol', 0x88cc: 'lldp', 0x88e5: 'macsec',
 };
 const ID_TO_ETHERTYPE: Record<string, number> = {
-  ipv4: 0x0800, arp: 0x0806, rarp: 0x8035, vlan: 0x8100, ipv6: 0x86dd, mpls: 0x8847, pppoe: 0x8864, eapol: 0x888e, lldp: 0x88cc,
+  ipv4: 0x0800, arp: 0x0806, rarp: 0x8035, vlan: 0x8100, ipv6: 0x86dd, mpls: 0x8847, pppoe: 0x8864, eapol: 0x888e, lldp: 0x88cc, macsec: 0x88e5,
 };
 
 export const ethernet: ProtocolSpec = {

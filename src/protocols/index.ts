@@ -95,6 +95,7 @@ import { fcoe } from './fcoe';
 import { tpkt } from './tpkt';
 import { cotp } from './cotp';
 import { s7comm } from './s7comm';
+import { macsec } from './macsec';
 
 /** Register every protocol the app knows about. Add new protocols here. */
 export function registerCoreProtocols(registry: Registry): void {
@@ -107,7 +108,7 @@ export function registerCoreProtocols(registry: Registry): void {
     rtcp, diameter, amqp, sunrpc, iscsi, ptp, gtp, bacnet, dnp3, stun,
     smb1, rdp, rfb, irc, xmpp, whois, socks, websocket, rarp, dccp,
     http2, redis, mysql, postgres, mongodb, rtsp, bfd, netflow, geneve, fcoe,
-    tpkt, cotp, s7comm,
+    tpkt, cotp, s7comm, macsec,
   ];
   for (const spec of all) registry.register(spec);
 }
@@ -120,4 +121,4 @@ export { rip, eigrp, pim, isis, hsrp, stp, cdp, mpls, l2tp, ppp };
 export { rtcp, diameter, amqp, sunrpc, iscsi, ptp, gtp, bacnet, dnp3, stun };
 export { smb1, rdp, rfb, irc, xmpp, whois, socks, websocket, rarp, dccp };
 export { http2, redis, mysql, postgres, mongodb, rtsp, bfd, netflow, geneve, fcoe };
-export { tpkt, cotp, s7comm };
+export { tpkt, cotp, s7comm, macsec };
