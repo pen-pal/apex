@@ -36,12 +36,13 @@ import { Http2Section } from './Http2Section';
 import { QuicSection } from './QuicSection';
 import { NatSection } from './NatSection';
 import { SlidingWindowSection } from './SlidingWindowSection';
+import { BufferbloatSection } from './BufferbloatSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -51,6 +52,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'quic', label: 'QUIC vs TCP', icon: '🚀' },
   { id: 'nat', label: 'NAT / PAT', icon: '🔀' },
   { id: 'flow', label: 'Flow control', icon: '🪟' },
+  { id: 'bufferbloat', label: 'Bufferbloat', icon: '🚰' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
@@ -408,6 +410,16 @@ function App() {
               <p className="sub">The sliding window — how the receiver's advertised window throttles a sender that's going too fast.</p>
             </header>
             <SlidingWindowSection />
+          </>
+        )}
+
+        {section === 'bufferbloat' && (
+          <>
+            <header>
+              <h1>Bufferbloat &amp; AQM</h1>
+              <p className="sub">Why a bigger buffer makes latency worse — and how active queue management keeps it low.</p>
+            </header>
+            <BufferbloatSection />
           </>
         )}
       </main>
