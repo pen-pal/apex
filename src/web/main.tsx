@@ -27,14 +27,16 @@ import { EncodingSection } from './EncodingSection';
 import { ErrorDetectSection } from './ErrorDetectSection';
 import { IdentitySection } from './IdentitySection';
 import { AttacksSection } from './AttacksSection';
+import { RoutingSection } from './RoutingSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
+  { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -300,6 +302,16 @@ function App() {
               <p className="sub">Real mechanisms with real numbers — each shown with its defence. For understanding, not harm.</p>
             </header>
             <AttacksSection />
+          </>
+        )}
+
+        {section === 'routing' && (
+          <>
+            <header>
+              <h1>Routing &amp; paths</h1>
+              <p className="sub">Watch a link-state network compute shortest paths with Dijkstra — and reroute when a link cost changes.</p>
+            </header>
+            <RoutingSection />
           </>
         )}
       </main>
