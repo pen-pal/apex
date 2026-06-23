@@ -42,12 +42,13 @@ import { CertChainSection } from './CertChainSection';
 import { TracerouteSection } from './TracerouteSection';
 import { DhcpSection } from './DhcpSection';
 import { SwitchSection } from './SwitchSection';
+import { TokenBucketSection } from './TokenBucketSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -63,6 +64,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
   { id: 'dhcp', label: 'DHCP (DORA)', icon: '📨' },
   { id: 'switch', label: 'L2 switch', icon: '🔌' },
+  { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -480,6 +482,16 @@ function App() {
               <p className="sub">Send frames and watch the switch learn MAC addresses, then flood the unknown and forward the known.</p>
             </header>
             <SwitchSection />
+          </>
+        )}
+
+        {section === 'ratelimit' && (
+          <>
+            <header>
+              <h1>Rate limiting (token bucket)</h1>
+              <p className="sub">How an API allows bursts but caps the sustained rate — drain the bucket and watch the 429s begin.</p>
+            </header>
+            <TokenBucketSection />
           </>
         )}
       </main>
