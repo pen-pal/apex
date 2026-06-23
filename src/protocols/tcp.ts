@@ -6,7 +6,7 @@ import { inetChecksum } from '../core/checksum';
 
 const APP_PORTS: Record<number, string> = {
   21: 'ftp', 22: 'ssh', 23: 'telnet', 25: 'smtp', 43: 'whois', 49: 'tacacs', 53: 'dns', 80: 'http',
-  88: 'kerberos', 110: 'pop3', 111: 'sunrpc', 139: 'smb1', 143: 'imap', 179: 'bgp', 389: 'ldap',
+  88: 'kerberos', 102: 'tpkt', 110: 'pop3', 111: 'sunrpc', 139: 'smb1', 143: 'imap', 179: 'bgp', 389: 'ldap',
   443: 'tls', 445: 'smb2', 502: 'modbus', 554: 'rtsp', 1080: 'socks', 1883: 'mqtt', 3260: 'iscsi', 3306: 'mysql', 3389: 'rdp',
   3868: 'diameter', 5060: 'sip', 5222: 'xmpp', 5432: 'postgres', 5672: 'amqp', 5900: 'rfb', 6379: 'redis', 6667: 'irc', 20000: 'dnp3', 27017: 'mongodb',
 };
