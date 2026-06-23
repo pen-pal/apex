@@ -1256,3 +1256,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cdn-obj.expired{opacity:.5;text-decoration:line-through}
 .cdn-empty{font-size:11px;color:var(--muted)}
 .cdn-stats{display:flex;gap:18px;font-size:13px;margin:8px 0}
+
+/* ---- QoS packet scheduling ---- */
+.qos-disc{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.qos-link{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted);min-width:200px}
+.qos-queues{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0}
+.qos-class{border:1px solid var(--line);border-radius:11px;padding:10px;background:var(--panel)}
+.qos-c-head{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.qos-dot{width:12px;height:12px;border-radius:50%}
+.qos-name{font-weight:600;font-size:12.5px}
+.qos-meta{font-size:10px;color:var(--muted);font-family:var(--mono);margin-left:auto}
+.qos-q{display:flex;gap:2px;flex-wrap:wrap;min-height:18px;margin:8px 0}
+.qos-pkt{width:11px;height:14px;border-radius:2px;opacity:.85}
+.qos-q-ctrl{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);font-family:var(--mono)}
+.qos-q-ctrl button{width:20px;height:20px;border:1px solid var(--line);border-radius:5px;background:var(--bg);cursor:pointer;font:inherit;line-height:1}
+.qos-empty{font-size:11px;color:var(--muted)}
+.qos-play{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.qos-prog{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.qos-wire-label{font-size:11px;color:var(--muted);margin:8px 0 4px}
+.qos-wire{display:flex;gap:3px;flex-wrap:wrap;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel);min-height:32px}
+.qos-out{width:14px;height:18px;border-radius:3px;border:1px solid var(--line);transition:background .15s}
+.qos-shares{display:flex;flex-direction:column;gap:6px;margin:12px 0}
+.qos-share-row{display:flex;align-items:center;gap:10px;font-size:12px}
+.qos-share-name{font-family:var(--mono);font-weight:600;width:46px}
+.qos-share-bar{flex:1;height:14px;background:#eef2f7;border-radius:7px;overflow:hidden}
+.qos-share-fill{height:100%;transition:width .2s}
+.qos-share-val{font-family:var(--mono);font-size:11px;color:var(--muted);min-width:150px}
+.qos-starved{color:hsl(0 65% 45%)}
+.qos-warn{background:hsl(0 80% 96%);border:1px solid hsl(0 70% 82%);color:hsl(0 60% 38%);border-radius:9px;padding:9px 12px;font-size:12.5px;margin:8px 0;line-height:1.5}
+@media(max-width:760px){.qos-queues{grid-template-columns:1fr}}
