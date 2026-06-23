@@ -25,15 +25,17 @@ import { CryptoView } from './CryptoView';
 import { StoryView } from './StoryView';
 import { EncodingSection } from './EncodingSection';
 import { ErrorDetectSection } from './ErrorDetectSection';
+import { IdentitySection } from './IdentitySection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
+  { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'encoding', label: 'Encoding', icon: '🔤' },
   { id: 'errors', label: 'Error control', icon: '🛡️' },
 ];
@@ -276,6 +278,16 @@ function App() {
               <p className="sub">How the wire catches — and sometimes repairs — flipped bits, from parity to CRC to Hamming.</p>
             </header>
             <ErrorDetectSection />
+          </>
+        )}
+
+        {section === 'identity' && (
+          <>
+            <header>
+              <h1>Identity &amp; Auth</h1>
+              <p className="sub">Tokens, one-time codes, and delegated access — how systems prove who you are.</p>
+            </header>
+            <IdentitySection />
           </>
         )}
       </main>
