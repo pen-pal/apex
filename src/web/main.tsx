@@ -51,12 +51,13 @@ import { QosSection } from './QosSection';
 import { MerkleSection } from './MerkleSection';
 import { VectorClockSection } from './VectorClockSection';
 import { GossipSection } from './GossipSection';
+import { RaftSection } from './RaftSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -83,6 +84,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'merkle', label: 'Merkle tree', icon: '🌳' },
   { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
   { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
+  { id: 'raft', label: 'Raft election', icon: '👑' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -588,6 +590,16 @@ function App() {
               <p className="sub">Watch news sweep a leaderless cluster round by round in the classic S-curve — converging in ~log(N) rounds.</p>
             </header>
             <GossipSection />
+          </>
+        )}
+
+        {section === 'raft' && (
+          <>
+            <header>
+              <h1>Raft leader election</h1>
+              <p className="sub">Click a node to fire its election timeout — watch terms, votes, and majorities decide a single leader.</p>
+            </header>
+            <RaftSection />
           </>
         )}
       </main>
