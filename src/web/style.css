@@ -1022,3 +1022,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ck-add{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
 .ck-add .enc-input{flex:1;min-width:240px}
 .ck-flags-legend{display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px}
+
+/* ---- Certificate chain / PKI ---- */
+.cert-controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.cert-controls label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
+.cert-controls input[type=text],.cert-controls input:not([type]){padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit;font-family:var(--mono)}
+.cert-flaw{flex-direction:row!important;align-items:center;gap:6px!important;color:var(--ink)!important;font-size:12px!important}
+.cert-verdict{padding:11px 14px;border-radius:10px;font-size:13.5px;font-weight:500;margin:8px 0}
+.cert-verdict.ok{background:hsl(145 50% 93%);color:hsl(145 55% 28%);border:1px solid hsl(145 45% 75%)}
+.cert-verdict.bad{background:hsl(0 75% 95%);color:hsl(0 60% 40%);border:1px solid hsl(0 70% 80%)}
+.cert-chain{display:flex;flex-direction:column;align-items:center;gap:0;margin:12px 0}
+.cert-link{font-size:10.5px;color:var(--muted);font-family:var(--mono);padding:5px 0;text-align:center}
+.cert-link.ok{color:hsl(145 55% 38%)}
+.cert-link.dim{opacity:.35}
+.cert-card{width:min(460px,100%);border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:var(--panel)}
+.cert-card.pass{border-color:hsl(145 50% 60%)}
+.cert-card.fail{border-color:hsl(0 70% 60%);background:hsl(0 75% 98%);box-shadow:0 0 0 2px hsl(0 70% 92%)}
+.cert-card.unreached{opacity:.4}
+.cert-c-top{display:flex;justify-content:space-between;align-items:center}
+.cert-role{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.cert-status{font-family:var(--mono);font-weight:700}
+.cert-card.pass .cert-status{color:hsl(145 55% 40%)}
+.cert-card.fail .cert-status{color:hsl(0 65% 50%)}
+.cert-subject{font-family:var(--mono);font-size:13.5px;font-weight:600;margin:3px 0}
+.cert-meta{display:flex;gap:5px;flex-wrap:wrap}
+.cert-badge{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:5px;background:#eef2f7;color:var(--muted)}
+.cert-badge.ca{background:hsl(212 70% 90%);color:hsl(212 60% 38%)}
+.cert-badge.san{background:hsl(260 45% 93%);color:hsl(260 45% 42%)}
+.cert-badge.val{background:hsl(145 50% 91%);color:hsl(145 55% 30%)}
+.cert-badge.exp{background:hsl(0 70% 92%);color:hsl(0 60% 42%)}
+.cert-fail-reason{margin-top:7px;font-size:11.5px;color:hsl(0 60% 42%)}
