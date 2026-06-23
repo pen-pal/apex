@@ -82,6 +82,16 @@ import { socks } from './socks';
 import { websocket } from './websocket';
 import { rarp } from './rarp';
 import { dccp } from './dccp';
+import { http2 } from './http2';
+import { redis } from './redis';
+import { mysql } from './mysql';
+import { postgres } from './postgres';
+import { mongodb } from './mongodb';
+import { rtsp } from './rtsp';
+import { bfd } from './bfd';
+import { netflow } from './netflow';
+import { geneve } from './geneve';
+import { fcoe } from './fcoe';
 
 /** Register every protocol the app knows about. Add new protocols here. */
 export function registerCoreProtocols(registry: Registry): void {
@@ -93,6 +103,7 @@ export function registerCoreProtocols(registry: Registry): void {
     rip, eigrp, pim, isis, hsrp, stp, cdp, mpls, l2tp, ppp,
     rtcp, diameter, amqp, sunrpc, iscsi, ptp, gtp, bacnet, dnp3, stun,
     smb1, rdp, rfb, irc, xmpp, whois, socks, websocket, rarp, dccp,
+    http2, redis, mysql, postgres, mongodb, rtsp, bfd, netflow, geneve, fcoe,
   ];
   for (const spec of all) registry.register(spec);
 }
@@ -104,3 +115,4 @@ export { dhcpv6, llmnr, nbns, kerberos, ldap, tacacs, dtls, isakmp, coap, ssdp }
 export { rip, eigrp, pim, isis, hsrp, stp, cdp, mpls, l2tp, ppp };
 export { rtcp, diameter, amqp, sunrpc, iscsi, ptp, gtp, bacnet, dnp3, stun };
 export { smb1, rdp, rfb, irc, xmpp, whois, socks, websocket, rarp, dccp };
+export { http2, redis, mysql, postgres, mongodb, rtsp, bfd, netflow, geneve, fcoe };
