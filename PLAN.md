@@ -71,7 +71,7 @@ Goal: cover the practical protocol universe (roughly Wireshark's common dissecto
 - **Round 4 (queued)** — DHCPv6, mDNS, LLMNR, NBNS/NetBIOS, Kerberos, LDAP, TACACS+, DTLS, IKE/ISAKMP, CoAP.
 - **Round 5 (queued)** — RIP, EIGRP, PIM, IS-IS, HSRP, STP/RSTP, CDP, MPLS, L2TP, PPP.
 - **Round 6 (queued)** — RTCP, Diameter, AMQP, NFS/SunRPC (portmap), iSCSI, PTP (1588), GTP-U, BACnet, DNP3, RADIUS-acct.
-- **Round 7+ (queued)** — SMB1, RDP, VNC/RFB, IRC, XMPP, WHOIS, Finger, SOCKS, WebSocket, RARP, DCCP, MACsec, QinQ (802.1ad), 802.11, …
+- **Round 7+ (queued)** — SMB1, RDP, VNC/RFB, IRC, XMPP, WHOIS, Finger, SOCKS, WebSocket, RARP, DCCP, MACsec ✅ (802.1AE SecTAG, conditional SCI, opaque ICV), QinQ (802.1ad), 802.11, …
 
 Net count grows each round; the engine and `src/core/` stay protocol-agnostic throughout (only generic hooks — wide fields, `endian` — are ever added).
 
