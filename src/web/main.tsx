@@ -32,17 +32,19 @@ import { DnsJourneySection } from './DnsJourneySection';
 import { SubnetSection } from './SubnetSection';
 import { BgpPathSection } from './BgpPathSection';
 import { CongestionSection } from './CongestionSection';
+import { Http2Section } from './Http2Section';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
+  { id: 'http2', label: 'HTTP/2 multiplexing', icon: '🧵' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
@@ -360,6 +362,16 @@ function App() {
               <p className="sub">Watch the congestion window probe, back off, and recover — the sawtooth behind every TCP transfer's speed.</p>
             </header>
             <CongestionSection />
+          </>
+        )}
+
+        {section === 'http2' && (
+          <>
+            <header>
+              <h1>HTTP/2 multiplexing</h1>
+              <p className="sub">One connection, many interleaved streams — watch short requests stop waiting behind big ones.</p>
+            </header>
+            <Http2Section />
           </>
         )}
       </main>
