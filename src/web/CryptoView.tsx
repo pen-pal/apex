@@ -10,11 +10,12 @@ import { aesEcbEncrypt, aesCbcEncrypt } from './aes';
 import { pbkdf2 } from './kdf';
 import { dhExchange } from './dh';
 import { tls13Flow, type EncLevel } from './tls13';
+import { tls13KeySchedule, toHex, type KsNode } from './hkdf';
 
 const hexJoin = (b: Uint8Array) => [...b].map((x) => x.toString(16).toUpperCase().padStart(2, '0')).join(' ');
 const enc = (s: string) => new TextEncoder().encode(s);
 
-type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes' | 'pbkdf2' | 'dh' | 'tls';
+type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes' | 'pbkdf2' | 'dh' | 'tls' | 'keysched';
 const TOOLS: { id: Tool; label: string }[] = [
   { id: 'encrypt', label: 'Encrypt (AES-GCM)' },
   { id: 'hash', label: 'Hash (SHA-256)' },
@@ -23,6 +24,7 @@ const TOOLS: { id: Tool; label: string }[] = [
   { id: 'pbkdf2', label: 'Password hashing' },
   { id: 'dh', label: 'Key exchange (DH)' },
   { id: 'tls', label: 'TLS 1.3 handshake' },
+  { id: 'keysched', label: 'Key schedule (HKDF)' },
 ];
 
 export function CryptoView() {
@@ -42,8 +44,86 @@ export function CryptoView() {
         {tool === 'pbkdf2' && <Pbkdf2Tool />}
         {tool === 'dh' && <DhTool />}
         {tool === 'tls' && <TlsHandshakeTool />}
+        {tool === 'keysched' && <KeyScheduleTool />}
       </section>
     </div>
+  );
+}
+
+// ---- TLS 1.3 key schedule (HKDF) derivation tree ------------------------------
+
+const KS_TIERS: string[][] = [
+  ['ikm0', 'ecdhe'],
+  ['early'],
+  ['derived-hs'],
+  ['handshake'],
+  ['c-hs', 's-hs', 'derived-ms'],
+  ['master'],
+  ['c-ap', 's-ap'],
+  ['c-key', 'c-iv'],
+];
+
+function KeyScheduleTool() {
+  const [ecdhe, setEcdhe] = useState<Uint8Array>(() => new Uint8Array(32).fill(0x07));
+  const nodes = useMemo(() => tls13KeySchedule(ecdhe), [ecdhe]);
+  const byId = useMemo(() => Object.fromEntries(nodes.map((n) => [n.id, n])) as Record<string, KsNode>, [nodes]);
+  const [sel, setSel] = useState('handshake');
+  const node = byId[sel];
+
+  const regen = () => {
+    const v = new Uint8Array(32);
+    if (typeof globalThis.crypto?.getRandomValues === 'function') crypto.getRandomValues(v);
+    else for (let i = 0; i < 32; i++) v[i] = (ecdhe[i] + 17 * (i + 1)) & 0xff; // deterministic fallback
+    setEcdhe(v);
+  };
+
+  return (
+    <>
+      <h2>TLS 1.3 key schedule — one secret grows a whole tree</h2>
+      <p className="jsec-sub">
+        TLS 1.3 doesn’t use the (EC)DHE secret directly. It runs it through <strong>HKDF</strong> (extract-then-expand)
+        to grow a tree of independent keys — handshake keys, application keys, the AES key and IV — each bound to a
+        label and the transcript. This is real HKDF on sandbox values (verified against the RFC 5869 vectors).
+        Click a node; regenerate the (EC)DHE secret and watch everything below Handshake change (forward secrecy).
+      </p>
+      <div className="ks-toolbar">
+        <button className="ghost small" onClick={regen}>🔄 new (EC)DHE secret</button>
+        <code className="ks-ecdhe">(EC)DHE = {toHex(ecdhe).slice(0, 24)}…</code>
+      </div>
+
+      <div className="ks-tree">
+        {KS_TIERS.map((tier, ti) => (
+          <div className="ks-tier" key={ti}>
+            {tier.map((id) => {
+              const n = byId[id];
+              return (
+                <button key={id} className={`ks-node ${n.kind} ${sel === id ? 'sel' : ''}`} onClick={() => setSel(id)}>
+                  <span className="ks-label">{n.label}</span>
+                  <code className="ks-hex">{toHex(n.value).slice(0, 16)}…</code>
+                </button>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      {node && (
+        <div className="ks-detail">
+          <div className="ks-d-head">
+            <span className={`ks-kind ${node.kind}`}>{node.kind}</span>
+            <strong>{node.label}</strong>
+          </div>
+          <div className="ks-via">{node.via}</div>
+          {node.from.length > 0 && <div className="ks-from">← from: {node.from.map((f) => byId[f]?.label ?? f).join(', ')}</div>}
+          <p className="ks-note">{node.note}</p>
+          <code className="ks-fullhex">{toHex(node.value)}</code>
+          <div className="ks-len">{node.value.length} bytes</div>
+        </div>
+      )}
+      <p className="enc-note">Every arrow is a real HKDF step: <code>Extract</code> condenses entropy into a pseudo-random key;
+        <code> Derive-Secret</code>/<code>Expand-Label</code> stretch it into purpose-bound outputs. Because each step mixes in a
+        label, the application key can’t be reversed into the handshake key — compromising one doesn’t expose the others.</p>
+    </>
   );
 }
 
