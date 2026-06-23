@@ -33,18 +33,20 @@ import { SubnetSection } from './SubnetSection';
 import { BgpPathSection } from './BgpPathSection';
 import { CongestionSection } from './CongestionSection';
 import { Http2Section } from './Http2Section';
+import { QuicSection } from './QuicSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
   { id: 'http2', label: 'HTTP/2 multiplexing', icon: '🧵' },
+  { id: 'quic', label: 'QUIC vs TCP', icon: '🚀' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
@@ -372,6 +374,16 @@ function App() {
               <p className="sub">One connection, many interleaved streams — watch short requests stop waiting behind big ones.</p>
             </header>
             <Http2Section />
+          </>
+        )}
+
+        {section === 'quic' && (
+          <>
+            <header>
+              <h1>QUIC vs TCP + TLS</h1>
+              <p className="sub">Fewer round trips to the first byte, and no transport-layer head-of-line blocking — why HTTP/3 left TCP.</p>
+            </header>
+            <QuicSection />
           </>
         )}
       </main>
