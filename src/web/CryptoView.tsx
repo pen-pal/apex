@@ -9,11 +9,12 @@ import { sha256, hmacSha256, bitDifference } from './hashing';
 import { aesEcbEncrypt, aesCbcEncrypt } from './aes';
 import { pbkdf2 } from './kdf';
 import { dhExchange } from './dh';
+import { tls13Flow, type EncLevel } from './tls13';
 
 const hexJoin = (b: Uint8Array) => [...b].map((x) => x.toString(16).toUpperCase().padStart(2, '0')).join(' ');
 const enc = (s: string) => new TextEncoder().encode(s);
 
-type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes' | 'pbkdf2' | 'dh';
+type Tool = 'encrypt' | 'hash' | 'hmac' | 'modes' | 'pbkdf2' | 'dh' | 'tls';
 const TOOLS: { id: Tool; label: string }[] = [
   { id: 'encrypt', label: 'Encrypt (AES-GCM)' },
   { id: 'hash', label: 'Hash (SHA-256)' },
@@ -21,6 +22,7 @@ const TOOLS: { id: Tool; label: string }[] = [
   { id: 'modes', label: 'Modes (ECB vs CBC)' },
   { id: 'pbkdf2', label: 'Password hashing' },
   { id: 'dh', label: 'Key exchange (DH)' },
+  { id: 'tls', label: 'TLS 1.3 handshake' },
 ];
 
 export function CryptoView() {
@@ -39,8 +41,97 @@ export function CryptoView() {
         {tool === 'modes' && <ModesTool />}
         {tool === 'pbkdf2' && <Pbkdf2Tool />}
         {tool === 'dh' && <DhTool />}
+        {tool === 'tls' && <TlsHandshakeTool />}
       </section>
     </div>
+  );
+}
+
+// ---- TLS 1.3 handshake arc (animated sequence) --------------------------------
+
+const ENC_LABEL: Record<EncLevel, string> = {
+  plaintext: 'in the clear',
+  handshake: 'encrypted · handshake keys',
+  application: 'encrypted · application keys',
+};
+
+function TlsHandshakeTool() {
+  const flow = useMemo(() => tls13Flow(), []);
+  const [step, setStep] = useState(0); // 0 = nothing sent yet; 1..N = messages delivered
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!playing) return;
+    if (step >= flow.length) { setPlaying(false); return; }
+    const id = setTimeout(() => setStep((s) => Math.min(s + 1, flow.length)), 1100);
+    return () => clearTimeout(id);
+  }, [playing, step, flow.length]);
+
+  const current = step > 0 ? flow[step - 1] : null;
+  const appOpen = step >= flow.length; // handshake complete, app data flowing
+
+  return (
+    <>
+      <h2>TLS 1.3 handshake — one round trip to a secure channel</h2>
+      <p className="jsec-sub">
+        TLS 1.3 needs a single round trip. Only the two Hellos are in the clear; the moment both sides share a
+        key (right after ServerHello) the <em>rest of the handshake is already encrypted</em>, and once both
+        Finished messages land, application data flows under separate keys — opaque on the wire. Step through it.
+      </p>
+
+      <div className="tls-play">
+        <button className="ghost small" onClick={() => { setStep(0); setPlaying(false); }}>⏮ reset</button>
+        <button className="ghost small" disabled={step === 0} onClick={() => { setStep((s) => Math.max(0, s - 1)); setPlaying(false); }}>‹ back</button>
+        <button className="ghost small" disabled={step >= flow.length} onClick={() => { setStep((s) => Math.min(flow.length, s + 1)); setPlaying(false); }}>next ›</button>
+        <button className="ghost small" onClick={() => { if (step >= flow.length) setStep(0); setPlaying((p) => !p); }}>{playing ? '⏸ pause' : '▶ play'}</button>
+        <span className="tls-progress">{step} / {flow.length}</span>
+      </div>
+
+      <div className="tls-arc">
+        <div className="tls-cols"><span className="tls-actor client">Client</span><span className="tls-actor server">Server</span></div>
+        <div className="tls-lane client" /><div className="tls-lane server" />
+        {flow.map((m, i) => {
+          const delivered = i < step;
+          const active = i === step - 1;
+          const dir = m.from === 'client' ? 'to-server' : 'to-client';
+          return (
+            <div key={m.id} className={`tls-msg ${dir} ${m.enc} ${delivered ? 'on' : ''} ${active ? 'active' : ''}`}>
+              <span className="tls-arrow">{m.from === 'client' ? '→' : '←'}</span>
+              <span className="tls-name">{m.name}</span>
+              <span className="tls-lock">{m.enc === 'plaintext' ? '' : '🔒'}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="tls-detail">
+        {current ? (
+          <>
+            <div className="tls-d-head">
+              <strong>{current.name}</strong>
+              <span className={`tls-tag ${current.enc}`}>{ENC_LABEL[current.enc]}</span>
+              <span className="tls-from">{current.from} → {current.from === 'client' ? 'server' : 'client'}</span>
+            </div>
+            <p className="tls-purpose">{current.purpose}</p>
+            {current.establishes && <div className="tls-key">🔑 {current.establishes}</div>}
+          </>
+        ) : <p className="tls-purpose">Press <strong>next ›</strong> to send the ClientHello.</p>}
+      </div>
+
+      {appOpen && (
+        <div className="crypto-record">
+          <div className="cr-title">Application data is now an opaque TLS 1.3 record — Apex shows its shape, not its plaintext:</div>
+          <div className="cr-bar">
+            <span className="cr-seg hdr">23</span>
+            <span className="cr-seg hdr">03 03</span>
+            <span className="cr-seg len">len</span>
+            <span className="cr-seg op" style={{ flex: 3 }}>opaque ciphertext</span>
+            <span className="cr-seg tg">tag (16B)</span>
+          </div>
+          <div className="cr-note">type 23 = application_data · everything after the handshake is encrypted under the application traffic keys.</div>
+        </div>
+      )}
+    </>
   );
 }
 

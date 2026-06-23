@@ -642,3 +642,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rt-table td{padding:5px 8px;border-bottom:1px solid var(--panel)}
 .rt-table tr.done{background:hsl(212 70% 97%)}
 .rt-mono{font-family:var(--mono);color:var(--muted)}
+
+/* ---- TLS 1.3 handshake arc ---- */
+.tls-play{display:flex;align-items:center;gap:6px;margin:10px 0;flex-wrap:wrap}
+.tls-progress{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:6px}
+.tls-arc{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px 0;margin:8px 0}
+.tls-cols{display:flex;justify-content:space-between;padding:0 40px 6px}
+.tls-actor{font-weight:600;font-size:13px}
+.tls-actor.client{color:hsl(145 55% 35%)}
+.tls-actor.server{color:hsl(28 70% 45%)}
+.tls-lane{position:absolute;top:34px;bottom:10px;width:2px;background:#d4dbe4}
+.tls-lane.client{left:56px}
+.tls-lane.server{right:56px}
+.tls-msg{position:relative;display:flex;align-items:center;gap:8px;margin:3px 40px;padding:5px 12px;border-radius:8px;font-size:12.5px;opacity:.3;transition:opacity .25s,background .25s;border:1px solid transparent}
+.tls-msg.on{opacity:1}
+.tls-msg.to-server{flex-direction:row;justify-content:flex-start;background:linear-gradient(90deg,hsl(145 50% 95%),transparent)}
+.tls-msg.to-client{flex-direction:row-reverse;justify-content:flex-start;text-align:right;background:linear-gradient(270deg,hsl(28 70% 95%),transparent)}
+.tls-msg.active{border-color:hsl(212 70% 55%);box-shadow:0 0 0 2px hsl(212 70% 90%)}
+.tls-msg.handshake.on{background:linear-gradient(90deg,hsl(212 70% 94%),transparent)}
+.tls-msg.to-client.handshake.on{background:linear-gradient(270deg,hsl(212 70% 94%),transparent)}
+.tls-msg.application.on{background:linear-gradient(90deg,hsl(280 50% 94%),transparent)}
+.tls-arrow{font-family:var(--mono);color:var(--muted)}
+.tls-name{font-weight:600}
+.tls-lock{font-size:11px}
+.tls-detail{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;min-height:60px}
+.tls-d-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.tls-tag{font-size:10.5px;padding:2px 8px;border-radius:20px;font-weight:600}
+.tls-tag.plaintext{background:hsl(0 0% 92%);color:hsl(0 0% 35%)}
+.tls-tag.handshake{background:hsl(212 70% 92%);color:hsl(212 60% 38%)}
+.tls-tag.application{background:hsl(280 50% 92%);color:hsl(280 45% 40%)}
+.tls-from{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.tls-purpose{font-size:13px;line-height:1.5;margin:4px 0}
+.tls-key{font-size:12.5px;color:hsl(145 55% 30%);background:hsl(145 50% 96%);border:1px solid hsl(145 45% 85%);border-radius:7px;padding:6px 10px;margin-top:6px}
