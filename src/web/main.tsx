@@ -41,12 +41,13 @@ import { CookiesSection } from './CookiesSection';
 import { CertChainSection } from './CertChainSection';
 import { TracerouteSection } from './TracerouteSection';
 import { DhcpSection } from './DhcpSection';
+import { SwitchSection } from './SwitchSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -61,6 +62,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
   { id: 'dhcp', label: 'DHCP (DORA)', icon: '📨' },
+  { id: 'switch', label: 'L2 switch', icon: '🔌' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -468,6 +470,16 @@ function App() {
               <p className="sub">Discover, Offer, Request, Ack — how a device gets an address from nothing, and how the lease ages.</p>
             </header>
             <DhcpSection />
+          </>
+        )}
+
+        {section === 'switch' && (
+          <>
+            <header>
+              <h1>Ethernet switch (L2)</h1>
+              <p className="sub">Send frames and watch the switch learn MAC addresses, then flood the unknown and forward the known.</p>
+            </header>
+            <SwitchSection />
           </>
         )}
       </main>
