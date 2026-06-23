@@ -29,15 +29,17 @@ import { IdentitySection } from './IdentitySection';
 import { AttacksSection } from './AttacksSection';
 import { RoutingSection } from './RoutingSection';
 import { DnsJourneySection } from './DnsJourneySection';
+import { SubnetSection } from './SubnetSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
+  { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
@@ -324,6 +326,16 @@ function App() {
               <p className="sub">Follow a name down the delegation hierarchy — root to TLD to authoritative — and see why caching makes it fast.</p>
             </header>
             <DnsJourneySection />
+          </>
+        )}
+
+        {section === 'subnet' && (
+          <>
+            <header>
+              <h1>Subnetting &amp; CIDR</h1>
+              <p className="sub">See where the network ends and the host begins — on the actual bits — then split a block into subnets.</p>
+            </header>
+            <SubnetSection />
           </>
         )}
       </main>
