@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+*.log
+.vite
+coverage
+
+# local scratch (design mock-up, not part of the app)
+d.html
