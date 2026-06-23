@@ -4,10 +4,11 @@
 import { useMemo, useState } from 'react';
 import { utf8Breakdown, toBases, base64Steps, float32Bits } from './encoding';
 import { varintEncode, zigzagEncode, derParse, type Tlv, toAscii, percentEncode, hexdump } from './encoding2';
+import { parseUrl } from './urlparse';
 
 const hex2 = (v: number) => v.toString(16).toUpperCase().padStart(2, '0');
 
-type Tool = 'utf8' | 'bases' | 'base64' | 'float' | 'varint' | 'der' | 'puny' | 'url' | 'hexdump';
+type Tool = 'utf8' | 'bases' | 'base64' | 'float' | 'varint' | 'der' | 'puny' | 'url' | 'urlanat' | 'hexdump';
 const TOOLS: { id: Tool; label: string }[] = [
   { id: 'utf8', label: 'Text → UTF-8' },
   { id: 'bases', label: 'Number bases' },
@@ -17,6 +18,7 @@ const TOOLS: { id: Tool; label: string }[] = [
   { id: 'der', label: 'ASN.1 / DER' },
   { id: 'puny', label: 'Punycode (IDN)' },
   { id: 'url', label: 'URL encoding' },
+  { id: 'urlanat', label: 'URL anatomy' },
   { id: 'hexdump', label: 'Hexdump' },
 ];
 
@@ -41,6 +43,7 @@ export function EncodingSection() {
         {tool === 'der' && <DerTool />}
         {tool === 'puny' && <PunyTool />}
         {tool === 'url' && <UrlTool />}
+        {tool === 'urlanat' && <UrlAnatomyTool />}
         {tool === 'hexdump' && <HexdumpTool />}
       </section>
     </div>
@@ -316,6 +319,65 @@ function FloatTool() {
         <p className="enc-err">Enter a number (e.g. 3.14, -0.5, 1e10).</p>
       )}
     </>
+  );
+}
+
+function UrlAnatomyTool() {
+  const [text, setText] = useState('https://user:p%40ss@example.com:8443/docs/intro?q=two%20words&lang=en#section-3');
+  const u = useMemo(() => parseUrl(text), [text]);
+  return (
+    <>
+      <p className="jsec-sub">
+        Every part of a URL has a job. Type one and watch it split into <strong>scheme · userinfo · host · port · path ·
+        query · fragment</strong> (RFC 3986) — each shown raw and percent-decoded, with the query broken into key/value pairs.
+      </p>
+      <input className="enc-input" value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} placeholder="https://example.com/path?x=1#top" />
+      {!u.ok ? <p className="enc-err">{u.error}</p> : (
+        <>
+          <div className="url-raw">
+            <span className="up scheme">{u.scheme}</span><span className="up sep">://</span>
+            {u.userinfo && <><span className="up user">{u.userinfo}</span><span className="up sep">@</span></>}
+            <span className="up host">{u.host}</span>
+            {u.port && <><span className="up sep">:</span><span className="up port">{u.port}</span></>}
+            <span className="up path">{u.path}</span>
+            {u.query && <><span className="up sep">?</span><span className="up query">{u.query}</span></>}
+            {u.fragment && <><span className="up sep">#</span><span className="up frag">{u.fragment}</span></>}
+          </div>
+
+          <div className="url-parts">
+            <UrlPart cls="scheme" k="scheme" v={u.scheme} note="the protocol — how to talk to the host" />
+            {u.userinfo && <UrlPart cls="user" k="userinfo" v={`${u.user}${u.password ? ' : ' + u.password : ''}`} note="username[:password] — deprecated and unsafe in real URLs" />}
+            <UrlPart cls="host" k="host" v={u.host + (u.isPunycode ? '  ⚠ IDN/punycode' : '')} note="the server to connect to (DNS name or IP literal)" />
+            <UrlPart cls="port" k="port" v={u.effectivePort != null ? `${u.effectivePort}${u.port === '' ? ' (scheme default)' : u.isDefaultPort ? ' (redundant — it is the default)' : ''}` : '—'} note="TCP port; omitted means the scheme's default" />
+            <UrlPart cls="path" k="path" v={u.pathDecoded || '/'} note={u.path !== u.pathDecoded ? `raw: ${u.path}` : 'the resource on the host'} />
+            {u.fragment && <UrlPart cls="frag" k="fragment" v={u.fragmentDecoded} note="client-only anchor — never sent to the server" />}
+          </div>
+
+          {u.params.length > 0 && (
+            <div className="url-query">
+              <div className="url-q-head">query parameters</div>
+              {u.params.map((p, i) => (
+                <div className="url-q-row" key={i}>
+                  <code className="url-q-k">{p.key}</code><span className="url-q-eq">=</span><code className="url-q-v">{p.value}</code>
+                  {p.rawValue !== p.value && <span className="url-q-raw">raw: {p.rawValue}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+          {u.isPunycode && <p className="jwt-warn">⚠ The host is in punycode (xn--…), i.e. an internationalized name. Confirm it’s the brand you expect — homograph spoofs hide here.</p>}
+        </>
+      )}
+    </>
+  );
+}
+
+function UrlPart({ cls, k, v, note }: { cls: string; k: string; v: string; note: string }) {
+  return (
+    <div className="url-part">
+      <span className={`url-badge ${cls}`}>{k}</span>
+      <code className="url-val">{v || '—'}</code>
+      <span className="url-note">{note}</span>
+    </div>
   );
 }
 
