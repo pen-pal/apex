@@ -49,12 +49,13 @@ import { BloomSection } from './BloomSection';
 import { CacheHierarchySection } from './CacheHierarchySection';
 import { QosSection } from './QosSection';
 import { MerkleSection } from './MerkleSection';
+import { VectorClockSection } from './VectorClockSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -79,6 +80,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'merkle', label: 'Merkle tree', icon: '🌳' },
+  { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -564,6 +566,16 @@ function App() {
               <p className="sub">One root hash commits to a whole dataset — click a leaf for its proof, edit one and watch its path change.</p>
             </header>
             <MerkleSection />
+          </>
+        )}
+
+        {section === 'vclock' && (
+          <>
+            <header>
+              <h1>Vector clocks</h1>
+              <p className="sub">Order events across processes without a shared clock — click two to see if one caused the other or they're concurrent.</p>
+            </header>
+            <VectorClockSection />
           </>
         )}
       </main>
