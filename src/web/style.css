@@ -993,3 +993,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .url-q-eq{color:var(--muted)}
 .url-q-v{font-family:var(--mono);color:var(--ink)}
 .url-q-raw{font-size:10.5px;color:var(--muted);margin-left:6px}
+
+/* ---- HTTP cookies & sessions ---- */
+.ck-req{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin:10px 0}
+.ck-req label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
+.ck-req input[type=text],.ck-req input:not([type]){padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit;font-family:var(--mono)}
+.ck-check{flex-direction:row!important;align-items:center;gap:6px!important;color:var(--ink)!important}
+.ck-check.dim{opacity:.5}
+.ck-summary{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.ck-jar{display:flex;flex-direction:column;gap:8px}
+.ck-cookie{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+.ck-cookie.sent{border-left:4px solid hsl(145 55% 45%)}
+.ck-cookie.held{border-left:4px solid hsl(0 60% 60%);opacity:.82}
+.ck-c-head{display:flex;align-items:center;gap:10px}
+.ck-verdict{font-size:11px;font-weight:700;font-family:var(--mono)}
+.ck-cookie.sent .ck-verdict{color:hsl(145 55% 32%)}
+.ck-cookie.held .ck-verdict{color:hsl(0 60% 45%)}
+.ck-nv{font-family:var(--mono);font-size:13px;flex:1}
+.ck-rm{margin-left:auto;border:0;background:none;color:var(--muted);cursor:pointer;font-size:13px}
+.ck-flags{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0}
+.ck-flag{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:5px;background:#eef2f7;color:var(--muted)}
+.ck-flag.sec{background:hsl(145 50% 90%);color:hsl(145 55% 30%)}
+.ck-flag.http{background:hsl(212 70% 90%);color:hsl(212 60% 38%)}
+.ck-flag.ss-strict{background:hsl(0 70% 92%);color:hsl(0 60% 42%)}
+.ck-flag.ss-lax{background:hsl(28 75% 90%);color:hsl(28 60% 38%)}
+.ck-flag.ss-none{background:hsl(280 45% 92%);color:hsl(280 45% 42%)}
+.ck-reason{font-size:11.5px;color:var(--muted)}
+.ck-add{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.ck-add .enc-input{flex:1;min-width:240px}
+.ck-flags-legend{display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px}
