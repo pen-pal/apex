@@ -501,3 +501,12 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .luhn-d.dbl .ld-out{color:hsl(212 70% 45%)}
 .ed-ok{color:hsl(145 55% 32%);font-weight:600;margin-top:8px}
 .ed-bad{color:hsl(0 65% 45%);font-weight:600;margin-top:8px}
+
+/* ---- Crypto: hash & HMAC sub-tools ---- */
+.hash-perturb{display:flex;align-items:center;gap:12px;margin:10px 0;flex-wrap:wrap}
+.hp-label{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.digest-row{margin:10px 0}
+.digest-label{display:block;font-size:11.5px;color:var(--muted);margin-bottom:5px}
+.digest-bytes{display:flex;flex-wrap:wrap;gap:2px}
+.db{font-family:var(--mono);font-size:11px;background:#f2f5f9;border:1px solid var(--line);border-radius:4px;padding:2px 4px;color:var(--ink)}
+.db.changed{background:hsl(0 75% 55%);color:#fff;border-color:transparent}
