@@ -125,10 +125,15 @@ WHY SOF IS HERE BUT EOF IS NOT: a native FC frame is SOF | FC-header | payload |
   // in this header bounds the PDU — the FC frame's own structure and the Ethernet
   // frame length do — so there is no pduBytes here.
   headerBytes: (): number => 14,
-  // The payload is a complete encapsulated Fibre Channel frame: a 24-byte FC frame
-  // header (R_CTL, D_ID, S_ID, TYPE, F_CTL, SEQ_ID, DF_CTL, SEQ_CNT, OX_ID, RX_ID,
-  // Parameter), 0..2112 bytes of FC payload, and a 4-byte FC CRC; the 1-byte EOF
-  // and 3 reserved bytes (the FCoE trailer) follow that. No FC dissector is
-  // registered, so dissection stops and the FC frame remains in node.payload.
+  // The FCoE TRAILER is a fixed 4 bytes at the very END of the frame (FC-BB-5 §7.4):
+  // a 1-byte EOF (End-of-Frame delimiter, e.g. EOFn/EOFt) + 3 reserved bytes. It is
+  // end-anchored (no length field points at it), so we reserve it generically — the
+  // encapsulated FC frame stays in node.payload and the EOF+reserved go to node.trailer.
+  trailerBytes: (): number => 4,
+  // The payload is then the complete encapsulated Fibre Channel frame: a 24-byte FC
+  // frame header (R_CTL, D_ID, S_ID, TYPE, F_CTL, SEQ_ID, DF_CTL, SEQ_CNT, OX_ID,
+  // RX_ID, Parameter), 0..2112 bytes of FC payload, and the FC frame's own 4-byte
+  // CRC. No FC dissector is registered, so dissection stops and the FC frame remains
+  // in node.payload intact.
   next: (_h: ParsedHeader): string | null => null,
 };
