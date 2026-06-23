@@ -572,3 +572,34 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .oauth-track{display:flex;gap:6px;margin:6px 0}
 .ot-dot{width:11px;height:11px;border-radius:50%;background:#dde3ec;cursor:pointer}
 .ot-dot.on{background:hsl(212 70% 50%)}
+
+/* ---- Attacks, made visible ---- */
+.amp-range{flex:1;min-width:160px}
+.amp-seg{flex-wrap:wrap;margin:8px 0}
+.amp-readout{text-align:center;margin:14px 0;padding:16px;border:1px solid hsl(0 70% 80%);border-radius:12px;background:hsl(0 80% 98%)}
+.amp-big{font-size:38px;font-weight:800;color:hsl(0 70% 45%);font-family:var(--mono)}
+.amp-sub{font-size:12.5px;color:var(--muted);margin-top:4px}
+.amp-table{margin:10px 0}
+.amp-row{display:grid;grid-template-columns:190px 1fr 70px;gap:10px;align-items:center;padding:5px 6px;border-radius:7px;cursor:pointer}
+.amp-row:hover,.amp-row.on{background:var(--panel)}
+.amp-name{font-size:12px}
+.amp-bar{height:9px;background:#eef2f7;border-radius:5px;overflow:hidden}
+.amp-fill{height:100%;background:linear-gradient(90deg,hsl(28 80% 55%),hsl(0 75% 55%))}
+.amp-x{font-family:var(--mono);font-size:12px;text-align:right;color:var(--ink)}
+
+.lx-controls{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0}
+.syn-controls{display:flex;gap:20px;flex-wrap:wrap;margin:10px 0;font-size:12px;color:var(--muted)}
+.syn-controls label{display:flex;flex-direction:column;gap:4px}
+.syn-grid{display:flex;flex-wrap:wrap;gap:2px;margin:10px 0;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.syn-slot{width:11px;height:11px;border-radius:2px}
+.syn-slot.free{background:#dfe6ee}
+.syn-slot.half{background:hsl(0 75% 55%)}
+
+.arp-tables{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.arp-card{border:1px solid var(--line);border-radius:10px;padding:12px;min-width:260px;background:var(--panel)}
+.arp-title{font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:.3px}
+.arp-line{display:flex;justify-content:space-between;gap:12px;font-size:12px;padding:3px 0}
+.arp-line code{font-family:var(--mono);font-size:11.5px}
+.arp-line code.bad{color:hsl(0 70% 45%);font-weight:600}
+.arp-flow{font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px dashed var(--line);border-radius:8px}
+.arp-flow.mitm{color:hsl(0 70% 45%);border-color:hsl(0 70% 70%)}
