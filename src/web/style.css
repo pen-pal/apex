@@ -829,3 +829,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cc-sw.ca{background:hsl(145 55% 42%)}
 .cc-sw.th{background:hsl(28 75% 55%)}
 .cc-sw.loss{background:hsl(0 70% 55%)}
+
+/* ---- HTTP/2 multiplexing ---- */
+.h2-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.h2-play{display:flex;gap:5px}
+.h2-wire-label{font-size:11px;color:var(--muted);margin:8px 0 4px}
+.h2-wire{display:flex;gap:2px;flex-wrap:wrap;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin-bottom:12px}
+.h2-frame{width:26px;height:26px;border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:#fff;font-weight:600}
+.h2-lanes{display:flex;flex-direction:column;gap:8px}
+.h2-lane-head{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:3px;flex-wrap:wrap}
+.h2-dot{width:11px;height:11px;border-radius:3px}
+.h2-name{font-weight:500}
+.h2-frames{display:flex;align-items:center;gap:3px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.h2-frames button{width:18px;height:18px;border:1px solid var(--line);border-radius:4px;background:var(--panel);cursor:pointer;font:inherit;line-height:1}
+.h2-fin{margin-left:auto;font-size:11px;color:var(--muted);font-family:var(--mono)}
+.h2-fin.done{color:hsl(145 55% 32%)}
+.h2-track{display:flex;gap:2px;flex-wrap:wrap}
+.h2-cell{width:26px;height:16px;border:1px solid var(--line);border-radius:3px;background:#f1f4f8}
+.h2-stats{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;margin:14px 0 4px}
+.h2-stat{border:1px solid var(--line);border-radius:10px;padding:9px 14px;display:flex;flex-direction:column;background:var(--panel);opacity:.6}
+.h2-stat.on{opacity:1;border-color:hsl(212 70% 65%)}
+.h2-stat span{font-size:11px;color:var(--muted)}
+.h2-stat strong{font-size:18px;font-family:var(--mono)}
+.h2-stat em{font-size:10px;color:var(--muted);font-style:normal}
+.h2-win{flex:1;min-width:200px;align-self:center;font-size:12.5px;color:hsl(145 55% 30%);font-weight:500}
