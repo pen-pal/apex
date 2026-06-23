@@ -38,12 +38,13 @@ import { NatSection } from './NatSection';
 import { SlidingWindowSection } from './SlidingWindowSection';
 import { BufferbloatSection } from './BufferbloatSection';
 import { CookiesSection } from './CookiesSection';
+import { CertChainSection } from './CertChainSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -57,6 +58,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
+  { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -432,6 +434,16 @@ function App() {
               <p className="sub">Craft a request and watch which cookies attach — domain, path, Secure, and SameSite rules in action.</p>
             </header>
             <CookiesSection />
+          </>
+        )}
+
+        {section === 'certs' && (
+          <>
+            <header>
+              <h1>Certificates &amp; PKI</h1>
+              <p className="sub">Walk the certificate chain leaf → root — and watch validation fail at the exact link you break.</p>
+            </header>
+            <CertChainSection />
           </>
         )}
       </main>
