@@ -28,15 +28,17 @@ import { ErrorDetectSection } from './ErrorDetectSection';
 import { IdentitySection } from './IdentitySection';
 import { AttacksSection } from './AttacksSection';
 import { RoutingSection } from './RoutingSection';
+import { DnsJourneySection } from './DnsJourneySection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
+  { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -312,6 +314,16 @@ function App() {
               <p className="sub">Watch a link-state network compute shortest paths with Dijkstra — and reroute when a link cost changes.</p>
             </header>
             <RoutingSection />
+          </>
+        )}
+
+        {section === 'dns' && (
+          <>
+            <header>
+              <h1>DNS journey</h1>
+              <p className="sub">Follow a name down the delegation hierarchy — root to TLD to authoritative — and see why caching makes it fast.</p>
+            </header>
+            <DnsJourneySection />
           </>
         )}
       </main>

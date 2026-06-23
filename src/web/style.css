@@ -674,3 +674,40 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tls-from{font-size:11px;color:var(--muted);font-family:var(--mono)}
 .tls-purpose{font-size:13px;line-height:1.5;margin:4px 0}
 .tls-key{font-size:12.5px;color:hsl(145 55% 30%);background:hsl(145 50% 96%);border:1px solid hsl(145 45% 85%);border-radius:7px;padding:6px 10px;margin-top:6px}
+
+/* ---- DNS resolution journey ---- */
+.dns-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.dns-controls label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
+.dns-controls input[type=text],.dns-controls input:not([type]),.dns-controls select{padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit}
+.dns-warm{flex-direction:row!important;align-items:center;gap:6px!important;font-size:12.5px!important;color:var(--ink)!important}
+.dns-play{display:flex;gap:5px;align-items:center;margin-left:auto}
+.dns-prog{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dns-servers{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}
+.dns-server{border:1px solid var(--line);border-radius:11px;padding:12px 8px;text-align:center;background:var(--panel);transition:all .25s;opacity:.55}
+.dns-server.visited{opacity:1}
+.dns-server.from{opacity:1;border-color:hsl(145 55% 50%);box-shadow:0 0 0 2px hsl(145 50% 90%)}
+.dns-server.to{opacity:1;border-color:hsl(212 70% 55%);box-shadow:0 0 0 2px hsl(212 70% 90%)}
+.dns-server.skipped{opacity:.25}
+.ds-icon{font-size:24px;line-height:1}
+.ds-label{font-size:12px;font-weight:600;margin-top:4px}
+.ds-sub{font-size:10.5px;color:var(--muted)}
+.dns-detail{border:1px solid var(--line);border-radius:11px;padding:13px;margin:8px 0;min-height:70px}
+.dns-d-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.dns-kind{font-size:10px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:5px}
+.dns-kind.query{background:hsl(0 0% 90%);color:hsl(0 0% 30%)}
+.dns-kind.referral{background:hsl(28 75% 90%);color:hsl(28 60% 38%)}
+.dns-kind.answer{background:hsl(145 50% 90%);color:hsl(145 55% 30%)}
+.dns-route{font-size:12.5px;font-weight:600}
+.dns-cache-badge{font-size:11px;color:hsl(212 70% 45%);font-weight:600}
+.dns-note{font-size:13px;line-height:1.55;margin:4px 0}
+.dns-records{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.dns-rec{display:flex;align-items:center;gap:8px;font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:5px 9px;flex-wrap:wrap}
+.dns-rtype{font-family:var(--mono);font-weight:700;font-size:10.5px;padding:1px 6px;border-radius:4px;background:hsl(212 70% 90%);color:hsl(212 60% 38%)}
+.dns-rtype.NS{background:hsl(28 75% 90%);color:hsl(28 60% 38%)}
+.dns-rtype.A,.dns-rtype.AAAA{background:hsl(145 50% 90%);color:hsl(145 55% 30%)}
+.dns-rname{font-family:var(--mono);color:var(--muted)}
+.dns-rarrow{color:var(--muted)}
+.dns-rval{font-family:var(--mono);color:var(--ink)}
+.dns-rttl{margin-left:auto;font-size:10.5px;color:var(--muted)}
+.dns-final{margin-top:10px;font-size:13px;color:hsl(145 55% 30%);font-weight:500}
+@media(max-width:760px){.dns-servers{grid-template-columns:repeat(2,1fr)}.dns-play{margin-left:0}}
