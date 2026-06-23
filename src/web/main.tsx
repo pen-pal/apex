@@ -24,16 +24,18 @@ import { ChecksumView } from './ChecksumView';
 import { CryptoView } from './CryptoView';
 import { StoryView } from './StoryView';
 import { EncodingSection } from './EncodingSection';
+import { ErrorDetectSection } from './ErrorDetectSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'encoding', label: 'Encoding', icon: '🔤' },
+  { id: 'errors', label: 'Error control', icon: '🛡️' },
 ];
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
@@ -264,6 +266,16 @@ function App() {
               <p className="sub">How data is represented as bytes — type and watch it transform, for real.</p>
             </header>
             <EncodingSection />
+          </>
+        )}
+
+        {section === 'errors' && (
+          <>
+            <header>
+              <h1>Error control</h1>
+              <p className="sub">How the wire catches — and sometimes repairs — flipped bits, from parity to CRC to Hamming.</p>
+            </header>
+            <ErrorDetectSection />
           </>
         )}
       </main>
