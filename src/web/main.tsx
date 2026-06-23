@@ -34,12 +34,13 @@ import { BgpPathSection } from './BgpPathSection';
 import { CongestionSection } from './CongestionSection';
 import { Http2Section } from './Http2Section';
 import { QuicSection } from './QuicSection';
+import { NatSection } from './NatSection';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat';
 const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'network', label: 'Network', icon: '🌐' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
@@ -47,6 +48,7 @@ const SECTIONS: { id: Section; label: string; icon: string }[] = [
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
   { id: 'http2', label: 'HTTP/2 multiplexing', icon: '🧵' },
   { id: 'quic', label: 'QUIC vs TCP', icon: '🚀' },
+  { id: 'nat', label: 'NAT / PAT', icon: '🔀' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
@@ -384,6 +386,16 @@ function App() {
               <p className="sub">Fewer round trips to the first byte, and no transport-layer head-of-line blocking — why HTTP/3 left TCP.</p>
             </header>
             <QuicSection />
+          </>
+        )}
+
+        {section === 'nat' && (
+          <>
+            <header>
+              <h1>NAT / PAT</h1>
+              <p className="sub">One public IP for a whole network — watch the translation table build and route replies home.</p>
+            </header>
+            <NatSection />
           </>
         )}
       </main>
