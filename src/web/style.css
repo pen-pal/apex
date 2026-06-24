@@ -3037,3 +3037,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tcph-count{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:0 4px}
 .tcph-note{font-size:13px;padding:10px 14px;border-radius:9px;background:hsl(212 55% 96%);border:1px solid hsl(212 50% 87%)}
 .tcph-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── DNSSEC (DnssecSection) ── */
+.dsec-tampers{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 14px;font-size:12.5px;color:var(--muted)}
+.dsec-tampers button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.dsec-tampers button.on{background:hsl(0 72% 93%);border-color:hsl(0 60% 75%);color:hsl(0 55% 38%);font-weight:600}
+.dsec-banner{padding:11px 15px;border-radius:10px;font-weight:600;font-size:13.5px;margin-bottom:14px}
+.dsec-banner.secure{background:hsl(150 55% 94%);border:1px solid hsl(150 45% 80%);color:hsl(150 45% 28%)}
+.dsec-banner.bogus{background:hsl(0 75% 96%);border:1px solid hsl(0 60% 84%);color:hsl(0 60% 40%)}
+.dsec-chain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dsec-link{display:flex;gap:13px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;position:relative;background:#fbfcfe}
+.dsec-link:not(:last-child){margin-bottom:22px}
+.dsec-link:not(:last-child)::after{content:'';position:absolute;left:27px;bottom:-19px;width:2px;height:18px;background:var(--line)}
+.dsec-link.ok{border-color:hsl(150 40% 80%)}
+.dsec-link.bad{border-color:hsl(0 55% 82%);background:hsl(0 60% 98%)}
+.dsec-link.broke{box-shadow:0 0 0 2px hsl(0 70% 70%)}
+.dsec-icon{font-size:20px;width:30px;text-align:center;flex:none}
+.dsec-body{flex:1;min-width:0}
+.dsec-label{font-size:13.5px;font-weight:600}
+.dsec-status{font-weight:700}
+.dsec-link.ok .dsec-status{color:hsl(150 50% 38%)}
+.dsec-link.bad .dsec-status{color:hsl(0 65% 48%)}
+.dsec-detail{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:2px}
+.dsec-keyline{font-size:11.5px;color:var(--muted);margin-top:5px}
+.dsec-keyline code{font-family:var(--mono);font-size:11px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+.dsec-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
