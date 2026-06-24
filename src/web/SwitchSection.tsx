@@ -50,7 +50,7 @@ export function SwitchSection() {
           watch the flooding stop as the table fills.
         </p>
 
-        <div className="sw-controls">
+        <div className="lsw-controls">
           <label>from<select value={srcPort} onChange={(e) => setSrcPort(+e.target.value)}>{HOSTS.map((h) => <option key={h.port} value={h.port}>{h.name} (port {h.port})</option>)}</select></label>
           <label>to<select value={dstSel} onChange={(e) => setDstSel(e.target.value)}>
             {HOSTS.map((h) => <option key={h.mac} value={h.mac}>{h.name}</option>)}
@@ -60,40 +60,40 @@ export function SwitchSection() {
           <button className="ghost small" onClick={reset}>↺ reset</button>
         </div>
 
-        <div className="sw-fabric">
-          <div className="sw-hosts">
+        <div className="lsw-fabric">
+          <div className="lsw-hosts">
             {HOSTS.map((h) => {
               const isSrc = ingress === h.port;
               const isEgress = egress.has(h.port);
               return (
-                <div key={h.port} className="sw-host-col">
-                  <div className={`sw-host ${isSrc ? 'src' : ''} ${isEgress ? (flooding ? 'flood' : 'fwd') : ''}`}>
-                    <div className="sw-host-name">{h.name}</div>
+                <div key={h.port} className="lsw-host-col">
+                  <div className={`lsw-host ${isSrc ? 'src' : ''} ${isEgress ? (flooding ? 'flood' : 'fwd') : ''}`}>
+                    <div className="lsw-host-name">{h.name}</div>
                     <code>{h.mac.slice(0, 5)}…</code>
                   </div>
-                  <div className={`sw-cable ${isSrc ? 'in' : ''} ${isEgress ? (flooding ? 'flood' : 'fwd') : ''}`} />
-                  <div className={`sw-port ${isSrc ? 'in' : ''} ${isEgress ? (flooding ? 'flood' : 'fwd') : ''}`}>p{h.port}</div>
+                  <div className={`lsw-cable ${isSrc ? 'in' : ''} ${isEgress ? (flooding ? 'flood' : 'fwd') : ''}`} />
+                  <div className={`lsw-port ${isSrc ? 'in' : ''} ${isEgress ? (flooding ? 'flood' : 'fwd') : ''}`}>p{h.port}</div>
                 </div>
               );
             })}
           </div>
-          <div className="sw-box">SWITCH · CAM table</div>
+          <div className="lsw-box">SWITCH · CAM table</div>
         </div>
 
         {last && (
-          <div className={`sw-action ${last.action}`}>
+          <div className={`lsw-action ${last.action}`}>
             <strong>{byMac(lastFrame!.src)?.name} → {lastFrame!.dst === BROADCAST ? 'broadcast' : byMac(lastFrame!.dst)?.name}</strong>{' '}
             · {last.learned ? 'learned source · ' : ''}{labelFor(last.action)} {last.egress.length ? `out port${last.egress.length > 1 ? 's' : ''} ${last.egress.join(', ')}` : '(dropped)'}
-            <div className="sw-reason">{last.reason}</div>
+            <div className="lsw-reason">{last.reason}</div>
           </div>
         )}
 
-        <table className="sw-cam">
+        <table className="lsw-cam">
           <thead><tr><th>MAC address</th><th>port</th><th>host</th></tr></thead>
           <tbody>
-            {table.length === 0 && <tr><td colSpan={3} className="sw-empty">— empty — send a frame to start learning</td></tr>}
+            {table.length === 0 && <tr><td colSpan={3} className="lsw-empty">— empty — send a frame to start learning</td></tr>}
             {table.map((e) => (
-              <tr key={e.mac}><td className="sw-mono">{e.mac}</td><td className="sw-mono">{e.port}</td><td>{byMac(e.mac)?.name ?? '?'}</td></tr>
+              <tr key={e.mac}><td className="lsw-mono">{e.mac}</td><td className="lsw-mono">{e.port}</td><td>{byMac(e.mac)?.name ?? '?'}</td></tr>
             ))}
           </tbody>
         </table>
