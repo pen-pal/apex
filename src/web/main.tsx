@@ -54,13 +54,14 @@ import { GossipSection } from './GossipSection';
 import { RaftSection } from './RaftSection';
 import { CapSection } from './CapSection';
 import { ReplicationSection } from './ReplicationSection';
+import { TwoPcSection } from './TwoPcSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -611,6 +612,16 @@ function App() {
               <p className="sub">Leader appends, followers copy — sync waits for a quorum, async risks the tail. Crash the leader and see what survives.</p>
             </header>
             <ReplicationSection />
+          </>
+        )}
+
+        {section === 'twopc' && (
+          <>
+            <header>
+              <h1>Two-phase commit</h1>
+              <p className="sub">Atomic commit across databases — vote, decide, and watch the coordinator-crash blocking problem.</p>
+            </header>
+            <TwoPcSection />
           </>
         )}
       </main>
