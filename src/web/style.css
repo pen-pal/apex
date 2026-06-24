@@ -4511,3 +4511,52 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cl-verdict.ok{background:hsl(150 50% 90%);color:hsl(150 45% 28%)}
 .cl-verdict.no{background:hsl(0 60% 90%);color:hsl(0 55% 35%)}
 .cl-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── Viterbi / convolutional code (VitSection) ── */
+.vit-msg,.vit-code{margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.vit-lbl{font-size:12px;font-weight:600;color:var(--muted);min-width:78px}
+.vit-sub2{font-weight:400;font-size:11px}
+.vit-bit{font-family:var(--mono);font-size:15px;font-weight:700;width:30px;height:30px;border-radius:7px;border:1.5px solid var(--line);cursor:pointer;background:var(--panel)}
+.vit-bit.one{background:hsl(212 65% 50%);color:#fff;border-color:hsl(212 65% 50%)}
+.vit-bit.zero{color:var(--muted)}
+.vit-presets{display:flex;gap:6px;margin-left:8px}
+.vit-chip{font-family:var(--mono);font-size:11px;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted);cursor:pointer}
+.vit-chip:hover{border-color:hsl(212 50% 65%);color:var(--ink)}
+.vit-bits{display:flex;flex-wrap:wrap;gap:2px}
+.vit-rbit{position:relative;font-family:var(--mono);font-size:13px;width:24px;height:28px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer;transition:all .12s}
+.vit-rbit:hover{border-color:hsl(0 60% 60%)}
+.vit-rbit.flipped{background:hsl(0 70% 55%);color:#fff;border-color:hsl(0 70% 45%);font-weight:700}
+.vit-rbit.corrected:not(.flipped){box-shadow:0 0 0 2px hsl(150 50% 55%)}
+.vit-gap{display:inline-block;width:6px}
+.vit-stage{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:10px;margin:10px 0;overflow-x:auto}
+.vit-svg{display:block;min-width:520px;width:100%;height:auto}
+.vit-srow{font-family:var(--mono);font-size:10px;fill:var(--muted)}
+.vit-rail{stroke:#eef1f5;stroke-width:1}
+.vit-edge{fill:none}
+.vit-edge.cand{stroke:hsl(215 20% 85%);stroke-width:1}
+.vit-edge.surv{stroke:hsl(212 45% 72%);stroke-width:1.5}
+.vit-edge.ml{stroke:hsl(150 55% 42%);stroke-width:3}
+.vit-edge.ml.u1,.vit-edge.surv.u1,.vit-edge.cand.u1{stroke-dasharray:4 3}
+.vit-node{fill:#fff;stroke:hsl(215 18% 72%);stroke-width:1.5}
+.vit-node.dead{fill:hsl(215 15% 88%);stroke:none}
+.vit-node.path{stroke:hsl(150 55% 40%);stroke-width:2.5}
+.vit-metric{font-family:var(--mono);font-size:10px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.vit-rsym{font-family:var(--mono);font-size:10.5px;fill:hsl(0 50% 45%);text-anchor:middle;font-weight:600}
+.vit-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-size:11px;color:var(--muted);align-items:center}
+.vit-legend span{display:flex;align-items:center;gap:5px}
+.vit-k{display:inline-block;width:16px;height:0;border-top-width:3px;border-top-style:solid}
+.vit-k.ml{border-top-color:hsl(150 55% 42%)}
+.vit-k.surv{border-top-color:hsl(212 45% 72%)}
+.vit-k.cand{border-top-color:hsl(215 20% 80%)}
+.vit-k.u1{border-top:0;border-bottom:3px dashed var(--muted);width:16px}
+.vit-verdict{padding:13px 16px;border-radius:11px;margin-top:6px}
+.vit-verdict.ok{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 82%)}
+.vit-verdict.no{background:hsl(0 65% 97%);border:1px solid hsl(0 55% 86%)}
+.vit-vrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.vit-vlbl{font-size:12px;font-weight:600;color:var(--muted)}
+.vit-vbits{font-family:var(--mono);font-size:17px;font-weight:700;letter-spacing:.08em;color:var(--ink)}
+.vit-vtag{font-size:12.5px;font-weight:600}
+.vit-verdict.ok .vit-vtag{color:hsl(150 45% 32%)}
+.vit-verdict.no .vit-vtag{color:hsl(0 55% 42%)}
+.vit-vexpl{margin:8px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink)}
+.vit-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
