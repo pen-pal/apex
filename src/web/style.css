@@ -4063,3 +4063,14 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rk-stats{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
 .rk-stats b{font-family:var(--mono);color:var(--ink)}
 .rk-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── Global section search (in topbar) ── */
+.navsearch{position:relative;margin-left:auto}
+.navsearch-input{font:inherit;font-size:12.5px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);width:170px;transition:width .15s}
+.navsearch-input:focus{width:230px;outline:none;border-color:hsl(212 60% 60%)}
+.navsearch-results{position:absolute;top:calc(100% + 6px);right:0;z-index:60;width:300px;max-width:80vw;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.14);overflow:hidden;padding:4px}
+.navsearch-results button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:12.5px;padding:7px 9px;border:none;background:none;border-radius:7px;cursor:pointer}
+.navsearch-results button:hover,.navsearch-results button.on{background:hsl(212 55% 95%)}
+.navsearch-lbl{flex:1;font-weight:500}
+.navsearch-grp{font-size:10.5px;color:var(--muted);white-space:nowrap}
+@media(max-width:720px){.navsearch{margin-left:0;width:100%}.navsearch-input{width:100%}.navsearch-input:focus{width:100%}.navsearch-results{width:100%}}

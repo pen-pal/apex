@@ -172,7 +172,20 @@ const TABS: { id: View; label: string }[] = [
 function App() {
   const [section, setSection] = useState<Section>('network');
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [navQuery, setNavQuery] = useState('');
   const activeGroup = groupOf(section);
+
+  // flat, searchable index of every section (label + group, for the search box)
+  const allSections = useMemo(
+    () => GROUPS.flatMap((g) => g.ids.map((id) => ({ id, label: metaById[id].label, icon: metaById[id].icon, group: g.label }))),
+    [],
+  );
+  const navMatches = useMemo(() => {
+    const q = navQuery.trim().toLowerCase();
+    if (!q) return [];
+    return allSections.filter((s) => s.label.toLowerCase().includes(q) || s.group.toLowerCase().includes(q)).slice(0, 10);
+  }, [navQuery, allSections]);
+  const gotoSection = (id: string) => { setSection(id as Section); setNavQuery(''); setOpenMenu(null); };
   const [input, setInput] = useState('Hi');
   const [mode, setMode] = useState<Mode>('text');
   const [view, setView] = useState<View>('story');
@@ -290,9 +303,32 @@ function App() {
               );
             })}
           </nav>
+          <div className="navsearch">
+            <input
+              type="search"
+              className="navsearch-input"
+              placeholder={`🔎 search ${allSections.length} sections…`}
+              value={navQuery}
+              onChange={(e) => setNavQuery(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter' && navMatches[0]) gotoSection(navMatches[0].id); if (e.key === 'Escape') setNavQuery(''); }}
+              aria-label="Search sections"
+            />
+            {navMatches.length > 0 && (
+              <div className="navsearch-results" role="listbox">
+                {navMatches.map((s) => (
+                  <button key={s.id} type="button" role="option" className={section === s.id ? 'on' : ''} onClick={() => gotoSection(s.id)}>
+                    <span className="sec-icon" aria-hidden="true">{s.icon}</span>
+                    <span className="navsearch-lbl">{s.label}</span>
+                    <span className="navsearch-grp">{s.group}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </header>
       {openMenu && <div className="topnav-backdrop" onClick={() => setOpenMenu(null)} />}
+      {navQuery && <div className="topnav-backdrop" onClick={() => setNavQuery('')} />}
 
       <main className="content">
         {section === 'network' && (
