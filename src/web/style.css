@@ -2836,3 +2836,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .stp-link-roles{display:flex;gap:10px;flex-wrap:wrap}
 .stp-link-roles em{font-style:normal;font-size:11.5px;font-weight:600}
 .stp-verdict{padding:11px 14px;border-radius:10px;font-size:13px;line-height:1.55;background:hsl(150 50% 96%);border:1px solid hsl(150 42% 84%)}
+
+/* ── IPv6 SLAAC (SlaacSection) ── */
+.slaac-io{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 16px}
+.slaac-io label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+.slaac-io input{font-family:var(--mono);font-size:13.5px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;min-width:230px}
+.slaac-bad{padding:11px 14px;border-radius:9px;background:hsl(0 75% 97%);border:1px solid hsl(0 60% 88%);font-size:13px}
+.slaac-eui{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.slaac-step{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.slaac-k{font-size:12px;color:var(--muted);min-width:178px}
+.slaac-bytes{display:flex;gap:4px;align-items:center}
+.slaac-bytes em{font-family:var(--mono);font-style:normal;font-size:13.5px;padding:4px 7px;border-radius:6px;background:#f2f5f9;border:1px solid var(--line)}
+.slaac-bytes em.slaac-ins{background:hsl(45 85% 90%);border-color:hsl(45 70% 70%)}
+.slaac-bytes em.slaac-flip{background:hsl(150 55% 90%);border-color:hsl(150 45% 70%);font-weight:700}
+.slaac-gap{color:var(--muted);font-style:normal}
+.slaac-addrs{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+.slaac-addr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:9px 13px;border-radius:9px;background:#fbfcfe;border:1px solid var(--line)}
+.slaac-addr.global{background:hsl(212 60% 97%);border-color:hsl(212 50% 86%)}
+.slaac-label{font-size:11.5px;font-weight:700;color:var(--muted);min-width:108px;text-transform:uppercase;letter-spacing:.4px}
+.slaac-addr code{font-family:var(--mono);font-size:14.5px;font-weight:600}
+.slaac-tag{font-size:11.5px;color:var(--muted);margin-left:auto}
+.slaac-classify{margin-top:22px;padding-top:6px;border-top:1px solid var(--line)}
+.slaac-probe{font-family:var(--mono);font-size:14px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;width:100%;max-width:340px;margin-bottom:12px}
+.slaac-result{display:flex;flex-direction:column;gap:4px;padding:12px 15px;border-radius:10px;background:hsl(265 45% 97%);border:1px solid hsl(265 40% 88%)}
+.slaac-type{font-size:16px;font-weight:700;color:hsl(265 50% 42%)}
+.slaac-prefix{font-size:13px;color:var(--ink)}
+.slaac-note{font-size:12.5px;color:var(--muted)}
+.slaac-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
