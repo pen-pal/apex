@@ -4066,8 +4066,8 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 
 /* ── Global section search (in topbar) ── */
 .navsearch{position:relative;margin-left:auto}
-.navsearch-input{font:inherit;font-size:12.5px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);width:170px;transition:width .15s}
-.navsearch-input:focus{width:230px;outline:none;border-color:hsl(212 60% 60%)}
+.navsearch-input{font:inherit;font-size:12.5px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);width:200px;transition:width .15s}
+.navsearch-input:focus{width:250px;outline:none;border-color:hsl(212 60% 60%)}
 .navsearch-results{position:absolute;top:calc(100% + 6px);right:0;z-index:60;width:300px;max-width:80vw;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.14);overflow:hidden;padding:4px}
 .navsearch-results button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:12.5px;padding:7px 9px;border:none;background:none;border-radius:7px;cursor:pointer}
 .navsearch-results button:hover,.navsearch-results button.on{background:hsl(212 55% 95%)}
