@@ -14,8 +14,10 @@ const fnv1a = (s: string): number => {
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
   return h >>> 0;
 };
-// Murmur3 fmix32 finalizer: avalanche all bits so the seed (and every byte) reaches the LOW bits —
-// without it, FNV's low bits depend mostly on the trailing bytes, so `% n` would ignore the seed.
+// Murmur3 fmix32 finalizer. Raw FNV already responds to the seed, but POORLY DECORRELATED: across two
+// seeds the per-flow path choice is a fixed permutation of itself, so two cascaded tiers stay correlated
+// and only the n diagonal links carry traffic. The avalanche breaks that cross-seed correlation, so a
+// per-router seed truly scatters flows across the full n×n mesh (the polarization fix).
 const fmix32 = (h: number): number => {
   h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b);
   h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35);
