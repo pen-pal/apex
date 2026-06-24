@@ -91,13 +91,14 @@ import { HashCollisionSection } from './HashCollisionSection';
 import { RatchetSection } from './RatchetSection';
 import { KerberosSection } from './KerberosSection';
 import { RevocationSection } from './RevocationSection';
+import { SshSection } from './SshSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'revocation' | 'feistel' | 'poly1305' | 'hashbreak' | 'ratchet' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'ntp' | 'arq' | 'rto' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'revocation' | 'ssh' | 'feistel' | 'poly1305' | 'hashbreak' | 'ratchet' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'ntp' | 'arq' | 'rto' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -1049,6 +1050,16 @@ function App() {
               <p className="sub">How a browser distrusts a compromised cert before it expires (CRL/OCSP/stapling), and how Certificate Transparency catches a mis-issued one in public.</p>
             </header>
             <RevocationSection />
+          </>
+        )}
+
+        {section === 'ssh' && (
+          <>
+            <header>
+              <h1>SSH transport</h1>
+              <p className="sub">How SSH builds an encrypted tunnel before any secret — step the handshake to NEWKEYS, then see host-key trust-on-first-use catch a man-in-the-middle.</p>
+            </header>
+            <SshSection />
           </>
         )}
       </main>
