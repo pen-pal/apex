@@ -3761,3 +3761,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ped-check.bad{color:hsl(0 60% 45%)}
 .ped-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:16px}
 .ped-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── Locking & deadlock (LockingSection) ── */
+.lock-pick{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}
+.lock-pick button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.lock-pick button.on{background:hsl(212 60% 92%);border-color:hsl(212 55% 72%);font-weight:600}
+.lock-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.lock-table,.lock-graph{padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:#fbfcfe}
+.lock-table h3,.lock-graph h3{margin:0 0 10px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.lock-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.lock-res{font-family:var(--mono);font-size:13px;font-weight:700;width:24px}
+.lock-holds{display:flex;gap:4px;flex-wrap:wrap}
+.lock-holds em{font-style:normal;font-family:var(--mono);font-size:11px;color:#fff;padding:2px 7px;border-radius:5px;font-weight:600}
+.lock-waiting{margin-top:8px;font-size:11.5px;color:var(--muted);display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.lock-wait{font-style:normal;font-family:var(--mono);font-size:11px;background:hsl(38 70% 90%);color:hsl(32 60% 38%);padding:2px 7px;border-radius:5px}
+.lock-nodes{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.lock-node{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:2px solid;border-radius:10px;font-family:var(--mono);font-weight:700;font-size:14px}
+.lock-node.dead{background:hsl(0 70% 95%);box-shadow:0 0 0 2px hsl(0 70% 75%)}
+.lock-edges{display:flex;flex-direction:column;gap:4px}
+.lock-edge{font-family:var(--mono);font-size:12px;padding:4px 9px;border-radius:6px;background:#f4f6f9}
+.lock-edge span{color:var(--muted);font-family:inherit;font-size:11px;margin:0 4px}
+.lock-edge.dead{background:hsl(0 60% 94%);color:hsl(0 55% 42%);font-weight:600}
+.lock-noedge{font-size:12px;color:var(--muted)}
+.lock-verdict{padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.5}
+.lock-verdict.ok{background:hsl(150 50% 95%);border:1px solid hsl(150 42% 82%)}
+.lock-verdict.bad{background:hsl(0 73% 96%);border:1px solid hsl(0 60% 85%)}
+.lock-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+@media(max-width:600px){.lock-cols{grid-template-columns:1fr}}
