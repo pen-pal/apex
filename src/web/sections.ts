@@ -12,6 +12,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
   { id: 'fragment', label: 'IP fragmentation', icon: '🧩' },
+  { id: 'natpunch', label: 'NAT traversal', icon: '🕳️' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'bgphijack', label: 'BGP hijack', icon: '🏴‍☠️' },
@@ -48,7 +49,7 @@ export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_
 export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
-  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'dhcp', 'nat', 'traceroute', 'subnet', 'fragment'] },
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'bgp', 'bgphijack', 'dns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
   { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
