@@ -2417,3 +2417,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ft-verdict.ok{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
 .ft-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
 .ft-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* ── NTP clock sync (NtpSection) ── */
+.ntp-controls{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0 12px}
+.ntp-controls label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono)}
+.ntp-controls input{accent-color:hsl(212 70% 50%);min-width:130px}
+.ntp-tl{background:#fbfcfe;border:1px solid var(--line);border-radius:11px;margin:4px 0 10px}
+.ntp-line{stroke:#c4cdd8;stroke-width:2}
+.ntp-role{font-size:10px;fill:var(--muted);font-family:var(--mono)}
+.ntp-arrow{stroke:hsl(212 70% 55%);stroke-width:1.6}
+.ntp-ah{fill:hsl(212 70% 55%)}
+.ntp-proc{stroke:hsl(28 80% 55%);stroke-width:3}
+.ntp-dot{fill:var(--ink)}
+.ntp-tlabel{font-size:10px;font-weight:700;fill:var(--ink);text-anchor:middle;font-family:var(--mono)}
+.ntp-tval{font-size:9px;fill:var(--muted);text-anchor:middle;font-family:var(--mono)}
+.ntp-calc{display:flex;flex-direction:column;gap:5px;font-family:var(--mono);font-size:13px;margin-bottom:10px}
+.ntp-formula strong{color:hsl(212 70% 40%)}
+.ntp-verdict{padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.5}
+.ntp-verdict.ok{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.ntp-verdict.mid{background:hsl(38 85% 95%);border:1px solid hsl(38 70% 82%)}
+.ntp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
