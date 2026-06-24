@@ -3181,3 +3181,25 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .oauth-def.bad{background:hsl(0 70% 97%);border-color:hsl(0 55% 88%)}
 .oauth-def-k{flex:1}
 .oauth-def-v{font-family:var(--mono);font-size:11.5px}
+
+/* ── Snowflake IDs (SnowflakeSection) ── */
+.snow-id{font-family:var(--mono);font-size:20px;font-weight:700;text-align:center;padding:10px;background:#0f172a;color:#e2e8f0;border-radius:9px;margin:10px 0 14px;letter-spacing:1px;word-break:break-all}
+.snow-bits{display:flex;gap:2px;margin-bottom:16px;overflow-x:auto}
+.snow-field{display:flex;flex-direction:column;align-items:center;gap:5px;padding:7px 5px;border-radius:7px}
+.snow-field.sign{background:hsl(0 0% 92%)}
+.snow-field.ts{background:hsl(212 60% 92%);flex:1}
+.snow-field.wk{background:hsl(265 50% 91%)}
+.snow-field.sq{background:hsl(150 50% 90%)}
+.snow-bin{font-family:var(--mono);font-size:11px;letter-spacing:1px;word-break:break-all;text-align:center;line-height:1.3}
+.snow-tag{font-size:10px;color:var(--muted);text-align:center;line-height:1.3}
+.snow-controls{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.snow-controls label{display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--muted)}
+.snow-controls input[type=range]{flex:1;max-width:340px;accent-color:hsl(212 70% 50%)}
+.snow-controls b{font-family:var(--mono);font-size:12.5px;color:var(--ink);min-width:96px}
+.snow-burst button{font:inherit;font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.snow-list{margin-top:12px;display:flex;flex-direction:column;gap:4px}
+.snow-row{display:flex;justify-content:space-between;gap:14px;align-items:baseline;font-size:12px;padding:5px 10px;background:#fbfcfe;border:1px solid var(--line);border-radius:6px}
+.snow-row code{font-family:var(--mono);font-size:12.5px}
+.snow-row span{color:var(--muted);font-size:11px;white-space:nowrap}
+.snow-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px}
+.snow-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
