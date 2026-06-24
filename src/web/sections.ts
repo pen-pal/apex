@@ -37,6 +37,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
   { id: 'raft', label: 'Raft election', icon: '👑' },
   { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
+  { id: 'replication', label: 'Replication (WAL)', icon: '🗄️' },
 ];
 
 export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_META.map((m) => [m.id, m]));
@@ -49,7 +50,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
   { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap', 'replication'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
