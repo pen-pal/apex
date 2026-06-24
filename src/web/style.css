@@ -4617,3 +4617,17 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sctp-carries{font-size:11.5px;color:var(--ink);font-family:var(--mono);margin-bottom:4px}
 .sctp-mnote{font-size:12px;color:var(--muted);line-height:1.5}
 .sctp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:16px}
+
+/* segment-tree lazy-propagation panel (SegTreeSection) */
+.seg-lazy{margin-top:18px;padding:14px;border:1px solid var(--line);border-radius:12px;background:hsl(265 40% 98%)}
+.seg-lazy-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.seg-lazy-head h3{margin:0;font-size:14px}
+.seg-lazy-ctrl{display:flex;align-items:center;gap:6px}
+.seg-lazy-ctrl button{font:inherit;font-size:12.5px;padding:5px 10px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.seg-delta{font-family:var(--mono);font-size:13px;font-weight:700;color:hsl(265 45% 45%);min-width:30px;text-align:center}
+.seg-apply{background:hsl(265 50% 55%)!important;color:#fff;border-color:hsl(265 50% 55%)!important;font-weight:600}
+.seg-lazy-reset{color:var(--muted)}
+.seg-array.lazy{margin:0}
+.seg-array.lazy .seg-cell{padding-bottom:8px}
+.seg-lazy-note{font-size:12px;color:var(--muted);line-height:1.55;margin:10px 0 0}
+.seg-lazy-note b{font-family:var(--mono);color:hsl(265 45% 42%)}

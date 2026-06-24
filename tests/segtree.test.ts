@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { build, queryMin, update, naiveMin } from '../src/web/segtree';
+import { build, queryMin, update, naiveMin, buildLazy, rangeAdd, queryLazy, toArray } from '../src/web/segtree';
 
 const A = [5, 2, 8, 1, 9, 3, 7, 4];
 
@@ -49,5 +49,36 @@ describe('point updates', () => {
       for (let l = 0; l < arr.length; l++) for (let r = l; r < arr.length; r++)
         expect(queryMin(s, l, r).min).toBe(naiveMin(arr, l, r));
     }
+  });
+});
+
+describe('lazy propagation — range add + range min vs brute force', () => {
+  it('matches a brute-force array after a sequence of range-adds', () => {
+    const arr = [...A];
+    const t = buildLazy(arr);
+    const ops: [number, number, number][] = [[1, 4, +3], [0, 7, -2], [2, 2, +10], [5, 7, +1], [0, 3, -5]];
+    for (const [l, r, d] of ops) {
+      for (let i = l; i <= r; i++) arr[i] += d; // brute-force apply
+      rangeAdd(t, l, r, d);
+      expect(toArray(t)).toEqual(arr); // every element matches
+      for (let l2 = 0; l2 < arr.length; l2++) for (let r2 = l2; r2 < arr.length; r2++)
+        expect(queryLazy(t, l2, r2)).toBe(naiveMin(arr, l2, r2)); // every range min matches
+    }
+  });
+
+  it('a range-add tags only O(log n) nodes, never every covered leaf', () => {
+    const t = buildLazy([0, 0, 0, 0, 0, 0, 0, 0]); // n=8
+    const tagged = rangeAdd(t, 0, 7, 5); // the whole array
+    expect(tagged).toEqual([1]); // a single fully-covering node (the root) absorbs it — not 8 leaves
+    expect(queryLazy(t, 3, 3)).toBe(5); // yet every element reads as updated once pushed down
+    const tagged2 = rangeAdd(t, 1, 6, 2); // a straddling range
+    expect(tagged2.length).toBeLessThanOrEqual(4); // O(log n) frontier, far fewer than 6 elements
+  });
+
+  it('handles a degenerate single-element tree', () => {
+    const t = buildLazy([42]);
+    rangeAdd(t, 0, 0, 8);
+    expect(queryLazy(t, 0, 0)).toBe(50);
+    expect(toArray(t)).toEqual([50]);
   });
 });
