@@ -2035,3 +2035,41 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .arq-legend .arq-cell{width:24px;height:24px;border-radius:6px}
 .arq-legend .arq-sym{font-size:10px}
 .arq-note{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* ── Distance-vector routing (DistanceVectorSection) ── */
+.dv-net{display:flex;align-items:center;gap:0;margin:10px 0 16px;flex-wrap:wrap}
+.dv-link-wrap{display:inline-flex;align-items:center}
+.dv-node{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;
+  background:hsl(212 70% 92%);color:hsl(212 70% 34%);font-weight:700;font-family:var(--mono);border:2px solid hsl(212 60% 80%)}
+.dv-node.dest{background:hsl(28 85% 88%);color:hsl(28 80% 36%);border-color:hsl(28 70% 75%)}
+.dv-link{padding:0 8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dv-link.cut{color:hsl(0 70% 50%);font-size:16px}
+.dv-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.dv-btn{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.dv-btn.primary{background:hsl(0 70% 52%);color:#fff;border-color:transparent}
+.dv-toggle{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer}
+.dv-toggle input{width:15px;height:15px;accent-color:hsl(150 55% 45%)}
+
+.dv-cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.dv-card{border:1px solid var(--line);border-radius:10px;padding:10px 16px;text-align:center;min-width:104px;background:#fbfcfe}
+.dv-card.ok{border-color:hsl(150 45% 70%);background:hsl(150 50% 97%)}
+.dv-card.climb{border-color:hsl(28 80% 65%);background:hsl(28 85% 96%)}
+.dv-card.inf{border-color:hsl(0 60% 75%);background:hsl(0 70% 97%)}
+.dv-card-h{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.dv-card-cost{font-size:26px;font-weight:750;font-family:var(--mono);margin:2px 0}
+.dv-card.climb .dv-card-cost{color:hsl(28 80% 42%)}
+.dv-card.inf .dv-card-cost{color:hsl(0 65% 48%)}
+.dv-card-via{font-size:11px;color:var(--muted)}
+
+.dv-stepper{display:flex;align-items:center;gap:10px;margin:6px 0 12px}
+.dv-stepper button{font:inherit;border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:4px 10px;cursor:pointer}
+.dv-stepper button:disabled{opacity:.4;cursor:not-allowed}
+.dv-stepper input{flex:1;max-width:260px;accent-color:hsl(212 70% 50%)}
+.dv-stepno{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.dv-table{border-collapse:collapse;font-family:var(--mono);font-size:12.5px;margin-bottom:12px}
+.dv-table th,.dv-table td{border:1px solid var(--line);padding:4px 14px;text-align:center}
+.dv-table th{background:#f2f5f9;color:var(--muted);font-weight:600}
+.dv-table tr{cursor:pointer}
+.dv-table tr.on td{background:hsl(212 70% 94%)}
+.dv-table td.inf{color:hsl(0 65% 48%);font-weight:700}
+.dv-note{font-size:12.5px;color:var(--muted);line-height:1.6}

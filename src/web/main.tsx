@@ -72,13 +72,14 @@ import { ArpSection } from './ArpSection';
 import { CsmaSection } from './CsmaSection';
 import { MulticastSection } from './MulticastSection';
 import { ArqSection } from './ArqSection';
+import { DistanceVectorSection } from './DistanceVectorSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'arq';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'arq' | 'distvec';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -840,6 +841,16 @@ function App() {
               <p className="sub">Drop one frame and compare: Go-Back-N resends it and everything after; Selective Repeat buffers and resends only the gap.</p>
             </header>
             <ArqSection />
+          </>
+        )}
+
+        {section === 'distvec' && (
+          <>
+            <header>
+              <h1>Distance-vector routing</h1>
+              <p className="sub">Routers gossip distance vectors to converge on shortest paths — then cut a link and watch the count-to-infinity problem crawl the cost upward, and poison-reverse stop it.</p>
+            </header>
+            <DistanceVectorSection />
           </>
         )}
       </main>
