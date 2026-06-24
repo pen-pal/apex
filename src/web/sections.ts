@@ -16,6 +16,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'ipcompare', label: 'IPv4 vs IPv6', icon: '⇄' },
   { id: 'icmp', label: 'ICMP messages', icon: '🚨' },
   { id: 'arp', label: 'ARP resolution', icon: '📇' },
+  { id: 'csma', label: 'WiFi CSMA/CA', icon: '📶' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'bgphijack', label: 'BGP hijack', icon: '🏴‍☠️' },
@@ -52,7 +53,7 @@ export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_
 export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
-  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'arp', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp'] },
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'bgp', 'bgphijack', 'dns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
   { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
