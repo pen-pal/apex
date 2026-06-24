@@ -90,6 +90,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'errors', label: 'Error control', icon: '🛡️' },
   { id: 'chash', label: 'Consistent hashing', icon: '⭕' },
   { id: 'lb', label: 'Load balancing', icon: '⚖️' },
+  { id: 'countmin', label: 'Count-Min Sketch', icon: '📊' },
   { id: 'bloom', label: 'Bloom filter', icon: '🌸' },
   { id: 'lamport', label: 'Lamport clocks', icon: '⏱️' },
   { id: 'snowflake', label: 'Snowflake IDs', icon: '❄️' },
@@ -115,7 +116,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'cookies', 'cors', 'webinject', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'crc32', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'snowflake', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'raft', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'countmin', 'bloom', 'snowflake', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'raft', 'cap', 'quorum', 'replication', 'twopc'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */

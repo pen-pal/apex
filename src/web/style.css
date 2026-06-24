@@ -3234,3 +3234,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pmtu-verdict.ok{background:hsl(150 55% 93%);border:1px solid hsl(150 45% 80%);color:hsl(150 45% 28%)}
 .pmtu-verdict.bad{background:hsl(0 75% 95%);border:1px solid hsl(0 60% 84%);color:hsl(0 60% 40%)}
 .pmtu-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── Count-Min Sketch (CountMinSection) ── */
+.cms-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0 16px}
+.cms-controls input[type=text],.cms-controls input:not([type]){font-family:var(--mono);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:120px}
+.cms-controls button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.cms-reset{color:hsl(0 55% 45%)}
+.cms-controls label{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.cms-controls label input[type=range]{width:80px;accent-color:hsl(265 55% 55%)}
+.cms-controls label b{font-family:var(--mono);color:var(--ink)}
+.cms-stage{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.cms-grid{display:grid;gap:3px;flex:1;min-width:240px}
+.cms-cell{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;border-radius:5px;background:#f4f6f9;border:1px solid var(--line);color:var(--muted)}
+.cms-cell.nz{background:hsl(212 55% 92%);color:var(--ink);border-color:hsl(212 50% 80%)}
+.cms-cell.hot{background:hsl(45 90% 80%);border-color:hsl(38 80% 55%);color:hsl(30 60% 30%);font-weight:700;box-shadow:0 0 0 2px hsl(45 85% 65%)}
+.cms-readout{flex:none;width:240px}
+.cms-readout h3{margin:0 0 8px;font-size:13px}
+.cms-empty{font-size:12.5px;color:var(--muted)}
+.cms-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.cms-table th{text-align:left;color:var(--muted);font-weight:600;padding:3px 6px;border-bottom:1px solid var(--line)}
+.cms-table td{padding:3px 6px;font-family:var(--mono)}
+.cms-table tr.sel{background:hsl(45 80% 94%)}
+.cms-table td.over{color:hsl(0 60% 48%);font-weight:700}
+.cms-table td.exact{color:hsl(150 50% 38%)}
+.cms-min{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.5}
+.cms-min b{font-family:var(--mono);color:var(--ink)}
+.cms-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.cms-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
