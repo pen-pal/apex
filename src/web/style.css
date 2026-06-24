@@ -3642,3 +3642,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bpt-legend i.bpt-node{width:16px;height:16px;padding:0;border-width:1.5px}
 .bpt-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .bpt-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── LSM-tree (LsmSection) ── */
+.lsm-write{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 16px}
+.lsm-write input{font-family:var(--mono);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:100px}
+.lsm-write button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.lsm-compact{margin-left:auto;background:hsl(265 50% 95%);border-color:hsl(265 45% 80%)}
+.lsm-store{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.lsm-memtable{padding:11px 13px;border-radius:10px;background:hsl(45 70% 95%);border:1px solid hsl(45 60% 80%)}
+.lsm-sstables{display:flex;flex-direction:column;gap:6px}
+.lsm-sst{padding:10px 13px;border-radius:10px;background:hsl(212 45% 96%);border:1px solid hsl(212 40% 85%)}
+.lsm-label{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600;margin-bottom:7px}
+.lsm-label.dim{opacity:.6;margin:0}
+.lsm-entries{display:flex;gap:5px;flex-wrap:wrap}
+.lsm-kv{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:6px;background:#fff;border:1px solid var(--line)}
+.lsm-kv.tomb{background:hsl(0 60% 95%);border-color:hsl(0 50% 82%);color:hsl(0 55% 45%)}
+.lsm-empty{font-size:12px;color:var(--muted)}
+.lsm-read{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.lsm-read input{font-family:var(--mono);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:110px}
+.lsm-result{font-size:12.5px;padding:7px 12px;border-radius:8px;font-family:var(--mono)}
+.lsm-result.hit{background:hsl(150 50% 93%);border:1px solid hsl(150 45% 80%);color:hsl(150 45% 30%)}
+.lsm-result.tomb{background:hsl(0 60% 95%);border:1px solid hsl(0 50% 84%);color:hsl(0 55% 42%)}
+.lsm-result.miss{background:#f2f5f9;border:1px solid var(--line);color:var(--muted)}
+.lsm-cost{color:var(--muted);font-weight:400;margin-left:6px}
+.lsm-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:8px}
