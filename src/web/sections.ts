@@ -36,6 +36,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'fenwick', label: 'Fenwick tree', icon: '🌴' },
   { id: 'kmp', label: 'KMP string search', icon: '🔎' },
   { id: 'editdist', label: 'Edit distance', icon: '📝' },
+  { id: 'toposort', label: 'Topological sort', icon: '🔢' },
   { id: 'rabinkarp', label: 'Rabin-Karp', icon: '🎞️' },
   { id: 'arp', label: 'ARP resolution', icon: '📇' },
   { id: 'stptree', label: 'Spanning Tree', icon: '🌳' },
@@ -152,7 +153,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'huffman', 'crc32', 'reedsolomon', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'bloom', 'snowflake', 'lamport', 'hlc', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
-  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'kmp', 'rabinkarp', 'editdist'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'kmp', 'rabinkarp', 'editdist', 'toposort'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
