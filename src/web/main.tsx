@@ -81,8 +81,7 @@ const TABS: { id: View; label: string }[] = [
 
 function App() {
   const [section, setSection] = useState<Section>('network');
-  const [openGroups, setOpenGroups] = useState<Set<string>>(() => new Set([groupOf('network')!]));
-  const toggleGroup = (label: string) => setOpenGroups((s) => { const n = new Set(s); n.has(label) ? n.delete(label) : n.add(label); return n; });
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const activeGroup = groupOf(section);
   const [input, setInput] = useState('Hi');
   const [mode, setMode] = useState<Mode>('text');
@@ -143,23 +142,27 @@ function App() {
 
   return (
     <div className="app">
-      <aside className="sidebar">
+      <header className="topbar">
         <div className="brand"><span className="logo">◆</span> Apex</div>
-        <nav className="sections">
+        <nav className="topnav">
           {GROUPS.map((g) => {
-            const open = openGroups.has(g.label) || g.label === activeGroup;
+            const isOpen = openMenu === g.label;
+            const isActive = g.label === activeGroup;
+            const activeMeta = isActive ? metaById[section] : null;
             return (
-              <div className="sec-group" key={g.label}>
-                <button className={`sec-group-h ${g.label === activeGroup ? 'active' : ''}`} onClick={() => toggleGroup(g.label)} aria-expanded={open}>
-                  <span className="sec-group-label">{g.icon} {g.label}</span>
-                  <span className="sec-caret">{open ? '▾' : '▸'}</span>
+              <div className="topgroup" key={g.label}>
+                <button className={`topgroup-h ${isActive ? 'active' : ''} ${isOpen ? 'open' : ''}`} onClick={() => setOpenMenu(isOpen ? null : g.label)} aria-expanded={isOpen}>
+                  <span className="tg-icon">{g.icon}</span>
+                  <span className="tg-label">{g.label}</span>
+                  {activeMeta && <span className="tg-current">· {activeMeta.label}</span>}
+                  <span className="tg-caret">{isOpen ? '▴' : '▾'}</span>
                 </button>
-                {open && (
-                  <div className="sec-group-items">
+                {isOpen && (
+                  <div className="topmenu">
                     {g.ids.map((id) => {
                       const m = metaById[id];
                       return (
-                        <button key={id} className={section === id ? 'on' : ''} onClick={() => setSection(id as Section)}>
+                        <button key={id} className={section === id ? 'on' : ''} onClick={() => { setSection(id as Section); setOpenMenu(null); }}>
                           <span className="sec-icon">{m.icon}</span> {m.label}
                         </button>
                       );
@@ -170,8 +173,8 @@ function App() {
             );
           })}
         </nav>
-        <div className="sidebar-foot">See how the internet works — one real byte at a time.</div>
-      </aside>
+      </header>
+      {openMenu && <div className="topnav-backdrop" onClick={() => setOpenMenu(null)} />}
 
       <main className="content">
         {section === 'network' && (
