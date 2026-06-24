@@ -4998,3 +4998,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .vrrp-note b{font-family:var(--mono);color:hsl(150 45% 35%)}
 .vrrp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .vrrp-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+
+/* ── TrueTime & commit-wait (TtSection) ── */
+.tt-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin:14px 0}
+.tt-ctrl label{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted)}
+.tt-ctrl input[type=range]{width:170px;accent-color:hsl(265 50% 55%)}
+.tt-ctrl b{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+.tt-cost{font-size:12px;color:var(--muted)}
+.tt-cost b{font-family:var(--mono);color:hsl(265 50% 48%)}
+.tt-track{position:relative;height:96px;background:#fafbfc;border:1px solid var(--line);border-radius:10px;margin-bottom:18px}
+.tt-uncert{position:absolute;top:14px;height:20px;background:hsl(212 60% 85%);border:1px solid hsl(212 50% 70%);border-radius:5px}
+.tt-uncert span{position:absolute;top:-15px;left:0;font-size:9.5px;font-family:var(--mono);color:hsl(212 55% 42%);white-space:nowrap}
+.tt-wait{position:absolute;top:40px;height:16px;background:repeating-linear-gradient(45deg,hsl(265 50% 90%) 0 6px,hsl(265 45% 84%) 6px 12px);border:1px solid hsl(265 45% 75%);border-radius:5px}
+.tt-wait span{position:absolute;top:1px;left:50%;transform:translateX(-50%);font-size:9px;font-family:var(--mono);color:hsl(265 50% 42%);white-space:nowrap}
+.tt-mark{position:absolute;top:8px;height:80px}
+.tt-mark i{position:absolute;top:0;width:2px;height:62px;transform:translateX(-1px)}
+.tt-mark label{position:absolute;top:64px;left:0;transform:translateX(-50%);font-size:9px;font-family:var(--mono);white-space:nowrap}
+.tt-mark.truet i{background:var(--ink)} .tt-mark.truet label{color:var(--ink)}
+.tt-mark.commit i{background:hsl(212 65% 50%)} .tt-mark.commit label{color:hsl(212 65% 42%)}
+.tt-mark.visible i{background:hsl(150 50% 42%)} .tt-mark.visible label{color:hsl(150 45% 32%)}
+.tt-ec{border:1px solid var(--line);border-radius:11px;padding:14px}
+.tt-echdr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.tt-echdr h3{margin:0;font-size:13.5px}
+.tt-toggle{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);cursor:pointer}
+.tt-toggle input{width:15px;height:15px}
+.tt-ecrows{display:flex;flex-direction:column;gap:5px;max-width:440px;margin-bottom:12px}
+.tt-ecrow{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px dotted var(--line)}
+.tt-ecrow b{font-family:var(--mono);color:hsl(265 50% 45%)}
+.tt-verdict{padding:11px 14px;border-radius:9px;font-size:12.5px;line-height:1.5}
+.tt-verdict.ok{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 83%);color:hsl(150 45% 28%)}
+.tt-verdict.bad{background:hsl(0 60% 96.5%);border:1px solid hsl(0 50% 86%);color:hsl(0 55% 40%);font-weight:500}
+.tt-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.tt-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
