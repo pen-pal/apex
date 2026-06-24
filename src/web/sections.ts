@@ -20,6 +20,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'ntp', label: 'NTP clock sync', icon: '🕰️' },
   { id: 'arp', label: 'ARP resolution', icon: '📇' },
   { id: 'stptree', label: 'Spanning Tree', icon: '🌳' },
+  { id: 'slaac', label: 'IPv6 SLAAC', icon: '🆔' },
   { id: 'csma', label: 'WiFi CSMA/CA', icon: '📶' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'distvec', label: 'Distance-vector', icon: '📐' },
@@ -94,7 +95,7 @@ export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_
 export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
-  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp', 'multicast', 'vlan', 'ntp'] },
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'slaac', 'icmp', 'multicast', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'dns', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'schnorr', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
