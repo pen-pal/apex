@@ -20,8 +20,9 @@ describe('range-minimum queries', () => {
   });
 
   it('a query touches only O(log n) nodes', () => {
-    const r = queryMin(s, 1, 6);
-    expect(r.nodes.length).toBeLessThanOrEqual(2 * Math.log2(s.n)); // ≤ 2·log n
+    // tight bound so a regression to a linear O(r-l) scan would actually fail
+    for (let l = 0; l < A.length; l++) for (let r = l; r < A.length; r++)
+      expect(queryMin(s, l, r).nodes.length).toBeLessThanOrEqual(Math.ceil(Math.log2(s.n)) + 1);
   });
 });
 
