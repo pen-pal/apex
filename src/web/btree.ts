@@ -76,3 +76,86 @@ export function leafDepths(node: Node, d = 1, acc = new Set<number>()): Set<numb
   else for (const c of node.children) leafDepths(c, d + 1, acc);
   return acc;
 }
+
+// ---- deletion -------------------------------------------------------------------------------
+// Deleting is the mirror of inserting. Remove the key from its leaf; if that leaves the node
+// below its minimum occupancy it UNDERFLOWS, and we repair it the same two ways insertion grows:
+// BORROW one key from an adjacent sibling that has a spare (rotating through the parent separator),
+// or MERGE with a sibling when neither can spare one — pulling the separator down for internal
+// nodes, just dropping it for leaves (leaves already hold every key). A merge can cascade an
+// underflow up to the parent; if the root collapses to a single child, the tree shrinks a level.
+
+const minLeafKeys = (order: number) => Math.floor(order / 2); // ≈ half full (ceil((order-1)/2))
+const minInternalKeys = (order: number) => Math.ceil(order / 2) - 1; // ≥ ceil(order/2) children
+const underflows = (n: Node, order: number) => n.keys.length < (n.kind === 'leaf' ? minLeafKeys(order) : minInternalKeys(order));
+
+function cloneNode(n: Node): Node {
+  return n.kind === 'leaf' ? { kind: 'leaf', keys: [...n.keys] } : { kind: 'internal', keys: [...n.keys], children: n.children.map(cloneNode) };
+}
+
+function borrowLeft(parent: Internal, ci: number): void {
+  const child = parent.children[ci], left = parent.children[ci - 1];
+  if (child.kind === 'leaf' && left.kind === 'leaf') {
+    child.keys.unshift(left.keys.pop()!);
+    parent.keys[ci - 1] = child.keys[0]; // separator = child's new first key
+  } else if (child.kind === 'internal' && left.kind === 'internal') {
+    child.keys.unshift(parent.keys[ci - 1]); // rotate the separator down
+    child.children.unshift(left.children.pop()!);
+    parent.keys[ci - 1] = left.keys.pop()!; // and the sibling's last key up
+  }
+}
+
+function borrowRight(parent: Internal, ci: number): void {
+  const child = parent.children[ci], right = parent.children[ci + 1];
+  if (child.kind === 'leaf' && right.kind === 'leaf') {
+    child.keys.push(right.keys.shift()!);
+    parent.keys[ci] = right.keys[0]; // separator = right sibling's new first key
+  } else if (child.kind === 'internal' && right.kind === 'internal') {
+    child.keys.push(parent.keys[ci]);
+    child.children.push(right.children.shift()!);
+    parent.keys[ci] = right.keys.shift()!;
+  }
+}
+
+/** Merge children[idx] and children[idx+1] into one node, consuming the separator between them. */
+function mergeAt(parent: Internal, idx: number): void {
+  const a = parent.children[idx], b = parent.children[idx + 1];
+  if (a.kind === 'leaf' && b.kind === 'leaf') {
+    a.keys = [...a.keys, ...b.keys]; // leaves: separator just disappears
+  } else if (a.kind === 'internal' && b.kind === 'internal') {
+    a.keys = [...a.keys, parent.keys[idx], ...b.keys]; // internal: pull the separator down
+    a.children = [...a.children, ...b.children];
+  }
+  parent.keys.splice(idx, 1);
+  parent.children.splice(idx + 1, 1);
+}
+
+function fixUnderflow(parent: Internal, ci: number, order: number): void {
+  const left = ci > 0 ? parent.children[ci - 1] : null;
+  const right = ci < parent.children.length - 1 ? parent.children[ci + 1] : null;
+  const min = parent.children[ci].kind === 'leaf' ? minLeafKeys(order) : minInternalKeys(order);
+  if (left && left.keys.length > min) return borrowLeft(parent, ci);
+  if (right && right.keys.length > min) return borrowRight(parent, ci);
+  if (left) return mergeAt(parent, ci - 1); // merge child into its left sibling
+  return mergeAt(parent, ci); //                merge right sibling into child
+}
+
+function deleteRec(node: Node, key: number, order: number): void {
+  if (node.kind === 'leaf') {
+    const i = node.keys.indexOf(key);
+    if (i >= 0) node.keys.splice(i, 1);
+    return;
+  }
+  let ci = node.keys.length;
+  for (let i = 0; i < node.keys.length; i++) if (key < node.keys[i]) { ci = i; break; }
+  deleteRec(node.children[ci], key, order);
+  if (underflows(node.children[ci], order)) fixUnderflow(node, ci, order);
+}
+
+/** Remove a key, rebalancing by borrow/merge. Returns the new root (collapsed a level if needed). */
+export function remove(root: Node, key: number, order: number): Node {
+  const r = cloneNode(root);
+  deleteRec(r, key, order);
+  if (r.kind === 'internal' && r.keys.length === 0) return r.children[0]; // root shrank to one child
+  return r;
+}
