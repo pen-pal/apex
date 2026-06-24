@@ -5093,3 +5093,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dot1x-note{font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:3px}
 .dot1x-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 @media(max-width:560px){.dot1x-lanes{flex-direction:column}}
+
+/* ── IPsec ESP (IpsecSection) ── */
+.esp-modes{display:flex;gap:10px;margin:14px 0}
+.esp-mode{flex:1;font:inherit;font-size:13px;font-weight:600;padding:10px;border:1.5px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.esp-mode span{font-size:10.5px;font-weight:400}
+.esp-mode.on{background:hsl(265 50% 52%);border-color:hsl(265 50% 52%);color:#fff}
+.esp-mode.on span{color:hsl(265 60% 90%)}
+.esp-stack{display:flex;flex-direction:column;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.esp-layer{padding:9px 13px;border-bottom:1px solid var(--line);background:hsl(212 40% 97%)}
+.esp-layer:last-child{border-bottom:none}
+.esp-layer.enc{background:repeating-linear-gradient(45deg,hsl(265 40% 95%) 0 10px,hsl(265 35% 92%) 10px 20px)}
+.esp-lhead{display:flex;align-items:center;gap:7px;font-size:12.5px}
+.esp-lhead b{color:var(--ink)}
+.esp-lock{font-size:12px}
+.esp-ldetail{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px}
+.esp-layer.enc .esp-ldetail{color:hsl(265 40% 45%)}
+.esp-overhead{font-size:11px;color:var(--muted);font-family:var(--mono);margin:8px 0 14px}
+.esp-observer{padding:12px 15px;border-radius:11px;margin-bottom:14px}
+.esp-observer.hidden{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 82%)}
+.esp-observer.exposed{background:hsl(40 80% 95%);border:1px solid hsl(40 60% 80%)}
+.esp-obhead{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.esp-obval{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--ink)}
+.esp-obnote{font-size:12px;color:var(--ink);line-height:1.45;margin-top:4px}
+.esp-demux{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fafbfc}
+.esp-dhead{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
+.esp-drow{font-size:12.5px;color:var(--ink);line-height:1.5}
+.esp-drow.muted{color:var(--muted);font-size:11.5px}
+.esp-drow code{font-family:var(--mono);background:#eef1f5;padding:1px 5px;border-radius:4px}
+.esp-drow b{font-family:var(--mono);color:hsl(265 50% 45%)}
+.esp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
