@@ -18,7 +18,11 @@ function tracer(arr: number[]) {
     a,
     cmp: () => comparisons++,
     swap: (i: number, j: number) => { [a[i], a[j]] = [a[j], a[i]]; swaps++; },
+    write: () => swaps++, // a placement (merge) counts as a write, not a swap of two cells
     snap,
+    // snapshot an explicitly-provided full array (used by merge, where the live array is
+    // mid-rewrite); guarantees every frame stays a true permutation of the input
+    snapArray: (array: number[], active: number[]) => frames.push({ array: [...array], active: [...active], sorted: [] }),
     done: (): Trace => ({ result: [...a], frames, comparisons, swaps }),
   };
 }
@@ -61,14 +65,22 @@ export function mergeSort(arr: number[]): Trace {
   const t = tracer(arr);
   const merge = (lo: number, mid: number, hi: number) => {
     const left = t.a.slice(lo, mid + 1), right = t.a.slice(mid + 1, hi + 1);
-    let i = 0, j = 0, k = lo;
+    let i = 0, j = 0;
+    const merged: number[] = [];
+    // a snapshot of the WHOLE array: untouched prefix + merged-so-far + the not-yet-placed
+    // remainders of left/right + untouched suffix — always a permutation of the input
+    const snapMerge = () => t.snapArray(
+      [...t.a.slice(0, lo), ...merged, ...left.slice(i), ...right.slice(j), ...t.a.slice(hi + 1)],
+      [lo + merged.length - 1],
+    );
     while (i < left.length && j < right.length) {
       t.cmp();
-      if (left[i] <= right[j]) t.a[k++] = left[i++]; else t.a[k++] = right[j++];
-      t.snap([k - 1]);
+      if (left[i] <= right[j]) merged.push(left[i++]); else merged.push(right[j++]);
+      t.write(); snapMerge();
     }
-    while (i < left.length) { t.a[k++] = left[i++]; t.snap([k - 1]); }
-    while (j < right.length) { t.a[k++] = right[j++]; t.snap([k - 1]); }
+    while (i < left.length) { merged.push(left[i++]); t.write(); snapMerge(); }
+    while (j < right.length) { merged.push(right[j++]); t.write(); snapMerge(); }
+    for (let x = 0; x < merged.length; x++) t.a[lo + x] = merged[x]; // commit the merged run
   };
   const rec = (lo: number, hi: number) => { if (lo >= hi) return; const mid = (lo + hi) >> 1; rec(lo, mid); rec(mid + 1, hi); merge(lo, mid, hi); };
   rec(0, t.a.length - 1);
