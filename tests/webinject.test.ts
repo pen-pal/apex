@@ -60,4 +60,16 @@ describe('cross-site scripting', () => {
     expect(a.executesRaw).toBe(false);
     expect(a.executesEscaped).toBe(false);
   });
+
+  it('a javascript: URL executes only inside a live tag, never once escaped', () => {
+    const a = analyzeXss('<a href="javascript:alert(1)">x</a>');
+    expect(a.executesRaw).toBe(true);
+    expect(a.executesEscaped).toBe(false); // escaping removes the raw '<' → inert text
+  });
+
+  it('the bare word "javascript:" in prose is not flagged as executable', () => {
+    const a = analyzeXss('see the javascript: scheme docs');
+    expect(a.executesRaw).toBe(false);
+    expect(a.executesEscaped).toBe(false);
+  });
 });

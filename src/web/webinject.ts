@@ -39,9 +39,13 @@ export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => HTML_ESCAPE[c]);
 }
 
-/** Would this string execute script if dropped into an HTML body context? */
+/** Would this string execute script if dropped into an HTML body context? Each vector
+ *  requires a LIVE tag (a raw '<'), so HTML-escaping — which removes every raw '<' —
+ *  neutralizes all of them. A bare "javascript:" in text is harmless and not flagged. */
 function executes(html: string): boolean {
-  return /<\s*script/i.test(html) || /<[^>]+\son\w+\s*=/i.test(html) || /javascript:/i.test(html);
+  return /<\s*script/i.test(html)            // a <script> element
+    || /<[^>]+\son\w+\s*=/i.test(html)       // a tag with an on*= event handler
+    || /<[^>]+javascript:/i.test(html);      // a tag attribute with a javascript: URL
 }
 
 export interface XssAnalysis {
