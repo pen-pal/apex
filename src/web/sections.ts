@@ -34,6 +34,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'aead', label: 'CTR & AEAD', icon: '🔐' },
   { id: 'rsa', label: 'RSA', icon: '🗝️' },
   { id: 'ecc', label: 'Elliptic curves', icon: '➰' },
+  { id: 'ecdsa', label: 'ECDSA & nonce reuse', icon: '✍️' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
@@ -60,7 +61,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'bgp', 'bgphijack', 'dns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
-  { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'aesround', 'aead', 'rsa', 'ecc', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
+  { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'aesround', 'aead', 'rsa', 'ecc', 'ecdsa', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap', 'replication', 'twopc'] },
 ];
