@@ -5197,3 +5197,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rtm-prop{color:var(--muted);font-weight:600}
 .rtm-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .rtm-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+
+/* ── X3DH (X3dhSection) ── */
+.x3dh-parties{display:flex;gap:12px;margin:14px 0;flex-wrap:wrap}
+.x3dh-party,.x3dh-server{flex:1;min-width:220px;border:1px solid var(--line);border-radius:11px;padding:12px}
+.x3dh-party{background:hsl(150 40% 97.5%)}
+.x3dh-server{background:hsl(212 45% 97.5%);position:relative}
+.x3dh-phead{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.x3dh-key{font-size:12px;margin:3px 0;color:var(--ink)}
+.x3dh-key code{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+.x3dh-key span{font-size:10px;color:var(--muted);margin-left:4px}
+.x3dh-key.eph code{border-color:hsl(150 45% 65%)}
+.x3dh-offline{font-size:11px;color:hsl(212 30% 50%);margin-top:6px;font-style:italic}
+.x3dh-legs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.x3dh-leg{border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#fafbfc}
+.x3dh-lhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.x3dh-lhead b{font-family:var(--mono);font-size:12px;color:hsl(265 50% 45%)}
+.x3dh-why{font-size:10px;color:var(--muted)}
+.x3dh-lval{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin-top:4px;flex-wrap:wrap}
+.x3dh-lval code{font-family:var(--mono);color:var(--ink)}
+.x3dh-eq{font-weight:700;color:hsl(150 45% 40%)}
+.x3dh-combine{text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted);margin:4px 0}
+.x3dh-sk{border-radius:11px;padding:13px 15px}
+.x3dh-sk.ok{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 82%)}
+.x3dh-sk.no{background:hsl(0 60% 96.5%);border:1px solid hsl(0 50% 86%)}
+.x3dh-skrow{font-size:12.5px;margin:3px 0}
+.x3dh-skrow code{font-family:var(--mono);font-size:12px;font-weight:700;color:hsl(265 50% 42%);background:#fff;padding:2px 7px;border-radius:5px}
+.x3dh-skverdict{font-size:12.5px;font-weight:600;color:hsl(150 45% 30%);margin-top:6px}
+.x3dh-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.x3dh-foot strong{color:var(--ink)}
+@media(max-width:560px){.x3dh-legs{grid-template-columns:1fr}}
