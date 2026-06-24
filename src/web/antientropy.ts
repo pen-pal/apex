@@ -17,6 +17,7 @@ export interface ReadResult { winner: string; winningVersion: number; stale: str
 /** A quorum read over the first R replicas: newest version wins, older replicas are repaired. */
 export function quorumRead(replicas: Replica[], R: number): ReadResult {
   const quorum = replicas.slice(0, R);
+  if (quorum.length === 0) return { winner: '', winningVersion: -1, stale: [], repaired: false }; // no replicas answered
   const newest = quorum.reduce((a, b) => (b.version > a.version ? b : a));
   const stale = quorum.filter((r) => r.version < newest.version).map((r) => r.id);
   return { winner: newest.value, winningVersion: newest.version, stale, repaired: stale.length > 0 };
@@ -56,6 +57,12 @@ export interface DiffResult { differingLeaves: number[]; comparisons: number }
 /** Compare two Merkle trees, recursing only where hashes differ. Returns the divergent leaf indices
  *  and how many node comparisons it took (vs comparing all n leaves outright). */
 export function merkleDiff(a: MerkleNode, b: MerkleNode): DiffResult {
+  // the lockstep recursion assumes identical tree shape; if two replicas built trees over different
+  // key counts (different depth), conservatively flag the whole covered range rather than mispair nodes.
+  if (a.lo !== b.lo || a.hi !== b.hi) {
+    const lo = Math.min(a.lo, b.lo), hi = Math.max(a.hi, b.hi);
+    return { differingLeaves: Array.from({ length: hi - lo + 1 }, (_, i) => lo + i), comparisons: 1 };
+  }
   const differingLeaves: number[] = [];
   let comparisons = 0;
   const rec = (na: MerkleNode, nb: MerkleNode) => {
