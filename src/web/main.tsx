@@ -321,7 +321,7 @@ function App() {
             <input
               type="search"
               className="navsearch-input"
-              placeholder={`🔎 search ${allSections.length} sections…`}
+              placeholder="🔎 Search sections…"
               value={navQuery}
               onChange={(e) => setNavQuery(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter' && navMatches[0]) gotoSection(navMatches[0].id); if (e.key === 'Escape') setNavQuery(''); }}
