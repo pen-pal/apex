@@ -3539,3 +3539,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rs-recover code{font-family:var(--mono);font-size:12.5px;background:rgba(0,0,0,.05);padding:2px 7px;border-radius:5px}
 .rs-note{color:var(--muted)}
 .rs-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── TCP CUBIC (CubicSection) ── */
+.cub-chart{background:#fbfcfe;border:1px solid var(--line);border-radius:10px;padding:8px;margin:12px 0 8px;height:200px}
+.cub-chart svg{width:100%;height:100%}
+.cub-cubic{fill:none;stroke:hsl(265 65% 55%);stroke-width:2}
+.cub-reno{fill:none;stroke:hsl(212 60% 55%);stroke-width:1.5;stroke-dasharray:3 2}
+.cub-loss{stroke:hsl(0 65% 70%);stroke-width:0.6;stroke-dasharray:2 2}
+.cub-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:14px}
+.cub-legend span{display:inline-flex;align-items:center;gap:6px}
+.cub-k{width:18px;height:3px;border-radius:2px;display:inline-block}
+.cub-k.cubic{background:hsl(265 65% 55%)}
+.cub-k.reno{background:hsl(212 60% 55%)}
+.cub-k.loss{background:hsl(0 65% 70%)}
+.cub-rounds{margin-bottom:6px}
+.cub-hint{font-size:12px;color:var(--muted)}
+.cub-ticks{display:flex;gap:2px;margin-top:6px;flex-wrap:wrap}
+.cub-tick{flex:1;min-width:10px;height:18px;border:1px solid var(--line);border-radius:3px;background:#f4f6f9;cursor:pointer;padding:0}
+.cub-tick.on{background:hsl(0 65% 65%);border-color:hsl(0 60% 55%)}
+.cub-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+.cub-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
