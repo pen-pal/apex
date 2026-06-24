@@ -58,13 +58,14 @@ import { TwoPcSection } from './TwoPcSection';
 import { FragmentSection } from './FragmentSection';
 import { BgpHijackSection } from './BgpHijackSection';
 import { NatTraversalSection } from './NatTraversalSection';
+import { IpCompareSection } from './IpCompareSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -655,6 +656,16 @@ function App() {
               <p className="sub">How two peers behind NATs connect — hole-punch a direct path, or fall back to a relay when a symmetric NAT blocks it.</p>
             </header>
             <NatTraversalSection />
+          </>
+        )}
+
+        {section === 'ipcompare' && (
+          <>
+            <header>
+              <h1>IPv4 vs IPv6 headers</h1>
+              <p className="sub">The two headers side by side — what IPv6 removed, renamed, and added, and why it forwards faster.</p>
+            </header>
+            <IpCompareSection />
           </>
         )}
       </main>
