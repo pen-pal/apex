@@ -3203,3 +3203,34 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .snow-row span{color:var(--muted);font-size:11px;white-space:nowrap}
 .snow-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px}
 .snow-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── Path MTU Discovery (PmtudSection) ── */
+.pmtu-config{display:flex;gap:22px;flex-wrap:wrap;align-items:center;margin:10px 0 16px}
+.pmtu-config label{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.pmtu-config input[type=range]{accent-color:hsl(212 70% 50%)}
+.pmtu-config b{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.pmtu-chk{cursor:pointer}
+.pmtu-chk input{width:15px;height:15px}
+.pmtu-path{display:flex;align-items:stretch;gap:4px;overflow-x:auto;margin-bottom:14px;padding:4px 0}
+.pmtu-hop{display:flex;align-items:center;gap:4px}
+.pmtu-link{display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:#fbfcfe;min-width:110px}
+.pmtu-link.pass{border-color:hsl(150 45% 70%);background:hsl(150 45% 96%)}
+.pmtu-link.drop{border-color:hsl(0 65% 65%);background:hsl(0 70% 96%);box-shadow:0 0 0 2px hsl(0 70% 80%)}
+.pmtu-link.narrow .pmtu-mtu{color:hsl(0 60% 45%);font-weight:700}
+.pmtu-name{font-size:12px;font-weight:600}
+.pmtu-link input[type=range]{width:90px;accent-color:hsl(265 55% 55%)}
+.pmtu-mtu{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.pmtu-drop-tag{font-size:10.5px;color:hsl(0 60% 45%);font-weight:600}
+.pmtu-arrow{color:var(--muted);font-size:16px}
+.pmtu-controls{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pmtu-controls button{font:inherit;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.pmtu-controls button:disabled{opacity:.4;cursor:default}
+.pmtu-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.pmtu-msg{padding:10px 14px;border-radius:9px;font-size:13px;line-height:1.5;margin-bottom:10px}
+.pmtu-msg.ok{background:hsl(150 50% 95%);border:1px solid hsl(150 42% 82%)}
+.pmtu-msg.info{background:hsl(212 55% 96%);border:1px solid hsl(212 50% 86%)}
+.pmtu-msg.bad{background:hsl(0 72% 96%);border:1px solid hsl(0 60% 86%)}
+.pmtu-verdict{padding:11px 14px;border-radius:10px;font-size:13.5px;font-weight:600}
+.pmtu-verdict.ok{background:hsl(150 55% 93%);border:1px solid hsl(150 45% 80%);color:hsl(150 45% 28%)}
+.pmtu-verdict.bad{background:hsl(0 75% 95%);border:1px solid hsl(0 60% 84%);color:hsl(0 60% 40%)}
+.pmtu-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
