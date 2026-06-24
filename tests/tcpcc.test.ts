@@ -32,16 +32,18 @@ describe('TCP Reno congestion control', () => {
     expect(t[6].cwnd).toBe(2); // doubling again
   });
 
-  it('produces the classic AIMD sawtooth across repeated losses', () => {
+  it('produces the classic AIMD sawtooth across repeated losses (exact sequence)', () => {
     const t = simulateReno({ rounds: 14, initialSsthresh: 16, initialCwnd: 1, losses: { 8: 'triple-dup-ack', 12: 'triple-dup-ack' } });
-    const cwnds = t.map((r) => r.cwnd);
-    expect(Math.max(...cwnds)).toBeGreaterThan(t[9].cwnd); // a peak then a drop
-    expect(t[9].cwnd).toBeLessThan(t[8].cwnd); // dropped after the first loss
-    expect(t[13].cwnd).toBeLessThan(t[12].cwnd); // dropped after the second loss
+    // slow-start 1,2,4,8,16; avoid 17..20; loss@8 → 10 (=floor(20/2)); 11,12,13; loss@12 → 6
+    expect(t.map((r) => r.cwnd)).toEqual([1, 2, 4, 8, 16, 17, 18, 19, 20, 10, 11, 12, 13, 6]);
   });
 
   it('never lets ssthresh fall below 2 (RFC 5681 floor 2·SMSS)', () => {
-    const t = simulateReno({ rounds: 6, initialSsthresh: 2, initialCwnd: 1, losses: { 1: 'timeout', 2: 'timeout', 3: 'timeout' } });
+    // slow-start 1,2 reaches ssthresh=2, avoidance → 3; a loss there gives floor(3/2)=1,
+    // which the 2·SMSS floor clamps UP to 2
+    const t = simulateReno({ rounds: 5, initialSsthresh: 2, initialCwnd: 1, losses: { 2: 'triple-dup-ack' } });
+    expect(t[2].cwnd).toBe(3);     // window at the loss
+    expect(t[3].ssthresh).toBe(2); // floor(3/2)=1 clamped UP to the floor
     expect(t.every((r) => r.ssthresh >= 2 && r.cwnd >= 1)).toBe(true);
   });
 
