@@ -24,7 +24,8 @@ describe('sidebar taxonomy', () => {
   it('groupOf returns the right category', () => {
     expect(groupOf('network')).toBe('Network basics');
     expect(groupOf('raft')).toBe('Distributed systems');
-    expect(groupOf('crypto')).toBe('Security & crypto');
+    expect(groupOf('crypto')).toBe('Cryptography');
+    expect(groupOf('certs')).toBe('Security & web');
     expect(groupOf('nonexistent')).toBeNull();
   });
 });

@@ -165,7 +165,8 @@ function App() {
                 'Network basics': 'Network',
                 'Routing & naming': 'Routing',
                 'Transport & web': 'Transport',
-                'Security & crypto': 'Security',
+                'Cryptography': 'Crypto',
+                'Security & web': 'Security',
                 'Data & encoding': 'Data',
                 'Distributed systems': 'Systems',
               };
