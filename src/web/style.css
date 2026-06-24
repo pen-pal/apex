@@ -395,9 +395,10 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .topbar-inner{max-width:1120px;margin:0 auto;padding:9px 28px;display:flex;
   align-items:center;gap:22px;box-sizing:border-box}
 
-/* compact single-word tabs on one row — no wrap on desktop */
-.topnav{display:flex;gap:2px;flex:1;align-items:center;flex-wrap:nowrap;
-  justify-content:flex-end;min-width:0}
+/* compact single-word tabs, left-aligned right after the brand; wrap (never overlap)
+   as a safety if the row ever runs out of room */
+.topnav{display:flex;gap:2px;flex:1;align-items:center;flex-wrap:wrap;
+  justify-content:flex-start;min-width:0}
 .topgroup{position:relative}
 
 .topgroup-h{position:relative;display:inline-flex;align-items:center;gap:6px;background:none;
@@ -413,10 +414,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .topgroup-h.open.active::after{background:#fff}
 
 .tg-icon{font-size:15px;line-height:1}
-/* reserve bold-weight width so active/hover never reflows the row */
-.tg-label{display:inline-flex;letter-spacing:-.01em}
-.tg-label::after{content:attr(data-label);height:0;overflow:hidden;visibility:hidden;
-  font-weight:700;pointer-events:none}
+.tg-label{letter-spacing:-.01em}
 .topgroup-h.active .tg-label,.topgroup-h.open .tg-label{font-weight:700}
 .tg-caret{font-size:9px;opacity:.6}
 
