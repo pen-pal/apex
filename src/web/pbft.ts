@@ -28,7 +28,9 @@ export function analyze(n: number, f: number): Analysis {
     honest: n - f,
     honestInQuorum: quorum - f,
     intersectionMin,
-    honestInIntersection: intersectionMin - f,
+    // floored: outside the tolerant regime (n > 4f+2) quorums needn't overlap, so this
+    // figure is vacuous rather than negative
+    honestInIntersection: Math.max(0, intersectionMin - f),
   };
 }
 
