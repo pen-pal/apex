@@ -145,24 +145,51 @@ function App() {
       <header className="topbar">
         <div className="topbar-inner">
           <div className="brand"><span className="logo">◆</span> Apex</div>
-          <nav className="topnav">
+          <nav className="topnav" aria-label="Section groups">
             {GROUPS.map((g) => {
               const isOpen = openMenu === g.label;
               const isActive = g.label === activeGroup;
+              // Compact single-word tab labels keep all six on one line and stop
+              // the wrap. Keyed on the full g.label so the state model
+              // (openMenu / activeGroup / groupOf) is untouched; the full name
+              // lives on as the title tooltip + the dropdown heading.
+              const SHORT: Record<string, string> = {
+                'Network basics': 'Network',
+                'Routing & naming': 'Routing',
+                'Transport & web': 'Transport',
+                'Security & crypto': 'Security',
+                'Data & encoding': 'Data',
+                'Distributed systems': 'Systems',
+              };
+              const short = SHORT[g.label] ?? g.label.split(' ')[0];
               return (
                 <div className="topgroup" key={g.label}>
-                  <button className={`topgroup-h ${isActive ? 'active' : ''} ${isOpen ? 'open' : ''}`} onClick={() => setOpenMenu(isOpen ? null : g.label)} aria-expanded={isOpen}>
-                    <span className="tg-icon">{g.icon}</span>
-                    <span className="tg-label">{g.label}</span>
-                    <span className="tg-caret">{isOpen ? '▴' : '▾'}</span>
+                  <button
+                    type="button"
+                    className={`topgroup-h ${isActive ? 'active' : ''} ${isOpen ? 'open' : ''}`}
+                    onClick={() => setOpenMenu(isOpen ? null : g.label)}
+                    aria-expanded={isOpen}
+                    aria-haspopup="menu"
+                    title={g.label}
+                  >
+                    <span className="tg-icon" aria-hidden="true">{g.icon}</span>
+                    <span className="tg-label" data-label={short}>{short}</span>
+                    <span className="tg-caret" aria-hidden="true">{isOpen ? '▴' : '▾'}</span>
                   </button>
                   {isOpen && (
-                    <div className="topmenu">
+                    <div className="topmenu" role="menu" aria-label={g.label}>
+                      <div className="topmenu-head"><span className="tg-icon" aria-hidden="true">{g.icon}</span>{g.label}</div>
                       {g.ids.map((id) => {
                         const m = metaById[id];
                         return (
-                          <button key={id} className={section === id ? 'on' : ''} onClick={() => { setSection(id as Section); setOpenMenu(null); }}>
-                            <span className="sec-icon">{m.icon}</span> {m.label}
+                          <button
+                            key={id}
+                            type="button"
+                            role="menuitem"
+                            className={section === id ? 'on' : ''}
+                            onClick={() => { setSection(id as Section); setOpenMenu(null); }}
+                          >
+                            <span className="sec-icon" aria-hidden="true">{m.icon}</span> {m.label}
                           </button>
                         );
                       })}
