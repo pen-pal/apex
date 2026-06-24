@@ -24,14 +24,20 @@ describe('Huffman properties', () => {
     }
   });
 
-  it('total bits equals Σ freq·codelen and beats fixed-width on skewed text', () => {
-    const s = 'aaaaaaaabbbbccd'; // very skewed
+  it('achieves the hand-worked OPTIMAL bit count on skewed text', () => {
+    const s = 'aaaaaaaabbbbccd'; // freqs a=8, b=4, c=2, d=1
     const r = encode(s);
-    const cnt = counts(s);
-    const expected = Object.entries(cnt).reduce((n, [ch, f]) => n + f * r.codes[ch].length, 0);
-    expect(r.compressedBits).toBe(expected);
-    expect(r.compressedBits).toBeLessThan(r.originalBits); // compresses
-    expect(r.ratio).toBeLessThan(1);
+    // optimal Huffman: a=1 bit, b=2, c=3, d=3 → 8·1 + 4·2 + 2·3 + 1·3 = 25 (external optimum,
+    // = the sum of internal-node merge weights). A suboptimal-but-valid tree would exceed this.
+    expect(r.compressedBits).toBe(25);
+    // cross-check against the independent merge-sum reference for a couple more strings
+    for (const str of ['mississippi', 'abracadabra']) {
+      const cnt = counts(str);
+      let freqs = Object.values(cnt).sort((a, b) => a - b);
+      let optimal = 0;
+      while (freqs.length > 1) { const m = freqs[0] + freqs[1]; optimal += m; freqs = [m, ...freqs.slice(2)].sort((a, b) => a - b); }
+      expect(encode(str).compressedBits).toBe(optimal);
+    }
   });
 
   it('a single distinct symbol still gets a 1-bit code', () => {
