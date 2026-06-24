@@ -2274,6 +2274,8 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .vl-f-field span{display:block;font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:2px}
 .vl-f-field.tag{flex:1.4;background:hsl(212 70% 90%);color:hsl(212 70% 32%);font-weight:600}
 .vl-f-field.payload{flex:2;background:#f7f9fc}
+.vl-f-field.mac{background:#e8ecf2}
+.vl-f-field.etype{background:#eef1f5}
 .vl-tag-bytes{display:flex;gap:3px;justify-content:center;margin-bottom:5px}
 .vl-tag-bytes code{font-family:var(--mono);font-size:12px;padding:2px 4px;border-radius:4px}
 .vl-tag-bytes code.tpid{background:hsl(265 60% 86%);color:hsl(265 55% 38%)}

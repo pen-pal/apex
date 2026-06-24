@@ -47,7 +47,7 @@ export function TlsDowngradeSection() {
             const removed = !survived.has(s.id);
             const chosen = s.id === actual.id;
             return (
-              <div key={s.id} className={`tn-suite ${s.strength} ${removed ? 'removed' : ''} ${chosen ? 'chosen' : ''}`}>
+              <div key={s.id} className={`tn-suite ${removed ? 'removed' : ''} ${chosen ? 'chosen' : ''}`}>
                 <span className="tn-s-id">{s.id}</span>
                 <span className="tn-s-enc">{s.enc}{s.fs ? '' : ' · no FS'}</span>
                 <span className={`tn-s-str ${s.strength}`}>{s.strength}</span>

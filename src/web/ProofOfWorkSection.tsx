@@ -13,11 +13,12 @@ export function ProofOfWorkSection() {
   const [ms, setMs] = useState(0);
   const [busy, setBusy] = useState(false);
 
+  const cap = Math.min(40 * Math.pow(2, difficulty), 5_000_000); // the actual try cap mine() uses
+
   const mineNow = () => {
     setBusy(true);
     // let the button repaint as "mining…" before the synchronous grind
     setTimeout(() => {
-      const cap = Math.min(40 * Math.pow(2, difficulty), 5_000_000);
       const t0 = performance.now();
       const r = mine(data, difficulty, cap);
       setMs(performance.now() - t0);
@@ -51,13 +52,13 @@ export function ProofOfWorkSection() {
               <>
                 <div className="po-row"><span>nonce found</span><strong>{res.nonce.toLocaleString()}</strong></div>
                 <div className="po-row"><span>hashes tried</span><strong>{res.tries.toLocaleString()}</strong> <span className="po-vs">(expected ≈ {expectedTries(difficulty).toLocaleString()})</span></div>
-                <div className="po-row"><span>time</span><strong>{ms < 1000 ? `${ms.toFixed(0)} ms` : `${(ms / 1000).toFixed(1)} s`}</strong> · {(res.tries / (ms / 1000) / 1000).toFixed(0)}k hash/s</div>
+                <div className="po-row"><span>time</span><strong>{ms < 1000 ? `${ms.toFixed(0)} ms` : `${(ms / 1000).toFixed(1)} s`}</strong> · {(res.tries / (Math.max(ms, 0.001) / 1000) / 1000).toFixed(0)}k hash/s</div>
                 <div className="po-hash">
                   SHA-256 = <code><span className="po-zeros">{h.slice(0, zeroHexChars)}</span>{h.slice(zeroHexChars)}</code>
                   <div className="po-zbits">{res.zeroBits} leading zero bits ✓ (target {difficulty})</div>
                 </div>
               </>
-            ) : <>no nonce under the {(40 * Math.pow(2, difficulty)).toLocaleString()}-try cap — raise the cap or lower the difficulty.</>}
+            ) : <>no nonce under the {cap.toLocaleString()}-try cap — raise the cap or lower the difficulty.</>}
           </div>
         )}
 
