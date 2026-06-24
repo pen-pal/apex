@@ -70,13 +70,14 @@ import { IpCompareSection } from './IpCompareSection';
 import { IcmpSection } from './IcmpSection';
 import { ArpSection } from './ArpSection';
 import { CsmaSection } from './CsmaSection';
+import { MulticastSection } from './MulticastSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -818,6 +819,16 @@ function App() {
               <p className="sub">How stations share one wireless channel — random backoff, collisions, and the contention window growing under load.</p>
             </header>
             <CsmaSection />
+          </>
+        )}
+
+        {section === 'multicast' && (
+          <>
+            <header>
+              <h1>Multicast &amp; IGMP</h1>
+              <p className="sub">One sender, many subscribers — join hosts to a group and watch an IGMP-snooping switch forward the frame to only the members, not every port.</p>
+            </header>
+            <MulticastSection />
           </>
         )}
       </main>
