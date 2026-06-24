@@ -19,7 +19,9 @@ const H0 = new Uint32Array([0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x51
 
 const rotr = (x: number, n: number) => ((x >>> n) | (x << (32 - n))) >>> 0;
 
-function compress(H: Uint32Array, block: Uint8Array, off: number) {
+export interface ShaRound { i: number; k: number; w: number; vars: number[] } // a..h after round i
+
+function compress(H: Uint32Array, block: Uint8Array, off: number, record?: ShaRound[]) {
   const w = new Uint32Array(64);
   for (let i = 0; i < 16; i++)
     w[i] = ((block[off + 4 * i] << 24) | (block[off + 4 * i + 1] << 16) | (block[off + 4 * i + 2] << 8) | block[off + 4 * i + 3]) >>> 0;
@@ -37,6 +39,7 @@ function compress(H: Uint32Array, block: Uint8Array, off: number) {
     const maj = (a & b) ^ (a & c) ^ (b & c);
     const t2 = (S0 + maj) >>> 0;
     h = g; g = f; f = e; e = (d + t1) >>> 0; d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+    if (record) record.push({ i, k: K[i], w: w[i], vars: [a, b, c, d, e, f, g, h] });
   }
   H[0] = (H[0] + a) >>> 0; H[1] = (H[1] + b) >>> 0; H[2] = (H[2] + c) >>> 0; H[3] = (H[3] + d) >>> 0;
   H[4] = (H[4] + e) >>> 0; H[5] = (H[5] + f) >>> 0; H[6] = (H[6] + g) >>> 0; H[7] = (H[7] + h) >>> 0;
@@ -76,6 +79,26 @@ export function sha256(msg: Uint8Array): Uint8Array {
   const buf = concat(msg, mdPadding(msg.length, msg.length));
   for (let off = 0; off < buf.length; off += 64) compress(H, buf, off);
   return stateToBytes(H);
+}
+
+export const SHA256_IV = H0; // the eight fractional-root constants the chain starts from
+
+export interface ShaBlock { index: number; before: Uint32Array; after: Uint32Array; rounds: ShaRound[]; bytes: Uint8Array }
+export interface ShaTrace { padded: Uint8Array; msgLen: number; blocks: ShaBlock[]; digest: Uint8Array }
+
+/** SHA-256 with the Merkle–Damgård chain exposed: the padded blocks, each block's
+ *  before/after 256-bit state, and its 64 compression rounds. */
+export function sha256Trace(msg: Uint8Array): ShaTrace {
+  const padded = concat(msg, mdPadding(msg.length, msg.length));
+  const H = Uint32Array.from(H0);
+  const blocks: ShaBlock[] = [];
+  for (let off = 0; off < padded.length; off += 64) {
+    const before = Uint32Array.from(H);
+    const rounds: ShaRound[] = [];
+    compress(H, padded, off, rounds);
+    blocks.push({ index: off / 64, before, after: Uint32Array.from(H), rounds, bytes: padded.slice(off, off + 64) });
+  }
+  return { padded, msgLen: msg.length, blocks, digest: stateToBytes(H) };
 }
 
 /** Parse a 32-byte digest back into the 8-word internal state (to resume from). */
