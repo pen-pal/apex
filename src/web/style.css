@@ -3934,3 +3934,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .geo-cmp-verdict{font-size:12.5px;color:var(--muted);margin-top:6px}
 .geo-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .geo-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── Chord DHT (ChordSection) ── */
+.chord-controls{display:flex;gap:22px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}
+.chord-controls label{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted)}
+.chord-controls select{font-family:var(--mono);font-size:13px;padding:5px 9px;border:1px solid var(--line);border-radius:7px}
+.chord-controls input[type=range]{accent-color:hsl(265 55% 55%)}
+.chord-controls b{font-family:var(--mono);font-size:14px;color:var(--ink)}
+.chord-stage{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.chord-ring{flex:none}
+.chord-orbit{fill:none;stroke:var(--line);stroke-width:1.5}
+.chord-node{fill:#fff;stroke:var(--line);stroke-width:2}
+.chord-node.start{stroke:hsl(265 55% 55%);stroke-width:3}
+.chord-node.owner{fill:hsl(150 50% 88%);stroke:hsl(150 45% 45%)}
+.chord-node.hop{fill:hsl(212 55% 90%)}
+.chord-nlabel{font-family:var(--mono);font-size:12px;font-weight:700;fill:var(--ink)}
+.chord-key{fill:hsl(0 70% 55%)}
+.chord-keylabel{font-size:10px;fill:hsl(0 60% 45%);font-weight:600}
+.chord-hop{stroke:hsl(212 70% 50%);stroke-width:2;stroke-dasharray:4 2}
+.chord-hop.final{stroke:hsl(150 50% 45%)}
+.chord-arrhead{fill:hsl(212 65% 50%)}
+.chord-side{flex:1;min-width:200px;display:flex;flex-direction:column;gap:12px}
+.chord-finger{padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:#fbfcfe}
+.chord-finger h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.chord-frow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;padding:2px 0}
+.chord-frow span{color:var(--muted)}
+.chord-result{padding:11px 14px;border-radius:10px;background:hsl(150 45% 95%);border:1px solid hsl(150 40% 82%);font-size:12.5px;line-height:1.6;font-family:var(--mono)}
+.chord-result b{color:hsl(150 45% 32%)}
+.chord-hops{display:block;margin-top:6px;font-size:11px;color:var(--muted)}
+.chord-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
