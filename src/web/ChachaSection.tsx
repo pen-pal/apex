@@ -15,9 +15,9 @@ const hx = (b: number) => b.toString(16).padStart(2, '0');
 
 function WordGrid({ words, prev }: { words: Uint32Array; prev?: Uint32Array }) {
   return (
-    <div className="cc-grid">
+    <div className="cha-grid">
       {[...words].map((w, i) => (
-        <div key={i} className={`cc-word ${region(i)} ${prev && prev[i] !== w ? 'changed' : ''}`}>{hexWord(w)}</div>
+        <div key={i} className={`cha-word ${region(i)} ${prev && prev[i] !== w ? 'changed' : ''}`}>{hexWord(w)}</div>
       ))}
     </div>
   );
@@ -40,9 +40,9 @@ export function ChachaSection() {
         <div className="jsec-head"><h2>① The state matrix</h2></div>
         <p className="jsec-sub">
           Every ChaCha20 block starts from sixteen 32-bit words: four fixed{' '}
-          <span className="cc-key const">constants</span> (“expand 32-byte k”), the eight-word{' '}
-          <span className="cc-key key">key</span>, a one-word block <span className="cc-key ctr">counter</span>, and a three-word{' '}
-          <span className="cc-key nonce">nonce</span>. Same (key, counter, nonce) ⇒ same keystream — so, exactly like CTR, the
+          <span className="cha-key const">constants</span> (“expand 32-byte k”), the eight-word{' '}
+          <span className="cha-key key">key</span>, a one-word block <span className="cha-key ctr">counter</span>, and a three-word{' '}
+          <span className="cha-key nonce">nonce</span>. Same (key, counter, nonce) ⇒ same keystream — so, exactly like CTR, the
           nonce must never repeat.
         </p>
         <WordGrid words={blk.state} />
@@ -55,15 +55,15 @@ export function ChachaSection() {
           …) to the four <strong>columns</strong>, then the four <strong>diagonals</strong> — so every word soon depends on every
           other. Drag through the ten double-rounds and watch the matrix scramble.
         </p>
-        <div className="cc-stepper">
+        <div className="cha-stepper">
           <button onClick={() => setR(Math.max(0, r - 1))} disabled={r === 0}>◀</button>
           <input type="range" min={0} max={10} value={r} onChange={(e) => setR(Number(e.target.value))} />
           <button onClick={() => setR(Math.min(10, r + 1))} disabled={r === 10}>▶</button>
-          <span className="cc-stepno">{r === 0 ? 'initial state' : `after double-round ${r} / 10`}</span>
+          <span className="cha-stepno">{r === 0 ? 'initial state' : `after double-round ${r} / 10`}</span>
         </div>
         <WordGrid words={shown} prev={prev} />
         {r === 10 && (
-          <p className="cc-add">Then each scrambled word is <strong>added back</strong> to the original state word (mod 2³²) and
+          <p className="cha-add">Then each scrambled word is <strong>added back</strong> to the original state word (mod 2³²) and
             serialised little-endian — that 64-byte result is the keystream. (Adding the input back is what makes the round function
             non-invertible without the key.)</p>
         )}
@@ -76,13 +76,13 @@ export function ChachaSection() {
           TLS pairs this with the <strong>Poly1305</strong> MAC, the ChaCha20-Poly1305 AEAD — the same “encrypt then tag” idea as
           AES-GCM.)
         </p>
-        <label className="cc-field"><span>message</span><input value={msg} onChange={(e) => setMsg(e.target.value)} /></label>
-        <div className="cc-xor">
-          <div><span className="cc-lab">keystream</span><span className="cc-bytes">{[...blk.keystream.subarray(0, Math.min(32, data.length))].map((b, i) => <code key={i}>{hx(b)}</code>)}</span></div>
-          <div><span className="cc-lab">message</span><span className="cc-bytes">{[...data.subarray(0, 32)].map((b, i) => <code key={i}>{hx(b)}</code>)}</span></div>
-          <div><span className="cc-lab ct">ciphertext</span><span className="cc-bytes">{[...ct.subarray(0, 32)].map((b, i) => <code key={i} className="ct">{hx(b)}</code>)}</span></div>
+        <label className="cha-field"><span>message</span><input value={msg} onChange={(e) => setMsg(e.target.value)} /></label>
+        <div className="cha-xor">
+          <div><span className="cha-lab">keystream</span><span className="cha-bytes">{[...blk.keystream.subarray(0, Math.min(32, data.length))].map((b, i) => <code key={i}>{hx(b)}</code>)}</span></div>
+          <div><span className="cha-lab">message</span><span className="cha-bytes">{[...data.subarray(0, 32)].map((b, i) => <code key={i}>{hx(b)}</code>)}</span></div>
+          <div><span className="cha-lab ct">ciphertext</span><span className="cha-bytes">{[...ct.subarray(0, 32)].map((b, i) => <code key={i} className="ct">{hx(b)}</code>)}</span></div>
         </div>
-        <p className="cc-note">{data.length} bytes → {ct.length} bytes ({Math.ceil(data.length / 64) || 1} keystream block{data.length > 64 ? 's' : ''}). Showing the first 32.</p>
+        <p className="cha-note">{data.length} bytes → {ct.length} bytes ({Math.ceil(data.length / 64) || 1} keystream block{data.length > 64 ? 's' : ''}). Showing the first 32.</p>
       </section>
     </div>
   );
