@@ -14,7 +14,9 @@ export function nearest(client: Client, sites: Site[]): number | null {
   for (const s of sites) {
     if (!s.up) continue;
     const c = client.costs[s.id];
-    if (c < bestCost) { bestCost = c; best = s.id; }
+    // strictly cheaper wins; on an exact tie the lower site id wins (independent of the
+    // order `sites` is given in)
+    if (c < bestCost || (c === bestCost && best !== null && s.id < best)) { bestCost = c; best = s.id; }
   }
   return best;
 }
