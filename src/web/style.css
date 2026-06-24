@@ -3666,3 +3666,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lsm-result.miss{background:#f2f5f9;border:1px solid var(--line);color:var(--muted)}
 .lsm-cost{color:var(--muted);font-weight:400;margin-left:6px}
 .lsm-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:8px}
+
+/* ── MVCC (MvccSection) ── */
+.mvcc-controls{display:flex;align-items:center;gap:8px;margin:8px 0 12px}
+.mvcc-controls button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.mvcc-controls button:disabled{opacity:.4;cursor:default}
+.mvcc-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.mvcc-now{display:flex;flex-direction:column;gap:4px;padding:11px 14px;border-radius:10px;background:hsl(212 55% 96%);border:1px solid hsl(212 50% 86%);margin-bottom:14px}
+.mvcc-now b{font-size:13.5px}
+.mvcc-now span{font-size:12.5px;color:var(--muted);line-height:1.5}
+.mvcc-versions{margin-bottom:14px}
+.mvcc-vlabel{font-size:12px;color:var(--muted);margin-bottom:7px}
+.mvcc-vlabel code{font-family:var(--mono);background:#f2f5f9;padding:1px 5px;border-radius:4px}
+.mvcc-ver{display:flex;align-items:center;gap:12px;padding:8px 13px;border:1px solid var(--line);border-radius:8px;margin-bottom:5px;background:#fbfcfe}
+.mvcc-val{font-family:var(--mono);font-size:15px;font-weight:700;min-width:50px}
+.mvcc-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.mvcc-readers{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.mvcc-reader{flex:1;min-width:200px;padding:11px 14px;border-radius:10px;background:hsl(150 45% 96%);border:1px solid hsl(150 40% 83%);font-size:13px;display:flex;flex-direction:column;gap:4px}
+.mvcc-reader code{font-family:var(--mono);font-weight:600}
+.mvcc-snap{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.mvcc-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+.mvcc-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
