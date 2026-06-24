@@ -38,7 +38,9 @@ describe('the one-sided error guarantee (never underestimates)', () => {
     expect(anyOver).toBe(true);
   });
 
-  it('a wider sketch is at least as accurate as a narrow one', () => {
+  it('a wider sketch tends to be more accurate (ε ~ e/w; checked for this fixed stream)', () => {
+    // The width→accuracy relationship is probabilistic (in expectation), not a per-stream
+    // theorem; here we just verify it holds for this specific deterministic stream/seeds.
     const stream = Array.from({ length: 300 }, (_, i) => `k${(i * 3) % 50}`);
     const narrow = fromStream(3, 8, stream);
     const wide = fromStream(3, 256, stream);
