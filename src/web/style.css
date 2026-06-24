@@ -2073,3 +2073,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dv-table tr.on td{background:hsl(212 70% 94%)}
 .dv-table td.inf{color:hsl(0 65% 48%);font-weight:700}
 .dv-note{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* ── mDNS & DNS-SD (MdnsSection) ── */
+.md-step{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:16px 0 8px}
+.md-q{font-weight:400;text-transform:none;letter-spacing:0}
+.md-types{display:flex;gap:6px;flex-wrap:wrap}
+.md-types button{font:inherit;font-size:12.5px;font-family:var(--mono);padding:7px 12px;border:1px solid var(--line);
+  border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.md-types button.on{background:hsl(212 70% 50%);color:#fff;border-color:transparent}
+.md-instances{display:flex;gap:10px;flex-wrap:wrap}
+.md-inst{display:flex;flex-direction:column;align-items:flex-start;gap:2px;font:inherit;text-align:left;
+  padding:9px 13px;border:1px solid var(--line);border-radius:9px;background:#fbfcfe;cursor:pointer}
+.md-inst.on{border-color:hsl(212 70% 55%);box-shadow:0 0 0 2px hsl(212 70% 55% / .15)}
+.md-inst-name{font-size:13.5px;font-weight:600}
+.md-inst-type{font-size:11px;color:var(--muted);font-family:var(--mono)}
+
+.md-chain{display:flex;flex-direction:column;gap:0}
+.md-rec{border:1px solid var(--line);border-left-width:4px;border-radius:9px;padding:9px 13px;margin-bottom:8px;background:#fbfcfe}
+.md-rec.PTR{border-left-color:hsl(265 60% 60%)}
+.md-rec.SRV{border-left-color:hsl(212 70% 55%)}
+.md-rec.TXT{border-left-color:hsl(38 80% 55%)}
+.md-rec.A{border-left-color:hsl(150 55% 45%)}
+.md-rec-h{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.md-rec-kind{font-family:var(--mono);font-size:12px;font-weight:700;padding:1px 7px;border-radius:5px;background:#eef1f5;color:#3a4456}
+.md-rec-what{font-size:11px;color:var(--muted)}
+.md-rec-name{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.md-rec-val{font-family:var(--mono);font-size:13px;color:var(--ink);overflow-wrap:anywhere}
+.md-target{margin:4px 0 6px;padding:10px 14px;border-radius:9px;background:hsl(150 50% 96%);border:1px solid hsl(150 45% 84%);font-size:13.5px}
+.md-target strong{font-family:var(--mono)}
+.md-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}

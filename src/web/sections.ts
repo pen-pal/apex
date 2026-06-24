@@ -23,6 +23,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'bgphijack', label: 'BGP hijack', icon: '🏴‍☠️' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
+  { id: 'mdns', label: 'mDNS & DNS-SD', icon: '🖨️' },
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
   { id: 'flow', label: 'Flow control', icon: '🪟' },
   { id: 'arq', label: 'ARQ (GBN vs SR)', icon: '🔁' },
@@ -65,7 +66,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp', 'multicast'] },
-  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'dns'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'dns', 'mdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'aesround', 'aead', 'chacha', 'hashint', 'rsa', 'ecc', 'ecdsa', 'pqc', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'identity', 'cookies', 'attacks'] },
