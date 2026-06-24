@@ -32,6 +32,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'qos', label: 'QoS scheduling', icon: '🚦' },
   { id: 'http2', label: 'HTTP/2 multiplexing', icon: '🧵' },
   { id: 'quic', label: 'QUIC vs TCP', icon: '🚀' },
+  { id: 'http3', label: 'HTTP/3 & QPACK', icon: '🌐' },
   { id: 'cdn', label: 'CDN & caching', icon: '⚡' },
   { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
@@ -68,7 +69,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp', 'multicast'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'dns', 'mdns', 'encdns'] },
-  { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
+  { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'aesround', 'aead', 'chacha', 'hashint', 'rsa', 'ecc', 'ecdsa', 'pqc', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'identity', 'cookies', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },

@@ -2131,3 +2131,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ed-table tr{cursor:pointer}
 .ed-table tbody tr.on{background:hsl(212 70% 95%)}
 .ed-note{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* ── HTTP/3 + QPACK (HttpThreeSection) ── */
+.h3-stacks{display:flex;gap:18px;flex-wrap:wrap;margin:8px 0}
+.h3-stack{width:240px;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fbfcfe}
+.h3-stack-h{text-align:center;font-weight:700;font-size:13.5px;padding:8px;background:#eceff3;color:var(--ink)}
+.h3-stack.new .h3-stack-h{background:hsl(212 70% 92%);color:hsl(212 70% 34%)}
+.h3-layer{padding:11px 12px;text-align:center;font-size:12.5px;font-family:var(--mono);border-top:1px solid var(--line);color:#3a4456}
+.h3-layer.app{background:hsl(38 80% 92%);color:hsl(38 75% 34%);font-weight:600}
+.h3-layer.quic{background:hsl(265 60% 93%);color:hsl(265 55% 40%);font-weight:600}
+.h3-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:8px}
+
+.h3-send{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 12px}
+.h3-btn{font:inherit;font-size:13px;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:hsl(212 70% 50%);color:#fff;border-color:transparent;cursor:pointer}
+.h3-btn.ghost{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.h3-btn:disabled{opacity:.45;cursor:not-allowed}
+.h3-ratio{font-size:13px;color:var(--muted)}
+.h3-ratio strong{color:hsl(150 55% 34%)}
+.h3-headers{display:flex;flex-direction:column;gap:4px}
+.h3-hdr{display:grid;grid-template-columns:140px 1fr 110px 40px;gap:10px;align-items:center;padding:7px 11px;border-radius:8px;font-family:var(--mono);font-size:12.5px;background:#fbfcfe;border:1px solid var(--line)}
+.h3-hdr.static{border-left:4px solid hsl(150 55% 50%)}
+.h3-hdr.dynamic{border-left:4px solid hsl(212 70% 55%)}
+.h3-hdr.literal{border-left:4px solid hsl(38 80% 55%)}
+.h3-h-name{color:hsl(212 70% 40%);font-weight:600}
+.h3-h-val{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.h3-h-repr{font-size:11px;padding:2px 7px;border-radius:5px;text-align:center}
+.h3-h-repr.static{background:hsl(150 50% 90%);color:hsl(150 55% 28%)}
+.h3-h-repr.dynamic{background:hsl(212 70% 91%);color:hsl(212 70% 34%)}
+.h3-h-repr.literal{background:hsl(38 80% 88%);color:hsl(38 75% 34%)}
+.h3-h-bytes{text-align:right;color:var(--muted)}
