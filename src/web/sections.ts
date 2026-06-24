@@ -76,6 +76,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'lb', label: 'Load balancing', icon: '⚖️' },
   { id: 'bloom', label: 'Bloom filter', icon: '🌸' },
   { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
+  { id: 'crdt', label: 'CRDTs', icon: '🧬' },
   { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
   { id: 'raft', label: 'Raft election', icon: '👑' },
   { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
@@ -94,7 +95,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'aesround', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'cookies', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'huffman', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'crdt', 'gossip', 'raft', 'cap', 'replication', 'twopc'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
