@@ -1602,3 +1602,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .arp-step.reply,.arp-step.learned{background:hsl(145 50% 96%);border-color:hsl(145 45% 80%);color:hsl(145 55% 28%)}
 .arp-step.cache-hit{background:hsl(212 70% 96%);border-color:hsl(212 70% 82%);color:hsl(212 60% 38%)}
 .arp-step.unresolved{background:hsl(0 75% 96%);border-color:hsl(0 70% 82%);color:hsl(0 55% 42%)}
+
+/* ---- WiFi CSMA/CA ---- */
+.csma-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.csma-controls > label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted);min-width:150px}
+.csma-play{display:flex;gap:5px}
+.csma-channel{padding:9px 13px;border-radius:9px;font-size:13px;margin:8px 0;font-family:var(--mono)}
+.csma-channel.idle{background:#eef2f7;color:var(--muted)}
+.csma-channel.transmit{background:hsl(145 50% 93%);color:hsl(145 55% 28%);border:1px solid hsl(145 45% 75%)}
+.csma-channel.collision{background:hsl(0 75% 95%);color:hsl(0 55% 40%);border:1px solid hsl(0 70% 80%)}
+.csma-stations{display:flex;flex-direction:column;gap:4px;margin:10px 0}
+.csma-st{display:grid;grid-template-columns:60px 1fr 90px 1fr;gap:10px;align-items:center;font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.csma-st.tx{border-color:hsl(145 55% 55%);background:hsl(145 50% 96%)}
+.csma-st.col{border-color:hsl(0 65% 65%);background:hsl(0 75% 97%)}
+.csma-st-name{font-family:var(--mono);font-weight:600}
+.csma-backoff{font-family:var(--mono);font-weight:600}
+.csma-cw{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.csma-sent{font-size:11px;color:var(--muted);font-family:var(--mono);text-align:right}
+.csma-tl-label{font-size:11px;color:var(--muted);margin:8px 0 4px}
+.csma-timeline{display:flex;gap:2px;flex-wrap:wrap}
+.csma-slot{width:18px;height:22px;border-radius:3px;background:#f1f4f8;display:flex;align-items:center;justify-content:center;font-size:9px;font-family:var(--mono);color:#fff}
+.csma-slot.idle.on{background:#dde3ec}
+.csma-slot.transmit.on{background:hsl(145 55% 50%)}
+.csma-slot.collision.on{background:hsl(0 65% 58%)}
+.csma-stats{font-size:12.5px;margin:8px 0;color:var(--muted)}
+.csma-stats strong{color:var(--ink)}
