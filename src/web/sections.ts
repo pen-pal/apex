@@ -156,6 +156,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'truetime', label: 'TrueTime & commit-wait', icon: '🛰️' },
   { id: 'snowflake', label: 'Snowflake IDs', icon: '❄️' },
   { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
+  { id: 'causalbcast', label: 'Causal broadcast', icon: '➰' },
   { id: 'crdt', label: 'CRDTs', icon: '🧬' },
   { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
   { id: 'antientropy', label: 'Read-repair & anti-entropy', icon: '🩹' },
@@ -182,7 +183,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'siteisolation', 'sri', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'dfa', 'huffman', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'hlc', 'truetime', 'vclock', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar'] },
 ];
 
