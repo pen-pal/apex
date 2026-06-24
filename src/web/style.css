@@ -2985,3 +2985,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lz-ok{color:hsl(150 50% 35%);font-weight:600}
 .lz-bad{color:hsl(0 65% 45%);font-weight:600}
 .lz-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── CORS / Same-Origin (CorsSection) ── */
+.cors-panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:12px 0 16px}
+.cors-panel{padding:14px 16px;border-radius:11px;border:1px solid var(--line);background:#fbfcfe;display:flex;flex-direction:column;gap:9px}
+.cors-panel h3{margin:0 0 4px;font-size:13.5px}
+.cors-panel label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:var(--muted)}
+.cors-panel input[type=text],.cors-panel input:not([type]),.cors-panel select{font-family:var(--mono);font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:7px}
+.cors-chk{flex-direction:row!important;align-items:center;gap:7px!important;font-size:12px!important;color:var(--ink)!important}
+.cors-chk input{width:15px;height:15px}
+.cors-chk code{font-family:var(--mono);font-size:11px;background:#f2f5f9;padding:1px 4px;border-radius:4px}
+.cors-kind{margin-top:4px;font-size:12px;padding:6px 10px;border-radius:7px;text-align:center}
+.cors-kind.simple{background:hsl(150 50% 93%);color:hsl(150 45% 32%)}
+.cors-kind.pre{background:hsl(38 75% 91%);color:hsl(32 65% 36%)}
+.cors-flow{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.cors-step{display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:9px;border:1px solid var(--line);background:#f7f9fc}
+.cors-step b{font-size:12.5px}
+.cors-step span{font-size:12.5px;color:var(--muted)}
+.cors-step.on{background:hsl(212 55% 95%);border-color:hsl(212 50% 85%)}
+.cors-step.ok{background:hsl(150 50% 96%);border-color:hsl(150 42% 84%)}
+.cors-step.bad{background:hsl(0 70% 97%);border-color:hsl(0 55% 88%)}
+.cors-verdict{padding:12px 15px;border-radius:10px;font-size:13.5px;line-height:1.5;font-weight:500}
+.cors-verdict.ok{background:hsl(150 55% 95%);border:1px solid hsl(150 45% 82%)}
+.cors-verdict.bad{background:hsl(0 75% 96%);border:1px solid hsl(0 60% 86%)}
+.cors-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+.cors-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
