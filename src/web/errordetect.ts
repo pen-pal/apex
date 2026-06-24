@@ -40,7 +40,7 @@ export function internetChecksum(bytes: number[]): CkResult {
 
 // ---- CRC as a shift register (LFSR), traced --------------------------------
 
-/** A small CRC so the LFSR is watchable. CRC-8/ATM: poly 0x07, init 0x00. */
+/** A small CRC so the LFSR is watchable. CRC-8/SMBUS: poly 0x07, init 0x00. */
 export const CRC8 = { poly: 0x07, width: 8 };
 
 export interface CrcStep {
