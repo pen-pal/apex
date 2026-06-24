@@ -42,6 +42,8 @@ describe("Karn's algorithm", () => {
 
   it('measures a clean (non-retransmitted) segment normally', () => {
     const s = first(100);
-    expect(measure(s, 200, false).srtt).toBe(update(s, 200).srtt);
+    // RFC 6298 §2.3: SRTT = (1-1/8)·100 + (1/8)·200 = 112.5 (external value, not the impl's)
+    expect(measure(s, 200, false).srtt).toBe(112.5);
+    expect(measure(s, 200, false).srtt).toBe(update(s, 200).srtt); // measure routes to update on a clean sample
   });
 });

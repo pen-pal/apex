@@ -64,8 +64,8 @@ export function flow(): Step[] {
     },
     {
       n: 6, exchange: 'AP', from: 'service', to: 'client', msg: 'AP-REP',
-      blobs: [b('mutual auth', 'Kc_svc', ['timestamp + 1'])],
-      note: 'Optional: the service returns the timestamp+1 sealed with Kc_svc, proving it could open the ticket — so Alice knows she’s talking to the real server, not an impostor. Mutual authentication.',
+      blobs: [b('mutual auth', 'Kc_svc', ['client timestamp (ctime/cusec, echoed)'])],
+      note: 'Optional: the service echoes back the SAME timestamp from Alice’s authenticator (ctime/cusec, unchanged — RFC 4120 §5.5.2; the “+1” is the older Kerberos V4 style), sealed with Kc_svc. Only a server that could open the ticket and recover Kc_svc could produce it, so Alice knows she’s talking to the real server. Mutual authentication.',
     },
   ];
 }
