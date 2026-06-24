@@ -16,6 +16,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'fragment', label: 'IP fragmentation', icon: '🧩' },
   { id: 'natpunch', label: 'NAT traversal', icon: '🕳️' },
   { id: 'ipcompare', label: 'IPv4 vs IPv6', icon: '⇄' },
+  { id: 'happyeyeballs', label: 'Happy Eyeballs', icon: '👀' },
   { id: 'icmp', label: 'ICMP messages', icon: '🚨' },
   { id: 'anycast', label: 'Anycast', icon: '📡' },
   { id: 'multicast', label: 'Multicast & IGMP', icon: '📡' },
@@ -156,7 +157,7 @@ export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_
 export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
-  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'vlan', 'ntp'] },
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'dns', 'dnssec', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle', 'hashchain'] },
