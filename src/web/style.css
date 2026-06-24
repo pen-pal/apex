@@ -5150,3 +5150,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cb-vc code{font-family:var(--mono);background:#eef1f5;padding:1px 6px;border-radius:5px;color:var(--ink)}
 .cb-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 @media(max-width:560px){.cb-state{grid-template-columns:1fr}}
+
+/* ── ECMP (EcmpSection) ── */
+.ecmp-nslider{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);margin:12px 0}
+.ecmp-nslider input[type=range]{width:150px;accent-color:hsl(212 70% 50%)}
+.ecmp-nslider b{font-family:var(--mono);color:var(--ink)}
+.ecmp-dist{display:flex;gap:8px;align-items:flex-end;height:130px;margin-bottom:6px}
+.ecmp-path{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+.ecmp-bar{flex:1;width:100%;background:#f4f6f9;border-radius:6px 6px 0 0;display:flex;align-items:flex-end;overflow:hidden}
+.ecmp-bar div{width:100%;background:hsl(212 65% 55%);border-radius:6px 6px 0 0;transition:height .2s}
+.ecmp-plbl{font-size:10px;color:var(--muted);margin-top:4px;font-family:var(--mono)}
+.ecmp-pcount{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink)}
+.ecmp-note{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:4px}
+.ecmp-h3{font-size:14px;margin:18px 0 10px}
+.ecmp-toggle{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink);cursor:pointer;margin-bottom:12px}
+.ecmp-toggle input{width:15px;height:15px}
+.ecmp-grid{display:grid;gap:4px;max-width:380px;margin-bottom:12px}
+.ecmp-cell{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700}
+.ecmp-cell.idle{background:#f0f2f5;color:#c4ccd6}
+.ecmp-cell.used{background:hsl(212 65% 55%);color:#fff}
+.ecmp-verdict{padding:11px 14px;border-radius:10px;font-size:12.5px;line-height:1.5}
+.ecmp-verdict.bad{background:hsl(0 60% 96.5%);border:1px solid hsl(0 50% 86%);color:hsl(0 55% 40%)}
+.ecmp-verdict.good{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 83%);color:hsl(150 45% 30%)}
+.ecmp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
