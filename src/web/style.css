@@ -2863,3 +2863,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .slaac-prefix{font-size:13px;color:var(--ink)}
 .slaac-note{font-size:12.5px;color:var(--muted)}
 .slaac-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── Line coding (LineCodingSection) ── */
+.line-input{font-family:var(--mono);font-size:15px;letter-spacing:3px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;width:100%;max-width:340px;margin:10px 0 16px}
+.line-grid{max-width:100%;overflow-x:auto;margin-bottom:4px}
+.line-bits{display:grid;gap:0}
+.line-bits span{text-align:center;font-family:var(--mono);font-size:13px;font-weight:700;padding:3px 0;border-left:1px dashed var(--line)}
+.line-bits span:last-child{border-right:1px dashed var(--line)}
+.line-bits span.one{color:hsl(212 70% 45%)}
+.line-bits span.zero{color:var(--muted)}
+.line-rows{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.line-row{display:flex;flex-direction:column;gap:5px}
+.line-meta{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.line-name{font-weight:700;font-size:14px}
+.line-badges{display:flex;gap:8px}
+.line-badges i{font-style:normal;font-size:11px;padding:2px 7px;border-radius:5px;background:#f2f5f9;color:var(--muted)}
+.line-badges i.ok{background:hsl(150 50% 92%);color:hsl(150 45% 32%)}
+.line-badges i.no{background:hsl(38 70% 92%);color:hsl(32 60% 38%)}
+.line-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;padding:4px 0}
+.line-wave{display:block}
+.line-path{fill:none;stroke:hsl(212 75% 48%);stroke-width:2.4;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.line-zero{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+.line-tick{stroke:#eef1f6;stroke-width:1}
+.line-note{font-size:12px;color:var(--muted);line-height:1.5}
+.line-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
