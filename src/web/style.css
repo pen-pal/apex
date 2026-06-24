@@ -2537,3 +2537,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rto-leg.rto{fill:hsl(0 65% 48%)}
 .rto-leg.srtt{fill:hsl(212 70% 42%)}
 .rto-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* ── Broken hashes & birthday bound (HashCollisionSection) ── */
+.hc-field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);max-width:380px;margin:6px 0 10px}
+.hc-field input{font-family:var(--mono);font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink)}
+.hc-digest{font-family:var(--mono);font-size:12.5px;margin-bottom:12px}
+.hc-digest code{background:#f2f5f9;padding:3px 7px;border-radius:5px;overflow-wrap:anywhere}
+.hc-shattered{font-size:12.5px;padding:10px 13px;border-radius:10px;background:hsl(0 75% 97%);border:1px solid hsl(0 60% 88%);line-height:1.5}
+.hc-shattered code{font-family:var(--mono);font-size:11px;background:#fff;padding:1px 5px;border-radius:4px}
+.hc-table{border-collapse:collapse;font-size:12.5px;width:100%;max-width:560px;margin-bottom:12px}
+.hc-table th,.hc-table td{border:1px solid var(--line);padding:6px 11px;text-align:left}
+.hc-table th{background:#f2f5f9;color:var(--muted);font-weight:600}
+.hc-table td:first-child{font-family:var(--mono);font-weight:600}
+.hc-table tr.broken td:first-child{color:hsl(0 65% 46%)}
+.hc-badge{font-size:11px;padding:2px 8px;border-radius:20px}
+.hc-badge.broken{background:hsl(0 75% 93%);color:hsl(0 60% 42%)}
+.hc-badge.safe{background:hsl(150 50% 92%);color:hsl(150 55% 30%)}
+.hc-events{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);line-height:1.5}
+.hc-event strong{color:var(--ink)}
+.hc-bd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
+.hc-bd-tabs button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.hc-bd-tabs button.on{background:hsl(212 70% 50%);color:#fff;border-color:transparent}
+.hc-bd{font-size:13.5px;line-height:1.6;padding:11px 14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line)}
+.hc-bd code{font-family:var(--mono);background:#fff;padding:1px 6px;border-radius:5px;border:1px solid var(--line)}
+.hc-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
