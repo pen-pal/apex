@@ -31,7 +31,7 @@ export interface FleetResult {
   buckets: number[]; // retry attempts per time bucket across the whole fleet
   bucketMs: number;
   peak: number; // busiest bucket overall
-  retryPeak: number; // busiest bucket AFTER the initial synchronized failure (bucket 0) — the retry-wave height
+  retryPeak: number; // busiest bucket counting only RETRIES (attempt ≥ 1) — the retry-wave height
   total: number; // total attempts the upstream had to field
 }
 
@@ -44,20 +44,22 @@ export interface FleetOpts {
 export function simulateFleet(strategy: Strategy, o: FleetOpts): FleetResult {
   const nb = Math.floor(o.horizonMs / o.bucketMs) + 1;
   const buckets = new Array(nb).fill(0);
+  const retryBuckets = new Array(nb).fill(0); // counts ONLY retries (attempt ≥ 1), wherever they land
   let total = 0;
   for (let c = 0; c < o.clients; c++) {
     const rnd = lcg(o.seed + c * 7919);
     let t = 0, a = 0;
     while (a < o.maxAttempts && t <= o.horizonMs) {
       const b = Math.floor(t / o.bucketMs);
-      if (b < nb) buckets[b]++;
+      if (b < nb) { buckets[b]++; if (a >= 1) retryBuckets[b]++; }
       total++;
       if (t >= o.healMs) break; // upstream healed → this attempt succeeds, client stops
       t += backoffDelay(strategy, a, o.baseMs, o.capMs, rnd);
       a++;
     }
   }
-  return { strategy, buckets, bucketMs: o.bucketMs, peak: Math.max(...buckets), retryPeak: Math.max(0, ...buckets.slice(1)), total };
+  // retryPeak counts retries honestly (a jittered first retry can fall in bucket 0 — it's still counted)
+  return { strategy, buckets, bucketMs: o.bucketMs, peak: Math.max(...buckets), retryPeak: Math.max(0, ...retryBuckets), total };
 }
 
 // ---- circuit breaker (Nygard / Hystrix three-state machine) -------------------------------------

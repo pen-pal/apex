@@ -77,11 +77,29 @@ describe('circuit breaker state machine (Nygard / Hystrix)', () => {
     expect(steps[5].nextState).toBe('closed');
   });
 
-  it('re-opens on a failed half-open probe path and only one probe is allowed per cooldown', () => {
-    expect(steps[8].nextState).toBe('open'); // 3 fresh failures re-open at t=105
+  it('after closing, fresh failures re-open it and requests shed within each new cooldown', () => {
+    expect(steps[8].nextState).toBe('open'); // 3 fresh CLOSED-state failures re-open at t=105
+    expect(steps[8].state).toBe('closed'); // (this path is driven from CLOSED, not a half-open probe)
     expect(steps[9].result).toBe('shed'); // t=106 is within the new cooldown → shed
     expect(steps[10].state).toBe('half-open'); // t=205 probes again
     expect(steps[10].nextState).toBe('closed');
     expect(steps.filter((s) => s.result === 'shed')).toHaveLength(3);
+  });
+
+  it('a FAILED half-open probe immediately re-opens the breaker (does not need a fresh threshold)', () => {
+    // trip OPEN at t=2, then the very first post-cooldown probe FAILS → straight back to OPEN
+    const trace: Req[] = [
+      { t: 0, upstream: 'failure' }, { t: 1, upstream: 'failure' }, { t: 2, upstream: 'failure' }, // → OPEN@2
+      { t: 102, upstream: 'failure' }, // cooldown elapsed → HALF-OPEN, probe FAILS → re-OPEN@102
+      { t: 150, upstream: 'success' }, // within the new cooldown → shed (proves it really re-opened)
+      { t: 202, upstream: 'success' }, // cooldown elapsed again → HALF-OPEN, probe succeeds → CLOSED
+    ];
+    const s = runBreaker(trace, cfg);
+    expect(s[3].state).toBe('half-open'); // the probe ran in half-open
+    expect(s[3].result).toBe('failure'); // and it failed
+    expect(s[3].nextState).toBe('open'); // → re-open immediately on the single failed probe
+    expect(s[4].result).toBe('shed'); // re-opened: the next request is shed
+    expect(s[5].state).toBe('half-open'); // 100ms after t=102 → probe again
+    expect(s[5].nextState).toBe('closed'); // succeeds → closed
   });
 });
