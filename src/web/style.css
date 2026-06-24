@@ -3963,3 +3963,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .chord-result b{color:hsl(150 45% 32%)}
 .chord-hops{display:block;margin-top:6px;font-size:11px;color:var(--muted)}
 .chord-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── Union-Find (UnionFindSection) ── */
+.uf-elements{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px}
+.uf-el{width:42px;height:42px;border:2px solid;border-radius:10px;font-family:var(--mono);font-size:15px;font-weight:700;cursor:pointer;color:var(--ink)}
+.uf-el.sel{color:#fff;box-shadow:0 0 0 2px rgba(0,0,0,.15)}
+.uf-bar{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.uf-reset{font:inherit;font-size:12px;padding:5px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer;color:hsl(0 55% 45%)}
+.uf-count{font-size:12.5px;color:var(--muted);font-weight:600}
+.uf-groups{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.uf-group{display:flex;align-items:center;gap:5px;padding:8px 11px;border:2px solid;border-radius:11px;background:#fbfcfe}
+.uf-grootlabel{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-right:3px}
+.uf-member{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;color:#fff;font-family:var(--mono);font-size:12px;font-weight:700}
+.uf-check{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.uf-check select{font-family:var(--mono);font-size:13px;padding:4px 8px;border:1px solid var(--line);border-radius:6px}
+.uf-verdict{font-weight:600;padding:5px 11px;border-radius:7px}
+.uf-verdict.yes{background:hsl(150 50% 92%);color:hsl(150 45% 32%)}
+.uf-verdict.no{background:hsl(0 60% 95%);color:hsl(0 55% 45%)}
+.uf-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
