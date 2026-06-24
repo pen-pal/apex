@@ -2926,3 +2926,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lam-chip b{font-family:var(--mono);font-size:13px}
 .lam-chip i{font-style:normal;font-size:10.5px;color:var(--muted)}
 .lam-caveat{padding:12px 15px;border-radius:10px;background:hsl(265 45% 97%);border:1px solid hsl(265 40% 88%);font-size:13px;line-height:1.6}
+
+/* ── Tunable quorum (QuorumSection) ── */
+.quo-controls{display:flex;gap:22px;flex-wrap:wrap;margin:10px 0 14px}
+.quo-controls label{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted)}
+.quo-controls input[type=range]{accent-color:hsl(212 70% 50%)}
+.quo-controls b{font-family:var(--mono);font-size:14px;color:var(--ink);min-width:14px}
+.quo-stage{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.quo-ring{flex:none}
+.quo-orbit{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:3 4}
+.quo-node{fill:#fff;stroke:var(--line);stroke-width:2}
+.quo-node.w{fill:hsl(212 65% 90%);stroke:hsl(212 65% 50%)}
+.quo-node.r{fill:hsl(150 55% 90%);stroke:hsl(150 50% 42%)}
+.quo-node.both{fill:hsl(45 90% 85%);stroke:hsl(38 80% 48%);stroke-width:3}
+.quo-nlabel{font-family:var(--mono);font-size:13px;font-weight:700;fill:var(--ink)}
+.quo-star{font-size:16px;fill:hsl(38 85% 45%)}
+.quo-readout{flex:1;min-width:240px;display:flex;flex-direction:column;gap:9px}
+.quo-ineq{display:grid;grid-template-columns:auto auto;gap:2px 12px;align-items:baseline;padding:9px 13px;border-radius:9px;border:1px solid var(--line)}
+.quo-ineq.on{background:hsl(150 50% 96%);border-color:hsl(150 42% 84%)}
+.quo-ineq.off{background:hsl(0 70% 97%);border-color:hsl(0 55% 88%)}
+.quo-ineq code{font-family:var(--mono);font-size:13.5px;font-weight:700}
+.quo-ineq span{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.quo-ineq em{grid-column:1/3;font-style:normal;font-size:12px;color:var(--muted)}
+.quo-overlap{font-size:13px}
+.quo-overlap b{font-family:var(--mono);font-size:15px}
+.quo-profile{font-size:12.5px;color:var(--muted);line-height:1.5}
+.quo-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:14px 0 8px}
+.quo-legend span{display:inline-flex;align-items:center;gap:7px}
+.quo-legend i.quo-node{width:15px;height:15px;border-radius:50%;display:inline-block;border-width:2px;border-style:solid}
+.quo-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:6px}
+.quo-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
