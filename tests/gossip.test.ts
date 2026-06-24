@@ -8,6 +8,10 @@ describe('seeded PRNG', () => {
     expect(Array.from({ length: 5 }, () => b())).toEqual(xs);
     expect(xs.every((x) => x >= 0 && x < 1)).toBe(true);
   });
+  it('reproduces the canonical Mulberry32 output (not just any deterministic PRNG)', () => {
+    const r = rng(0);
+    expect([r(), r(), r()]).toEqual([0.26642920868471265, 0.0003297457005828619, 0.2232720274478197]);
+  });
 });
 
 describe('gossip dissemination', () => {

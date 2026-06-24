@@ -40,9 +40,9 @@ describe('TCP Reno congestion control', () => {
     expect(t[13].cwnd).toBeLessThan(t[12].cwnd); // dropped after the second loss
   });
 
-  it('never lets ssthresh fall below 1', () => {
+  it('never lets ssthresh fall below 2 (RFC 5681 floor 2·SMSS)', () => {
     const t = simulateReno({ rounds: 6, initialSsthresh: 2, initialCwnd: 1, losses: { 1: 'timeout', 2: 'timeout', 3: 'timeout' } });
-    expect(t.every((r) => r.ssthresh >= 1 && r.cwnd >= 1)).toBe(true);
+    expect(t.every((r) => r.ssthresh >= 2 && r.cwnd >= 1)).toBe(true);
   });
 
   it('peakCwnd reports the highest window/threshold', () => {

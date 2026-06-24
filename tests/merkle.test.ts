@@ -13,6 +13,12 @@ describe('buildTree', () => {
     const expected = nodeHash(t.levels[1][0], t.levels[1][1]);
     expect(hashHex(t.root)).toBe(hashHex(expected));
   });
+  it('the combination is anchored to externally-computed SHA-256 (leaf encoding + concat order)', () => {
+    // a 1-leaf root IS the leaf hash = SHA-256("abc") (NIST vector)
+    expect(hashHex(buildTree(['abc']).root)).toBe('ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+    // a 2-leaf root = SHA-256( SHA-256("a") ‖ SHA-256("b") ), computed independently
+    expect(hashHex(buildTree(['a', 'b']).root)).toBe('e5a01fee14e0ed5c48714f22180f25ad8365b53f9779f79dc4a3d7e93963f94a');
+  });
   it('is deterministic', () => {
     expect(hashHex(buildTree(blocks).root)).toBe(hashHex(buildTree(blocks).root));
   });

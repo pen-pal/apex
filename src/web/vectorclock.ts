@@ -3,8 +3,9 @@
 // process). A local event bumps its own counter; a send bumps own then ships the
 // vector; a receive merges the incoming vector (elementwise max) then bumps own.
 // Comparing two vectors tells you the causal relation: one HAPPENED-BEFORE the
-// other, or they are CONCURRENT (neither could have caused the other). Lamport
-// 1978. Pure, deterministic model. Tested.
+// other, or they are CONCURRENT (neither could have caused the other). Happened-
+// before: Lamport 1978; the vector-clock construction itself: Fidge 1988 / Mattern
+// 1988. Pure, deterministic model. Tested.
 
 export type Clock = Record<string, number>;
 export type Relation = 'equal' | 'before' | 'after' | 'concurrent';

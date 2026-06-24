@@ -42,10 +42,10 @@ export function simulateReno(cfg: CcConfig): CcRound[] {
 
     // Apply the round's outcome to produce next round's window.
     if (event === 'timeout') {
-      ssthresh = Math.max(1, Math.floor(cwnd / 2));
+      ssthresh = Math.max(2, Math.floor(cwnd / 2)); // RFC 5681 eq (4): floor is 2*SMSS
       cwnd = 1; // collapse to 1 MSS, restart slow start
     } else if (event === 'triple-dup-ack') {
-      ssthresh = Math.max(1, Math.floor(cwnd / 2));
+      ssthresh = Math.max(2, Math.floor(cwnd / 2)); // RFC 5681 eq (4): floor is 2*SMSS
       cwnd = ssthresh; // fast recovery: drop to ssthresh, stay in avoidance
     } else if (phase === 'slow-start') {
       cwnd = Math.min(cwnd * 2, ssthresh); // exponential growth, capped at ssthresh

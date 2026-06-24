@@ -9,6 +9,12 @@ describe('hashRing', () => {
     expect(hashRing('abc')).toBeGreaterThanOrEqual(0);
     expect(hashRing('abc')).toBeLessThan(RING);
   });
+  it('matches the published FNV-1a 32-bit vectors (mod RING), not just the impl', () => {
+    // FNV-1a: 'abc' → 0x1a47e90b, 'a' → 0xe40c292c; reduced mod RING (65536)
+    expect(RING).toBe(65536);
+    expect(hashRing('abc')).toBe(0x1a47e90b % RING); // 59659
+    expect(hashRing('a')).toBe(0xe40c292c % RING); // 10540
+  });
 });
 
 describe('HashRing placement and lookup', () => {
