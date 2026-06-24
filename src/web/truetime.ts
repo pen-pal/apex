@@ -31,8 +31,8 @@ export function commitWait(trueTime: number, epsilon: number): Commit {
 export interface ECResult { ts1: number; ts2: number; t1VisibleAt: number; ordered: boolean }
 
 /** External consistency: T1 commits at true time t1, then T2 begins. With commit-wait, T2 can't start
- *  until T1 is visible (t1+2ε), so ts2 > ts1 always. Without it, T2 can grab an equal-or-earlier
- *  timestamp despite happening after — the anomaly commit-wait exists to prevent. */
+ *  until T1 is visible (t1+2ε), so ts2 > ts1 always. Without it, T2 can grab an EQUAL (non-greater)
+ *  timestamp despite happening after — and ts1 < ts2 fails, which is the anomaly commit-wait prevents. */
 export function externalConsistency(t1: number, t2Start: number, epsilon: number, useCommitWait: boolean): ECResult {
   const c1 = commitWait(t1, epsilon);
   const ts1 = c1.commitTs;
