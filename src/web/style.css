@@ -2666,3 +2666,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mpls-action.pop{background:hsl(265 60% 96%);border-color:hsl(265 50% 86%)}
 .mpls-action.ip{background:hsl(212 70% 96%);border-color:hsl(212 60% 85%)}
 .mpls-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* ── Classical ciphers (ClassicalSection) ── */
+.cla-field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);max-width:480px;margin:6px 0 10px}
+.cla-field input{font-family:var(--mono);font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink)}
+.cla-slider{display:flex;flex-direction:column;gap:5px;font-size:13px;font-family:var(--mono);max-width:320px;margin-bottom:10px}
+.cla-slider input{accent-color:hsl(212 70% 50%)}
+.cla-map{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:10px}
+.cla-pair{font-family:var(--mono);font-size:11px;background:#eef1f5;padding:2px 5px;border-radius:4px;color:#3a4456}
+.cla-pair b{color:hsl(212 70% 42%)}
+.cla-cipher{font-family:var(--mono);font-size:13px;margin:4px 0}
+.cla-cipher code{background:#f2f5f9;padding:3px 8px;border-radius:6px;overflow-wrap:anywhere}
+.cla-btn{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:hsl(28 80% 52%);color:#fff;border-color:transparent;cursor:pointer;margin:8px 0}
+.cla-crack{font-size:13px;padding:10px 13px;border-radius:9px;background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.cla-crack code{font-family:var(--mono);background:#fff;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.cla-bars{display:flex;align-items:flex-end;gap:3px;height:120px;padding:6px;background:#fbfcfe;border:1px solid var(--line);border-radius:10px}
+.cla-bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%}
+.cla-bar-track{flex:1;width:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;gap:1px}
+.cla-bar-eng,.cla-bar-cip{width:45%;border-radius:2px 2px 0 0}
+.cla-bar-eng{background:#cbd3de}
+.cla-bar-cip{background:hsl(212 70% 55%)}
+.cla-bar-l{font-size:8.5px;color:var(--muted);font-family:var(--mono)}
+.cla-legend{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:8px}
+.cla-sw{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:middle}
+.cla-sw.eng{background:#cbd3de}.cla-sw.cip{background:hsl(212 70% 55%)}
+.cla-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
