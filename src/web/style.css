@@ -1399,3 +1399,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
   .sections{flex-direction:column}
   .sections .sec-group-items{flex-direction:column}
 }
+
+/* ---- WAL replication ---- */
+.rp-controls{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.rp-crash{border-color:hsl(0 70% 60%)!important;color:hsl(0 60% 45%)!important}
+.rp-logs{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.rp-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rp-row.promoted .rp-label{color:hsl(145 55% 32%);font-weight:700}
+.rp-label{font-size:12px;font-weight:600;min-width:120px}
+.rp-cells{display:flex;gap:3px;flex-wrap:wrap;flex:1}
+.rp-cell{min-width:30px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:5px;font-family:var(--mono);font-size:11px;border:1px solid var(--line)}
+.rp-cell.pending{background:#fff;color:var(--muted)}
+.rp-cell.committed{background:hsl(212 70% 92%);color:hsl(212 60% 38%);border-color:hsl(212 70% 75%)}
+.rp-cell.acked{background:hsl(145 50% 88%);color:hsl(145 55% 30%);border-color:hsl(145 45% 70%)}
+.rp-cell.has{background:hsl(145 50% 90%);color:hsl(145 55% 30%)}
+.rp-cell.missing{background:#f1f4f8;color:#c0c8d2;border-style:dashed}
+.rp-cell.lost{outline:2px solid hsl(0 70% 55%);outline-offset:-1px;opacity:.85;text-decoration:line-through}
+.rp-empty{font-size:11.5px;color:var(--muted)}
+.rp-meta{font-size:10.5px;color:var(--muted);font-family:var(--mono);min-width:78px;text-align:right}
+.rp-failover{border-radius:10px;padding:11px 13px;font-size:13px;margin:8px 0;line-height:1.5}
+.rp-failover.ok{background:hsl(145 50% 95%);border:1px solid hsl(145 45% 78%)}
+.rp-failover.bad{background:hsl(0 75% 96%);border:1px solid hsl(0 70% 82%)}
+.rp-warn{margin-top:6px;color:hsl(0 60% 42%);font-size:12.5px}
+.rp-good{margin-top:6px;color:hsl(145 55% 30%);font-size:12.5px}
