@@ -1470,3 +1470,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .frag-drop{background:hsl(0 75% 96%);border:1px solid hsl(0 70% 82%);color:hsl(0 60% 40%);border-radius:8px;padding:9px 12px;font-size:12.5px}
 .frag-icmp{background:hsl(28 75% 96%);border:1px solid hsl(28 70% 80%);color:hsl(28 55% 35%);border-radius:8px;padding:9px 12px;font-size:12.5px;font-family:var(--mono)}
 .frag-shrink{background:hsl(145 50% 95%);border:1px solid hsl(145 45% 78%);color:hsl(145 55% 28%);border-radius:8px;padding:9px 12px;font-size:12.5px}
+
+/* ---- BGP route propagation & hijack ---- */
+.bh-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.bh-toggle{display:flex;align-items:center;gap:7px;font-size:12.5px}
+.bh-toggle.dim{opacity:.5}
+.bh-svg{width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:8px 0}
+.bh-edge{stroke:#d4dbe4;stroke-width:2}
+.bh-arrow{stroke-width:2.5}
+.bh-arrow.blue{stroke:hsl(212 60% 50%)}
+.bh-arrow.red{stroke:hsl(0 65% 52%)}
+.bh-asn{font-family:var(--mono);font-size:12px;font-weight:700;fill:var(--ink)}
+.bh-path{font-family:var(--mono);font-size:8px;fill:var(--muted)}
+.bh-tag{font-size:10px;font-weight:600}
+.bh-tag.origin{fill:hsl(212 60% 42%)}
+.bh-tag.rogue{fill:hsl(0 65% 45%)}
+.bh-status{padding:10px 13px;border-radius:10px;font-size:13px;margin:8px 0;line-height:1.5}
+.bh-status.ok{background:hsl(145 50% 95%);border:1px solid hsl(145 45% 78%);color:hsl(145 55% 28%)}
+.bh-status.bad{background:hsl(0 75% 96%);border:1px solid hsl(0 70% 82%);color:hsl(0 55% 40%)}
