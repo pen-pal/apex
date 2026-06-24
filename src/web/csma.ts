@@ -54,15 +54,17 @@ export function simulateCsma(n: number, slots: number, seed = 1): CsmaResult {
       timeline.push({ kind: 'transmit', station: w.id, acked: true, ...snap() });
     } else {
       // collision: all the zero-backoff stations grow CW (BEB) and re-draw
-      for (const w of ready) { w.collisions += 1; w.cw = Math.min(w.cw === 0 ? CW_MIN : w.cw * 2 + 1, CW_MAX); w.backoff = draw(w.cw); }
+      for (const w of ready) { w.collisions += 1; w.cw = Math.min(w.cw * 2 + 1, CW_MAX); w.backoff = draw(w.cw); }
       timeline.push({ kind: 'collision', stations: ready.map((x) => x.id), ...snap() });
     }
   }
   return { stations: st, timeline };
 }
 
-/** The station(s) that transmit next = those with the lowest backoff. One → clean
- *  send; two or more → a collision. (This is the rule the simulation applies.) */
+/** Standalone illustration of the race: whoever has the lowest backoff counter reaches zero
+ *  first and seizes the channel (a tie at the bottom is what causes a collision). NOTE: the
+ *  simulation above transmits at backoff===0 specifically — a slot whose minimum is >0 is idle
+ *  (everyone decrements, nobody sends); this helper just ranks who's closest to firing. */
 export function lowestBackoff(backoffs: number[]): number[] {
   const min = Math.min(...backoffs);
   return backoffs.map((b, i) => (b === min ? i : -1)).filter((i) => i >= 0);
