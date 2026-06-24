@@ -85,6 +85,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'linecode', label: 'Line coding', icon: '〰️' },
   { id: 'lz77', label: 'LZ77 compression', icon: '🪟' },
   { id: 'huffman', label: 'Huffman coding', icon: '🗜️' },
+  { id: 'crc32', label: 'CRC-32 walk', icon: '🔁' },
   { id: 'errors', label: 'Error control', icon: '🛡️' },
   { id: 'chash', label: 'Consistent hashing', icon: '⭕' },
   { id: 'lb', label: 'Load balancing', icon: '⚖️' },
@@ -111,7 +112,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'cookies', 'cors', 'webinject', 'attacks'] },
-  { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'errors'] },
+  { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'crc32', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'raft', 'cap', 'quorum', 'replication', 'twopc'] },
 ];
 
