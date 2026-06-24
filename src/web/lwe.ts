@@ -8,7 +8,7 @@
 
 export interface LweParams { n: number; q: number }
 export const PARAMS: LweParams = { n: 4, q: 97 };
-export const half = (q: number) => Math.round(q / 2);
+export const half = (q: number) => Math.floor(q / 2);
 
 const mod = (x: number, q: number) => ((x % q) + q) % q;
 export const dot = (a: number[], b: number[], q: number) => mod(a.reduce((s, ai, i) => s + ai * b[i], 0), q);

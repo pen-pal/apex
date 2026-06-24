@@ -51,7 +51,7 @@ export function MdnsSection() {
 
         {chain && instance && (
           <>
-            <div className="md-step">3 · resolve it (SRV → TXT → A)</div>
+            <div className="md-step">3 · resolve it (PTR → SRV → TXT → A)</div>
             <div className="md-chain">
               {chain.map((r, i) => (
                 <div key={i} className={`md-rec ${r.kind}`}>

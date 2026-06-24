@@ -1,7 +1,7 @@
 // M/M/1 queueing — the math behind "you can't fill the pipe without latency". Packets
 // arrive at rate λ (Poisson) and a link serves them at rate μ; the utilisation is
 // ρ = λ/μ. The mean time a packet spends in the system is W = 1/(μ−λ), which blows up
-// as ρ→1: at 50% load the wait is one service time, at 90% it's ten, at 99% a hundred.
+// as ρ→1: at 50% load the wait is two service times, at 90% it's ten, at 99% a hundred.
 // That 1/(1−ρ) knee is why operators target ~70% and why bufferbloat hurts — a bigger
 // buffer doesn't raise μ, it just lets the queue (and the delay) grow. Standard
 // closed-form results (Little's law etc.), verified.

@@ -18,8 +18,8 @@ export const STATIC_TABLE: { i: number; name: string; value: string }[] = [
   { i: 23, name: ':scheme', value: 'https' },
   { i: 25, name: ':status', value: '200' },
   { i: 27, name: ':status', value: '404' },
-  { i: 31, name: 'content-type', value: 'text/html' },
-  { i: 33, name: 'accept', value: '*/*' },
+  { i: 52, name: 'content-type', value: 'text/html; charset=utf-8' },
+  { i: 29, name: 'accept', value: '*/*' },
 ];
 
 export type Repr = 'static' | 'dynamic' | 'literal';

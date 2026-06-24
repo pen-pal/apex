@@ -41,7 +41,7 @@ export function PasswordHashSection() {
             <div key={k.id} className="pw-kdf">
               <div className="pw-k-top"><span className="pw-k-name">{k.name}</span><span className="pw-k-year">{k.year}</span></div>
               <div className="pw-k-mem">{k.memoryKiB < 1 ? '~0' : k.memoryKiB >= 1024 ? `${k.memoryKiB / 1024} MiB` : `${k.memoryKiB} KiB`} / guess</div>
-              <div className="pw-k-tags">{k.defends.map((d) => <span key={d} className={`pw-tag ${d.includes('memory') ? 'mem' : ''}`}>{d}</span>)}</div>
+              <div className="pw-k-tags">{k.defends.map((d) => <span key={d} className={`pw-tag ${d.includes('memory-hard') ? 'mem' : ''}`}>{d}</span>)}</div>
             </div>
           ))}
         </div>
