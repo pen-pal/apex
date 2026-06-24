@@ -4007,3 +4007,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fen-result.u{color:hsl(28 70% 45%)}
 .fen-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .fen-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* cuckoo insert note */
+.cuck-note{font-size:11.5px;color:var(--muted)}
+.cuck-note.bad{color:hsl(0 55% 48%);font-weight:600}

@@ -22,24 +22,34 @@ export const slots = (c: Cuckoo, key: string): [number, number] => [h(key, c.see
 
 export interface InsertResult { ok: boolean; evictions: { key: string; from: number; to: number }[] }
 
-/** Insert a key, kicking out occupants along the way. Fails (needs resize) on a long chain. */
+/** Insert a key, kicking out occupants along the way. On failure (a chain too long, or a
+ *  key whose two hashes collide and has nowhere to go) the table is ROLLED BACK so no
+ *  previously-stored key is ever lost and the failing key is not left behind. */
 export function insert(c: Cuckoo, key: string, maxKicks = 16): InsertResult {
   const [s1, s2] = slots(c, key);
   if (c.table[s1] === key || c.table[s2] === key) return { ok: true, evictions: [] }; // already present
-  let cur = key;
-  let pos = s1;
+  if (c.table[s1] === null) { c.table[s1] = key; return { ok: true, evictions: [] }; }
+  if (c.table[s2] === null) { c.table[s2] = key; return { ok: true, evictions: [] }; }
+
+  const snapshot = [...c.table];                 // for rollback if the chain fails
   const evictions: InsertResult['evictions'] = [];
+  let cur = key, pos = s1;
   for (let n = 0; n < maxKicks; n++) {
     if (c.table[pos] === null) { c.table[pos] = cur; return { ok: true, evictions }; }
-    const displaced = c.table[pos]!;     // evict the occupant
+    const displaced = c.table[pos]!;             // evict the occupant
     c.table[pos] = cur;
     const [a, b] = slots(c, displaced);
-    const nextPos = a === pos ? b : a;   // send it to its OTHER slot
+    const nextPos = a === pos ? b : a;           // its OTHER slot
+    if (nextPos === pos) {                        // its two hashes collide → no alternate
+      c.table = snapshot;                         // roll back: lose nothing
+      return { ok: false, evictions: [] };
+    }
     evictions.push({ key: displaced, from: pos, to: nextPos });
     cur = displaced;
     pos = nextPos;
   }
-  return { ok: false, evictions }; // chain too long → table effectively full
+  c.table = snapshot;                             // chain too long → roll back, table unchanged
+  return { ok: false, evictions: [] };
 }
 
 /** Lookup: at most two probes, ever. */

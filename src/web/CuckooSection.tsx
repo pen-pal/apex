@@ -14,6 +14,7 @@ export function CuckooSection() {
   const [key, setKey] = useState('grape');
   const [query, setQuery] = useState('mango');
   const [lastEvict, setLastEvict] = useState<Set<number>>(new Set());
+  const [note, setNote] = useState('');
 
   const probe = useMemo(() => lookup(c, query), [c, query]);
   const probeSet = new Set(probe.probes);
@@ -22,6 +23,7 @@ export function CuckooSection() {
     const k = key.trim(); if (!k) return;
     const next = clone(c); const r = insert(next, k);
     setLastEvict(new Set(r.evictions.flatMap((e) => [e.from, e.to])));
+    setNote(r.ok ? (r.evictions.length ? `inserted “${k}” after ${r.evictions.length} eviction${r.evictions.length === 1 ? '' : 's'}` : `inserted “${k}”`) : `✗ couldn’t place “${k}” — chain too long, table needs a resize (no keys lost)`);
     setC(next);
   };
   const del = () => { const next = clone(c); remove(next, query); setLastEvict(new Set()); setC(next); };
@@ -40,6 +42,7 @@ export function CuckooSection() {
         <div className="cuck-ops">
           <input value={key} onChange={(e) => setKey(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && add()} placeholder="key" spellCheck={false} />
           <button onClick={add}>+ insert</button>
+          {note && <span className={`cuck-note ${note.startsWith('✗') ? 'bad' : ''}`}>{note}</span>}
         </div>
 
         <div className="cuck-table">
