@@ -73,6 +73,7 @@ import { CsmaSection } from './CsmaSection';
 import { MulticastSection } from './MulticastSection';
 import { VlanSection } from './VlanSection';
 import { ArqSection } from './ArqSection';
+import { QueueingSection } from './QueueingSection';
 import { DistanceVectorSection } from './DistanceVectorSection';
 import { MdnsSection } from './MdnsSection';
 import { EncryptedDnsSection } from './EncryptedDnsSection';
@@ -86,7 +87,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'arq' | 'distvec' | 'mdns' | 'encdns' | 'http3';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'arq' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -858,6 +859,16 @@ function App() {
               <p className="sub">Drop one frame and compare: Go-Back-N resends it and everything after; Selective Repeat buffers and resends only the gap.</p>
             </header>
             <ArqSection />
+          </>
+        )}
+
+        {section === 'queueing' && (
+          <>
+            <header>
+              <h1>M/M/1 queueing</h1>
+              <p className="sub">The 1/(1−ρ) curve: push arrival rate toward the link's service rate and watch delay go from gentle to a wall — the math under bufferbloat and QoS.</p>
+            </header>
+            <QueueingSection />
           </>
         )}
 
