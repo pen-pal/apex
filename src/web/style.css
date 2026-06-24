@@ -3617,3 +3617,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bbr-su-cell span{font-family:var(--mono);font-size:9.5px;color:var(--muted)}
 .bbr-su-note{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
 .bbr-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── B+tree (BtreeSection) ── */
+.bpt-controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:10px 0 16px}
+.bpt-controls input{font-family:var(--mono);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:80px}
+.bpt-controls button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.bpt-reset{color:hsl(0 55% 45%)}
+.bpt-stat{font-size:12.5px;color:var(--muted);margin-left:auto}
+.bpt-stat b{font-family:var(--mono);color:var(--ink)}
+.bpt-tree{overflow-x:auto;padding:10px 4px;display:flex;justify-content:center;min-height:80px}
+.bpt-subtree{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative}
+.bpt-node{display:flex;gap:2px;padding:4px;border-radius:8px;border:1.5px solid;background:#fff}
+.bpt-node.internal{border-color:hsl(265 50% 60%);background:hsl(265 45% 97%)}
+.bpt-node.leaf{border-color:hsl(150 45% 50%);background:hsl(150 45% 97%)}
+.bpt-key{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;font-family:var(--mono);font-size:13px;font-weight:600;padding:0 4px}
+.bpt-node.internal .bpt-key{color:hsl(265 50% 42%)}
+.bpt-node.leaf .bpt-key{color:hsl(150 45% 30%)}
+.bpt-empty{color:var(--muted);padding:0 8px;height:26px;display:flex;align-items:center}
+.bpt-children{display:flex;gap:16px;align-items:flex-start;position:relative}
+.bpt-children::before{content:'';position:absolute;top:-14px;left:0;right:0;height:1px;background:var(--line)}
+.bpt-subtree .bpt-children > .bpt-subtree::before{content:'';position:absolute;top:-14px;left:50%;width:1px;height:14px;background:var(--line)}
+.bpt-legend{display:flex;gap:18px;justify-content:center;font-size:11.5px;color:var(--muted);margin-top:6px}
+.bpt-legend span{display:inline-flex;align-items:center;gap:6px}
+.bpt-legend i.bpt-node{width:16px;height:16px;padding:0;border-width:1.5px}
+.bpt-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.bpt-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
