@@ -382,41 +382,41 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 
 /* ── app shell: full-width header bar + centered content ── */
 .app{display:flex;flex-direction:column;min-height:100vh}
-.brand{font-size:20px;font-weight:750;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;flex:none}
+.brand{font-size:18px;font-weight:750;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;flex:none}
 .brand .logo{color:hsl(212 70% 50%)}
 .sec-icon{font-size:15px}
 .content{width:100%;max-width:1120px;margin:0 auto;padding:26px 28px 70px;box-sizing:border-box}
 
 /* full-bleed sticky header bar; the inner row is centered + capped to the
-   content column so the nav stays aligned with the page below. Six SHORT
-   single-word tabs fit comfortably, so .topnav is nowrap (never wraps). */
+   content column so the nav stays aligned with the page below. Eight SHORT
+   single-word tabs are kept compact so they all share ONE row. */
 .topbar{position:sticky;top:0;z-index:30;background:var(--panel);
   border-bottom:1px solid var(--line);box-shadow:0 1px 2px rgba(20,30,50,.04)}
 .topbar-inner{max-width:1120px;margin:0 auto;padding:9px 28px;display:flex;
-  align-items:center;gap:22px;box-sizing:border-box}
+  align-items:center;gap:14px;box-sizing:border-box}
 
-/* compact single-word tabs, left-aligned right after the brand; wrap (never overlap)
-   as a safety if the row ever runs out of room */
-.topnav{display:flex;gap:2px;flex:1;align-items:center;flex-wrap:wrap;
+/* compact single-word tabs, left-aligned right after the brand. nowrap pins all
+   eight group tabs to a single line; the tabs are sized to fit the content column. */
+.topnav{display:flex;gap:2px;flex:1;align-items:center;flex-wrap:nowrap;
   justify-content:flex-start;min-width:0}
 .topgroup{position:relative}
 
-.topgroup-h{position:relative;display:inline-flex;align-items:center;gap:6px;background:none;
-  border:0;border-radius:8px;padding:7px 12px;font:inherit;font-size:13.5px;font-weight:600;
+.topgroup-h{position:relative;display:inline-flex;align-items:center;gap:4px;background:none;
+  border:0;border-radius:8px;padding:7px 8px;font:inherit;font-size:12.5px;font-weight:600;
   color:var(--muted);cursor:pointer;white-space:nowrap;line-height:1;
   transition:background .12s,color .12s}
 .topgroup-h:hover{background:#eef1f5;color:var(--ink)}
 .topgroup-h.active{color:hsl(212 70% 42%)}
 /* underline rail on the active group */
-.topgroup-h.active::after{content:"";position:absolute;left:12px;right:12px;bottom:-8px;
+.topgroup-h.active::after{content:"";position:absolute;left:8px;right:8px;bottom:-8px;
   height:2px;border-radius:2px;background:hsl(212 70% 50%)}
 .topgroup-h.open{background:var(--ink);color:#fff}
 .topgroup-h.open.active::after{background:#fff}
 
-.tg-icon{font-size:15px;line-height:1}
+.tg-icon{font-size:14px;line-height:1}
 .tg-label{letter-spacing:-.01em}
 .topgroup-h.active .tg-label,.topgroup-h.open .tg-label{font-weight:700}
-.tg-caret{font-size:9px;opacity:.6}
+.tg-caret{font-size:8px;opacity:.55}
 
 .topmenu{position:absolute;top:calc(100% + 9px);right:0;z-index:40;display:flex;
   flex-direction:column;gap:2px;min-width:230px;max-height:72vh;overflow-y:auto;
@@ -437,15 +437,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .topmenu button.on{background:hsl(212 70% 50%);color:#fff}
 .topnav-backdrop{position:fixed;inset:0;z-index:20}
 
-/* tablet: tighten spacing so the six short words still share one row */
+/* tablet: drop the carets and tighten spacing so all eight words still share one row */
 @media(max-width:900px){
-  .topbar-inner{gap:14px;padding:9px 18px}
+  .topbar-inner{gap:10px;padding:9px 16px}
   .topnav{gap:0}
-  .topgroup-h{padding:7px 9px;font-size:13px;gap:5px}
+  .topgroup-h{padding:6px 6px;font-size:12px;gap:4px}
+  .tg-caret{display:none}
+  .navsearch-input{width:130px}
+  .navsearch-input:focus{width:160px}
   .content{padding:22px 18px 64px}
 }
 
-/* phone: icon-only tabs keep all six on one row; the active tab still shows its
+/* phone: icon-only tabs keep all eight on one row; the active tab still shows its
    word so you always know where you are */
 @media(max-width:680px){
   .topbar-inner{gap:10px;padding:9px 14px}
@@ -4066,8 +4069,8 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 
 /* ── Global section search (in topbar) ── */
 .navsearch{position:relative;margin-left:auto}
-.navsearch-input{font:inherit;font-size:12.5px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);width:200px;transition:width .15s}
-.navsearch-input:focus{width:250px;outline:none;border-color:hsl(212 60% 60%)}
+.navsearch-input{font:inherit;font-size:12.5px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);width:160px;transition:width .15s}
+.navsearch-input:focus{width:210px;outline:none;border-color:hsl(212 60% 60%)}
 .navsearch-results{position:absolute;top:calc(100% + 6px);right:0;z-index:60;width:300px;max-width:80vw;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.14);overflow:hidden;padding:4px}
 .navsearch-results button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:12.5px;padding:7px 9px;border:none;background:none;border-radius:7px;cursor:pointer}
 .navsearch-results button:hover,.navsearch-results button.on{background:hsl(212 55% 95%)}
