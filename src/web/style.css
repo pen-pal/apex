@@ -1752,3 +1752,34 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
   .aes-grid{grid-template-columns:repeat(4,38px);grid-template-rows:repeat(4,38px)}
   .aes-presets{margin-left:0}
 }
+
+/* ── CTR / nonce-reuse / AEAD (AeadSection) ── */
+.ag-field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);margin:4px 0 12px;max-width:420px}
+.ag-field input{font-family:var(--mono);font-size:13px;padding:7px 10px;border:1px solid var(--line);
+  border-radius:8px;background:#fbfcfe;color:var(--ink)}
+.ag-two{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-end;margin-bottom:12px}
+.ag-toggle{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink);cursor:pointer}
+.ag-toggle input{width:16px;height:16px;accent-color:hsl(0 70% 55%)}
+
+.ag-bytes{display:inline-flex;flex-wrap:wrap;gap:3px;vertical-align:middle}
+.ag-b{font-family:var(--mono);font-size:12.5px;padding:3px 5px;border-radius:5px;color:#27313f;background:#eef1f5}
+.ag-b.click{cursor:pointer}
+.ag-b.click:hover{outline:2px solid hsl(212 80% 55%)}
+.ag-b.mark{outline:2px solid hsl(0 75% 52%);background:hsl(0 75% 88%)!important}
+
+.ag-row{display:flex;align-items:flex-start;gap:10px;margin:4px 0}
+.ag-lab{font-size:11.5px;color:var(--muted);min-width:84px;text-align:right;padding-top:4px;flex:none}
+.ag-lab.ct{color:hsl(212 70% 45%);font-weight:600}
+.ag-op{font-size:11.5px;color:var(--muted);margin:1px 0 1px 94px}
+
+.ag-ctr{display:flex;flex-direction:column;gap:14px;margin:10px 0}
+.ag-ctr-block{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcfe}
+.ag-note{font-size:12.5px;color:var(--muted);margin-top:6px}
+
+.ag-verdict{margin-top:12px;padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.55}
+.ag-verdict.good{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.ag-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
+.ag-reveal{font-family:var(--mono);background:#fff;padding:1px 6px;border-radius:5px;border:1px solid var(--line)}
+.ag-tamper{font-size:12.5px;color:var(--muted);margin:8px 0 2px}
+.ag-tamper button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--panel);
+  border-radius:6px;padding:2px 8px;cursor:pointer;margin-left:4px}
