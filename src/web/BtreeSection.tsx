@@ -3,7 +3,7 @@
 // ends at the same depth, which is why a database index lookup is O(log n) no matter the
 // key. Real B+tree in btree.ts (tested for balance, order, and separator correctness).
 import { useMemo, useState } from 'react';
-import { build, insert, emptyTree, height, type Node } from './btree';
+import { build, insert, remove, emptyTree, height, leafScan, type Node } from './btree';
 
 const ORDER = 4;
 const INITIAL = [50, 20, 70, 10, 30, 60, 80, 5, 15];
@@ -27,6 +27,8 @@ export function BtreeSection() {
 
   const add = () => { const k = parseInt(next, 10); if (!isNaN(k)) setTree((t) => insert(t, k, ORDER)); };
   const addRandom = () => setTree((t) => insert(t, Math.floor(Math.random() * 99) + 1, ORDER));
+  const del = () => { const k = parseInt(next, 10); if (!isNaN(k)) setTree((t) => remove(t, k, ORDER)); };
+  const delExisting = () => { const ks = leafScan(tree); if (ks.length) setTree((t) => remove(t, ks[Math.floor(Math.random() * ks.length)], ORDER)); };
   const reset = () => setTree(emptyTree());
   const h = useMemo(() => height(tree), [tree]);
 
@@ -38,13 +40,17 @@ export function BtreeSection() {
           A B+tree keeps millions of keys sorted and balanced so any lookup touches only a handful of nodes. Keys live in the
           <strong> leaves</strong>; the <strong>internal</strong> nodes are just signposts. Insert a key and it lands in a leaf — and
           when a node fills up (order {ORDER}, so {ORDER - 1} keys max) it <strong>splits</strong>, pushing a separator up. Splits ripple
-          upward, and a root split makes the whole tree taller.
+          upward, and a root split makes the whole tree taller. <strong>Delete</strong> a key and watch the reverse: an under-full node
+          <strong> borrows</strong> from a sibling, or <strong>merges</strong> when neither neighbour can spare a key — and if the root
+          collapses to one child, the tree shrinks a level.
         </p>
 
         <div className="bpt-controls">
           <input value={next} onChange={(e) => setNext(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && add()} inputMode="numeric" />
           <button onClick={add}>+ insert</button>
           <button onClick={addRandom}>+ random</button>
+          <button onClick={del} className="bpt-del">− delete</button>
+          <button onClick={delExisting} className="bpt-del">− delete a key</button>
           <button onClick={reset} className="bpt-reset">reset</button>
           <span className="bpt-stat">height <b>{h}</b></span>
         </div>
