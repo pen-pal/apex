@@ -3559,3 +3559,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cub-tick.on{background:hsl(0 65% 65%);border-color:hsl(0 60% 55%)}
 .cub-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
 .cub-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── WPA2 handshake (WpaSection) ── */
+.wpa-parties{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 14px}
+.wpa-party{padding:13px 15px;border-radius:11px;border:1px solid var(--line);background:#fbfcfe}
+.wpa-party.has{border-color:hsl(150 45% 75%);background:hsl(150 45% 97%)}
+.wpa-party h3{margin:0 0 9px;font-size:13.5px}
+.wpa-field{font-size:11.5px;color:var(--muted);margin-bottom:4px}
+.wpa-field code{font-family:var(--mono);font-size:11px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.wpa-ptk{margin-top:8px;font-size:12px;font-weight:600}
+.wpa-ptk code{font-family:var(--mono);font-size:11px;background:hsl(150 50% 90%);padding:2px 6px;border-radius:5px;font-weight:400}
+.wpa-msgs{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.wpa-msg{display:grid;grid-template-columns:34px 22px 1fr;gap:9px;align-items:center;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:#f7f9fc;opacity:.4}
+.wpa-msg.sent{opacity:1}
+.wpa-msg.ap{border-left:3px solid hsl(212 65% 55%)}
+.wpa-msg.sta{border-left:3px solid hsl(150 50% 45%)}
+.wpa-mnum{font-family:var(--mono);font-size:12px;font-weight:700}
+.wpa-arrow{font-size:16px;color:var(--muted);text-align:center}
+.wpa-carries{font-family:var(--mono);font-size:11.5px}
+.wpa-mnote{grid-column:3;font-size:11px;color:var(--muted);font-family:inherit}
+.wpa-controls{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.wpa-controls button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.wpa-controls button:disabled{opacity:.4;cursor:default}
+.wpa-reseed{margin-left:auto}
+.wpa-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.wpa-verdict{padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.5}
+.wpa-verdict.ok{background:hsl(150 55% 94%);border:1px solid hsl(150 45% 80%)}
+.wpa-verdict.bad{background:hsl(0 72% 96%);border:1px solid hsl(0 60% 85%)}
+.wpa-eq{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:7px}
+.wpa-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+@media(max-width:560px){.wpa-parties{grid-template-columns:1fr}}
