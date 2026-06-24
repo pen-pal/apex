@@ -2595,3 +2595,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ssh-host.trusted{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
 .ssh-host.changed{background:hsl(0 75% 96%);border:1px solid hsl(0 60% 85%)}
 .ssh-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* ── gRPC (GrpcSection) ── */
+.grpc-schema{font-family:var(--mono);font-size:12.5px;padding:9px 13px;background:hsl(265 60% 96%);border:1px solid hsl(265 50% 88%);border-radius:9px;margin:6px 0 12px;color:hsl(265 55% 38%)}
+.grpc-inputs{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.grpc-inputs label{display:flex;align-items:center;gap:8px;font-size:13px}
+.grpc-inputs input{font-family:var(--mono);font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;width:130px}
+.grpc-fields{display:flex;flex-direction:column;gap:6px}
+.grpc-field{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:#fbfcfe}
+.grpc-tag{font-family:var(--mono);font-size:13px;font-weight:700;background:hsl(28 85% 88%);color:hsl(28 80% 34%);padding:3px 7px;border-radius:5px}
+.grpc-len{font-family:var(--mono);font-size:12px;background:hsl(265 60% 90%);color:hsl(265 55% 40%);padding:3px 6px;border-radius:5px}
+.grpc-meta{font-size:11.5px;color:var(--muted)}
+.grpc-val{display:inline-flex;gap:2px;flex-wrap:wrap}
+.grpc-b{font-family:var(--mono);font-size:11.5px;background:#eef1f5;color:#3a4456;padding:2px 4px;border-radius:4px}
+.grpc-ascii{font-family:var(--mono);font-size:12px;color:hsl(150 55% 32%);margin-left:auto}
+.grpc-frame{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.grpc-fpart{font-family:var(--mono);font-size:12px;padding:6px 9px;border-radius:7px}
+.grpc-fpart.flag{background:hsl(0 70% 90%);color:hsl(0 60% 40%)}
+.grpc-fpart.len{background:hsl(212 70% 90%);color:hsl(212 70% 36%)}
+.grpc-fpart.body{background:hsl(150 50% 90%);color:hsl(150 55% 28%);overflow-wrap:anywhere}
+.grpc-h2{display:flex;flex-direction:column;gap:4px}
+.grpc-h2row{font-size:12.5px;padding:8px 12px;border-radius:8px;background:#fbfcfe;border:1px solid var(--line);font-family:var(--mono)}
+.grpc-h2row span{font-weight:700;margin-right:8px}
+.grpc-h2row.head span{color:hsl(212 70% 45%)}
+.grpc-h2row.data span{color:hsl(150 55% 36%)}
+.grpc-h2row.trail span{color:hsl(28 75% 42%)}
+.grpc-modes{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0}
+.grpc-mode{flex:1;min-width:130px;border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fbfcfe;display:flex;flex-direction:column;gap:3px}
+.grpc-mode strong{font-size:13px}
+.grpc-mode span{font-size:11.5px;color:var(--muted)}
+.grpc-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
