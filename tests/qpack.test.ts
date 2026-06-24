@@ -15,6 +15,8 @@ describe('QPACK static table', () => {
     expect(STATIC_TABLE.find((e) => e.name === ':scheme' && e.value === 'https')!.i).toBe(23);
     expect(STATIC_TABLE.find((e) => e.name === ':status' && e.value === '200')!.i).toBe(25);
     expect(STATIC_TABLE.find((e) => e.name === ':path' && e.value === '/')!.i).toBe(1);
+    expect(STATIC_TABLE.find((e) => e.name === 'accept' && e.value === '*/*')!.i).toBe(29);
+    expect(STATIC_TABLE.find((e) => e.name === 'content-type')!.i).toBe(52);
   });
 });
 

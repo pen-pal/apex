@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import { exchange, P, G } from './dhmitm';
 
-export function DhMitmSection() {
+export function DhMitmSection({ onOpen }: { onOpen?: (id: string) => void }) {
   const [a, setA] = useState(6);
   const [b, setB] = useState(15);
   const [e, setE] = useState(3);
@@ -31,54 +31,54 @@ export function DhMitmSection() {
           each side separately and sits in the middle. The cure is to <strong>authenticate the public values</strong>.
         </p>
 
-        <div className="dh-controls">
+        <div className="dhm-controls">
           <label>Alice a = {a}<input type="range" min={2} max={21} value={a} onChange={(ev) => setA(Number(ev.target.value))} /></label>
           <label>Bob b = {b}<input type="range" min={2} max={21} value={b} onChange={(ev) => setB(Number(ev.target.value))} /></label>
           {mitm && <label>Eve e = {e}<input type="range" min={2} max={21} value={e} onChange={(ev) => setE(Number(ev.target.value))} /></label>}
         </div>
-        <div className="dh-toggles">
-          <label className="dh-toggle"><input type="checkbox" checked={mitm} onChange={(ev) => setMitm(ev.target.checked)} /> Eve actively intercepts (MITM)</label>
-          <label className={`dh-toggle ${!mitm ? 'off' : ''}`}><input type="checkbox" checked={auth} disabled={!mitm} onChange={(ev) => setAuth(ev.target.checked)} /> authenticate (sign the public values)</label>
+        <div className="dhm-toggles">
+          <label className="dhm-toggle"><input type="checkbox" checked={mitm} onChange={(ev) => setMitm(ev.target.checked)} /> Eve actively intercepts (MITM)</label>
+          <label className={`dhm-toggle ${!mitm ? 'off' : ''}`}><input type="checkbox" checked={auth} disabled={!mitm} onChange={(ev) => setAuth(ev.target.checked)} /> authenticate (sign the public values)</label>
         </div>
 
-        <div className="dh-wire">
-          <div className="dh-party alice">
-            <div className="dh-p-h">Alice</div>
-            <div className="dh-p-priv">a = {a}</div>
-            <div className="dh-p-pub">A = gᵃ = {r.A}</div>
-            <div className={`dh-p-key ${r.compromised ? 'bad' : 'ok'}`}>key {r.detected ? '— aborted' : r.aliceKey}</div>
+        <div className="dhm-wire">
+          <div className="dhm-party alice">
+            <div className="dhm-p-h">Alice</div>
+            <div className="dhm-p-priv">a = {a}</div>
+            <div className="dhm-p-pub">A = gᵃ = {r.A}</div>
+            <div className={`dhm-p-key ${r.compromised ? 'bad' : 'ok'}`}>key {r.detected ? '— aborted' : r.aliceKey}</div>
           </div>
 
           {mitm ? (
-            <div className="dh-eve">
-              <div className="dh-arrows"><span>A→ {r.detected ? '✗' : `E=${r.eve!.pub}`} →</span><span>← {r.detected ? '✗' : `E=${r.eve!.pub}`} ←B</span></div>
-              <div className={`dh-e-box ${r.detected ? 'caught' : 'active'}`}>
-                <div className="dh-e-h">{r.detected ? '🛡️ Eve blocked' : '😈 Eve (MITM)'}</div>
-                {!r.detected && <div className="dh-e-keys">↔Alice: {r.eve!.keyWithAlice} · ↔Bob: {r.eve!.keyWithBob}</div>}
+            <div className="dhm-eve">
+              <div className="dhm-arrows"><span>A→ {r.detected ? '✗' : `E=${r.eve!.pub}`} →</span><span>← {r.detected ? '✗' : `E=${r.eve!.pub}`} ←B</span></div>
+              <div className={`dhm-e-box ${r.detected ? 'caught' : 'active'}`}>
+                <div className="dhm-e-h">{r.detected ? '🛡️ Eve blocked' : '😈 Eve (MITM)'}</div>
+                {!r.detected && <div className="dhm-e-keys">↔Alice: {r.eve!.keyWithAlice} · ↔Bob: {r.eve!.keyWithBob}</div>}
               </div>
             </div>
           ) : (
-            <div className="dh-mid"><span>A → · ← B</span><div className="dh-eaves">👁 passive Eve: sees {r.A}, {r.B}, p={Number(P)} — but not the key</div></div>
+            <div className="dhm-mid"><span>A → · ← B</span><div className="dhm-eaves">👁 passive Eve: sees {r.A}, {r.B}, p={Number(P)} — but not the key</div></div>
           )}
 
-          <div className="dh-party bob">
-            <div className="dh-p-h">Bob</div>
-            <div className="dh-p-priv">b = {b}</div>
-            <div className="dh-p-pub">B = gᵇ = {r.B}</div>
-            <div className={`dh-p-key ${r.compromised ? 'bad' : 'ok'}`}>key {r.detected ? '— aborted' : r.bobKey}</div>
+          <div className="dhm-party bob">
+            <div className="dhm-p-h">Bob</div>
+            <div className="dhm-p-priv">b = {b}</div>
+            <div className="dhm-p-pub">B = gᵇ = {r.B}</div>
+            <div className={`dhm-p-key ${r.compromised ? 'bad' : 'ok'}`}>key {r.detected ? '— aborted' : r.bobKey}</div>
           </div>
         </div>
 
-        <div className="dh-shared">
+        <div className="dhm-shared">
           {!r.detected && (r.agree
             ? <>Alice and Bob hold the <strong>same</strong> key ({r.aliceKey}){mitm ? '' : ' — exactly what DH promises'}.</>
             : <>Alice’s key (<strong>{r.aliceKey}</strong>) ≠ Bob’s key (<strong>{r.bobKey}</strong>) — they’re each talking to <strong>Eve</strong>, not each other.</>)}
         </div>
-        <div className={`dh-verdict ${verdict}`}>{VTXT[verdict]}</div>
+        <div className={`dhm-verdict ${verdict}`}>{VTXT[verdict]}</div>
 
-        <p className="dh-note">
+        <p className="dhm-note">
           This is why unauthenticated key exchange is never enough. TLS signs the server’s ephemeral DH/ECDH public key with the
-          certificate’s private key (<span className="dh-link">verified in the cert-chain section</span>), so a substituted key
+          certificate’s private key (<button className="dhm-link" onClick={() => onOpen?.('certs')}>verified in the cert-chain section</button>), so a substituted key
           share fails the signature and the connection dies — turning silent interception into a visible error. With p = {Number(P)},
           g = {Number(G)} the numbers are tiny on purpose; real DH uses 2048-bit (or 256-bit elliptic-curve) values.
         </p>

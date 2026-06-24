@@ -38,6 +38,10 @@ export function LweSection() {
   const dec = decryptBit(key.s, cipher, q);
   const margin = noiseMargin(q);
   const pos = (dec.raw / q) * 100;
+  // noise measured against the SENT bit's ideal, so a flip shows |noise| > margin
+  let sentNoise = dec.raw - bit * half(q);
+  if (sentNoise > q / 2) sentNoise -= q;
+  if (sentNoise < -q / 2) sentNoise += q;
 
   return (
     <div className="journey">
@@ -95,16 +99,16 @@ export function LweSection() {
           <div className="lwe-zone z0" style={{ left: '0%', width: '25%' }}>bit 0</div>
           <div className="lwe-zone z1" style={{ left: '25%', width: '50%' }}>bit 1</div>
           <div className="lwe-zone z0" style={{ left: '75%', width: '25%' }}>bit 0</div>
-          <div className="lwe-ticks"><span style={{ left: '0%' }}>0</span><span style={{ left: '50%' }}>{half(q)}</span><span style={{ left: '100%' }}>{q}</span></div>
           <div className="lwe-ptr" style={{ left: `${pos}%` }} title={`v − s·u = ${dec.raw}`} />
         </div>
+        <div className="lwe-ticks"><span style={{ left: '0%' }}>0</span><span style={{ left: '50%' }}>{half(q)}</span><span style={{ left: '100%' }}>{q}</span></div>
         <label className="lwe-slider">extra noise: {extra}
           <input type="range" min={0} max={half(q)} value={extra} onChange={(e) => setExtra(Number(e.target.value))} /></label>
         <div className={`lwe-verdict ${dec.bit === bit ? 'good' : 'bad'}`}>
-          v − s·u = <strong>{dec.raw}</strong> · noise <strong>{dec.noise}</strong> (budget ±{margin}) → decoded bit <strong>{dec.bit}</strong>
+          v − s·u = <strong>{dec.raw}</strong> · noise <strong>{sentNoise}</strong> (budget ±{margin}) → decoded bit <strong>{dec.bit}</strong>
           {dec.bit === bit
             ? ' ✓ matches the sent bit.'
-            : ` ✗ wrong! the noise (${dec.noise}) crossed the q/4 boundary and flipped it — this is why ML-KEM picks its parameters so carefully.`}
+            : ` ✗ wrong! the noise (${sentNoise}) crossed the q/4 boundary and flipped it — this is why ML-KEM picks its parameters so carefully.`}
         </div>
         <p className="lwe-foot">
           This single-bit Regev scheme is the kernel of <strong>ML-KEM (Kyber)</strong>, NIST’s post-quantum standard — which runs the
