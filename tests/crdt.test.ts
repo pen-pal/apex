@@ -45,4 +45,10 @@ describe('LWW-Register converges deterministically', () => {
     const y = { value: 'blue', ts: 7, replica: 'B' };
     expect(lwwMerge(x, y)).toEqual(lwwMerge(y, x)); // same winner either way
   });
+  it('merge is commutative even when ts AND replica collide (the divergence case)', () => {
+    // same ts, same replica, different value — the final value tie-break must be order-free
+    const x = { value: 'red', ts: 7, replica: 'A' };
+    const y = { value: 'blue', ts: 7, replica: 'A' };
+    expect(lwwMerge(x, y)).toEqual(lwwMerge(y, x)); // would diverge with a `>=` replica-only tiebreak
+  });
 });

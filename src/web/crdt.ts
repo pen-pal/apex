@@ -22,6 +22,9 @@ export const gValue = (c: GCounter): number => Object.values(c).reduce((s, n) =>
 export interface LWW { value: string; ts: number; replica: string }
 
 export function lwwMerge(a: LWW, b: LWW): LWW {
+  // tiebreak chain (ts, then replica, then value) must be TOTAL so the result is the same
+  // regardless of argument order — otherwise replicas merging in different orders diverge
   if (a.ts !== b.ts) return a.ts > b.ts ? a : b;
-  return a.replica >= b.replica ? a : b; // deterministic tiebreak so all replicas agree
+  if (a.replica !== b.replica) return a.replica > b.replica ? a : b;
+  return a.value >= b.value ? a : b; // last resort: order-independent on the value itself
 }
