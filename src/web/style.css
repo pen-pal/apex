@@ -3330,3 +3330,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .csp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .csp-foot code{font-family:var(--mono);font-size:11px;background:#f2f5f9;padding:1px 4px;border-radius:4px}
 @media(max-width:640px){.csp-load{grid-template-columns:18px 1fr;gap:4px}.csp-dir,.csp-reason{grid-column:2}}
+
+/* ── EdDSA (EdDsaSection) ── */
+.eds-io{display:flex;gap:22px;flex-wrap:wrap;align-items:center;margin:10px 0 16px}
+.eds-io label{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.eds-io input[type=range]{accent-color:hsl(265 60% 55%)}
+.eds-io input[type=number]{font-family:var(--mono);font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;width:90px}
+.eds-io b{font-family:var(--mono);font-size:14px;color:var(--ink)}
+.eds-steps{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.eds-step{display:flex;align-items:baseline;gap:12px;font-size:12.5px}
+.eds-step span{min-width:160px;color:var(--muted)}
+.eds-step code{font-family:var(--mono);font-size:12.5px;background:#f4f6f9;padding:3px 9px;border-radius:6px}
+.eds-sig{font-family:var(--mono);font-size:13.5px;font-weight:700;padding:9px 13px;background:hsl(265 45% 95%);border:1px solid hsl(265 40% 86%);border-radius:8px;margin-bottom:8px}
+.eds-verify{font-family:var(--mono);font-size:13px;padding:9px 13px;border-radius:8px}
+.eds-verify.ok{background:hsl(150 50% 94%);border:1px solid hsl(150 45% 80%);color:hsl(150 45% 28%)}
+.eds-verify.bad{background:hsl(0 70% 96%);border:1px solid hsl(0 60% 85%);color:hsl(0 60% 40%)}
+.eds-demo{margin-top:18px;padding:14px 16px;border-radius:11px;background:#f7f9fc;border:1px solid var(--line)}
+.eds-demo h3{margin:0 0 10px;font-size:13.5px}
+.eds-demo-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12.5px;margin-bottom:8px}
+.eds-demo-row code{font-family:var(--mono);font-size:12px;background:#fff;border:1px solid var(--line);padding:3px 8px;border-radius:5px}
+.eds-demo-row input[type=number]{font-family:var(--mono);font-size:12px;padding:3px 6px;border:1px solid var(--line);border-radius:5px;width:64px}
+.eds-demo-row em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.eds-demo-row em.diff{color:hsl(150 45% 38%);font-weight:600}
+.eds-demo-row.good em{color:hsl(150 45% 38%);font-weight:600}
+.eds-note{font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0 0}
+.eds-note code{font-family:var(--mono);font-size:11px;background:#eef1f6;padding:1px 4px;border-radius:4px}
+.eds-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
