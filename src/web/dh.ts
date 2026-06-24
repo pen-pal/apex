@@ -34,3 +34,15 @@ export function dhExchange(p: bigint, g: bigint, a: bigint, b: bigint): DhResult
   const sharedBob = modpow(A, b, p);
   return { p, g, a, b, A, B, sharedAlice, sharedBob, agree: sharedAlice === sharedBob };
 }
+
+/** Recover a private exponent from its public value by brute force — the discrete log.
+ *  Trivial for a tiny demo prime, infeasible for real 2048-bit / 256-bit-curve groups;
+ *  this is exactly the work that keeps the shared secret secret. */
+export function dhBruteForce(p: bigint, g: bigint, pub: bigint): { priv: bigint | null; tries: number } {
+  let acc = 1n;
+  for (let x = 1n; x < p; x++) {
+    acc = (acc * g) % p; // acc = g^x mod p
+    if (acc === pub) return { priv: x, tries: Number(x) };
+  }
+  return { priv: null, tries: Number(p) - 1 };
+}
