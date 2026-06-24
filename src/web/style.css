@@ -2102,3 +2102,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .md-target{margin:4px 0 6px;padding:10px 14px;border-radius:9px;background:hsl(150 50% 96%);border:1px solid hsl(150 45% 84%);font-size:13.5px}
 .md-target strong{font-family:var(--mono)}
 .md-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* ── Encrypted DNS (EncryptedDnsSection) ── */
+.ed-field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);max-width:360px;margin:4px 0 12px}
+.ed-field input{font-family:var(--mono);font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink)}
+.ed-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ed-tabs button{font:inherit;font-size:13px;font-family:var(--mono);padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ed-tabs button.on{background:hsl(212 70% 50%);color:#fff;border-color:transparent}
+.ed-port{opacity:.6;font-size:11px}
+.ed-wire{border:1px solid var(--line);border-radius:11px;padding:6px;background:#fbfcfe;margin-bottom:14px}
+.ed-wire-h{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;padding:6px 8px}
+.ed-row{display:flex;gap:12px;padding:8px 10px;border-radius:8px;font-family:var(--mono);font-size:12.5px}
+.ed-row-l{min-width:96px;color:var(--muted);flex:none}
+.ed-row-v{color:var(--ink);overflow-wrap:anywhere}
+.ed-row.opaque{background:#2b3344;color:#cfd6e0;margin:2px}
+.ed-row.opaque .ed-row-l{color:#9aa4b8}
+.ed-row.opaque .ed-row-v{color:#e7ecf3}
+.ed-learns{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ed-learns-l{font-size:12.5px;color:var(--muted)}
+.ed-badge{font-size:12px;padding:3px 9px;border-radius:20px;font-weight:500}
+.ed-badge.see{background:hsl(0 75% 94%);color:hsl(0 65% 42%)}
+.ed-badge.hide{background:hsl(150 50% 93%);color:hsl(150 55% 30%)}
+.ed-blurb{font-size:13px;line-height:1.55;padding:11px 14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);margin-bottom:14px}
+.ed-table{border-collapse:collapse;font-size:12.5px;margin-bottom:12px;width:100%;max-width:560px}
+.ed-table th,.ed-table td{border:1px solid var(--line);padding:6px 12px;text-align:center}
+.ed-table th{background:#f2f5f9;color:var(--muted);font-weight:600}
+.ed-table td:first-child{font-family:var(--mono)}
+.ed-table tr{cursor:pointer}
+.ed-table tbody tr.on{background:hsl(212 70% 95%)}
+.ed-note{font-size:12.5px;color:var(--muted);line-height:1.6}
