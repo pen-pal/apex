@@ -126,6 +126,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'lb', label: 'Load balancing', icon: '⚖️' },
   { id: 'hll', label: 'HyperLogLog', icon: '🔢' },
   { id: 'countmin', label: 'Count-Min Sketch', icon: '📊' },
+  { id: 'majority', label: 'Majority vote', icon: '🗳️' },
   { id: 'bloom', label: 'Bloom filter', icon: '🌸' },
   { id: 'lamport', label: 'Lamport clocks', icon: '⏱️' },
   { id: 'hlc', label: 'Hybrid Logical Clocks', icon: '🕓' },
@@ -155,7 +156,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'huffman', 'crc32', 'reedsolomon', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'bloom', 'snowflake', 'lamport', 'hlc', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'bloom', 'snowflake', 'lamport', 'hlc', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar'] },
 ];
 

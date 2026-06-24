@@ -4223,3 +4223,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sort-trow span:nth-child(2),.sort-trow span:nth-child(3){font-family:var(--mono)}
 .sort-big{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .sort-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── Boyer-Moore majority vote (MajoritySection) ── */
+.maj-pick{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}
+.maj-pick button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.maj-pick button.on{background:hsl(212 60% 92%);border-color:hsl(212 55% 72%);font-weight:600}
+.maj-stream{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.maj-tok{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:var(--mono);font-size:15px;font-weight:700;transition:all .12s}
+.maj-tok.cur{box-shadow:0 0 0 3px hsl(45 85% 65%);transform:translateY(-3px)}
+.maj-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.maj-controls button{font:inherit;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.maj-controls button:disabled{opacity:.4;cursor:default}
+.maj-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.maj-state{display:flex;gap:18px;flex-wrap:wrap;align-items:center;padding:12px 15px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);margin-bottom:12px}
+.maj-cand{font-size:13px;display:flex;align-items:center;gap:8px}
+.maj-cand span{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;color:#fff;font-family:var(--mono);font-weight:700}
+.maj-counter{font-size:13px}
+.maj-counter b{font-family:var(--mono);font-size:18px;margin-left:5px}
+.maj-action{font-size:12px;padding:5px 10px;border-radius:6px;margin-left:auto}
+.maj-action.adopt{background:hsl(265 45% 92%);color:hsl(265 50% 42%)}
+.maj-action.vote\+{background:hsl(150 45% 90%);color:hsl(150 45% 32%)}
+.maj-action.vote-{background:hsl(0 60% 94%);color:hsl(0 55% 42%)}
+.maj-verdict{padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.5}
+.maj-verdict.ok{background:hsl(150 50% 95%);border:1px solid hsl(150 42% 82%)}
+.maj-verdict.bad{background:hsl(38 75% 94%);border:1px solid hsl(38 60% 80%)}
+.maj-verdict b{font-family:var(--mono)}
+.maj-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
