@@ -71,6 +71,7 @@ import { IcmpSection } from './IcmpSection';
 import { ArpSection } from './ArpSection';
 import { CsmaSection } from './CsmaSection';
 import { MulticastSection } from './MulticastSection';
+import { VlanSection } from './VlanSection';
 import { ArqSection } from './ArqSection';
 import { DistanceVectorSection } from './DistanceVectorSection';
 import { MdnsSection } from './MdnsSection';
@@ -85,7 +86,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'arq' | 'distvec' | 'mdns' | 'encdns' | 'http3';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'arq' | 'distvec' | 'mdns' | 'encdns' | 'http3';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -837,6 +838,16 @@ function App() {
               <p className="sub">One sender, many subscribers — join hosts to a group and watch an IGMP-snooping switch forward the frame to only the members, not every port.</p>
             </header>
             <MulticastSection />
+          </>
+        )}
+
+        {section === 'vlan' && (
+          <>
+            <header>
+              <h1>802.1Q VLAN tagging</h1>
+              <p className="sub">Build the 4-byte VLAN tag, follow a frame across access and trunk ports, and run the double-tagging hop that abuses the native VLAN.</p>
+            </header>
+            <VlanSection />
           </>
         )}
 
