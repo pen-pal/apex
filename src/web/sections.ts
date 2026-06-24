@@ -60,6 +60,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'mpls', label: 'MPLS switching', icon: '🏷️' },
   { id: 'vxlan', label: 'VXLAN overlay', icon: '🪆' },
   { id: 'vrrp', label: 'VRRP redundancy', icon: '🛟' },
+  { id: 'ipsec', label: 'IPsec ESP (VPN)', icon: '🔐' },
   { id: 'dnssec', label: 'DNSSEC chain', icon: '🔏' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'mdns', label: 'mDNS & DNS-SD', icon: '🖨️' },
@@ -176,7 +177,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp'] },
-  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'vxlan', 'vrrp', 'dns', 'dnssec', 'mdns', 'encdns'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'vxlan', 'vrrp', 'ipsec', 'dns', 'dnssec', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'sctp', 'cdn', 'conditional', 'ratelimit', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'siteisolation', 'sri', 'csp', 'attacks'] },
