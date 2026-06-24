@@ -4,6 +4,16 @@
 // subject, every signer must be a CA, all certs must be in date, the chain must end
 // at a TRUSTED root anchor, and the leaf must be valid for the host you asked for.
 // We return the FIRST failure (that's how real validators fail-fast). RFC 5280 §6.
+//
+// The signatures are REAL: each cert carries the subject's public key and an honest
+// RSA signature (rsa.ts) by the issuer over the cert's to-be-signed bytes, hashed
+// with the from-scratch SHA-256. Tamper any signed field, or forge the signature,
+// and verifyCert fails for real — no boolean stand-in. (Teaching key sizes, no
+// PKCS#1 padding; the verification math itself is genuine.)
+import { modpow, rsaKeygen, gcd, type RsaKey } from './rsa';
+import { sha256 } from './sha256';
+
+export interface PubKey { n: bigint; e: bigint }
 
 export interface Cert {
   subject: string; // distinguished name (simplified to a CN/label)
@@ -12,7 +22,50 @@ export interface Cert {
   notAfter: number;
   isCA: boolean; // basicConstraints CA:TRUE
   sans: string[]; // subjectAltName DNS names (leaf only, really)
-  signatureValidByParent: boolean; // does the signature verify under the parent's key?
+  pubKey: PubKey; // the subject's public key
+  signature: bigint; // the issuer's RSA signature over this cert's TBS
+}
+
+// ---- real signatures over the certificate ----------------------------------
+const isPrime = (n: bigint): boolean => {
+  if (n < 2n) return false;
+  for (let i = 2n; i * i <= n; i++) if (n % i === 0n) return false;
+  return true;
+};
+const nextPrime = (n: bigint): bigint => { while (!isPrime(n)) n++; return n; };
+
+/** A deterministic teaching keypair seeded near `seed` (real primes, e=65537). */
+export function genKey(seed: number): RsaKey {
+  const p = nextPrime(BigInt(seed));
+  const q = nextPrime(BigInt(Math.floor(seed * 1.7)));
+  const phi = (p - 1n) * (q - 1n);
+  const e = gcd(65537n, phi) === 1n ? 65537n : 17n;
+  return rsaKeygen(p, q, e);
+}
+
+/** Canonical to-be-signed bytes (everything except the signature itself). */
+export function tbsBytes(c: Cert): Uint8Array {
+  const s = [c.subject, c.issuer, c.notBefore, c.notAfter, c.isCA ? 1 : 0, c.sans.join(','), c.pubKey.n.toString(), c.pubKey.e.toString()].join('|');
+  return new TextEncoder().encode(s);
+}
+
+/** SHA-256 of the TBS, reduced into the signing modulus. */
+function tbsHash(c: Cert, n: bigint): bigint {
+  let x = 0n;
+  for (const b of sha256(tbsBytes(c))) x = (x << 8n) | BigInt(b);
+  return x % n;
+}
+
+/** Build a cert and have `issuer` sign it (issuer === own key for a self-signed root). */
+export function signed(fields: Omit<Cert, 'pubKey' | 'signature'>, subjectPub: PubKey, issuer: RsaKey): Cert {
+  const cert: Cert = { ...fields, pubKey: subjectPub, signature: 0n };
+  cert.signature = modpow(tbsHash(cert, issuer.n), issuer.d, issuer.n); // s = H(tbs)^d mod n
+  return cert;
+}
+
+/** Verify cert's signature under an issuer public key: s^e mod n == H(tbs). */
+export function verifyCert(cert: Cert, issuerPub: PubKey): boolean {
+  return modpow(cert.signature, issuerPub.e, issuerPub.n) === tbsHash(cert, issuerPub.n);
 }
 
 export type FailKind =
@@ -77,8 +130,8 @@ export function validateChain(chain: Cert[], host: string, now: number, trustedR
     if (parent) {
       // 3. issuer/subject linkage
       if (cert.issuer !== parent.subject) return fail(i, 'issuer-subject-mismatch', `“${cert.subject}” claims issuer “${cert.issuer}”, but the next cert in the chain is “${parent.subject}” — the chain is broken.`);
-      // 4. the signature must verify under the parent's key
-      if (!cert.signatureValidByParent) return fail(i, 'bad-signature', `“${cert.subject}”’s signature does not verify under “${parent.subject}”’s key — forged or tampered.`);
+      // 4. the signature must verify under the parent's key (real RSA verify)
+      if (!verifyCert(cert, parent.pubKey)) return fail(i, 'bad-signature', `“${cert.subject}”’s signature does not verify under “${parent.subject}”’s key — forged or tampered.`);
       // 5. the signer must be a CA
       if (!parent.isCA) return fail(i + 1, 'parent-not-ca', `“${parent.subject}” signed a certificate but is not a CA (basicConstraints CA:FALSE).`);
     } else {
