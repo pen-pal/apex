@@ -3814,3 +3814,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .trie-stat{font-size:11.5px;color:var(--muted)}
 .trie-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .trie-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── PBFT (PbftSection) ── */
+.pbft-controls{display:flex;gap:24px;flex-wrap:wrap;margin:10px 0 14px}
+.pbft-controls label{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.pbft-controls input[type=range]{accent-color:hsl(212 70% 50%)}
+.pbft-controls b{font-family:var(--mono);font-size:14px;color:var(--ink);min-width:16px}
+.pbft-stage{display:flex;gap:22px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.pbft-ring{flex:none}
+.pbft-orbit{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:3 4}
+.pbft-node{stroke-width:2}
+.pbft-node.honest{fill:hsl(150 50% 92%);stroke:hsl(150 45% 50%)}
+.pbft-node.byz{fill:hsl(0 65% 93%);stroke:hsl(0 60% 58%)}
+.pbft-nlabel{font-size:13px}
+.pbft-readout{flex:1;min-width:230px;display:flex;flex-direction:column;gap:6px}
+.pbft-fact{display:flex;justify-content:space-between;align-items:baseline;padding:7px 12px;border-radius:8px;background:#f7f9fc;border:1px solid var(--line);font-size:12.5px}
+.pbft-fact span{color:var(--muted)}
+.pbft-fact b{font-family:var(--mono);font-size:15px}
+.pbft-fact b.ok{color:hsl(150 50% 38%)}
+.pbft-fact b.bad{color:hsl(0 60% 48%)}
+.pbft-phases{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pbft-phase{flex:1;min-width:150px;display:flex;flex-direction:column;gap:3px;padding:10px 13px;border-radius:9px;border:1px solid var(--line)}
+.pbft-phase.ok{background:hsl(150 50% 96%);border-color:hsl(150 42% 83%)}
+.pbft-phase.bad{background:hsl(0 70% 97%);border-color:hsl(0 55% 87%)}
+.pbft-phase b{font-size:13px}
+.pbft-phase span{font-size:11.5px;color:var(--muted)}
+.pbft-verdict{padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.5}
+.pbft-verdict.ok{background:hsl(150 55% 94%);border:1px solid hsl(150 45% 80%)}
+.pbft-verdict.bad{background:hsl(0 73% 96%);border:1px solid hsl(0 60% 85%)}
+.pbft-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
