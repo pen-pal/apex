@@ -2196,3 +2196,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dh-verdict.detected{background:hsl(212 70% 96%);border:1px solid hsl(212 60% 85%)}
 .dh-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
 .dh-link{color:hsl(212 70% 45%)}
+
+/* ── TLS downgrade (TlsDowngradeSection) ── */
+.tn-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0 14px}
+.tn-row-l{font-size:12.5px;color:var(--muted);margin-right:4px}
+.tn-cap{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.tn-cap.on{background:hsl(0 70% 52%);color:#fff;border-color:transparent}
+.tn-cap:first-of-type.on{background:hsl(150 55% 42%)}
+.tn-suites{border:1px solid var(--line);border-radius:11px;overflow:hidden;margin-bottom:14px}
+.tn-suites-h{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);padding:8px 12px;background:#f7f9fc}
+.tn-suite{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;padding:8px 12px;border-top:1px solid var(--line);font-size:12px}
+.tn-s-id{font-family:var(--mono);font-size:11.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tn-s-enc{font-size:11px;color:var(--muted);white-space:nowrap}
+.tn-s-str{font-size:10.5px;padding:2px 7px;border-radius:5px;font-weight:600}
+.tn-s-str.strong{background:hsl(150 50% 90%);color:hsl(150 55% 28%)}
+.tn-s-str.legacy{background:hsl(45 85% 88%);color:hsl(40 75% 34%)}
+.tn-s-str.weak{background:hsl(28 85% 88%);color:hsl(28 80% 36%)}
+.tn-s-str.broken{background:hsl(0 75% 91%);color:hsl(0 65% 42%)}
+.tn-suite.removed{opacity:.4}
+.tn-suite.removed .tn-s-id{text-decoration:line-through}
+.tn-suite.chosen{background:hsl(212 70% 96%)}
+.tn-s-pick{font-size:11px;color:hsl(212 70% 42%);font-weight:600;white-space:nowrap}
+.tn-s-cut{font-size:10.5px;color:hsl(0 65% 50%);white-space:nowrap}
+.tn-toggle{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.tn-toggle input{width:15px;height:15px;accent-color:hsl(150 55% 45%)}
+.tn-verdict{padding:12px 15px;border-radius:11px;font-size:13.5px;line-height:1.55}
+.tn-verdict.secure{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.tn-verdict.broken{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 86%)}
+.tn-verdict.detected{background:hsl(212 70% 96%);border:1px solid hsl(212 60% 85%)}
+.tn-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
