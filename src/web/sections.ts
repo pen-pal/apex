@@ -80,6 +80,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'grpc', label: 'gRPC & protobuf', icon: '📡' },
   { id: 'cdn', label: 'CDN & caching', icon: '⚡' },
   { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
+  { id: 'retry', label: 'Retry & circuit breaker', icon: '🔁' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'classical', label: 'Classical ciphers', icon: '🏛️' },
   { id: 'otpad', label: 'One-time pad', icon: '🎲' },
@@ -164,7 +165,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'dns', 'dnssec', 'mdns', 'encdns'] },
-  { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'sctp', 'cdn', 'ratelimit'] },
+  { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'sctp', 'cdn', 'ratelimit', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'dfa', 'huffman', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
