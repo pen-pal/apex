@@ -20,6 +20,10 @@ describe('read-repair (quorum read reconciliation)', () => {
     expect(r.repaired).toBe(false);
     expect(r.stale).toEqual([]);
   });
+  it('handles an empty quorum without crashing', () => {
+    expect(() => quorumRead([], 3)).not.toThrow();
+    expect(quorumRead([], 3).repaired).toBe(false);
+  });
 });
 
 describe('anti-entropy via Merkle trees', () => {
@@ -48,6 +52,14 @@ describe('anti-entropy via Merkle trees', () => {
     const d = merkleDiff(a, b);
     expect(d.differingLeaves.sort((x, y) => x - y)).toEqual([3, 40]);
     expect(d.comparisons).toBeLessThan(64);
+  });
+
+  it('safely handles replicas with different key counts (mismatched tree shapes)', () => {
+    const small = buildMerkle(leafHashes(Array.from({ length: 3 }, (_, i) => `k${i}`))); // padded to 4 → depth 2
+    const big = buildMerkle(leafHashes(Array.from({ length: 5 }, (_, i) => `k${i}`))); // padded to 8 → depth 3
+    expect(() => merkleDiff(small, big)).not.toThrow(); // no lockstep mispairing / crash
+    const d = merkleDiff(small, big);
+    expect(d.differingLeaves.length).toBeGreaterThan(0); // conservatively flags the divergent range
   });
 
   it('the root hash is a deterministic fingerprint of the whole keyspace', () => {
