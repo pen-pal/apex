@@ -1824,3 +1824,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rsa-verdict{padding:10px 13px;border-radius:9px;font-size:13.5px}
 .rsa-verdict.good{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
 .rsa-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
+
+/* ── Elliptic curves (EccSection) ── */
+.ecc-stage{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;margin:8px 0 2px}
+.ecc-plot{flex:none;background:#fbfcfe;border:1px solid var(--line);border-radius:10px}
+.ecc-grid{stroke:#eef1f5;stroke-width:1}
+.ecc-dot{fill:#b6c0cd}
+.ecc-mark{stroke:#fff;stroke-width:1.5}
+.ecc-mark.g{fill:#8a93a3}.ecc-lab.g{fill:#6b7484}
+.ecc-mark.k{fill:hsl(28 85% 52%)}.ecc-lab.k{fill:hsl(28 80% 40%)}
+.ecc-mark.p{fill:hsl(212 75% 52%)}.ecc-lab.p{fill:hsl(212 75% 42%)}
+.ecc-mark.q{fill:hsl(150 60% 40%)}.ecc-lab.q{fill:hsl(150 55% 30%)}
+.ecc-mark.r{fill:hsl(0 72% 54%)}.ecc-lab.r{fill:hsl(0 65% 44%)}
+.ecc-lab{font-size:8.5px;font-weight:700;text-anchor:middle;font-family:var(--mono)}
+.ecc-axis{font-size:8px;fill:#9aa4b2;font-family:var(--mono)}
+
+.ecc-side{flex:1;min-width:230px;display:flex;flex-direction:column;gap:10px}
+.ecc-slider{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono);color:var(--ink)}
+.ecc-slider input{accent-color:hsl(212 70% 50%)}
+.ecc-readout{font-family:var(--mono);font-size:13.5px;color:var(--ink)}
+.ecc-readout.small{font-size:12.5px;color:var(--muted)}
+.ecc-readout strong{color:hsl(28 80% 42%)}
+.ecc-trace{font-size:12px;color:var(--muted)}
+.ecc-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.ecc-chip{font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:5px;background:#eef1f5;color:#3a4456}
+.ecc-chip.add{background:hsl(28 85% 90%);color:hsl(28 80% 36%)}
+.ecc-shared{font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:9px 12px;border-radius:9px}
+.ecc-shared.good{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.ecc-shared.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
+.ecc-shared strong{color:hsl(212 75% 40%);font-size:14px}
