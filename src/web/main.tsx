@@ -55,13 +55,14 @@ import { RaftSection } from './RaftSection';
 import { CapSection } from './CapSection';
 import { ReplicationSection } from './ReplicationSection';
 import { TwoPcSection } from './TwoPcSection';
+import { FragmentSection } from './FragmentSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
 
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc';
+type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -622,6 +623,16 @@ function App() {
               <p className="sub">Atomic commit across databases — vote, decide, and watch the coordinator-crash blocking problem.</p>
             </header>
             <TwoPcSection />
+          </>
+        )}
+
+        {section === 'fragment' && (
+          <>
+            <header>
+              <h1>IP fragmentation &amp; MTU</h1>
+              <p className="sub">Split a datagram to fit the link — offsets, MF flags, reassembly — or set DF and watch Path-MTU Discovery.</p>
+            </header>
+            <FragmentSection />
           </>
         )}
       </main>
