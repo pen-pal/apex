@@ -3908,3 +3908,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cuck-slots-hint{font-size:11.5px;color:var(--muted);margin-bottom:6px}
 .cuck-slots-hint b{font-family:var(--mono);color:var(--ink)}
 .cuck-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── Geohash (GeohashSection) ── */
+.geo-inputs{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:10px 0 14px}
+.geo-inputs label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.geo-inputs input[type=number]{font-family:var(--mono);font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;width:100px}
+.geo-inputs input[type=range]{accent-color:hsl(150 55% 45%)}
+.geo-inputs b{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.geo-presets{display:flex;gap:5px;flex-wrap:wrap}
+.geo-presets button{font:inherit;font-size:11px;padding:4px 9px;border:1px solid var(--line);border-radius:6px;background:#f7f9fc;cursor:pointer}
+.geo-hash{display:flex;gap:4px;margin-bottom:14px}
+.geo-ch{width:34px;height:40px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:700;background:hsl(150 50% 92%);border:1px solid hsl(150 45% 78%);border-radius:8px;color:hsl(150 45% 30%)}
+.geo-growth{display:flex;flex-direction:column;gap:3px;margin-bottom:18px}
+.geo-grow-row{display:flex;align-items:baseline;gap:14px;font-size:12.5px;padding:4px 10px;border-radius:6px;background:#fbfcfe;border:1px solid var(--line)}
+.geo-grow-row code{font-family:var(--mono);font-weight:600;min-width:90px}
+.geo-box{color:var(--muted);font-size:11.5px}
+.geo-compare{margin-top:8px}
+.geo-cmp-pick{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.geo-cmp-pick button{font:inherit;font-size:11.5px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);cursor:pointer}
+.geo-cmp-pick button.on{background:hsl(150 50% 92%);border-color:hsl(150 45% 75%);font-weight:600}
+.geo-cmp{padding:12px 14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line)}
+.geo-cmp-line{font-family:var(--mono);font-size:14px;margin-bottom:5px}
+.geo-cmp-line em{font-style:normal;color:var(--muted)}
+.geo-cmp-line em.match{color:hsl(150 50% 35%);font-weight:700;background:hsl(150 50% 90%);border-radius:3px}
+.geo-cmp-verdict{font-size:12.5px;color:var(--muted);margin-top:6px}
+.geo-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.geo-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
