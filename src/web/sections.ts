@@ -14,6 +14,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'fragment', label: 'IP fragmentation', icon: '🧩' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
+  { id: 'bgphijack', label: 'BGP hijack', icon: '🏴‍☠️' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
   { id: 'flow', label: 'Flow control', icon: '🪟' },
@@ -48,7 +49,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'dhcp', 'nat', 'traceroute', 'subnet', 'fragment'] },
-  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'bgp', 'dns'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'bgp', 'bgphijack', 'dns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'bufferbloat', 'qos', 'http2', 'quic', 'cdn', 'ratelimit'] },
   { label: 'Security & crypto', icon: '🔒', ids: ['crypto', 'certs', 'identity', 'cookies', 'attacks', 'merkle'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },
