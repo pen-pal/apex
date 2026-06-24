@@ -50,6 +50,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'pwhash', label: 'Password hashing', icon: '🔑' },
   { id: 'pqc', label: 'Post-quantum (LWE)', icon: '🔮' },
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
+  { id: 'kerberos', label: 'Kerberos', icon: '🎟️' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -77,7 +78,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'dns', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'aesround', 'aead', 'chacha', 'hashint', 'rsa', 'ecc', 'ecdsa', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'shamir', 'merkle'] },
-  { label: 'Security & web', icon: '🛡️', ids: ['certs', 'identity', 'cookies', 'attacks'] },
+  { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'identity', 'cookies', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap', 'replication', 'twopc'] },
 ];
