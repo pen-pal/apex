@@ -49,6 +49,16 @@ describe('Viterbi decoder', () => {
     }
   });
 
+  it('CORRECTS TWO separated bit errors from a hand-stated received word (full d_free=5 power)', () => {
+    // Direct decoder anchor: the codeword for [1,0,1] is 11 10 00 10 11. Independently flip two
+    // well-separated received bits — position 0 (1→0) and position 6 (1→0) — and write the
+    // corrupted word out by hand. d_free=5 ⇒ up to floor((5-1)/2)=2 errors are correctable.
+    const received = [0, 1, /*|*/ 1, 0, /*|*/ 0, 0, /*|*/ 0, 0, /*|*/ 1, 1];
+    const d = decode(received);
+    expect(d.decoded).toEqual([1, 0, 1]); // both errors corrected, message recovered
+    expect(d.corrections).toEqual([0, 6]); // and it pinpoints exactly the two flipped positions
+  });
+
   it('the surviving trellis path is marked for every stage', () => {
     const d = decode(encode([1, 0, 1]).codeword);
     expect(d.stages.length).toBe(5); // 3 message + 2 flush stages
