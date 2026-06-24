@@ -28,12 +28,20 @@ describe('hand-counted operation totals', () => {
 });
 
 describe('the trace', () => {
-  it('records frames and the final frame is the sorted array', () => {
+  it('every frame of every algorithm is a permutation of the input (nothing created or lost)', () => {
+    const inputs = [[5, 4, 3, 2, 1], [3, 1, 4, 1, 5, 9, 2, 6], [9, 7, 5, 3, 1, 8, 6, 4, 2, 0], [2, 2, 2, 1]];
+    for (const name of Object.keys(ALGOS) as AlgoName[])
+      for (const input of inputs) {
+        const want = sorted(input);
+        for (const f of ALGOS[name](input).frames)
+          expect([...f.array].sort((a, b) => a - b)).toEqual(want); // multiset preserved every frame
+      }
+  });
+
+  it('records frames and the final result is sorted', () => {
     const t = ALGOS.quick([3, 1, 2]);
     expect(t.frames.length).toBeGreaterThan(0);
     expect(t.result).toEqual([1, 2, 3]);
-    // every frame is a permutation of the input (nothing created or lost)
-    for (const f of t.frames) expect([...f.array].sort((a, b) => a - b)).toEqual([1, 2, 3]);
   });
 
   it('O(n log n) sorts use far fewer comparisons than O(n²) on larger input', () => {

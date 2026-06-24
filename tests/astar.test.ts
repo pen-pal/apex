@@ -28,7 +28,7 @@ describe('A* matches BFS optimal cost but expands no more cells', () => {
     const a = astar(g, [0, 2], [9, 2]);
     const b = bfs(g, [0, 2], [9, 2]);
     expect(a.cost).toBe(b.cost);                       // same optimal length
-    expect(a.expanded.length).toBeLessThanOrEqual(b.expanded.length); // A* never explores more
+    expect(a.expanded.length).toBeLessThan(b.expanded.length); // heuristic focuses the search
   });
 
   it('on a big open grid A* expands far fewer cells than BFS', () => {
@@ -45,7 +45,7 @@ describe('walls and impossibility', () => {
     const g: Grid = { w: 5, h: 5, walls: new Set(['2,0', '2,1', '2,2', '2,3']) }; // wall with a gap at y=4
     const r = astar(g, [0, 0], [4, 0]);
     expect(r.path).not.toBeNull();
-    expect(r.cost).toBeGreaterThan(4); // can't go straight; must detour down and back up
+    expect(r.cost).toBe(12); // exact detour: down to y=4, across, back up (independently BFS-verified)
   });
 
   it('returns no path when the goal is walled off', () => {
