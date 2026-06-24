@@ -3165,3 +3165,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .crcw-bitrow.xor{background:hsl(45 80% 94%);border-radius:4px}
 .crcw-reg{font-family:var(--mono);font-size:11px;letter-spacing:.5px;word-break:break-all}
 .crcw-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:8px}
+
+/* ── OAuth PKCE live panel (in IdentitySection, oauth- prefix) ── */
+.oauth-pkce{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.oauth-pkce-row{display:flex;align-items:center;gap:10px;font-size:12.5px;margin:4px 0;flex-wrap:wrap}
+.oauth-pkce-row span{min-width:108px;color:var(--muted)}
+.oauth-pkce-row input{font-family:var(--mono);font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;flex:1;min-width:200px}
+.oauth-pkce-row code{font-family:var(--mono);font-size:12px;background:hsl(150 45% 92%);padding:3px 7px;border-radius:5px;word-break:break-all}
+.oauth-pkce-arrow{font-family:var(--mono);font-size:11px;color:var(--muted);margin:4px 0}
+.oauth-pkce-note{font-size:11.5px;color:var(--muted);line-height:1.5;margin:6px 0 0}
+.oauth-defs{margin:12px 0;display:flex;flex-direction:column;gap:5px}
+.oauth-defs-h{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:2px}
+.oauth-def{display:flex;gap:12px;align-items:baseline;padding:7px 11px;border-radius:8px;font-size:12.5px;border:1px solid var(--line)}
+.oauth-def.ok{background:hsl(150 50% 96%);border-color:hsl(150 42% 84%)}
+.oauth-def.bad{background:hsl(0 70% 97%);border-color:hsl(0 55% 88%)}
+.oauth-def-k{flex:1}
+.oauth-def-v{font-family:var(--mono);font-size:11.5px}

@@ -6,6 +6,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { decodeJwt, verifyHs256 } from './jwt';
 import { hotpTrace, base32Decode, type HotpTrace } from './otp';
+import { codeChallenge, runFlow, type Params } from './oauth';
 
 const hx = (b: Uint8Array) => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
 
@@ -156,11 +157,20 @@ const OAUTH_STEPS: Step[] = [
 
 function OAuthTool() {
   const [i, setI] = useState(0);
+  const [verifier, setVerifier] = useState('dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk');
   const step = OAUTH_STEPS[i];
+  const challenge = useMemo(() => codeChallenge(verifier), [verifier]);
   return (
     <>
       <p className="jsec-sub">OAuth 2.0 lets an app act on your behalf <em>without ever seeing your password</em>. This is
         the Authorization Code flow with <strong>PKCE</strong> — the current best practice. Step through it.</p>
+      <div className="oauth-pkce">
+        <div className="oauth-pkce-row"><span>code_verifier</span><input value={verifier} onChange={(e) => setVerifier(e.target.value)} spellCheck={false} /></div>
+        <div className="oauth-pkce-arrow">BASE64URL( SHA-256( verifier ) ) =</div>
+        <div className="oauth-pkce-row"><span>code_challenge</span><code>{challenge}</code></div>
+        <p className="oauth-pkce-note">Live, real PKCE: the app sends only this <em>challenge</em> up front and proves it holds the
+          matching <em>verifier</em> when redeeming the code — so a stolen code is useless. (RFC 7636 S256.)</p>
+      </div>
       <div className="oauth-actors">
         {['User', 'Browser', 'Client', 'Auth Server', 'Resource'].map((a) => (
           <span key={a} className={`oa-actor ${step.from === a ? 'from' : ''} ${step.to === a ? 'to' : ''}`}>{a}</span>
@@ -179,9 +189,31 @@ function OAuthTool() {
       <div className="oauth-track">
         {OAUTH_STEPS.map((_, k) => <span key={k} className={`ot-dot ${k <= i ? 'on' : ''}`} onClick={() => setI(k)} />)}
       </div>
+      <OAuthDefenses verifier={verifier} />
       <p className="enc-note"><strong>state</strong> blocks CSRF; <strong>PKCE</strong> (code_challenge/verifier) stops a
         stolen authorization code from being redeemed by an attacker; the <strong>client_secret</strong> never touches the browser.</p>
     </>
+  );
+}
+
+function OAuthDefenses({ verifier }: { verifier: string }) {
+  const params: Params = { clientId: 'app123', redirectUri: 'https://app.example/cb', scope: 'profile', state: 'xyz789', verifier };
+  const honest = runFlow(params);
+  const csrf = runFlow(params, { wrongState: true });
+  const stolen = runFlow(params, { attackerStealsCode: true });
+  const row = (label: string, f: ReturnType<typeof runFlow>) => (
+    <div className={`oauth-def ${f.tokenIssued ? 'ok' : 'bad'}`}>
+      <span className="oauth-def-k">{label}</span>
+      <span className="oauth-def-v">{f.tokenIssued ? '✓ token issued' : `✗ ${f.reason}`}</span>
+    </div>
+  );
+  return (
+    <div className="oauth-defs">
+      <div className="oauth-defs-h">Defenses in action (live):</div>
+      {row('honest flow', honest)}
+      {row('attacker replays response with wrong state', csrf)}
+      {row('attacker steals the code, lacks the verifier', stolen)}
+    </div>
   );
 }
 
