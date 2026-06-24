@@ -80,6 +80,7 @@ import { DistanceVectorSection } from './DistanceVectorSection';
 import { MdnsSection } from './MdnsSection';
 import { EncryptedDnsSection } from './EncryptedDnsSection';
 import { HttpThreeSection } from './HttpThreeSection';
+import { GrpcSection } from './GrpcSection';
 import { DhMitmSection } from './DhMitmSection';
 import { TlsDowngradeSection } from './TlsDowngradeSection';
 import { PasswordHashSection } from './PasswordHashSection';
@@ -98,7 +99,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'revocation' | 'ssh' | 'feistel' | 'poly1305' | 'hashbreak' | 'ratchet' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'ntp' | 'arq' | 'rto' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'revocation' | 'ssh' | 'feistel' | 'poly1305' | 'hashbreak' | 'ratchet' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'ntp' | 'arq' | 'rto' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3' | 'grpc';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -940,6 +941,16 @@ function App() {
               <p className="sub">HTTP over QUIC: see how the stack changes from HTTP/2, and watch QPACK collapse repeated headers into one-byte dynamic-table indices without head-of-line blocking.</p>
             </header>
             <HttpThreeSection />
+          </>
+        )}
+
+        {section === 'grpc' && (
+          <>
+            <header>
+              <h1>gRPC &amp; protobuf</h1>
+              <p className="sub">Build a request and watch it become protobuf bytes (tag/varint/length), get the gRPC length prefix, and ride an HTTP/2 stream's DATA frame with a trailing grpc-status.</p>
+            </header>
+            <GrpcSection />
           </>
         )}
 
