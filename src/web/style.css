@@ -3788,3 +3788,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lock-verdict.bad{background:hsl(0 73% 96%);border:1px solid hsl(0 60% 85%)}
 .lock-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 @media(max-width:600px){.lock-cols{grid-template-columns:1fr}}
+
+/* ── Trie (TrieSection) ── */
+.trie-search{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 14px}
+.trie-search input{font-family:var(--mono);font-size:14px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;width:160px}
+.trie-status{font-size:12.5px}
+.trie-status.word{color:hsl(150 50% 38%);font-weight:600}
+.trie-status.pre{color:hsl(212 60% 45%)}
+.trie-status.none{color:hsl(0 55% 50%)}
+.trie-tree{overflow-x:auto;padding:10px 4px;display:flex;justify-content:center;min-height:60px}
+.trie-subtree{display:flex;flex-direction:column;align-items:center;gap:10px}
+.trie-node{position:relative;min-width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:600;border:1.5px solid var(--line);border-radius:8px;background:#fff}
+.trie-node.word{border-color:hsl(150 45% 55%);background:hsl(150 45% 96%)}
+.trie-node.lit{border-color:hsl(45 80% 55%);background:hsl(45 85% 90%);box-shadow:0 0 0 1px hsl(45 80% 65%)}
+.trie-dot{position:absolute;top:-4px;right:-3px;font-size:7px;color:hsl(150 50% 45%)}
+.trie-children{display:flex;gap:8px;align-items:flex-start;position:relative;padding-top:10px}
+.trie-children::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:var(--line)}
+.trie-complete{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0 14px;font-size:12.5px}
+.trie-clabel{color:var(--muted)}
+.trie-match{font-family:var(--mono);font-size:12.5px;padding:3px 9px;border-radius:6px;background:hsl(150 45% 92%);border:1px solid hsl(150 40% 80%)}
+.trie-empty{color:var(--muted)}
+.trie-add{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.trie-add input{font-family:var(--mono);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:130px}
+.trie-add button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.trie-stat{font-size:11.5px;color:var(--muted)}
+.trie-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.trie-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
