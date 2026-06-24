@@ -3589,3 +3589,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .wpa-eq{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:7px}
 .wpa-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 @media(max-width:560px){.wpa-parties{grid-template-columns:1fr}}
+
+/* ── TCP BBR (BbrSection) ── */
+.bbr-controls{display:flex;flex-direction:column;gap:9px;margin:10px 0 10px}
+.bbr-controls label{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--muted)}
+.bbr-controls input[type=range]{flex:1;max-width:320px;accent-color:hsl(212 70% 50%)}
+.bbr-controls b{font-family:var(--mono);font-size:13px;color:var(--ink);min-width:80px}
+.bbr-bdp{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.bbr-bdp b{font-family:var(--mono);color:var(--ink)}
+.bbr-flow{margin-bottom:12px}
+.bbr-flow-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;font-size:12.5px}
+.bbr-flow-head span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.bbr-bar{position:relative;height:24px;background:#eef1f6;border-radius:6px;overflow:visible}
+.bbr-bar-fill{height:100%;border-radius:6px}
+.bbr-flow.good .bbr-bar-fill{background:linear-gradient(90deg,hsl(150 55% 50%),hsl(160 50% 48%))}
+.bbr-flow.bad .bbr-bar-fill{background:linear-gradient(90deg,hsl(28 80% 55%),hsl(0 70% 58%))}
+.bbr-bar-prop{position:absolute;top:-3px;width:2px;height:30px;background:hsl(212 70% 45%)}
+.bbr-flow-note{font-size:11px;color:var(--muted);margin-top:4px}
+.bbr-axis{position:relative;font-size:10px;color:var(--muted);height:14px;margin-bottom:14px}
+.bbr-axis-prop{position:absolute;transform:translateX(-50%);color:hsl(212 70% 45%)}
+.bbr-startup{padding:12px 14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);margin-bottom:8px}
+.bbr-startup h3{margin:0 0 10px;font-size:13px}
+.bbr-su-row{display:flex;gap:5px;align-items:flex-end;height:80px}
+.bbr-su-cell{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end}
+.bbr-su-bar{width:100%;background:hsl(212 65% 55%);border-radius:3px 3px 0 0;min-height:2px}
+.bbr-su-cell.plateau .bbr-su-bar{background:hsl(150 50% 45%)}
+.bbr-su-cell span{font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.bbr-su-note{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+.bbr-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
