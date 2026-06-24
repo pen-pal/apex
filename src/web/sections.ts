@@ -109,6 +109,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'paxos', label: 'Paxos consensus', icon: '🏛️' },
   { id: 'bully', label: 'Leader election', icon: '👑' },
   { id: 'raft', label: 'Raft election', icon: '👑' },
+  { id: 'consistency', label: 'Consistency models', icon: '⚖️' },
   { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
   { id: 'quorum', label: 'Quorum (R+W>N)', icon: '🗳️' },
   { id: 'replication', label: 'Replication (WAL)', icon: '🗄️' },
@@ -126,7 +127,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'crc32', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'hll', 'countmin', 'bloom', 'snowflake', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'raft', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'hll', 'countmin', 'bloom', 'snowflake', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
