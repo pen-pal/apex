@@ -4099,3 +4099,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ht-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
 .ht-foot i{font-style:normal;color:hsl(38 60% 42%)}
 @media(max-width:640px){.ht-tables{grid-template-columns:1fr}}
+
+/* ── Overview / home catalog (OverviewSection) ── */
+.brand{cursor:pointer;border:none;background:none;font-family:inherit;padding:0;color:inherit}
+.ov{max-width:1120px;margin:0 auto}
+.ov-hero{padding:8px 0 22px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.ov-hero h1{font-size:26px;margin:0 0 8px;letter-spacing:-.02em}
+.ov-hero p{font-size:14px;color:var(--muted);line-height:1.6;max-width:760px;margin:0}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.ov-group{border:1px solid var(--line);border-radius:13px;padding:14px 15px;background:var(--panel)}
+.ov-group-head{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.ov-gicon{font-size:18px}
+.ov-group-head h2{font-size:14px;margin:0;flex:1}
+.ov-gcount{font-family:var(--mono);font-size:11px;color:var(--muted);background:#f2f5f9;padding:2px 8px;border-radius:20px}
+.ov-cards{display:flex;flex-direction:column;gap:4px}
+.ov-card{display:flex;align-items:center;gap:9px;width:100%;text-align:left;font:inherit;font-size:12.5px;padding:7px 9px;border:1px solid transparent;border-radius:8px;background:none;cursor:pointer}
+.ov-card:hover{background:hsl(212 55% 96%);border-color:hsl(212 50% 88%)}
+.ov-card.on{background:hsl(212 55% 93%);border-color:hsl(212 50% 78%);font-weight:600}
+.ov-cicon{font-size:15px;flex:none}
+.ov-clabel{flex:1}
