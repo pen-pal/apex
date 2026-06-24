@@ -3425,3 +3425,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bdp-verdict b{font-family:inherit}
 .bdp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
 .bdp-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── WebAuthn passkeys (WebAuthnSection) ── */
+.wan-reg{display:flex;align-items:center;gap:13px;padding:12px 15px;border-radius:11px;background:hsl(150 45% 96%);border:1px solid hsl(150 40% 84%);margin:10px 0 14px}
+.wan-reg-icon{font-size:24px}
+.wan-reg-title{font-size:13px;font-weight:600}
+.wan-reg-detail{font-size:12px;color:var(--muted);margin-top:2px}
+.wan-reg code{font-family:var(--mono);font-size:11.5px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:4px}
+.wan-pick{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.wan-pick button{font:inherit;font-size:12px;font-family:var(--mono);padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.wan-pick button.on{border-color:hsl(150 50% 55%);background:hsl(150 50% 93%);font-weight:600}
+.wan-pick button.phish.on{border-color:hsl(0 60% 60%);background:hsl(0 65% 95%)}
+.wan-flow{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.wan-step{display:flex;gap:12px;align-items:baseline;font-size:12.5px;padding:8px 12px;background:#f7f9fc;border:1px solid var(--line);border-radius:8px}
+.wan-step b{min-width:78px;font-size:12px}
+.wan-step span{color:var(--muted)}
+.wan-step code{font-family:var(--mono);font-size:11px;background:rgba(0,0,0,.05);padding:1px 4px;border-radius:4px}
+.wan-checks{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.wan-check{font-size:12.5px;font-family:var(--mono);padding:7px 12px;border-radius:8px;border:1px solid var(--line)}
+.wan-check.ok{background:hsl(150 50% 94%);border-color:hsl(150 45% 80%);color:hsl(150 45% 30%)}
+.wan-check.bad{background:hsl(0 70% 96%);border-color:hsl(0 55% 85%);color:hsl(0 60% 42%)}
+.wan-verdict{padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.55}
+.wan-verdict.ok{background:hsl(150 55% 94%);border:1px solid hsl(150 45% 80%)}
+.wan-verdict.bad{background:hsl(0 73% 96%);border:1px solid hsl(0 60% 85%)}
+.wan-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
