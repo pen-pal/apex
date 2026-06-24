@@ -3713,3 +3713,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .wal-summary{font-size:11.5px;color:var(--muted)}
 .wal-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .wal-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── Skip list (SkipListSection) ── */
+.skl-search{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 14px;font-size:12.5px;color:var(--muted)}
+.skl-search select{font-family:var(--mono);font-size:13px;padding:5px 9px;border:1px solid var(--line);border-radius:7px}
+.skl-verdict{font-size:12px;font-weight:600;padding:5px 11px;border-radius:7px}
+.skl-verdict.found{background:hsl(150 50% 92%);color:hsl(150 45% 30%)}
+.skl-verdict.miss{background:hsl(0 60% 95%);color:hsl(0 55% 45%)}
+.skl-grid{display:flex;flex-direction:column;gap:4px;overflow-x:auto;padding:6px 0}
+.skl-row{display:flex;align-items:center;gap:8px}
+.skl-lvl{font-family:var(--mono);font-size:11px;color:var(--muted);width:22px;flex:none}
+.skl-nodes{display:flex;gap:3px;align-items:center}
+.skl-head{color:hsl(150 45% 45%);font-size:11px;flex:none}
+.skl-cell{min-width:34px;height:28px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12.5px;font-weight:600;border-radius:6px;flex:none}
+.skl-cell.present{background:hsl(212 55% 92%);border:1px solid hsl(212 50% 80%);color:hsl(212 55% 38%)}
+.skl-cell.gap{background:transparent;border:1px dashed #e5e8ed}
+.skl-cell.path{background:hsl(45 90% 82%);border-color:hsl(38 80% 58%);color:hsl(30 60% 32%)}
+.skl-cell.target{background:hsl(150 55% 82%);border-color:hsl(150 50% 50%);color:hsl(150 45% 28%)}
+.skl-add{display:flex;align-items:center;gap:9px;margin-top:12px}
+.skl-add input{font-family:var(--mono);font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:80px}
+.skl-add button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.skl-hint{font-size:12px;color:var(--muted)}
+.skl-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.skl-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
