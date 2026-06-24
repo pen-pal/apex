@@ -2793,3 +2793,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sch-in{width:54px;font-family:var(--mono);font-size:12px;padding:2px 6px;border:1px solid var(--line);border-radius:6px;margin:0 2px}
 .sch-ok{color:hsl(150 55% 34%);font-weight:600}.sch-bad{color:hsl(0 65% 46%);font-weight:600}
 .sch-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+/* ── BB84 QKD (BB84Section) ── */
+.qkd-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:8px 0 14px}
+.qkd-controls button{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.qkd-eve{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer}
+.qkd-eve input{width:15px;height:15px;accent-color:hsl(0 70% 55%)}
+.qkd-table{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto}
+.qkd-rowlabels{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--muted);text-align:right;flex:none;padding-top:1px}
+.qkd-rowlabels span{height:26px;line-height:26px;white-space:nowrap}
+.qkd-cols{display:flex;gap:3px}
+.qkd-col{display:flex;flex-direction:column;gap:3px;text-align:center}
+.qkd-col span{height:26px;line-height:26px;width:28px;border-radius:5px;font-family:var(--mono);font-size:13px;background:#fbfcfe;border:1px solid var(--line)}
+.qkd-col.kept span{background:hsl(150 50% 95%);border-color:hsl(150 45% 82%)}
+.qkd-col.err span{background:hsl(0 75% 95%);border-color:hsl(0 60% 84%)}
+.qkd-glyph{font-size:15px!important;color:hsl(212 70% 45%)}
+.qkd-basis{color:hsl(265 55% 45%)}
+.qkd-keep{font-weight:700}
+.qkd-key{font-family:var(--mono);font-size:13px;display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
+.qkd-key code{background:#f2f5f9;padding:2px 7px;border-radius:5px;letter-spacing:2px}
+.qkd-verdict{padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.5}
+.qkd-verdict.ok{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.qkd-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
+.qkd-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
