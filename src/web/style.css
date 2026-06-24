@@ -2459,3 +2459,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pl-verdict code{font-family:var(--mono);background:#fff;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
 .pl-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
 .pl-ref{color:hsl(212 70% 45%)}
+
+/* ── Double Ratchet (RatchetSection) ── */
+.rt-keys{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:6px 0 12px;font-family:var(--mono)}
+.rt-keys code{background:#f2f5f9;padding:2px 6px;border-radius:5px;color:hsl(265 55% 42%)}
+.rt-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.rt-controls button{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.rt-controls button:first-child{background:hsl(212 70% 50%);color:#fff;border-color:transparent}
+.rt-danger{color:hsl(0 65% 48%);font-weight:600}
+.rt-danger:disabled{opacity:.4;cursor:not-allowed}
+.rt-ghost{color:var(--muted)}
+.rt-thread{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.rt-empty{font-size:13px;color:var(--muted);padding:14px;text-align:center;border:1px dashed var(--line);border-radius:10px}
+.rt-epoch{font-size:11px;color:hsl(265 55% 48%);text-align:center;margin:8px 0 5px;font-family:var(--mono)}
+.rt-comp-line{font-size:11.5px;color:hsl(0 65% 48%);text-align:center;margin:5px 0;font-weight:600}
+.rt-msg{display:flex;align-items:center;gap:12px;padding:8px 13px;border-radius:9px;border:1px solid var(--line);font-size:13px;max-width:440px}
+.rt-msg.b{margin-left:auto;flex-direction:row-reverse}
+.rt-msg.safe{background:hsl(150 50% 97%);border-color:hsl(150 45% 85%)}
+.rt-msg.leak{background:hsl(0 75% 97%);border-color:hsl(0 60% 85%)}
+.rt-from{font-weight:600;min-width:40px}
+.rt-mk{font-family:var(--mono);font-size:12px;color:var(--muted);flex:1}
+.rt-flag{font-size:11.5px;white-space:nowrap}
+.rt-msg.leak .rt-flag{color:hsl(0 65% 46%);font-weight:600}
+.rt-msg.safe .rt-flag{color:hsl(150 55% 34%)}
+.rt-explain{font-size:13px;line-height:1.6;padding:12px 15px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);margin-bottom:10px}
+.rt-foot{font-size:12.5px;color:var(--muted);line-height:1.6}
