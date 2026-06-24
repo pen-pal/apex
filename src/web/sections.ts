@@ -57,6 +57,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'certs', label: 'Certificates (PKI)', icon: '📜' },
   { id: 'kerberos', label: 'Kerberos', icon: '🎟️' },
   { id: 'revocation', label: 'Revocation & CT', icon: '🚫' },
+  { id: 'ssh', label: 'SSH transport', icon: '🖧' },
   { id: 'identity', label: 'Identity & Auth', icon: '🪪' },
   { id: 'cookies', label: 'Cookies & sessions', icon: '🍪' },
   { id: 'attacks', label: 'Attacks', icon: '⚔️' },
@@ -86,7 +87,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'dns', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'aesround', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'shamir', 'pow', 'ratchet', 'merkle'] },
-  { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'identity', 'cookies', 'attacks'] },
+  { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'cookies', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'vclock', 'gossip', 'raft', 'cap', 'replication', 'twopc'] },
 ];
