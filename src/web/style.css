@@ -3010,3 +3010,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cors-verdict.bad{background:hsl(0 75% 96%);border:1px solid hsl(0 60% 86%)}
 .cors-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
 .cors-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
+
+/* ── TCP handshake (TcpHandshakeSection) ── */
+.tcph-isn{display:flex;gap:18px;margin:10px 0 14px;flex-wrap:wrap}
+.tcph-isn label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+.tcph-isn input{font-family:var(--mono);font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;width:120px}
+.tcph-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:760px){.tcph-grid{grid-template-columns:1.3fr 1fr}}
+.tcph-diagram{overflow-x:auto}
+.tcph-actor{font-size:13px;font-weight:700;fill:var(--ink)}
+.tcph-life{stroke:var(--line);stroke-width:1.5;stroke-dasharray:2 4}
+.tcph-arrow{stroke:hsl(212 55% 55%);stroke-width:1.8}
+.tcph-arrow.on{stroke:hsl(212 80% 48%);stroke-width:2.6}
+.tcph-head{fill:hsl(212 65% 50%)}
+.tcph-flags{font-family:var(--mono);font-size:11.5px;font-weight:700;fill:hsl(212 60% 40%)}
+.tcph-seq{font-family:var(--mono);font-size:10.5px;fill:var(--muted)}
+.tcph-states{display:flex;flex-direction:column;gap:14px}
+.tcph-fsm h4{margin:0 0 7px;font-size:12.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.tcph-track{display:flex;flex-direction:column;gap:4px}
+.tcph-state{font-family:var(--mono);font-size:11.5px;padding:5px 10px;border-radius:6px;background:#f4f6f9;border:1px solid var(--line);color:var(--muted);position:relative}
+.tcph-state:not(:last-child)::after{content:'↓';position:absolute;left:50%;bottom:-13px;transform:translateX(-50%);color:var(--line);font-size:10px;z-index:1}
+.tcph-state.active{background:hsl(150 55% 90%);border-color:hsl(150 50% 55%);color:hsl(150 45% 28%);font-weight:700}
+.tcph-controls{display:flex;align-items:center;gap:8px;margin:14px 0 8px;flex-wrap:wrap}
+.tcph-controls button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.tcph-controls button:disabled{opacity:.4;cursor:default}
+.tcph-count{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:0 4px}
+.tcph-note{font-size:13px;padding:10px 14px;border-radius:9px;background:hsl(212 55% 96%);border:1px solid hsl(212 50% 87%)}
+.tcph-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}

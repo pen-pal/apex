@@ -31,6 +31,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'mdns', label: 'mDNS & DNS-SD', icon: '🖨️' },
   { id: 'encdns', label: 'Encrypted DNS', icon: '🕵️' },
+  { id: 'tcphand', label: 'TCP handshake', icon: '🤝' },
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
   { id: 'flow', label: 'Flow control', icon: '🪟' },
   { id: 'arq', label: 'ARQ (GBN vs SR)', icon: '🔁' },
@@ -103,7 +104,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'slaac', 'icmp', 'multicast', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'dns', 'mdns', 'encdns'] },
-  { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
+  { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'schnorr', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'cookies', 'cors', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'errors'] },
