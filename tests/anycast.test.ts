@@ -43,8 +43,11 @@ describe('automatic failover when a site is withdrawn', () => {
     expect(d.assignment[0]).toBe(null);
   });
 
-  it('ties break to the lower site id', () => {
+  it('ties break to the lower site id regardless of array order', () => {
     const tie: Client = { id: 9, name: 'tie', costs: [5, 5, 9] };
     expect(nearest(tie, sites())).toBe(0);
+    // put the higher-id site first in the array — the lower id must still win the tie
+    const reordered: Site[] = [{ id: 1, name: 'LON', up: true }, { id: 0, name: 'NYC', up: true }];
+    expect(nearest({ id: 9, name: 'tie', costs: [5, 5, 9] }, reordered)).toBe(0);
   });
 });
