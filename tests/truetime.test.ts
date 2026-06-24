@@ -12,8 +12,8 @@ describe('TrueTime intervals & commit-wait (Spanner)', () => {
     expect(c.visibleAt).toBe(110); // t + 2ε, when the timestamp is safely in the past
   });
   it('commit latency scales with clock uncertainty', () => {
-    expect(commitWait(0, 1).waitMs).toBe(2);
-    expect(commitWait(0, 7).waitMs).toBe(14); // tighter clocks ⇒ faster commits
+    expect(commitWait(0, 1).waitMs).toBe(2); // tighter clock (small ε) ⇒ faster commit
+    expect(commitWait(0, 7).waitMs).toBe(14); // looser clock (large ε) ⇒ slower commit
   });
 });
 
