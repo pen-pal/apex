@@ -4425,3 +4425,40 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .he-verdict.none{background:hsl(0 70% 97%);border:1px solid hsl(0 55% 87%)}
 .he-verdict b{font-family:var(--mono)}
 .he-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── Nagle / delayed-ACK ladder (NagleSection) ── */
+.ng-controls{display:flex;flex-direction:column;gap:12px;margin:12px 0 16px}
+.ng-presets{display:flex;flex-wrap:wrap;gap:7px}
+.ng-chip{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted);cursor:pointer;transition:all .12s}
+.ng-chip:hover{border-color:hsl(212 50% 65%)}
+.ng-chip.on{background:hsl(212 70% 50%);border-color:hsl(212 70% 50%);color:#fff;font-weight:600}
+.ng-toggles{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.ng-tog{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);cursor:pointer}
+.ng-tog.on{color:var(--ink);font-weight:600}
+.ng-tog input{width:15px;height:15px}
+.ng-hint{font-family:var(--mono);font-size:11px;color:hsl(150 45% 38%)}
+.ng-slide{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.ng-slide input[type=range]{width:120px;accent-color:hsl(212 70% 50%)}
+.ng-slide input:disabled{opacity:.4}
+.ng-slide b{font-family:var(--mono);font-size:12px;color:var(--ink);min-width:52px}
+.ng-stage{background:#fafbfc;border:1px solid var(--line);border-radius:12px;padding:8px 4px}
+.ng-svg{display:block;width:100%;height:auto}
+.ng-axis{stroke:hsl(215 18% 78%);stroke-width:1.5}
+.ng-head{font-size:11px;font-weight:700;fill:var(--muted);font-family:var(--mono)}
+.ng-data{stroke:hsl(212 60% 48%);stroke-width:2}
+.ng-ack{stroke:hsl(150 45% 40%);stroke-width:1.5;stroke-dasharray:4 3}
+.ng-lbl{font-size:9.5px;font-family:var(--mono)}
+.ng-lbl.data{fill:hsl(212 60% 40%)}
+.ng-lbl.ack{fill:hsl(150 40% 34%)}
+.ng-stall-lbl{font-size:9px;fill:hsl(0 65% 48%);font-family:var(--mono);font-weight:600}
+.ng-verdict{margin-top:14px;padding:14px 16px;border-radius:11px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.ng-verdict.bad{background:hsl(0 70% 97.5%);border:1px solid hsl(0 55% 88%)}
+.ng-verdict.good{background:hsl(150 45% 97%);border:1px solid hsl(150 40% 85%)}
+.ng-stat{display:flex;flex-direction:column;gap:2px}
+.ng-num{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--ink)}
+.ng-num.red{color:hsl(0 65% 50%)}
+.ng-num.grn{color:hsl(150 45% 38%)}
+.ng-cap{font-size:11px;color:var(--muted)}
+.ng-explain{flex:1;min-width:240px;margin:0;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.ng-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.ng-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
