@@ -3,11 +3,12 @@
 // combining into the answer; click a leaf to update it and watch the change ripple up to the
 // root. Real range-min segment tree in segtree.ts (tested against brute force).
 import { useMemo, useState } from 'react';
-import { build, queryMin, update, type SegTree } from './segtree';
+import { build, queryMin, update, buildLazy, rangeAdd, toArray, type SegTree, type LazyTree } from './segtree';
 
 const INIT = [5, 2, 8, 1, 9, 3, 7, 4];
 
 function clone(s: SegTree): SegTree { return { n: s.n, tree: [...s.tree] }; }
+function cloneLazy(t: LazyTree): LazyTree { return { n: t.n, min: [...t.min], lazy: [...t.lazy] }; }
 
 export function SegTreeSection() {
   const [tree, setTree] = useState<SegTree>(() => build(INIT));
@@ -15,8 +16,18 @@ export function SegTreeSection() {
   const [l, setL] = useState(2);
   const [r, setR] = useState(5);
 
-  const q = useMemo(() => queryMin(tree, Math.min(l, r), Math.max(l, r)), [tree, l, r]);
+  const lo = Math.min(l, r), hi = Math.max(l, r);
+  const q = useMemo(() => queryMin(tree, lo, hi), [tree, lo, hi]);
   const qNodes = new Set(q.nodes);
+
+  // lazy-propagation demo: a second tree that supports range-add over the same [lo, hi]
+  const [lazy, setLazy] = useState<LazyTree>(() => buildLazy(INIT));
+  const [delta, setDelta] = useState(3);
+  const [tagged, setTagged] = useState<number[]>([]);
+  const lazyVals = useMemo(() => toArray(cloneLazy(lazy)), [lazy]); // clone so render never mutates state
+  const lazyMin = lazyVals.length ? Math.min(...lazyVals.slice(lo, hi + 1)) : Infinity;
+  const applyRange = () => { const c = cloneLazy(lazy); setTagged(rangeAdd(c, lo, hi, delta)); setLazy(c); };
+  const resetLazy = () => { setLazy(buildLazy(INIT)); setTagged([]); };
 
   const bump = (i: number, d: number) => {
     const nv = vals.map((x, k) => (k === i ? x + d : x));
@@ -68,12 +79,38 @@ export function SegTreeSection() {
           ))}
         </div>
 
+        <div className="seg-lazy">
+          <div className="seg-lazy-head">
+            <h3>Lazy propagation — update a whole range at once</h3>
+            <div className="seg-lazy-ctrl">
+              <button onClick={() => setDelta((d) => d - 1)}>−</button>
+              <span className="seg-delta">+{delta}</span>
+              <button onClick={() => setDelta((d) => d + 1)}>+</button>
+              <button className="seg-apply" onClick={applyRange}>add {delta >= 0 ? `+${delta}` : delta} to [{lo}…{hi}]</button>
+              <button className="seg-lazy-reset" onClick={resetLazy}>reset</button>
+            </div>
+          </div>
+          <div className="seg-array lazy">
+            {lazyVals.map((v, i) => (
+              <div key={i} className={`seg-cell ${i >= lo && i <= hi ? 'inrange' : ''}`}>
+                <span className="seg-idx">{i}</span>
+                <span className="seg-val">{v}</span>
+              </div>
+            ))}
+          </div>
+          <p className="seg-lazy-note">
+            That range-add touched only <b>{tagged.length || '—'}</b> {tagged.length === 1 ? 'node' : 'nodes'}
+            {tagged.length ? ` (ids ${tagged.join(', ')})` : ''} — not the {hi - lo + 1} element{hi - lo + 1 === 1 ? '' : 's'} it covers.
+            Each fully-covered node just banks the +{delta} as a lazy tag; the tag is pushed down to children only when a later query or
+            update needs to descend through it. min[{lo}…{hi}] is now <b>{lazyMin === Infinity ? '∞' : lazyMin}</b>.
+          </p>
+        </div>
+
         <p className="seg-foot">
           The merge step is the key: as long as your operation is <em>associative</em> — min, max, sum, gcd, matrix product — a parent can
-          be combined from its children, so the same tree answers that query type in O(log n). Add <strong>lazy propagation</strong> and a
-          single call can update a whole range (e.g. “add 5 to [l,r]”) by deferring the work to children only when they’re next visited.
-          Segment trees underpin range-analytics, interval scheduling, and a lot of competitive programming; the simpler Fenwick tree wins
-          when you only need prefix sums.
+          be combined from its children, so the same tree answers that query type in O(log n). <strong>Lazy propagation</strong> (above) extends
+          that to whole-range updates by deferring work to children only when they’re next visited. Segment trees underpin range-analytics,
+          interval scheduling, and a lot of competitive programming; the simpler Fenwick tree wins when you only need prefix sums.
         </p>
       </section>
     </div>
