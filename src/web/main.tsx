@@ -919,7 +919,7 @@ function App() {
               <h1>DH man-in-the-middle</h1>
               <p className="sub">Diffie–Hellman resists a passive eavesdropper but not an active one — watch Eve run DH with each side and relay, then authenticate the public values to catch her.</p>
             </header>
-            <DhMitmSection />
+            <DhMitmSection onOpen={(id) => setSection(id as Section)} />
           </>
         )}
 

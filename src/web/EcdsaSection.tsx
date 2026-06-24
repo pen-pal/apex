@@ -25,8 +25,10 @@ export function EcdsaSection() {
   const [reuse, setReuse] = useState(true);
   const s1 = ecdsaSign(z1, d, k);
   const s2 = ecdsaSign(z2, d, reuse ? k : (k % (N - 1)) + 1);
-  const sameR = s1.r === s2.r;
-  const rec = sameR ? recoverFromReuse(z1, s1.s, z2, s2.s, s1.r) : null;
+  const sameR = reuse && s1.r === s2.r;
+  // only a genuine reuse of k on two DIFFERENT message hashes leaks the key;
+  // z1 === z2 would make s1 - s2 ≡ 0 and modinv(0) throw, so guard it out.
+  const rec = sameR && z1 !== z2 ? recoverFromReuse(z1, s1.s, z2, s2.s, s1.r) : null;
 
   return (
     <div className="journey">
@@ -74,6 +76,8 @@ export function EcdsaSection() {
             {rec.d === d ? ' ✓ (matches the real key — fully compromised)' : ''}.
             <div className="ec-foot">This is exactly how the PS3 master key leaked (2010, Sony reused a constant k) and how Bitcoins were stolen from wallets with a broken RNG.</div>
           </div>
+        ) : sameR ? (
+          <div className="ec-verdict good">🔒 same nonce, but the two message hashes are identical — so the signatures are identical and there’s nothing to subtract. Set z₁ ≠ z₂ to leak the key.</div>
         ) : (
           <div className="ec-verdict good">🔒 different nonces → different r → the equations don’t line up. Nothing leaks. (Real ECDSA derives k deterministically per RFC 6979 to guarantee this.)</div>
         )}
