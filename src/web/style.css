@@ -2772,3 +2772,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pad-secrecy,.pad-verdict{margin-top:10px;padding:11px 14px;border-radius:10px;font-size:13px;line-height:1.5;background:#f7f9fc;border:1px solid var(--line)}
 .pad-verdict.bad{background:hsl(0 75% 97%);border-color:hsl(0 65% 88%)}
 .pad-secrecy code{font-family:var(--mono)}
+
+/* ── Schnorr ZK proof (SchnorrSection) ── */
+.sch-flow{display:flex;flex-direction:column;gap:10px;margin:8px 0 12px}
+.sch-move{border:1px solid var(--line);border-radius:11px;padding:11px 14px;background:#fbfcfe;position:relative}
+.sch-actor{position:absolute;top:-9px;left:13px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:1px 8px;border-radius:5px}
+.sch-actor.p{background:hsl(212 70% 90%);color:hsl(212 70% 36%)}
+.sch-actor.v{background:hsl(28 85% 88%);color:hsl(28 80% 36%)}
+.sch-step{font-size:13px;margin:4px 0 6px}
+.sch-move label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;font-family:var(--mono);max-width:280px;margin:4px 0}
+.sch-move input[type=range]{accent-color:hsl(212 70% 50%)}
+.sch-pt{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:4px}
+.sch-pt code{background:#f2f5f9;padding:1px 5px;border-radius:4px;color:hsl(212 70% 38%)}
+.sch-verdict{padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.5}
+.sch-verdict.ok{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.sch-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
+.sch-btn{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer;margin:4px 0 10px}
+.sch-cheat{font-size:13px;line-height:1.7;padding:11px 14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line)}
+.sch-cheat code{font-family:var(--mono);background:#fff;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.sch-in{width:54px;font-family:var(--mono);font-size:12px;padding:2px 6px;border:1px solid var(--line);border-radius:6px;margin:0 2px}
+.sch-ok{color:hsl(150 55% 34%);font-weight:600}.sch-bad{color:hsl(0 65% 46%);font-weight:600}
+.sch-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
