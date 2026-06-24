@@ -2711,3 +2711,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .huf-stats strong{font-family:var(--mono)}
 .huf-save strong{color:hsl(150 55% 36%)}
 .huf-foot{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* ── CRDTs (CrdtSection) ── */
+.crdt-reps,.crdt-lww{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 12px}
+.crdt-rep{flex:1;min-width:150px;border:1px solid var(--line);border-radius:11px;padding:12px 14px;text-align:center;background:#fbfcfe}
+.crdt-rep-h{font-size:12px;color:var(--muted);font-weight:600}
+.crdt-val{font-size:32px;font-weight:750;font-family:var(--mono);margin:4px 0}
+.crdt-map{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--muted);min-height:16px}
+.crdt-empty{opacity:.5}
+.crdt-inc{font:inherit;font-size:12.5px;margin-top:8px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:hsl(212 70% 50%);color:#fff;border-color:transparent;cursor:pointer}
+.crdt-actions{display:flex;gap:8px;margin-bottom:12px}
+.crdt-sync{font:inherit;font-size:13px;padding:8px 16px;border:0;border-radius:8px;background:hsl(150 55% 42%);color:#fff;cursor:pointer}
+.crdt-ghost{font:inherit;font-size:12.5px;padding:8px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);cursor:pointer}
+.crdt-verdict{padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.5;background:#f7f9fc;border:1px solid var(--line)}
+.crdt-verdict.ok{background:hsl(150 55% 96%);border-color:hsl(150 45% 84%)}
+.crdt-lval{font-size:22px;font-weight:700;font-family:var(--mono);margin:6px 0}
+.crdt-ts{font-size:11px;color:var(--muted);font-weight:400}
+.crdt-pick{display:flex;gap:6px;justify-content:center}
+.crdt-pick button{width:24px;height:24px;border:1px solid var(--line);border-radius:6px;cursor:pointer}
+.crdt-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
