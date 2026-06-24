@@ -575,7 +575,7 @@ function App() {
               <h1>Certificates &amp; PKI</h1>
               <p className="sub">Walk the certificate chain leaf → root — and watch validation fail at the exact link you break.</p>
             </header>
-            <CertChainSection />
+            <CertChainSection onOpen={(id) => setSection(id as Section)} />
           </>
         )}
 

@@ -4,11 +4,11 @@
 // root, mismatch the host) and watch validation fail at exactly that link. The
 // validation logic is real RFC 5280 §6 (see certchain.ts).
 import { useMemo, useState } from 'react';
-import { validateChain, type Cert } from './certchain';
+import { validateChain, signed, genKey, type Cert, type PubKey } from './certchain';
 
 const DAY = 86400;
 
-export function CertChainSection() {
+export function CertChainSection({ onOpen }: { onOpen?: (id: string) => void }) {
   const [now] = useState(() => Math.floor(Date.now() / 1000));
   const [host, setHost] = useState('shop.example.com');
   const [expireInter, setExpireInter] = useState(false);
@@ -16,11 +16,16 @@ export function CertChainSection() {
   const [interNotCA, setInterNotCA] = useState(false);
   const [untrust, setUntrust] = useState(false);
 
-  const chain: Cert[] = useMemo(() => [
-    { subject: 'CN=shop.example.com', issuer: 'CN=Example TLS Intermediate', notBefore: now - 30 * DAY, notAfter: now + 60 * DAY, isCA: false, sans: ['shop.example.com', '*.example.com'], signatureValidByParent: !breakSig },
-    { subject: 'CN=Example TLS Intermediate', issuer: 'CN=Example Root CA', notBefore: now - 800 * DAY, notAfter: expireInter ? now - DAY : now + 1500 * DAY, isCA: !interNotCA, sans: [], signatureValidByParent: true },
-    { subject: 'CN=Example Root CA', issuer: 'CN=Example Root CA', notBefore: now - 3000 * DAY, notAfter: now + 4000 * DAY, isCA: true, sans: [], signatureValidByParent: true },
-  ], [now, breakSig, expireInter, interNotCA]);
+  const keys = useMemo(() => ({ root: genKey(50021), inter: genKey(50111), leaf: genKey(50231) }), []);
+  const pub = (k: ReturnType<typeof genKey>): PubKey => ({ n: k.n, e: k.e });
+
+  const chain: Cert[] = useMemo(() => {
+    const root = signed({ subject: 'CN=Example Root CA', issuer: 'CN=Example Root CA', notBefore: now - 3000 * DAY, notAfter: now + 4000 * DAY, isCA: true, sans: [] }, pub(keys.root), keys.root);
+    const inter = signed({ subject: 'CN=Example TLS Intermediate', issuer: 'CN=Example Root CA', notBefore: now - 800 * DAY, notAfter: expireInter ? now - DAY : now + 1500 * DAY, isCA: !interNotCA, sans: [] }, pub(keys.inter), keys.root);
+    let leaf = signed({ subject: 'CN=shop.example.com', issuer: 'CN=Example TLS Intermediate', notBefore: now - 30 * DAY, notAfter: now + 60 * DAY, isCA: false, sans: ['shop.example.com', '*.example.com'] }, pub(keys.leaf), keys.inter);
+    if (breakSig) leaf = { ...leaf, signature: leaf.signature + 1n }; // forge: real verify will now fail
+    return [leaf, inter, root];
+  }, [now, breakSig, expireInter, interNotCA, keys]);
 
   const roots = useMemo(() => new Set(untrust ? [] : ['CN=Example Root CA']), [untrust]);
   const result = useMemo(() => validateChain(chain, host, now, roots), [chain, host, now, roots]);
@@ -77,7 +82,9 @@ export function CertChainSection() {
         </div>
         <p className="enc-note">This is exactly what a TLS client does after the handshake’s Certificate message (see the TLS 1.3 arc in the
           Cryptography section). A single broken link — an expired cert, a name mismatch, an unknown CA — is why you see “your connection is not
-          private”. The root’s trust isn’t magic; it’s pre-installed in your OS/browser trust store.</p>
+          private”. The root’s trust isn’t magic; it’s pre-installed in your OS/browser trust store. Each “signed by” check here is a{' '}
+          <button className="hi-link" onClick={() => onOpen?.('rsa')}>real RSA verification</button> over the certificate’s bytes — forge a
+          signature and the math, not a flag, rejects it.</p>
       </section>
     </div>
   );
