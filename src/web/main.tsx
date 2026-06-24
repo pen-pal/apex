@@ -27,6 +27,7 @@ import { AeadSection } from './AeadSection';
 import { RsaSection } from './RsaSection';
 import { EccSection } from './EccSection';
 import { EcdsaSection } from './EcdsaSection';
+import { ChachaSection } from './ChachaSection';
 import { StoryView } from './StoryView';
 import { EncodingSection } from './EncodingSection';
 import { ErrorDetectSection } from './ErrorDetectSection';
@@ -73,7 +74,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'rsa' | 'ecc' | 'ecdsa' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'rsa' | 'ecc' | 'ecdsa' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -394,6 +395,16 @@ function App() {
               <p className="sub">Sign with the private scalar, verify with the public point — then watch a reused nonce hand an attacker the private key, the real PS3 / Bitcoin bug.</p>
             </header>
             <EcdsaSection />
+          </>
+        )}
+
+        {section === 'chacha' && (
+          <>
+            <header>
+              <h1>ChaCha20</h1>
+              <p className="sub">A 4×4 matrix of words stirred by add–rotate–xor — step through the rounds, build the keystream, and XOR it over a message. No S-boxes, fast in software.</p>
+            </header>
+            <ChachaSection />
           </>
         )}
 
