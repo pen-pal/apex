@@ -22,6 +22,7 @@ import { JourneyView } from './JourneyView';
 import { LifecycleView } from './LifecycleView';
 import { ChecksumView } from './ChecksumView';
 import { CryptoView } from './CryptoView';
+import { AesRoundSection } from './AesRoundSection';
 import { StoryView } from './StoryView';
 import { EncodingSection } from './EncodingSection';
 import { ErrorDetectSection } from './ErrorDetectSection';
@@ -68,7 +69,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma';
+type Section = 'network' | 'crypto' | 'aesround' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -339,6 +340,16 @@ function App() {
               <p className="sub">Real cryptography on sandbox values — never on captured streams. Watch structure become noise.</p>
             </header>
             <CryptoView />
+          </>
+        )}
+
+        {section === 'aesround' && (
+          <>
+            <header>
+              <h1>AES internals</h1>
+              <p className="sub">Step inside the block cipher — watch 10 rounds of SubBytes, ShiftRows, MixColumns and AddRoundKey transform the 4×4 state.</p>
+            </header>
+            <AesRoundSection onOpen={(id) => setSection(id as Section)} />
           </>
         )}
 
