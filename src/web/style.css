@@ -4736,3 +4736,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .smug-victim{color:#5a6785}
 .smug-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 @media(max-width:640px){.smug-parsers{grid-template-columns:1fr}}
+
+/* ── Phi-accrual failure detector (PhiSection) ── */
+.phi-scns{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0}
+.phi-scn{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted);cursor:pointer}
+.phi-scn.on{background:hsl(212 70% 50%);border-color:hsl(212 70% 50%);color:#fff;font-weight:600}
+.phi-blurb{font-size:12px;color:var(--muted)}
+.phi-svg{display:block;width:100%;height:auto;background:#fafbfc;border:1px solid var(--line);border-radius:10px}
+.phi-thresh{stroke:hsl(0 60% 60%);stroke-width:1.5;stroke-dasharray:5 4}
+.phi-threshlbl{font-size:9.5px;fill:hsl(0 55% 48%);font-family:var(--mono)}
+.phi-area{fill:hsl(212 65% 88%);opacity:.5;stroke:none}
+.phi-line{fill:none;stroke:hsl(212 65% 48%);stroke-width:2}
+.phi-beat{stroke:hsl(150 45% 42%);stroke-width:2}
+.phi-fire{stroke-width:2}
+.phi-fire.phi{stroke:hsl(212 70% 45%);stroke-dasharray:3 2}
+.phi-fire.fixed{stroke:hsl(0 65% 52%);stroke-dasharray:3 2}
+.phi-axislbl{font-size:10px;fill:var(--muted);font-family:var(--mono)}
+.phi-ctrls{display:flex;flex-wrap:wrap;gap:20px;margin:12px 0}
+.phi-ctrls label{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted)}
+.phi-ctrls input[type=range]{width:150px}
+.phi-ctrls label:first-child input{accent-color:hsl(212 70% 50%)}
+.phi-ctrls label:last-child input{accent-color:hsl(0 65% 55%)}
+.phi-ctrls b{font-family:var(--mono);font-size:12.5px;color:var(--ink);min-width:52px}
+.phi-verdicts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.phi-verdict{padding:10px 13px;border-radius:9px;font-size:12.5px;display:flex;flex-direction:column;gap:3px}
+.phi-verdict.good{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 84%)}
+.phi-verdict.bad{background:hsl(0 65% 97%);border:1px solid hsl(0 55% 87%)}
+.phi-vlbl{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink)}
+.phi-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+@media(max-width:640px){.phi-verdicts{grid-template-columns:1fr}}
