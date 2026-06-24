@@ -143,36 +143,36 @@ function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand"><span className="logo">◆</span> Apex</div>
-        <nav className="topnav">
-          {GROUPS.map((g) => {
-            const isOpen = openMenu === g.label;
-            const isActive = g.label === activeGroup;
-            const activeMeta = isActive ? metaById[section] : null;
-            return (
-              <div className="topgroup" key={g.label}>
-                <button className={`topgroup-h ${isActive ? 'active' : ''} ${isOpen ? 'open' : ''}`} onClick={() => setOpenMenu(isOpen ? null : g.label)} aria-expanded={isOpen}>
-                  <span className="tg-icon">{g.icon}</span>
-                  <span className="tg-label">{g.label}</span>
-                  {activeMeta && <span className="tg-current">· {activeMeta.label}</span>}
-                  <span className="tg-caret">{isOpen ? '▴' : '▾'}</span>
-                </button>
-                {isOpen && (
-                  <div className="topmenu">
-                    {g.ids.map((id) => {
-                      const m = metaById[id];
-                      return (
-                        <button key={id} className={section === id ? 'on' : ''} onClick={() => { setSection(id as Section); setOpenMenu(null); }}>
-                          <span className="sec-icon">{m.icon}</span> {m.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </nav>
+        <div className="topbar-inner">
+          <div className="brand"><span className="logo">◆</span> Apex</div>
+          <nav className="topnav">
+            {GROUPS.map((g) => {
+              const isOpen = openMenu === g.label;
+              const isActive = g.label === activeGroup;
+              return (
+                <div className="topgroup" key={g.label}>
+                  <button className={`topgroup-h ${isActive ? 'active' : ''} ${isOpen ? 'open' : ''}`} onClick={() => setOpenMenu(isOpen ? null : g.label)} aria-expanded={isOpen}>
+                    <span className="tg-icon">{g.icon}</span>
+                    <span className="tg-label">{g.label}</span>
+                    <span className="tg-caret">{isOpen ? '▴' : '▾'}</span>
+                  </button>
+                  {isOpen && (
+                    <div className="topmenu">
+                      {g.ids.map((id) => {
+                        const m = metaById[id];
+                        return (
+                          <button key={id} className={section === id ? 'on' : ''} onClick={() => { setSection(id as Section); setOpenMenu(null); }}>
+                            <span className="sec-icon">{m.icon}</span> {m.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+        </div>
       </header>
       {openMenu && <div className="topnav-backdrop" onClick={() => setOpenMenu(null)} />}
 
