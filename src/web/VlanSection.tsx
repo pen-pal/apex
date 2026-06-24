@@ -3,7 +3,7 @@
 // host); then run the double-tagging VLAN hop that abuses the native VLAN. The tag
 // bytes are real (vlanlab.ts, matching the 802.1Q dissector). Defensive/educational.
 import { useState } from 'react';
-import { buildTag, parseTag, stripOuter, type Tag } from './vlanlab';
+import { buildTag, parseTag, stripOuter, VID_MIN, VID_MAX, type Tag } from './vlanlab';
 
 const PCP_NAME = ['BE', 'BK', 'EE', 'CA', 'VI', 'VO', 'IC', 'NC']; // 802.1p priority classes
 const hx = (b: number) => b.toString(16).padStart(2, '0').toUpperCase();
@@ -26,7 +26,7 @@ export function VlanSection() {
           (DEI), and the 12-bit <strong>VLAN id</strong>.
         </p>
         <div className="vl-controls">
-          <label>VLAN id <input type="number" min={0} max={4095} value={vid} onChange={(e) => setVid(Math.min(4095, Math.max(0, Number(e.target.value) || 0)))} /></label>
+          <label>VLAN id <input type="number" min={VID_MIN} max={VID_MAX} value={vid} onChange={(e) => setVid(Math.min(VID_MAX, Math.max(VID_MIN, Number(e.target.value) || 0)))} /></label>
           <label>PCP <input type="range" min={0} max={7} value={pcp} onChange={(e) => setPcp(Number(e.target.value))} /> <span className="vl-pcp">{pcp} ({PCP_NAME[pcp]})</span></label>
           <label className="vl-dei"><input type="checkbox" checked={dei} onChange={(e) => setDei(e.target.checked)} /> DEI</label>
         </div>

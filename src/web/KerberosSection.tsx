@@ -73,7 +73,8 @@ export function KerberosSection() {
           Three properties fall out of this design: the <strong>password never travels</strong> (only a key derived from it, used to
           open the AS reply); <strong>single sign-on</strong> — the TGT is reused for every service, no re-auth; and the{' '}
           <strong>KDC can be offline</strong> for the AP exchange, since the service validates the ticket with its own key. The
-          weak point is the KDC’s knowledge of every key (and offline cracking of a captured TGT — “Kerberoasting”).
+          weak point is the KDC’s knowledge of every key — and that an authenticated user can request a <strong>service ticket</strong>{' '}
+          (sealed with the service account’s key Ksvc) and crack it offline to recover that account’s password: “Kerberoasting”.
         </p>
       </section>
     </div>
