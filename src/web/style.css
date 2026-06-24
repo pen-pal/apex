@@ -2397,3 +2397,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .po-zeros{background:hsl(150 60% 80%);color:hsl(150 60% 24%);font-weight:700;border-radius:3px}
 .po-zbits{font-size:11.5px;color:hsl(150 55% 32%);margin-top:5px;font-weight:600}
 .po-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── Feistel network (FeistelSection) ── */
+.ft-controls{display:flex;gap:18px;flex-wrap:wrap;margin:8px 0 12px}
+.ft-controls label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono)}
+.ft-controls input{accent-color:hsl(212 70% 50%);min-width:140px}
+.ft-fnote{font-size:12.5px;line-height:1.55;padding:10px 13px;border-radius:9px;background:hsl(28 85% 96%);border:1px solid hsl(28 70% 85%);margin-bottom:14px}
+.ft-fnote code{font-family:var(--mono);background:#fff;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.ft-cols{display:flex;gap:20px;flex-wrap:wrap}
+.ft-col{flex:1;min-width:280px}
+.ft-col-h{font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:8px}
+.ft-ladder{display:flex;flex-direction:column;gap:3px}
+.ft-rrow{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px}
+.ft-rrow.edge{font-weight:700}
+.ft-rn{min-width:42px;font-size:10.5px;color:var(--muted);text-align:right}
+.ft-half{width:30px;text-align:center;padding:4px 0;border-radius:6px;color:#27313f;font-weight:600}
+.ft-op{font-size:10.5px;color:var(--muted)}
+.ft-verdict{margin-top:12px;padding:11px 14px;border-radius:10px;font-size:13.5px}
+.ft-verdict.ok{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.ft-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
+.ft-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}

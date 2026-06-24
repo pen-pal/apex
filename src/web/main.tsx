@@ -83,6 +83,7 @@ import { TlsDowngradeSection } from './TlsDowngradeSection';
 import { PasswordHashSection } from './PasswordHashSection';
 import { ShamirSection } from './ShamirSection';
 import { ProofOfWorkSection } from './ProofOfWorkSection';
+import { FeistelSection } from './FeistelSection';
 import { KerberosSection } from './KerberosSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import './style.css';
@@ -90,7 +91,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'arq' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3';
+type Section = 'network' | 'crypto' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'dhmitm' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'feistel' | 'encoding' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'arq' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -962,6 +963,16 @@ function App() {
               <p className="sub">Grind a nonce until a real SHA-256 digest clears a zero-bit target — feel the cost climb with difficulty, the engine of hashcash and Bitcoin mining.</p>
             </header>
             <ProofOfWorkSection />
+          </>
+        )}
+
+        {section === 'feistel' && (
+          <>
+            <header>
+              <h1>Feistel networks (DES)</h1>
+              <p className="sub">The block-cipher structure that's reversible for free — watch the L/R halves move through the rounds and decrypt run the same structure backward, even with a non-invertible round function.</p>
+            </header>
+            <FeistelSection />
           </>
         )}
 
