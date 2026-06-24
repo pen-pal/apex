@@ -124,6 +124,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'lzw', label: 'LZW compression', icon: '📖' },
   { id: 'dfa', label: 'Finite automata (DFA)', icon: '🔄' },
   { id: 'huffman', label: 'Huffman coding', icon: '🗜️' },
+  { id: 'viterbi', label: 'Viterbi / convolutional', icon: '🧬' },
   { id: 'reedsolomon', label: 'Reed-Solomon', icon: '💿' },
   { id: 'crc32', label: 'CRC-32 walk', icon: '🔁' },
   { id: 'errors', label: 'Error control', icon: '🛡️' },
@@ -164,7 +165,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
-  { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'dfa', 'huffman', 'crc32', 'reedsolomon', 'errors'] },
+  { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'dfa', 'huffman', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'hlc', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar'] },
 ];
