@@ -22,6 +22,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'wpa', label: 'WPA2 handshake', icon: '📶' },
   { id: 'vlan', label: 'VLAN tagging', icon: '🏷️' },
   { id: 'ntp', label: 'NTP clock sync', icon: '🕰️' },
+  { id: 'btree', label: 'B+tree index', icon: '🌲' },
   { id: 'arp', label: 'ARP resolution', icon: '📇' },
   { id: 'stptree', label: 'Spanning Tree', icon: '🌳' },
   { id: 'slaac', label: 'IPv6 SLAAC', icon: '🆔' },
@@ -132,6 +133,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'crc32', 'reedsolomon', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'hll', 'countmin', 'bloom', 'snowflake', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['btree'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
