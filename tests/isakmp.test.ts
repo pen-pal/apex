@@ -3,8 +3,11 @@ import { ProtocolRegistry } from '../src/core/registry';
 import { dissect } from '../src/core/engine';
 import { isakmp } from '../src/protocols/isakmp';
 
-// A real IKE_SA_INIT *request* header as seen at the start of any IKEv2
-// negotiation (e.g. a strongSwan / Wireshark capture on UDP port 500).
+// A hand-constructed IKE_SA_INIT *request* header, anchored field-by-field to
+// RFC 7296 §3.1, of the form seen at the start of any IKEv2 negotiation on UDP
+// port 500. The header byte values are RFC-exact; the Initiator SPI and the
+// 216-byte payload chain are synthetic fillers (an SPI is opaque, the body
+// variable), so the assertions below check only the standardized header fields.
 // Byte layout per RFC 7296 §3.1 (the fixed 28-byte IKE header):
 //
 //   offset 0-7   Initiator's SPI  = 0x90 9d ... (8 octets, MUST be non-zero)

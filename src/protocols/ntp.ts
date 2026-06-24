@@ -197,7 +197,7 @@ It is stored as a two's-complement signed byte, so e.g. 0xEC = -20. Precision fe
       decode: (v) => `${(v / 2 ** 16).toFixed(6)} s (16.16 fixed-point)`,
       note: 'Total round-trip delay to the reference clock; NTP short 16.16 fixed-point.',
       desc: 'The total round-trip delay from this server up to the primary reference clock, in NTP short format — a 32-bit fixed-point number with 16 bits of seconds and 16 bits of fraction. Accumulates across every stratum hop.',
-      detail: `ROOT DELAY (32 bits, NTP "short" format, RFC 5905 §6): a signed 16.16 fixed-point number of seconds.
+      detail: `ROOT DELAY (32 bits, NTP "short" format, RFC 5905 §6): an unsigned 16.16 fixed-point number of seconds.
 - High 16 bits = whole seconds; low 16 bits = fraction (each unit = 1/65536 s ≈ 15.3 µs).
 - 0x00000000 = 0 s; 0x00010000 = 1.0 s; 0x00008000 = 0.5 s.
 
@@ -226,7 +226,7 @@ Dispersion accumulates from each source's measured jitter and from the drift tha
       detail: `REFERENCE ID (32 bits, RFC 5905 §7.3) — interpretation depends on Stratum:
 - Stratum 0: a 4-character ASCII "kiss code" (KoD) such as "DENY", "RATE", "RSTR" telling the client to stop or slow down.
 - Stratum 1: a 4-character ASCII identifier of the reference clock, left-justified and zero-padded. Common codes: "GPS\\0" (GPS), "PPS\\0" (pulse-per-second), "DCF\\0" (DCF77), "WWVB", "ATOM" (atomic), "GOES", "ACTS".
-- Stratum >= 2: the IPv4 address of the upstream server (NTPv4 over IPv4), or, for IPv6, the low-order 32 bits of an MD5 hash of the source address (RFC 5905 §7.3, to fit a v6 address into 32 bits).
+- Stratum >= 2: the IPv4 address of the upstream server (NTPv4 over IPv4), or, for IPv6, the first four octets of an MD5 hash of the source address (RFC 5905 §7.3, to fit a v6 address into 32 bits).
 
 In a client request this field is typically 0. As a 32-bit code its bytes are best read as hex (or ASCII for stratum 0/1).`,
     },
