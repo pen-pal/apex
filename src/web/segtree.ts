@@ -46,3 +46,64 @@ export const naiveMin = (values: number[], l: number, r: number): number => Math
 
 /** The depth (levels) of the tree. */
 export const depth = (s: SegTree): number => Math.log2(s.n) + 1;
+
+// ---- lazy propagation: range UPDATE + range query ----------------------------------------------
+// The point-update tree above can't add a value to a whole range without touching every element.
+// Lazy propagation fixes that: when a range-add fully covers a node, we stamp the node's min and
+// park the delta in a LAZY tag instead of recursing into its children. The tag is only "pushed
+// down" later, the next time a query or update actually needs to descend through that node. So a
+// range-add over any [l, r] tags only O(log n) nodes — the same handful a query touches.
+
+export interface LazyTree { n: number; min: number[]; lazy: number[] } // recursive tree, node-indexed (4n)
+
+export function buildLazy(values: number[]): LazyTree {
+  const n = values.length;
+  const t: LazyTree = { n, min: new Array(4 * Math.max(1, n)).fill(0), lazy: new Array(4 * Math.max(1, n)).fill(0) };
+  const rec = (node: number, lo: number, hi: number) => {
+    if (lo === hi) { t.min[node] = values[lo]; return; }
+    const mid = (lo + hi) >> 1;
+    rec(2 * node, lo, mid); rec(2 * node + 1, mid + 1, hi);
+    t.min[node] = Math.min(t.min[2 * node], t.min[2 * node + 1]);
+  };
+  if (n > 0) rec(1, 0, n - 1);
+  return t;
+}
+
+function pushDown(t: LazyTree, node: number): void {
+  const d = t.lazy[node];
+  if (d !== 0) {
+    for (const c of [2 * node, 2 * node + 1]) { t.min[c] += d; t.lazy[c] += d; }
+    t.lazy[node] = 0;
+  }
+}
+
+/** Add `delta` to every element in [l, r]. Returns the node ids that absorbed the change as a
+ *  lazy tag (the O(log n) "frontier" — proof that we did NOT touch every covered leaf). */
+export function rangeAdd(t: LazyTree, l: number, r: number, delta: number): number[] {
+  const tagged: number[] = [];
+  const rec = (node: number, lo: number, hi: number) => {
+    if (r < lo || hi < l) return; // disjoint
+    if (l <= lo && hi <= r) { t.min[node] += delta; t.lazy[node] += delta; tagged.push(node); return; } // fully covered → tag, stop
+    pushDown(t, node);
+    const mid = (lo + hi) >> 1;
+    rec(2 * node, lo, mid); rec(2 * node + 1, mid + 1, hi);
+    t.min[node] = Math.min(t.min[2 * node], t.min[2 * node + 1]);
+  };
+  if (t.n > 0) rec(1, 0, t.n - 1);
+  return tagged;
+}
+
+/** Minimum over [l, r], pushing lazy tags down along the way. */
+export function queryLazy(t: LazyTree, l: number, r: number): number {
+  const rec = (node: number, lo: number, hi: number): number => {
+    if (r < lo || hi < l) return INF;
+    if (l <= lo && hi <= r) return t.min[node];
+    pushDown(t, node);
+    const mid = (lo + hi) >> 1;
+    return Math.min(rec(2 * node, lo, mid), rec(2 * node + 1, mid + 1, hi));
+  };
+  return t.n > 0 ? rec(1, 0, t.n - 1) : INF;
+}
+
+/** Materialize the current element values (each is a single-point query). */
+export const toArray = (t: LazyTree): number[] => Array.from({ length: t.n }, (_, i) => queryLazy(t, i, i));
