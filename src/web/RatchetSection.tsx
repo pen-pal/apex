@@ -44,40 +44,40 @@ export function RatchetSection() {
           folds a new key exchange into the root, reseeding the chains. Build a conversation, then compromise the device.
         </p>
 
-        <div className="rt-keys">
+        <div className="dr-keys">
           <span>root key <code>{shortHex(rk, 6)}</code></span>
           <span>chain key <code>{shortHex(ck, 6)}</code></span>
           <span>DH epoch <code>{epoch}</code></span>
         </div>
-        <div className="rt-controls">
+        <div className="dr-controls">
           <button onClick={send}>✉ send message</button>
           <button onClick={ratchet}>🔄 DH ratchet (new key exchange)</button>
-          <button className="rt-danger" onClick={compromise} disabled={!!comp}>💥 compromise device now</button>
-          <button className="rt-ghost" onClick={reset}>↺ reset</button>
+          <button className="dr-danger" onClick={compromise} disabled={!!comp}>💥 compromise device now</button>
+          <button className="dr-ghost" onClick={reset}>↺ reset</button>
         </div>
 
-        <div className="rt-thread">
-          {msgs.length === 0 && <div className="rt-empty">Send some messages, run a DH ratchet, send more — then compromise.</div>}
+        <div className="dr-thread">
+          {msgs.length === 0 && <div className="dr-empty">Send some messages, run a DH ratchet, send more — then compromise.</div>}
           {msgs.map((m, idx) => {
             const boundary = idx > 0 && m.epoch !== msgs[idx - 1].epoch;
             const compHere = comp && comp.at === idx;
             return (
               <div key={m.id}>
-                {boundary && <div className="rt-epoch">— DH ratchet → epoch {m.epoch} (chains reseeded) —</div>}
-                {compHere && <div className="rt-comp-line">💥 device compromised here — attacker now holds the current chain key</div>}
-                <div className={`rt-msg ${m.from === 'Alice' ? 'a' : 'b'} ${status(m, idx)}`}>
-                  <span className="rt-from">{m.from}</span>
-                  <span className="rt-mk">MK {m.mk}</span>
-                  <span className="rt-flag">{status(m, idx) === 'leak' ? '🔓 exposed' : '🔒 safe'}</span>
+                {boundary && <div className="dr-epoch">— DH ratchet → epoch {m.epoch} (chains reseeded) —</div>}
+                {compHere && <div className="dr-comp-line">💥 device compromised here — attacker now holds the current chain key</div>}
+                <div className={`dr-msg ${m.from === 'Alice' ? 'a' : 'b'} ${status(m, idx)}`}>
+                  <span className="dr-from">{m.from}</span>
+                  <span className="dr-mk">MK {m.mk}</span>
+                  <span className="dr-flag">{status(m, idx) === 'leak' ? '🔓 exposed' : '🔒 safe'}</span>
                 </div>
               </div>
             );
           })}
-          {comp && comp.at === msgs.length && <div className="rt-comp-line">💥 device compromised here — only this epoch’s remaining messages are at risk</div>}
+          {comp && comp.at === msgs.length && <div className="dr-comp-line">💥 device compromised here — only this epoch’s remaining messages are at risk</div>}
         </div>
 
         {comp && (
-          <div className="rt-explain">
+          <div className="dr-explain">
             <strong>Forward secrecy:</strong> every message before the compromise stays <strong>🔒 safe</strong> — its key was a
             deleted hash-chain output, and the stolen chain key only runs <em>forward</em>. <strong>Post-compromise security:</strong>{' '}
             the next <strong>DH ratchet</strong> reseeds the root from a key exchange the attacker can’t see, so everything after it
@@ -85,7 +85,7 @@ export function RatchetSection() {
           </div>
         )}
 
-        <p className="rt-foot">
+        <p className="dr-foot">
           This is why a single stolen phone doesn’t expose a whole chat history, and why the conversation self-heals once both
           sides ratchet again. In real Signal each direction has its own sending chain, and the DH ratchet runs automatically
           whenever a message carries a new ratchet public key.
