@@ -3141,3 +3141,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dhk-crackout{margin-top:10px;font-size:12.5px;line-height:1.6;padding:11px 14px;border-radius:9px;background:hsl(0 60% 97%);border:1px solid hsl(0 50% 88%)}
 .dhk-crackout b{font-family:var(--mono)}
 .dhk-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── CRC-32 walk (CrcWalkSection) ── */
+.crcw-input{font-family:var(--mono);font-size:14px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;width:100%;max-width:380px;margin:10px 0 12px}
+.crcw-final{font-size:14px;margin-bottom:8px}
+.crcw-final code{font-family:var(--mono);font-size:14px;font-weight:700;background:hsl(150 45% 92%);padding:2px 8px;border-radius:6px}
+.crcw-diff{font-size:12px;color:var(--muted);font-weight:400}
+.crcw-diff code{font-size:12px;background:hsl(0 60% 94%);font-weight:600}
+.crcw-flip{display:flex;align-items:center;gap:8px;font-size:12.5px;margin-bottom:14px;cursor:pointer}
+.crcw-flip input{width:15px;height:15px;accent-color:hsl(0 65% 55%)}
+.crcw-bytes{display:flex;gap:4px;flex-wrap:wrap}
+.crcw-byte{display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 7px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;cursor:pointer;font-family:var(--mono)}
+.crcw-byte.sel{border-color:hsl(212 60% 55%);background:hsl(212 60% 95%);box-shadow:0 0 0 1px hsl(212 60% 70%)}
+.crcw-bchar{font-size:13px;font-weight:700}
+.crcw-bhex{font-size:10px;color:var(--muted)}
+.crcw-breg{font-size:10px;color:hsl(212 55% 45%)}
+.crcw-axis{display:flex;justify-content:space-between;max-width:220px;font-size:10px;color:var(--muted);margin:3px 0 14px}
+.crcw-bits{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.crcw-bits h3{margin:0 0 9px;font-size:13px;font-family:var(--mono)}
+.crcw-bitrows{display:flex;flex-direction:column;gap:2px}
+.crcw-bitrow{display:grid;grid-template-columns:40px 130px 1fr;gap:10px;align-items:center;font-size:11.5px;padding:3px 0}
+.crcw-bitrow.head{color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:2px}
+.crcw-bitrow.xor{background:hsl(45 80% 94%);border-radius:4px}
+.crcw-reg{font-family:var(--mono);font-size:11px;letter-spacing:.5px;word-break:break-all}
+.crcw-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:8px}
