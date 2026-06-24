@@ -17,12 +17,16 @@ export interface DhcpMessage {
 }
 
 /** The four DORA messages for a fresh lease (RFC 2131 §3.1). */
-export function doraMessages(offeredIp: string, serverIp: string, leaseSecs: number): DhcpMessage[] {
+// `broadcastFlag` = the client's B-flag. Per RFC 2131 §4.1, with it CLEAR (the default) the
+// server UNICASTS the OFFER/ACK to the client's hardware address + offered IP; with it SET the
+// server broadcasts them. DISCOVER and the selecting REQUEST are always broadcast.
+export function doraMessages(offeredIp: string, serverIp: string, leaseSecs: number, broadcastFlag = false): DhcpMessage[] {
+  const replyNote = broadcastFlag ? 'broadcast (the client set the B-flag)' : 'unicast to the client’s MAC + offered IP (B-flag clear)';
   return [
     { type: 'DISCOVER', from: 'client', broadcast: true, yourIp: null, note: 'The client has no IP yet, so it broadcasts to 255.255.255.255 from 0.0.0.0 — "is there a DHCP server?"' },
-    { type: 'OFFER', from: 'server', broadcast: true, yourIp: offeredIp, note: `Server ${serverIp} offers ${offeredIp} (it can't unicast yet — the client has no address) with a ${leaseSecs}s lease.` },
+    { type: 'OFFER', from: 'server', broadcast: broadcastFlag, yourIp: offeredIp, note: `Server ${serverIp} offers ${offeredIp} (${replyNote}, RFC 2131 §4.1) with a ${leaseSecs}s lease.` },
     { type: 'REQUEST', from: 'client', broadcast: true, yourIp: offeredIp, note: `The client broadcasts which offer it accepts (naming ${serverIp}), so any OTHER server that offered can take its address back.` },
-    { type: 'ACK', from: 'server', broadcast: true, yourIp: offeredIp, note: `The chosen server commits the lease: ${offeredIp} is yours for ${leaseSecs}s. The client may now use it.` },
+    { type: 'ACK', from: 'server', broadcast: broadcastFlag, yourIp: offeredIp, note: `The chosen server commits the lease: ${offeredIp} is yours for ${leaseSecs}s (${replyNote}). The client may now use it.` },
   ];
 }
 

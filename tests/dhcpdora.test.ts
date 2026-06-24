@@ -7,8 +7,13 @@ describe('DORA exchange (RFC 2131 §3.1)', () => {
     expect(msgs.map((m) => m.type)).toEqual(['DISCOVER', 'OFFER', 'REQUEST', 'ACK']);
     expect(msgs.map((m) => m.from)).toEqual(['client', 'server', 'client', 'server']);
   });
-  it('all four are broadcast (the client has no usable address yet)', () => {
-    expect(msgs.every((m) => m.broadcast)).toBe(true);
+  it('DISCOVER and the selecting REQUEST broadcast; OFFER/ACK unicast by default (RFC 2131 §4.1)', () => {
+    // with the broadcast flag clear (default), the server unicasts OFFER and ACK
+    expect(msgs.map((m) => m.broadcast)).toEqual([true, false, true, false]);
+  });
+  it('OFFER/ACK broadcast only when the client sets the broadcast flag', () => {
+    const bMsgs = doraMessages('192.168.1.50', '192.168.1.1', 86400, true);
+    expect(bMsgs.map((m) => m.broadcast)).toEqual([true, true, true, true]);
   });
   it('DISCOVER carries no address; OFFER/REQUEST/ACK carry the offered IP', () => {
     expect(msgs[0].yourIp).toBeNull();
