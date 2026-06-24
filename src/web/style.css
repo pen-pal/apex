@@ -2160,3 +2160,39 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .h3-h-repr.dynamic{background:hsl(212 70% 91%);color:hsl(212 70% 34%)}
 .h3-h-repr.literal{background:hsl(38 80% 88%);color:hsl(38 75% 34%)}
 .h3-h-bytes{text-align:right;color:var(--muted)}
+
+/* ── DH man-in-the-middle (DhMitmSection) ── */
+.dh-controls{display:flex;gap:18px;flex-wrap:wrap;margin:8px 0 10px}
+.dh-controls label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono)}
+.dh-controls input{accent-color:hsl(212 70% 50%);min-width:150px}
+.dh-toggles{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+.dh-toggle{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer}
+.dh-toggle.off{opacity:.5}
+.dh-toggle input{width:15px;height:15px;accent-color:hsl(0 70% 55%)}
+
+.dh-wire{display:flex;align-items:stretch;justify-content:center;gap:14px;flex-wrap:wrap;margin:6px 0 12px}
+.dh-party{border:1px solid var(--line);border-radius:11px;padding:12px 16px;min-width:140px;text-align:center;background:#fbfcfe}
+.dh-p-h{font-weight:700;font-size:14px}
+.dh-p-priv{font-family:var(--mono);font-size:11.5px;color:hsl(0 65% 48%);margin-top:4px}
+.dh-p-pub{font-family:var(--mono);font-size:12.5px;color:hsl(212 70% 42%);margin:2px 0 8px}
+.dh-p-key{font-family:var(--mono);font-size:12.5px;padding:4px 8px;border-radius:7px}
+.dh-p-key.ok{background:hsl(150 50% 92%);color:hsl(150 55% 28%)}
+.dh-p-key.bad{background:hsl(0 75% 93%);color:hsl(0 65% 42%)}
+
+.dh-mid,.dh-eve{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:170px}
+.dh-mid span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dh-eaves{font-size:11px;color:var(--muted);text-align:center;max-width:170px;line-height:1.4}
+.dh-arrows{display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:11px;color:hsl(0 65% 48%)}
+.dh-e-box{border-radius:10px;padding:9px 13px;text-align:center}
+.dh-e-box.active{background:hsl(0 75% 95%);border:1px solid hsl(0 60% 82%)}
+.dh-e-box.caught{background:hsl(150 50% 94%);border:1px solid hsl(150 45% 78%)}
+.dh-e-h{font-weight:700;font-size:13px}
+.dh-e-keys{font-family:var(--mono);font-size:11.5px;color:hsl(0 65% 44%);margin-top:3px}
+
+.dh-shared{text-align:center;font-size:13px;margin:6px 0 10px}
+.dh-verdict{padding:12px 15px;border-radius:11px;font-size:13.5px;line-height:1.55}
+.dh-verdict.secure{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.dh-verdict.compromised{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 86%)}
+.dh-verdict.detected{background:hsl(212 70% 96%);border:1px solid hsl(212 60% 85%)}
+.dh-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+.dh-link{color:hsl(212 70% 45%)}
