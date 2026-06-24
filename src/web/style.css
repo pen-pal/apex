@@ -4162,3 +4162,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .topo-next{font-size:11.5px;color:var(--muted);margin-left:6px}
 .topo-cyclemsg{padding:12px 15px;border-radius:10px;background:hsl(0 72% 96%);border:1px solid hsl(0 60% 85%);font-size:13px;line-height:1.5}
 .topo-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+/* ── A* pathfinding (AstarSection) ── */
+.pf-toggle{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px}
+.pf-toggle button{font:inherit;font-size:12.5px;padding:6px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.pf-toggle button.on{background:hsl(212 60% 92%);border-color:hsl(212 55% 72%);font-weight:600}
+.pf-clear{color:hsl(0 55% 45%)}
+.pf-grid{display:grid;gap:2px;margin-bottom:12px;max-width:560px;user-select:none}
+.pf-cell{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:3px;background:#f1f4f8;cursor:pointer}
+.pf-cell.exp{background:hsl(212 60% 86%)}
+.pf-cell.path{background:hsl(45 90% 62%)}
+.pf-cell.wall{background:hsl(220 15% 35%);cursor:default}
+.pf-cell.start{background:hsl(150 55% 50%);color:#fff;cursor:default}
+.pf-cell.goal{background:hsl(0 65% 58%);color:#fff;cursor:default}
+.pf-stats{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);align-items:center}
+.pf-stats b{font-family:var(--mono);color:var(--ink)}
+.pf-cmp{font-size:11.5px}
+.pf-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+.pf-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
