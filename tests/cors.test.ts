@@ -78,4 +78,23 @@ describe('CORS decisions', () => {
     expect(d.readable).toBe(false);
     expect(d.actual.reason).toMatch(/must be a specific origin/);
   });
+
+  it('credentialed preflight: "*" is NOT a wildcard for methods/headers', () => {
+    // specific allow-origin + allow-credentials, but Allow-Methods/Headers are "*".
+    // Per the Fetch standard, "*" matches no real method/header under credentials, so
+    // the credentialed PUT with a custom header must be blocked.
+    const req: Request = { method: 'PUT', customHeaders: ['X-Token'], contentType: 'application/json', credentials: true };
+    const d = evaluate('https://app.com', 'https://api.com/x', req,
+      { allowOrigin: 'https://app.com', allowMethods: ['*'], allowHeaders: ['*'], allowCredentials: true });
+    expect(d.preflight?.ok).toBe(false);
+    expect(d.readable).toBe(false);
+  });
+
+  it('credentialed preflight succeeds only when method/header are listed literally', () => {
+    const req: Request = { method: 'PUT', customHeaders: ['X-Token'], contentType: 'application/json', credentials: true };
+    const d = evaluate('https://app.com', 'https://api.com/x', req,
+      { allowOrigin: 'https://app.com', allowMethods: ['PUT'], allowHeaders: ['X-Token', 'Content-Type'], allowCredentials: true });
+    expect(d.preflight?.ok).toBe(true);
+    expect(d.readable).toBe(true);
+  });
 });

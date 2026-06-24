@@ -65,9 +65,13 @@ export function evaluate(pageUrl: string, targetUrl: string, req: Request, serve
   const simple = isSimple(req);
   let preflight: Check | undefined;
   if (!simple) {
-    const methodOk = server.allowMethods.includes('*') || server.allowMethods.map((m) => m.toUpperCase()).includes(req.method.toUpperCase());
+    // a "*" is NOT a wildcard when credentials are included — it matches the literal "*"
+    // only (WHATWG Fetch), same rule already applied to the origin above
+    const methodWild = !req.credentials && server.allowMethods.includes('*');
+    const methodOk = methodWild || server.allowMethods.map((m) => m.toUpperCase()).includes(req.method.toUpperCase());
     const lowerAllowed = server.allowHeaders.map((h) => h.toLowerCase());
-    const missing = req.customHeaders.filter((h) => !lowerAllowed.includes('*') && !lowerAllowed.includes(h.toLowerCase()));
+    const headerWild = !req.credentials && lowerAllowed.includes('*');
+    const missing = req.customHeaders.filter((h) => !headerWild && !lowerAllowed.includes(h.toLowerCase()));
     const originCheck = originAllowed(server, page, req.credentials);
     if (!originCheck.ok) preflight = originCheck;
     else if (!methodOk) preflight = { ok: false, reason: `method ${req.method} not in Access-Control-Allow-Methods` };
