@@ -91,6 +91,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'vclock', label: 'Vector clocks', icon: '🕰️' },
   { id: 'crdt', label: 'CRDTs', icon: '🧬' },
   { id: 'gossip', label: 'Gossip spread', icon: '🗣️' },
+  { id: 'paxos', label: 'Paxos consensus', icon: '🏛️' },
   { id: 'raft', label: 'Raft election', icon: '👑' },
   { id: 'cap', label: 'CAP theorem', icon: '⚖️' },
   { id: 'quorum', label: 'Quorum (R+W>N)', icon: '🗳️' },
@@ -109,7 +110,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'schnorr', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'cookies', 'cors', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'huffman', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'lamport', 'vclock', 'crdt', 'gossip', 'raft', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'lb', 'bloom', 'lamport', 'vclock', 'crdt', 'gossip', 'paxos', 'raft', 'cap', 'quorum', 'replication', 'twopc'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
