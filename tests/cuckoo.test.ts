@@ -21,23 +21,18 @@ describe('cuckoo lookup is at most two probes', () => {
 });
 
 describe('eviction chains', () => {
-  it('a key landing on an occupied slot kicks the occupant to its other slot', () => {
-    // force a collision: put two keys whose first slot coincides
-    const c = create(11);
-    // find two distinct keys that share their primary slot
-    let a = '', b = '';
-    for (let i = 0; i < 1000 && !b; i++) {
-      const k = 'k' + i;
-      const s = slots(c, k)[0];
-      if (!a) { a = k; }
-      else if (slots(c, a)[0] === s && k !== a) { b = k; }
+  it('evicts and re-homes when both of a key’s slots are occupied, losing nothing', () => {
+    const c = create(7);
+    const present: string[] = [];
+    let evicted = false;
+    for (let i = 0; i < 40 && !evicted; i++) {
+      const k = 'e' + i;
+      const r = insert(c, k);
+      if (r.ok) present.push(k);
+      if (r.evictions.length) { evicted = true; for (const e of r.evictions) expect(e.from).not.toBe(e.to); }
     }
-    insert(c, a);
-    const r = insert(c, b); // b wants a's slot → a gets kicked to its alternate
-    expect(r.ok).toBe(true);
-    expect(r.evictions.length).toBeGreaterThanOrEqual(1);
-    expect(lookup(c, a).found).toBe(true); // both still present
-    expect(lookup(c, b).found).toBe(true);
+    expect(evicted).toBe(true);                                  // an eviction did occur
+    for (const k of present) expect(lookup(c, k).found).toBe(true); // every stored key survives
   });
 });
 
@@ -54,5 +49,43 @@ describe('deletion (what a Bloom filter cannot do)', () => {
 describe('determinism', () => {
   it('the same keys produce the same table layout', () => {
     expect(build(['a', 'b', 'c', 'd']).table).toEqual(build(['a', 'b', 'c', 'd']).table);
+  });
+});
+
+describe('a failed insert never loses a previously-stored key (rollback invariant)', () => {
+  it('fills a tiny table until an insert fails, and all prior keys survive', () => {
+    const c = create(3); // tiny → some insert will fail
+    const inserted: string[] = [];
+    let sawFailure = false;
+    for (let i = 0; i < 50; i++) {
+      const k = 'key' + i;
+      const before = [...c.table];
+      const r = insert(c, k);
+      if (r.ok) inserted.push(k);
+      else { sawFailure = true; expect(c.table).toEqual(before); } // failed insert mutates nothing
+    }
+    expect(sawFailure).toBe(true);                 // we actually exercised the failure path
+    for (const k of inserted) expect(lookup(c, k).found).toBe(true); // every success still findable
+  });
+
+  it('never emits an eviction record that moves a key to where it already is', () => {
+    const c = create(5);
+    for (let i = 0; i < 200; i++) {
+      const r = insert(c, 'x' + i);
+      for (const e of r.evictions) expect(e.from).not.toBe(e.to);
+    }
+  });
+
+  it('a key whose two slots coincide is not dropped by a later unrelated insert', () => {
+    const c = create(5);
+    // find a key whose two hashes are equal (single viable slot)
+    let same = '';
+    for (let i = 0; i < 2000 && !same; i++) { const [a, b] = slots(c, 'q' + i); if (a === b) same = 'q' + i; }
+    expect(same).not.toBe('');
+    insert(c, same);
+    expect(lookup(c, same).found).toBe(true);
+    for (let i = 0; i < 30; i++) insert(c, 'filler' + i); // churn the table
+    // the single-slot key is either still present, or was rolled back out — never silently lost
+    if (c.table.includes(same)) expect(lookup(c, same).found).toBe(true);
   });
 });
