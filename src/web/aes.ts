@@ -112,3 +112,50 @@ export function aesCbcEncrypt(bytes: Uint8Array, key: Uint8Array, iv: Uint8Array
   }
   return out;
 }
+
+// ── AES round internals: a full step-by-step trace, for the "inside AES" view ──
+// Same FIPS-197 operations as encryptBlock, but snapshotting the 16-byte state
+// (column-major: index = col*4 + row) after every transform so a UI can animate
+// confusion (SubBytes) and diffusion (ShiftRows + MixColumns) round by round.
+
+/** The AES S-box, exposed so the view can show the SubBytes lookup table. */
+export const AES_SBOX = SBOX;
+
+export type AesOp = 'input' | 'AddRoundKey' | 'SubBytes' | 'ShiftRows' | 'MixColumns';
+
+export interface AesStep {
+  round: number; // 0 = initial whitening; 1..10 = the cipher rounds
+  op: AesOp;
+  state: Uint8Array; // the 16-byte state AFTER this op (column-major)
+  roundKey?: Uint8Array; // the round key XOR'd in, for AddRoundKey steps
+}
+
+/** Trace encrypting one 16-byte block: every state between every transform. */
+export function aesTrace(block: Uint8Array, key: Uint8Array): AesStep[] {
+  if (block.length !== 16) throw new Error('AES block must be 16 bytes');
+  const rks = expandKey128(key);
+  const s = block.slice();
+  const steps: AesStep[] = [{ round: 0, op: 'input', state: s.slice() }];
+  addRoundKey(s, rks[0]);
+  steps.push({ round: 0, op: 'AddRoundKey', state: s.slice(), roundKey: rks[0].slice() });
+  for (let r = 1; r <= 9; r++) {
+    subBytes(s); steps.push({ round: r, op: 'SubBytes', state: s.slice() });
+    shiftRows(s); steps.push({ round: r, op: 'ShiftRows', state: s.slice() });
+    mixColumns(s); steps.push({ round: r, op: 'MixColumns', state: s.slice() });
+    addRoundKey(s, rks[r]); steps.push({ round: r, op: 'AddRoundKey', state: s.slice(), roundKey: rks[r].slice() });
+  }
+  subBytes(s); steps.push({ round: 10, op: 'SubBytes', state: s.slice() });
+  shiftRows(s); steps.push({ round: 10, op: 'ShiftRows', state: s.slice() });
+  addRoundKey(s, rks[10]); steps.push({ round: 10, op: 'AddRoundKey', state: s.slice(), roundKey: rks[10].slice() });
+  return steps;
+}
+
+/** How many of the 16 state bytes differ between two traces, step by step
+ *  (diffusion: flip one input bit and watch it spread to the whole block). */
+export function aesDiffusion(a: AesStep[], b: AesStep[]): number[] {
+  return a.map((step, i) => {
+    let n = 0;
+    for (let j = 0; j < 16; j++) if (step.state[j] !== b[i].state[j]) n++;
+    return n;
+  });
+}
