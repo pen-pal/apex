@@ -4462,3 +4462,52 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ng-explain{flex:1;min-width:240px;margin:0;font-size:12.5px;line-height:1.55;color:var(--ink)}
 .ng-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .ng-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+
+/* ── Chandy-Lamport snapshot (ChandySection) ── */
+.cl-procs{display:flex;gap:18px;justify-content:center;margin:14px 0}
+.cl-proc{flex:1;max-width:240px;background:#fafbfc;border:1.5px solid var(--line);border-radius:12px;padding:14px;text-align:center;transition:all .2s}
+.cl-proc.rec{border-color:hsl(212 65% 55%);background:hsl(212 55% 97.5%);box-shadow:0 0 0 3px hsl(212 60% 92%)}
+.cl-pname{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--muted)}
+.cl-bal{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--ink);margin:3px 0}
+.cl-recbadge{font-size:11px;color:var(--muted)}
+.cl-proc.rec .cl-recbadge{color:hsl(212 65% 45%);font-weight:600}
+.cl-chans{display:flex;flex-direction:column;gap:8px;margin:10px 0 16px}
+.cl-chan{display:grid;grid-template-columns:96px 1fr 150px;align-items:center;gap:10px}
+.cl-clabel{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right}
+.cl-wire{display:flex;align-items:center;gap:6px;min-height:30px;padding:4px 10px;background:#f4f6f9;border-radius:8px;border:1px dashed var(--line)}
+.cl-empty{font-size:11px;color:#aab;font-style:italic}
+.cl-item{font-family:var(--mono);font-size:11.5px;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.cl-item.money{background:hsl(150 50% 90%);color:hsl(150 45% 28%);border:1px solid hsl(150 40% 75%)}
+.cl-item.marker{background:hsl(0 65% 92%);color:hsl(0 55% 38%);border:1px solid hsl(0 50% 78%);font-weight:600}
+.cl-captured{font-size:11px;color:hsl(150 45% 35%);font-family:var(--mono)}
+.cl-step{margin:6px 0 14px}
+.cl-stepdesc{font-size:13px;line-height:1.5;color:var(--ink);min-height:38px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cl-tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:5px;font-weight:700;flex:none}
+.cl-tag.send{background:hsl(40 80% 90%);color:hsl(35 70% 35%)}
+.cl-tag.recv-money{background:hsl(150 45% 90%);color:hsl(150 45% 30%)}
+.cl-tag.recv-marker{background:hsl(0 60% 92%);color:hsl(0 55% 38%)}
+.cl-tag.init{background:hsl(265 50% 92%);color:hsl(265 45% 42%)}
+.cl-controls{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.cl-controls button{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.cl-controls button:hover:not(:disabled){background:#eef1f5}
+.cl-controls button:disabled{opacity:.4;cursor:default}
+.cl-controls .cl-play{background:hsl(212 70% 50%);color:#fff;border-color:hsl(212 70% 50%);font-weight:600}
+.cl-count{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-left:4px}
+.cl-result{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fcfcfd;transition:all .2s}
+.cl-result.done{border-color:hsl(150 40% 75%);background:hsl(150 40% 98%)}
+.cl-result h3{margin:0 0 10px;font-size:13.5px}
+.cl-ledger{display:flex;flex-direction:column;gap:5px;max-width:420px}
+.cl-lrow{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-bottom:1px dotted var(--line)}
+.cl-lrow b{font-family:var(--mono)}
+.cl-totals{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+.cl-tcol{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 12px;border-radius:9px;min-width:96px}
+.cl-tcol.bad{background:hsl(0 60% 96%)}
+.cl-tcol.good{background:hsl(150 45% 95%)}
+.cl-tnum{font-family:var(--mono);font-size:20px;font-weight:700}
+.cl-tcol.bad .cl-tnum{color:hsl(0 60% 48%)}
+.cl-tcol.good .cl-tnum{color:hsl(150 45% 35%)}
+.cl-tcap{font-size:10px;color:var(--muted);text-align:center;line-height:1.3}
+.cl-verdict{font-size:12.5px;font-weight:600;padding:8px 12px;border-radius:8px}
+.cl-verdict.ok{background:hsl(150 50% 90%);color:hsl(150 45% 28%)}
+.cl-verdict.no{background:hsl(0 60% 90%);color:hsl(0 55% 35%)}
+.cl-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
