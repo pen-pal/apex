@@ -2011,3 +2011,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mc-join.in{background:hsl(212 70% 94%);color:hsl(212 70% 38%);border-color:hsl(212 60% 82%)}
 .mc-summary{margin:18px 0 8px;padding:11px 14px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);font-size:13px;line-height:1.55}
 .mc-note{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+/* ── ARQ (ArqSection) ── */
+.arq-controls{display:flex;gap:20px;flex-wrap:wrap;margin:8px 0 16px}
+.arq-controls label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono)}
+.arq-controls input{accent-color:hsl(212 70% 50%);min-width:160px}
+.arq-proto{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:#fbfcfe}
+.arq-proto-h{font-size:13px;margin-bottom:10px;color:var(--ink)}
+.arq-tl-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.arq-cell{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:38px;height:42px;
+  border-radius:8px;font-family:var(--mono);border:2px solid transparent}
+.arq-fn{font-size:13px;font-weight:700;line-height:1}
+.arq-sym{font-size:11px;line-height:1.4}
+.arq-cell.ok{background:hsl(150 50% 90%);color:hsl(150 55% 28%)}
+.arq-cell.lost{background:hsl(0 75% 90%);color:hsl(0 65% 40%)}
+.arq-cell.disc{background:#e6e9ee;color:#7c8696}
+.arq-cell.buf{background:hsl(212 70% 91%);color:hsl(212 70% 36%)}
+.arq-cell.resent{background:hsl(150 50% 92%);color:hsl(150 55% 28%);border-color:hsl(150 55% 50%);border-style:dashed}
+.arq-timeout{font-size:11px;color:hsl(0 65% 48%);font-weight:600;padding:0 8px;white-space:nowrap}
+.arq-stat{font-size:12.5px;color:var(--muted);margin-top:9px}
+.arq-stat strong{color:var(--ink)}
+.arq-legend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:14px 0 6px}
+.arq-legend .arq-cell{width:24px;height:24px;border-radius:6px}
+.arq-legend .arq-sym{font-size:10px}
+.arq-note{font-size:12.5px;color:var(--muted);line-height:1.6}
