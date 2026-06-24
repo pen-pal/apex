@@ -30,6 +30,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'congestion', label: 'TCP congestion', icon: '📈' },
   { id: 'flow', label: 'Flow control', icon: '🪟' },
   { id: 'arq', label: 'ARQ (GBN vs SR)', icon: '🔁' },
+  { id: 'rto', label: 'RTO & Karn', icon: '⏱️' },
   { id: 'queueing', label: 'M/M/1 queueing', icon: '📉' },
   { id: 'bufferbloat', label: 'Bufferbloat', icon: '🚰' },
   { id: 'qos', label: 'QoS scheduling', icon: '🚦' },
@@ -82,7 +83,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'icmp', 'multicast', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'dns', 'mdns', 'encdns'] },
-  { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'cdn', 'ratelimit'] },
+  { label: 'Transport & web', icon: '🚀', ids: ['congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'aesround', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'rsa', 'ecc', 'ecdsa', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'shamir', 'pow', 'ratchet', 'merkle'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'identity', 'cookies', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'errors'] },

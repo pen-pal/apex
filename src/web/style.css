@@ -2513,3 +2513,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rv-monitor{font-size:13px;line-height:1.55;padding:11px 14px;border-radius:10px;background:hsl(38 85% 95%);border:1px solid hsl(38 70% 82%);margin-bottom:10px}
 .rv-foot,.rv-ref{font-size:12.5px;color:var(--muted);line-height:1.6}
 .rv-ref{color:hsl(212 70% 45%)}
+
+/* ── TCP RTO / Karn (RtoSection) ── */
+.rto-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}
+.rto-controls label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono)}
+.rto-controls input[type=range]{accent-color:hsl(212 70% 50%);min-width:160px}
+.rto-controls button{font:inherit;font-size:12.5px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.rto-controls button:nth-of-type(1){background:hsl(212 70% 50%);color:#fff;border-color:transparent}
+.rto-loss{color:hsl(0 65% 48%);font-weight:600}
+.rto-loss:disabled,.rto-ghost:disabled{opacity:.4;cursor:not-allowed}
+.rto-ghost{color:var(--muted)}
+.rto-stats{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.rto-stats strong{color:var(--ink);font-family:var(--mono)}
+.rto-eff strong{color:hsl(0 65% 46%)}
+.rto-chart{background:#fbfcfe;border:1px solid var(--line);border-radius:11px}
+.rto-axis{stroke:var(--line);stroke-width:1}
+.rto-rto{fill:none;stroke:hsl(0 70% 58%);stroke-width:2}
+.rto-srtt{fill:none;stroke:hsl(212 70% 52%);stroke-width:2}
+.rto-sample{fill:hsl(150 55% 42%)}
+.rto-lost{fill:hsl(0 70% 50%);font-size:11px;text-anchor:middle;font-weight:700}
+.rto-ylab{font-size:9px;fill:#9aa4b2;font-family:var(--mono)}
+.rto-leg{font-size:9px;font-family:var(--mono);font-weight:700}
+.rto-leg.rto{fill:hsl(0 65% 48%)}
+.rto-leg.srtt{fill:hsl(212 70% 42%)}
+.rto-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
