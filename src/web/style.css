@@ -4710,3 +4710,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rty-dot.failure{background:hsl(0 65% 52%)}
 .rty-dot.shed{background:hsl(215 12% 65%)}
 .rty-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:16px}
+
+/* ── HTTP request smuggling (SmuggleSection) ── */
+.smug-tabs{display:flex;align-items:center;gap:8px;margin:12px 0 14px;flex-wrap:wrap}
+.smug-tabs button{font:inherit;font-family:var(--mono);font-size:13px;font-weight:700;padding:7px 16px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);cursor:pointer}
+.smug-tabs button.on{background:hsl(0 60% 50%);border-color:hsl(0 60% 50%);color:#fff}
+.smug-tabnote{font-size:12px;color:var(--muted)}
+.smug-tabnote b{color:var(--ink)}
+.smug-parsers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.smug-parser{padding:10px 13px;border-radius:9px;background:hsl(212 50% 97%);border:1px solid hsl(212 40% 88%);display:flex;flex-direction:column;gap:3px}
+.smug-parser.back{background:hsl(265 40% 97.5%);border-color:hsl(265 35% 88%)}
+.smug-plbl{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink)}
+.smug-pval{font-size:11.5px;color:var(--muted)}
+.smug-pcons{font-family:var(--mono);font-size:11px;color:hsl(212 60% 45%)}
+.smug-parser.back .smug-pcons{color:hsl(265 45% 50%)}
+.smug-rawwrap{margin-bottom:14px}
+.smug-rawlbl{font-size:11.5px;color:var(--muted);margin-bottom:5px}
+.smug-raw,.smug-next{font-family:var(--mono);font-size:12px;line-height:1.5;background:#0f1422;color:#d6deeb;padding:12px 14px;border-radius:9px;overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin:0}
+.smug-crlf{color:#5a6785}
+.smug-mark{background:hsl(0 70% 55%);color:#fff;border-radius:2px;padding:0 1px}
+.smug-explain{font-size:13px;line-height:1.55;color:var(--ink)}
+.smug-explain b{font-family:var(--mono)}
+.smug-hl{color:hsl(0 65% 52%)}
+.smug-next{margin-top:8px}
+.smug-victim{color:#5a6785}
+.smug-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+@media(max-width:640px){.smug-parsers{grid-template-columns:1fr}}
