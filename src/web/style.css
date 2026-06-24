@@ -4370,3 +4370,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fence-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:8px}
 .fence-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
 @media(max-width:640px){.fence-cols{grid-template-columns:1fr}}
+
+/* ── Hash chain / blockchain (HashChainSection) ── */
+.hch-reset{display:flex;align-items:center;gap:14px;margin:10px 0 14px}
+.hch-reset button{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
+.hch-reset button:disabled{opacity:.4;cursor:default}
+.hch-status{font-size:12.5px;font-weight:600}
+.hch-status.ok{color:hsl(150 50% 38%)}
+.hch-status.bad{color:hsl(0 60% 48%)}
+.hch-chain{display:flex;flex-direction:column;gap:0}
+.hch-block{border:1.5px solid hsl(150 42% 75%);border-radius:11px;padding:12px 14px;background:hsl(150 45% 98%);position:relative}
+.hch-block:not(:last-child){margin-bottom:22px}
+.hch-block:not(:last-child)::after{content:'↓ prev hash';position:absolute;left:24px;bottom:-19px;font-size:9px;color:var(--muted)}
+.hch-block.broken{border-color:hsl(0 60% 72%);background:hsl(0 60% 98%)}
+.hch-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.hch-idx{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700}
+.hch-flag{font-size:11px;color:hsl(0 60% 45%);font-weight:600}
+.hch-field{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--muted);margin-bottom:5px}
+.hch-field input{font-family:var(--mono);font-size:12.5px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;flex:1;min-width:0}
+.hch-hash{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:2px 7px;border-radius:5px;color:hsl(212 50% 42%)}
+.hch-hash.changed{background:hsl(0 60% 93%);color:hsl(0 55% 45%)}
+.hch-was{font-size:11px;color:hsl(0 55% 45%);margin-top:4px}
+.hch-was code{font-family:var(--mono);background:rgba(0,0,0,.04);padding:1px 5px;border-radius:4px}
+.hch-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:16px}
