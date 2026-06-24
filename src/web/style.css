@@ -1783,3 +1783,44 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ag-tamper{font-size:12.5px;color:var(--muted);margin:8px 0 2px}
 .ag-tamper button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--panel);
   border-radius:6px;padding:2px 8px;cursor:pointer;margin-left:4px}
+
+/* ── RSA (RsaSection) ── */
+.rsa-pick{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 14px;font-size:13.5px}
+.rsa-pick label{display:flex;align-items:center;gap:6px}
+.rsa-pick select,.rsa-pick input,.rsa-mfield input{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line);
+  border-radius:7px;background:#fbfcfe;color:var(--ink)}
+.rsa-pick input{width:84px}
+.rsa-err{padding:10px 13px;border-radius:9px;background:hsl(38 90% 95%);border:1px solid hsl(38 70% 80%);font-size:13px}
+
+.rsa-keys{font-family:var(--mono);font-size:13.5px;display:flex;flex-direction:column;gap:7px}
+.rsa-step b{color:hsl(212 70% 42%)}
+.rsa-step b.priv,.priv{color:hsl(0 70% 48%)}
+.rsa-keypair{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 2px}
+.rsa-pub,.rsa-prv{padding:7px 11px;border-radius:9px;font-size:13px}
+.rsa-pub{background:hsl(212 75% 95%);border:1px solid hsl(212 60% 85%);color:hsl(212 75% 36%)}
+.rsa-prv{background:hsl(0 75% 96%);border:1px solid hsl(0 60% 86%);color:hsl(0 65% 42%)}
+.rsa-prv span{opacity:.7;font-size:11.5px}
+.rsa-trap{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:6px;
+  padding:9px 12px;background:#f7f9fc;border:1px solid var(--line);border-radius:9px}
+.rsa-trap code{background:#fff;padding:1px 6px;border-radius:5px;border:1px solid var(--line)}
+.rsa-coprime{display:inline-block;margin-top:3px;color:var(--muted)}
+
+.rsa-mfield{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0 10px}
+.rsa-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;margin:6px 0}
+.rsa-flow code{padding:4px 8px;border-radius:6px;background:#eef1f5}
+.rsa-flow code.rsa-pub{background:hsl(212 75% 94%);color:hsl(212 75% 36%)}
+.rsa-flow code.rsa-ct{background:hsl(150 50% 92%);color:hsl(150 55% 28%)}
+.rsa-arrow{color:var(--muted);font-size:12px}
+.rsa-ok{color:hsl(150 60% 34%);font-weight:600}.rsa-bad{color:hsl(0 70% 48%);font-weight:600}
+
+.rsa-trace{margin:8px 0 4px;font-size:12.5px}
+.rsa-trace summary{cursor:pointer;color:var(--muted);font-family:var(--mono)}
+.rsa-trace table{border-collapse:collapse;margin-top:8px;font-family:var(--mono);font-size:12px}
+.rsa-trace th,.rsa-trace td{border:1px solid var(--line);padding:4px 10px;text-align:right}
+.rsa-trace th{background:#f2f5f9;color:var(--muted);font-weight:600}
+
+.rsa-forge{display:flex;align-items:center;gap:7px;font-size:13px;margin:6px 0;cursor:pointer}
+.rsa-forge input{width:15px;height:15px;accent-color:hsl(0 70% 55%)}
+.rsa-verdict{padding:10px 13px;border-radius:9px;font-size:13.5px}
+.rsa-verdict.good{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.rsa-verdict.bad{background:hsl(0 75% 97%);border:1px solid hsl(0 65% 88%)}
