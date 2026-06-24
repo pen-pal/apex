@@ -26,6 +26,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'vlan', label: 'VLAN tagging', icon: '🏷️' },
   { id: 'ntp', label: 'NTP clock sync', icon: '🕰️' },
   { id: 'btree', label: 'B+tree index', icon: '🌲' },
+  { id: 'pagereplace', label: 'Page replacement', icon: '📄' },
   { id: 'lsm', label: 'LSM-tree', icon: '🪵' },
   { id: 'mvcc', label: 'MVCC isolation', icon: '🔀' },
   { id: 'wal', label: 'Write-Ahead Log', icon: '📒' },
@@ -168,7 +169,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'dfa', 'huffman', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'hlc', 'vclock', 'crdt', 'gossip', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
-  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
