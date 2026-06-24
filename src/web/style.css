@@ -2324,3 +2324,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .qu-m span{color:var(--muted)}
 .qu-m strong{font-family:var(--mono)}
 .qu-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── Shamir Secret Sharing (ShamirSection) ── */
+.sh-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}
+.sh-controls label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-family:var(--mono)}
+.sh-controls input[type=range]{accent-color:hsl(212 70% 50%);min-width:150px}
+.sh-reroll{font:inherit;font-size:12.5px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer;align-self:flex-end}
+.sh-poly{font-family:var(--mono);font-size:13px;padding:9px 13px;background:#f7f9fc;border:1px solid var(--line);border-radius:9px;margin-bottom:14px;overflow-wrap:anywhere}
+.sh-mod{color:var(--muted)}
+.sh-hidden{color:hsl(0 65% 48%);font-weight:600}
+.sh-step{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+.sh-shares{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.sh-share{display:flex;flex-direction:column;align-items:center;gap:2px;font:inherit;padding:9px 14px;border:1px solid var(--line);border-radius:10px;background:#fbfcfe;cursor:pointer}
+.sh-share.on{border-color:hsl(150 50% 50%);background:hsl(150 50% 96%);box-shadow:0 0 0 2px hsl(150 50% 50% / .15)}
+.sh-s-x{font-size:11px;color:var(--muted)}
+.sh-s-pt{font-family:var(--mono);font-size:13px;font-weight:600;color:hsl(212 70% 40%)}
+.sh-vault{padding:12px 15px;border-radius:11px;font-size:13.5px;line-height:1.55;margin-bottom:10px}
+.sh-vault.open{background:hsl(150 55% 96%);border:1px solid hsl(150 45% 84%)}
+.sh-vault.locked{background:#f4f6fa;border:1px solid var(--line)}
+.sh-note{font-size:12.5px;color:var(--muted);line-height:1.6}
