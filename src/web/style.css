@@ -3404,3 +3404,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ttl-verdict.ok{background:hsl(150 50% 95%);border:1px solid hsl(150 42% 83%)}
 .ttl-verdict.bad{background:hsl(0 72% 96%);border:1px solid hsl(0 60% 86%)}
 .ttl-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* ── Bandwidth-Delay Product (BdpSection) ── */
+.bdp-controls{display:flex;flex-direction:column;gap:10px;margin:10px 0 16px}
+.bdp-controls label{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--muted)}
+.bdp-controls input[type=range]{flex:1;max-width:360px;accent-color:hsl(212 70% 50%)}
+.bdp-controls b{font-family:var(--mono);font-size:13px;color:var(--ink);min-width:88px}
+.bdp-pipe{position:relative;height:40px;border-radius:20px;background:#eef1f6;border:1px solid var(--line);overflow:hidden;margin-bottom:14px}
+.bdp-fill{height:100%;background:linear-gradient(90deg,hsl(150 60% 50%),hsl(180 55% 48%));border-radius:20px 0 0 20px;transition:width .2s}
+.bdp-pipe-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:var(--ink)}
+.bdp-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.bdp-stat{flex:1;min-width:120px;padding:10px 13px;border-radius:10px;background:#f4f6f9;border:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.bdp-stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.bdp-stat b{font-family:var(--mono);font-size:16px}
+.bdp-stat.good b{color:hsl(150 50% 38%)}
+.bdp-stat.bad b{color:hsl(0 60% 48%)}
+.bdp-verdict{padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.5}
+.bdp-verdict.ok{background:hsl(150 50% 95%);border:1px solid hsl(150 42% 82%)}
+.bdp-verdict.bad{background:hsl(38 75% 94%);border:1px solid hsl(38 60% 80%)}
+.bdp-verdict b{font-family:inherit}
+.bdp-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
+.bdp-foot code{font-family:var(--mono);font-size:11.5px;background:#f2f5f9;padding:1px 5px;border-radius:4px}
