@@ -45,9 +45,8 @@ export function BgpSelectSection() {
 
         <div className="bsel-cascade">
           {steps.map((s, i) => {
-            const active = s.survivors.length > 0;
             return (
-              <div key={i} className={`bsel-step ${s.decided ? 'decided' : ''} ${active ? '' : 'skip'}`}>
+              <div key={i} className={`bsel-step ${s.decided ? 'decided' : ''} ${s.ran ? '' : 'skip'}`}>
                 <span className="bsel-step-n">{i + 1}</span>
                 <span className="bsel-step-name">{s.name}</span>
                 <span className="bsel-step-crit">{s.criterion}</span>

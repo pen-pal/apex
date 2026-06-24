@@ -17,7 +17,7 @@ export interface Route {
   routerId: number; // lowest wins — the final, always-decisive tiebreaker
 }
 
-export interface Step { name: string; criterion: string; survivors: string[]; decided: boolean }
+export interface Step { name: string; criterion: string; survivors: string[]; decided: boolean; ran: boolean }
 
 const RULES: { name: string; criterion: string; key: (r: Route) => number; better: 'max' | 'min' }[] = [
   { name: 'Local Preference', criterion: 'highest LOCAL_PREF', key: (r) => r.localPref, better: 'max' },
@@ -36,13 +36,13 @@ export function selectBest(routes: Route[]): { winner: Route | null; steps: Step
   const steps: Step[] = [];
   let decidedYet = survivors.length <= 1;
   for (const rule of RULES) {
-    if (survivors.length <= 1) { steps.push({ name: rule.name, criterion: rule.criterion, survivors: survivors.map((r) => r.id), decided: false }); continue; }
+    if (survivors.length <= 1) { steps.push({ name: rule.name, criterion: rule.criterion, survivors: survivors.map((r) => r.id), decided: false, ran: false }); continue; }
     const vals = survivors.map(rule.key);
     const best = rule.better === 'max' ? Math.max(...vals) : Math.min(...vals);
     survivors = survivors.filter((r) => rule.key(r) === best);
     const decided = !decidedYet && survivors.length === 1;
     if (decided) decidedYet = true;
-    steps.push({ name: rule.name, criterion: rule.criterion, survivors: survivors.map((r) => r.id), decided });
+    steps.push({ name: rule.name, criterion: rule.criterion, survivors: survivors.map((r) => r.id), decided, ran: true });
   }
   return { winner: survivors[0] ?? null, steps };
 }
