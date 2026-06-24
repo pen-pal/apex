@@ -11,6 +11,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'nat', label: 'NAT / PAT', icon: '🔀' },
   { id: 'traceroute', label: 'Traceroute', icon: '🛰️' },
   { id: 'subnet', label: 'Subnetting', icon: '🧮' },
+  { id: 'pmtud', label: 'Path MTU Discovery', icon: '📏' },
   { id: 'fragment', label: 'IP fragmentation', icon: '🧩' },
   { id: 'natpunch', label: 'NAT traversal', icon: '🕳️' },
   { id: 'ipcompare', label: 'IPv4 vs IPv6', icon: '⇄' },
@@ -108,7 +109,7 @@ export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_
 export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
-  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'ipcompare', 'slaac', 'icmp', 'multicast', 'vlan', 'ntp'] },
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'slaac', 'icmp', 'multicast', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'dns', 'dnssec', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'congestion', 'flow', 'arq', 'rto', 'queueing', 'bufferbloat', 'qos', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'cdn', 'ratelimit'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'pow', 'ratchet', 'merkle'] },
