@@ -55,3 +55,34 @@ describe('version visibility inspection', () => {
     expect(view.find((r) => r.visible)!.version.value).toBe('new');
   });
 });
+
+describe('write-write conflict (first-updater-wins, snapshot isolation)', () => {
+  const snap = (txid: number, committed: number[]): Snapshot => ({ txid, committed: new Set(committed) });
+
+  it('rejects a second concurrent writer instead of losing the update', () => {
+    const store = emptyStore();
+    write(store, 'b', '100', snap(1, [])); // tx1 commits the row
+    const t2 = snap(2, [1]); // t2 and t3 are concurrent: neither sees the other
+    const t3 = snap(3, [1]);
+    expect(write(store, 'b', '200', t2)).toMatchObject({ ok: true, conflict: false }); // first writer wins
+    expect(write(store, 'b', '300', t3)).toMatchObject({ ok: false, conflict: true }); // second is aborted
+  });
+
+  it('leaves exactly ONE live version after the conflict (no leak)', () => {
+    const store = emptyStore();
+    write(store, 'b', '100', snap(1, []));
+    write(store, 'b', '200', snap(2, [1]));
+    write(store, 'b', '300', snap(3, [1])); // conflict → rejected, must not append a parallel version
+    const fullyCaughtUp = snap(9, [1, 2, 3]);
+    const visibleCount = inspect(store, 'b', fullyCaughtUp).filter((x) => x.visible).length;
+    expect(visibleCount).toBe(1); // before the fix this was 2 (the bug)
+    expect(read(store, 'b', fullyCaughtUp).value).toBe('200'); // t2's write survived, t3's was rejected
+  });
+
+  it('still allows a serial writer who sees the previous write', () => {
+    const store = emptyStore();
+    write(store, 'b', '100', snap(1, []));
+    expect(write(store, 'b', '200', snap(2, [1])).ok).toBe(true); // sees tx1 → no conflict
+    expect(write(store, 'b', '300', snap(3, [1, 2])).ok).toBe(true); // sees tx1,tx2 → no conflict
+  });
+});

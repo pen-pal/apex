@@ -28,12 +28,25 @@ export function read(store: Store, key: string, snap: Snapshot): ReadResult {
   return { value: v ? v.value : null, versionsTotal: versions.length };
 }
 
-/** Write a new version: retire the version this txn currently sees, append the new one. */
-export function write(store: Store, key: string, value: string, snap: Snapshot): void {
+export interface WriteResult { ok: boolean; conflict: boolean; reason: string }
+
+/** Write a new version: retire the version this txn sees and append a new one. Enforces snapshot
+ *  isolation's FIRST-UPDATER-WINS rule — if a concurrent transaction (one this snapshot can't see)
+ *  already wrote this row, the write is rejected as a write-write conflict instead of silently losing
+ *  the update and leaking a second live version. */
+export function write(store: Store, key: string, value: string, snap: Snapshot): WriteResult {
   const versions = store[key] ?? (store[key] = []);
   const cur = versions.find((ver) => visible(ver, snap));
+  // conflict if a live version exists that our snapshot can't see (a concurrent writer beat us),
+  // or the version we'd update was already retired by a transaction outside our snapshot.
+  const concurrentWrite = versions.some((v) => v.xmax === null && v.xmin !== snap.txid && !snap.committed.has(v.xmin));
+  const retiredByConcurrent = cur != null && cur.xmax !== null && cur.xmax !== snap.txid && !snap.committed.has(cur.xmax);
+  if (concurrentWrite || retiredByConcurrent) {
+    return { ok: false, conflict: true, reason: `write-write conflict on "${key}": a concurrent transaction wrote it first → abort` };
+  }
   if (cur) cur.xmax = snap.txid;
   versions.unshift({ value, xmin: snap.txid, xmax: null }); // newest first
+  return { ok: true, conflict: false, reason: 'new version created' };
 }
 
 export const emptyStore = (): Store => ({});
