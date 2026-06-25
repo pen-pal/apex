@@ -27,6 +27,7 @@ function mulNoTable(a: number, b: number): number {
 })();
 
 export const gmul = (a: number, b: number): number => (a === 0 || b === 0 ? 0 : EXP[LOG[a] + LOG[b]]);
+// precondition: b ≠ 0 (denominators here are differences of DISTINCT interpolation x-coords, never zero)
 export const gdiv = (a: number, b: number): number => (a === 0 ? 0 : EXP[(LOG[a] - LOG[b] + 255) % 255]);
 const gsub = (a: number, b: number) => a ^ b; // subtraction == addition == XOR in GF(2^n)
 
