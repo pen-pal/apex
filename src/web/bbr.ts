@@ -52,7 +52,7 @@ export function startup(link: Link, rounds = 10): StartupRound[] {
     if (plateau) flat++; else flat = 0;
     out.push({ round: r, estBwMbps: next, plateau });
     est = next;
-    if (flat >= 2) break; // BtlBw found
+    if (flat >= 3) break; // BtlBw found — real BBR exits STARTUP after 3 rounds with no >25% growth
   }
   return out;
 }

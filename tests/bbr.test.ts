@@ -44,3 +44,11 @@ describe('BBR STARTUP bandwidth probing', () => {
     expect(s.some((r) => r.plateau)).toBe(true); // it noticed the plateau
   });
 });
+
+describe('STARTUP exit threshold', () => {
+  it('exits after exactly 3 flat rounds (matches real BBR full_bw_count ≥ 3)', () => {
+    const out = startup({ btlBwMbps: 100, minRttMs: 20 } as any, 20);
+    expect(out.filter((r) => r.plateau)).toHaveLength(3); // three plateaus, then stop
+    expect(out[out.length - 1].estBwMbps).toBe(100); // settled at BtlBw
+  });
+});
