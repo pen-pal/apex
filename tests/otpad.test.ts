@@ -31,3 +31,20 @@ describe('key reuse is fatal', () => {
     expect(hex(xorBytes(c1, c2))).toBe(hex(xorBytes(p1, p2))); // the pad vanishes
   });
 });
+
+describe('anchored to externally hand-computed bytes (not self-comparison)', () => {
+  it('pins a ciphertext to a hand-XORed value', () => {
+    // "YES" = 59 45 53; key = 10 20 30; XOR → 49 65 63  (computed by hand, independent of xorBytes)
+    expect(hex(otpEncrypt(enc('YES'), Uint8Array.from([0x10, 0x20, 0x30])))).toBe('496563');
+  });
+  it('pins the decoy key (perfect-secrecy witness) to a hand-XORed value', () => {
+    const c = Uint8Array.from([0x49, 0x65, 0x63]); // the ciphertext above
+    // key that maps c → "NOO" (4e 4f 4f): 49^4e=07, 65^4f=2a, 63^4f=2c
+    expect(hex(keyFor(c, enc('NOO')))).toBe('072a2c');
+    expect(hex(otpEncrypt(c, keyFor(c, enc('NOO'))))).toBe(hex(enc('NOO'))); // and it really decrypts to the decoy
+  });
+  it('a key shorter than the message only covers a prefix (OTP requires equal length)', () => {
+    // documents xorBytes’s min-length behaviour so a short key can’t be mistaken for safe encryption
+    expect(otpEncrypt(enc('HELLO'), enc('XY')).length).toBe(2);
+  });
+});

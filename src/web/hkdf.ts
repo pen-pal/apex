@@ -2,7 +2,9 @@
 // from-scratch SHA-256 so we can show real, verifiable derivations. HKDF is two
 // steps: EXTRACT condenses input keying material + a salt into a uniform pseudo-
 // random key (PRK); EXPAND stretches the PRK into as many output bytes as needed,
-// each block chained through HMAC. Tested against the published RFC 5869 vectors.
+// each block chained through HMAC. The HKDF/HMAC core is tested against the published RFC 5869 /
+// RFC 4231 vectors; the TLS 1.3 Expand-Label layer follows RFC 8446 §7.1's encoding (its byte output
+// is checked structurally, not pinned to an RFC 8448 trace).
 import { sha256 } from './sha256';
 
 const BLOCK = 64; // SHA-256 block size
@@ -33,6 +35,7 @@ export function hkdfExtract(salt: Uint8Array, ikm: Uint8Array): Uint8Array {
 
 /** HKDF-Expand(PRK, info, L) → L bytes of output keying material (RFC 5869 §2.3). */
 export function hkdfExpand(prk: Uint8Array, info: Uint8Array, length: number): Uint8Array {
+  if (length > 255 * HLEN) throw new Error('HKDF-Expand: length must be ≤ 255·HashLen (RFC 5869 §2.3)'); // else the 1-byte counter wraps
   const n = Math.ceil(length / HLEN);
   const out = new Uint8Array(n * HLEN);
   let prev: Uint8Array = Uint8Array.from([]);
