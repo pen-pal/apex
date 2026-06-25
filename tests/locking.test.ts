@@ -51,3 +51,10 @@ describe('deadlock detection', () => {
     expect(findCycle([[1, 2], [2, 3]])).toBeNull(); // a chain, no cycle
   });
 });
+
+describe('findCycle ignores self-edges', () => {
+  it('a 1-node self-loop is not a deadlock (a tx never waits for itself)', () => {
+    expect(findCycle([[1, 1]])).toBeNull();
+    expect(findCycle([[1, 2], [2, 1]])).not.toBeNull(); // a real 2-cycle still is
+  });
+});

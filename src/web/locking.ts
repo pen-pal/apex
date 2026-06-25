@@ -22,7 +22,9 @@ export interface Outcome {
 }
 
 /** Process lock requests in order; a request that can't be granted blocks and adds wait-for
- *  edges to every transaction currently holding the resource incompatibly. */
+ *  edges to every transaction currently holding the resource incompatibly. A repeat request by a
+ *  transaction that already holds the resource is treated as a RE-ENTRANT grant; lock UPGRADES
+ *  (e.g. S→X while another tx holds S) are out of scope for this teaching model. */
 export function run(requests: Request[]): Outcome {
   const holders: Record<string, Hold[]> = {};
   const granted: Request[] = [];
@@ -43,7 +45,7 @@ export function run(requests: Request[]): Outcome {
 /** Find one cycle in the wait-for graph (DFS), returning the txids on it. */
 export function findCycle(edges: [number, number][]): number[] | null {
   const adj = new Map<number, number[]>();
-  for (const [a, b] of edges) (adj.get(a) ?? adj.set(a, []).get(a)!).push(b);
+  for (const [a, b] of edges) if (a !== b) (adj.get(a) ?? adj.set(a, []).get(a)!).push(b); // a tx never waits for itself
   const state = new Map<number, number>(); // 0=unseen,1=on-stack,2=done
   const stack: number[] = [];
 
