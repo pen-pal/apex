@@ -59,3 +59,23 @@ describe('bit field display', () => {
     expect(parseInt(f.sequence, 2)).toBe(7);
   });
 });
+
+describe('monotonicity across roll-over and clock regression', () => {
+  const E = TWITTER_EPOCH;
+  it('stays strictly increasing when the clock has not caught up after a roll-over', () => {
+    // exhaust ms E+100 → spills to E+101/seq0
+    const r1 = next({ lastMs: E + 100n, sequence: MAX_SEQUENCE }, E + 100n, 1n);
+    expect(r1.rolledOver).toBe(true);
+    expect(decode(r1.id).tsMs).toBe(E + 101n);
+    // the wall clock is STILL at E+100 — the next ID must not regress to E+100
+    const r2 = next(r1.state, E + 100n, 1n);
+    expect(r2.id).toBeGreaterThan(r1.id); // strictly increasing (was a smaller, duplicate ID before the fix)
+    expect(decode(r2.id).tsMs).toBe(E + 101n); // no timestamp regression
+    expect(decode(r2.id).sequence).toBe(1n);
+  });
+  it('does not go backward on a backward clock step', () => {
+    const a = next({ lastMs: E + 200n, sequence: 0n }, E + 199n, 1n); // clock jumped back 1ms
+    expect(a.id).toBeGreaterThan(encode(E + 200n, 1n, 0n)); // still ahead of the last minted id
+    expect(decode(a.id).tsMs).toBe(E + 200n); // pinned to lastMs, not the regressed clock
+  });
+});

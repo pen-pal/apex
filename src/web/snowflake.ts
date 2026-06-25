@@ -34,12 +34,16 @@ export interface GenState { lastMs: bigint; sequence: bigint }
 /** Generate the next ID for `worker` at clock `nowMs`, handling same-millisecond
  *  sequence increment and roll-over into the next millisecond. */
 export function next(state: GenState, nowMs: bigint, worker: bigint, epoch = TWITTER_EPOCH): { id: bigint; state: GenState; rolledOver: boolean } {
-  let ms = nowMs, seq: bigint, rolledOver = false;
-  if (nowMs === state.lastMs) {
-    seq = state.sequence + 1n;
-    if (seq > MAX_SEQUENCE) { ms = state.lastMs + 1n; seq = 0n; rolledOver = true; } // exhausted this ms → spill to next
+  let ms: bigint, seq: bigint, rolledOver = false;
+  if (nowMs > state.lastMs) {
+    ms = nowMs; seq = 0n; // the clock advanced to a fresh millisecond → sequence resets
   } else {
-    seq = 0n;
+    // same ms, OR the clock is behind our last ID (a sequence roll-over already spilled us into the
+    // next ms, or the wall clock stepped backward): stay on state.lastMs and keep the sequence
+    // strictly increasing, so IDs never go backward or repeat.
+    ms = state.lastMs;
+    seq = state.sequence + 1n;
+    if (seq > MAX_SEQUENCE) { ms = state.lastMs + 1n; seq = 0n; rolledOver = true; } // exhausted this ms → spill to the next
   }
   return { id: encode(ms, worker, seq, epoch), state: { lastMs: ms, sequence: seq }, rolledOver };
 }
