@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { create, insert, search, toArray, heights, type SkipList } from '../src/web/skiplist';
+import { create, insert, remove, search, toArray, heights, type SkipList } from '../src/web/skiplist';
 
 // build a deterministic skip list: [key, height] pairs
 function build(entries: [number, number][], maxLevel = 4): SkipList {
@@ -38,8 +38,9 @@ describe('search', () => {
   it('uses express lanes to skip nodes — fewer hops than a linear scan', () => {
     const r = search(list, 25);
     expect(r.found).toBe(true);
-    // a level-0 linear scan would visit ~9 nodes; the express lanes cut that down
-    expect(r.hops).toBeLessThan(toArray(list).length);
+    // the exact express-lane path: drop through 6 (L3), 17 (L2), 19 (L1), 21 (L0), reach 25
+    expect(r.visited).toEqual([6, 17, 19, 21, 25]);
+    expect(r.hops).toBeLessThan(toArray(list).length); // fewer than a 10-node linear scan
   });
 
   it('every key is findable regardless of its height', () => {
@@ -53,5 +54,38 @@ describe('insertion preserves order', () => {
     expect(toArray(l)).toEqual([5, 10, 20, 30, 40, 50]);
     expect(search(l, 30).found).toBe(true);
     expect(search(l, 35).found).toBe(false);
+  });
+});
+
+describe('deletion removes a key from every level', () => {
+  it('removes a tall node from all levels and keeps the list sorted', () => {
+    const list = build([[3, 1], [6, 4], [7, 1], [9, 2], [12, 1], [17, 3], [19, 2], [21, 1], [25, 4], [26, 1]]);
+    expect(remove(list, 25)).toBe(true); // 25 reached height 4
+    expect(toArray(list)).toEqual([3, 6, 7, 9, 12, 17, 19, 21, 26]); // gone from level 0
+    expect(search(list, 25).found).toBe(false);
+    expect(heights(list)[25]).toBeUndefined(); // gone from every level, not just level 0
+    expect(search(list, 26).found).toBe(true); // neighbours still linked
+  });
+  it('removing an absent key is a no-op', () => {
+    const list = build([[5, 2], [10, 1]]);
+    expect(remove(list, 99)).toBe(false);
+    expect(toArray(list)).toEqual([5, 10]);
+  });
+  it('insert/delete fuzz matches a sorted Set', () => {
+    const list = create(5); const ref = new Set<number>();
+    const ops: [string, number, number][] = [['i', 5, 3], ['i', 2, 1], ['i', 8, 4], ['d', 2, 0], ['i', 1, 2], ['d', 8, 0], ['i', 8, 1], ['d', 99, 0]];
+    for (const [op, k, h] of ops) {
+      if (op === 'i') { if (!ref.has(k)) { insert(list, k, h); ref.add(k); } }
+      else { remove(list, k); ref.delete(k); }
+    }
+    expect(toArray(list)).toEqual([...ref].sort((a, b) => a - b));
+  });
+});
+
+describe('robustness', () => {
+  it('clamps a height of 0 up to level 0 so the key stays searchable', () => {
+    const l = create(4); insert(l, 42, 0);
+    expect(toArray(l)).toEqual([42]); // present in level 0 despite height 0
+    expect(search(l, 42).found).toBe(true);
   });
 });
