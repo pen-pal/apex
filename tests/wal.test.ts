@@ -47,3 +47,16 @@ describe('the crash point matters (write-ahead guarantee)', () => {
     expect(r.committed).not.toContain(1);
   });
 });
+
+describe('recovery replays in LSN order, not array order', () => {
+  it('a shuffled log recovers identically to the ordered one', () => {
+    const ordered: Rec[] = [
+      { lsn: 1, txid: 1, type: 'update', key: 'x', before: '100', after: '200' },
+      { lsn: 2, txid: 1, type: 'update', key: 'x', before: '200', after: '300' },
+      { lsn: 3, txid: 1, type: 'commit' },
+    ];
+    const shuffled = [ordered[2], ordered[0], ordered[1]]; // out of LSN order
+    expect(recover(shuffled, { x: '100' }).final).toEqual(recover(ordered, { x: '100' }).final);
+    expect(recover(shuffled, { x: '100' }).final.x).toBe('300'); // last committed write by LSN wins
+  });
+});
