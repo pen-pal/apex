@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createChained, chainInsert, chainLookup, createProbed, probeInsert, probeLookup, loadFactor, slotOf } from '../src/web/hashtable';
+import { createChained, chainInsert, chainLookup, chainRemove, createProbed, probeInsert, probeLookup, probeRemove, loadFactor, slotOf } from '../src/web/hashtable';
 
 describe('separate chaining', () => {
   it('colliding keys share a bucket and are all findable', () => {
@@ -66,5 +66,49 @@ describe('open addressing (linear probing)', () => {
     expect(probeInsert(t, 'c').ok).toBe(true);
     const full = probeInsert(t, 'd');
     expect(full.ok).toBe(false); // no free slot
+  });
+});
+
+describe('deletion', () => {
+  // find two keys that hash to the same start slot (a real collision → probe chain)
+  function collidingPair(m: number): [string, string] {
+    const bySlot: Record<number, string[]> = {};
+    for (let i = 0; i < 500; i++) { const k = 'item' + i; const s = slotOf(k, m); (bySlot[s] ??= []).push(k); if (bySlot[s].length === 2) return [bySlot[s][0], bySlot[s][1]]; }
+    throw new Error('no collision found');
+  }
+
+  it('chaining: delete splices from the bucket, leaving collision neighbours intact', () => {
+    const m = 4;
+    const t = createChained(m);
+    const [a, b] = collidingPair(m); // a and b share a bucket
+    chainInsert(t, a); chainInsert(t, b);
+    expect(chainRemove(t, a)).toBe(true);
+    expect(chainLookup(t, a).found).toBe(false);
+    expect(chainLookup(t, b).found).toBe(true); // its bucket-mate is unaffected
+    expect(chainRemove(t, 'absent')).toBe(false);
+  });
+
+  it('open addressing: a tombstone keeps a probe chain walkable (no orphaned key)', () => {
+    const m = 8;
+    const t = createProbed(m);
+    const [a, b] = collidingPair(m); // b must probe PAST a's slot
+    probeInsert(t, a); probeInsert(t, b);
+    expect(probeLookup(t, a).found).toBe(true);
+    expect(probeLookup(t, b).found).toBe(true);
+    expect(probeRemove(t, a)).toBe(true); // tombstone, NOT null
+    expect(probeLookup(t, a).found).toBe(false); // a is gone
+    expect(probeLookup(t, b).found).toBe(true); // b is STILL findable — the chain wasn't broken (the bug a null would cause)
+  });
+
+  it('open addressing: a later insert reuses a tombstoned slot', () => {
+    const m = 8;
+    const t = createProbed(m);
+    const [a, b] = collidingPair(m);
+    probeInsert(t, a); probeInsert(t, b);
+    probeRemove(t, a);
+    const r = probeInsert(t, 'fresh');
+    expect(r.ok).toBe(true);
+    expect(probeLookup(t, 'fresh').found).toBe(true);
+    expect(probeLookup(t, b).found).toBe(true); // existing chain still intact
   });
 });
