@@ -13,7 +13,8 @@ export const xorBytes = (a: Uint8Array, b: Uint8Array): Uint8Array => {
   return out;
 };
 
-/** Encrypt == decrypt: ciphertext = plaintext ⊕ key. */
+/** Encrypt == decrypt: ciphertext = plaintext ⊕ key. The OTP requires a key AT LEAST as long as the
+ *  message; xorBytes covers only the overlap, so a shorter key encrypts just a prefix (never do that). */
 export const otpEncrypt = (plaintext: Uint8Array, key: Uint8Array): Uint8Array => xorBytes(plaintext, key);
 
 /** Perfect secrecy made concrete: the key that decrypts THIS ciphertext to ANY chosen
