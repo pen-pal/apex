@@ -5252,3 +5252,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tfo-mode{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 .tfo-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
 .tfo-foot strong{color:var(--ink)}
+
+/* ── Raft log replication (RaftLogSection) ── */
+.rl-h3{font-size:14px;margin:18px 0 10px}
+.rl-sync,.rl-cluster{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.rl-row{display:flex;align-items:center;gap:10px}
+.rl-rlbl{font-family:var(--mono);font-size:11px;color:var(--muted);width:96px;flex:none;text-align:right}
+.rl-log{display:flex;gap:4px;flex-wrap:wrap;min-height:30px;align-items:center}
+.rl-empty{color:#bbc;font-size:13px}
+.rl-entry{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:30px;height:30px;border-radius:6px;color:#fff;font-family:var(--mono);font-size:12px;font-weight:700;padding:0 6px}
+.rl-entry i{font-style:normal;font-size:8px;opacity:.85}
+.rl-entry.committed{box-shadow:0 0 0 2px hsl(40 90% 50%)}
+.rl-note{font-size:12px;color:var(--muted);line-height:1.5;margin:4px 0 6px}
+.rl-scns{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.rl-scn{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted);cursor:pointer}
+.rl-scn.on{background:hsl(280 50% 52%);border-color:hsl(280 50% 52%);color:#fff;font-weight:600}
+.rl-verdict{padding:11px 14px;border-radius:10px;font-size:12.5px;line-height:1.5;margin-top:8px}
+.rl-verdict.ok{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 83%)}
+.rl-verdict.hold{background:hsl(40 85% 95%);border:1px solid hsl(40 60% 80%)}
+.rl-verdict b{font-family:var(--mono)}
+.rl-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.rl-legend-dot{box-shadow:0 0 0 2px hsl(40 90% 50%)}
