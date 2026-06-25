@@ -5277,3 +5277,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 /* MVCC write-write conflict step */
 .mvcc-now.conflict{background:hsl(0 60% 97%);border-color:hsl(0 50% 86%)}
 .mvcc-conflictbadge{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:#fff;background:hsl(0 65% 52%);padding:3px 9px;border-radius:6px}
+
+/* ── Threshold signatures (ThresholdSection) ── */
+.thr-ctrls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:14px 0}
+.thr-ctrls label{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted)}
+.thr-ctrls input[type=range]{width:110px;accent-color:hsl(265 50% 55%)}
+.thr-ctrls b{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.thr-msg{flex:1;min-width:200px}
+.thr-msg input{flex:1;font-family:var(--mono);font-size:12.5px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;width:100%}
+.thr-key{font-size:12.5px;color:var(--muted);background:hsl(265 40% 97.5%);border:1px solid hsl(265 35% 88%);border-radius:9px;padding:9px 13px;margin-bottom:12px}
+.thr-key b{font-family:var(--mono);color:hsl(265 50% 42%)}
+.thr-parties{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.thr-party{flex:1;min-width:120px;display:flex;flex-direction:column;gap:3px;padding:11px;border:1.5px solid var(--line);border-radius:11px;background:var(--panel);cursor:pointer;text-align:left}
+.thr-party.on{border-color:hsl(265 50% 60%);background:hsl(265 45% 98%)}
+.thr-pid{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink)}
+.thr-share{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.thr-role{font-size:10.5px;color:var(--muted)}
+.thr-party.on .thr-role{color:hsl(265 50% 48%);font-weight:600}
+.thr-result{padding:13px 15px;border-radius:11px;font-size:12.5px;line-height:1.5}
+.thr-result.idle{background:#f4f6f9;color:var(--muted)}
+.thr-result.ok{background:hsl(150 45% 96.5%);border:1px solid hsl(150 40% 83%)}
+.thr-result.bad{background:hsl(0 60% 96.5%);border:1px solid hsl(0 50% 86%)}
+.thr-coalition{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.thr-sig{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:6px;word-break:break-all}
+.thr-verdict{font-weight:500}
+.thr-result.ok .thr-verdict{color:hsl(150 45% 30%)}
+.thr-result.bad .thr-verdict{color:hsl(0 55% 42%)}
+.thr-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px}
+.thr-foot strong{color:var(--ink)}
