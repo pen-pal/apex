@@ -43,3 +43,26 @@ describe('more-specific hijack (longest-prefix match)', () => {
     for (const n of g.nodes) expect(routesTo(r.prop, n)).toBe(5);
   });
 });
+
+describe('determinism regardless of relaxation order', () => {
+  // the same graph, but with nodes and edges listed in different orders
+  it('shuffled node/edge orderings yield an identical hijack outcome', () => {
+    const base = hijack(g, 1, 5, false);
+    const shuffles: AsGraph[] = [
+      { nodes: [6, 5, 4, 3, 2, 1], edges: [[3, 6], [4, 5], [3, 4], [2, 3], [1, 2]] },
+      { nodes: [3, 1, 6, 4, 2, 5], edges: [[2, 3], [3, 6], [1, 2], [4, 5], [3, 4]] },
+      { nodes: [4, 2, 6, 1, 5, 3], edges: [[4, 5], [1, 2], [3, 4], [3, 6], [2, 3]] },
+    ];
+    for (const sg of shuffles) {
+      const r = hijack(sg, 1, 5, false);
+      expect(r.captured.sort((a, b) => a - b)).toEqual(base.captured.sort((a, b) => a - b));
+      expect(r.legit.sort((a, b) => a - b)).toEqual(base.legit.sort((a, b) => a - b));
+    }
+  });
+  it('AS6 (the stub) deterministically follows AS3 to the legit origin', () => {
+    // AS3 prefers [3,2,1] over [3,4,5] (lex), so AS6 = [6,3,2,1] → origin 1, never the rogue
+    const r = propagate(g, [1, 5]);
+    expect(r.best[6].asPath).toEqual([6, 3, 2, 1]);
+    expect(routesTo(r, 6)).toBe(1);
+  });
+});

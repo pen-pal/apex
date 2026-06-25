@@ -24,11 +24,17 @@ function neighbours(g: AsGraph, n: number): number[] {
   return out;
 }
 
-// shorter AS_PATH wins; tie-break on next-hop ASN (deterministic, stands in for
-// real tie-breakers like router-id) so results are stable.
+// shorter AS_PATH wins; among equal lengths, break the tie on the FULL AS_PATH compared
+// element-by-element (next hop, then the hop after, …). This is a TOTAL order — no two distinct
+// routes ever tie — so Bellman-Ford converges to the same unique best regardless of the order in
+// which nodes/edges are relaxed. (A partial tie-break on next-hop alone left equal-next-hop routes
+// undecided, pinning whichever was recorded first → results depended on iteration order.)
 function better(a: Route, b: Route): boolean {
   if (a.asPath.length !== b.asPath.length) return a.asPath.length < b.asPath.length;
-  return (a.asPath[1] ?? a.origin) < (b.asPath[1] ?? b.origin);
+  for (let i = 1; i < a.asPath.length; i++) { // index 0 is this AS itself (equal for both candidates)
+    if (a.asPath[i] !== b.asPath[i]) return a.asPath[i] < b.asPath[i];
+  }
+  return false; // identical paths — genuinely equal
 }
 
 /**
