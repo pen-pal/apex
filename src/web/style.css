@@ -5873,3 +5873,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cfs-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .cfs-foot strong{color:var(--ink)}
 .cfs-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+
+/* ── 5-stage pipeline hazards ────────────────────────────────────────────────── */
+.pipe{display:flex;flex-direction:column;gap:14px}
+.pipe-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.pipe-presets{display:flex;gap:7px;flex-wrap:wrap}
+.pipe-presets button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:hsl(212 70% 45%);cursor:pointer}
+.pipe-presets button:hover{border-color:hsl(212 70% 60%)}
+.pipe-fwd{font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap}
+.pipe-main{display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:start}
+.pipe-src{font-family:var(--mono);font-size:13px;padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:#fbfcfe;color:var(--ink);resize:vertical;line-height:1.7}
+.pipe-grid-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.pipe-grid{border-collapse:collapse;font-size:12px;width:100%}
+.pipe-grid th{font-weight:600;color:var(--muted);font-size:11px;padding:6px 4px;text-align:center;min-width:34px}
+.pipe-instr-h{text-align:left!important;padding-left:11px!important}
+.pipe-grid td{padding:3px 4px;text-align:center}
+.pipe-instr{font-family:var(--mono);font-size:12px;color:var(--ink);text-align:left;padding-left:11px!important;white-space:nowrap;border-right:1px solid var(--line)}
+.pipe-instr.stalled{color:hsl(28 75% 40%)}
+.pipe-cell{min-width:34px}
+.pipe-stage{display:inline-block;width:30px;padding:3px 0;border-radius:5px;font-weight:700;font-size:10.5px}
+.pipe-stats{display:flex;gap:10px;flex-wrap:wrap}
+.pipe-stat{flex:1;min-width:86px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--panel)}
+.pipe-stat span{font-size:11px;color:var(--muted);display:block}
+.pipe-stat b{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.pipe-stat.hot{border-color:hsl(28 70% 78%);background:hsl(28 70% 97%)}
+.pipe-stat.hot b{color:hsl(28 75% 40%)}
+.pipe-stat.alt{background:#fafbfc}
+.pipe-stat.alt b{font-size:15px;color:var(--muted)}
+.pipe-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.pipe-foot strong{color:var(--ink)}
+@media(max-width:680px){.pipe-main{grid-template-columns:1fr}}
