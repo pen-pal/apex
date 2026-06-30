@@ -13,33 +13,30 @@ export interface ChaosResult { status: Record<string, Status>; down: string[]; d
 
 /** Evaluate the fleet when `failedId` is injected as DOWN. A service is down if it failed or has a
  *  hard (non-resilient) dependency that is down; a resilient service degrades instead of going down.
- *  A degraded dependency still responds, so it does NOT take its callers down. */
+ *  A degraded dependency still responds, so it does NOT take its callers down. Computed as a monotone
+ *  fixpoint over the down-set, so it's correct and order-independent even for CYCLIC dependency graphs. */
 export function evaluate(services: Service[], failedId: string | null): ChaosResult {
-  const byId: Record<string, Service> = Object.fromEntries(services.map((s) => [s.id, s]));
-  const memo: Record<string, Status> = {};
-  const visiting = new Set<string>();
+  const down = new Set<string>();
+  if (failedId !== null) down.add(failedId);
 
-  const status = (id: string): Status => {
-    if (memo[id]) return memo[id];
-    if (visiting.has(id)) return 'up';          // dependency cycle guard
-    visiting.add(id);
-    const s = byId[id];
-    let result: Status;
-    if (id === failedId) result = 'down';
-    else {
-      const anyDepDown = s.deps.some((d) => status(d) === 'down');
-      result = anyDepDown ? (s.resilient ? 'degraded' : 'down') : 'up';
+  // Grow the down-set until stable: any non-failed, non-resilient service with a down dependency goes
+  // down. 'down' only ever spreads (the injected failure never recovers), so this converges; a cycle of
+  // hard dependencies that touches a down service collapses entirely, independent of array order.
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const s of services) {
+      if (down.has(s.id) || s.resilient) continue;            // already down, or it degrades instead
+      if (s.deps.some((d) => down.has(d))) { down.add(s.id); changed = true; }
     }
-    visiting.delete(id);
-    memo[id] = result;
-    return result;
-  };
+  }
 
-  const statusMap: Record<string, Status> = {};
-  for (const s of services) statusMap[s.id] = status(s.id);
-  return {
-    status: statusMap,
-    down: services.filter((s) => statusMap[s.id] === 'down').map((s) => s.id),
-    degraded: services.filter((s) => statusMap[s.id] === 'degraded').map((s) => s.id),
-  };
+  const status: Record<string, Status> = {};
+  const degraded: string[] = [];
+  for (const s of services) {
+    if (down.has(s.id)) status[s.id] = 'down';
+    else if (s.deps.some((d) => down.has(d))) { status[s.id] = 'degraded'; degraded.push(s.id); } // resilient + down dep
+    else status[s.id] = 'up';
+  }
+  return { status, down: services.filter((s) => down.has(s.id)).map((s) => s.id), degraded };
 }
