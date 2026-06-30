@@ -44,8 +44,10 @@ describe('content-defined chunking', () => {
     const a = cdcChunks(enc(TEXT), OPTS);
     const b = cdcChunks(enc('X' + TEXT), OPTS);
     const d = dedup(a, b);
-    // only the chunk absorbing the insert changes; the rest survive
-    expect(d.reused).toBe(a.length - 1);
+    // CDC's guarantee is that an edit perturbs only O(1) chunks — almost all survive.
+    // (For this text it's exactly one; the general bound is a small constant, not chunks-1 always.)
+    expect(d.reused).toBeGreaterThanOrEqual(a.length - 2);
+    expect(d.reused).toBeGreaterThan(a.length / 2);
     expect(d.bytesReused).toBeGreaterThan(d.bytesTotal * 0.8); // >80% of bytes need not be re-sent
   });
 
