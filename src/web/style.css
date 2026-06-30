@@ -6450,3 +6450,37 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .idm-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .idm-foot strong{color:var(--ink)}
 @media(max-width:680px){.idm-paths{grid-template-columns:1fr}}
+
+/* ── Load shedding & backpressure ────────────────────────────────────────────── */
+.lsh{display:flex;flex-direction:column;gap:14px}
+.lsh-controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.lsh-controls label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.lsh-controls input{width:170px}
+.lsh-controls b{color:var(--ink);font-variant-numeric:tabular-nums}
+.lsh-fixed{font-size:12px;color:var(--muted)}
+.lsh-chart{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--panel)}
+.lsh-chart-h{font-size:12px;font-weight:650;color:var(--muted);margin-bottom:9px}
+.lsh-svg{width:100%;height:auto;display:block}
+.lsh-cap{stroke:hsl(28 70% 60%);stroke-width:1.2;stroke-dasharray:4 3}
+.lsh-caplbl{font-size:9px;fill:hsl(28 70% 42%)}
+.lsh-line{fill:none;stroke-width:2.5}
+.lsh-line.shed{stroke:hsl(150 50% 45%)}
+.lsh-line.unb{stroke:hsl(0 65% 55%)}
+.lsh-legend{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);margin-top:7px}
+.lsh-lg{display:inline-block;width:16px;height:3px;border-radius:2px;margin-left:8px}
+.lsh-lg.shed{background:hsl(150 50% 45%)}
+.lsh-lg.unb{background:hsl(0 65% 55%)}
+.lsh-cards{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.lsh-card{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--panel)}
+.lsh-card.ok{border-color:hsl(150 40% 78%)}
+.lsh-card.bad{border-color:hsl(0 50% 85%)}
+.lsh-card-h{font-size:13px;font-weight:650;margin-bottom:10px}
+.lsh-metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.lsh-metrics div{display:flex;flex-direction:column}
+.lsh-metrics span{font-size:10.5px;color:var(--muted)}
+.lsh-metrics b{font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums}
+.lsh-metrics b.g{color:hsl(150 45% 35%)}
+.lsh-metrics b.w{color:hsl(0 60% 48%)}
+.lsh-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.lsh-foot strong{color:var(--ink)}
+@media(max-width:680px){.lsh-cards{grid-template-columns:1fr}}
