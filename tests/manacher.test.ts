@@ -32,6 +32,15 @@ describe('Manacher — longest palindromic substring', () => {
     expect(manacher('aaaa')).toMatchObject({ longest: 'aaaa', length: 4 });
   });
 
+  it('handles non-BMP characters (emoji) by code point, not UTF-16 unit', () => {
+    expect(manacher('🙂a🙂')).toMatchObject({ longest: '🙂a🙂', length: 3 });
+    expect(manacher('x🙂🙂x')).toMatchObject({ longest: 'x🙂🙂x', length: 4 });
+  });
+
+  it('treats a literal separator character in the input as an ordinary char', () => {
+    expect(manacher('a#a')).toMatchObject({ longest: 'a#a', length: 3 });
+  });
+
   it('the recovered substring is actually a palindrome and matches the brute-force length', () => {
     for (const s of ['babad', 'cbbd', 'forgeeksskeegfor', 'abacdfgdcaba', 'aaaaabaaaaa', 'banana', 'noon', 'xyzzyx']) {
       const m = manacher(s);

@@ -18,7 +18,11 @@ export interface ManacherResult {
 
 /** Longest palindromic substring via Manacher's algorithm. */
 export function manacher(s: string): ManacherResult {
-  const t = '#' + [...s].join('#') + '#'; // interleave separators; every palindrome is now odd-length
+  // Work on an ARRAY of code points (not a string): indexing a string mid-surrogate would split non-BMP
+  // characters (emoji) and break the equality checks. t alternates separator / code-point / separator …
+  const chars = [...s];
+  const t: string[] = ['#'];
+  for (const c of chars) t.push(c, '#'); // interleave separators; every palindrome is now odd-length
   const n = t.length;
   const p = new Array(n).fill(0);
   let center = 0, right = 0, comparisons = 0; // [center−right, center+right] is the rightmost-reaching palindrome
@@ -38,5 +42,6 @@ export function manacher(s: string): ManacherResult {
   let length = 0, ci = 0;
   for (let i = 0; i < n; i++) if (p[i] > length) { length = p[i]; ci = i; }
   const start = (ci - length) / 2; // map the transformed-center back to the original string
-  return { transformed: t, radii: p, longest: s.substr(start, length), start, length, comparisons };
+  const longest = chars.slice(start, start + length).join('');
+  return { transformed: t.join(''), radii: p, longest, start, length, comparisons };
 }
