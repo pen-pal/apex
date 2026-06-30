@@ -1,50 +1,88 @@
-// The overview / home catalog — a browsable map of every section, grouped, so the breadth
-// is discoverable at a glance (reached by clicking the Apex logo). Above the catalog sit the
-// GUIDED JOURNEYS: curated, ordered walks that answer "where do I start?" — click one to begin
-// stepping through it. Pure presentation over the section + path registries.
+// The overview / home catalog — a browsable, filterable map of every section, grouped, so the breadth
+// is discoverable at a glance (reached by clicking the Apex logo). Guided JOURNEYS sit on top (curated
+// ordered walks); below, a live filter + group chips make the 200-section catalog navigable. Pure
+// presentation over the section + path registries, plus local filter state.
+import { useMemo, useState } from 'react';
 import { GROUPS, metaById } from './sections';
 import { PATHS } from './paths';
 
+const SHORT: Record<string, string> = {
+  'Network basics': 'Network', 'Routing & naming': 'Routing', 'Transport & web': 'Transport',
+  'Cryptography': 'Crypto', 'Security & web': 'Security', 'Data & encoding': 'Data',
+  'Distributed systems': 'Distributed', 'Storage & databases': 'Storage', 'Systems & OS': 'Systems & OS', 'Operations & SRE': 'Ops',
+};
+
 export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id: string) => void; onStartPath: (pathId: string) => void; current: string }) {
   const total = GROUPS.reduce((n, g) => n + g.ids.length, 0);
+  const [q, setQ] = useState('');
+  const [group, setGroup] = useState<string | null>(null);
+
+  const ql = q.trim().toLowerCase();
+  const filtering = ql !== '' || group !== null;
+  const visible = useMemo(() => GROUPS.map((g) => ({
+    ...g,
+    ids: g.ids.filter((id) => {
+      if (group && g.label !== group) return false;
+      if (!ql) return true;
+      const m = metaById[id];
+      return m && (m.label.toLowerCase().includes(ql) || g.label.toLowerCase().includes(ql));
+    }),
+  })).filter((g) => g.ids.length > 0), [ql, group]);
+  const matchCount = visible.reduce((n, g) => n + g.ids.length, 0);
+
   return (
     <div className="ov">
       <div className="ov-hero">
-        <h1>Apex — see how networks actually work</h1>
+        <h1>Apex — see how computers actually work</h1>
         <p>
-          {total} interactive, byte-accurate visualizations across {GROUPS.length} areas. Type real data and watch it become bytes, get
-          wrapped layer by layer, travel the wire, and get unwrapped again — with real checksums, real crypto, and honest encryption.
-          New here? Take a <strong>guided journey</strong> below. Looking for something specific? Browse the map or search up top.
+          {total} live, correctness-first visualizations across {GROUPS.length} areas — networking, cryptography, transport &amp; the web,
+          distributed systems, storage &amp; databases, algorithms, CPU &amp; operating systems, and operating in production. Real bytes, real
+          checksums, real crypto, honest encryption. New here? Take a <strong>guided journey</strong>; looking for something? Filter the map below.
         </p>
       </div>
 
-      <div className="jp">
-        <div className="jp-head"><span className="jp-eyebrow">Guided journeys</span><h2>Walk one idea end to end</h2></div>
-        <div className="jp-grid">
-          {PATHS.map((p) => (
-            <button key={p.id} type="button" className="jp-card" onClick={() => onStartPath(p.id)}>
-              <div className="jp-card-top">
-                <span className="jp-icon" aria-hidden="true">{p.icon}</span>
-                <span className="jp-title">{p.title}</span>
-                <span className="jp-count">{p.steps.length} steps</span>
-              </div>
-              <p className="jp-blurb">{p.blurb}</p>
-              <div className="jp-trail">
-                {p.steps.map((s, i) => (
-                  <span key={s.id} className="jp-stop">
-                    {i > 0 && <span className="jp-arrow" aria-hidden="true">→</span>}
-                    <span className="jp-stop-lbl">{metaById[s.id]?.label ?? s.id}</span>
-                  </span>
-                ))}
-              </div>
-              <span className="jp-start">Start journey →</span>
+      {!filtering && (
+        <div className="jp">
+          <div className="jp-head"><span className="jp-eyebrow">Guided journeys</span><h2>Walk one idea end to end</h2></div>
+          <div className="jp-grid">
+            {PATHS.map((p) => (
+              <button key={p.id} type="button" className="jp-card" onClick={() => onStartPath(p.id)}>
+                <div className="jp-card-top">
+                  <span className="jp-icon" aria-hidden="true">{p.icon}</span>
+                  <span className="jp-title">{p.title}</span>
+                  <span className="jp-count">{p.steps.length} steps</span>
+                </div>
+                <p className="jp-blurb">{p.blurb}</p>
+                <div className="jp-trail">
+                  {p.steps.map((s, i) => (
+                    <span key={s.id} className="jp-stop">
+                      {i > 0 && <span className="jp-arrow" aria-hidden="true">→</span>}
+                      <span className="jp-stop-lbl">{metaById[s.id]?.label ?? s.id}</span>
+                    </span>
+                  ))}
+                </div>
+                <span className="jp-start">Start journey →</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="ov-controls">
+        <input className="ov-filter" type="search" value={q} placeholder={`🔎 Filter ${total} sections…`} onChange={(e) => setQ(e.target.value)} aria-label="Filter sections" />
+        <div className="ov-chips">
+          <button type="button" className={`ov-chip ${group === null ? 'on' : ''}`} onClick={() => setGroup(null)}>All</button>
+          {GROUPS.map((g) => (
+            <button key={g.label} type="button" className={`ov-chip ${group === g.label ? 'on' : ''}`} onClick={() => setGroup((cur) => (cur === g.label ? null : g.label))}>
+              <span aria-hidden="true">{g.icon}</span> {SHORT[g.label] ?? g.label} <span className="ov-chip-n">{g.ids.length}</span>
             </button>
           ))}
         </div>
+        {filtering && <div className="ov-matchcount">{matchCount} match{matchCount === 1 ? '' : 'es'}{ql && <button type="button" className="ov-clear" onClick={() => { setQ(''); setGroup(null); }}>clear</button>}</div>}
       </div>
 
       <div className="ov-grid">
-        {GROUPS.map((g) => (
+        {visible.length === 0 ? <div className="ov-noresults">No sections match “{q}”.</div> : visible.map((g) => (
           <div className="ov-group" key={g.label}>
             <div className="ov-group-head"><span className="ov-gicon" aria-hidden="true">{g.icon}</span><h2>{g.label}</h2><span className="ov-gcount">{g.ids.length}</span></div>
             <div className="ov-cards">
