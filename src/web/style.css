@@ -5620,3 +5620,38 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tso-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .tso-foot strong{color:var(--ink)}
 @media(max-width:680px){.tso-machine{grid-template-columns:1fr}}
+
+/* ── Link-state routing (OSPF) ───────────────────────────────────────────────── */
+.ls{display:flex;flex-direction:column;gap:16px}
+.ls-main{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;align-items:start}
+.ls-diagram{border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--panel)}
+.ls-svg{width:100%;height:auto;display:block}
+.ls-edge{stroke:var(--line);stroke-width:2.5}
+.ls-edge.tree{stroke:hsl(212 75% 52%);stroke-width:4}
+.ls-cost{fill:var(--muted);font-size:12px;font-family:var(--mono);text-anchor:middle;font-weight:600}
+.ls-router{fill:#fff;stroke:var(--muted);stroke-width:2}
+.ls-router.src{fill:hsl(212 75% 50%);stroke:hsl(212 75% 40%)}
+.ls-rlabel{text-anchor:middle;font-weight:700;font-size:15px;fill:var(--ink)}
+.ls-rlabel.src{fill:#fff}
+.ls-node:hover .ls-router{stroke:hsl(212 70% 55%)}
+.ls-rcost{text-anchor:middle;font-size:11px;fill:var(--muted)}
+.ls-rcost.src{fill:hsl(212 70% 45%);font-weight:600}
+.ls-hint{text-align:center;font-size:11.5px;color:var(--muted);padding:4px 0 6px}
+.ls-side{display:flex;flex-direction:column;gap:14px}
+.ls-flood,.ls-costs{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
+.ls-flood-h,.ls-costs-h{font-size:12.5px;font-weight:650;margin-bottom:8px}
+.ls-flood p{font-size:12.5px;color:var(--muted);line-height:1.6;margin:0 0 9px}
+.ls-flood b{color:var(--ink)}
+.ls-lsdb{display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:12px}
+.ls-lsdb-row b{color:hsl(212 70% 45%)}
+.ls-costrow{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:3px 0}
+.ls-costrow span{font-family:var(--mono);min-width:42px;color:var(--ink)}
+.ls-costrow input{flex:1}
+.ls-costrow b{min-width:18px;text-align:right;font-variant-numeric:tabular-nums}
+.ls-table{width:100%;border-collapse:collapse;font-size:13px}
+.ls-table th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;padding:7px 12px;border-bottom:1px solid var(--line)}
+.ls-table td{padding:7px 12px;border-bottom:1px solid var(--line)}
+.ls-path{font-family:var(--mono);font-size:12.5px;color:hsl(212 70% 42%)}
+.ls-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.ls-foot strong{color:var(--ink)}
+@media(max-width:680px){.ls-main{grid-template-columns:1fr}}

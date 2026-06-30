@@ -55,6 +55,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'csma', label: 'WiFi CSMA/CA', icon: '📶' },
   { id: 'routing', label: 'Routing & paths', icon: '🧭' },
   { id: 'distvec', label: 'Distance-vector', icon: '📐' },
+  { id: 'ospf', label: 'OSPF link-state', icon: '🗺️' },
   { id: 'bgp', label: 'BGP paths', icon: '🛣️' },
   { id: 'bgphijack', label: 'BGP hijack', icon: '🏴‍☠️' },
   { id: 'bgpselect', label: 'BGP best-path', icon: '🥇' },
@@ -190,7 +191,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp'] },
-  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'mdns', 'encdns'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'tfo', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'h2flow', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'realtime', 'sctp', 'cdn', 'conditional', 'ratelimit', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'bb84', 'shamir', 'threshsig', 'pow', 'ratchet', 'x3dh', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'siteisolation', 'sri', 'csp', 'attacks'] },
