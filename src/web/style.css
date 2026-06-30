@@ -7503,3 +7503,45 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ftx-stat.ok b{color:#1a7f37}
 .ftx-stat.bad b{color:#cf222e}
 @media(max-width:640px){.ftx-step{grid-template-columns:1fr 1fr;gap:5px}.ftx-fast,.ftx-sys{text-align:left}}
+
+/* ---- QUIC connection migration ---- */
+.qmig{display:flex;flex-direction:column;gap:14px}
+.qmig-intro,.qmig-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.qmig-intro strong,.qmig-foot strong{color:var(--ink)}
+.qmig-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qmig-proto{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:3px}
+.qmig-proto button{font:inherit;font-size:12.5px;font-weight:600;padding:6px 16px;border:0;border-radius:6px;background:none;color:var(--muted);cursor:pointer}
+.qmig-proto button.on{background:var(--accent);color:#fff}
+.qmig-switch{font:inherit;font-size:12px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.qmig-switch.on{border-color:var(--accent)}
+.qmig-wire{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px;align-items:stretch}
+.qmig-node{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:5px;text-align:center}
+.qmig-nh{font-size:12px;font-weight:700;color:var(--ink)}
+.qmig-addr{font-family:var(--mono);font-size:12px;color:var(--muted);padding:3px 6px;border-radius:5px}
+.qmig-addr.changed{background:rgba(191,128,0,.14);color:#9a6700}
+.qmig-net{font-size:11px;color:var(--muted)}
+.qmig-find{font-size:11.5px;font-weight:600;margin-top:2px}
+.qmig-find.ok,.qmig-addr.ok{color:#1a7f37}
+.qmig-find.bad{color:#cf222e}
+.qmig-pkt{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.qmig-pkt-h{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.qmig-pkt code{font-family:var(--mono);font-size:12px;padding:4px 8px;border-radius:6px;word-break:break-all;text-align:center}
+.qmig-pkt code.ok{background:rgba(35,134,54,.12);color:#1a7f37}
+.qmig-pkt code.bad{background:rgba(207,34,46,.12);color:#cf222e}
+.qmig-pkt-cmp{font-size:10.5px;color:var(--muted)}
+.qmig-pkt-cmp code{font-size:10.5px;background:none;padding:0;color:var(--muted)}
+.qmig-verdict{border-radius:10px;padding:12px 14px;border:1px solid var(--line)}
+.qmig-verdict.ok{background:rgba(35,134,54,.07);border-color:rgba(35,134,54,.3)}
+.qmig-verdict.bad{background:rgba(207,34,46,.07);border-color:rgba(207,34,46,.32)}
+.qmig-vmain{font-size:13.5px;font-weight:700}
+.qmig-verdict.ok .qmig-vmain{color:#1a7f37}
+.qmig-verdict.bad .qmig-vmain{color:#cf222e}
+.qmig-vsub{font-size:12px;color:var(--muted);margin-top:3px}
+.qmig-recovery{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.qmig-rh{font-size:12px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qmig-rtt{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:400}
+.qmig-steps{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:5px}
+.qmig-steps li{font-size:12px;color:var(--muted);line-height:1.5}
+.qmig-steps li.q::marker{color:#1a7f37}
+.qmig-steps li.t::marker{color:#cf222e}
+@media(max-width:640px){.qmig-wire{grid-template-columns:1fr}}
