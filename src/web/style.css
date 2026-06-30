@@ -7099,3 +7099,38 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .numa-stat.ok b{color:#1a7f37}
 .numa-stat.bad b{color:#cf222e}
 @media (max-width:620px){.numa-machine{grid-template-columns:1fr;gap:12px}.numa-link{display:none}}
+
+/* ---- Oblivious transfer (EGL 1-2 OT) ---- */
+.obt{display:flex;flex-direction:column;gap:14px}
+.obt-intro,.obt-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.obt-intro strong,.obt-foot strong{color:var(--ink)}
+.obt-intro code,.obt-foot code,.obt-pcard code{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.obt-pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.obt-cbtn{font-family:var(--mono);font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:6px 16px;cursor:pointer}
+.obt-cbtn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.obt-k{display:flex;align-items:center;gap:7px;margin-left:auto}
+.obt-k b{font-family:var(--mono);color:var(--ink);min-width:24px}
+.obt-wire{display:grid;grid-template-columns:1fr 2fr 1fr;gap:12px;align-items:center}
+.obt-party{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center}
+.obt-ph{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.obt-pv{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.5}
+.obt-msgs{display:flex;flex-direction:column;gap:6px}
+.obt-m{font-family:var(--mono);font-size:11px;padding:6px 9px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.obt-m i{color:var(--accent);font-style:normal;font-weight:700;margin-right:4px}
+.obt-m em{font-family:var(--sans,inherit);color:var(--muted);font-style:italic}
+.obt-m.down{border-left:3px solid var(--accent)}
+.obt-m.up{border-right:3px solid #bf8700;text-align:right}
+.obt-result{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.obt-out{border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:5px;border:1px solid var(--line)}
+.obt-out.ok{background:rgba(35,134,54,.07);border-color:rgba(35,134,54,.32)}
+.obt-out.bad{background:rgba(207,34,46,.06);border-color:rgba(207,34,46,.3)}
+.obt-ol{font-size:11px;color:var(--muted)}
+.obt-ov{font-family:var(--mono);font-size:20px;color:var(--ink)}
+.obt-ok{font-size:11.5px;font-weight:600}
+.obt-ok.good{color:#1a7f37}
+.obt-ok.bad{color:#cf222e}
+.obt-priv{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.obt-pcard{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px;display:flex;flex-direction:column;gap:5px}
+.obt-pcard b{font-size:12px;color:var(--ink)}
+.obt-pcard span{font-size:11.5px;color:var(--muted);line-height:1.55}
+@media (max-width:680px){.obt-wire,.obt-result,.obt-priv{grid-template-columns:1fr}}
