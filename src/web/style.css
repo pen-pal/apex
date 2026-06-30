@@ -6851,3 +6851,40 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ssrf-verdict b{font-weight:700}
 .ssrf-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .ssrf-foot strong{color:var(--ink)}
+
+/* ── Saga pattern ────────────────────────────────────────────────────────────── */
+.saga{display:flex;flex-direction:column;gap:13px}
+.saga-controls{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.saga-cl{font-size:12px;color:var(--muted)}
+.saga-fbtn{font:inherit;font-size:12px;font-weight:600;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.saga-fbtn:hover{border-color:hsl(0 60% 65%)}
+.saga-fbtn.on{background:hsl(0 65% 55%);border-color:transparent;color:#fff}
+.saga-fbtn.ok:hover{border-color:hsl(150 45% 60%)}
+.saga-fbtn.ok.on{background:hsl(150 50% 45%)}
+.saga-pipeline{display:flex;gap:8px;flex-wrap:wrap}
+.saga-step{flex:1;min-width:130px;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--panel);display:flex;flex-direction:column;gap:3px;position:relative;transition:background .2s,border-color .2s}
+.saga-step.ok{border-color:hsl(150 45% 60%);background:hsl(150 50% 96%)}
+.saga-step.failed{border-color:hsl(0 60% 60%);background:hsl(0 60% 96%)}
+.saga-step.compensated{border-color:hsl(35 75% 60%);background:hsl(35 80% 96%)}
+.saga-act{font-size:12.5px;font-weight:600;color:var(--ink)}
+.saga-comp{font-size:11px;color:var(--muted)}
+.saga-mark{position:absolute;top:8px;right:10px;font-size:15px;font-weight:700}
+.saga-step.ok .saga-mark{color:hsl(150 45% 40%)}
+.saga-step.failed .saga-mark{color:hsl(0 60% 50%)}
+.saga-step.compensated .saga-mark{color:hsl(35 75% 42%)}
+.saga-steps{display:flex;gap:7px}
+.saga-steps button{font:inherit;font-size:12.5px;font-weight:600;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.saga-steps button:hover:not(:disabled){border-color:hsl(212 70% 60%)}
+.saga-steps button:disabled{opacity:.4;cursor:default}
+.saga-steps button.primary{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.saga-log{display:flex;flex-direction:column;gap:5px;min-height:40px}
+.saga-le{font-size:12.5px;font-family:var(--mono);padding:6px 11px;border-radius:7px;display:flex;align-items:center;gap:10px}
+.saga-le.action{background:hsl(150 50% 95%);color:hsl(150 45% 30%)}
+.saga-le.action.fail{background:hsl(0 60% 96%);color:hsl(0 55% 42%)}
+.saga-le.compensate{background:hsl(35 80% 95%);color:hsl(35 75% 38%)}
+.saga-le-t{font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:5px;background:rgba(0,0,0,.06)}
+.saga-outcome{font-size:13px;font-weight:600;padding:9px 13px;border-radius:9px;margin-top:4px}
+.saga-outcome.ok{background:hsl(150 50% 95%);border:1px solid hsl(150 40% 80%);color:hsl(150 40% 28%)}
+.saga-outcome.rb{background:hsl(35 80% 95%);border:1px solid hsl(35 70% 80%);color:hsl(35 75% 36%)}
+.saga-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.saga-foot strong{color:var(--ink)}
