@@ -7134,3 +7134,45 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .obt-pcard b{font-size:12px;color:var(--ink)}
 .obt-pcard span{font-size:11.5px;color:var(--muted);line-height:1.55}
 @media (max-width:680px){.obt-wire,.obt-result,.obt-priv{grid-template-columns:1fr}}
+
+/* ---- Bellman-Ford (shortest paths + arbitrage) ---- */
+.bford{display:flex;flex-direction:column;gap:15px}
+.bford-intro,.bford-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.bford-intro strong,.bford-foot strong{color:var(--ink)}
+.bford-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bford-panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px;display:flex;flex-direction:column;gap:11px}
+.bford-ph{font-size:12px;font-weight:700;color:var(--ink)}
+.bford-graph{display:flex;flex-wrap:wrap;gap:6px}
+.bford-edge{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:3px 7px}
+.bford-edge b{color:var(--ink)}
+.bford-edge.neg{border-color:#cf222e;color:#cf222e}
+.bford-edge.neg b{color:#cf222e}
+.bford-dist{display:flex;gap:8px}
+.bford-cell{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 4px}
+.bford-cell.inf{opacity:.5}
+.bford-node{font-size:11px;color:var(--muted);font-weight:600}
+.bford-cell b{font-family:var(--mono);font-size:19px;color:var(--accent)}
+.bford-passes{display:flex;align-items:center;justify-content:center;gap:12px}
+.bford-pbtn{font-size:15px;line-height:1;width:30px;height:30px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);cursor:pointer}
+.bford-pbtn:disabled{opacity:.35;cursor:default}
+.bford-plabel{font-size:12px;color:var(--muted);min-width:140px;text-align:center}
+.bford-note{font-size:11.5px;color:var(--muted);line-height:1.55}
+.bford-note b{color:var(--ink)}
+.bford-note code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 4px;color:var(--ink)}
+.bford-rates{display:flex;flex-direction:column;gap:7px}
+.bford-rate{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted)}
+.bford-rate span{font-family:var(--mono);min-width:74px;color:var(--ink)}
+.bford-rate input{flex:1}
+.bford-rate b{font-family:var(--mono);min-width:36px;text-align:right;color:var(--ink)}
+.bford-loop{font-size:12px;color:var(--muted)}
+.bford-loop b{font-family:var(--mono);font-size:14px;color:var(--ink)}
+.bford-loop b.win{color:#1a7f37}
+.bford-arb{border-radius:9px;padding:11px;border:1px solid var(--line)}
+.bford-arb.yes{background:rgba(207,34,46,.07);border-color:rgba(207,34,46,.35)}
+.bford-arb.no{background:rgba(35,134,54,.07);border-color:rgba(35,134,54,.3)}
+.bford-arb-h{font-size:12.5px;font-weight:700}
+.bford-arb.yes .bford-arb-h{color:#cf222e}
+.bford-arb.no .bford-arb-h{color:#1a7f37}
+.bford-arb-cycle{font-family:var(--mono);font-size:14px;color:var(--ink);margin-top:5px}
+.bford-arb-profit{font-size:12px;color:var(--muted);margin-top:3px}
+@media (max-width:720px){.bford-grid{grid-template-columns:1fr}}
