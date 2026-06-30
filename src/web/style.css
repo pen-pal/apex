@@ -6820,3 +6820,34 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fft-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .fft-foot strong{color:var(--ink)}
 @media(max-width:680px){.fft-comps{grid-template-columns:1fr}}
+
+/* ── SSRF (server-side request forgery) ──────────────────────────────────────── */
+.ssrf{display:flex;flex-direction:column;gap:13px}
+.ssrf-bar{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.ssrf-url{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px;flex:1;min-width:280px}
+.ssrf-url input{flex:1;font-family:var(--mono);font-size:12.5px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink)}
+.ssrf-prot{font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:7px;cursor:pointer;white-space:nowrap}
+.ssrf-presets{display:flex;gap:7px;flex-wrap:wrap}
+.ssrf-presets button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:hsl(212 70% 45%);cursor:pointer}
+.ssrf-presets button:hover{border-color:hsl(212 70% 60%)}
+.ssrf-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--panel)}
+.ssrf-node{border:1px solid var(--line);border-radius:9px;padding:11px 14px;font-size:12.5px;font-weight:600;color:var(--ink);background:#fafbfc}
+.ssrf-node.srv{background:hsl(212 55% 95%);border-color:hsl(212 50% 80%);color:hsl(212 70% 35%)}
+.ssrf-arrow{font-size:20px;font-family:var(--mono);color:var(--muted)}
+.ssrf-arrow.ok{color:hsl(150 50% 45%)}
+.ssrf-arrow.danger{color:hsl(0 65% 55%)}
+.ssrf-arrow.blocked{color:hsl(150 45% 45%)}
+.ssrf-target{flex:1;min-width:160px;border:1.5px solid var(--line);border-radius:10px;padding:10px 13px;display:flex;flex-direction:column;gap:1px;background:#fafbfc}
+.ssrf-target.metadata,.ssrf-target.loopback,.ssrf-target.private,.ssrf-target.link-local{border-color:hsl(0 55% 70%);background:hsl(0 55% 97%)}
+.ssrf-target.public{border-color:hsl(150 45% 70%);background:hsl(150 50% 97%)}
+.ssrf-target.blocked{opacity:.55;border-style:dashed}
+.ssrf-ticon{font-size:18px}
+.ssrf-tzone{font-size:12px;font-weight:600;color:var(--ink)}
+.ssrf-thost{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ssrf-verdict{font-size:13px;line-height:1.55;border-radius:10px;padding:11px 14px}
+.ssrf-verdict.ok{background:hsl(150 50% 96%);border:1px solid hsl(150 40% 82%);color:hsl(150 40% 28%)}
+.ssrf-verdict.breach{background:hsl(0 60% 96%);border:1px solid hsl(0 50% 85%);color:hsl(0 55% 40%)}
+.ssrf-verdict.safe{background:hsl(150 50% 96%);border:1px solid hsl(150 40% 82%);color:hsl(150 40% 28%)}
+.ssrf-verdict b{font-weight:700}
+.ssrf-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.ssrf-foot strong{color:var(--ink)}
