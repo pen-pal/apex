@@ -6573,3 +6573,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bp-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .bp-foot strong{color:var(--ink)}
 @media(max-width:680px){.bp-compare{grid-template-columns:1fr}.bp-fsm{grid-template-columns:1fr 1fr}}
+
+/* ── Overview: filter + group quick-jump chips ───────────────────────────────── */
+.ov-controls{position:sticky;top:52px;z-index:5;background:var(--bg);padding:10px 0 12px;margin-bottom:8px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--line)}
+.ov-filter{width:100%;max-width:380px;font:inherit;font-size:14px;padding:9px 13px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--ink)}
+.ov-filter:focus{outline:2px solid hsl(212 70% 60%);border-color:transparent}
+.ov-chips{display:flex;gap:6px;flex-wrap:wrap}
+.ov-chip{font:inherit;font-size:12px;font-weight:550;padding:5px 11px;border:1px solid var(--line);border-radius:20px;background:var(--panel);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background .12s,border-color .12s}
+.ov-chip:hover{border-color:hsl(212 70% 60%)}
+.ov-chip.on{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.ov-chip-n{font-size:10.5px;opacity:.7;font-variant-numeric:tabular-nums}
+.ov-matchcount{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.ov-clear{font:inherit;font-size:12px;background:none;border:0;color:hsl(212 70% 45%);cursor:pointer;padding:0;text-decoration:underline}
+.ov-noresults{color:var(--muted);font-size:14px;padding:20px 0}

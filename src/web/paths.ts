@@ -119,6 +119,37 @@ export const PATHS: LearningPath[] = [
       { id: 'webauthn', note: 'Passkeys replace passwords with an origin-bound key a phisher can’t relay.' },
     ],
   },
+  {
+    id: 'cpu',
+    title: 'Inside the CPU',
+    icon: '🖥️',
+    blurb: 'How a chip actually runs your code: instructions flowing through a pipeline, guessing branches, juggling caches and memory, up to the OS scheduler.',
+    steps: [
+      { id: 'pipeline', note: 'Instructions overlap in a 5-stage pipeline — and stall when one depends on another.' },
+      { id: 'branchpredict', note: 'A branch’s direction is guessed before it’s known; a 2-bit counter keeps the pipeline full.' },
+      { id: 'mesi', note: 'Each core caches memory privately; MESI keeps those copies coherent over a snooping bus.' },
+      { id: 'tso', note: 'Store buffers let a core reorder its own writes — why two threads can both read stale values.' },
+      { id: 'pagewalk', note: 'Every memory access translates a virtual address through a 4-level page table.' },
+      { id: 'cpusched', note: 'The OS time-slices many processes onto the cores — FCFS, SJF, round-robin.' },
+      { id: 'cfs', note: 'Linux’s CFS shares the CPU fairly by virtual runtime, weighted by nice value.' },
+    ],
+  },
+  {
+    id: 'production',
+    title: 'Operating a service in production',
+    icon: '🛠️',
+    blurb: 'The lifecycle of running software reliably: ship it safely, keep it healthy, survive overload, and observe and harden it.',
+    steps: [
+      { id: 'deployments', note: 'Roll out v2 without downtime — rolling, blue-green, or canary.' },
+      { id: 'healthcheck', note: 'Readiness gates traffic; liveness restarts — confusing them causes restart storms.' },
+      { id: 'autoscale', note: 'Track load by adding and removing replicas with the HPA formula.' },
+      { id: 'slo', note: 'Turn “be reliable” into an error budget you can spend on features.' },
+      { id: 'loadshed', note: 'Under overload, shed fast — queuing everything collapses goodput.' },
+      { id: 'idempotency', note: 'Make retries safe so a lost response can’t double-charge.' },
+      { id: 'tracing', note: 'Follow one request across services to see where the latency really goes.' },
+      { id: 'chaos', note: 'Inject failures on purpose to prove the blast radius is contained.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
