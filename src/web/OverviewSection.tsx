@@ -31,8 +31,8 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
         <p>
           {total} live, correctness-first visualizations across {GROUPS.length} areas — networking, cryptography, transport &amp; the web,
           distributed systems, storage &amp; databases, algorithms, CPU &amp; operating systems, and operating in production. Real bytes, real
-          checksums, real crypto, honest encryption. New here? Take a <strong>guided journey</strong>; looking for something? Search the
-          catalog below.
+          checksums, real crypto, honest encryption. New here? Take a <strong>guided journey</strong> below; looking for something specific?
+          Pick an area from the menu at the top, or search it.
         </p>
       </div>
 
@@ -63,6 +63,9 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
         </div>
       )}
 
+      {/* The full catalog duplicates the top-nav groups on desktop, so it's shown only on mobile (≤680px),
+          where the top nav collapses to a Browse button and this becomes the navigation surface. */}
+      <div className="ov-catalog">
       <div className="ov-controls">
         <div className="ov-browse-head">
           <h2>Browse all {total} sections</h2>
@@ -99,6 +102,7 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
             </div>
           );
         })}
+      </div>
       </div>
     </div>
   );
