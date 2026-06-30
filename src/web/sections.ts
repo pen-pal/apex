@@ -208,6 +208,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'pagewalk', label: 'Page-table walk', icon: '🗺️' },
   { id: 'mesi', label: 'MESI cache coherence', icon: '🧠' },
   { id: 'tso', label: 'Memory consistency (TSO)', icon: '🧮' },
+  { id: 'branchpredict', label: 'Branch prediction', icon: '🔮' },
   { id: 'cfs', label: 'Linux CFS scheduler', icon: '⚖️' },
   { id: 'pipeline', label: 'Pipeline hazards', icon: '🚰' },
 ];
@@ -226,7 +227,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'ahocorasick', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd'] },
-  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'pagewalk', 'mesi', 'tso'] },
+  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'branchpredict', 'pagewalk', 'mesi', 'tso'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
