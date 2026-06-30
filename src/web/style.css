@@ -6119,3 +6119,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fw-negcycle{font-size:12.5px;color:hsl(0 60% 42%);background:hsl(0 60% 97%);border:1px solid hsl(0 50% 88%);border-radius:8px;padding:10px 13px}
 .fw-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .fw-foot strong{color:var(--ink)}
+
+/* ── Leaky bucket traffic shaping ────────────────────────────────────────────── */
+.leak{display:flex;flex-direction:column;gap:15px}
+.leak-controls{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.leak-controls label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.leak-controls input[type=text],.leak-controls label:first-child input{font-family:var(--mono);font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:var(--ink);width:230px}
+.leak-controls b{color:var(--ink);font-variant-numeric:tabular-nums}
+.leak-chart{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel)}
+.leak-row,.leak-bucketline{display:flex;align-items:flex-end;gap:10px;height:74px}
+.leak-bucketline{height:46px;margin:6px 0}
+.leak-rlabel{font-size:11px;color:var(--muted);width:38px;text-align:right;align-self:center}
+.leak-bars{position:relative;flex:1;display:flex;align-items:flex-end;gap:4px;height:100%;border-bottom:1px solid var(--line)}
+.leak-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:1px}
+.leak-bar{border-radius:3px 3px 0 0;min-height:1px}
+.leak-bar.in{background:hsl(212 60% 62%)}
+.leak-bar.drop{background:hsl(0 65% 62%)}
+.leak-bar.outb{background:hsl(150 50% 50%)}
+.leak-level{background:hsl(35 75% 60%);border-radius:2px;min-height:1px;width:100%}
+.leak-cap{font-size:10px;color:var(--muted);align-self:center;white-space:nowrap}
+.leak-rateline{position:absolute;left:0;right:0;height:0;border-top:1.5px dashed hsl(150 45% 40%)}
+.leak-ticks{display:flex;gap:4px;padding-left:48px}
+.leak-ticks .leak-tick{flex:1;text-align:center;font-size:10px;color:var(--muted);font-family:var(--mono)}
+.leak-stats{display:flex;gap:11px;flex-wrap:wrap}
+.leak-stat{flex:1;min-width:84px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--panel)}
+.leak-stat span{font-size:11px;color:var(--muted);display:block}
+.leak-stat b{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.leak-stat b i{font-size:11px;font-style:normal;color:var(--muted)}
+.leak-stat.hot b{color:hsl(0 60% 50%)}
+.leak-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.leak-foot strong{color:var(--ink)}

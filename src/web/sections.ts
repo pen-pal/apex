@@ -99,6 +99,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'cdn', label: 'CDN & caching', icon: '⚡' },
   { id: 'conditional', label: 'Conditional & range', icon: '🔖' },
   { id: 'ratelimit', label: 'Rate limiting', icon: '🪣' },
+  { id: 'leakybucket', label: 'Leaky bucket', icon: '🚿' },
   { id: 'retry', label: 'Retry & circuit breaker', icon: '🔁' },
   { id: 'crypto', label: 'Cryptography', icon: '🔒' },
   { id: 'classical', label: 'Classical ciphers', icon: '🏛️' },
@@ -206,7 +207,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgpselect', 'mpls', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'mdns', 'encdns'] },
-  { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'tfo', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'h2flow', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'realtime', 'sctp', 'cdn', 'conditional', 'ratelimit', 'retry'] },
+  { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'tfo', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'h2flow', 'http2', 'quic', 'http3', 'grpc', 'websocket', 'realtime', 'sctp', 'cdn', 'conditional', 'ratelimit', 'leakybucket', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'ntt', 'bb84', 'shamir', 'threshsig', 'pow', 'ratchet', 'x3dh', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'siteisolation', 'sri', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'bwt', 'dfa', 'huffman', 'arith', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
