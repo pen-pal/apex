@@ -64,6 +64,13 @@ describe('open redirect — scheme tricks (fail closed)', () => {
     expect(c('javascript:alert(document.cookie)').safe).toBe(false);
     expect(c('data:text/html,<script>1</script>').safe).toBe(false);
   });
+  it('extra slashes after a special scheme still put the host off-site (WHATWG ignore-slashes)', () => {
+    // browser: new URL("https:///evil.com","https://trusted.com/").host === "evil.com"
+    expect(c('https:///evil.com')).toMatchObject({ kind: 'external', safe: false, effectiveHost: 'evil.com' });
+    expect(c('https:////evil.com')).toMatchObject({ kind: 'external', safe: false, effectiveHost: 'evil.com' });
+    expect(c('///evil.com')).toMatchObject({ kind: 'external', safe: false, effectiveHost: 'evil.com' });
+    expect(c('\\/\\/evil.com')).toMatchObject({ kind: 'external', safe: false, effectiveHost: 'evil.com' });
+  });
 });
 
 describe('open redirect — port and case', () => {

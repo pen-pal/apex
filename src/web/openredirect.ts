@@ -24,7 +24,9 @@ function effectiveHost(target: string): { host: string | null; offsite: boolean;
   const scheme = s.match(/^([a-zA-Z][a-zA-Z0-9+.\-]*):\/\//);
   const schemeOnly = s.match(/^([a-zA-Z][a-zA-Z0-9+.\-]*):(?!\/\/)/); // a scheme: NOT followed by //
   if (scheme) {
-    authority = s.slice(scheme[0].length);
+    // Special schemes (http/https/…) enter WHATWG's "ignore slashes" state: ALL leading slashes after the
+    // scheme are skipped, so https:///evil.com and https:////evil.com put evil.com in the HOST, not the path.
+    authority = s.slice(scheme[0].length).replace(/^\/+/, '');
   } else if (schemeOnly) {
     // A bare "scheme:rest" (no //). javascript:/data:/etc. are code/inline schemes; a different special
     // scheme like http: from an https page navigates OFF-SITE; even "https:evil.com" is ambiguous. The only
@@ -37,7 +39,7 @@ function effectiveHost(target: string): { host: string | null; offsite: boolean;
     authority = rest;
     trick = `scheme without // (${sch}:) — treated as off-site`;
   } else if (s.startsWith('//')) {
-    authority = s.slice(2); // scheme-relative → goes off-origin
+    authority = s.slice(2).replace(/^\/+/, ''); // scheme-relative (extra slashes ignored) → goes off-origin
     trick = hadBackslash ? 'backslash → scheme-relative //' : 'scheme-relative //';
   } else {
     // a path (/foo) or a bare relative ref → stays same-origin
