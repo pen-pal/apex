@@ -6888,3 +6888,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .saga-outcome.rb{background:hsl(35 80% 95%);border:1px solid hsl(35 70% 80%);color:hsl(35 75% 36%)}
 .saga-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .saga-foot strong{color:var(--ink)}
+
+/* ── RSA blind signatures ────────────────────────────────────────────────────── */
+.bsig{display:flex;flex-direction:column;gap:13px}
+.bsig-key{font-size:12px;color:var(--muted);font-family:var(--mono);background:#fafbfc;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.bsig-inputs{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.bsig-inputs label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.bsig-inputs input{width:80px;font-family:var(--mono);font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:var(--ink)}
+.bsig-bad{font-size:12px;color:hsl(0 60% 48%)}
+.bsig-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center}
+.bsig-actor{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel)}
+.bsig-actor.client{border-color:hsl(212 50% 78%)}
+.bsig-actor.signer{border-color:hsl(280 45% 78%)}
+.bsig-actor.wide{grid-column:1 / -1}
+.bsig-actor-h{font-size:13px;font-weight:650;margin-bottom:7px}
+.bsig-op{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+.bsig-val{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:3px}
+.bsig-val b{color:hsl(212 70% 42%);font-size:15px}
+.bsig-blindnote{font-size:11px;color:hsl(280 45% 45%);margin-top:7px;font-style:italic}
+.bsig-wire{display:flex;flex-direction:column;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
+.bsig-send{color:hsl(212 70% 45%)}
+.bsig-recv{color:hsl(280 45% 45%)}
+.bsig-unblind{margin-top:2px}
+.bsig-unblind .bsig-actor{display:flex;flex-direction:column;gap:4px}
+.bsig-sig{color:hsl(150 45% 32%);font-size:16px}
+.bsig-note{font-size:11.5px;color:var(--muted)}
+.bsig-verify{font-family:var(--mono);font-size:13px;border-radius:10px;padding:11px 14px}
+.bsig-verify.ok{background:hsl(150 50% 96%);border:1px solid hsl(150 40% 82%);color:hsl(150 40% 28%)}
+.bsig-verify.bad{background:hsl(0 60% 96%);border:1px solid hsl(0 50% 86%);color:hsl(0 55% 42%)}
+.bsig-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.bsig-foot strong{color:var(--ink)}
+.bsig-foot code{font-family:var(--mono);font-size:11px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+@media(max-width:680px){.bsig-flow{grid-template-columns:1fr}}
