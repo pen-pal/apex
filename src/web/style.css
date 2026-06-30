@@ -6224,3 +6224,39 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dpl-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .dpl-foot strong{color:var(--ink)}
 @media(max-width:680px){.dpl-strats{grid-template-columns:1fr 1fr}}
+
+/* ── Liveness vs readiness probes ────────────────────────────────────────────── */
+.hlth{display:flex;flex-direction:column;gap:14px}
+.hlth-scenarios{display:flex;gap:8px;flex-wrap:wrap}
+.hlth-scn{font:inherit;font-size:12.5px;font-weight:600;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.hlth-scn:hover{border-color:hsl(212 70% 60%)}
+.hlth-scn.on{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.hlth-timeline{display:flex;gap:6px;flex-wrap:wrap}
+.hlth-tick{display:flex;gap:2px;padding:4px;border-radius:7px;border:1px solid var(--line);background:#fafbfc;opacity:.5}
+.hlth-tick.done{opacity:1}
+.hlth-tick.cur{outline:2px solid hsl(28 80% 55%);outline-offset:1px;opacity:1}
+.hlth-pp{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:5px;font-size:11px;font-weight:700;color:#fff;font-family:var(--mono)}
+.hlth-pp.pass{background:hsl(150 50% 50%)}
+.hlth-pp.fail{background:hsl(0 65% 58%)}
+.hlth-stage{display:flex;align-items:center;justify-content:center;gap:18px;border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--panel);flex-wrap:wrap}
+.hlth-lb{text-align:center;font-size:12px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fafbfc;line-height:1.3}
+.hlth-arrow{font-size:20px;font-family:var(--mono)}
+.hlth-arrow.on{color:hsl(150 50% 45%)}
+.hlth-arrow.off{color:hsl(0 60% 60%)}
+.hlth-pod{min-width:170px;border:2px solid;border-radius:12px;padding:14px 18px;text-align:center}
+.hlth-pod.serving{border-color:hsl(150 45% 55%);background:hsl(150 50% 96%)}
+.hlth-pod.unready{border-color:hsl(35 75% 60%);background:hsl(35 80% 96%)}
+.hlth-pod.restarting{border-color:hsl(0 60% 60%);background:hsl(0 60% 97%)}
+.hlth-pod-state{font-size:17px;font-weight:800;letter-spacing:.03em;color:var(--ink)}
+.hlth-pod-sub{font-size:11px;color:var(--muted);margin-bottom:8px}
+.hlth-badges{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.hlth-badge{font-size:11px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 9px}
+.hlth-badge b{color:var(--ink);font-variant-numeric:tabular-nums}
+.hlth-note{font-size:13px;color:var(--muted);line-height:1.5;text-align:center;min-height:18px;padding:0 10px}
+.hlth-steps{display:flex;gap:8px;justify-content:center}
+.hlth-steps button{font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.hlth-steps button:hover:not(:disabled){border-color:hsl(212 70% 60%)}
+.hlth-steps button:disabled{opacity:.4;cursor:default}
+.hlth-steps button.primary{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.hlth-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.hlth-foot strong{color:var(--ink)}
