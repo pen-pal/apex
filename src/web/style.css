@@ -5983,3 +5983,41 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rum-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .rum-foot strong{color:var(--ink)}
 @media(max-width:680px){.rum-cards{grid-template-columns:1fr}}
+
+/* ── Arithmetic coding ───────────────────────────────────────────────────────── */
+.arc{display:flex;flex-direction:column;gap:14px}
+.arc-h{font-size:11.5px;font-weight:650;color:var(--muted);margin-bottom:8px}
+.arc-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.arc-in label{font-size:12.5px;color:var(--muted)}
+.arc-in input{font-family:var(--mono);font-size:15px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);margin-left:7px;width:200px;text-transform:uppercase}
+.arc-presets{display:flex;gap:6px}
+.arc-presets button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:hsl(212 70% 45%);cursor:pointer}
+.arc-presets button:hover{border-color:hsl(212 70% 60%)}
+.arc-model,.arc-steps,.arc-compare{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel)}
+.arc-slices{display:flex;height:42px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+.arc-slice{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;border-right:1px solid #fff;background:hsl(212 55% 90%)}
+.arc-slice:nth-child(even){background:hsl(150 45% 88%)}
+.arc-slice:last-child{border-right:0}
+.arc-sym{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--ink)}
+.arc-p{font-size:10px;color:var(--muted)}
+.arc-steps{display:flex;flex-direction:column;gap:5px}
+.arc-step{display:flex;align-items:center;gap:11px}
+.arc-step-c{font-family:var(--mono);font-weight:700;font-size:14px;width:18px;text-align:center;color:hsl(212 70% 42%)}
+.arc-step-bar{flex:1;height:14px;background:#eef1f5;border-radius:5px;position:relative;overflow:hidden}
+.arc-step-sel{position:absolute;top:0;bottom:0;background:hsl(28 80% 60%);border-radius:3px;min-width:2px}
+.arc-step-iv{font-family:var(--mono);font-size:11.5px;color:var(--muted);min-width:210px;text-align:right}
+.arc-result{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel);display:flex;flex-direction:column;gap:7px;font-size:13px}
+.arc-code b,.arc-decode b{font-family:var(--mono);color:hsl(28 75% 38%)}
+.arc-decode b{color:hsl(150 45% 30%)}
+.arc-decode .ok{color:hsl(150 45% 35%);font-weight:600;margin-left:6px}
+.arc-decode .bad{color:hsl(0 55% 45%)}
+.arc-cmp{display:flex;align-items:center;gap:11px;padding:3px 0}
+.arc-cmp-l{font-size:12px;color:var(--ink);min-width:180px}
+.arc-cmp-bar{flex:1;height:14px;background:#eef1f5;border-radius:6px;overflow:hidden}
+.arc-cmp-fill{height:100%;border-radius:6px}
+.arc-cmp-fill.arc-arith{background:hsl(150 55% 50%)}
+.arc-cmp-fill.arc-ent{background:hsl(212 60% 60%)}
+.arc-cmp-fill.arc-huff{background:hsl(0 60% 62%)}
+.arc-cmp-v{font-family:var(--mono);font-size:12px;color:var(--ink);min-width:64px;text-align:right}
+.arc-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.arc-foot strong{color:var(--ink)}
