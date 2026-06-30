@@ -7648,3 +7648,50 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .chr-reconfig b{font-family:var(--mono);color:var(--ink)}
 .chr-reconfig button{margin-left:auto;font:inherit;font-size:11px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
 .chr-tip{font-size:11px;color:var(--muted);font-style:italic}
+
+/* ---- io_uring ---- */
+.iou{display:flex;flex-direction:column;gap:15px}
+.iou-intro,.iou-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.iou-intro strong,.iou-foot strong{color:var(--ink)}
+.iou-intro code,.iou-foot code{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.iou-cmp,.iou-ring{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px;display:flex;flex-direction:column;gap:12px}
+.iou-sliders{display:flex;flex-direction:column;gap:9px}
+.iou-sliders label{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.iou-sliders input{flex:1}
+.iou-sliders b{font-family:var(--mono);color:var(--ink);min-width:60px;text-align:right;font-size:13px}
+.iou-bars{display:flex;flex-direction:column;gap:8px}
+.iou-row{display:grid;grid-template-columns:170px 1fr 110px;gap:10px;align-items:center}
+.iou-mh{display:flex;flex-direction:column;gap:1px}
+.iou-mh b{font-size:12px;color:var(--ink)}
+.iou-mh span{font-size:10px;color:var(--muted)}
+.iou-track{height:18px;background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.iou-fill{height:100%;border-radius:6px;min-width:2px;transition:width .15s}
+.iou-fill.blocking{background:#cf222e}
+.iou-fill.epoll{background:#bf6000}
+.iou-fill.iouring{background:#1a7f37}
+.iou-fill.iouring-sqpoll{background:hsl(150 60% 40%)}
+.iou-num{font-family:var(--mono);font-size:13px;color:var(--ink);text-align:right}
+.iou-num span{font-size:9px;color:var(--muted);display:block}
+.iou-takeaway{font-size:12.5px;color:var(--ink);text-align:center}
+.iou-takeaway b{font-family:var(--mono);color:var(--accent);font-size:15px}
+.iou-rh{font-size:12px;font-weight:700;color:var(--ink)}
+.iou-queues{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.iou-q{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px;display:flex;flex-direction:column;gap:7px;min-height:74px}
+.iou-q.sq{border-top:3px solid hsl(212 60% 55%)}
+.iou-q.kern{border-top:3px solid #bf8700}
+.iou-q.cq{border-top:3px solid hsl(150 50% 45%)}
+.iou-ql{font-size:11px;font-weight:700;color:var(--ink);display:flex;flex-direction:column}
+.iou-ql span{font-size:9px;font-weight:400;color:var(--muted)}
+.iou-cells{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.iou-cell{font-family:var(--mono);font-size:12px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:5px}
+.iou-cell.pending{background:hsl(212 55% 90%);color:hsl(212 60% 35%)}
+.iou-cell.working{background:rgba(191,135,0,.18);color:#9a6700}
+.iou-cell.done{background:rgba(35,134,54,.16);color:#1a7f37}
+.iou-empty{font-size:11px;color:var(--muted);font-style:italic}
+.iou-ringctl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.iou-ringctl button{font:inherit;font-size:12px;padding:7px 13px;border:1px solid var(--accent);border-radius:7px;background:var(--bg);color:var(--ink);cursor:pointer}
+.iou-ringctl button.ghost{border-color:var(--line);color:var(--muted)}
+.iou-ringctl button:disabled{opacity:.4;cursor:default}
+.iou-rstat{font-size:11px;color:var(--muted)}
+.iou-rstat i{font-style:italic}
+@media(max-width:640px){.iou-row{grid-template-columns:1fr;gap:3px}.iou-queues{grid-template-columns:1fr}}
