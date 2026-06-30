@@ -6419,3 +6419,34 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gsd-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .gsd-foot strong{color:var(--ink)}
 .gsd-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+
+/* ── Idempotency keys ────────────────────────────────────────────────────────── */
+.idm{display:flex;flex-direction:column;gap:15px}
+.idm-steps{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.idm-steps button{font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.idm-steps button:hover:not(:disabled){border-color:hsl(212 70% 60%)}
+.idm-steps button:disabled{opacity:.4;cursor:default}
+.idm-steps button.primary{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.idm-steplabel{font-size:12.5px;color:var(--muted)}
+.idm-paths{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.idm-path{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--panel);display:flex;flex-direction:column;gap:10px}
+.idm-path.unsafe{border-color:hsl(0 50% 85%)}
+.idm-path.safe{border-color:hsl(150 40% 78%)}
+.idm-path-h{font-size:13px;font-weight:650;color:var(--ink)}
+.idm-reqs{display:flex;flex-direction:column;gap:7px;min-height:60px}
+.idm-empty{font-size:12.5px;color:var(--muted)}
+.idm-req{display:flex;flex-direction:column;gap:4px;padding:8px 10px;border-radius:8px;background:#fafbfc;border:1px solid var(--line)}
+.idm-rtext{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.idm-badge{align-self:flex-start;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px}
+.idm-badge.charge{background:hsl(28 75% 92%);color:hsl(28 75% 38%)}
+.idm-badge.replay{background:hsl(150 50% 92%);color:hsl(150 45% 30%)}
+.idm-badge.conflict{background:hsl(280 50% 93%);color:hsl(280 45% 42%)}
+.idm-total{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px}
+.idm-total b{font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.idm-total.ok b{color:hsl(150 45% 35%)}
+.idm-total.bad b{color:hsl(0 60% 48%)}
+.idm-warn{color:hsl(0 60% 48%);font-weight:700;font-size:12px}
+.idm-good{color:hsl(150 45% 35%);font-weight:600;font-size:12px}
+.idm-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.idm-foot strong{color:var(--ink)}
+@media(max-width:680px){.idm-paths{grid-template-columns:1fr}}
