@@ -358,6 +358,7 @@ function App() {
       <header className="topbar">
         <div className="topbar-inner">
           <button type="button" className={`brand ${section === 'overview' ? 'home' : ''}`} onClick={() => setSection('overview')} title="Home / all sections"><span className="logo">◆</span> Apex</button>
+          {section !== 'overview' && (<>
           <button type="button" className="mobile-browse" onClick={() => setSection('overview')} aria-label="Browse all sections">☰ Browse</button>
           <nav className="topnav" aria-label="Section groups">
             {GROUPS.map((g) => {
@@ -439,6 +440,7 @@ function App() {
               </div>
             )}
           </div>
+          </>)}
         </div>
       </header>
       {openMenu && <div className="topnav-backdrop" onClick={() => setOpenMenu(null)} />}
