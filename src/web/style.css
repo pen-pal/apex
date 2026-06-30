@@ -6334,3 +6334,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .slo-asev{text-transform:uppercase;font-size:10px;letter-spacing:.04em}
 .slo-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .slo-foot strong{color:var(--ink)}
+
+/* ── Distributed tracing (waterfall) ─────────────────────────────────────────── */
+.trc{display:flex;flex-direction:column;gap:14px}
+.trc-wf{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
+.trc-row{display:grid;grid-template-columns:200px 1fr;align-items:center;gap:12px;padding:4px 6px;border-radius:7px;cursor:pointer}
+.trc-row:hover{background:#fafbfc}
+.trc-row.on{background:hsl(212 55% 96%)}
+.trc-label{font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trc-svc{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+.trc-track{position:relative;height:24px;background:#f3f5f8;border-radius:5px}
+.trc-bar{position:absolute;top:2px;bottom:2px;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:5px;min-width:18px}
+.trc-dur{font-size:10px;color:#fff;font-weight:600;text-shadow:0 1px 1px rgba(0,0,0,.2)}
+.trc-axis{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:6px;padding-left:212px}
+.trc-detail{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:9px 13px;background:var(--panel)}
+.trc-detail b{color:var(--ink)}
+.trc-d-svc{font-weight:700;margin-right:6px}
+.trc-services{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel)}
+.trc-services-h{font-size:11.5px;font-weight:650;color:var(--muted);margin-bottom:10px}
+.trc-svcrow{display:flex;align-items:center;gap:11px;padding:3px 0}
+.trc-svcname{font-size:12.5px;font-weight:600;min-width:90px}
+.trc-svcbar{flex:1;height:13px;background:#eef1f5;border-radius:6px;overflow:hidden}
+.trc-svcfill{height:100%;border-radius:6px}
+.trc-svcms{font-family:var(--mono);font-size:12px;color:var(--ink);min-width:46px;text-align:right}
+.trc-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.trc-foot strong{color:var(--ink)}
+.trc-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+@media(max-width:680px){.trc-row{grid-template-columns:120px 1fr}.trc-axis{padding-left:132px}}
