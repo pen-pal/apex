@@ -5500,3 +5500,54 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mesi-le-note{font-size:11.5px;color:var(--muted);flex:1;min-width:160px}
 .mesi-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .mesi-foot strong{color:var(--ink)}
+
+/* ── Join algorithms ─────────────────────────────────────────────────────────── */
+.jn{display:flex;flex-direction:column;gap:16px}
+.jn-controls{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.jn-algos,.jn-presets{display:flex;gap:7px;flex-wrap:wrap}
+.jn-algo{font:inherit;font-size:12.5px;font-weight:600;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.jn-algo:hover{border-color:hsl(212 70% 60%)}
+.jn-algo.on{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.jn-preset{font:inherit;font-size:11.5px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:hsl(212 70% 45%);cursor:pointer}
+.jn-preset:hover{border-color:hsl(212 70% 60%)}
+.jn-rels{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.jn-rel{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:var(--panel)}
+.jn-rel-h{font-size:12.5px;font-weight:650;margin-bottom:8px;display:flex;justify-content:space-between}
+.jn-rel-h span{color:var(--muted);font-weight:400}
+.jn-row{display:flex;align-items:center;justify-content:space-between;padding:3px 0}
+.jn-rlabel{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.jn-rkey{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.jn-rkey input{width:48px;font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:#fbfcfe;color:var(--ink)}
+.jn-viz{border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:var(--panel)}
+.jn-viz-h{font-size:12.5px;color:var(--muted);margin-bottom:11px;line-height:1.5}
+.jn-grid{border-collapse:collapse;font-family:var(--mono);font-size:12px}
+.jn-grid th{padding:5px 9px;color:var(--muted);font-weight:600;text-align:center;font-size:11px}
+.jn-grid th span{color:hsl(212 70% 45%)}
+.jn-grid tbody th{text-align:right}
+.jn-grid td{width:30px;height:30px;text-align:center;border:1px solid var(--line);color:var(--muted)}
+.jn-grid td.hit{background:hsl(150 55% 90%);color:hsl(150 45% 30%);font-weight:700;border-color:hsl(150 45% 70%)}
+.jn-buckets{display:flex;flex-direction:column;gap:7px}
+.jn-bucket{display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe}
+.jn-bkey{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:hsl(212 70% 50%);border-radius:6px;padding:3px 9px}
+.jn-brows{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.jn-bprobe{font-size:11.5px;color:var(--muted);margin-left:auto}
+.jn-merge{display:flex;gap:24px}
+.jn-mcol{display:flex;flex-direction:column;gap:5px}
+.jn-mh{font-size:11px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.jn-mcell{font-family:var(--mono);font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:6px;background:#fbfcfe;display:flex;justify-content:space-between;gap:14px;min-width:90px}
+.jn-mcell b{color:hsl(212 70% 45%)}
+.jn-cost{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.jn-costcard{text-align:left;display:flex;flex-direction:column;gap:3px;border:1px solid var(--line);border-radius:11px;padding:12px 13px;background:var(--panel);cursor:pointer;transition:border-color .14s}
+.jn-costcard:hover{border-color:hsl(212 70% 60%)}
+.jn-costcard.on{border-color:hsl(212 70% 55%);background:hsl(212 55% 97%)}
+.jn-cl{font-size:11px;font-weight:650;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.jn-ch{font-size:17px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.jn-cd{font-size:11.5px;color:var(--muted)}
+.jn-result{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:var(--panel)}
+.jn-result-h{font-size:12.5px;font-weight:650;color:var(--muted);margin-bottom:8px}
+.jn-pairs{display:flex;flex-wrap:wrap;gap:6px}
+.jn-pair{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border-radius:20px;background:hsl(150 50% 95%);color:hsl(150 45% 30%);border:1px solid hsl(150 40% 82%)}
+.jn-empty{font-size:12.5px;color:var(--muted)}
+.jn-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.jn-foot strong{color:var(--ink)}
+@media(max-width:680px){.jn-rels{grid-template-columns:1fr}.jn-cost{grid-template-columns:1fr}}
