@@ -176,6 +176,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'deployments', label: 'Deployment strategies', icon: '🚀' },
   { id: 'healthcheck', label: 'Liveness vs readiness', icon: '🩺' },
   { id: 'autoscale', label: 'Autoscaling (HPA)', icon: '📈' },
+  { id: 'slo', label: 'SLOs & error budgets', icon: '🎯' },
   { id: 'lamport', label: 'Lamport clocks', icon: '⏱️' },
   { id: 'hlc', label: 'Hybrid Logical Clocks', icon: '🕓' },
   { id: 'truetime', label: 'TrueTime & commit-wait', icon: '🛰️' },
@@ -215,7 +216,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'ntt', 'bb84', 'shamir', 'threshsig', 'pow', 'ratchet', 'x3dh', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'siteisolation', 'sri', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'bwt', 'dfa', 'huffman', 'arith', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
-  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'swim', 'deployments', 'healthcheck', 'autoscale', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'swim', 'deployments', 'healthcheck', 'autoscale', 'slo', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'ahocorasick', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'pagewalk', 'mesi', 'tso'] },
 ];
