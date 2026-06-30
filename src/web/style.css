@@ -392,19 +392,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
    single-word tabs are kept compact so they all share ONE row. */
 .topbar{position:sticky;top:0;z-index:30;background:var(--panel);
   border-bottom:1px solid var(--line);box-shadow:0 1px 2px rgba(20,30,50,.04)}
-.topbar-inner{max-width:1120px;margin:0 auto;padding:9px 28px;display:flex;
-  align-items:center;gap:14px;box-sizing:border-box}
+.topbar-inner{max-width:1160px;margin:0 auto;padding:9px 18px;display:flex;
+  align-items:center;gap:10px;box-sizing:border-box}
 
 /* compact single-word tabs, left-aligned right after the brand. nowrap pins all
-   eight group tabs to a single line; the tabs are sized to fit the content column. */
-.topnav{display:flex;gap:2px;flex:1;align-items:center;flex-wrap:nowrap;
+   nine group tabs to a single line; the tabs are sized to fit the content column.
+   The caret is hidden ≤1040px so the labels never wrap when the window narrows. */
+.topnav{display:flex;gap:1px;flex:1;align-items:center;flex-wrap:nowrap;
   justify-content:flex-start;min-width:0}
 .topgroup{position:relative}
 
 .topgroup-h{position:relative;display:inline-flex;align-items:center;gap:4px;background:none;
-  border:0;border-radius:8px;padding:7px 8px;font:inherit;font-size:12.5px;font-weight:600;
+  border:0;border-radius:8px;padding:6px 7px;font:inherit;font-size:12.5px;font-weight:600;
   color:var(--muted);cursor:pointer;white-space:nowrap;line-height:1;
   transition:background .12s,color .12s}
+@media(max-width:1040px){.topgroup-h{padding:6px 5px}.topgroup-h .tg-caret{display:none}}
 .topgroup-h:hover{background:#eef1f5;color:var(--ink)}
 .topgroup-h.active{color:hsl(212 70% 42%)}
 /* underline rail on the active group */
@@ -5366,3 +5368,49 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
   .jbar-note{display:none}
   .jbar-ctrls{grid-column:2;grid-row:1}
 }
+
+/* ── CPU scheduling shootout ─────────────────────────────────────────────────── */
+.cpu{display:flex;flex-direction:column;gap:18px}
+.cpu-controls{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}
+.cpu-jobs{border:1px solid var(--line);border-radius:11px;padding:12px 13px;background:var(--panel)}
+.cpu-jobs-head{display:flex;align-items:center;gap:8px;font-weight:650;font-size:13px;margin-bottom:8px}
+.cpu-jobs-head span{flex:1}
+.cpu-mini{font:inherit;font-size:11.5px;padding:3px 9px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:hsl(212 70% 45%);cursor:pointer}
+.cpu-mini:hover:not(:disabled){border-color:hsl(212 70% 60%)}
+.cpu-mini:disabled{opacity:.4;cursor:default}
+.cpu-jobtable{width:100%;border-collapse:collapse;font-size:13px}
+.cpu-jobtable th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;padding:2px 6px}
+.cpu-jobtable td{padding:3px 6px}
+.cpu-jobtable input{width:54px;font:inherit;font-size:13px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:#fbfcfe;color:var(--ink)}
+.cpu-swatch{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+.cpu-x{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;padding:2px 5px}
+.cpu-x:hover:not(:disabled){color:hsl(0 55% 50%)}
+.cpu-x:disabled{opacity:.3;cursor:default}
+.cpu-policy{border:1px solid var(--line);border-radius:11px;padding:12px 13px;background:var(--panel)}
+.cpu-policy-head,.cpu-compare-head,.cpu-gantt-title{font-weight:650;font-size:13px;margin-bottom:9px}
+.cpu-policy-btns{display:flex;flex-wrap:wrap;gap:7px}
+.cpu-pbtn{font:inherit;font-size:12.5px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.cpu-pbtn:hover{border-color:hsl(212 70% 60%)}
+.cpu-pbtn.on{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.cpu-quantum{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);margin-top:11px}
+.cpu-quantum b{color:var(--ink);font-variant-numeric:tabular-nums}
+.cpu-gantt-wrap{border:1px solid var(--line);border-radius:11px;padding:13px 15px 26px;background:var(--panel)}
+.cpu-gantt{display:flex;height:46px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+.cpu-bar{display:flex;align-items:center;justify-content:center;min-width:0;border-right:1px solid rgba(255,255,255,.7);color:#15233a;font-weight:650;font-size:13px}
+.cpu-bar:last-child{border-right:0}
+.cpu-bar-id{text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.cpu-axis{position:relative;height:16px;margin-top:5px;font-variant-numeric:tabular-nums}
+.cpu-tick{position:absolute;transform:translateX(-50%);font-size:11px;color:var(--muted)}
+.cpu-metrics,.cpu-ctable{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.cpu-metrics th,.cpu-ctable th{text-align:right;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;padding:6px 10px;border-bottom:1px solid var(--line)}
+.cpu-metrics th:first-child,.cpu-ctable th:first-child{text-align:left}
+.cpu-metrics td,.cpu-ctable td{text-align:right;padding:6px 10px;border-bottom:1px solid var(--line)}
+.cpu-metrics td:first-child,.cpu-ctable td:first-child{text-align:left}
+.cpu-avg td{font-weight:650;border-bottom:0;border-top:2px solid var(--line)}
+.cpu-ctable tr.on{background:hsl(212 55% 96%)}
+.cpu-ctable td.best{color:hsl(150 55% 30%);font-weight:650}
+.cpu-clink{font:inherit;font-size:13px;background:none;border:0;color:hsl(212 70% 45%);cursor:pointer;padding:0}
+.cpu-clink:hover{text-decoration:underline}
+.cpu-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin-top:12px}
+.cpu-foot strong{color:var(--ink)}
+@media(max-width:720px){.cpu-controls{grid-template-columns:1fr}}
