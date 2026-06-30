@@ -230,6 +230,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'cow', label: 'Copy-on-write fork', icon: '🐄' },
   { id: 'tlb', label: 'TLB (address cache)', icon: '🗂️' },
   { id: 'numa', label: 'NUMA & first-touch', icon: '🧮' },
+  { id: 'epoll', label: 'epoll & C10k', icon: '📡' },
   { id: 'cfs', label: 'Linux CFS scheduler', icon: '⚖️' },
   { id: 'pipeline', label: 'Pipeline hazards', icon: '🚰' },
 ];
@@ -248,7 +249,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'watermark', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc', 'saga'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd', 'bellmanford', 'newton', 'fft'] },
-  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'branchpredict', 'cow', 'pagewalk', 'tlb', 'numa', 'mesi', 'tso'] },
+  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'branchpredict', 'cow', 'pagewalk', 'tlb', 'numa', 'epoll', 'mesi', 'tso'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
