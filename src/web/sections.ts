@@ -57,6 +57,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'floyd', label: 'Floyd-Warshall (all-pairs)', icon: '🔲' },
   { id: 'rabinkarp', label: 'Rabin-Karp', icon: '🎞️' },
   { id: 'ahocorasick', label: 'Aho-Corasick', icon: '🔱' },
+  { id: 'boyermoore', label: 'Boyer-Moore search', icon: '🏃' },
   { id: 'arp', label: 'ARP resolution', icon: '📇' },
   { id: 'stptree', label: 'Spanning Tree', icon: '🌳' },
   { id: 'slaac', label: 'IPv6 SLAAC', icon: '🆔' },
@@ -226,7 +227,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'bwt', 'dfa', 'huffman', 'arith', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'chaos', 'singleflight'] },
-  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'ahocorasick', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'branchpredict', 'pagewalk', 'mesi', 'tso'] },
 ];
 
