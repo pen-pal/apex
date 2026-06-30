@@ -5655,3 +5655,38 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ls-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .ls-foot strong{color:var(--ink)}
 @media(max-width:680px){.ls-main{grid-template-columns:1fr}}
+
+/* ── Max-flow / min-cut (Edmonds-Karp) ───────────────────────────────────────── */
+.mf{display:flex;flex-direction:column;gap:14px}
+.mf-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.mf-steps{display:flex;gap:8px;flex-wrap:wrap}
+.mf-steps button{font:inherit;font-size:12.5px;font-weight:600;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.mf-steps button:hover:not(:disabled){border-color:hsl(212 70% 60%)}
+.mf-steps button:disabled{opacity:.4;cursor:default}
+.mf-steps button.primary{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.mf-steps button.primary:hover:not(:disabled){background:hsl(212 75% 44%)}
+.mf-total{font-size:14px;color:var(--muted)}
+.mf-total b{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.mf-max{color:hsl(150 45% 35%);font-weight:600}
+.mf-stepinfo{font-size:13px;color:var(--muted);line-height:1.5;min-height:20px}
+.mf-stepinfo b{color:var(--ink)}
+.mf-pathtxt{font-family:var(--mono)}
+.mf-diagram{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--panel)}
+.mf-svg{width:100%;height:auto;display:block}
+.mf-edge{stroke:var(--line);stroke-width:2.5}
+.mf-edge.used{stroke:hsl(212 55% 62%);stroke-width:3}
+.mf-edge.hot{stroke:hsl(28 85% 52%);stroke-width:4.5}
+.mf-edge.cut{stroke:hsl(0 70% 52%);stroke-width:4.5}
+.mf-ah{fill:var(--line)}
+.mf-ah.hot{fill:hsl(28 85% 52%)}
+.mf-ah.cut{fill:hsl(0 70% 52%)}
+.mf-flbl{font-family:var(--mono);font-size:11.5px;fill:var(--muted);text-anchor:middle;font-weight:600}
+.mf-flbl.on{fill:hsl(212 70% 38%)}
+.mf-node{fill:#fff;stroke:var(--muted);stroke-width:2}
+.mf-node.st{fill:hsl(212 75% 50%);stroke:hsl(212 75% 40%)}
+.mf-node.inS{stroke:hsl(0 65% 55%);stroke-width:3}
+.mf-nlbl{text-anchor:middle;font-weight:700;font-size:13px;fill:var(--ink)}
+.mf-nlbl.st{fill:#fff}
+.mf-cutnote{font-size:12px;color:hsl(0 60% 42%);background:hsl(0 60% 97%);border:1px solid hsl(0 50% 89%);border-radius:8px;padding:8px 11px;margin-top:9px}
+.mf-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.mf-foot strong{color:var(--ink)}
