@@ -26,9 +26,10 @@ export function probe(m: Member, directAck: boolean, indirectAcks: boolean[]): P
 /** The suspicion timer elapses with no refutation: suspect → dead. */
 export const suspicionExpire = (m: Member): Member => (m.status === 'suspect' ? { ...m, status: 'dead' } : m);
 
-/** The suspected node refutes with a fresh, higher incarnation — instantly clearing the suspicion. */
+/** The suspected node refutes with a fresh, higher incarnation — instantly clearing the suspicion.
+ *  Death is terminal in SWIM (Confirm overrides everything), so a dead node can never be revived. */
 export const refute = (m: Member, incarnation: number): Member =>
-  incarnation > m.incarnation ? { ...m, status: 'alive', incarnation } : m;
+  m.status !== 'dead' && incarnation > m.incarnation ? { ...m, status: 'alive', incarnation } : m;
 
 /** Apply a gossiped suspicion, but only if it isn't STALE (its incarnation must not predate a refute). */
 export const applySuspect = (m: Member, incarnation: number): Member => {

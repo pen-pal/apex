@@ -48,10 +48,11 @@ describe('incarnation numbers reject stale gossip', () => {
     expect(applySuspect(refuted, 4).status).toBe('alive'); // stale → ignored
     expect(applySuspect(refuted, 5).status).toBe('suspect'); // current → applies
   });
-  it('death is terminal — further probes leave it dead', () => {
+  it('death is terminal — no probe, stale suspicion, OR refutation can revive a dead node', () => {
     const dead = suspicionExpire(probe(initMember('n2'), false, []).member);
     expect(dead.status).toBe('dead');
     expect(probe(dead, true, []).member.status).toBe('dead');
     expect(applySuspect(dead, 99).status).toBe('dead');
+    expect(refute(dead, 99).status).toBe('dead'); // Confirm(dead) overrides everything — no resurrection
   });
 });
