@@ -54,6 +54,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'mst', label: 'Minimum spanning tree', icon: '🌲' },
   { id: 'scc', label: 'Strongly connected comps', icon: '🔗' },
   { id: 'rabinkarp', label: 'Rabin-Karp', icon: '🎞️' },
+  { id: 'ahocorasick', label: 'Aho-Corasick', icon: '🔱' },
   { id: 'arp', label: 'ARP resolution', icon: '📇' },
   { id: 'stptree', label: 'Spanning Tree', icon: '🌳' },
   { id: 'slaac', label: 'IPv6 SLAAC', icon: '🆔' },
@@ -209,7 +210,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'siteisolation', 'sri', 'csp', 'attacks'] },
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'bwt', 'dfa', 'huffman', 'arith', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
-  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar', 'maxflow', 'mst', 'scc'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'ahocorasick', 'editdist', 'toposort', 'astar', 'maxflow', 'mst', 'scc'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'pagewalk', 'mesi', 'tso'] },
 ];
 
