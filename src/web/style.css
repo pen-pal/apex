@@ -5414,3 +5414,51 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cpu-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin-top:12px}
 .cpu-foot strong{color:var(--ink)}
 @media(max-width:720px){.cpu-controls{grid-template-columns:1fr}}
+
+/* ── x86-64 page-table walk ──────────────────────────────────────────────────── */
+.pgw{display:flex;flex-direction:column;gap:16px}
+.pgw-bar{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.pgw-input{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.pgw-input input{font-family:var(--mono);font-size:15px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);width:230px}
+.pgw-presets{display:flex;gap:6px;flex-wrap:wrap}
+.pgw-preset{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:hsl(212 70% 45%);cursor:pointer}
+.pgw-preset:hover{border-color:hsl(212 70% 60%)}
+.pgw-err{font-size:13px;color:hsl(0 55% 45%);background:hsl(0 60% 97%);border:1px solid hsl(0 50% 88%);border-radius:8px;padding:10px 13px}
+.pgw-split{display:flex;gap:5px}
+.pgw-field{flex-basis:0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;border:1.5px solid;border-radius:9px;padding:9px 6px;background:var(--panel)}
+.pgw-fname{font-size:11px;font-weight:700;letter-spacing:.03em}
+.pgw-fbits{font-family:var(--mono);font-size:12px;color:var(--ink);letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pgw-fval{font-family:var(--mono);font-size:14px;font-weight:650;color:var(--ink);display:flex;align-items:baseline;gap:5px}
+.pgw-fw{font-size:9.5px;color:var(--muted);font-weight:400}
+.pgw-walk{display:flex;align-items:center;gap:2px;flex-wrap:wrap;padding:4px 0}
+.pgw-reg{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);border-radius:7px;padding:10px 11px}
+.pgw-stage-wrap{display:flex;align-items:center;gap:2px}
+.pgw-arrow{font-size:18px;padding:0 2px}
+.pgw-stage{border:1.5px solid;border-radius:9px;padding:7px 11px;background:var(--panel);text-align:center;min-width:74px}
+.pgw-stage.fault{background:hsl(0 60% 97%)}
+.pgw-stage-lvl{font-size:12px;font-weight:700;color:var(--ink)}
+.pgw-stage-idx{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.pgw-stage-state{font-size:10px;margin-top:1px}
+.pgw-stage.hit .pgw-stage-state{color:hsl(150 45% 38%)}
+.pgw-stage.fault .pgw-stage-state{color:hsl(0 60% 48%);font-weight:600}
+.pgw-frame{font-size:11px;color:var(--muted);text-align:center;border:1.5px solid hsl(150 45% 55%);border-radius:9px;padding:7px 12px;background:hsl(150 50% 97%)}
+.pgw-frame b{font-family:var(--mono);font-size:15px;color:hsl(150 45% 30%)}
+.pgw-result{border-radius:10px;padding:13px 15px}
+.pgw-result.ok{background:hsl(150 50% 97%);border:1px solid hsl(150 40% 82%)}
+.pgw-result.fault{background:hsl(0 60% 97%);border:1px solid hsl(0 50% 87%)}
+.pgw-pa,.pgw-fa{font-size:14px;color:var(--ink)}
+.pgw-pa b,.pgw-fa b{font-family:var(--mono)}
+.pgw-pa b{color:hsl(150 45% 28%);font-size:16px}
+.pgw-pa-sub,.pgw-fa-sub{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.55}
+.pgw-demand{margin-top:10px;font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:0;background:hsl(0 60% 50%);color:#fff;cursor:pointer}
+.pgw-demand:hover{background:hsl(0 60% 44%)}
+.pgw-tables{border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--panel)}
+.pgw-tables-h{font-size:12px;font-weight:650;color:var(--muted);margin-bottom:8px}
+.pgw-maplist{display:flex;flex-wrap:wrap;gap:6px}
+.pgw-maprow{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.pgw-maprow.on{border-color:hsl(212 70% 55%);background:hsl(212 55% 96%)}
+.pgw-marrow{color:var(--muted)}
+.pgw-mfr{color:hsl(150 45% 32%)}
+.pgw-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.pgw-foot strong{color:var(--ink)}
+@media(max-width:680px){.pgw-fbits{font-size:10px}.pgw-split{gap:3px}}
