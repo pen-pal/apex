@@ -6387,3 +6387,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .flg-verdict.off{color:var(--muted)}
 .flg-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .flg-foot strong{color:var(--ink)}
+
+/* ── Graceful shutdown / connection draining ─────────────────────────────────── */
+.gsd{display:flex;flex-direction:column;gap:14px}
+.gsd-controls{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.gsd-controls label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.gsd-controls input{width:180px}
+.gsd-controls b{color:var(--ink);font-variant-numeric:tabular-nums;min-width:20px}
+.gsd-timeline{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:0}
+.gsd-window{position:absolute;top:26px;bottom:8px;background:hsl(212 60% 94%);border-right:1px dashed hsl(212 50% 70%)}
+.gsd-mark{position:absolute;top:0;bottom:0;width:0;border-left:2px solid}
+.gsd-mark.sigterm{border-color:hsl(280 50% 55%)}
+.gsd-mark.kill{border-color:hsl(0 65% 55%);border-left-style:dashed}
+.gsd-mark span{position:absolute;top:4px;left:4px;font-size:10px;font-weight:700;white-space:nowrap}
+.gsd-mark.sigterm span{color:hsl(280 50% 45%)}
+.gsd-mark.kill span{color:hsl(0 60% 48%)}
+.gsd-lane{position:absolute;left:0;right:0;height:22px}
+.gsd-bar{position:absolute;height:20px;border-radius:5px;display:flex;align-items:center;padding-left:7px;min-width:20px;box-shadow:0 1px 3px -1px rgba(0,0,0,.2)}
+.gsd-blabel{font-family:var(--mono);font-size:11px;font-weight:600;color:#15233a}
+.gsd-spacer{width:100%}
+.gsd-stats{display:flex;gap:11px;flex-wrap:wrap}
+.gsd-stat{flex:1;min-width:96px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--panel)}
+.gsd-stat span{font-size:11px;color:var(--muted);display:block}
+.gsd-stat b{font-size:18px;color:var(--ink)}
+.gsd-stat.ok b{color:hsl(150 45% 35%)}
+.gsd-stat.bad b{color:hsl(0 60% 48%)}
+.gsd-stat.clean b{color:hsl(150 45% 35%)}
+.gsd-stat.dirty b{color:hsl(0 60% 48%)}
+.gsd-hint{font-size:12.5px;color:var(--muted)}
+.gsd-hint b{color:var(--ink)}
+.gsd-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.gsd-foot strong{color:var(--ink)}
+.gsd-foot code{font-family:var(--mono);font-size:11.5px;background:#eef1f5;padding:1px 5px;border-radius:4px}
