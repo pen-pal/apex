@@ -6260,3 +6260,40 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hlth-steps button.primary{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
 .hlth-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .hlth-foot strong{color:var(--ink)}
+
+/* ── Horizontal autoscaling (HPA) ────────────────────────────────────────────── */
+.hpa{display:flex;flex-direction:column;gap:14px}
+.hpa-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.hpa-controls label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.hpa-controls label:first-child input{font-family:var(--mono);font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fbfcfe;color:var(--ink);width:230px}
+.hpa-controls b{color:var(--ink);font-variant-numeric:tabular-nums}
+.hpa-chart{display:flex;gap:5px;align-items:flex-end;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel)}
+.hpa-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;border-radius:7px;padding:4px 2px}
+.hpa-col.cur{background:hsl(212 55% 96%)}
+.hpa-bars{height:80px;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.hpa-load{width:60%;background:hsl(212 60% 62%);border-radius:3px 3px 0 0;min-height:1px}
+.hpa-reps{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;max-width:46px;min-height:10px}
+.hpa-rep{width:7px;height:7px;border-radius:2px;background:hsl(150 50% 50%)}
+.hpa-tnum{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.hpa-readout{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel);display:flex;flex-direction:column;gap:9px}
+.hpa-now{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.hpa-now b{color:var(--ink);font-variant-numeric:tabular-nums}
+.hpa-rlabel{font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.hpa-util{font-family:var(--mono);font-weight:700;padding:2px 9px;border-radius:6px}
+.hpa-util.ok{background:hsl(150 50% 93%);color:hsl(150 45% 30%)}
+.hpa-util.high{background:hsl(0 65% 94%);color:hsl(0 60% 42%)}
+.hpa-util.low{background:hsl(212 55% 93%);color:hsl(212 70% 40%)}
+.hpa-vs{font-size:12px}
+.hpa-formula{font-family:var(--mono);font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hpa-formula b{color:hsl(212 70% 42%);font-size:15px}
+.hpa-action{font-family:var(--sans);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
+.hpa-action.scaleup{background:hsl(150 50% 92%);color:hsl(150 45% 30%)}
+.hpa-action.scaledown{background:hsl(35 80% 92%);color:hsl(35 75% 38%)}
+.hpa-action.hold{background:#eef1f5;color:var(--muted)}
+.hpa-steps{display:flex;gap:8px;justify-content:center}
+.hpa-steps button{font:inherit;font-size:12.5px;font-weight:600;padding:7px 14px;border:1px solid var(--line);border-radius:8px;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.hpa-steps button:hover:not(:disabled){border-color:hsl(212 70% 60%)}
+.hpa-steps button:disabled{opacity:.4;cursor:default}
+.hpa-steps button.primary{background:hsl(212 75% 50%);border-color:transparent;color:#fff}
+.hpa-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.hpa-foot strong{color:var(--ink)}
