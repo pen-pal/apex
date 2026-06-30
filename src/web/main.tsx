@@ -196,6 +196,8 @@ import { RevocationSection } from './RevocationSection';
 import { SshSection } from './SshSection';
 import { GROUPS, metaById, groupOf } from './sections';
 import { OverviewSection } from './OverviewSection';
+import { JourneyBar } from './JourneyBar';
+import { pathById } from './paths';
 import './style.css';
 
 const registry = new ProtocolRegistry();
@@ -216,7 +218,20 @@ function App() {
   const [section, setSection] = useState<Section>('network');
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [navQuery, setNavQuery] = useState('');
+  const [journeyId, setJourneyId] = useState<string | null>(null);
   const activeGroup = groupOf(section);
+  const activePath = journeyId ? pathById[journeyId] ?? null : null;
+
+  // Start a guided journey: remember it and jump to its first stop. The bar's position then
+  // derives from `section`, so ordinary nav/search clicks keep it in sync with zero extra state.
+  const startPath = (pathId: string) => {
+    const p = pathById[pathId];
+    if (!p) return;
+    setJourneyId(pathId);
+    setSection(p.steps[0].id as Section);
+    setOpenMenu(null);
+    setNavQuery('');
+  };
 
   // flat, searchable index of every section (label + group, for the search box)
   const allSections = useMemo(
@@ -287,7 +302,7 @@ function App() {
   const payloadHex = payload.map((b) => b.toString(16).toUpperCase().padStart(2, '0')).join(' ');
 
   return (
-    <div className="app">
+    <div className={`app ${activePath ? 'has-jbar' : ''}`}>
       <header className="topbar">
         <div className="topbar-inner">
           <button type="button" className="brand" onClick={() => setSection('overview')} title="Overview"><span className="logo">◆</span> Apex</button>
@@ -375,7 +390,7 @@ function App() {
 
       <main className="content">
         {section === 'overview' && (
-          <OverviewSection onPick={(id) => setSection(id as Section)} current={section} />
+          <OverviewSection onPick={(id) => setSection(id as Section)} onStartPath={startPath} current={section} />
         )}
 
         {section === 'network' && (
@@ -2206,6 +2221,14 @@ function App() {
           </>
         )}
       </main>
+      {activePath && (
+        <JourneyBar
+          path={activePath}
+          section={section}
+          onGoto={(id) => { setSection(id as Section); setOpenMenu(null); setNavQuery(''); }}
+          onExit={() => { setJourneyId(null); setSection('overview'); }}
+        />
+      )}
     </div>
   );
 }
