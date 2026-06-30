@@ -7175,3 +7175,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cdc-chunk{font-family:var(--mono);font-size:12px;padding:4px 6px;border-radius:5px;white-space:pre;border:1px solid transparent}
 .cdc-chunk.reused{background:rgba(35,134,54,.13);color:#1a7f37;border-color:rgba(35,134,54,.35)}
 .cdc-chunk.new{background:rgba(207,34,46,.13);color:#cf222e;border-color:rgba(207,34,46,.4)}
+
+/* ---- overview: collapsible group cards (declutter the landing) ---- */
+.ov-group-head{width:100%;background:none;border:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.ov-grid.is-expanded .ov-group-head{margin-bottom:11px}
+.ov-grid.is-collapsed .ov-group-head{margin-bottom:0}
+.ov-grid.is-collapsed .ov-group{cursor:pointer;transition:border-color .12s,background .12s,box-shadow .12s}
+.ov-grid.is-collapsed .ov-group:hover{border-color:hsl(212 60% 70%);background:hsl(212 55% 98%);box-shadow:0 2px 10px rgba(20,40,80,.06)}
+.ov-gexpand{margin-left:auto;color:var(--muted);font-size:20px;line-height:1;transition:transform .12s}
+.ov-grid.is-collapsed .ov-group:hover .ov-gexpand{transform:translateX(3px);color:hsl(212 70% 50%)}
+.ov-group-head .ov-gcount{margin-left:8px}
+
+/* ---- brand as a clear home button + mobile browse entry ---- */
+.brand{cursor:pointer;padding:5px 8px;border-radius:8px;transition:background .12s}
+.brand:hover{background:#eef1f5}
+.brand.home{background:hsl(212 55% 94%)}
+.mobile-browse{display:none}
+/* On phones the 10-group dropdown nav can't fit — collapse it to one Browse button that opens the
+   responsive overview catalog (which has its own filter + group chips). The Apex brand stays as Home. */
+@media(max-width:680px){
+  .topnav{display:none}
+  .navsearch{display:none}
+  .mobile-browse{display:inline-flex;align-items:center;gap:6px;margin-left:auto;background:var(--ink);color:#fff;border:0;border-radius:8px;padding:8px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+}

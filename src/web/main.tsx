@@ -357,7 +357,8 @@ function App() {
     <div className={`app ${activePath ? 'has-jbar' : ''}`}>
       <header className="topbar">
         <div className="topbar-inner">
-          <button type="button" className="brand" onClick={() => setSection('overview')} title="Overview"><span className="logo">◆</span> Apex</button>
+          <button type="button" className={`brand ${section === 'overview' ? 'home' : ''}`} onClick={() => setSection('overview')} title="Home / all sections"><span className="logo">◆</span> Apex</button>
+          <button type="button" className="mobile-browse" onClick={() => setSection('overview')} aria-label="Browse all sections">☰ Browse</button>
           <nav className="topnav" aria-label="Section groups">
             {GROUPS.map((g) => {
               const isOpen = openMenu === g.label;

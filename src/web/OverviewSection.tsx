@@ -81,22 +81,31 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
         {filtering && <div className="ov-matchcount">{matchCount} match{matchCount === 1 ? '' : 'es'}{ql && <button type="button" className="ov-clear" onClick={() => { setQ(''); setGroup(null); }}>clear</button>}</div>}
       </div>
 
-      <div className="ov-grid">
+      {/* Collapsed by default: groups show as compact cards. Click one (or filter/search) to expand its
+          sections — so the landing isn't a wall of all 220+ links at once and doesn't just mirror the nav. */}
+      <div className={`ov-grid ${filtering ? 'is-expanded' : 'is-collapsed'}`}>
         {visible.length === 0 ? <div className="ov-noresults">No sections match “{q}”.</div> : visible.map((g) => (
           <div className="ov-group" key={g.label}>
-            <div className="ov-group-head"><span className="ov-gicon" aria-hidden="true">{g.icon}</span><h2>{g.label}</h2><span className="ov-gcount">{g.ids.length}</span></div>
-            <div className="ov-cards">
-              {g.ids.map((id) => {
-                const m = metaById[id];
-                if (!m) return null;
-                return (
-                  <button key={id} type="button" className={`ov-card ${current === id ? 'on' : ''}`} onClick={() => onPick(id)}>
-                    <span className="ov-cicon" aria-hidden="true">{m.icon}</span>
-                    <span className="ov-clabel">{m.label}</span>
-                  </button>
-                );
-              })}
-            </div>
+            <button type="button" className="ov-group-head" onClick={() => setGroup((cur) => (cur === g.label ? null : g.label))} aria-expanded={filtering}>
+              <span className="ov-gicon" aria-hidden="true">{g.icon}</span>
+              <h2>{g.label}</h2>
+              <span className="ov-gcount">{g.ids.length}</span>
+              {!filtering && <span className="ov-gexpand" aria-hidden="true">›</span>}
+            </button>
+            {filtering && (
+              <div className="ov-cards">
+                {g.ids.map((id) => {
+                  const m = metaById[id];
+                  if (!m) return null;
+                  return (
+                    <button key={id} type="button" className={`ov-card ${current === id ? 'on' : ''}`} onClick={() => onPick(id)}>
+                      <span className="ov-cicon" aria-hidden="true">{m.icon}</span>
+                      <span className="ov-clabel">{m.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         ))}
       </div>
