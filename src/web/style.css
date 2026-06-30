@@ -5961,3 +5961,25 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .qp-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .qp-foot strong{color:var(--ink)}
 @media(max-width:680px){.qp-setup,.qp-body{grid-template-columns:1fr}}
+
+/* ── RUM conjecture (read/write/space amplification) ─────────────────────────── */
+.rum{display:flex;flex-direction:column;gap:15px}
+.rum-controls{display:flex;gap:22px;flex-wrap:wrap;align-items:center;border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel)}
+.rum-controls label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:9px}
+.rum-controls b{color:var(--ink);font-variant-numeric:tabular-nums}
+.rum-meta{font-size:12px;color:var(--muted)}
+.rum-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.rum-card{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--panel);display:flex;flex-direction:column;gap:10px}
+.rum-card-h{font-size:13.5px;font-weight:700;display:flex;flex-direction:column;gap:3px}
+.rum-sac{font-size:11px;font-weight:600;color:hsl(0 60% 48%)}
+.rum-sac.ok{color:hsl(150 45% 35%)}
+.rum-dim{display:flex;align-items:center;gap:9px}
+.rum-dl{font-size:11px;color:var(--muted);min-width:62px}
+.rum-bar{flex:1;height:11px;background:#eef1f5;border-radius:6px;overflow:hidden}
+.rum-fill{height:100%;background:hsl(212 60% 60%);border-radius:6px;transition:width .2s}
+.rum-fill.bad{background:hsl(0 65% 60%)}
+.rum-val{font-family:var(--mono);font-size:12px;color:var(--ink);min-width:44px;text-align:right}
+.rum-val.bad{color:hsl(0 60% 48%);font-weight:700}
+.rum-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.rum-foot strong{color:var(--ink)}
+@media(max-width:680px){.rum-cards{grid-template-columns:1fr}}
