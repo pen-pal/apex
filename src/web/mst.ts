@@ -44,14 +44,13 @@ export function prim(edges: Edge[], start?: string): MstResult {
   const tree: Edge[] = [];
   const steps: KruskalStep[] = [];
   while (inTree.size < ns.length) {
-    // cheapest edge with exactly one endpoint in the tree (deterministic tie-break)
+    // cheapest edge with exactly one endpoint in the tree. Compare WEIGHT NUMERICALLY first (a string
+    // key would order "10" before "2"); break ties by the sorted endpoint names for determinism.
     let best: Edge | null = null;
+    const tie = (x: Edge) => [x.u, x.v].sort().join('');
     for (const e of edges) {
       const a = inTree.has(e.u), b = inTree.has(e.v);
-      if (a !== b) {
-        const key = (x: Edge) => `${x.w}-${[x.u, x.v].sort().join('')}`;
-        if (!best || key(e) < key(best)) best = e;
-      }
+      if (a !== b && (!best || e.w < best.w || (e.w === best.w && tie(e) < tie(best)))) best = e;
     }
     if (!best) break; // disconnected graph
     inTree.add(inTree.has(best.u) ? best.v : best.u);
