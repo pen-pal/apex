@@ -114,7 +114,10 @@ function segmentsFromTree(tree: DissectionNode): { segments: JourneySegment[]; t
   let depth = 0;
   for (let n: DissectionNode | null = tree; n; n = n.child, depth++) {
     headers.push({ id: n.header.spec.id, label: `${n.header.spec.name} header`, length: n.header.byteLength });
-    if (n.trailer.length) trailers.push({ seg: { id: 'fcs', label: `${n.header.spec.name} trailer`, length: n.trailer.length }, depth });
+    // The Ethernet FCS (and any 802.3 zero-padding for short frames) surfaces as
+    // trailing bytes past the innermost length-bounded layer: 4 bytes = the FCS
+    // alone; more than 4 = zero-padding + FCS.
+    if (n.trailer.length) trailers.push({ seg: { id: 'fcs', label: n.trailer.length > 4 ? 'padding + FCS' : 'FCS', length: n.trailer.length }, depth });
     if (!n.child) leaf = n;
   }
   const segments = [...headers];

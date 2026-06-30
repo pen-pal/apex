@@ -56,6 +56,18 @@ export function buildStack(
 
   let bytes = inner;
   if (stack[0] === 'ethernet') {
+    // IEEE 802.3 minimum frame is 64 bytes measured from the destination MAC
+    // through the FCS, so the MAC header + L3 packet + any padding must reach
+    // 60 bytes before the 4-byte FCS. A real NIC zero-pads short frames (small
+    // IP packets) to this floor; we do the same so the bytes match the wire.
+    // Padding is recovered as trailer on dissection — each layer bounds its own
+    // PDU by its length field, so it never leaks into the payload.
+    const MIN_BEFORE_FCS = 60;
+    if (bytes.length < MIN_BEFORE_FCS) {
+      const pad = new Array(MIN_BEFORE_FCS - bytes.length).fill(0);
+      segments.push({ id: 'padding', label: 'Ethernet padding', bytes: pad });
+      bytes = bytes.concat(pad);
+    }
     const fcsVal = crc32(bytes);
     const fcs = [(fcsVal >>> 24) & 255, (fcsVal >>> 16) & 255, (fcsVal >>> 8) & 255, fcsVal & 255];
     bytes = bytes.concat(fcs);

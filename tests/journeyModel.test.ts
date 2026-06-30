@@ -16,7 +16,7 @@ describe('buildJourney', () => {
     expect(j.layers.map((l) => l.headerBytes)).toEqual([14, 20, 20]);
     expect(j.payloadLength).toBe(2);
     expect(j.payloadAscii).toBe('Hi');
-    expect(j.trailerLength).toBe(4); // FCS
+    expect(j.trailerLength).toBe(8); // 4 bytes Ethernet padding + 4 bytes FCS (frame padded to the 64-byte minimum)
   });
 
   it('builds a flat byte layout whose segments sum to the total frame', () => {
@@ -24,8 +24,9 @@ describe('buildJourney', () => {
     const sum = j.segments.reduce((s, x) => s + x.length, 0);
     expect(sum).toBe(j.totalBytes);
     expect(j.segments.map((s) => s.id)).toEqual(['ethernet', 'ipv4', 'tcp', 'payload', 'fcs']);
-    // 14 + 20 + 20 + 5 + 4
-    expect(j.totalBytes).toBe(63);
+    // 'Hello' = 45-byte IP packet → padded to the 64-byte Ethernet minimum:
+    // 14 eth + 20 ip + 20 tcp + 5 payload + (1 pad + 4 FCS) = 64
+    expect(j.totalBytes).toBe(64);
   });
 
   it('recovers the exact message through the engine (round-trip is real)', () => {

@@ -23,8 +23,11 @@ describe('build -> dissect round trip', () => {
     expect(tcp.header.get('dstPort')).toBe(8080);
     expect(new TextDecoder().decode(Uint8Array.from(tcp.payload))).toBe(message);
 
-    // the FCS lives as trailing bytes, never inside the recovered data
-    expect(eth.child!.trailer.length).toBe(4);
+    // 'Hi' is a 42-byte IP packet, so the frame is zero-padded to the 64-byte
+    // Ethernet minimum (4 pad bytes) plus a 4-byte FCS. Both surface as trailing
+    // bytes past IPv4's totalLength — never inside the recovered data.
+    expect(frame.bytes.length).toBe(64);
+    expect(eth.child!.trailer.length).toBe(8); // 4 padding + 4 FCS
   });
 });
 

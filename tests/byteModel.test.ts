@@ -32,8 +32,10 @@ describe('buildByteModel', () => {
     }
   });
 
-  it('lays out the stack: Ethernet(14) -> IPv4(20) -> TCP(20) -> payload -> FCS(4)', () => {
+  it('lays out the stack: Ethernet(14) -> IPv4(20) -> TCP(20) -> payload -> padding -> FCS(4) = 64', () => {
     const { model } = build('Hi');
+    // 'Hi' is a 42-byte IP packet → the frame is zero-padded to the 64-byte minimum.
+    expect(model.cells.length).toBe(64);
     // Ethernet header: bytes 0..13
     expect(model.cells.slice(0, 14).every((c) => c.layerId === 'ethernet' && c.region === 'header')).toBe(true);
     // IPv4 header: bytes 14..33
@@ -43,12 +45,14 @@ describe('buildByteModel', () => {
     // payload 'Hi' = 2 bytes, owned by TCP as a leaf
     expect(model.cells.slice(54, 56).every((c) => c.layerId === 'tcp' && c.region === 'payload')).toBe(true);
     expect(String.fromCharCode(...model.cells.slice(54, 56).map((c) => c.value))).toBe('Hi');
-    // FCS trailer: last 4 bytes. Ethernet II has no length field to bound its
-    // own PDU, so the engine surfaces the FCS as the trailing bytes past IPv4's
+    // Trailing 8 bytes = 4 padding + 4 FCS. Ethernet II has no length field to bound
+    // its own PDU, so the engine surfaces both as trailing bytes past IPv4's
     // totalLength boundary. The byte view reflects this faithfully.
-    const fcs = model.cells.slice(-4);
-    expect(fcs.every((c) => c.region === 'trailer')).toBe(true);
-    expect(fcs.every((c) => c.layerId === 'ipv4')).toBe(true);
+    const trailer = model.cells.slice(56);
+    expect(trailer.length).toBe(8);
+    expect(trailer.every((c) => c.region === 'trailer' && c.layerId === 'ipv4')).toBe(true);
+    // the 4 padding bytes are zero
+    expect(model.cells.slice(56, 60).every((c) => c.value === 0)).toBe(true);
   });
 
   it('splits a packed byte into multiple field slices (IPv4 version + IHL share byte 14)', () => {

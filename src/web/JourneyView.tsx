@@ -53,7 +53,8 @@ export function JourneyView({ journey, message }: { journey: JourneyModel; messa
         </div>
         <p className="overhead">
           <strong>{journey.payloadLength}</strong> byte{journey.payloadLength === 1 ? '' : 's'} of message ride inside{' '}
-          <strong>{headerTotal}</strong> bytes of headers + FCS — <strong>{journey.totalBytes}</strong> bytes on the wire.
+          <strong>{headerTotal}</strong> bytes of headers{journey.trailerLength > 4 ? ', padding' : ''} + FCS — <strong>{journey.totalBytes}</strong> bytes on the wire
+          {journey.trailerLength > 4 ? ' (padded up to the 64-byte Ethernet minimum)' : ''}.
         </p>
       </section>
 
@@ -133,7 +134,7 @@ export function JourneyView({ journey, message }: { journey: JourneyModel; messa
             const st = layerStyle(l.depth);
             return (
               <span key={l.id} className="peel-step" style={{ borderColor: st.border, background: st.bg, color: st.text }}>
-                <strong>L{l.layer} {l.name}</strong> strip {l.headerBytes}B{i === 0 && journey.trailerLength ? ` + ${journey.trailerLength}B FCS` : ''}
+                <strong>L{l.layer} {l.name}</strong> strip {l.headerBytes}B{i === 0 && journey.trailerLength ? ` + ${journey.trailerLength}B ${journey.trailerLength > 4 ? 'pad/FCS' : 'FCS'}` : ''}
               </span>
             );
           })}
