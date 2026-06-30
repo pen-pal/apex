@@ -7476,3 +7476,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hho-replayed{font-size:12.5px;color:#1a7f37;background:rgba(35,134,54,.08);border:1px solid rgba(35,134,54,.28);border-radius:8px;padding:10px 12px;line-height:1.55}
 .hho-replayed b{font-family:var(--mono)}
 @media(max-width:620px){.hho-ring{grid-template-columns:repeat(3,1fr)}.hho-verdict{margin-left:0;width:100%;justify-content:center;padding:8px}}
+
+/* ---- futex ---- */
+.ftx{display:flex;flex-direction:column;gap:14px}
+.ftx-intro,.ftx-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.ftx-intro strong,.ftx-foot strong{color:var(--ink)}
+.ftx-foot code{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.ftx-scenarios{display:flex;gap:7px;flex-wrap:wrap}
+.ftx-sbtn{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 12px;cursor:pointer}
+.ftx-sbtn.on{color:var(--ink);border-color:var(--accent);background:var(--bg);font-weight:600}
+.ftx-trace{display:flex;flex-direction:column;gap:5px}
+.ftx-step{display:grid;grid-template-columns:90px 1.4fr 1fr 1.4fr;gap:10px;align-items:center;padding:8px 12px;border-radius:8px;border:1px solid var(--line);font-size:12px;background:var(--panel)}
+.ftx-step.user{border-left:3px solid #1a7f37}
+.ftx-step.kernel{border-left:3px solid #cf222e;background:rgba(207,34,46,.04)}
+.ftx-op{font-family:var(--mono);color:var(--ink)}
+.ftx-op b{color:var(--accent)}
+.ftx-state{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.ftx-state i{font-style:normal;opacity:.8}
+.ftx-owner{font-size:11.5px;color:var(--muted)}
+.ftx-fast{font-size:11.5px;color:#1a7f37;font-weight:600;text-align:right}
+.ftx-sys{font-family:var(--mono);font-size:11px;color:#cf222e;font-weight:600;text-align:right}
+.ftx-tally{display:flex;gap:10px;flex-wrap:wrap}
+.ftx-stat{flex:1;min-width:90px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 11px;display:flex;flex-direction:column;gap:3px}
+.ftx-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.ftx-stat b{font-family:var(--mono);font-size:18px;color:var(--ink)}
+.ftx-stat.ok b{color:#1a7f37}
+.ftx-stat.bad b{color:#cf222e}
+@media(max-width:640px){.ftx-step{grid-template-columns:1fr 1fr;gap:5px}.ftx-fast,.ftx-sys{text-align:left}}
