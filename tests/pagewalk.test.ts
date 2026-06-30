@@ -57,6 +57,12 @@ describe('the 4-level walk', () => {
     expect(r.steps.map((s) => s.present)).toEqual([true, true, true, false]);
   });
 
+  it('a large physical frame number (>= 2^32) is stored exactly, not 32-bit-truncated', () => {
+    const big = new PageTable([{ va: 0, frame: 2 ** 32 }]);
+    expect(big.translate(0x10).frame).toBe(2 ** 32);            // not 0
+    expect(big.translate(0x10).phys).toBe(2 ** 32 * 4096 + 0x10);
+  });
+
   it('demand paging: map the faulting page, then the retry succeeds', () => {
     const faulting = 9 * 2 ** 39 + 0x123;
     expect(pt.isMapped(faulting)).toBe(false);

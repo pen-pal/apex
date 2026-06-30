@@ -5587,3 +5587,36 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fc-reset:hover{border-color:var(--muted)}
 .fc-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .fc-foot strong{color:var(--ink)}
+
+/* ── Memory consistency & store buffers (x86-TSO) ────────────────────────────── */
+.tso{display:flex;flex-direction:column;gap:16px}
+.tso-ctrls{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tso-seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.tso-seg button{font:inherit;font-size:12.5px;font-weight:600;padding:8px 14px;border:0;background:#fbfcfe;color:var(--ink);cursor:pointer}
+.tso-seg button.on{background:hsl(212 75% 50%);color:#fff}
+.tso-fence{font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:7px;cursor:pointer}
+.tso-machine{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:start}
+.tso-core{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
+.tso-core-h{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.tso-prog{list-style:decimal inside;font-family:var(--mono);font-size:13.5px;display:flex;flex-direction:column;gap:4px;margin:0}
+.tso-prog li{padding:4px 8px;background:#fafbfc;border:1px solid var(--line);border-radius:6px}
+.tso-prog li.fence{background:hsl(280 50% 96%);border-color:hsl(280 40% 82%);color:hsl(280 45% 40%);font-weight:600}
+.tso-buf{margin-top:10px;font-size:11px;color:hsl(212 70% 40%);background:hsl(212 55% 97%);border:1px dashed hsl(212 50% 78%);border-radius:7px;padding:7px 9px;text-align:center}
+.tso-buf.off{color:var(--muted);background:#fafbfc;border-color:var(--line)}
+.tso-mem{align-self:center;border:1px solid var(--line);border-radius:12px;padding:16px 14px;background:#fafbfc;text-align:center;font-size:12.5px;font-weight:600;color:var(--muted)}
+.tso-mem span{font-family:var(--mono);font-size:14px;color:var(--ink)}
+.tso-out{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--panel)}
+.tso-out-h{font-size:12.5px;font-weight:650;color:var(--muted);margin-bottom:10px}
+.tso-matrix{border-collapse:collapse;font-size:13px}
+.tso-matrix th{padding:7px 14px;font-weight:600;color:var(--muted);font-family:var(--mono)}
+.tso-matrix td{padding:9px 16px;border:1px solid var(--line);text-align:center;font-size:12.5px;min-width:120px}
+.tso-matrix td.reach{background:hsl(150 50% 95%);color:hsl(150 45% 30%);font-weight:600}
+.tso-matrix td.no{background:#f6f7f9;color:var(--muted)}
+.tso-matrix td.weak{background:hsl(0 65% 94%);color:hsl(0 60% 40%);font-weight:700}
+.tso-weak-lbl{display:block;font-size:10px;font-weight:500;margin-top:2px}
+.tso-verdict{font-size:13px;line-height:1.6;border-radius:10px;padding:12px 15px}
+.tso-verdict.good{background:hsl(150 50% 97%);border:1px solid hsl(150 40% 82%);color:hsl(150 40% 26%)}
+.tso-verdict.bad{background:hsl(0 60% 97%);border:1px solid hsl(0 50% 87%);color:hsl(0 55% 38%)}
+.tso-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
+.tso-foot strong{color:var(--ink)}
+@media(max-width:680px){.tso-machine{grid-template-columns:1fr}}

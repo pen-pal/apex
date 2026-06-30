@@ -61,7 +61,7 @@ export class PageTable {
       if (!(next instanceof Map)) { next = new Map(); node.set(idx, next); }
       node = next;
     }
-    node.set(f.pt, frame >>> 0);
+    node.set(f.pt, Math.max(0, Math.floor(frame))); // keep PFNs exact (no 32-bit bitwise truncation)
   }
 
   /** Walk CR3 → … → PT for `va`, recording each level and stopping at the first not-present entry. */
