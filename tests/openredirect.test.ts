@@ -52,6 +52,20 @@ describe('open redirect — off-site escapes (unsafe)', () => {
   });
 });
 
+describe('open redirect — scheme tricks (fail closed)', () => {
+  it('a different scheme without // navigates off-site (http: from an https page)', () => {
+    // a real browser sends "http:evil.com" to evil.com; must not be called same-origin
+    expect(c('http:evil.com')).toMatchObject({ kind: 'external', safe: false, effectiveHost: 'evil.com' });
+  });
+  it('an ambiguous "scheme:host" with no // is failed closed, not treated as a path', () => {
+    expect(c('https:evil.com').safe).toBe(false);
+  });
+  it('javascript: and data: are flagged as dangerous, never same-origin', () => {
+    expect(c('javascript:alert(document.cookie)').safe).toBe(false);
+    expect(c('data:text/html,<script>1</script>').safe).toBe(false);
+  });
+});
+
 describe('open redirect — port and case', () => {
   it('strips the port and lowercases the host for comparison', () => {
     expect(c('https://TRUSTED.com:8443/x')).toMatchObject({ kind: 'same-origin', safe: true });

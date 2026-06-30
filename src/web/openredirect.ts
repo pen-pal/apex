@@ -22,8 +22,20 @@ function effectiveHost(target: string): { host: string | null; offsite: boolean;
   let authority: string | null = null;
   let trick: string | undefined;
   const scheme = s.match(/^([a-zA-Z][a-zA-Z0-9+.\-]*):\/\//);
+  const schemeOnly = s.match(/^([a-zA-Z][a-zA-Z0-9+.\-]*):(?!\/\/)/); // a scheme: NOT followed by //
   if (scheme) {
     authority = s.slice(scheme[0].length);
+  } else if (schemeOnly) {
+    // A bare "scheme:rest" (no //). javascript:/data:/etc. are code/inline schemes; a different special
+    // scheme like http: from an https page navigates OFF-SITE; even "https:evil.com" is ambiguous. The only
+    // safe verdict for a redirect validator is to FAIL CLOSED — never call these same-origin.
+    const sch = schemeOnly[1].toLowerCase();
+    const rest = s.slice(schemeOnly[0].length).replace(/^\/+/, '');
+    if (['javascript', 'data', 'vbscript', 'file', 'blob'].includes(sch)) {
+      return { host: `${sch}: scheme`, offsite: true, trick: `dangerous ${sch}: scheme (not a navigation to a host)` };
+    }
+    authority = rest;
+    trick = `scheme without // (${sch}:) — treated as off-site`;
   } else if (s.startsWith('//')) {
     authority = s.slice(2); // scheme-relative → goes off-origin
     trick = hadBackslash ? 'backslash → scheme-relative //' : 'scheme-relative //';
