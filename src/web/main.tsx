@@ -351,6 +351,7 @@ function App() {
                 'Distributed systems': 'Systems',
                 'Storage & databases': 'Storage',
                 'Systems & OS': 'OS',
+                'Operations & SRE': 'Ops',
               };
               const short = SHORT[g.label] ?? g.label.split(' ')[0];
               return (
