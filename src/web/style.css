@@ -5903,3 +5903,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pipe-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .pipe-foot strong{color:var(--ink)}
 @media(max-width:680px){.pipe-main{grid-template-columns:1fr}}
+
+/* ── Strongly connected components (Kosaraju) ────────────────────────────────── */
+.scc{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.scc-diagram{border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--panel)}
+.scc-svg{width:100%;height:auto;display:block}
+.scc-edge{stroke:var(--line);stroke-width:2}
+.scc-edge.intra{stroke:hsl(212 50% 60%);stroke-width:2.5}
+.scc-ahp{fill:var(--muted)}
+.scc-node{stroke-width:2.5}
+.scc-nl{text-anchor:middle;font-weight:700;font-size:14px}
+.scc-side{display:flex;flex-direction:column;gap:14px}
+.scc-h{font-size:12.5px;font-weight:650;margin-bottom:9px}
+.scc-comps,.scc-cond{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--panel)}
+.scc-comp{display:flex;align-items:center;gap:9px;padding:4px 0;font-size:13px}
+.scc-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.scc-members{font-family:var(--mono);color:var(--ink)}
+.scc-kind{margin-left:auto;font-size:11px;color:var(--muted)}
+.scc-cond-edges{display:flex;flex-direction:column;gap:7px}
+.scc-ce{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.scc-cchip{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:6px}
+.scc-none{font-size:12.5px;color:var(--muted)}
+.scc-foot{grid-column:1 / -1;font-size:12.5px;color:var(--muted);line-height:1.65}
+.scc-foot strong{color:var(--ink)}
+@media(max-width:680px){.scc{grid-template-columns:1fr}}
