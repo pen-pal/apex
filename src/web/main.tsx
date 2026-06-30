@@ -250,7 +250,7 @@ const TABS: { id: View; label: string }[] = [
 ];
 
 function App() {
-  const [section, setSection] = useState<Section>('network');
+  const [section, setSection] = useState<Section>('overview'); // land on the map (journeys + filterable catalog), not a single section
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [navQuery, setNavQuery] = useState('');
   const [journeyId, setJourneyId] = useState<string | null>(null);
