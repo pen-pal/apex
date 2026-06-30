@@ -113,6 +113,7 @@ import { IsoSection } from './IsoSection';
 import { VxSection } from './VxSection';
 import { SriSection } from './SriSection';
 import { AeSection } from './AeSection';
+import { HintedHandoffSection } from './HintedHandoffSection';
 import { VrrpSection } from './VrrpSection';
 import { TtSection } from './TtSection';
 import { EcnSection } from './EcnSection';
@@ -261,7 +262,7 @@ import './style.css';
 const registry = new ProtocolRegistry();
 registerCoreProtocols(registry);
 
-type Section = 'network' | 'crypto' | 'classical' | 'otpad' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'schnorr' | 'dhmitm' | 'bb84' | 'ecbpenguin' | 'lamport' | 'quorum' | 'lz77' | 'cors' | 'tcphand' | 'dnssec' | 'paxos' | 'webinject' | 'dhkex' | 'crc32' | 'snowflake' | 'pmtud' | 'countmin' | 'sack' | 'bully' | 'csp' | 'eddsa' | 'hll' | 'ttlhop' | 'bdp' | 'webauthn' | 'anycast' | 'mailauth' | 'consistency' | 'reedsolomon' | 'cubic' | 'wpa' | 'bbr' | 'btree' | 'lsm' | 'mvcc' | 'wal' | 'skiplist' | 'pedersen' | 'locking' | 'trie' | 'pbft' | 'lzw' | 'hlc' | 'cuckoo' | 'geohash' | 'chord' | 'unionfind' | 'fenwick' | 'kmp' | 'rabinkarp' | 'hashtable' | 'editdist' | 'toposort' | 'astar' | 'heap' | 'sorting' | 'majority' | 'segtree' | 'avl' | 'reservoir' | 'dfa' | 'fencing' | 'hashchain' | 'happyeyeballs' | 'nagle' | 'chandy' | 'viterbi' | 'sctp' | 'pagereplace' | 'retry' | 'smuggle' | 'phiaccrual' | 'consttime' | 'conditional' | 'siteisolation' | 'vxlan' | 'sri' | 'antientropy' | 'vrrp' | 'truetime' | 'ecn' | 'dot1x' | 'ipsec' | 'causalbcast' | 'ecmp' | 'realtime' | 'x3dh' | 'tfo' | 'threshsig' | 'raftlog' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'revocation' | 'ssh' | 'feistel' | 'poly1305' | 'hashbreak' | 'ratchet' | 'encoding' | 'huffman' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'stptree' | 'slaac' | 'linecode' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'crdt' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'mpls' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'ntp' | 'arq' | 'rto' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3' | 'grpc' | 'websocket' | 'cpusched' | 'pagewalk' | 'mesi' | 'joins' | 'h2flow' | 'tso' | 'ospf' | 'maxflow' | 'ntt' | 'bwt' | 'taillatency' | 'mst' | 'cfs' | 'pipeline' | 'scc' | 'queryplan' | 'rum' | 'arith' | 'swim' | 'ahocorasick' | 'floyd' | 'leakybucket' | 'knapsack' | 'deployments' | 'healthcheck' | 'autoscale' | 'slo' | 'tracing' | 'featureflags' | 'gracefulshutdown' | 'idempotency' | 'loadshed' | 'chaos' | 'singleflight' | 'branchpredict' | 'boyermoore' | 'newton' | 'cow' | 'mtf' | 'tlb' | 'suffixarray' | 'fft' | 'ssrf' | 'saga' | 'blindsig' | 'clickjack' | 'bgprr' | 'vrf' | 'hsts' | 'numa' | 'ot' | 'bellmanford' | 'cdc' | 'watermark' | 'openredirect' | 'paillier' | 'manacher' | 'epoll' | 'varint' | 'overview';
+type Section = 'network' | 'crypto' | 'classical' | 'otpad' | 'aesround' | 'aead' | 'chacha' | 'hashint' | 'rsa' | 'ecc' | 'ecdsa' | 'schnorr' | 'dhmitm' | 'bb84' | 'ecbpenguin' | 'lamport' | 'quorum' | 'lz77' | 'cors' | 'tcphand' | 'dnssec' | 'paxos' | 'webinject' | 'dhkex' | 'crc32' | 'snowflake' | 'pmtud' | 'countmin' | 'sack' | 'bully' | 'csp' | 'eddsa' | 'hll' | 'ttlhop' | 'bdp' | 'webauthn' | 'anycast' | 'mailauth' | 'consistency' | 'reedsolomon' | 'cubic' | 'wpa' | 'bbr' | 'btree' | 'lsm' | 'mvcc' | 'wal' | 'skiplist' | 'pedersen' | 'locking' | 'trie' | 'pbft' | 'lzw' | 'hlc' | 'cuckoo' | 'geohash' | 'chord' | 'unionfind' | 'fenwick' | 'kmp' | 'rabinkarp' | 'hashtable' | 'editdist' | 'toposort' | 'astar' | 'heap' | 'sorting' | 'majority' | 'segtree' | 'avl' | 'reservoir' | 'dfa' | 'fencing' | 'hashchain' | 'happyeyeballs' | 'nagle' | 'chandy' | 'viterbi' | 'sctp' | 'pagereplace' | 'retry' | 'smuggle' | 'phiaccrual' | 'consttime' | 'conditional' | 'siteisolation' | 'vxlan' | 'sri' | 'antientropy' | 'vrrp' | 'truetime' | 'ecn' | 'dot1x' | 'ipsec' | 'causalbcast' | 'ecmp' | 'realtime' | 'x3dh' | 'tfo' | 'threshsig' | 'raftlog' | 'tlsdowngrade' | 'pwhash' | 'pqc' | 'shamir' | 'pow' | 'kerberos' | 'revocation' | 'ssh' | 'feistel' | 'poly1305' | 'hashbreak' | 'ratchet' | 'encoding' | 'huffman' | 'errors' | 'identity' | 'attacks' | 'routing' | 'dns' | 'subnet' | 'bgp' | 'congestion' | 'http2' | 'quic' | 'nat' | 'flow' | 'bufferbloat' | 'cookies' | 'certs' | 'traceroute' | 'dhcp' | 'switch' | 'stptree' | 'slaac' | 'linecode' | 'ratelimit' | 'chash' | 'lb' | 'bloom' | 'cdn' | 'qos' | 'merkle' | 'vclock' | 'crdt' | 'gossip' | 'raft' | 'cap' | 'replication' | 'twopc' | 'fragment' | 'bgphijack' | 'mpls' | 'natpunch' | 'ipcompare' | 'icmp' | 'arp' | 'csma' | 'multicast' | 'vlan' | 'ntp' | 'arq' | 'rto' | 'queueing' | 'distvec' | 'mdns' | 'encdns' | 'http3' | 'grpc' | 'websocket' | 'cpusched' | 'pagewalk' | 'mesi' | 'joins' | 'h2flow' | 'tso' | 'ospf' | 'maxflow' | 'ntt' | 'bwt' | 'taillatency' | 'mst' | 'cfs' | 'pipeline' | 'scc' | 'queryplan' | 'rum' | 'arith' | 'swim' | 'ahocorasick' | 'floyd' | 'leakybucket' | 'knapsack' | 'deployments' | 'healthcheck' | 'autoscale' | 'slo' | 'tracing' | 'featureflags' | 'gracefulshutdown' | 'idempotency' | 'loadshed' | 'chaos' | 'singleflight' | 'branchpredict' | 'boyermoore' | 'newton' | 'cow' | 'mtf' | 'tlb' | 'suffixarray' | 'fft' | 'ssrf' | 'saga' | 'blindsig' | 'clickjack' | 'bgprr' | 'vrf' | 'hsts' | 'numa' | 'ot' | 'bellmanford' | 'cdc' | 'watermark' | 'openredirect' | 'paillier' | 'manacher' | 'epoll' | 'varint' | 'hintedhandoff' | 'overview';
 
 type View = 'story' | 'anatomy' | 'journey' | 'state' | 'checksum';
 const TABS: { id: View; label: string }[] = [
@@ -1480,6 +1481,16 @@ function App() {
               <p className="sub">How leaderless replicas heal divergence. Make a replica diverge and watch a Merkle-tree comparison drill down only through differing branches to pinpoint the bad keys in O(log n), plus read-repair on the quorum-read path.</p>
             </header>
             <AeSection />
+          </>
+        )}
+
+        {section === 'hintedhandoff' && (
+          <>
+            <header>
+              <h1>Hinted handoff</h1>
+              <p className="sub">How Dynamo-style stores keep accepting writes while a replica is down. The value is parked as a "hint" on the next healthy node — counting toward the write quorum (a sloppy quorum) — and replayed when the owner recovers. Knock nodes down, tune N and W, and watch writes stay available, then heal.</p>
+            </header>
+            <HintedHandoffSection />
           </>
         )}
 
