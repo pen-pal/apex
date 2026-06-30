@@ -178,6 +178,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'twopc', label: 'Two-phase commit', icon: '🤝' },
   { id: 'cpusched', label: 'CPU scheduling', icon: '⏱️' },
   { id: 'pagewalk', label: 'Page-table walk', icon: '🗺️' },
+  { id: 'mesi', label: 'MESI cache coherence', icon: '🧠' },
 ];
 
 export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_META.map((m) => [m.id, m]));
@@ -193,7 +194,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'linecode', 'lz77', 'lzw', 'dfa', 'huffman', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'twopc'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'trie', 'hashtable', 'cuckoo', 'geohash', 'unionfind', 'fenwick', 'heap', 'segtree', 'avl', 'sorting', 'kmp', 'rabinkarp', 'editdist', 'toposort', 'astar'] },
-  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'pagewalk'] },
+  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'pagewalk', 'mesi'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
