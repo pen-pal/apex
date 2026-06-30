@@ -44,6 +44,32 @@ describe('baseline and edge behaviour', () => {
     // recs degrades on ml failure but frontend (depending on recs) stays up
     expect(evaluate(base(), 'ml').status['frontend']).toBe('up');
   });
+  it('handles CYCLIC dependencies order-independently (regression)', () => {
+    // A↔B cycle (both hard), both depend on D; killing D must take A and B down regardless of order.
+    const cyc: Service[] = [
+      { id: 'A', deps: ['B', 'D'], resilient: false },
+      { id: 'B', deps: ['A'], resilient: false },
+      { id: 'D', deps: [], resilient: false },
+    ];
+    const r1 = evaluate(cyc, 'D');
+    expect(r1.down.sort()).toEqual(['A', 'B', 'D']); // B is down via A, not optimistically 'up'
+    // reordering the fleet array must give the identical result
+    const r2 = evaluate([cyc[1], cyc[0], cyc[2]], 'D');
+    expect(r2.down.sort()).toEqual(['A', 'B', 'D']);
+  });
+
+  it('a resilient service breaks a cascade even inside a cycle', () => {
+    const cyc: Service[] = [
+      { id: 'A', deps: ['B', 'D'], resilient: true }, // A falls back
+      { id: 'B', deps: ['A'], resilient: false },
+      { id: 'D', deps: [], resilient: false },
+    ];
+    const r = evaluate(cyc, 'D');
+    expect(r.down).toEqual(['D']);          // A degrades, so B (depending on A) stays up
+    expect(r.degraded).toEqual(['A']);
+    expect(r.status['B']).toBe('up');
+  });
+
   it('killing a leaf with many dependents has a large blast radius unless they are resilient', () => {
     const wide: Service[] = [
       { id: 'core', deps: [], resilient: false },
