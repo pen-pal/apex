@@ -7695,3 +7695,37 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .iou-rstat{font-size:11px;color:var(--muted)}
 .iou-rstat i{font-style:italic}
 @media(max-width:640px){.iou-row{grid-template-columns:1fr;gap:3px}.iou-queues{grid-template-columns:1fr}}
+
+/* ---- Golomb-Rice coding ---- */
+.grc{display:flex;flex-direction:column;gap:14px}
+.grc-intro,.grc-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.grc-intro strong,.grc-foot strong{color:var(--ink)}
+.grc-enc,.grc-tune{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px;display:flex;flex-direction:column;gap:11px}
+.grc-inputs{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.grc-inputs label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.grc-inputs input[type=number]{width:90px;font-family:var(--mono);font-size:14px;padding:6px 9px;border:1px solid var(--accent);border-radius:7px;background:var(--bg);color:var(--ink)}
+.grc-inputs b{font-family:var(--mono);color:var(--ink)}
+.grc-m{font-size:11px;color:var(--muted)}
+.grc-split{display:flex;gap:10px;flex-wrap:wrap}
+.grc-part{flex:1;min-width:160px;display:flex;flex-direction:column;gap:4px}
+.grc-pl{font-size:11px;color:var(--muted)}
+.grc-part code{font-family:var(--mono);font-size:18px;letter-spacing:2px;display:flex;flex-wrap:wrap}
+.grc-part code b{font-weight:700}
+.grc-part code b.one{color:hsl(28 80% 48%)}
+.grc-part code b.stop{color:var(--muted)}
+.grc-part code b.bin{color:hsl(212 70% 48%)}
+.grc-part code i{color:var(--muted);font-size:12px;letter-spacing:0}
+.grc-codeline{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.grc-code{font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:3px 8px;letter-spacing:1px;word-break:break-all}
+.grc-len{font-size:11px;color:var(--muted)}
+.grc-vals{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.grc-vals input{flex:1;font-family:var(--mono);font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+.grc-curve{display:flex;align-items:flex-end;gap:5px;height:90px}
+.grc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;cursor:pointer;height:100%}
+.grc-barfill{width:70%;background:var(--muted);opacity:.45;border-radius:3px 3px 0 0;min-height:3px}
+.grc-bar.best .grc-barfill{background:hsl(150 55% 45%);opacity:1}
+.grc-bar:hover .grc-barfill{opacity:.75}
+.grc-bk{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.grc-bar.best .grc-bk{color:#1a7f37;font-weight:700}
+.grc-opt{font-size:12.5px;color:var(--ink)}
+.grc-opt b{font-family:var(--mono);color:var(--accent)}
