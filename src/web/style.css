@@ -7256,3 +7256,38 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .wm-stat b{font-family:var(--mono);font-size:18px;color:var(--ink)}
 .wm-stat.ok b{color:#1a7f37}
 .wm-stat.bad b{color:#cf222e}
+
+/* ---- open redirect ---- */
+.oredir{display:flex;flex-direction:column;gap:14px}
+.oredir-intro,.oredir-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.oredir-intro strong,.oredir-foot strong{color:var(--ink)}
+.oredir-intro code,.oredir-foot code{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.oredir-bar{display:flex;align-items:stretch;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.oredir-origin{font-family:var(--mono);font-size:12px;color:var(--muted);padding:10px 4px 10px 12px;display:flex;align-items:center;white-space:nowrap}
+.oredir-input{flex:1;min-width:160px;font-family:var(--mono);font-size:13px;padding:10px 12px;border:0;border-left:2px solid var(--accent);background:var(--bg);color:var(--ink);outline:none}
+.oredir-verdict{border-radius:11px;padding:14px;border:1px solid var(--line);display:flex;flex-direction:column;gap:9px}
+.oredir-verdict.safe{background:rgba(35,134,54,.07);border-color:rgba(35,134,54,.32)}
+.oredir-verdict.danger{background:rgba(207,34,46,.07);border-color:rgba(207,34,46,.35)}
+.oredir-flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.oredir-node{font-family:var(--mono);font-size:13px;padding:6px 12px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.oredir-node.start{border-color:hsl(212 60% 70%)}
+.oredir-node.end.ok{border-color:#1a7f37;color:#1a7f37}
+.oredir-node.end.bad{border-color:#cf222e;color:#cf222e;font-weight:700}
+.oredir-arrow{font-size:11px;color:var(--muted)}
+.oredir-tag{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.oredir-kind{font-family:var(--mono);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:6px;background:#eef1f5;color:var(--muted)}
+.oredir-kind.external{background:rgba(207,34,46,.14);color:#cf222e}
+.oredir-kind.same-origin,.oredir-kind.allowlisted{background:rgba(35,134,54,.14);color:#1a7f37}
+.oredir-msg{font-size:12.5px;font-weight:600}
+.oredir-verdict.safe .oredir-msg{color:#1a7f37}
+.oredir-verdict.danger .oredir-msg{color:#cf222e}
+.oredir-reason{font-size:12px;color:var(--muted);line-height:1.5}
+.oredir-trick{color:#cf222e;font-weight:600}
+.oredir-payloads{display:flex;flex-direction:column;gap:5px}
+.oredir-ph{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.oredir-pbtn{display:flex;align-items:center;gap:12px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 11px;cursor:pointer}
+.oredir-pbtn:hover{border-color:hsl(212 60% 65%)}
+.oredir-pbtn.on{border-color:var(--accent);background:var(--bg)}
+.oredir-pbtn code{font-family:var(--mono);font-size:12px;color:var(--ink);min-width:200px}
+.oredir-pbtn span{font-size:11.5px;color:var(--muted)}
+@media(max-width:640px){.oredir-pbtn{flex-direction:column;align-items:flex-start;gap:2px}.oredir-pbtn code{min-width:0}}
