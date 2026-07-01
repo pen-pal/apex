@@ -9757,3 +9757,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hmc-step.out .hmc-lbl{color:#1a7f37}
 .hmc-why{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
 @media(max-width:600px){.hmc-inputs{grid-template-columns:1fr}}
+
+/* ---- BGP route flap damping ---- */
+.rfd{display:flex;flex-direction:column;gap:12px}
+.rfd-intro,.rfd-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.rfd-intro strong,.rfd-foot strong{color:var(--ink)}
+.rfd-presets{display:flex;gap:8px;flex-wrap:wrap}
+.rfd-preset{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.rfd-preset.on{border-color:var(--accent);background:hsl(212 60% 50% / .1)}
+.rfd-chart{width:100%;max-width:660px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:6px}
+.rfd-axis{stroke:var(--line);stroke-width:1}
+.rfd-supp{fill:hsl(0 60% 52% / .1)}
+.rfd-thresh{stroke-width:1;stroke-dasharray:5 4}
+.rfd-thresh.sup{stroke:#cf222e;opacity:.7}
+.rfd-thresh.reu{stroke:#1a7f37;opacity:.7}
+.rfd-tlabel{font-size:9px;font-family:var(--mono)}
+.rfd-tlabel.sup{fill:#cf222e}
+.rfd-tlabel.reu{fill:#1a7f37}
+.rfd-flap{stroke:hsl(28 75% 52%);stroke-width:2}
+.rfd-curve{fill:none;stroke:var(--accent);stroke-width:2}
+.rfd-axl{fill:var(--muted);font-size:9px;font-family:var(--mono)}
+.rfd-state{font-size:12.5px;padding:9px 13px;border-radius:9px;line-height:1.4}
+.rfd-state.ok{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .3);color:#1a7f37}
+.rfd-state.bad{background:hsl(0 60% 50% / .1);border:1px solid hsl(0 60% 50% / .4);color:#cf222e}
+.rfd-state b{font-family:var(--mono)}
+.rfd-stats{display:flex;gap:10px;flex-wrap:wrap}
+.rfd-stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.rfd-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.rfd-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.rfd-stat.ok b{color:#1a7f37}
+.rfd-stat.warn b{color:#a85a00}
