@@ -13,7 +13,9 @@ export type RNG = () => number; // returns a float in [0, 1)
 /** A tiny deterministic PRNG (LCG) so results are reproducible — no Math.random. */
 export function makeRng(seed: number): RNG {
   let s = seed >>> 0;
-  return () => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x7fffffff; };
+  // divide by 2^31 (not the mask 0x7fffffff) so the result is a true [0,1) — never exactly 1.0, which would
+  // make floor(rng()*range) index out of bounds and yield a non-permutation.
+  return () => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x80000000; };
 }
 
 /** Correct: each i swaps with a random index in [0, i]. Uniform over all n! permutations. */
