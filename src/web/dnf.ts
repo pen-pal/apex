@@ -1,6 +1,6 @@
 // Dutch National Flag — Dijkstra's elegant one-pass, in-place partition of an array into THREE groups, named
 // after the red-white-blue flag. Given values from {0, 1, 2}, sort them so all 0s come first, then all 1s, then
-// all 2s — in a single left-to-right sweep, O(n) time, O(1) extra space, and each element moved at most once.
+// all 2s — in a single left-to-right sweep, O(n) time, O(1) extra space, with at most n swaps total.
 // The trick is three pointers that carve the array into four regions: [0s | 1s | unknown | 2s]. `low` marks the
 // end of the 0s, `high` marks the start of the 2s, and `mid` scans the unknown region. Look at a[mid]: if it's
 // a 0, swap it down into the 0s region (low++, mid++); if it's a 1, it's already in place (mid++); if it's a 2,
