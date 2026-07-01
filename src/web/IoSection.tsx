@@ -42,8 +42,8 @@ export function IoSection() {
 
       <div className="iod-verdict">
         At <b>{fmtBytes(bytes)}</b>, DMA costs the CPU a flat <b>{ioCost('dma', bytes).cpuCycles}</b> cycles while
-        interrupt-driven I/O costs <b>{fmtCyc(ioCost('interrupt', bytes).cpuCycles)}</b> — DMA wins for any
-        transfer above <b>{dmaCrossover()}</b> bytes, and the gap only grows.
+        interrupt-driven I/O costs <b>{fmtCyc(ioCost('interrupt', bytes).cpuCycles)}</b> — DMA wins from
+        <b>{dmaCrossover()}</b> bytes up, and the gap only grows.
       </div>
 
       <p className="iod-foot">

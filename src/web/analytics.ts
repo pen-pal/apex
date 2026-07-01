@@ -60,3 +60,31 @@ export function trackSection(id: string): void {
   try { if (typeof w.umami?.track === 'function') w.umami.track((props) => ({ ...props, url: path })); } catch { /* not loaded yet */ }
   try { vercelTrack('section', { id }); } catch { /* vercel analytics absent off-Vercel */ }
 }
+
+/** Fire a named custom event with data to the configured providers. */
+function trackEvent(name: string, data: Record<string, unknown>): void {
+  if (typeof window === 'undefined') return;
+  const w = window as unknown as {
+    umami?: { track?: (name: string, data?: Record<string, unknown>) => void };
+    goatcounter?: { count?: (o: { path: string; title: string; event: boolean }) => void };
+  };
+  try { if (typeof w.umami?.track === 'function') w.umami.track(name, data); } catch { /* not loaded */ }
+  try { vercelTrack(name, data as Record<string, string | number | boolean>); } catch { /* off-Vercel */ }
+  try { w.goatcounter?.count?.({ path: `event/${name}`, title: name, event: true }); } catch { /* not loaded */ }
+}
+
+/** How long a user spent on a section, bucketed to keep event cardinality low. One event per section visit. */
+export function trackDwell(id: string, seconds: number): void {
+  if (seconds < 2) return; // ignore fly-bys / accidental opens
+  const bucket = seconds < 5 ? '<5s' : seconds < 15 ? '5-15s' : seconds < 60 ? '15-60s' : seconds < 300 ? '1-5m' : '5m+';
+  trackEvent('dwell', { section: id, seconds: Math.round(seconds), bucket });
+}
+
+const engaged = new Set<string>();
+/** A coarse "the user actually interacted with this section" signal — deduped to one event per section per load
+ *  (NOT one per click) so it stays well under provider event caps and carries no keystroke/PII data. */
+export function trackInteraction(id: string): void {
+  if (!id || engaged.has(id)) return;
+  engaged.add(id);
+  trackEvent('engaged', { section: id });
+}

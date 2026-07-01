@@ -3,10 +3,10 @@
 //   • Cryptography — real hashing/encryption on sandbox values
 //   • Encoding   — how data becomes bytes (UTF-8, bases, Base64, floats)
 // Everything derives from real bytes; nothing is faked.
-import { StrictMode, useEffect, useMemo, useState } from 'react';
+import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Analytics } from '@vercel/analytics/react';
-import { initAnalytics, trackSection } from './analytics';
+import { initAnalytics, trackSection, trackDwell, trackInteraction } from './analytics';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ProtocolRegistry } from '../core/registry';
 import { registerCoreProtocols } from '../protocols';
@@ -365,7 +365,29 @@ function App() {
   const [dark, setDark] = useState<boolean>(() => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-color-scheme: dark)').matches);
 
   useEffect(() => { initAnalytics(); }, []);                 // load configured provider beacons once
-  useEffect(() => { trackSection(section); }, [section]);    // one virtual pageview per opened section
+  // per-section pageview + dwell time (how long each section is read); flush on tab hide / unload
+  const dwellRef = useRef<{ id: string; at: number } | null>(null);
+  useEffect(() => {
+    const prev = dwellRef.current;
+    if (prev) trackDwell(prev.id, (Date.now() - prev.at) / 1000);
+    dwellRef.current = { id: section, at: Date.now() };
+    trackSection(section);
+  }, [section]);
+  useEffect(() => {
+    const flush = () => { const c = dwellRef.current; if (c && document.visibilityState === 'hidden') { trackDwell(c.id, (Date.now() - c.at) / 1000); c.at = Date.now(); } };
+    document.addEventListener('visibilitychange', flush);
+    window.addEventListener('pagehide', flush);
+    return () => { document.removeEventListener('visibilitychange', flush); window.removeEventListener('pagehide', flush); };
+  }, []);
+  // coarse "did the user interact with this section" signal (deduped to one event per section, no per-click spam)
+  const secRef = useRef(section); secRef.current = section;
+  useEffect(() => {
+    const onInteract = () => trackInteraction(secRef.current);
+    const main = document.querySelector('main');
+    main?.addEventListener('click', onInteract);
+    main?.addEventListener('input', onInteract);
+    return () => { main?.removeEventListener('click', onInteract); main?.removeEventListener('input', onInteract); };
+  }, []);
   useEffect(() => { document.documentElement.dataset.theme = dark ? 'dark' : 'light'; }, [dark]);
   const activeGroup = groupOf(section);
   const activePath = journeyId ? pathById[journeyId] ?? null : null;
