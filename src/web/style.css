@@ -9328,3 +9328,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sws-verdict b{font-family:var(--mono);color:var(--ink)}
 .sws-bad{color:#cf222e !important}
 .sws-good{color:#1a7f37 !important}
+
+/* ---- DDSketch ---- */
+.dds{display:flex;flex-direction:column;gap:12px}
+.dds-intro,.dds-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.dds-intro strong,.dds-foot strong{color:var(--ink)}
+.dds-intro b,.dds-foot code{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.dds-foot code{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.dds-slider{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)}
+.dds-slider b{color:var(--ink);font-family:var(--mono)}
+.dds-slider input{width:100%}
+.dds-hist{display:flex;align-items:flex-end;gap:1px;height:140px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 6px}
+.dds-bar-wrap{flex:1;height:100%;display:flex;align-items:flex-end;min-width:0}
+.dds-bar{width:100%;background:hsl(212 60% 52%);border-radius:2px 2px 0 0;min-height:1px}
+.dds-bar-wrap.sel .dds-bar{background:hsl(28 80% 52%)}
+.dds-axis{text-align:center;font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:-4px}
+.dds-qsel{display:flex;gap:7px;flex-wrap:wrap}
+.dds-q{font:inherit;font-size:12px;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono)}
+.dds-q.on{border-color:hsl(28 80% 52%);background:hsl(28 80% 52% / .12);color:#a85a00}
+.dds-result{display:flex;flex-direction:column;gap:5px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 13px}
+.dds-rrow{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+.dds-rrow b{font-family:var(--mono);color:var(--ink);font-size:13px}
+.dds-rrow b.ok{color:#1a7f37}
+.dds-rrow b.bad{color:#cf222e}
+.dds-stats{display:flex;gap:10px;flex-wrap:wrap}
+.dds-stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.dds-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.dds-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.dds-stat.ok b{color:#1a7f37}
