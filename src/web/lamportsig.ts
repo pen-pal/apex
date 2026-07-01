@@ -12,7 +12,7 @@
 // some position are public an attacker can mix them to forge new messages — so each key pair signs exactly once
 // (real systems chain many one-time keys under a Merkle tree to sign many messages). This models keygen, sign,
 // verify, and the two-messages-leak weakness. Reference: Lamport, "Constructing Digital Signatures from a
-// One-Way Function" (1979); NIST SP 800-208 (SPHINCS+/XMSS).
+// One-Way Function" (1979); NIST SP 800-208 (stateful LMS/XMSS) and FIPS 205 (SPHINCS+/SLH-DSA).
 
 export const L = 16; // message-digest bits (real Lamport uses 256; small here for legibility)
 

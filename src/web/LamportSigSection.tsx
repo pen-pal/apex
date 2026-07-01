@@ -82,7 +82,7 @@ export function LamportSigSection() {
         flip a checksum bit to 1 (needing a secret they don't have) — that's <strong>Winternitz</strong> (WOTS),
         which further trades hashing for size. The whole family buys post-quantum security with a very
         conservative assumption — a decent hash function — at the cost of larger signatures and, for the
-        stateful variants, careful key-state management. (Lamport 1979; NIST SP 800-208.)
+        stateful variants, careful key-state management. (Lamport 1979; NIST SP 800-208 for LMS/XMSS, FIPS 205 for SPHINCS+.)
       </p>
     </div>
   );
