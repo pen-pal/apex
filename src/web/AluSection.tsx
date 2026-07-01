@@ -52,8 +52,9 @@ export function AluSection() {
 
       <p className="alu-foot">
         Those four flag bits are how comparisons become control flow. <code>if (a &gt; b)</code> compiles to a
-        SUB that throws the result away and keeps only the flags, then a conditional branch reads them — signed
-        greater-than is <code>N == V</code>, unsigned is <code>C set and Z clear</code>. The ALU itself is pure
+        SUB that throws the result away and keeps only the flags, then a conditional branch reads them: for signed
+        values <code>a ≥ b</code> is <code>N == V</code>, for unsigned it's <code>C set</code>, and a strict
+        <code>&gt;</code> also needs <code>Z</code> clear. The ALU itself is pure
         combinational logic: no clock, no memory, outputs settle a few gate-delays after the inputs change. State
         lives outside it, in the register file (flip-flops) that feeds operands in and latches the result back on
         the clock edge. Widen it to 64 bits, add a fast multiplier and a shifter, split integer and floating-point
