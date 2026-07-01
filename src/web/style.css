@@ -10136,3 +10136,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mbus-doff{font-family:var(--mono);font-size:11px;color:hsl(150 55% 50%);margin-left:auto}
 .mbus-verdict{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;line-height:1.5}
 .mbus-verdict b{color:var(--ink);font-family:var(--mono)}
+
+/* ---- I/O: polling / interrupt / DMA ---- */
+.iod{display:flex;flex-direction:column;gap:12px}
+.iod-intro,.iod-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.iod-intro strong,.iod-foot strong{color:var(--ink)}
+.iod-slider{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.iod-slider b{color:var(--ink)}
+.iod-slider input{flex:1;min-width:180px}
+.iod-cards{display:flex;flex-direction:column;gap:9px}
+.iod-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:6px}
+.iod-card.dma{border-color:hsl(150 50% 45% / .4)}
+.iod-clabel{font-size:12.5px;color:var(--ink);font-weight:600}
+.iod-bar-wrap{height:14px;background:var(--bg);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.iod-bar{height:100%;border-radius:4px;transition:width .2s}
+.iod-bar.poll{background:hsl(28 70% 52%)}
+.iod-bar.irq{background:hsl(0 60% 52%)}
+.iod-bar.dma{background:hsl(150 55% 45%)}
+.iod-nums{display:flex;gap:14px;font-family:var(--mono);font-size:11.5px}
+.iod-cyc{color:var(--ink);font-weight:600}
+.iod-irq{color:var(--muted)}
+.iod-note{font-size:11px;color:var(--muted);line-height:1.45}
+.iod-verdict{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;line-height:1.5}
+.iod-verdict b{color:var(--ink);font-family:var(--mono)}
