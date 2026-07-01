@@ -10223,3 +10223,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .trn-tt th,.trn-tt td{border:1px solid var(--line);padding:3px 12px;text-align:center;color:var(--muted)}
 .trn-tt th{color:var(--ink);font-weight:700}
 .trn-tt td.hi{background:hsl(150 50% 45% / .18);color:hsl(150 55% 50%);font-weight:700}
+
+/* ---- GPU / SIMT ---- */
+.gpu{display:flex;flex-direction:column;gap:12px}
+.gpu-intro,.gpu-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.gpu-intro strong,.gpu-foot strong{color:var(--ink)}
+.gpu-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.gpu-panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:9px}
+.gpu-ph{font-size:11.5px;color:var(--muted)}
+.gpu-ph code{font-family:var(--mono);font-size:11px;color:var(--ink)}
+.gpu-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.gpu-tab{font:inherit;font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);cursor:pointer}
+.gpu-tab.on{border-color:var(--accent);background:hsl(212 60% 50% / .12);color:var(--accent);font-weight:700}
+.gpu-pass{display:flex;flex-direction:column;gap:3px}
+.gpu-pl{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.gpu-lanes{display:grid;grid-template-columns:repeat(32,1fr);gap:2px}
+.gpu-lane{aspect-ratio:1;border-radius:2px;background:var(--bg);border:1px solid var(--line)}
+.gpu-lane.a{background:hsl(150 55% 45%);border-color:transparent}
+.gpu-lane.b{background:hsl(212 60% 52%);border-color:transparent}
+.gpu-lane.idle{background:var(--bg);opacity:.35}
+.gpu-lane.mem{border-color:transparent}
+.gpu-verdict{font-size:12px;padding:8px 11px;border-radius:8px;line-height:1.4}
+.gpu-verdict.ok{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .3);color:#1a7f37}
+.gpu-verdict.bad{background:hsl(0 60% 50% / .09);border:1px solid hsl(0 60% 50% / .35);color:#cf222e}
+.gpu-verdict b{font-family:var(--mono)}
+@media(max-width:600px){.gpu-lanes{grid-template-columns:repeat(16,1fr)}}
