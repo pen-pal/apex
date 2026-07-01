@@ -63,3 +63,42 @@ export async function verifyHs256(token: string, secret: string): Promise<boolea
   const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, enc.encode(`${parts[0]}.${parts[1]}`)));
   return bytesToB64url(sig) === parts[2];
 }
+
+const b64urlJson = (o: unknown): string => bytesToB64url(new TextEncoder().encode(JSON.stringify(o)));
+
+/** Mint a real HS256 JWT (header.payload.signature) with a shared secret. */
+export async function signHS256(header: object, payload: object, secret: string): Promise<string> {
+  const signingInput = `${b64urlJson(header)}.${b64urlJson(payload)}`;
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, enc.encode(signingInput)));
+  return `${signingInput}.${bytesToB64url(sig)}`;
+}
+
+export interface Verdict { valid: boolean; reason: string }
+
+/** Strict verifier: the SERVER fixes the algorithm; the token's header can't change it. The correct way. */
+export async function verifyStrict(token: string, secret: string, expectedAlg = 'HS256'): Promise<Verdict> {
+  const d = decodeJwt(token);
+  if (!d.ok) return { valid: false, reason: d.error ?? 'malformed token' };
+  if (d.alg !== expectedAlg) return { valid: false, reason: `alg "${d.alg}" ≠ server's "${expectedAlg}" — rejected` };
+  return (await verifyHs256(token, secret))
+    ? { valid: true, reason: 'signature valid' }
+    : { valid: false, reason: 'signature mismatch' };
+}
+
+/** Naive verifier: reads the algorithm from the attacker-controlled header, and honors alg=none. VULNERABLE. */
+export async function verifyNaive(token: string, secret: string): Promise<Verdict> {
+  const d = decodeJwt(token);
+  if (!d.ok) return { valid: false, reason: d.error ?? 'malformed token' };
+  if (d.alg.toLowerCase() === 'none') return { valid: true, reason: 'alg=none → accepted with NO signature check' };
+  return (await verifyHs256(token, secret))
+    ? { valid: true, reason: 'signature valid' }
+    : { valid: false, reason: 'signature mismatch' };
+}
+
+/** Forge an unsigned token: set alg=none, tamper the payload, drop the signature. */
+export function forgeAlgNone(token: string, tamper: object): string {
+  const d = decodeJwt(token);
+  return `${b64urlJson({ alg: 'none', typ: 'JWT' })}.${b64urlJson({ ...d.payload, ...tamper })}.`;
+}
