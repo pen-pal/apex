@@ -287,6 +287,7 @@ import { IoSection } from './IoSection';
 import { SsdSection } from './SsdSection';
 import { TransistorSection } from './TransistorSection';
 import { GpuSection } from './GpuSection';
+import { CodePanel } from './CodePanel';
 import { KnapsackSection } from './KnapsackSection';
 import { DeployStratSection } from './DeployStratSection';
 import { HealthCheckSection } from './HealthCheckSection';
@@ -3853,6 +3854,7 @@ function App() {
             <RouteFlapSection />
           </>
         )}
+        {section !== 'overview' && <CodePanel id={section} />}
       </main>
       {activePath && (
         <JourneyBar
