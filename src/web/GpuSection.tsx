@@ -22,6 +22,11 @@ export function GpuSection() {
   const [div, setDiv] = useState(DIV[1]);
   const [acc, setAcc] = useState(ACCESS[0]);
   const d = divergence(div.pred);
+  const takesIf = div.pred.filter(Boolean).length;
+  // build the passes robustly (each pass = the group of lanes that stay active), correct for any predicate
+  const passInfo: { label: string; cls: 'a' | 'b'; isActive: (i: number) => boolean }[] = [];
+  if (takesIf > 0) passInfo.push({ label: 'if-path', cls: 'a', isActive: (i) => div.pred[i] });
+  if (takesIf < WARP) passInfo.push({ label: 'else-path', cls: 'b', isActive: (i) => !div.pred[i] });
   const c = coalesce(acc.addrs);
   const lineOf = (a: number) => Math.floor(a / 128);
   const lines = [...new Set(acc.addrs.map(lineOf))];
@@ -37,14 +42,11 @@ export function GpuSection() {
       <div className="gpu-panel">
         <div className="gpu-ph">Branch divergence — a warp hits an <code>if</code></div>
         <div className="gpu-tabs">{DIV.map((p) => <button key={p.name} type="button" className={`gpu-tab ${div.name === p.name ? 'on' : ''}`} onClick={() => setDiv(p)}>{p.name}</button>)}</div>
-        {d.activePerPass.map((active, pass) => (
+        {passInfo.map((p, pass) => (
           <div key={pass} className="gpu-pass">
-            <span className="gpu-pl">pass {pass + 1} · {pass === 0 ? 'if-path' : 'else-path'} · {active}/{WARP} active</span>
+            <span className="gpu-pl">pass {pass + 1} · {p.label} · {div.pred.filter((_, i) => p.isActive(i)).length}/{WARP} active</span>
             <div className="gpu-lanes">
-              {div.pred.map((takesIf, i) => {
-                const activeThisPass = pass === 0 ? takesIf : !takesIf;
-                return <span key={i} className={`gpu-lane ${activeThisPass ? (pass === 0 ? 'a' : 'b') : 'idle'}`} />;
-              })}
+              {div.pred.map((_, i) => <span key={i} className={`gpu-lane ${p.isActive(i) ? p.cls : 'idle'}`} />)}
             </div>
           </div>
         ))}
