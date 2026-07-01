@@ -7789,3 +7789,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hdrh-mstat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 .hdrh-mstat b{font-family:var(--mono);font-size:17px;color:var(--ink)}
 .hdrh-mstat.ok b{color:#1a7f37}
+
+/* ---- Alias method (Vose) ---- */
+.alm{display:flex;flex-direction:column;gap:14px}
+.alm-intro,.alm-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.alm-intro strong,.alm-foot strong{color:var(--ink)}
+.alm-weights{display:flex;gap:10px;flex-wrap:wrap}
+.alm-w{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-left-width:3px;border-radius:8px;padding:6px 10px}
+.alm-wn{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;width:20px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:5px}
+.alm-w input{width:80px}
+.alm-w b{font-family:var(--mono);color:var(--ink);min-width:14px}
+.alm-table{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px}
+.alm-cols{display:flex;gap:6px;align-items:flex-end;height:150px}
+.alm-col{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg)}
+.alm-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;min-height:0}
+.alm-seg.alias{opacity:.72}
+.alm-cidx{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.alm-tablelbl{margin-top:24px;font-size:11px;color:var(--muted);text-align:center}
+.alm-check{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.alm-ch-h{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.alm-crow{display:grid;grid-template-columns:24px 1fr 52px 18px;gap:9px;align-items:center}
+.alm-cn{font-family:var(--mono);font-size:13px;font-weight:700}
+.alm-cbar{height:12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.alm-cfill{height:100%;border-radius:6px}
+.alm-cp{font-family:var(--mono);font-size:12px;color:var(--ink);text-align:right}
+.alm-cok.ok{color:#1a7f37}
+.alm-cok.bad{color:#cf222e}
+@media(max-width:600px){.alm-cols{height:120px}.alm-w input{width:60px}}
