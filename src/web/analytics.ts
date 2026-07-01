@@ -17,9 +17,9 @@
 import { track as vercelTrack } from '@vercel/analytics';
 
 const CONFIG = {
-  cloudflareToken: '',                              // e.g. '0123456789abcdef0123456789abcdef'
-  goatcounter: 'https://apex.goatcounter.com/count', // GoatCounter count endpoint
-  umamiWebsiteId: '',                               // e.g. 'a1b2c3d4-....'
+  cloudflareToken: 'a0a798d78ef541c495ebb87f47cb67da', // Cloudflare Web Analytics beacon (public, write-only)
+  goatcounter: 'https://apex.goatcounter.com/count',    // GoatCounter count endpoint
+  umamiWebsiteId: '978cf230-088c-4322-8827-5cffa2744f24', // Umami Cloud website id (public embed id)
   umamiSrc: 'https://cloud.umami.is/script.js',
 };
 
