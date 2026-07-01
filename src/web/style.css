@@ -10302,3 +10302,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cch-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase}
 .cch-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
 .cch-stat.ok b{color:#1a7f37}.cch-stat.bad b{color:#cf222e}
+
+/* ---- out-of-order execution ---- */
+.ooo{display:flex;flex-direction:column;gap:12px}
+.ooo-intro,.ooo-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.ooo-intro strong,.ooo-foot strong{color:var(--ink)}
+.ooo-presets{display:flex;gap:8px;flex-wrap:wrap}
+.ooo-preset{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ooo-preset.on{border-color:var(--accent);background:hsl(212 60% 50% / .1)}
+.ooo-editor{font-family:var(--mono);font-size:13px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);resize:vertical;line-height:1.5}
+.ooo-editor:focus{outline:none;border-color:var(--accent)}
+.ooo-deps{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:7px 11px}
+.ooo-tl{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px;overflow-x:auto}
+.ooo-tlh{font-size:11.5px;color:var(--muted);margin-bottom:6px}
+.ooo-tlh b{color:var(--ink);font-family:var(--mono)}
+.ooo-grid{display:grid;gap:2px;min-width:420px}
+.ooo-corner{}
+.ooo-cyc{font-size:9px;color:var(--muted);text-align:center;font-family:var(--mono)}
+.ooo-insrow{display:grid;gap:2px;align-items:center}
+.ooo-ins{font-family:var(--mono);font-size:11px;color:var(--ink);white-space:nowrap;padding-right:6px}
+.ooo-slot{height:18px;border-radius:2px;background:var(--bg);border:1px solid var(--line)}
+.ooo-slot.alu{background:hsl(212 60% 52%);border-color:transparent}
+.ooo-slot.load{background:hsl(28 75% 52%);border-color:transparent}
+.ooo-verdict{font-size:12.5px;padding:10px 13px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--muted);line-height:1.5}
+.ooo-verdict.win{border-color:hsl(150 50% 45% / .4);background:hsl(150 50% 45% / .07)}
+.ooo-verdict b{font-family:var(--mono);color:var(--ink)}
