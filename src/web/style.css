@@ -10385,3 +10385,38 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gbf-stat{flex:1;min-width:90px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 12px;display:flex;flex-direction:column;gap:2px}
 .gbf-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase}
 .gbf-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+
+/* ---- fast inverse square root ---- */
+.fis{display:flex;flex-direction:column;gap:13px}
+.fis-intro,.fis-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.fis-intro strong,.fis-foot strong{color:var(--ink)}
+.fis-intro code,.fis-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.fis-input{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.fis-input label{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.fis-input label b{color:var(--ink)}
+.fis-input input[type=range]{flex:1;min-width:160px}
+.fis-true{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.fis-true b{color:hsl(150 55% 50%)}
+.fis-bits{display:flex;flex-direction:column;gap:5px}
+.fis-bl{font-size:11px;color:var(--muted)}
+.fis-bitrow{display:flex;gap:3px;font-family:var(--mono);font-size:12px;flex-wrap:wrap}
+.fis-field{padding:4px 6px;border-radius:4px;letter-spacing:1px}
+.fis-field.sign{background:hsl(340 55% 50% / .2);color:hsl(340 60% 62%)}
+.fis-field.exp{background:hsl(28 70% 50% / .2);color:hsl(28 75% 58%)}
+.fis-field.man{background:hsl(212 55% 50% / .18);color:hsl(212 60% 62%)}
+.fis-legend{font-size:10px;color:var(--muted)}
+.fis-legend b.sign{color:hsl(340 60% 62%)}.fis-legend b.exp{color:hsl(28 75% 58%)}.fis-legend b.man{color:hsl(212 60% 62%)}
+.fis-code{background:#0d1117;border:1px solid var(--line);border-radius:9px;padding:11px 13px;display:flex;flex-direction:column;gap:7px;overflow-x:auto}
+[data-theme=light] .fis-code{background:#1a1f2b}
+.fis-line{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline}
+.fis-c{font-family:var(--mono);font-size:12.5px;color:#e6edf3;min-width:210px}
+.fis-v{font-family:var(--mono);font-size:11.5px;color:#7ea8d8}
+.fis-iters{display:flex;flex-direction:column;gap:7px}
+.fis-iter{display:grid;grid-template-columns:130px 90px 1fr 90px;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.fis-iter.good{border-color:hsl(150 50% 45% / .4)}
+.fis-il{font-size:11.5px;color:var(--muted)}
+.fis-iv{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.fis-bar{height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.fis-fill{height:100%;background:hsl(0 60% 52%);border-radius:4px}
+.fis-iter.good .fis-fill{background:hsl(150 55% 45%)}
+.fis-ie{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:right}
