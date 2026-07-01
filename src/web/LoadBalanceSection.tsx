@@ -3,7 +3,7 @@
 // evenly, least-connections adapts to slow requests, weighted favours bigger
 // servers, and ip-hash pins each client to one backend. Real model (loadbalance.ts).
 import { useEffect, useMemo, useState } from 'react';
-import { Balancer, skew, type Algo, type Req } from './loadbalance';
+import { Balancer, skew, maxLoad, type Algo, type Req } from './loadbalance';
 
 const BACKENDS = [{ id: 'web-1', weight: 1 }, { id: 'web-2', weight: 2 }, { id: 'web-3', weight: 1 }];
 const CLIENTS = ['alice', 'bob', 'carol', 'dave', 'eve'];
@@ -13,13 +13,15 @@ const REQS: Req[] = DUR.map((d, i) => ({ client: CLIENTS[i % CLIENTS.length], du
 const ALGOS: { id: Algo; label: string; note: string }[] = [
   { id: 'round-robin', label: 'Round robin', note: 'Cycles in order. Simple and even when requests are uniform — but a slow request can pile up on one backend.' },
   { id: 'weighted', label: 'Weighted RR', note: 'Bigger servers (higher weight) get proportionally more requests. web-2 has weight 2.' },
-  { id: 'least-conn', label: 'Least connections', note: 'Sends each request to whoever has the fewest in flight — adapts to uneven durations automatically.' },
+  { id: 'least-conn', label: 'Least connections', note: 'Sends each request to whoever has the fewest in flight — adapts to uneven durations automatically. The catch at scale: it must scan every backend on each request.' },
   { id: 'ip-hash', label: 'IP hash (sticky)', note: 'Hashes the client → always the same backend. Keeps sessions/caches warm, but can balance unevenly.' },
+  { id: 'random', label: 'Random', note: 'Picks a backend uniformly at random — zero state, but by luck some backend ends up much busier: the peak runs O(log n / log log n) above average.' },
+  { id: 'p2c', label: 'Power of two choices', note: 'Samples TWO backends at random and sends to the less-loaded one. That single extra sample cuts the busiest server to O(log log n) above average — nearly least-connections quality at O(1) cost. The modern default (NGINX, HAProxy, Envoy, Netflix).' },
 ];
 
 interface Flow { backend: string; remaining: number; client: string }
 function replay(algo: Algo, step: number) {
-  const lb = new Balancer(algo, BACKENDS);
+  const lb = new Balancer(algo, BACKENDS, 7); // fixed seed → deterministic random / p2c
   let inFlight: Flow[] = [];
   let last: { backend: string; client: string } | null = null;
   for (let s = 0; s < step; s++) {
@@ -55,6 +57,19 @@ export function LoadBalanceSection() {
   const algoInfo = ALGOS.find((a) => a.id === algo)!;
   const maxHandled = Math.max(1, ...Object.values(state.handled));
   const nextReq = REQS[step];
+
+  // The "power of two choices" payoff, quantified: throw many stateless requests at a big pool and measure the
+  // busiest backend (the tail that drives p99 latency). Random gets unlucky; one extra sample nearly fixes it.
+  const compare = useMemo(() => {
+    const N = 12, M = N * 20; // ideal = 20 per backend
+    const peak = (a: Algo) => {
+      const lb = new Balancer(a, Array.from({ length: N }, (_, i) => ({ id: 's' + i })), 7);
+      for (let k = 0; k < M; k++) lb.dispatch({ client: 'c' + k, duration: 1 }); // stateless balls-in-bins
+      return maxLoad(lb.handledMap);
+    };
+    return { ideal: M / N, random: peak('random'), p2c: peak('p2c'), least: peak('least-conn') };
+  }, []);
+  const cmpMax = Math.max(compare.random, compare.p2c, compare.least);
 
   return (
     <div className="journey">
@@ -103,10 +118,24 @@ export function LoadBalanceSection() {
           })}
         </div>
 
-        <div className="lb-skew">load skew (busiest − idlest handled): <strong>{skew(state.handled)}</strong> {skew(state.handled) === 0 ? '· perfectly even' : ''}</div>
-        <p className="enc-note">There’s no universally best choice: round-robin is cheapest, least-connections handles uneven workloads, IP-hash
-          gives session stickiness (at the cost of balance), and weighted lets you mix big and small servers. Real balancers also add health checks
-          so a dead backend is removed from rotation.</p>
+        <div className="lb-skew">load skew (busiest − idlest handled): <strong>{skew(state.handled)}</strong> · busiest backend: <strong>{maxLoad(state.handled)}</strong> {skew(state.handled) === 0 ? '· perfectly even' : ''}</div>
+
+        <div className="lb-compare">
+          <div className="lb-cmp-h">the “power of two choices” payoff — busiest backend after {compare.ideal * 12} stateless requests over 12 servers <span className="lb-cmp-ideal">(ideal = {compare.ideal})</span></div>
+          {([['random', compare.random, 'bad'], ['p2c', compare.p2c, 'good'], ['least-conn', compare.least, 'good']] as const).map(([name, val, tone]) => (
+            <div key={name} className="lb-cmp-row">
+              <span className="lb-cmp-name">{name}</span>
+              <div className="lb-cmp-track"><div className={`lb-cmp-fill ${tone}`} style={{ width: `${(val / cmpMax) * 100}%` }} /></div>
+              <span className="lb-cmp-val">{val} <i>(+{val - compare.ideal})</i></span>
+            </div>
+          ))}
+          <div className="lb-cmp-note">Random’s busiest server carries <strong>{Math.round(((compare.random - compare.ideal) / (compare.p2c - compare.ideal || 1)))}×</strong> the excess of p2c’s — yet p2c only samples one extra backend, and unlike least-conn never scans the whole pool.</div>
+        </div>
+
+        <p className="enc-note">There’s no universally best choice: round-robin is cheapest and perfectly even for uniform work; least-connections adapts to
+          uneven durations but must scan every backend; IP-hash gives session stickiness (at the cost of balance); weighted mixes big and small servers;
+          and <strong>power-of-two-choices</strong> is the pragmatic default at scale — random’s simplicity with almost none of its tail. Real balancers
+          also add health checks so a dead backend leaves rotation.</p>
       </section>
     </div>
   );
