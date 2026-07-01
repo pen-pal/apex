@@ -9073,3 +9073,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .twl-fired{font-family:var(--mono);font-size:11px;color:#1a7f37}
 .twl-empty{font-size:11px;color:var(--muted);font-style:italic}
 @media(max-width:560px){.twl-svg{width:260px;height:260px}}
+
+/* ---- Universal Scalability Law ---- */
+.usl{display:flex;flex-direction:column;gap:13px}
+.usl-intro,.usl-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.usl-intro strong,.usl-foot strong{color:var(--ink)}
+.usl-presets{display:flex;gap:8px;flex-wrap:wrap}
+.usl-preset{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.usl-preset.on{border-color:var(--accent);background:hsl(212 60% 50% / .1)}
+.usl-chart{width:100%;max-width:600px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:6px}
+.usl-axis{stroke:var(--line);stroke-width:1}
+.usl-linear{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3;opacity:.55}
+.usl-ceiling{stroke:hsl(28 75% 52%);stroke-width:1;stroke-dasharray:5 4;opacity:.8}
+.usl-clabel{fill:hsl(28 75% 52%);font-size:9px;font-family:var(--mono)}
+.usl-curve{fill:none;stroke:var(--accent);stroke-width:2.5}
+.usl-starline{stroke:hsl(150 55% 45%);stroke-width:1;stroke-dasharray:3 3;opacity:.7}
+.usl-star{fill:hsl(150 55% 45%);stroke:var(--panel);stroke-width:1.5}
+.usl-starlabel{fill:#1a7f37;font-size:10px;font-family:var(--mono);font-weight:700}
+.usl-axlabel{fill:var(--muted);font-size:9.5px;font-family:var(--mono)}
+.usl-knobs{display:flex;gap:20px;flex-wrap:wrap}
+.usl-knob{flex:1;min-width:220px;display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--muted)}
+.usl-knob span{display:flex;justify-content:space-between}
+.usl-knob b{font-family:var(--mono);color:var(--ink)}
+.usl-knob input{width:100%}
+.usl-stats{display:flex;gap:10px;flex-wrap:wrap}
+.usl-stat{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.usl-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.usl-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.usl-stat.warn b{color:#a85a00}
+.usl-stat.ok b{color:#1a7f37}
