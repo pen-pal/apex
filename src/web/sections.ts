@@ -314,6 +314,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'pipeline', label: 'Pipeline hazards', icon: '🚰' },
   { id: 'dram', label: 'How RAM works (DRAM)', icon: '🧠' },
   { id: 'adder', label: 'Binary adder (gates→math)', icon: '➕' },
+  { id: 'latch', label: 'Flip-flop (how bits are stored)', icon: '💾' },
 ];
 
 export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_META.map((m) => [m.id, m]));
@@ -331,7 +332,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'usl', 'pid', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'sorting', 'kadane', 'lis', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'spectre', 'cow', 'pagewalk', 'inode', 'tlb', 'numa', 'buddyalloc', 'timingwheel', 'epoll', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
-  { label: 'Hardware', icon: '🔌', ids: ['dram', 'adder'] },
+  { label: 'Hardware', icon: '🔌', ids: ['dram', 'adder', 'latch'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
