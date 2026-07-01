@@ -8747,3 +8747,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fsh-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
 .fsh-stat.bad b{color:#cf222e;font-size:20px}
 .fsh-stat.ok b{color:#1a7f37;font-size:20px}
+.fsh-line.shared{border-color:hsl(38 80% 50%);background:hsl(38 80% 50% / .06)}
+.fsh-mid{color:#9a6700}
+.fsh-mid b{font-family:var(--mono)}
+.fsh-stat.mid b{color:#9a6700;font-size:20px}

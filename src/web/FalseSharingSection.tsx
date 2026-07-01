@@ -15,7 +15,9 @@ export function FalseSharingSection() {
   const layout = padded ? { offsetA: 0, offsetB: LINE } : { offsetA: 0, offsetB: 8 };
   const seq = burstyMode ? bursty(N, 50) : interleaved(N);
   const r = simulate(layout, seq);
-  const contended = r.sameLine && r.transfers > 0;
+  // "heavy" = the line bounces on a large fraction of writes (real false sharing). Bursty access on a shared
+  // line still shares the line but only bounces a handful of times → not heavy, and the interesting middle case.
+  const heavy = r.sameLine && r.transfers > N / 4;
 
   // byte cells for the cache-line diagram (show 2 lines of 8 "slots" = simplified 64B line)
   const SLOTS = 8;
@@ -41,7 +43,7 @@ export function FalseSharingSection() {
       </div>
 
       <div className="fsh-mem">
-        <div className={`fsh-line ${!padded ? 'contended' : ''}`}>
+        <div className={`fsh-line ${heavy ? 'contended' : !padded ? 'shared' : ''}`}>
           <span className="fsh-lname">cache line 0<br /><i>bytes 0–63</i></span>
           <div className="fsh-slots">
             {Array.from({ length: SLOTS }, (_, i) => (
@@ -60,15 +62,15 @@ export function FalseSharingSection() {
       </div>
 
       <div className="fsh-verdict">
-        {contended
-          ? <span className="fsh-bad">⚠ Counters A and B share cache line 0. It bounces between the cores <b>{r.transfers.toLocaleString()}</b> times over {N.toLocaleString()} writes.</span>
-          : padded
+        {heavy
+          ? <span className="fsh-bad">⚠ Counters A and B share cache line 0. It bounces between the cores <b>{r.transfers.toLocaleString()}</b> times over {N.toLocaleString()} writes — every write is a coherence miss.</span>
+          : !r.sameLine
             ? <span className="fsh-ok">✓ Each counter has its own line. Every write is a local L1 hit — <b>0</b> coherence bounces.</span>
-            : <span className="fsh-ok">✓ Same line, but bursty access means the line only changes owner {r.transfers} times — contention needs both sharing AND interleaving.</span>}
+            : <span className="fsh-mid">◐ Same line, but bursty access: the line only changes owner <b>{r.transfers}</b> times over {N.toLocaleString()} writes. Contention needs both sharing <em>and</em> fine-grained interleaving — layout alone isn't the whole story.</span>}
       </div>
 
       <div className="fsh-stats">
-        <div className={`fsh-stat ${contended ? 'bad' : 'ok'}`}><span>slowdown vs ideal</span><b>{r.slowdown.toFixed(1)}×</b></div>
+        <div className={`fsh-stat ${heavy ? 'bad' : r.slowdown > 1.05 ? 'mid' : 'ok'}`}><span>slowdown vs ideal</span><b>{r.slowdown.toFixed(1)}×</b></div>
         <div className="fsh-stat"><span>cache-line bounces</span><b>{r.transfers.toLocaleString()}</b></div>
         <div className="fsh-stat"><span>cycles ({N.toLocaleString()} writes)</span><b>{r.cycles.toLocaleString()}</b></div>
         <div className="fsh-stat"><span>ideal (all L1 hits)</span><b>{r.idealCycles.toLocaleString()}</b></div>
