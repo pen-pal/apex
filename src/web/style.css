@@ -9300,3 +9300,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dnf-action.swap-high{background:hsl(212 60% 50% / .12);color:var(--accent)}
 .dnf-action.skip{background:hsl(220 8% 60% / .14);color:var(--muted)}
 .dnf-done{font-size:12px;color:#1a7f37;font-weight:600}
+
+/* ---- silly window syndrome ---- */
+.sws{display:flex;flex-direction:column;gap:13px}
+.sws-intro,.sws-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.sws-intro strong,.sws-foot strong{color:var(--ink)}
+.sws-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.sws-slider{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)}
+.sws-slider b{color:var(--ink);font-family:var(--mono)}
+.sws-slider input{width:100%}
+.sws-lane{border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--panel);display:flex;flex-direction:column;gap:8px}
+.sws-lane.bad{border-color:hsl(0 60% 52% / .35)}
+.sws-lane.ok{border-color:hsl(150 50% 45% / .35)}
+.sws-lane-h{font-size:12.5px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sws-lane-h i{font-weight:400;font-style:normal;font-size:10.5px;color:var(--muted);font-family:var(--mono)}
+.sws-seg{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.sws-hdr{background:hsl(0 60% 52%);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;min-width:0;white-space:nowrap}
+.sws-pay{background:hsl(150 50% 45%);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;min-width:0;white-space:nowrap}
+.sws-effrow{display:flex;align-items:center;gap:10px}
+.sws-efftrack{flex:1;height:12px;background:var(--bg);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.sws-efffill{height:100%;border-radius:4px}
+.sws-efffill.bad{background:hsl(0 60% 52%)}
+.sws-efffill.ok{background:hsl(150 50% 45%)}
+.sws-effval{font-family:var(--mono);font-size:11px;color:var(--ink);min-width:90px;text-align:right}
+.sws-lane-s{font-size:10.5px;color:var(--muted);font-family:var(--mono)}
+.sws-verdict{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;line-height:1.6}
+.sws-verdict b{font-family:var(--mono);color:var(--ink)}
+.sws-bad{color:#cf222e !important}
+.sws-good{color:#1a7f37 !important}
