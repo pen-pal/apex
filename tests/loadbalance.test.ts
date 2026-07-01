@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Balancer, skew, type Req } from '../src/web/loadbalance';
+import { Balancer, skew, maxLoad, type Req, type Algo } from '../src/web/loadbalance';
 
 const backends = [{ id: 'S1' }, { id: 'S2' }, { id: 'S3' }];
 const req = (client = 'c', duration = 1): Req => ({ client, duration });
@@ -54,9 +54,50 @@ describe('ip-hash (sticky sessions)', () => {
   });
 });
 
-describe('skew', () => {
-  it('measures the spread between busiest and idlest', () => {
+describe('random', () => {
+  it('stays in range, is deterministic per seed, and spreads across backends', () => {
+    const run = () => { const lb = new Balancer('random', backends, 42); return Array.from({ length: 30 }, () => lb.dispatch(req()).backend); };
+    const a = run(), b = run();
+    expect(a).toEqual(b);                          // same seed → same sequence
+    expect(a.every((x) => ['S1', 'S2', 'S3'].includes(x))).toBe(true);
+    expect(new Set(a).size).toBeGreaterThan(1);    // uses more than one backend
+  });
+});
+
+describe('power of two choices (p2c)', () => {
+  it('samples two and picks the less-loaded, so it avoids the busiest', () => {
+    const lb = new Balancer('p2c', backends, 1);
+    // pile several onto whatever it picks, then confirm it steers away from the busiest over time
+    for (let i = 0; i < 30; i++) lb.dispatch(req()); // never released → active accumulates
+    const active = Object.fromEntries(lb.backends.map((b) => [b.id, b.active]));
+    expect(maxLoad(active) - Math.min(...Object.values(active))).toBeLessThan(30); // not all on one
+  });
+  it('the tail is much smaller than pure random under overload (the whole point)', () => {
+    const n = 16, balls = n * 10;
+    const peak = (algo: Algo) => {
+      let total = 0;
+      for (let seed = 1; seed <= 15; seed++) {
+        const lb = new Balancer(algo, Array.from({ length: n }, (_, i) => ({ id: 's' + i })), seed);
+        for (let k = 0; k < balls; k++) lb.dispatch(req('c' + k, 99)); // no release → active = load
+        total += maxLoad(Object.fromEntries(lb.backends.map((b) => [b.id, b.active])));
+      }
+      return total / 15;
+    };
+    const randomPeak = peak('random'), p2cPeak = peak('p2c');
+    expect(p2cPeak).toBeLessThan(randomPeak);      // p2c's busiest server is less loaded
+    expect(p2cPeak).toBeLessThan(balls / n + 4);   // and stays close to the ideal average (10)
+    expect(randomPeak).toBeGreaterThan(balls / n + 4); // random's tail runs well above average
+  });
+  it('is deterministic per seed', () => {
+    const run = () => { const lb = new Balancer('p2c', backends, 7); return Array.from({ length: 20 }, () => lb.dispatch(req()).backend); };
+    expect(run()).toEqual(run());
+  });
+});
+
+describe('skew / maxLoad', () => {
+  it('measures spread and the busiest count', () => {
     expect(skew({ a: 5, b: 5, c: 5 })).toBe(0);
     expect(skew({ a: 9, b: 2, c: 1 })).toBe(8);
+    expect(maxLoad({ a: 9, b: 2, c: 1 })).toBe(9);
   });
 });

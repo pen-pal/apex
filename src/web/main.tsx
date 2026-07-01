@@ -2063,7 +2063,7 @@ function App() {
           <>
             <header>
               <h1>Load balancing</h1>
-              <p className="sub">Round-robin, least-connections, weighted, sticky — watch each strategy spread requests differently.</p>
+              <p className="sub">Six strategies — round-robin, weighted, least-connections, IP-hash, random, and power-of-two-choices — watch each spread requests differently, and see why sampling just two backends (P2C) nearly eliminates the tail that dooms pure random.</p>
             </header>
             <LoadBalanceSection />
           </>
