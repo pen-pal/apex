@@ -61,6 +61,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'piecetable', label: 'Piece table (text editor)', icon: '📝' },
   { id: 'sorting', label: 'Sorting algorithms', icon: '📊' },
   { id: 'kadane', label: 'Kadane (max subarray)', icon: '📈' },
+  { id: 'lis', label: 'Longest increasing subseq', icon: '📶' },
   { id: 'quickselect', label: 'Quickselect (k-th)', icon: '🎯' },
   { id: 'medianofmedians', label: 'Median of medians', icon: '🎯' },
   { id: 'dnf', label: 'Dutch national flag', icon: '🇳🇱' },
@@ -325,7 +326,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Data & encoding', icon: '🔤', ids: ['encoding', 'varint', 'base58', 'linecode', 'lz77', 'lzw', 'bwt', 'mtf', 'cdc', 'rsync', 'dfa', 'huffman', 'golombrice', 'eliascode', 'gorilla', 'cobs', 'arith', 'crc32', 'reedsolomon', 'viterbi', 'errors'] },
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'jumphash', 'rendezvous', 'chord', 'kademlia', 'lb', 'hll', 'countmin', 'minhash', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'hdrhist', 'ddsketch', 'watermark', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'optransform', 'gossip', 'antientropy', 'readrepair', 'hintedhandoff', 'paxos', 'bully', 'fencing', 'leases', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'chainrep', 'twopc', 'threepc', 'saga'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'usl', 'pid', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
-  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'sorting', 'kadane', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'sorting', 'kadane', 'lis', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'spectre', 'cow', 'pagewalk', 'inode', 'tlb', 'numa', 'buddyalloc', 'timingwheel', 'epoll', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
 ];
 
