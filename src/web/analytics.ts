@@ -50,7 +50,8 @@ export function initAnalytics(): void {
 /** Record a virtual pageview for the opened section across the configured providers. Safe before scripts load. */
 export function trackSection(id: string): void {
   if (typeof window === 'undefined') return;
-  const path = `/${id}`;
+  const base = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL || '/'; // '/apex/' on Pages, '/' on Vercel
+  const path = `${base}${id}`;
   const w = window as unknown as {
     goatcounter?: { count?: (o: { path: string; title: string; event: boolean }) => void };
     umami?: { track?: (fn: (props: Record<string, unknown>) => Record<string, unknown>) => void };
