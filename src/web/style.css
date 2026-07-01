@@ -8569,3 +8569,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .th-stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
 .th-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 .th-stat b{font-family:var(--mono);font-size:17px;color:var(--ink)}
+
+/* ---- Gorilla time-series compression ---- */
+.gor{display:flex;flex-direction:column;gap:13px}
+.gor-intro,.gor-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.gor-intro strong,.gor-foot strong{color:var(--ink)}
+.gor-intro code,.gor-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.gor-shapes{display:flex;gap:9px;flex-wrap:wrap}
+.gor-shape{flex:1;min-width:150px;text-align:left;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--panel);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.gor-shape.on{border-color:var(--accent);background:hsl(212 60% 50% / .08)}
+.gor-shape b{font-size:12.5px;color:var(--ink)}
+.gor-shape span{font-size:10.5px;color:var(--muted)}
+.gor-spark{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.gor-sparksvg{width:100%;height:56px;display:block}
+.gor-sparksvg polyline{fill:none;stroke:var(--accent);stroke-width:.6;vector-effect:non-scaling-stroke}
+.gor-sparklbl{font-size:10.5px;color:var(--muted);font-family:var(--mono)}
+.gor-sizes{display:flex;flex-direction:column;gap:8px}
+.gor-sizerow{display:flex;align-items:center;gap:10px}
+.gor-slbl{font-size:11.5px;color:var(--muted);font-family:var(--mono);min-width:170px}
+.gor-track{flex:1;height:16px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.gor-fill{height:100%;border-radius:5px}
+.gor-fill.naive{background:hsl(0 55% 55% / .55)}
+.gor-fill.gor{background:hsl(150 50% 45%);transition:width .2s}
+.gor-sval{font-size:11.5px;font-family:var(--mono);color:var(--ink);min-width:64px;text-align:right}
+.gor-stats{display:flex;gap:10px;flex-wrap:wrap}
+.gor-stat{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.gor-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.gor-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.gor-stat.big b{font-size:22px;color:#1a7f37}
