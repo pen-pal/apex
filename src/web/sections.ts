@@ -274,6 +274,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'tlb', label: 'TLB (address cache)', icon: '🗂️' },
   { id: 'numa', label: 'NUMA & first-touch', icon: '🧮' },
   { id: 'buddyalloc', label: 'Buddy allocator', icon: '🧱' },
+  { id: 'timingwheel', label: 'Timing wheel', icon: '🎡' },
   { id: 'epoll', label: 'epoll & C10k', icon: '📡' },
   { id: 'futex', label: 'futex (fast mutex)', icon: '🔓' },
   { id: 'rcu', label: 'RCU (read-copy-update)', icon: '📖' },
@@ -298,7 +299,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'jumphash', 'rendezvous', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'hdrhist', 'watermark', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'optransform', 'gossip', 'antientropy', 'readrepair', 'hintedhandoff', 'paxos', 'bully', 'fencing', 'leases', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'chainrep', 'twopc', 'threepc', 'saga'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'roaring', 'heap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'sorting', 'kadane', 'quickselect', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft'] },
-  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'spectre', 'cow', 'pagewalk', 'tlb', 'numa', 'buddyalloc', 'epoll', 'futex', 'rcu', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
+  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'spectre', 'cow', 'pagewalk', 'tlb', 'numa', 'buddyalloc', 'timingwheel', 'epoll', 'futex', 'rcu', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
