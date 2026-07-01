@@ -256,6 +256,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'iouring', label: 'io_uring (async I/O)', icon: '💍' },
   { id: 'bakery', label: 'Lamport bakery (mutex)', icon: '🎫' },
   { id: 'cfs', label: 'Linux CFS scheduler', icon: '⚖️' },
+  { id: 'priorityinv', label: 'Priority inversion', icon: '🔺' },
   { id: 'pipeline', label: 'Pipeline hazards', icon: '🚰' },
 ];
 
@@ -273,7 +274,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'chord', 'lb', 'hll', 'countmin', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'hdrhist', 'watermark', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'gossip', 'antientropy', 'hintedhandoff', 'paxos', 'bully', 'fencing', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'chainrep', 'twopc', 'threepc', 'saga'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hashtable', 'cuckoo', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'roaring', 'heap', 'segtree', 'avl', 'splaytree', 'sorting', 'quickselect', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'floyd', 'bellmanford', 'newton', 'fft'] },
-  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'pipeline', 'branchpredict', 'cow', 'pagewalk', 'tlb', 'numa', 'epoll', 'futex', 'rcu', 'iouring', 'bakery', 'mesi', 'tso'] },
+  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'cow', 'pagewalk', 'tlb', 'numa', 'epoll', 'futex', 'rcu', 'iouring', 'bakery', 'mesi', 'tso'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
