@@ -8539,3 +8539,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .jmp-stat.good b{color:#1a7f37}
 .jmp-stat.bad{border-color:hsl(0 60% 50% / .5)}
 .jmp-stat.bad b{color:#cf222e}
+
+/* ---- Floyd cycle detection (tortoise & hare) ---- */
+.th{display:flex;flex-direction:column;gap:13px}
+.th-intro,.th-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.th-intro strong,.th-foot strong{color:var(--ink)}
+.th-canvas{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px}
+.th-svg{width:100%;height:auto;display:block}
+.th-edge{stroke:var(--muted);stroke-width:1.5;opacity:.5}
+.th-node{fill:var(--bg);stroke:var(--line);stroke-width:1.5}
+.th-node.tail{stroke:hsl(212 60% 55%)}
+.th-node.incyc{stroke:hsl(280 50% 58%)}
+.th-node.entrance{fill:hsl(150 50% 45% / .2);stroke:hsl(150 55% 45%);stroke-width:2.5}
+.th-nlabel{font-family:var(--mono);font-size:12px;font-weight:700;fill:var(--ink);text-anchor:middle}
+.th-slow{fill:none;stroke:hsl(150 55% 45%);stroke-width:3}
+.th-fast{fill:none;stroke:#cf222e;stroke-width:3;stroke-dasharray:4 3}
+.th-markers{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+.th-markers span{display:flex;align-items:center;gap:5px}
+.th-mk{width:12px;height:12px;border-radius:50%;display:inline-block;border:2px solid}
+.th-mk.slow{border-color:hsl(150 55% 45%)}
+.th-mk.fast{border-color:#cf222e}
+.th-mk.ent{border-color:hsl(150 55% 45%);background:hsl(150 50% 45% / .3)}
+.th-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.th-btn{font:inherit;font-size:12.5px;padding:8px 16px;border:1px solid transparent;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600}
+.th-btn.ghost{background:var(--panel);color:var(--muted);border-color:var(--line)}
+.th-btn:disabled{opacity:.4;cursor:default}
+.th-phase{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.th-stats{display:flex;gap:10px;flex-wrap:wrap}
+.th-stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.th-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.th-stat b{font-family:var(--mono);font-size:17px;color:var(--ink)}
