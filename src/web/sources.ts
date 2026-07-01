@@ -5,9 +5,20 @@
 // source automatically; a few ids whose model lives under a different name are mapped explicitly below.
 const loaders = import.meta.glob('./*.ts', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
 
-// section id → model filename, only where they differ from `${id}.ts`.
+// section id → model filename, only where they differ from `${id}.ts`. Each verified against the section's actual
+// component's single primary model import (block-scoped), so the panel always shows THIS section's real model.
 const ALIAS: Record<string, string> = {
-  lb: 'loadbalance', gcra: 'gcra', medianofmedians: 'medianofmedians',
+  lb: 'loadbalance',
+  aead: 'aesgcm', aesround: 'aes', ecbpenguin: 'aes', cdn: 'cachehierarchy', certs: 'certchain',
+  chash: 'consistenthash', congestion: 'tcpcc', crc32: 'crc32walk', cycledetect: 'floydcycle',
+  deployments: 'deploystrat', dhkex: 'dh', distvec: 'dv', dns: 'dnsjourney', editdist: 'editdistance',
+  errors: 'errordetect', falseshare: 'falsesharing', flow: 'slidingwindow', gracefulshutdown: 'shutdown',
+  grpc: 'grpcmsg', h2flow: 'flowctl', hashbreak: 'sha1', hashint: 'sha256', http3: 'qpack', iouring: 'ioring',
+  linecode: 'linecoding', natpunch: 'nattraversal', ospf: 'linkstate', phiaccrual: 'phi', pqc: 'lwe',
+  queueing: 'queue', quorum: 'quorumrw', ratelimit: 'tokenbucket', routing: 'dijkstra', segrouting: 'segroute',
+  shuffle: 'fisheryates', stptree: 'stp', subdomain: 'subdomaintakeover', sws: 'swsyndrome', tcphand: 'tcphandshake',
+  threshsig: 'threshold', tlsdowngrade: 'tlsneg', vclock: 'vectorclock', vlan: 'vlanlab', vxlan: 'overlay',
+  websocket: 'websocketws',
 };
 
 function fileFor(id: string): string {
