@@ -9825,3 +9825,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sqk-proof{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;line-height:1.5}
 .sqk-proof b{font-family:var(--mono);color:var(--ink)}
 @media(max-width:600px){.sqk-verdicts{grid-template-columns:1fr}}
+
+/* ---- Cartesian tree ---- */
+.crt{display:flex;flex-direction:column;gap:12px}
+.crt-intro,.crt-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.crt-intro strong,.crt-foot strong{color:var(--ink)}
+.crt-intro code,.crt-foot code,.crt-verdict code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.crt-presets{display:flex;gap:8px;flex-wrap:wrap}
+.crt-preset{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.crt-preset.on{border-color:var(--accent);background:hsl(212 60% 50% / .1)}
+.crt-range{display:flex;gap:20px;flex-wrap:wrap}
+.crt-range label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.crt-range b{color:var(--ink)}
+.crt-range input{width:150px}
+.crt-tree{width:100%;max-width:660px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:4px}
+.crt-edge{stroke:var(--line);stroke-width:1.5}
+.crt-node{fill:var(--bg);stroke:var(--line);stroke-width:1.5}
+.crt-node.inr{fill:hsl(212 60% 50% / .18);stroke:var(--accent)}
+.crt-node.lca{fill:hsl(28 75% 52%);stroke:hsl(28 75% 52%)}
+.crt-nv{font-family:var(--mono);font-size:11px;fill:var(--ink);font-weight:600}
+.crt-bars{display:flex;gap:3px;align-items:flex-end;padding:0 12px}
+.crt-barwrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px;border-radius:4px}
+.crt-barwrap.inr{background:hsl(212 60% 50% / .1)}
+.crt-barwrap.min{background:hsl(28 75% 52% / .18)}
+.crt-bar{width:70%;background:var(--muted);border-radius:2px 2px 0 0;opacity:.5}
+.crt-barwrap.inr .crt-bar{background:var(--accent);opacity:.8}
+.crt-barwrap.min .crt-bar{background:hsl(28 75% 52%);opacity:1}
+.crt-bi{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.crt-verdict{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.crt-verdict b{font-family:var(--mono);color:#a85a00}
