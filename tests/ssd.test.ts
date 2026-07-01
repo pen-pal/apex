@@ -43,4 +43,40 @@ describe('the flash translation layer', () => {
     const used = d.erases.filter((e) => e > 0).length;
     expect(used).toBeGreaterThanOrEqual(d.numBlocks - 1); // nearly every block took erases
   });
+
+  // Regression: GC must NEVER erase a block whose valid pages weren't relocated (data loss). Over-provisioning
+  // reserves one block so GC always has room; a brand-new page is rejected once the drive is at capacity.
+  const integrityOk = (d: Ssd): boolean => {
+    let held = 0;
+    for (let b = 0; b < d.numBlocks; b++) for (let p = 0; p < d.pagesPerBlock; p++) {
+      const pg = d.blocks[b][p];
+      if (pg.state === 'valid') { if (d.read(pg.lpn) !== b * d.pagesPerBlock + p) return false; held++; }
+    }
+    return held === d.counts().valid; // every valid page is mapped back; no duplicates/dangling
+  };
+
+  it('exposes an over-provisioned capacity and rejects new pages past it', () => {
+    const d = new Ssd(8, 8);
+    expect(d.capacity).toBe((8 - 1) * 8); // one block reserved
+    for (let l = 0; l < 200; l++) d.write(l); // try to write far more distinct pages than capacity
+    expect(d.counts().valid).toBeLessThanOrEqual(d.capacity);
+    expect(integrityOk(d)).toBe(true);
+  });
+
+  it('never loses data even at/near capacity (the audit counterexample + a hard fuzz)', () => {
+    // exact audit scenario: fill with distinct pages, then overwrite — must stay consistent
+    const d = new Ssd(8, 8);
+    for (let l = 0; l < 63; l++) d.write(l);
+    d.write(0); d.write(1);
+    expect(integrityOk(d)).toBe(true);
+
+    // hard fuzz: working sets right at capacity across many geometries and seeds
+    for (let seed = 1; seed <= 400; seed++) {
+      let s = seed; const rnd = (n: number) => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s % n; };
+      const dd = new Ssd(2 + rnd(6), 2 + rnd(6));
+      const range = Math.max(1, dd.capacity - rnd(3));
+      for (let i = 0; i < 400; i++) dd.write(rnd(range + 3));
+      expect(integrityOk(dd)).toBe(true);
+    }
+  });
 });
