@@ -8,7 +8,7 @@ describe('naive summation loses low-order bits; Kahan recovers them', () => {
     expect(kahanSum(tenths).sum).toBe(1);              // correctly rounded
   });
 
-  it('a large base plus many sub-ULP additions: naive keeps ALL of them, Kahan keeps NONE lost', () => {
+  it('a large base plus many sub-ULP additions: naive drops every crumb, Kahan keeps them all', () => {
     const EPS = Math.pow(2, -53); // exactly half a ULP at 1.0 → each addition rounds away under naive
     for (const M of [2, 100, 1000, 100000]) {
       const nums = [1, ...Array(M).fill(EPS)];
