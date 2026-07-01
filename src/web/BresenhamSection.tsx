@@ -14,7 +14,9 @@ export function BresenhamSection() {
   const W = COLS * CELL, H = ROWS * CELL;
   const cx = (x: number) => x * CELL + CELL / 2;
   const cy = (y: number) => y * CELL + CELL / 2;
-  const ySteps = pixels.filter((p, i) => i > 0 && p.y !== pixels[i - 1].y).length;
+  // the staircase "risers" are steps in the MINOR axis — y for shallow lines, x for steep ones
+  const steep = Math.abs(end[1] - START[1]) > Math.abs(end[0] - START[0]);
+  const minorSteps = pixels.filter((p, i) => i > 0 && (steep ? p.x !== pixels[i - 1].x : p.y !== pixels[i - 1].y)).length;
 
   const onClick = (e: React.MouseEvent<SVGSVGElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -44,7 +46,7 @@ export function BresenhamSection() {
 
       <div className="brz-stats">
         <div className="brz-stat"><span>pixels drawn</span><b>{pixels.length}</b></div>
-        <div className="brz-stat"><span>minor-axis steps</span><b>{ySteps}</b><small>the staircase’s risers</small></div>
+        <div className="brz-stat"><span>minor-axis steps</span><b>{minorSteps}</b><small>the staircase’s risers</small></div>
         <div className="brz-stat good"><span>multiplies · divides · floats</span><b>0 · 0 · 0</b><small>integer add/compare only</small></div>
       </div>
 
