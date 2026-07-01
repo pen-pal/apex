@@ -77,8 +77,9 @@ export function DdSketchSection() {
         relatively, at every magnitude — so alerting on “p99 &gt; 1s” is trustworthy whether your latencies are
         microseconds or minutes. Contrast the neighbours: a plain fixed-width histogram (e.g. Prometheus’s
         classic <code>histogram_quantile</code> over pre-set buckets) gives good results only where you happened
-        to place buckets and interpolates between them; <strong>HdrHistogram</strong> gives a fixed <em>absolute</em>
-        precision across a huge range by tracking every value to a set number of significant digits; and
+        to place buckets and interpolates between them; <strong>HdrHistogram</strong> also gives bounded <em>relative</em>
+        accuracy (a fixed number of significant figures) but over a pre-declared value range in fixed
+        pre-allocated memory, tuned for recording integer latencies with very low overhead; and
         <strong> t-digest</strong> adapts bin sizes to be densest at the tails, often smaller but without
         DDSketch’s hard relative-error guarantee. The costs here: only positive values (you keep a second sketch
         for negatives, and a zero count), and a bucket per occupied magnitude-band — bounded in practice because
