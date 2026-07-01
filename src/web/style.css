@@ -10082,3 +10082,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ltc-q b{font-size:18px}
 .ltc-q.flash{animation:ltcflash .6s ease}
 @keyframes ltcflash{0%{background:hsl(150 55% 45% / .5)}100%{background:hsl(150 50% 45% / .1)}}
+
+/* ---- ALU ---- */
+.alu{display:flex;flex-direction:column;gap:12px}
+.alu-intro,.alu-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.alu-intro strong,.alu-foot strong{color:var(--ink)}
+.alu-intro code,.alu-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.alu-inputs{display:flex;gap:22px;flex-wrap:wrap}
+.alu-inputs label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.alu-inputs b{color:var(--ink)}
+.alu-inputs input{width:160px}
+.alu-ops{display:flex;gap:6px;flex-wrap:wrap}
+.alu-op{font:inherit;font-family:var(--mono);font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.alu-op.on{border-color:var(--accent);background:hsl(212 60% 50% / .12);color:var(--accent);font-weight:700}
+.alu-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.alu-operand,.alu-result{display:flex;align-items:center;gap:10px;font-family:var(--mono)}
+.alu-result{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.alu-lbl{width:44px;font-size:11px;color:var(--muted);text-align:right}
+.alu-box code{font-size:15px;letter-spacing:2px;color:var(--ink)}
+.alu-result code{color:hsl(150 55% 50%);font-weight:700}
+.alu-dec{font-size:12px;color:var(--muted)}
+.alu-flags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.alu-flag{display:flex;flex-direction:column;align-items:center;width:38px;padding:5px;border:1px solid var(--line);border-radius:7px;background:var(--bg)}
+.alu-flag.on{border-color:hsl(28 75% 52%);background:hsl(28 75% 52% / .12)}
+.alu-fn{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:700}
+.alu-flag.on .alu-fn{color:hsl(28 78% 55%)}
+.alu-fv{font-family:var(--mono);font-size:14px;color:var(--ink);font-weight:700}
+.alu-fdesc{font-size:11px;color:var(--muted);margin-left:6px}
