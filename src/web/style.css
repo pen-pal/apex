@@ -10327,3 +10327,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ooo-verdict{font-size:12.5px;padding:10px 13px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--muted);line-height:1.5}
 .ooo-verdict.win{border-color:hsl(150 50% 45% / .4);background:hsl(150 50% 45% / .07)}
 .ooo-verdict b{font-family:var(--mono);color:var(--ink)}
+
+/* ---- rope (text editor structure) ---- */
+.rpe{display:flex;flex-direction:column;gap:12px}
+.rpe-intro,.rpe-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.rpe-intro strong,.rpe-foot strong{color:var(--ink)}
+.rpe-str{font-family:var(--mono);font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;word-break:break-all;line-height:1.8}
+.rpe-ch{color:var(--ink)}
+.rpe-ch.cursor{border-left:2px solid var(--accent);margin-left:-1px}
+.rpe-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rpe-controls label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.rpe-controls label b{color:var(--ink)}
+.rpe-controls input[type=range]{width:130px}
+.rpe-in{font-family:var(--mono);font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);width:90px}
+.rpe-in:focus{outline:none;border-color:var(--accent)}
+.rpe-btn{font:inherit;font-size:12px;padding:6px 12px;border:0;border-radius:7px;background:var(--accent);color:#fff;cursor:pointer;font-weight:600}
+.rpe-btn.ghost{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
+.rpe-caption{font-size:11.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-height:16px}
+.rpe-tree{width:100%;max-width:660px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:5px}
+.rpe-edge{stroke:var(--line);stroke-width:1.5}
+.rpe-int{fill:hsl(212 60% 50% / .16);stroke:var(--accent);stroke-width:1.5}
+.rpe-it{font-family:var(--mono);font-size:11px;fill:var(--accent);font-weight:700}
+.rpe-leaf{fill:hsl(150 50% 45% / .14);stroke:hsl(150 55% 45% / .5);stroke-width:1}
+.rpe-lt{font-family:var(--mono);font-size:10.5px;fill:hsl(150 55% 50%)}
+.rpe-stats{display:flex;gap:10px;flex-wrap:wrap}
+.rpe-stat{flex:1;min-width:100px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 12px;display:flex;flex-direction:column;gap:2px}
+.rpe-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase}
+.rpe-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
