@@ -8,9 +8,11 @@
 // product instead of two:
 //     (a+b)(c+d) = ac + ad + bc + bd,  so  ad + bc = (a+b)(c+d) − ac − bd.
 // So you compute only THREE half-size products — ac, bd, and (a+b)(c+d) — and combine. Recurse, and trading 4
-// sub-multiplies for 3 at every level turns n² into n^log₂3 ≈ n^1.585. On 1000-digit numbers that's ~50× fewer
-// multiplies; it's why big-integer libraries (and thus RSA/ECC key math) use Karatsuba above a few dozen digits,
-// switching to Toom-Cook and then FFT-based multiplication for truly huge operands. This models the recursion and
+// sub-multiplies for 3 at every level turns n² into n^log₂3 ≈ n^1.585. The asymptotic ratio is n^0.415 — already
+// ~18× fewer multiplies at 1000 digits (this base-10 demo does somewhat less, ~9×, because the (a+b)(c+d) halves
+// can carry an extra digit and inflate that sub-tree), and it keeps widening; it's why big-integer libraries (and
+// thus RSA/ECC key math) use Karatsuba above a few dozen digits, switching to Toom-Cook and then FFT-based
+// multiplication for truly huge operands. This models the recursion and
 // counts single-digit multiplies against schoolbook. Reference: Karatsuba & Ofman (1962).
 
 export interface Node { x: bigint; y: bigint; m: number; children: Node[]; product: bigint }

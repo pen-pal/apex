@@ -93,11 +93,13 @@ export function KaratsubaSection() {
         For small numbers Karatsuba can actually do <em>more</em> multiplies than schoolbook — the extra additions
         and the recursion overhead don't pay off until the operands are big enough (that crossover is why real
         libraries use schoolbook below ~20–40 digits and only then switch to Karatsuba). But the asymptotics are
-        relentless: at 1000 digits Karatsuba does roughly 50× fewer multiplies, and the gap keeps widening. It was
+        relentless: the ratio grows as n^0.415, so it's already ~18× at 1000 digits in the clean analysis (this
+        base-10 demo does a bit less, since the (a+b)(c+d) halves can carry an extra digit), and the gap keeps
+        widening — near 50× by ~10,000 digits. It was
         a genuinely surprising result — Kolmogorov had conjectured n² was optimal and set it as a seminar problem;
         Karatsuba found this within a week, and Kolmogorov was so struck he wrote up the result himself. The same
         divide-and-conquer idea generalizes: Toom-Cook splits into three or more parts (n^1.465 and below), and
-        Schönhage-Strassen and later Harvey-van der Hoeven use the FFT to reach n·log n — which is why multiplying
+        Schönhage-Strassen (n·log n·log log n) and finally Harvey-van der Hoeven (2021, n·log n) use the FFT — which is why multiplying
         two million-digit numbers (routine in cryptography and π-computation records) is feasible at all. Every one
         of them rests on the same move you see here: buy fewer multiplications with a little more addition.
         (Karatsuba &amp; Ofman, 1962.)
