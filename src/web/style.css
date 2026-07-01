@@ -10109,3 +10109,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .alu-flag.on .alu-fn{color:hsl(28 78% 55%)}
 .alu-fv{font-family:var(--mono);font-size:14px;color:var(--ink);font-weight:700}
 .alu-fdesc{font-size:11px;color:var(--muted);margin-left:6px}
+
+/* ---- memory bus / address decoding ---- */
+.mbus{display:flex;flex-direction:column;gap:12px}
+.mbus-intro,.mbus-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.mbus-intro strong,.mbus-foot strong{color:var(--ink)}
+.mbus-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.mbus-addr{font-family:var(--mono);font-size:14px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.mbus-addr input{font-family:var(--mono);font-size:15px;padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);width:80px;text-transform:uppercase}
+.mbus-addr input:focus{outline:none;border-color:var(--accent)}
+.mbus-bits{display:flex;gap:2px;align-items:center;flex-wrap:wrap}
+.mbus-bit{font-family:var(--mono);font-size:12px;width:18px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:3px;color:#fff;font-weight:600}
+.mbus-bit.page{background:hsl(280 50% 52%)}
+.mbus-bit.off{background:hsl(212 40% 42% / .5);color:var(--muted)}
+.mbus-bitlbl{font-size:10.5px;color:var(--muted);margin-left:10px}
+.mbus-pg{color:hsl(280 55% 65%);font-family:var(--mono)}
+.mbus-of{color:hsl(212 55% 60%);font-family:var(--mono)}
+.mbus-decoder{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:center;font-family:var(--mono)}
+.mbus-map{display:flex;flex-direction:column;gap:5px}
+.mbus-dev{display:flex;align-items:center;gap:12px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);opacity:.5}
+.mbus-dev.on{opacity:1;border-color:hsl(150 55% 45%);background:hsl(150 50% 45% / .08)}
+.mbus-cs{font-family:var(--mono);font-size:11px;color:var(--muted);width:52px;flex:none}
+.mbus-cs.hi{color:hsl(150 55% 50%);font-weight:700}
+.mbus-dname{font-size:12.5px;color:var(--ink);min-width:130px}
+.mbus-drange{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.mbus-doff{font-family:var(--mono);font-size:11px;color:hsl(150 55% 50%);margin-left:auto}
+.mbus-verdict{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;line-height:1.5}
+.mbus-verdict b{color:var(--ink);font-family:var(--mono)}
