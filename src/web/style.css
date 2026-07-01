@@ -10577,3 +10577,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .brz-stat b{font-family:var(--mono);font-size:17px;color:var(--ink)}
 .brz-stat small{font-size:9.5px;color:var(--muted)}
 .brz-stat.good b{color:hsl(150 55% 50%)}
+
+/* ---- convex hull ---- */
+.cvh{display:flex;flex-direction:column;gap:13px}
+.cvh-intro,.cvh-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.cvh-intro strong,.cvh-foot strong{color:var(--ink)}
+.cvh-plane{width:100%;max-width:560px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;cursor:crosshair}
+.cvh-hull{fill:hsl(212 60% 52% / .1);stroke:hsl(212 65% 55%);stroke-width:2;stroke-linejoin:round}
+.cvh-pt.in{fill:var(--muted);opacity:.5}
+.cvh-pt.on{fill:hsl(212 70% 58%);stroke:var(--panel);stroke-width:1.5}
+.cvh-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cvh-btn{font:inherit;font-size:12px;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.cvh-stat{font-size:11px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.cvh-stat b{font-family:var(--mono);font-size:15px;color:var(--ink);text-transform:none}
