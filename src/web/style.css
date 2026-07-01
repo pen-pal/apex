@@ -9959,3 +9959,32 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lis-verdict{font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
 .lis-verdict b{font-family:var(--mono);color:var(--ink)}
 .lis-seq{font-family:var(--mono);color:#1a7f37;font-weight:700}
+
+/* ---- GCRA rate limiter ---- */
+.gcra{display:flex;flex-direction:column;gap:12px}
+.gcra-intro,.gcra-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.gcra-intro strong,.gcra-foot strong{color:var(--ink)}
+.gcra-intro code,.gcra-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.gcra-controls{display:flex;gap:20px;flex-wrap:wrap}
+.gcra-controls label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.gcra-controls b{color:var(--ink)}
+.gcra-controls input{width:130px}
+.gcra-chart{width:100%;max-width:680px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:5px}
+.gcra-axis{stroke:var(--line);stroke-width:1}
+.gcra-tat{fill:none;stroke:var(--accent);stroke-width:2}
+.gcra-tatlbl{font-size:9px;font-family:var(--mono);fill:var(--accent)}
+.gcra-tick{stroke:var(--line);stroke-width:1}
+.gcra-req.ok{fill:hsl(150 55% 45%)}
+.gcra-req.no{fill:#cf222e}
+.gcra-axl{fill:var(--muted);font-size:9px;font-family:var(--mono)}
+.gcra-legend{display:flex;gap:14px;font-size:10.5px;color:var(--muted);flex-wrap:wrap}
+.gcra-lg{display:flex;align-items:center;gap:5px}
+.gcra-lg::before{content:'';width:9px;height:9px;border-radius:50%}
+.gcra-lg.ok::before{background:hsl(150 55% 45%)}
+.gcra-lg.no::before{background:#cf222e}
+.gcra-lg.tat::before{background:var(--accent);border-radius:1px}
+.gcra-stats{display:flex;gap:10px;flex-wrap:wrap}
+.gcra-stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.gcra-stat span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
+.gcra-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.gcra-stat.ok b{color:#1a7f37}
