@@ -10558,3 +10558,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hmg-verdict.clean{border-color:hsl(150 50% 45% / .4)}
 .hmg-verdict.fixed{border-color:hsl(150 55% 45% / .5);background:hsl(150 50% 45% / .07)}
 .hmg-verdict.bad{border-color:hsl(0 60% 50% / .4);background:hsl(0 60% 50% / .07)}
+
+/* ---- Bresenham line ---- */
+.brz{display:flex;flex-direction:column;gap:13px}
+.brz-intro,.brz-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.brz-intro strong,.brz-foot strong{color:var(--ink)}
+.brz-intro em,.brz-foot em{color:var(--ink);font-style:italic}
+.brz-intro code,.brz-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.brz-grid{width:100%;max-width:560px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;cursor:crosshair}
+.brz-cell{fill:transparent;stroke:var(--line);stroke-width:.5}
+.brz-cell.lit{fill:hsl(212 60% 52% / .7);stroke:hsl(212 60% 60%);stroke-width:.5}
+.brz-line{stroke:hsl(28 80% 55% / .8);stroke-width:1.5;stroke-dasharray:3 3}
+.brz-start{fill:hsl(150 60% 45%)}
+.brz-end{fill:hsl(0 65% 55%)}
+.brz-stats{display:flex;gap:10px;flex-wrap:wrap}
+.brz-stat{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:2px}
+.brz-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase}
+.brz-stat b{font-family:var(--mono);font-size:17px;color:var(--ink)}
+.brz-stat small{font-size:9.5px;color:var(--muted)}
+.brz-stat.good b{color:hsl(150 55% 50%)}
