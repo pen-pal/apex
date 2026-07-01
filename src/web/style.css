@@ -9172,3 +9172,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .elc-savings{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
 .elc-savings b{color:#1a7f37;font-family:var(--mono)}
 @media(max-width:600px){.elc-codes{grid-template-columns:1fr}}
+
+/* ---- ARP spoofing ---- */
+.asp{display:flex;flex-direction:column;gap:13px}
+.asp-intro,.asp-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.asp-intro strong,.asp-foot strong{color:var(--ink)}
+.asp-defenses{display:flex;gap:9px;flex-wrap:wrap}
+.asp-def{display:flex;align-items:center;gap:6px;font:inherit;font-size:12px;padding:8px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);cursor:pointer}
+.asp-def.on{border-color:hsl(150 50% 45%);background:hsl(150 50% 45% / .1);color:var(--ink)}
+.asp-check{width:12px;color:#1a7f37;font-weight:700}
+.asp-cache{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.asp-cache-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.asp-entry{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px}
+.asp-ip{color:var(--ink)}
+.asp-arrow{color:var(--muted)}
+.asp-mac{padding:3px 9px;border-radius:6px;font-weight:700}
+.asp-mac.ok{background:hsl(150 50% 45% / .16);color:#1a7f37}
+.asp-mac.bad{background:hsl(0 60% 52% / .16);color:#cf222e}
+.asp-verdict{font-size:13px;padding:11px 14px;border-radius:9px;line-height:1.5}
+.asp-verdict.ok{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .35);color:#1a7f37}
+.asp-verdict.mid{background:hsl(38 80% 50% / .1);border:1px solid hsl(38 80% 50% / .35);color:#9a6700}
+.asp-verdict.bad{background:hsl(0 60% 50% / .1);border:1px solid hsl(0 60% 50% / .4);color:#cf222e}
+.asp-verdict b{font-family:var(--mono)}
+.asp-timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.asp-step{display:flex;align-items:center;gap:10px;padding:8px 11px;background:var(--panel);border:1px solid var(--line);border-radius:8px;font-size:12px}
+.asp-step.blocked{border-color:hsl(0 60% 50% / .4);background:hsl(0 60% 50% / .06)}
+.asp-actor{flex:none;width:64px;text-align:center;font-family:var(--mono);font-size:9.5px;font-weight:700;text-transform:uppercase;padding:3px 0;border-radius:5px}
+.asp-actor.v{background:hsl(220 10% 50% / .18);color:var(--muted)}
+.asp-actor.a{background:hsl(0 60% 52% / .16);color:#cf222e}
+.asp-actor.g{background:hsl(150 50% 45% / .16);color:#1a7f37}
+.asp-actor.s{background:hsl(212 60% 50% / .16);color:var(--accent)}
+.asp-detail{flex:1;color:var(--ink);line-height:1.45}
+.asp-x{flex:none;font-size:10px;font-weight:700;color:#cf222e;font-family:var(--mono)}
