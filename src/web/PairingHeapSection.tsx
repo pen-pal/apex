@@ -96,7 +96,10 @@ export function PairingHeapSection() {
         recurring lesson that asymptotics and wall-clock can disagree. The same "self-adjusting, do the cleanup
         lazily during the expensive operation" philosophy powers <strong>splay trees</strong> and
         <strong> skew heaps</strong>; pairing heaps are its heap incarnation. (Fredman, Sedgewick, Sleator &amp;
-        Tarjan, 1986; the decrease-key lower bound is Fredman, 1999 and Iacono, 2000.)
+        Tarjan, 1986; the decrease-key lower bound is Fredman, 1999 and Iacono, 2000.) The O(1) meld/insert
+        figures are for the classic in-place heap; this model is <em>persistent</em> (immutable nodes), so each
+        meld copies the winning root's child list — a standard functional-implementation trade-off that doesn't
+        change the algorithm.
       </p>
     </div>
   );
