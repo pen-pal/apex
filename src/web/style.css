@@ -8511,3 +8511,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .spx-out b{font-family:var(--mono);letter-spacing:1px}
 .spx-out.bad{background:hsl(0 60% 50% / .1);border:1px solid hsl(0 60% 50% / .35);color:#cf222e}
 .spx-out.safe{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .3);color:#1a7f37}
+
+/* ---- jump consistent hash ---- */
+.jmp{display:flex;flex-direction:column;gap:13px}
+.jmp-intro,.jmp-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.jmp-intro strong,.jmp-foot strong{color:var(--ink)}
+.jmp-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.jmp-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.jmp-modes{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.jmp-mode{font:inherit;font-size:12px;padding:7px 14px;background:var(--panel);color:var(--muted);border:0;cursor:pointer;font-family:var(--mono)}
+.jmp-mode.on{background:var(--accent);color:#fff;font-weight:600}
+.jmp-slider{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);flex:1;min-width:180px}
+.jmp-slider b{font-family:var(--mono);color:var(--ink);min-width:16px}
+.jmp-slider input{flex:1}
+.jmp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(30px,1fr));gap:4px}
+.jmp-key{aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;border:2px solid transparent;transition:background .15s}
+.jmp-key.moved{border-color:#fff;box-shadow:0 0 0 2px #cf222e}
+.jmp-dist{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.jmp-disth{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:8px}
+.jmp-bars{display:flex;align-items:flex-end;gap:3px;height:60px}
+.jmp-bar{flex:1;border-radius:3px 3px 0 0;min-height:2px}
+.jmp-stats{display:flex;gap:10px;flex-wrap:wrap}
+.jmp-stat{flex:1;min-width:130px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.jmp-stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.jmp-stat b{font-family:var(--mono);font-size:17px;color:var(--ink)}
+.jmp-stat.good{border-color:hsl(150 50% 45% / .5)}
+.jmp-stat.good b{color:#1a7f37}
+.jmp-stat.bad{border-color:hsl(0 60% 50% / .5)}
+.jmp-stat.bad b{color:#cf222e}
