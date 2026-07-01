@@ -4,10 +4,14 @@
 // still valid and unchanged; both coexist, sharing almost all their memory. That's structural sharing, the
 // reason immutable maps are cheap. Real model from hamt.ts.
 import { useMemo, useState } from 'react';
-import { emptyNode, set, get, sharedNodes, type Node, type Entry } from './hamt';
+import { emptyNode, set, get, sharedNodes, type Node, type Entry, type Collision } from './hamt';
 
-const isEntry = (x: Node | Entry): x is Entry => 'key' in x;
+type Child = Node | Entry | Collision;
+const isEntry = (x: Child): x is Entry => 'key' in x;
+const isNode = (x: Child): x is Node => 'bitmap' in x;
 const PRESET = ['apple', 'banana', 'cherry', 'date', 'fig', 'grape'];
+
+const EntryChip = ({ e }: { e: Entry }) => <div className="hamt-entry"><span className="hamt-key">{e.key}</span><span className="hamt-val">{e.value}</span></div>;
 
 function NodeView({ node, oldSet }: { node: Node; oldSet: Set<Node> }) {
   const shared = oldSet.has(node);
@@ -16,8 +20,10 @@ function NodeView({ node, oldSet }: { node: Node; oldSet: Set<Node> }) {
       <span className="hamt-nlabel">{shared ? 'shared' : 'copied'} · {node.children.length}</span>
       <div className="hamt-kids">
         {node.children.map((c, i) => isEntry(c)
-          ? <div key={i} className="hamt-entry"><span className="hamt-key">{c.key}</span><span className="hamt-val">{c.value}</span></div>
-          : <NodeView key={i} node={c} oldSet={oldSet} />)}
+          ? <EntryChip key={i} e={c} />
+          : isNode(c)
+            ? <NodeView key={i} node={c} oldSet={oldSet} />
+            : <div key={i} className="hamt-collide">collision{c.bucket.map((e, j) => <EntryChip key={j} e={e} />)}</div>)}
       </div>
     </div>
   );
@@ -32,7 +38,7 @@ export function HamtSection() {
 
   const oldSet = useMemo(() => {
     const s = new Set<Node>();
-    const collect = (n: Node) => { s.add(n); n.children.forEach((c) => { if (!isEntry(c)) collect(c); }); };
+    const collect = (n: Node) => { s.add(n); n.children.forEach((c) => { if (isNode(c)) collect(c); }); };
     collect(prev);
     return s;
   }, [prev]);
