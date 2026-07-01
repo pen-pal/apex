@@ -9421,3 +9421,41 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mnh-tru{color:#1a7f37 !important}
 .mnh-metric b.ok{color:#1a7f37}
 @media(max-width:600px){.mnh-docs{grid-template-columns:1fr}}
+
+/* ---- PID controller ---- */
+.pidc{display:flex;flex-direction:column;gap:13px}
+.pidc-intro,.pidc-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.pidc-intro strong,.pidc-foot strong{color:var(--ink)}
+.pidc-intro b{font-family:var(--mono);color:var(--ink)}
+.pidc-kk{font-family:var(--mono);font-weight:700;padding:0 5px;border-radius:4px}
+.pidc-kk.p{background:hsl(212 60% 50% / .16);color:var(--accent)}
+.pidc-kk.i{background:hsl(150 50% 45% / .16);color:#1a7f37}
+.pidc-kk.d{background:hsl(28 75% 52% / .16);color:#a85a00}
+.pidc-presets{display:flex;gap:8px;flex-wrap:wrap}
+.pidc-preset{font:inherit;font-size:12px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.pidc-preset.on{border-color:var(--accent);background:hsl(212 60% 50% / .1)}
+.pidc-chart{width:100%;max-width:660px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:6px}
+.pidc-axis{stroke:var(--line);stroke-width:1}
+.pidc-band{fill:hsl(150 50% 45% / .12)}
+.pidc-setpoint{stroke:#1a7f37;stroke-width:1;stroke-dasharray:4 3;opacity:.8}
+.pidc-splabel{fill:#1a7f37;font-size:9px;font-family:var(--mono)}
+.pidc-curve{fill:none;stroke:var(--accent);stroke-width:2.5}
+.pidc-axlabel{fill:var(--muted);font-size:9px;font-family:var(--mono)}
+.pidc-knobs{display:flex;gap:16px;flex-wrap:wrap}
+.pidc-knob{flex:1;min-width:150px;display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:var(--muted)}
+.pidc-knob span{display:flex;justify-content:space-between}
+.pidc-knob b{font-family:var(--mono);color:var(--ink)}
+.pidc-knob.p b{color:var(--accent)}
+.pidc-knob.i b{color:#1a7f37}
+.pidc-knob.d b{color:#a85a00}
+.pidc-knob input{width:100%}
+.pidc-knob.p input{accent-color:hsl(212 60% 52%)}
+.pidc-knob.i input{accent-color:hsl(150 50% 45%)}
+.pidc-knob.d input{accent-color:hsl(28 75% 52%)}
+.pidc-stats{display:flex;gap:10px;flex-wrap:wrap}
+.pidc-stat{flex:1;min-width:130px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.pidc-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.pidc-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.pidc-stat.ok b{color:#1a7f37}
+.pidc-stat.warn b{color:#a85a00}
+.pidc-stat.bad b{color:#cf222e}
