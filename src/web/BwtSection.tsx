@@ -60,7 +60,7 @@ export function BwtSection() {
       </div>
 
       <p className="bwt-foot">
-        The magic is that this is a <strong>bijection</strong>: nothing is lost, yet the output is far more compressible. The inverse here
+        This is a <strong>bijection</strong>: nothing is lost, yet the output is far more compressible. The inverse here
         rebuilds the sorted-rotation table one column at a time (n sorts); real implementations use the <strong>LF-mapping</strong> to invert in
         O(n) without ever materialising the table. <strong>bzip2</strong> runs the BWT on ~900 KB blocks, then move-to-front, run-length and
         Huffman coding. The sentinel guarantees every rotation is unique so the sort — and the inverse — are unambiguous. (Burrows & Wheeler, 1994.)

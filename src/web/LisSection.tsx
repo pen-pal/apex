@@ -37,7 +37,7 @@ export function LisSection() {
         The <strong>longest increasing subsequence</strong> is the longest run of values that rise left to right
         (not necessarily adjacent). Patience sorting finds it in O(n log n): deal the numbers like solitaire —
         each card lands on the <strong>leftmost pile whose top is ≥ it</strong> (a binary search), or starts a new
-        pile. The magic: the <strong>number of piles = the LIS length</strong>. Pick an array:
+        pile. The <strong>number of piles equals the LIS length</strong>. Pick an array:
       </p>
 
       <div className="lis-presets">
