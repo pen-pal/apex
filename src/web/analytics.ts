@@ -18,7 +18,7 @@ import { track as vercelTrack } from '@vercel/analytics';
 
 const CONFIG = {
   cloudflareToken: '',                              // e.g. '0123456789abcdef0123456789abcdef'
-  goatcounter: '',                                  // e.g. 'https://apex.goatcounter.com/count'
+  goatcounter: 'https://apex.goatcounter.com/count', // GoatCounter count endpoint
   umamiWebsiteId: '',                               // e.g. 'a1b2c3d4-....'
   umamiSrc: 'https://cloud.umami.is/script.js',
 };
