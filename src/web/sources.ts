@@ -8,7 +8,7 @@ const loaders = import.meta.glob('./*.ts', { query: '?raw', import: 'default' })
 // section id → model filename, only where they differ from `${id}.ts`. Each verified against the section's actual
 // component's single primary model import (block-scoped), so the panel always shows THIS section's real model.
 const ALIAS: Record<string, string> = {
-  lb: 'loadbalance', simanneal: 'simulanneal',
+  lb: 'loadbalance', simanneal: 'simulanneal', marchsquares: 'marchingsquares',
   aead: 'aesgcm', aesround: 'aes', ecbpenguin: 'aes', cdn: 'cachehierarchy', certs: 'certchain',
   chash: 'consistenthash', congestion: 'tcpcc', crc32: 'crc32walk', cycledetect: 'floydcycle',
   deployments: 'deploystrat', dhkex: 'dh', distvec: 'dv', dns: 'dnsjourney', editdist: 'editdistance',
