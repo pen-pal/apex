@@ -21,17 +21,24 @@ export function connect(mode: Mode, hasTicket: boolean): ConnResult {
   return { mode: 'full', rttToFirstByte: 1, usesTicket: false, earlyData: false, replayable: false };
 }
 
-/** Idempotent/safe HTTP methods — the only ones that belong in 0-RTT early data. */
+// Two DISTINCT properties (RFC 9110). SAFE = no side effects → the conservative set browsers/CDNs actually
+// permit in 0-RTT early data. IDEMPOTENT = repeating the request has the same effect as doing it once → this
+// is what decides whether a REPLAY is harmful. Note PUT/DELETE are idempotent but NOT safe.
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
+const IDEMPOTENT_METHODS = new Set(['GET', 'HEAD', 'OPTIONS', 'PUT', 'DELETE', 'TRACE']);
+
+/** Whether a method is safe to place in 0-RTT early data (no side effects) — the eligibility rule. */
 export const safeForEarlyData = (method: string): boolean => SAFE_METHODS.has(method.toUpperCase());
+/** Whether repeating the method is harmless (same effect as once) — what makes a REPLAY non-damaging. */
+export const isIdempotent = (method: string): boolean => IDEMPOTENT_METHODS.has(method.toUpperCase());
 
 export interface ReplayOutcome { deliveries: number; logicalEffects: number; harmful: boolean }
 
-/** What happens if 0-RTT early data carrying `method` is replayed `deliveries` times. An idempotent request
- *  has the same effect no matter how many times it lands (1 logical effect); a non-idempotent one applies
- *  once per delivery — the double-charge / duplicate-order bug. */
+/** What happens if 0-RTT early data carrying `method` is replayed `deliveries` times. An IDEMPOTENT request
+ *  has the same effect no matter how many times it lands (1 logical effect); a non-idempotent one (POST,
+ *  PATCH) applies once per delivery — the double-charge / duplicate-order bug. */
 export function replay(method: string, deliveries: number): ReplayOutcome {
-  const safe = safeForEarlyData(method);
-  const logicalEffects = safe ? Math.min(1, deliveries) : deliveries;
-  return { deliveries, logicalEffects, harmful: !safe && deliveries > 1 };
+  const idem = isIdempotent(method);
+  const logicalEffects = idem ? Math.min(1, deliveries) : deliveries;
+  return { deliveries, logicalEffects, harmful: !idem && deliveries > 1 };
 }

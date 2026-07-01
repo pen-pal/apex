@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { connect, safeForEarlyData, replay } from '../src/web/zerortt';
+import { connect, safeForEarlyData, isIdempotent, replay } from '../src/web/zerortt';
 
 describe('handshake modes & round trips', () => {
   it('a full handshake is 1 RTT to first byte, no ticket, no early data', () => {
@@ -21,19 +21,28 @@ describe('handshake modes & round trips', () => {
   });
 });
 
-describe('which requests are safe in early data', () => {
-  it('idempotent/safe methods only', () => {
+describe('safe vs idempotent — two distinct properties', () => {
+  it('SAFE (no side effects) — the early-data eligibility rule — is GET/HEAD/OPTIONS only', () => {
     for (const m of ['GET', 'HEAD', 'OPTIONS', 'get']) expect(safeForEarlyData(m)).toBe(true);
     for (const m of ['POST', 'PUT', 'DELETE', 'PATCH']) expect(safeForEarlyData(m)).toBe(false);
   });
+  it('IDEMPOTENT (repeat = same effect) also includes PUT and DELETE — but NOT POST/PATCH', () => {
+    for (const m of ['GET', 'HEAD', 'OPTIONS', 'PUT', 'DELETE']) expect(isIdempotent(m)).toBe(true);
+    for (const m of ['POST', 'PATCH']) expect(isIdempotent(m)).toBe(false);
+  });
 });
 
-describe('the replay problem', () => {
-  it('a replayed idempotent GET has the same single effect no matter how many times it lands', () => {
+describe('the replay problem — harm keyed on IDEMPOTENCY, not safety', () => {
+  it('a replayed idempotent GET collapses to one effect', () => {
     expect(replay('GET', 5)).toEqual({ deliveries: 5, logicalEffects: 1, harmful: false });
+  });
+  it('PUT/DELETE are idempotent, so replays are harmless (one effect) even though they are not "safe"', () => {
+    expect(replay('PUT', 3)).toEqual({ deliveries: 3, logicalEffects: 1, harmful: false });
+    expect(replay('DELETE', 4)).toMatchObject({ logicalEffects: 1, harmful: false });
   });
   it('a replayed non-idempotent POST applies once PER delivery — the double-charge bug', () => {
     expect(replay('POST', 3)).toEqual({ deliveries: 3, logicalEffects: 3, harmful: true });
+    expect(replay('PATCH', 2)).toMatchObject({ logicalEffects: 2, harmful: true });
   });
   it('a POST delivered once is fine — the harm is only in the DUPLICATE', () => {
     expect(replay('POST', 1)).toMatchObject({ logicalEffects: 1, harmful: false });

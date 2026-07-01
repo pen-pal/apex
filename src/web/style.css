@@ -7884,3 +7884,9 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .zrt-outcome.bad{background:rgba(207,34,46,.07);border:1px solid rgba(207,34,46,.28);color:#cf222e}
 .zrt-outcome b{font-family:var(--mono)}
 @media(max-width:640px){.zrt-flights{grid-template-columns:1fr}}
+
+/* 0-RTT: two-axis method flags + warn state */
+.zrt-mflags{display:flex;flex-direction:column;gap:4px}
+.zrt-mbadge{font-size:11.5px;font-weight:600}
+.zrt-mbadge.warn{color:#9a6700;font-weight:500}
+.zrt-outcome.warn{background:rgba(191,128,0,.08);border:1px solid rgba(191,128,0,.28);color:#9a6700}

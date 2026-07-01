@@ -4,7 +4,7 @@
 // double-charges. The whole lesson: 0-RTT is free latency but only for replay-safe requests. Model from
 // zerortt.ts.
 import { useState } from 'react';
-import { connect, safeForEarlyData, replay } from './zerortt';
+import { connect, safeForEarlyData, isIdempotent, replay } from './zerortt';
 
 const METHODS = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE'];
 
@@ -15,7 +15,8 @@ export function ZeroRttSection() {
 
   const conn = connect(returning ? '0rtt' : 'full', returning);
   const full = connect('full', false);
-  const safe = safeForEarlyData(method);
+  const idem = isIdempotent(method);
+  const eligible = safeForEarlyData(method);
   const out = replay(method, conn.earlyData ? replays : 0);
 
   return (
@@ -59,14 +60,21 @@ export function ZeroRttSection() {
           <div className="zrt-rh">the early-data request:</div>
           <div className="zrt-methods">
             {METHODS.map((m) => (
-              <button key={m} type="button" className={`zrt-m ${method === m ? 'on' : ''} ${safeForEarlyData(m) ? 'safe' : 'unsafe'}`} onClick={() => setMethod(m)}>{m}</button>
+              <button key={m} type="button" className={`zrt-m ${method === m ? 'on' : ''} ${isIdempotent(m) ? 'safe' : 'unsafe'}`} onClick={() => setMethod(m)}>{m}</button>
             ))}
-            <span className={`zrt-mbadge ${safe ? 'ok' : 'bad'}`}>{safe ? '✓ replay-safe (idempotent)' : '✗ NOT replay-safe'}</span>
+          </div>
+          <div className="zrt-mflags">
+            <span className={`zrt-mbadge ${idem ? 'ok' : 'bad'}`}>{idem ? '✓ idempotent → a replay is harmless' : '✗ not idempotent → a replay does damage'}</span>
+            <span className={`zrt-mbadge ${eligible ? 'ok' : 'warn'}`}>{eligible ? 'safe method → allowed in early data' : 'not a "safe" method → browsers keep it OUT of early data anyway'}</span>
           </div>
           <label className="zrt-rcount">😈 attacker replays the packet <input type="range" min={1} max={5} value={replays} onChange={(e) => setReplays(+e.target.value)} /><b>{replays}×</b></label>
-          <div className={`zrt-outcome ${out.harmful ? 'bad' : 'ok'}`}>
+          <div className={`zrt-outcome ${out.harmful ? 'bad' : idem ? 'ok' : 'warn'}`}>
             server processed it {out.deliveries}× → <b>{out.logicalEffects}</b> logical effect{out.logicalEffects === 1 ? '' : 's'}.
-            {out.harmful ? ` ⚠ a ${method} isn't idempotent, so ${out.deliveries} deliveries = ${out.logicalEffects} real actions (e.g. ${out.logicalEffects} charges).` : ` a ${method} is idempotent — replays collapse to one effect. Harmless.`}
+            {out.harmful
+              ? ` ⚠ a ${method} isn't idempotent, so ${out.deliveries} deliveries = ${out.logicalEffects} real actions (e.g. ${out.logicalEffects} charges).`
+              : idem
+                ? ` a ${method} is idempotent — replays collapse to one effect. Harmless.`
+                : ` delivered once, so no duplicate yet — but a ${method} isn't idempotent, so any replay would double it.`}
           </div>
         </div>
       )}
