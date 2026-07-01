@@ -36,7 +36,7 @@ export function NtpSection() {
         <p className="jsec-sub">
           The client stamps four times — <strong>T1</strong> send, <strong>T2</strong> server-receive, <strong>T3</strong>{' '}
           server-reply, <strong>T4</strong> client-receive — and two subtractions give the round-trip delay and the clock offset.
-          The trick: the server’s own delay cancels, and the offset is exact if the path is symmetric.
+          The server’s own delay cancels, and the offset is exact if the path is symmetric.
         </p>
 
         <div className="ntp-controls">

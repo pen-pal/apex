@@ -95,7 +95,7 @@ export function ChandySection() {
         </div>
 
         <p className="cl-foot">
-          The magic: no process ever stops, no clock is shared, yet the recorded state is one the system <em>could</em> have passed through —
+          No process ever stops, no clock is shared, yet the recorded state is one the system <em>could</em> have passed through —
           and here the <strong>${R.initialTotal - R.naiveTotal}</strong> in flight on a channel is exactly what balances-only accounting would
           lose. Markers travel in the same FIFO order as data, so they cleanly separate “before the cut” from “after.” This is how real systems
           take consistent checkpoints (Apache Flink’s exactly-once snapshots use a direct descendant of this algorithm) and detect stable

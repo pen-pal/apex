@@ -24,7 +24,7 @@ export function ZeroRttSection() {
       <p className="zrt-intro">
         TLS 1.3 and QUIC can send your request in the <strong>very first packet</strong> — zero round trips to
         the first byte. On a first visit you handshake normally and get a <strong>resumption ticket</strong>;
-        on a return visit you encrypt request data with it as <strong>early data</strong>. The catch: early
+        on a return visit you encrypt request data with it as <strong>early data</strong>. Early
         data has no server freshness yet, so it can be <strong>replayed</strong> — safe for a GET, a disaster
         for a POST.
       </p>

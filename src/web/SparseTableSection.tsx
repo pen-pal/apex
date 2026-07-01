@@ -33,7 +33,7 @@ export function SparseTableSection() {
     <div className="spt">
       <p className="spt-intro">
         For a <em>static</em> array, you can answer any range-minimum query in <strong>O(1)</strong> — two
-        lookups and a <code>min</code> — after an O(n log n) precompute. The trick: <code>min</code> is
+        lookups and a <code>min</code> — after an O(n log n) precompute. <code>Min</code> is
         <strong> idempotent</strong> (min(x,x)=x), so a query [l, r] can be covered by two overlapping
         power-of-two blocks and the double-counted middle does no harm. Drag the range:
       </p>

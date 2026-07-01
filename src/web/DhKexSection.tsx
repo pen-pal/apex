@@ -23,7 +23,7 @@ export function DhKexSection() {
         <div className="jsec-head"><h2>Diffie–Hellman — a shared secret in the open</h2></div>
         <p className="jsec-sub">
           Alice and Bob have never met and share no secret, yet over a fully public channel they agree on one — and an eavesdropper
-          who records every byte still can’t reproduce it. The trick is that <code>g<sup>a</sup></code> is easy to compute but
+          who records every byte still can’t reproduce it. <code>G<sup>a</sup></code> is easy to compute but
           un-inverting it (the discrete logarithm) is not. Public parameters: prime <code>p = {String(P)}</code>, generator
           <code> g = {String(G)}</code>.
         </p>

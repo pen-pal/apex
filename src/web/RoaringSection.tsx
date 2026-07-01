@@ -65,7 +65,7 @@ export function RoaringSection() {
       )}
 
       <p className="roa-foot">
-        The magic is that <strong>each chunk decides independently</strong>. A chunk holding {'{'}5, 900, 60000{'}'}
+        <strong>Each chunk decides independently</strong>. A chunk holding {'{'}5, 900, 60000{'}'}
         is 3 sorted 16-bit ints (6 bytes); a chunk holding 50,000 of its 65,536 values is a flat 8 KB bitmap — and
         Roaring flips a chunk from array to bitmap automatically once it passes ~4096 values (above that the array
         would cost more than the bitmap). Real Roaring adds a third <em>run</em> container for long consecutive

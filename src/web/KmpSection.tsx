@@ -77,7 +77,7 @@ export function KmpSection() {
         </div>
 
         <p className="kmp-foot">
-          The failure table is itself built by KMP-on-itself in O(m). The payoff: the text index never decreases, so each character is
+          The failure table is itself built by KMP-on-itself in O(m). The text index never decreases, so each character is
           examined at most twice — O(n+m) total, versus O(n·m) for naive matching on adversarial inputs like “AAAA…AAB”. Boyer-Moore goes
           further by scanning the pattern right-to-left and skipping ahead on a mismatch (often sublinear in practice), and Rabin-Karp uses
           a rolling hash to find multiple patterns at once.

@@ -44,7 +44,7 @@ export function CartesianSection() {
       <p className="crt-intro">
         The <strong>Cartesian tree</strong> of an array: the root is the array's <strong>minimum</strong>, and
         each subtree is the Cartesian tree of one side. It's a <strong>min-heap</strong> by value and a
-        <strong> BST</strong> by index (in-order gives back the array). The payoff: the minimum of any range
+        <strong> BST</strong> by index (in-order gives back the array). The minimum of any range
         <code> a[i..j]</code> is the <strong>lowest common ancestor</strong> of positions i and j — so
         range-minimum and LCA are the same problem. Drag the range:
       </p>

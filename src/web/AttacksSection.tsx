@@ -73,7 +73,7 @@ function AmpTool() {
   );
 }
 
-// The "secret" the attacker never sees. The whole point: they don't need it.
+// The "secret" the attacker never sees. They don't need it.
 const SECRET = new TextEncoder().encode('s3rv3r-s1de-k3y');
 const ORIG_MSG = 'user=guest&role=viewer';
 

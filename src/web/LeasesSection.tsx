@@ -78,7 +78,7 @@ export function LeasesSection() {
       </div>
 
       <p className="lse-foot">
-        The key insight: lease safety doesn't depend on the lease <em>length</em> — it depends on the granter
+        Lease safety doesn't depend on the lease <em>length</em> — it depends on the granter
         waiting out the <strong>maximum possible clock skew (plus message delay)</strong> before re-granting, so
         the previous holder has definitely self-expired. Real systems do this two ways: the granter adds a guard
         (etcd/Chubby leader leases hand out a lease shorter than they'll wait to reassign), or the holder
