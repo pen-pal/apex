@@ -42,6 +42,8 @@ export function fastInvSqrt(x: number, iterations = 1): Result {
   const guess = y;
   const steps = [y];
   const halfX = 0.5 * x;
+  // Newton-Raphson on f(y)=1/y²−x. (The original Quake code did this in float32; JS runs it in float64, which only
+  // removes the tiny float32 rounding — the ~3.4%/~0.17%/~0.0005% error bounds per iteration are unchanged.)
   for (let k = 0; k < iterations; k++) { y = y * (1.5 - halfX * y * y); steps.push(y); }
   const trueValue = 1 / Math.sqrt(x);
   return { guess, steps, refined: y, trueValue, relError: Math.abs(y - trueValue) / trueValue };

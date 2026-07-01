@@ -74,8 +74,9 @@ export function FastInvSqrtSection() {
         mantissa's linear fit. Optimizing that constant to minimize the worst-case error gives 0x5f3759df (Chris
         Lomont later showed 0x5f375a86 is very slightly better). The remaining ~3.4% is cleaned up by Newton-
         Raphson on f(y) = 1/y² − x, whose update happens to need only multiplies — no division — so the whole thing
-        is a handful of cheap integer and float ops. Today it's a historical curiosity: since ~2003, SSE's
-        <code> rsqrtss</code> instruction does this in hardware in one cycle, more accurately. But it remains the
+        is a handful of cheap integer and float ops. Today it's a historical curiosity: SSE's <code>rsqrtss</code>
+        instruction — shipped on the Pentium III the same year as Quake III (1999) and universal within a few years
+        — does this in hardware in one cycle, more accurately. But it remains the
         canonical example of the deepest trick in low-level programming — that a float's bits <em>are</em> a
         number you can do useful arithmetic on. (Quake III, 1999; Lomont 2003.)
       </p>
