@@ -20,7 +20,7 @@ const CURRENCIES = ['USD', 'EUR', 'GBP'];
 
 export function BellmanFordSection() {
   const result = useMemo(() => bellmanFord(NODES.length, EDGES, 0), []);
-  const [pass, setPass] = useState(result.rounds.length); // 0 = init, n = final
+  const [pass, setPass] = useState(0); // 0 = init, n = final — start at init so it builds up
   const shown = pass === 0 ? NODES.map((_, i) => (i === 0 ? 0 : Infinity)) : result.rounds[Math.min(pass, result.rounds.length) - 1];
 
   // Arbitrage: three editable directed rates that form a loop USD→EUR→GBP→USD.

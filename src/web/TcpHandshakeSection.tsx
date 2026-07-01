@@ -14,7 +14,7 @@ export function TcpHandshakeSection() {
   const [c, setC] = useState(1000);
   const [s, setS] = useState(5000);
   const segs = useMemo(() => handshake(c, s), [c, s]);
-  const [step, setStep] = useState(segs.length);
+  const [step, setStep] = useState(0); // start before the SYN so the handshake plays out
 
   const shownThrough = Math.min(step, segs.length);
   const cur = shownThrough > 0 ? segs[shownThrough - 1] : null;

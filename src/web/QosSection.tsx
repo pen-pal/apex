@@ -18,13 +18,13 @@ export function QosSection() {
   const [classes, setClasses] = useState<TClass[]>(DEFAULTS.map((c) => ({ ...c })));
   const [discipline, setDiscipline] = useState<Discipline>('priority');
   const [linkSlots, setLinkSlots] = useState(10);
-  const [step, setStep] = useState(linkSlots);
+  const [step, setStep] = useState(0); // start before any packet is scheduled
   const [playing, setPlaying] = useState(false);
 
   const result = useMemo(() => schedule(classes, discipline, linkSlots), [classes, discipline, linkSlots]);
   const totalQueued = classes.reduce((s, c) => s + c.queue, 0);
 
-  useEffect(() => { setStep(result.order.length); }, [classes, discipline, linkSlots]);
+  useEffect(() => { setStep(0); }, [classes, discipline, linkSlots]); // reset to the start on change
   useEffect(() => {
     if (!playing) return;
     if (step >= result.order.length) { setPlaying(false); return; }

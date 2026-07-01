@@ -21,7 +21,7 @@ const SCRIPT: Step[] = [
 ];
 
 export function MvccSection() {
-  const [step, setStep] = useState(SCRIPT.length - 1);
+  const [step, setStep] = useState(0); // start at the first operation
 
   const { store, lastResult } = useMemo(() => {
     const s = emptyStore();

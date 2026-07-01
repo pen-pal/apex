@@ -42,11 +42,11 @@ function replay(algo: Algo, step: number) {
 
 export function LoadBalanceSection() {
   const [algo, setAlgo] = useState<Algo>('round-robin');
-  const [step, setStep] = useState(REQS.length);
+  const [step, setStep] = useState(0); // start before any request is dispatched
   const [playing, setPlaying] = useState(false);
 
   const state = useMemo(() => replay(algo, step), [algo, step]);
-  useEffect(() => { setStep(REQS.length); }, [algo]);
+  useEffect(() => { setStep(0); }, [algo]); // reset to the start when the algorithm changes
   useEffect(() => {
     if (!playing) return;
     if (step >= REQS.length) { setPlaying(false); return; }

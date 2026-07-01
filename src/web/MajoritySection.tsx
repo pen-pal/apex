@@ -18,7 +18,7 @@ export function MajoritySection() {
   const [pi, setPi] = useState(0);
   const stream = PRESETS[pi].stream;
   const r = useMemo(() => majorityVote(stream), [stream]);
-  const [step, setStep] = useState(stream.length);
+  const [step, setStep] = useState(0); // start at the beginning of the stream
 
   const s = Math.min(step, r.steps.length);
   const cur = s > 0 ? r.steps[s - 1] : null;

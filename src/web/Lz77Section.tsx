@@ -11,7 +11,7 @@ const WINDOW = 24;
 export function Lz77Section() {
   const [input, setInput] = useState('abracadabra abracadabra');
   const tokens = useMemo(() => lz77(input, WINDOW), [input]);
-  const [step, setStep] = useState(tokens.length);
+  const [step, setStep] = useState(0); // start at the beginning so it builds up (not the finished state)
 
   // clamp step when input changes
   const s = Math.min(step, tokens.length);

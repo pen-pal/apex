@@ -18,7 +18,7 @@ const PHASE_LABEL: Record<Phase, string> = {
 
 export function PaxosSection() {
   const run = useMemo(() => runPaxos(3, SCENARIO), []);
-  const [i, setI] = useState(run.steps.length - 1);
+  const [i, setI] = useState(0); // start at the first step
   const step = run.steps[Math.min(i, run.steps.length - 1)];
 
   return (

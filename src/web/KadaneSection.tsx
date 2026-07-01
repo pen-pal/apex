@@ -13,7 +13,7 @@ const PRESETS: Record<string, number[]> = {
 
 export function KadaneSection() {
   const [arr, setArr] = useState<number[]>(PRESETS.classic);
-  const [step, setStep] = useState(PRESETS.classic.length - 1);
+  const [step, setStep] = useState(0); // start at the first element
 
   const r = useMemo(() => kadane(arr), [arr]);
   const cur = r.steps[step];

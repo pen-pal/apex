@@ -19,7 +19,7 @@ const ARRIVALS: BMsg[] = [
 
 export function CbSection() {
   const run = useMemo(() => receive(3, ARRIVALS), []);
-  const [i, setI] = useState(run.events.length - 1);
+  const [i, setI] = useState(0); // start at the first event
   const shown = run.events.slice(0, i + 1);
 
   // reconstruct state after the shown events

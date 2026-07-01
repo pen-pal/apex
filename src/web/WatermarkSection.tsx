@@ -17,7 +17,7 @@ const pct = (t: number) => `${(t / MAXT) * 100}%`;
 
 export function WatermarkSection() {
   const [lateness, setLateness] = useState(2);
-  const [si, setSi] = useState(EVENTS.length - 1); // step = arrival index revealed so far
+  const [si, setSi] = useState(0); // step = arrival index revealed so far — start at the first
 
   const result = useMemo(() => processStream(EVENTS, WINDOW, lateness), [lateness]);
   const view = useMemo(() => {

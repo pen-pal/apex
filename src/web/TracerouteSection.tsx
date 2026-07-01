@@ -20,10 +20,10 @@ const DEFAULT_PATH: Path = {
 export function TracerouteSection() {
   const [path, setPath] = useState<Path>(() => ({ ...DEFAULT_PATH, hops: DEFAULT_PATH.hops.map((h) => ({ ...h })) }));
   const rows = useMemo(() => traceroute(path), [path]);
-  const [step, setStep] = useState(rows.length);
+  const [step, setStep] = useState(0); // start before the first probe so hops appear one by one
   const [playing, setPlaying] = useState(false);
 
-  useEffect(() => { setStep(rows.length); }, [path]); // recompute fully when topology changes
+  useEffect(() => { setStep(0); }, [path]); // reset to the start when the topology changes (also fires on mount)
   useEffect(() => {
     if (!playing) return;
     if (step >= rows.length) { setPlaying(false); return; }
