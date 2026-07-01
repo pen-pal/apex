@@ -6,6 +6,7 @@
 import { StrictMode, useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Analytics } from '@vercel/analytics/react';
+import { initAnalytics, trackSection } from './analytics';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ProtocolRegistry } from '../core/registry';
 import { registerCoreProtocols } from '../protocols';
@@ -353,6 +354,9 @@ function App() {
   const [navQuery, setNavQuery] = useState('');
   const [journeyId, setJourneyId] = useState<string | null>(null);
   const [dark, setDark] = useState<boolean>(() => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-color-scheme: dark)').matches);
+
+  useEffect(() => { initAnalytics(); }, []);                 // load configured provider beacons once
+  useEffect(() => { trackSection(section); }, [section]);    // one virtual pageview per opened section
   useEffect(() => { document.documentElement.dataset.theme = dark ? 'dark' : 'light'; }, [dark]);
   const activeGroup = groupOf(section);
   const activePath = journeyId ? pathById[journeyId] ?? null : null;
