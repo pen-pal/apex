@@ -9132,3 +9132,43 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sgr-hops{font-size:12px !important}
 .sgr-stat.warn b{color:#a85a00}
 .sgr-stat.ok b{color:#1a7f37}
+
+/* ---- Elias γ/δ coding ---- */
+.elc{display:flex;flex-direction:column;gap:12px}
+.elc-intro,.elc-foot,.elc-listintro{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.elc-intro strong,.elc-foot strong{color:var(--ink)}
+.elc-numf,.elc-listf{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.elc-numf input{font-family:var(--mono);font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);width:100px}
+.elc-listf input{font-family:var(--mono);font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);flex:1;min-width:200px}
+.elc-numf input:focus,.elc-listf input:focus{outline:none;border-color:var(--accent)}
+.elc-binhint{font-size:11px;color:var(--muted)}
+.elc-codes{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.elc-code{border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--panel);display:flex;flex-direction:column;gap:8px}
+.elc-ch{font-size:12px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.elc-ch b{font-family:var(--mono);font-size:15px;color:var(--accent)}
+.elc-ch i{margin-left:auto;font-style:normal;font-size:10px;color:var(--muted);font-family:var(--mono)}
+.elc-bits{display:flex;gap:2px;flex-wrap:wrap}
+.elc-bit{font-family:var(--mono);font-size:13px;width:19px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:3px;font-weight:700}
+.elc-bit.zero{background:hsl(220 8% 50% / .18);color:var(--muted)}
+.elc-bit.lead{background:hsl(212 60% 50% / .3);color:var(--accent)}
+.elc-bit.bin{background:hsl(212 60% 50% / .16);color:var(--accent)}
+.elc-bit.len{background:hsl(150 50% 45% / .18);color:#1a7f37}
+.elc-legend{display:flex;gap:8px;flex-wrap:wrap}
+.elc-lg{font-size:9.5px;padding:2px 6px;border-radius:4px}
+.elc-lg.zero{background:hsl(220 8% 50% / .18);color:var(--muted)}
+.elc-lg.lead,.elc-lg.bin{background:hsl(212 60% 50% / .16);color:var(--accent)}
+.elc-lg.len{background:hsl(150 50% 45% / .18);color:#1a7f37}
+.elc-decode{font-size:11px;color:var(--muted);line-height:1.4}
+.elc-decode b{font-family:var(--mono);color:var(--ink)}
+.elc-compare{display:flex;flex-direction:column;gap:7px}
+.elc-crow{display:flex;align-items:center;gap:10px}
+.elc-cname{flex:none;width:100px;font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.elc-ctrack{flex:1;height:16px;background:var(--bg);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.elc-cfill{height:100%;border-radius:4px}
+.elc-cfill.g{background:hsl(212 60% 52%)}
+.elc-cfill.d{background:hsl(150 50% 45%)}
+.elc-cfill.f{background:hsl(220 8% 55%)}
+.elc-cval{flex:none;width:64px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.elc-savings{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+.elc-savings b{color:#1a7f37;font-family:var(--mono)}
+@media(max-width:600px){.elc-codes{grid-template-columns:1fr}}
