@@ -51,5 +51,5 @@ export function decode(enc: number[]): number[] {
   return out;
 }
 
-/** The COBS overhead for a payload of n bytes: ceil(n/254) code bytes (plus the frame's trailing delimiter). */
+/** Worst-case COBS overhead for a payload of n bytes: floor(n/254)+1 bytes (plus the frame's trailing delimiter). */
 export const overhead = (n: number): number => Math.floor(n / 254) + 1;
