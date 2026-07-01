@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { emptyNode, get, set, entries, sharedNodes, popcount, type Node } from '../src/web/hamt';
+import { emptyNode, get, set, entries, sharedNodes, popcount, hash, type Node } from '../src/web/hamt';
 
 const KEYS = ['apple', 'banana', 'cherry', 'date', 'fig', 'grape', 'kiwi', 'lemon', 'mango', 'pear', 'plum', 'berry'];
 function build(): { root: Node; ref: Map<string, number> } {
@@ -24,6 +24,25 @@ describe('it behaves like a map', () => {
     expect(popcount(0)).toBe(0);
     expect(popcount(0b1011)).toBe(3);
     expect(popcount(0xffffffff)).toBe(32);
+  });
+});
+
+describe('full 32-bit hash collisions go to a bucket (both keys retrievable)', () => {
+  it("stores and retrieves two keys with the same FNV-1a hash, and get() agrees with entries()", () => {
+    // 'e4i911' and '1uomk' both hash to 2518975656 (found by the audit)
+    expect(hash('e4i911')).toBe(hash('1uomk'));
+    let root = set(set(emptyNode(), 'e4i911', 111), '1uomk', 222);
+    expect(get(root, 'e4i911')).toBe(111);
+    expect(get(root, '1uomk')).toBe(222);
+    expect(entries(root).length).toBe(2);
+    for (const e of entries(root)) expect(get(root, e.key)).toBe(e.value); // no entries/get disagreement
+  });
+  it('updating one colliding key leaves the other intact', () => {
+    let root = set(set(emptyNode(), 'e4i911', 111), '1uomk', 222);
+    root = set(root, 'e4i911', 333);
+    expect(get(root, 'e4i911')).toBe(333);
+    expect(get(root, '1uomk')).toBe(222);
+    expect(entries(root).length).toBe(2);
   });
 });
 

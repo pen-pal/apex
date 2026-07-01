@@ -8412,3 +8412,5 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hamt-entry{display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px;min-width:44px}
 .hamt-key{font-family:var(--mono);font-size:11px;color:var(--ink);font-weight:600}
 .hamt-val{font-family:var(--mono);font-size:10px;color:var(--accent)}
+.hamt-collide{display:flex;flex-direction:column;gap:3px;border:1.5px dashed #cf222e;border-radius:7px;padding:5px 6px;background:hsl(0 60% 50% / .06)}
+.hamt-collide{font-size:8.5px;text-transform:uppercase;letter-spacing:.04em;color:#cf222e;font-weight:700;font-family:var(--mono)}
