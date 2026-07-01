@@ -9006,3 +9006,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rzv-distbar{width:100%;border-radius:4px 4px 0 0;min-height:2px}
 .rzv-distn{font-family:var(--mono);font-size:10px;color:var(--muted)}
 .rzv-distc{font-family:var(--mono);font-size:11px;color:var(--ink);font-weight:700}
+
+/* ---- buddy allocator ---- */
+.bud{display:flex;flex-direction:column;gap:12px}
+.bud-intro,.bud-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.bud-intro strong,.bud-foot strong{color:var(--ink)}
+.bud-intro code,.bud-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.bud-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bud-sizef{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.bud-sizef input{font-family:var(--mono);font-size:13px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);width:70px}
+.bud-alloc{font:inherit;font-size:12px;padding:7px 15px;border:0;border-radius:7px;background:var(--accent);color:#fff;cursor:pointer;font-weight:700}
+.bud-quick{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.bud-quick button{font:inherit;font-size:11px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono)}
+.bud-reset{font:inherit;font-size:11px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--muted);cursor:pointer;margin-left:auto}
+.bud-bar{display:flex;height:56px;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--bg)}
+.bud-block{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-right:1px solid var(--bg);font-family:var(--mono);overflow:hidden;transition:width .2s}
+.bud-block:last-child{border-right:0}
+.bud-block.free{background:repeating-linear-gradient(45deg,var(--panel),var(--panel) 6px,transparent 6px,transparent 12px);color:var(--muted)}
+.bud-block.used{color:#fff;cursor:pointer;border:1px solid}
+.bud-block.used:hover{filter:brightness(1.12)}
+.bud-block-sz{font-size:11px;font-weight:700}
+.bud-block-req{font-size:8.5px;opacity:.85}
+.bud-msg{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.bud-orders{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.bud-orders-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.bud-order{font-family:var(--mono);font-size:11px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--panel)}
+.bud-order.has{color:var(--ink);border-color:var(--accent)}
+.bud-order b{color:var(--accent);font-weight:700;margin-left:3px}
+.bud-stats{display:flex;gap:10px;flex-wrap:wrap}
+.bud-stat{flex:1;min-width:110px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:3px}
+.bud-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.bud-stat b{font-family:var(--mono);font-size:16px;color:var(--ink)}
+.bud-stat.warn b{color:#a85a00}
