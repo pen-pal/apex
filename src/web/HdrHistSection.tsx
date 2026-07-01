@@ -12,7 +12,7 @@ const S = 16; // ~6% relative error
 // deterministic LCG so the demo is reproducible (no Math.random)
 function samplesFor(tailPct: number): number[] {
   let s = 123456789;
-  const rnd = () => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x7fffffff; };
+  const rnd = () => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x80000000; };
   const out: number[] = [];
   for (let i = 0; i < N; i++) {
     const slow = rnd() * 100 < tailPct;

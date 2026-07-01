@@ -7,7 +7,7 @@ import { build, nearest, bruteNearest, type KdNode, type Point } from './kdtree'
 
 // fixed deterministic point cloud
 const POINTS: Point[] = (() => {
-  let s = 42; const r = () => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x7fffffff; };
+  let s = 42; const r = () => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s / 0x80000000; };
   return Array.from({ length: 24 }, () => ({ x: 6 + Math.round(r() * 88), y: 6 + Math.round(r() * 88) }));
 })();
 
