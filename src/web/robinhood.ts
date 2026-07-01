@@ -84,11 +84,15 @@ export class RobinHood {
 /** Plain linear probing (no swaps) — for comparison. Returns each occupied slot's probe distance. */
 export function plainLinearProbe(keys: string[], cap: number): { max: number; variance: number } {
   const slots: (Slot | null)[] = new Array(cap).fill(null);
+  let used = 0;
   for (const key of keys) {
-    if (keys.indexOf(key) >= cap) break;
+    if (used >= cap) break;                              // table full — stop (no infinite probe)
     const home = hashKey(key, cap); let slot = home;
-    while (slots[slot] !== null) { if (slots[slot]!.key === key) break; slot = (slot + 1) % cap; }
-    if (slots[slot] === null) slots[slot] = { key, home };
+    for (let step = 0; step < cap; step++) {
+      if (slots[slot] === null) { slots[slot] = { key, home }; used++; break; }
+      if (slots[slot]!.key === key) break;               // duplicate — no-op
+      slot = (slot + 1) % cap;
+    }
   }
   const dists: number[] = [];
   for (let i = 0; i < cap; i++) if (slots[i]) dists.push((i - slots[i]!.home + cap) % cap);

@@ -9732,3 +9732,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rbh-cmp-note{font-size:11px;color:var(--muted);line-height:1.5}
 .rbh-cmp-note b{font-family:var(--mono);color:var(--ink)}
 @media(max-width:600px){.rbh-table{grid-template-columns:repeat(8,1fr)}}
+
+/* ---- HMAC ---- */
+.hmc{display:flex;flex-direction:column;gap:13px}
+.hmc-intro,.hmc-foot,.hmc-why{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.hmc-intro strong,.hmc-foot strong,.hmc-why strong{color:var(--ink)}
+.hmc-intro code,.hmc-foot code,.hmc-why code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.hmc-inputs{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.hmc-f{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.hmc-f input{font-family:var(--mono);font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+.hmc-f input:focus{outline:none;border-color:var(--accent)}
+.hmc-steps{display:flex;flex-direction:column;gap:8px}
+.hmc-pass{border:1px solid var(--line);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:7px}
+.hmc-pass.inner{border-color:hsl(212 60% 50% / .35);background:hsl(212 60% 50% / .04)}
+.hmc-pass.outer{border-color:hsl(150 50% 45% / .35);background:hsl(150 50% 45% / .04)}
+.hmc-step{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.hmc-lbl{flex:none;width:120px;font-size:11px;font-family:var(--mono);color:var(--ink);font-weight:700}
+.hmc-note{font-size:10px;color:var(--muted)}
+.hmc-bytes{flex:1;min-width:200px;font-family:var(--mono);font-size:11px;color:var(--muted);word-break:break-all;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+.hmc-bytes.in{color:var(--accent)}
+.hmc-bytes.mac{color:#1a7f37;font-weight:700}
+.hmc-hash{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.hmc-hash b{color:var(--ink)}
+.hmc-step.out .hmc-lbl{color:#1a7f37}
+.hmc-why{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+@media(max-width:600px){.hmc-inputs{grid-template-columns:1fr}}
