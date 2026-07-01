@@ -8104,3 +8104,43 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .zal-result b{font-family:var(--mono)}
 .zal-hits{color:#1a7f37}
 .zal-nohit,.zal-none{color:var(--muted)}
+
+/* ---- RCU (read-copy-update) ---- */
+.rcu{display:flex;flex-direction:column;gap:13px}
+.rcu-intro,.rcu-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.rcu-intro strong,.rcu-foot strong{color:var(--ink)}
+.rcu-foot code{font-family:var(--mono);font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.rcu-controls{display:flex;gap:8px;flex-wrap:wrap}
+.rcu-btn{font:inherit;font-size:12.5px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);cursor:pointer;font-weight:600}
+.rcu-btn.reader{background:hsl(212 60% 50% / .12);border-color:hsl(212 60% 50% / .4);color:var(--accent)}
+.rcu-btn.writer{background:hsl(28 75% 50% / .14);border-color:hsl(28 70% 50% / .45);color:#a85a00}
+.rcu-btn.ghost{background:var(--panel);color:var(--muted)}
+.rcu-btn:hover{filter:brightness(1.06)}
+.rcu-lane{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+.rcu-lane-h{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;margin-bottom:9px}
+.rcu-versions{display:flex;gap:9px;flex-wrap:wrap}
+.rcu-ver{min-width:150px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;display:flex;flex-direction:column;gap:5px;background:var(--bg)}
+.rcu-ver.published{border-color:hsl(150 50% 45%);background:hsl(150 50% 45% / .08)}
+.rcu-ver.grace{border-color:hsl(28 70% 50%);background:hsl(28 70% 50% / .08)}
+.rcu-ver.reclaimed{opacity:.5;border-style:dashed}
+.rcu-ver-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rcu-vid{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
+.rcu-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 6px;border-radius:5px}
+.rcu-badge.published{background:hsl(150 50% 45%);color:#fff}
+.rcu-badge.grace{background:hsl(28 70% 50%);color:#fff}
+.rcu-badge.reclaimed{background:var(--line);color:var(--muted)}
+.rcu-val{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.rcu-refs{font-size:10.5px;color:var(--muted)}
+.rcu-readers{display:flex;flex-direction:column;gap:6px}
+.rcu-empty{font-size:12px;color:var(--muted)}
+.rcu-reader{display:flex;align-items:center;gap:10px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:12px}
+.rcu-reader.stale{border-left:3px solid hsl(28 70% 50%)}
+.rcu-reader.fresh{border-left:3px solid hsl(150 50% 45%)}
+.rcu-rid{font-family:var(--mono);font-weight:700;color:var(--ink)}
+.rcu-reads{color:var(--muted);flex:1}
+.rcu-reads b{font-family:var(--mono);color:var(--ink)}
+.rcu-leave{font:inherit;font-size:11px;padding:3px 9px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--muted);cursor:pointer}
+.rcu-leave:hover{border-color:#cf222e;color:#cf222e}
+.rcu-note{font-size:12px;padding:9px 12px;border-radius:8px;line-height:1.5}
+.rcu-note.wait{background:hsl(28 70% 50% / .1);border:1px solid hsl(28 70% 50% / .3);color:#a85a00}
+.rcu-note.clear{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .3);color:#1a7f37}
