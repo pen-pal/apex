@@ -82,6 +82,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'ipsec', label: 'IPsec ESP (VPN)', icon: '🔐' },
   { id: 'ecmp', label: 'ECMP load spreading', icon: '🔱' },
   { id: 'dnssec', label: 'DNSSEC chain', icon: '🔏' },
+  { id: 'kaminsky', label: 'DNS cache poisoning', icon: '☠️' },
   { id: 'dns', label: 'DNS journey', icon: '🔎' },
   { id: 'mdns', label: 'mDNS & DNS-SD', icon: '🖨️' },
   { id: 'encdns', label: 'Encrypted DNS', icon: '🕵️' },
@@ -257,7 +258,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp'] },
-  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgprr', 'mpls', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'mdns', 'encdns'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgprr', 'mpls', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'kaminsky', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'tfo', 'zerortt', 'congestion', 'cubic', 'bbr', 'flow', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'h2flow', 'http2', 'quic', 'quicmig', 'http3', 'grpc', 'websocket', 'realtime', 'sctp', 'cdn', 'conditional', 'ratelimit', 'leakybucket', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'blindsig', 'vrf', 'ot', 'paillier', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'pwhash', 'pqc', 'ntt', 'bb84', 'shamir', 'feldman', 'threshsig', 'pow', 'ratchet', 'x3dh', 'merkle', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'ssh', 'identity', 'mailauth', 'webauthn', 'cookies', 'cors', 'webinject', 'smuggle', 'ssrf', 'clickjack', 'hsts', 'openredirect', 'hashflood', 'redos', 'siteisolation', 'sri', 'csp', 'attacks'] },
