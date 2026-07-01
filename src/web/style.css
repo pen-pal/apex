@@ -8318,3 +8318,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .twt-fix:hover{border-color:var(--accent)}
 .twt-fix.strong{border-color:hsl(150 50% 45%);background:hsl(150 50% 45% / .1);color:#1a7f37;font-weight:600}
 @media(max-width:640px){.twt-sliders{grid-template-columns:1fr}}
+
+/* ---- padding oracle attack ---- */
+.pdo{display:flex;flex-direction:column;gap:13px}
+.pdo-intro,.pdo-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.pdo-intro strong,.pdo-foot strong{color:var(--ink)}
+.pdo-intro code,.pdo-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.pdo-field{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.pdo-field input{font-family:var(--mono);font-size:14px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);max-width:260px}
+.pdo-field input:focus{outline:none;border-color:var(--accent)}
+.pdo-block{display:flex;gap:6px;flex-wrap:wrap}
+.pdo-cell{width:52px;height:56px;border-radius:8px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--bg)}
+.pdo-cell.hidden{border-style:dashed;opacity:.6}
+.pdo-cell.got{border-color:#cf222e;background:hsl(0 60% 50% / .1)}
+.pdo-cell.got.pad{border-color:hsl(28 70% 50%);background:hsl(28 70% 50% / .1)}
+.pdo-char{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--ink)}
+.pdo-cell.got .pdo-char{color:#cf222e}
+.pdo-cell.got.pad .pdo-char{color:#a85a00}
+.pdo-hex{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.pdo-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.pdo-btn{font:inherit;font-size:12px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer;font-weight:600}
+.pdo-btn:hover:not(:disabled){border-color:var(--accent)}
+.pdo-btn:disabled{opacity:.4;cursor:default}
+.pdo-btn.strong{border-color:#cf222e;background:hsl(0 60% 50% / .1);color:#cf222e}
+.pdo-btn.ghost{color:var(--muted);font-weight:400}
+.pdo-q{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.pdo-verdict{font-size:12.5px;padding:11px 14px;border-radius:9px;line-height:1.5;font-weight:500}
+.pdo-verdict.bad{background:hsl(0 60% 50% / .1);border:1px solid hsl(0 60% 50% / .35);color:#cf222e}
+.pdo-verdict.ok{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .3);color:#1a7f37}
