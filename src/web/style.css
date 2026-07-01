@@ -10490,3 +10490,37 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .kar-count small{font-size:9.5px;color:var(--muted)}
 .kar-count.bad b{color:hsl(0 60% 60%)}
 .kar-count.good b{color:hsl(150 55% 50%)}
+
+/* ---- simulated annealing ---- */
+.san{display:flex;flex-direction:column;gap:12px}
+.san-intro,.san-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.san-intro strong,.san-foot strong{color:var(--ink)}
+.san-intro code,.san-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.san-land{width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px}
+.san-fill{fill:hsl(212 40% 50% / .07)}
+.san-curve{fill:none;stroke:var(--muted);stroke-width:1.5}
+.san-dot{fill:hsl(212 55% 55% / .5)}
+.san-dot.up{fill:hsl(28 80% 55%)}
+.san-marker text{font-size:9px;fill:var(--muted);font-family:var(--mono)}
+.san-start{fill:var(--ink)}
+.san-marker.red circle{fill:hsl(0 65% 55%)}
+.san-marker.red text{fill:hsl(0 65% 60%)}
+.san-marker.green circle{fill:hsl(150 60% 45%)}
+.san-marker.green text{fill:hsl(150 60% 50%)}
+.san-marker.amber circle{fill:hsl(40 80% 50%)}
+.san-marker.amber text{fill:hsl(40 80% 55%)}
+.san-legend{display:flex;gap:16px;font-size:10.5px}
+.san-lg.up{color:hsl(28 80% 55%)}
+.san-lg.dn{color:hsl(212 55% 60%)}
+.san-controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.san-controls label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.san-controls label b{color:var(--ink)}
+.san-controls input{width:150px}
+.san-hint{font-size:11.5px;color:var(--muted)}
+.san-stats{display:flex;gap:10px;flex-wrap:wrap}
+.san-stat{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;gap:2px}
+.san-stat span{font-size:9.5px;color:var(--muted);text-transform:uppercase}
+.san-stat b{font-family:var(--mono);font-size:18px;color:var(--ink)}
+.san-stat small{font-size:9.5px;color:var(--muted)}
+.san-stat.bad b{color:hsl(0 60% 60%)}
+.san-stat.good b{color:hsl(150 55% 50%)}
