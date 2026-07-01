@@ -9268,3 +9268,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .egm-homcalc{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 12px}
 .egm-homcalc b{color:var(--ink)}
 .egm-ans{color:#1a7f37 !important;font-size:14px}
+
+/* ---- Dutch National Flag ---- */
+.dnf{display:flex;flex-direction:column;gap:14px}
+.dnf-intro,.dnf-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.dnf-intro strong,.dnf-foot strong{color:var(--ink)}
+.dnf-intro code,.dnf-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.dnf-k{font-weight:700;padding:0 4px;border-radius:3px}
+.dnf-k.red{color:#cf4b4b}
+.dnf-k.white{color:var(--ink)}
+.dnf-k.blue{color:#3b7dd8}
+.dnf-arr{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+.dnf-cell{display:flex;flex-direction:column;align-items:center;gap:4px;border-radius:7px;padding:5px 3px 0}
+.dnf-cell.reg-0s{background:hsl(0 55% 50% / .1)}
+.dnf-cell.reg-1s{background:hsl(220 8% 60% / .12)}
+.dnf-cell.reg-unk{background:hsl(45 90% 55% / .12)}
+.dnf-cell.reg-2s{background:hsl(212 60% 50% / .1)}
+.dnf-box{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;font-weight:700}
+.dnf-ptrs{height:16px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.dnf-ptr{font-family:var(--mono);font-size:8px;font-weight:700;padding:1px 3px;border-radius:3px;line-height:1.1}
+.dnf-ptr.low{background:hsl(0 55% 50% / .2);color:#cf4b4b}
+.dnf-ptr.mid{background:hsl(45 90% 45% / .22);color:#9a6700}
+.dnf-ptr.high{background:hsl(212 60% 50% / .2);color:var(--accent)}
+.dnf-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dnf-btn{font:inherit;font-size:12px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer;font-weight:600}
+.dnf-btn.ghost{color:var(--muted);font-weight:400}
+.dnf-btn:disabled{opacity:.4;cursor:default}
+.dnf-prog{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dnf-action{font-size:11.5px;font-family:var(--mono);padding:3px 9px;border-radius:6px}
+.dnf-action.swap-low{background:hsl(0 55% 50% / .12);color:#cf4b4b}
+.dnf-action.swap-high{background:hsl(212 60% 50% / .12);color:var(--accent)}
+.dnf-action.skip{background:hsl(220 8% 60% / .14);color:var(--muted)}
+.dnf-done{font-size:12px;color:#1a7f37;font-weight:600}
