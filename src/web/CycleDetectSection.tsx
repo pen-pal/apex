@@ -92,7 +92,7 @@ export function CycleDetectSection() {
       <p className="th-foot">
         Why phase 2 works is the pretty part. Say the tail (start → entrance) has length μ and the loop has length
         λ. When the pointers meet, the tortoise has taken some number of steps k that is a multiple of λ (the hare,
-        at double speed, has gone exactly one loop-length further). It turns out the meeting point is exactly μ
+        at double speed, has gone exactly one loop-length further). The meeting point is exactly μ
         steps <em>before</em> the entrance going around the loop — so a fresh pointer from the start and the
         tortoise from the meeting point, both stepping by one, cover μ steps and arrive at the entrance together.
         The whole thing uses <strong>two integers</strong> of memory regardless of how long the chain is — versus
