@@ -41,8 +41,8 @@ export function MarchSquaresSection() {
 
       <p className="msq-foot">
         Two details make it work. First, the <em>interpolation</em>: cutting each edge at the true crossing (a
-        corner at 0.9 and one at 1.1 crosses a threshold of 1.0 dead center; 0.2 and 1.8 crosses near the low end)
-        is what turns a blocky staircase into a smooth curve — without it you'd get the jagged outline of the pixel
+        corner at 0.9 and one at 1.1 crosses a threshold of 1.0 dead center; 0.8 and 1.8 crosses only a fifth of
+        the way up, near the low corner) is what turns a blocky staircase into a smooth curve — without it you'd get the jagged outline of the pixel
         grid. Second, the <em>ambiguous cases</em>: when two diagonally-opposite corners are above and the other
         two below (a saddle), the contour could connect either way, and choosing wrong tears the curve; the fix is
         to check the cell's center value and pair the crossings consistently. Because every cell is judged on its

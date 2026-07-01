@@ -6,8 +6,8 @@
 // from a below corner, and you know exactly which edges those are, so you just draw the segment(s) connecting
 // them. Do that for every cell independently and the pieces join up into closed curves. For a smooth result you
 // don't cut edges at their midpoints — you LINEAR-INTERPOLATE the crossing to where the field actually equals the
-// threshold, so a corner at 0.9 and a corner at 1.1 crosses a threshold of 1.0 right in the middle, but 0.2 and
-// 1.8 crosses much closer to the low end. It's embarrassingly parallel (each cell is independent — great for the
+// threshold, so at threshold 1.0 a corner at 0.9 and one at 1.1 crosses right in the middle (t=0.5), but 0.8 and
+// 1.8 crosses only a fifth of the way up (t=0.2, near the low corner). It's embarrassingly parallel (each cell is independent — great for the
 // GPU) and it's the 2-D sibling of MARCHING CUBES, which does the same per-cube to build 3-D surfaces from
 // medical CT/MRI volumes and from metaballs in graphics. This models the field, the per-cell cases, and the
 // interpolated contour segments. Reference: Lorensen & Cline, marching cubes, SIGGRAPH (1987); the 2-D case is
@@ -43,14 +43,16 @@ export function marchingSquares(f: number[][], threshold: number): Seg[] {
       if (above(bl) !== above(tl)) { const [x, y] = lerp(c, r + 1, bl, c, r, tl); pts.push({ x, y }); }         // left
       if (pts.length === 2) {
         segs.push({ x1: pts[0].x, y1: pts[0].y, x2: pts[1].x, y2: pts[1].y });
-      } else if (pts.length === 4) { // saddle: disambiguate by the cell's average vs threshold
+      } else if (pts.length === 4) { // saddle: disambiguate by the cell's center (bilinear average)
         const center = (tl + tr + br + bl) / 4;
-        if (above(center) === above(tl)) { // connect T-L and R-B
-          segs.push({ x1: pts[0].x, y1: pts[0].y, x2: pts[3].x, y2: pts[3].y });
-          segs.push({ x1: pts[1].x, y1: pts[1].y, x2: pts[2].x, y2: pts[2].y });
-        } else { // connect T-R and B-L
-          segs.push({ x1: pts[0].x, y1: pts[0].y, x2: pts[1].x, y2: pts[1].y });
-          segs.push({ x1: pts[2].x, y1: pts[2].y, x2: pts[3].x, y2: pts[3].y });
+        // If the center is on tl's side, tl's diagonal region bridges through the center and stays connected,
+        // so the contour must isolate the OTHER diagonal's corners: pair T-R and B-L. Otherwise pair T-L, R-B.
+        if (above(center) === above(tl)) {
+          segs.push({ x1: pts[0].x, y1: pts[0].y, x2: pts[1].x, y2: pts[1].y }); // T-R
+          segs.push({ x1: pts[2].x, y1: pts[2].y, x2: pts[3].x, y2: pts[3].y }); // B-L
+        } else {
+          segs.push({ x1: pts[0].x, y1: pts[0].y, x2: pts[3].x, y2: pts[3].y }); // T-L
+          segs.push({ x1: pts[1].x, y1: pts[1].y, x2: pts[2].x, y2: pts[2].y }); // R-B
         }
       }
     }
