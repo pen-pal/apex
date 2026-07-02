@@ -1,0 +1,101 @@
+// GENERATED section registry chunk 1 — see sections/registry.tsx. One data row per section: title, sub, component.
+import type { SectionEntry } from './registry';
+import { MvccSection } from '../MvccSection';
+import { WalSection } from '../WalSection';
+import { SkipListSection } from '../SkipListSection';
+import { PedersenSection } from '../PedersenSection';
+import { LockingSection } from '../LockingSection';
+import { TrieSection } from '../TrieSection';
+import { HamtSection } from '../HamtSection';
+import { PbftSection } from '../PbftSection';
+import { LzwSection } from '../LzwSection';
+import { HlcSection } from '../HlcSection';
+import { CuckooSection } from '../CuckooSection';
+import { RobinHoodSection } from '../RobinHoodSection';
+import { GeohashSection } from '../GeohashSection';
+import { KdTreeSection } from '../KdTreeSection';
+import { ChordSection } from '../ChordSection';
+import { KademliaSection } from '../KademliaSection';
+import { UnionFindSection } from '../UnionFindSection';
+import { FenwickSection } from '../FenwickSection';
+import { SparseTableSection } from '../SparseTableSection';
+import { CartesianSection } from '../CartesianSection';
+import { RoaringSection } from '../RoaringSection';
+import { BitmapIndexSection } from '../BitmapIndexSection';
+import { KmpSection } from '../KmpSection';
+import { RabinKarpSection } from '../RabinKarpSection';
+import { HashTableSection } from '../HashTableSection';
+import { EditDistanceSection } from '../EditDistanceSection';
+import { TopoSortSection } from '../TopoSortSection';
+import { AstarSection } from '../AstarSection';
+import { HeapSection } from '../HeapSection';
+import { PairingHeapSection } from '../PairingHeapSection';
+import { SortingSection } from '../SortingSection';
+import { KadaneSection } from '../KadaneSection';
+import { LisSection } from '../LisSection';
+import { QuickselectSection } from '../QuickselectSection';
+import { MomSection } from '../MomSection';
+import { DnfSection } from '../DnfSection';
+import { FisherYatesSection } from '../FisherYatesSection';
+import { AliasMethodSection } from '../AliasMethodSection';
+import { MajoritySection } from '../MajoritySection';
+import { SegTreeSection } from '../SegTreeSection';
+import { IntervalTreeSection } from '../IntervalTreeSection';
+import { ReservoirSection } from '../ReservoirSection';
+import { DfaSection } from '../DfaSection';
+import { FencingSection } from '../FencingSection';
+import { LeasesSection } from '../LeasesSection';
+import { HashChainSection } from '../HashChainSection';
+import { HappyEyeballsSection } from '../HappyEyeballsSection';
+import { NagleSection } from '../NagleSection';
+
+export const chunk1: Record<string, SectionEntry> = {
+  "mvcc": { Component: MvccSection, title: <>MVCC &amp; snapshot isolation</>, sub: <>Why a SELECT never waits for an UPDATE. Step through two concurrent transactions and watch each write append a new row version while a long reader keeps seeing its own consistent snapshot.</> },
+  "wal": { Component: WalSection, title: <>Write-Ahead Logging</>, sub: <>How a database survives a crash mid-transaction. Drag the crash point and watch recovery REDO the transactions whose commit survived and UNDO the ones that didn't — always landing in a consistent state.</> },
+  "skiplist": { Component: SkipListSection, title: <>Skip list</>, sub: <>O(log n) search from nothing but linked lists and coin flips — the structure inside Redis sorted sets and LSM memtables. Search a key and watch the path ride the express lanes and skip most nodes.</> },
+  "pedersen": { Component: PedersenSection, title: <>Pedersen commitments</>, sub: <>Seal a value in an envelope that reveals nothing yet binds you to it — and that you can add to other sealed envelopes. The homomorphism behind confidential transactions and zero-knowledge proofs.</> },
+  "locking": { Component: LockingSection, title: <>Locking &amp; deadlock</>, sub: <>The lock-based path to concurrency correctness — and its hazard. Pick a scenario and watch shared/exclusive locks grant or block, the wait-for graph form, and a cycle light up as a deadlock.</> },
+  "trie": { Component: TrieSection, title: <>Trie (prefix tree)</>, sub: <>A tree shaped like its keys: words sharing a prefix share a path. Type a prefix and watch the matching subtree light up and autocomplete fill — the same walk that powers IP longest-prefix routing.</> },
+  "hamt": { Component: HamtSection, title: <>HAMT — the persistent map</>, sub: <>How immutable maps (Clojure, Scala, immutable.js) make "copies" cheap. A hash array mapped trie stores entries in sparse bitmap nodes; updating a key copies only the nodes on the path to it and shares every other subtree with the old version. Insert a key and watch which nodes are copied vs reused — both versions coexist, valid and unchanged.</> },
+  "pbft": { Component: PbftSection, title: <>PBFT — Byzantine fault tolerance</>, sub: <>Consensus when nodes can lie, not just crash. Slide the replica count and the number of malicious nodes to see why tolerating f Byzantine faults needs n ≥ 3f+1 replicas and 2f+1 quorums.</> },
+  "lzw": { Component: LzwSection, title: <>LZW compression</>, sub: <>The dictionary scheme behind GIF and TIFF. Step the encoder as it builds a dictionary on the fly and emits codes — a dictionary the decoder rebuilds identically from the codes alone, nothing shipped.</> },
+  "hlc": { Component: HlcSection, title: <>Hybrid Logical Clocks</>, sub: <>Timestamps that stay close to real time yet still order causally-related events. Watch the HLC track the physical clock, absorb a backward jump, and get pulled forward by an incoming message.</> },
+  "cuckoo": { Component: CuckooSection, title: <>Cuckoo hashing</>, sub: <>A hash table with O(1) worst-case lookup — every key lives in one of just two slots. Insert keys and watch the cuckoo evictions chain, then delete one (something a Bloom filter can't do).</> },
+  "robinhood": { Component: RobinHoodSection, title: <>Robin Hood hashing</>, sub: <>An open-addressing hash table that flattens the worst case with one rule: while probing to insert, if you meet an element closer to its home than you are to yours, evict it and take the slot, carrying it onward — robbing from the "rich" (low probe distance) to help the "poor." Probe distances equalize, so the max lookup cost stays tiny. Add keys and compare the probe-distance spread against plain linear probing.</> },
+  "geohash": { Component: GeohashSection, title: <>Geohashing</>, sub: <>Turn a latitude/longitude into a short, sortable string where nearby points share a prefix. Watch the geohash grow as the bounding box shrinks, and compare two places to see proximity become a shared prefix.</> },
+  "kdtree": { Component: KdTreeSection, title: <>k-d tree — nearest-neighbor search</>, sub: <>A tree that indexes points in space so you find the nearest one without checking them all. It splits the plane recursively — vertical, then horizontal, alternating — giving each point a rectangle, and a query skips any rectangle on the far side of a split that's already too far. Click to move the query and watch how few points it actually checks.</> },
+  "chord": { Component: ChordSection, title: <>Chord DHT</>, sub: <>How a peer-to-peer network finds which node owns a key in O(log n) hops. Pick a start node and a key and watch the lookup leap along finger-table shortcuts to the owner instead of crawling the ring.</> },
+  "kademlia": { Component: KademliaSection, title: <>Kademlia DHT — the XOR metric</>, sub: <>The distributed hash table behind BitTorrent, IPFS, and Ethereum node discovery. Its trick is measuring "distance" between IDs as their bitwise XOR — so two IDs are close exactly when they share a long binary prefix. Nodes keep k-buckets of contacts (many nearby, few far), and a lookup asks the closest peers it knows, then the closest they know, converging in O(log n) hops. Run a lookup and watch it fix another bit of the target's prefix each hop.</> },
+  "unionfind": { Component: UnionFindSection, title: <>Union-Find (Disjoint Set Union)</>, sub: <>Track groups and answer "are these two connected?" in near-constant time. Click elements to union their sets and watch the components merge — the engine behind Kruskal's MST and connectivity queries.</> },
+  "fenwick": { Component: FenwickSection, title: <>Fenwick tree (Binary Indexed Tree)</>, sub: <>Prefix sums and point updates both in O(log n) via one binary trick. Watch each tree node cover a block sized by its lowest set bit, and the query/update paths light up the ~log n nodes they touch.</> },
+  "sparsetable": { Component: SparseTableSection, title: <>Sparse table — O(1) range minimum</>, sub: <>Answer "what's the minimum in [l, r]?" in constant time for a static array, after an O(n log n) precompute. Because min is idempotent, any range is covered by two overlapping power-of-two blocks and the double-counted middle does no harm — so a query is one min of two lookups, no loop. Drag the range and watch the two blocks snap into place.</> },
+  "cartesian": { Component: CartesianSection, title: <>Cartesian tree — where range-minimum is lowest-common-ancestor</>, sub: <>A binary tree built from an array that is simultaneously a min-heap by value and a BST by index. Its defining trick: the minimum of any range a[i..j] is the lowest common ancestor of positions i and j — so range-minimum and LCA are the same problem, the equivalence that unlocks O(n)-build/O(1)-query RMQ. Drag a range and watch its minimum light up as the LCA.</> },
+  "roaring": { Component: RoaringSection, title: <>Roaring bitmaps — the compressed index</>, sub: <>How databases store a set of millions of integer IDs compactly and intersect two of them at memory speed. The key space is split into chunks of 65536, and each chunk picks its own container — a sorted array when sparse, a flat 8 KB bitmap when dense. Add sparse and dense keys and watch the containers adapt, with a memory comparison to the naive options.</> },
+  "bitmapindex": { Component: BitmapIndexSection, title: <>Bitmap index</>, sub: <>How data warehouses make "WHERE status = active AND country = US AND tier != free" fly. For each distinct value of a low-cardinality column, keep a bitmap — one bit per row, set where the row matches — so a WHERE clause becomes bitwise AND/OR/NOT across bitmaps, 64 rows per instruction, with no non-matching row ever touched. Click values to build a query and watch it evaluate in the bits.</> },
+  "kmp": { Component: KmpSection, title: <>KMP string matching</>, sub: <>Find a pattern in text in O(n+m) without ever re-reading a character. Step through the search and watch the failure function slide the pattern on a mismatch while the text pointer only moves forward.</> },
+  "rabinkarp": { Component: RabinKarpSection, title: <>Rabin-Karp</>, sub: <>String search by hashing, with a rolling hash that updates in O(1) as the window slides. Step the window and watch hash hits trigger a character check — the same rolling hash behind rsync and dedup.</> },
+  "hashtable": { Component: HashTableSection, title: <>Hash table collisions</>, sub: <>Two classic ways to handle keys that hash to the same slot. Insert the same keys into separate chaining and open addressing side by side, and watch collisions either chain or probe forward.</> },
+  "editdist": { Component: EditDistanceSection, title: <>Edit distance</>, sub: <>The fewest inserts, deletes, and substitutions to turn one string into another. Watch the DP grid fill and the backtrace path reveal the actual alignment — the engine behind diff and spellcheck.</> },
+  "toposort": { Component: TopoSortSection, title: <>Topological sort</>, sub: <>Order a dependency graph so every arrow points forward. Step Kahn's algorithm as it picks ready nodes and frees the next ones — and add a cyclic dependency to watch it become unorderable.</> },
+  "astar": { Component: AstarSection, title: <>A* pathfinding</>, sub: <>Shortest path on a grid, but pointed at the goal. Paint walls and compare A*'s heuristic-focused search against goal-blind BFS — both find the same shortest path, but A* touches far fewer cells.</> },
+  "heap": { Component: HeapSection, title: <>Binary heap</>, sub: <>The priority queue behind Dijkstra, A*, Huffman, and heapsort. Push values and watch them sift up, pop the minimum and watch the replacement sink down — shown as both a tree and the flat array it really is.</> },
+  "pairingheap": { Component: PairingHeapSection, title: <>Pairing heap — the practical mergeable heap</>, sub: <>A heap that is trivial to implement yet fast enough for Dijkstra and Prim (it's in Boost). Unlike an array-based binary heap it merges two heaps in O(1) and supports cheap decrease-key. It's one multi-way tree built almost entirely from "meld"; the only real work is delete-min, which two-pass merges the root's orphaned children. Insert keys and delete the min to watch the tree meld and recombine.</> },
+  "sorting": { Component: SortingSection, title: <>Sorting algorithms</>, sub: <>The same array, five ways. Step or play through bubble, insertion, selection, merge, and quicksort on a bar chart, and compare their comparison/swap counts to feel the O(n²) vs O(n log n) gap.</> },
+  "kadane": { Component: KadaneSection, title: <>Kadane's algorithm — maximum subarray</>, sub: <>Find the contiguous run of numbers with the largest sum, in a single O(n) pass. Sweep left to right keeping the best sum ending at the current position; drop the prefix the moment starting fresh beats extending — a negative prefix never helps. Step through and watch the running total reset and the best window emerge.</> },
+  "lis": { Component: LisSection, title: <>Longest increasing subsequence — patience sorting</>, sub: <>The longest run of values that rise left to right (not necessarily adjacent), found in O(n log n) with a card-game trick. Deal the numbers like solitaire: each lands on the leftmost pile whose top is at least it, or starts a new pile — and the number of piles equals the LIS length. Pick an array and watch the piles form and the subsequence light up.</> },
+  "quickselect": { Component: QuickselectSection, title: <>Quickselect — the k-th smallest in O(n)</>, sub: <>Find a median or a percentile without sorting. Quickselect partitions around a pivot that lands at its final sorted position, then keeps only the side containing k and repeats — discarding half each time for O(n) average. Pick which order statistic you want and step the partitions as the search window collapses onto the answer.</> },
+  "medianofmedians": { Component: MomSection, title: <>Median of medians — worst-case linear selection</>, sub: <>How to find the k-th smallest in guaranteed O(n), even in the worst case, by choosing a provably good pivot. Split into groups of 5, take each group's median, then recursively take the median of those medians — a pivot that can never land in the extreme tails, so every partition is balanced. Watch the groups, their medians, the pivot, and the guaranteed balance.</> },
+  "dnf": { Component: DnfSection, title: <>Dutch national flag</>, sub: <>Dijkstra's one-pass, in-place sort of an array of three values (red/white/blue) using three pointers that carve four regions. Look at the middle pointer: a 0 swaps down, a 2 swaps up, a 1 stays — and the unknown zone shrinks to nothing. It's the partition step of 3-way quicksort, which is what keeps quicksort fast on duplicate-heavy data. Step through and watch the regions form.</> },
+  "shuffle": { Component: FisherYatesSection, title: <>Shuffle bias — Fisher–Yates vs the naive shuffle</>, sub: <>The one-character bug that makes the popular "swap each index with any random index" shuffle provably biased — while the correct Fisher–Yates shuffle is perfectly uniform. Run thousands of shuffles and watch a bias pattern emerge in the naive heatmap while Fisher–Yates stays flat, with the exact counting argument for why.</> },
+  "aliasmethod": { Component: AliasMethodSection, title: <>The Alias method — O(1) weighted sampling</>, sub: <>Draw from a weighted distribution in constant time. The setup chops the n weights into n equal columns, each holding at most two outcomes (a primary and an alias); a sample is then one die roll to pick a column and one coin flip to pick within it. Drag the weights and watch the columns rebalance while every outcome keeps exactly its intended probability.</> },
+  "majority": { Component: MajoritySection, title: <>Boyer-Moore majority vote</>, sub: <>Find the element making up more than half a stream in one pass with a single counter. Step through the cancellation and watch the true majority survive — then a verification pass confirm or reject it.</> },
+  "segtree": { Component: SegTreeSection, title: <>Segment tree</>, sub: <>Range-minimum queries and point updates, both O(log n) — the thing a Fenwick tree can't do. Drag the query range and watch the few covering nodes light up, then update a leaf and see the change ripple to the root.</> },
+  "intervaltree": { Component: IntervalTreeSection, title: <>Interval tree</>, sub: <>Answer "which intervals overlap this range?" in O(log n + k) instead of scanning all of them — for calendars, genome features, firewall port ranges. A BST keyed by low endpoint, augmented so each node stores its subtree's maximum high endpoint, which lets a search prune whole subtrees that can't reach the query. Slide the query range and watch the overlaps light up and the pruned subtrees dim.</> },
+  "reservoir": { Component: ReservoirSection, title: <>Reservoir sampling</>, sub: <>Pick k items uniformly from a stream you can't store and whose length you don't know, in one pass. Step the stream through a fixed reservoir, then see 3000 runs prove every item is selected about k/n of the time.</> },
+  "dfa": { Component: DfaSection, title: <>Finite automata (DFA)</>, sub: <>The simplest computer: states and transitions, no memory — yet enough to power regexes and lexers. Feed a string and watch the active state walk the transitions, including the delightful 3-state machine for "divisible by 3".</> },
+  "fencing": { Component: FencingSection, title: <>Fencing tokens</>, sub: <>Why a distributed lock alone can't protect data, and how a monotonically-increasing token fixes it. Watch the classic split-brain scenario corrupt data without fencing — and survive with it.</> },
+  "leases": { Component: LeasesSection, title: <>Leases &amp; clock skew</>, sub: <>A lock with an expiry date, so a crashed holder can't freeze the system — but it's only safe if the granter waits out the maximum clock skew before re-granting. Drag the skew, network delay, and guard interval and watch the split-brain window (two leaders at once) open and close.</> },
+  "hashchain": { Component: HashChainSection, title: <>Hash chain</>, sub: <>The tamper-evidence trick behind blockchains, Git, and transparency logs. Each block stores the previous block's hash; edit any block's data and watch the mismatch cascade all the way to the tip.</> },
+  "happyeyeballs": { Component: HappyEyeballsSection, title: <>Happy Eyeballs</>, sub: <>How a dual-stack client connects fast without stalling on a broken IPv6 path. Drag the IPv4/IPv6 connection times and watch the race — IPv6 preferred, IPv4 fallback racing in after a short delay.</> },
+  "nagle": { Component: NagleSection, title: <>Nagle &amp; delayed ACK</>, sub: <>Two TCP optimizations that deadlock when they meet. Toggle Nagle and delayed ACK, drag the RTT and ACK timer, and watch the write-write-read stall appear as a red band on the ladder diagram — then vanish under TCP_NODELAY.</> },
+};

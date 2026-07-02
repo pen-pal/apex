@@ -1,0 +1,101 @@
+// GENERATED section registry chunk 4 — see sections/registry.tsx. One data row per section: title, sub, component.
+import type { SectionEntry } from './registry';
+import { QueueingSection } from '../QueueingSection';
+import { RtoSection } from '../RtoSection';
+import { DistanceVectorSection } from '../DistanceVectorSection';
+import { MdnsSection } from '../MdnsSection';
+import { EncryptedDnsSection } from '../EncryptedDnsSection';
+import { HttpThreeSection } from '../HttpThreeSection';
+import { GrpcSection } from '../GrpcSection';
+import { WebSocketSection } from '../WebSocketSection';
+import { TlsDowngradeSection } from '../TlsDowngradeSection';
+import { PasswordHashSection } from '../PasswordHashSection';
+import { ShamirSection } from '../ShamirSection';
+import { EnvelopeSection } from '../EnvelopeSection';
+import { FeldmanSection } from '../FeldmanSection';
+import { ProofOfWorkSection } from '../ProofOfWorkSection';
+import { FeistelSection } from '../FeistelSection';
+import { Poly1305Section } from '../Poly1305Section';
+import { HashCollisionSection } from '../HashCollisionSection';
+import { RatchetSection } from '../RatchetSection';
+import { KerberosSection } from '../KerberosSection';
+import { RevocationSection } from '../RevocationSection';
+import { SshSection } from '../SshSection';
+import { CpuSchedSection } from '../CpuSchedSection';
+import { PageWalkSection } from '../PageWalkSection';
+import { InodeSection } from '../InodeSection';
+import { MesiSection } from '../MesiSection';
+import { FalseSharingSection } from '../FalseSharingSection';
+import { JoinsSection } from '../JoinsSection';
+import { FlowCtlSection } from '../FlowCtlSection';
+import { TsoSection } from '../TsoSection';
+import { LinkStateSection } from '../LinkStateSection';
+import { MaxFlowSection } from '../MaxFlowSection';
+import { NttSection } from '../NttSection';
+import { BwtSection } from '../BwtSection';
+import { TailLatencySection } from '../TailLatencySection';
+import { HdrHistSection } from '../HdrHistSection';
+import { DdSketchSection } from '../DdSketchSection';
+import { WatermarkSection } from '../WatermarkSection';
+import { MstSection } from '../MstSection';
+import { CfsSection } from '../CfsSection';
+import { PriorityInvSection } from '../PriorityInvSection';
+import { PipelineSection } from '../PipelineSection';
+import { SccSection } from '../SccSection';
+import { CycleDetectSection } from '../CycleDetectSection';
+import { QueryPlanSection } from '../QueryPlanSection';
+import { RumSection } from '../RumSection';
+import { ArithSection } from '../ArithSection';
+import { SwimSection } from '../SwimSection';
+import { AhoCorasickSection } from '../AhoCorasickSection';
+
+export const chunk4: Record<string, SectionEntry> = {
+  "queueing": { Component: QueueingSection, title: <>M/M/1 queueing</>, sub: <>The 1/(1−ρ) curve: push arrival rate toward the link's service rate and watch delay go from gentle to a wall — the math under bufferbloat and QoS.</> },
+  "rto": { Component: RtoSection, title: <>RTO &amp; Karn's algorithm</>, sub: <>How TCP sets its retransmit timeout from smoothed RTT — send packets to watch SRTT and the RTO track, then drop one to see Karn's backoff with no sample taken.</> },
+  "distvec": { Component: DistanceVectorSection, title: <>Distance-vector routing</>, sub: <>Routers gossip distance vectors to converge on shortest paths — then cut a link and watch the count-to-infinity problem crawl the cost upward, and poison-reverse stop it.</> },
+  "mdns": { Component: MdnsSection, title: <>mDNS &amp; DNS-SD</>, sub: <>How your laptop finds the printer with no DNS server — browse a service type over multicast, then resolve the PTR→SRV→TXT→A chain to host and port.</> },
+  "encdns": { Component: EncryptedDnsSection, title: <>Encrypted DNS</>, sub: <>The same lookup over Do53, DoT, DoH and DoQ — see what a network observer still learns from each, with the encrypted transports honestly opaque on the wire.</> },
+  "http3": { Component: HttpThreeSection, title: <>HTTP/3 &amp; QPACK</>, sub: <>HTTP over QUIC: see how the stack changes from HTTP/2, and watch QPACK collapse repeated headers into one-byte dynamic-table indices without head-of-line blocking.</> },
+  "grpc": { Component: GrpcSection, title: <>gRPC &amp; protobuf</>, sub: <>Build a request and watch it become protobuf bytes (tag/varint/length), get the gRPC length prefix, and ride an HTTP/2 stream's DATA frame with a trailing grpc-status.</> },
+  "websocket": { Component: WebSocketSection, title: <>WebSocket</>, sub: <>Upgrade HTTP into a full-duplex channel — compute the Sec-WebSocket-Accept challenge, then build masked frames byte by byte.</> },
+  "tlsdowngrade": { Component: TlsDowngradeSection, title: <>TLS downgrade</>, sub: <>The ClientHello offers cipher suites before any encryption exists — watch an attacker strip the strong ones to force a breakable suite, then defend with the handshake transcript MAC.</> },
+  "pwhash": { Component: PasswordHashSection, title: <>Password hashing</>, sub: <>Beyond salt and iterations — see why memory-hardness (scrypt, Argon2) is what actually defeats GPU/ASIC cracking, with a live attacker-cost comparison.</> },
+  "shamir": { Component: ShamirSection, title: <>Shamir Secret Sharing</>, sub: <>Split a secret across n shares so any k reconstruct it and k−1 reveal nothing — gather shares and watch the vault open exactly at the threshold.</> },
+  "envelope": { Component: EnvelopeSection, title: <>Envelope encryption (KMS)</>, sub: <>How cloud KMS encrypts data at scale without ever exposing the master key. A fresh Data Encryption Key (DEK) encrypts your data; a Key-Encryption Key (KEK) that lives only in the KMS wraps the DEK. Watch rotating the master key re-wrap only the tiny DEK — the ciphertext (your terabytes) is never touched.</> },
+  "feldman": { Component: FeldmanSection, title: <>Verifiable secret sharing (Feldman VSS)</>, sub: <>Shamir secret sharing without trusting the dealer. The dealer publishes one-way commitments to the polynomial's coefficients, so each participant can verify their share is consistent — catching a cheating dealer — while the secret stays hidden. Set the secret, watch each share verify, flip on cheating to see a bad share rejected, then reconstruct.</> },
+  "pow": { Component: ProofOfWorkSection, title: <>Proof of Work</>, sub: <>Grind a nonce until a real SHA-256 digest clears a zero-bit target — feel the cost climb with difficulty, the engine of hashcash and Bitcoin mining.</> },
+  "feistel": { Component: FeistelSection, title: <>Feistel networks (DES)</>, sub: <>The block-cipher structure that's reversible for free — watch the L/R halves move through the rounds and decrypt run the same structure backward, even with a non-invertible round function.</> },
+  "poly1305": { Component: Poly1305Section, title: <>Poly1305 MAC</>, sub: <>The one-time authenticator paired with ChaCha20 — watch the message accumulate as a polynomial mod 2¹³⁰−5 into a tag, and a tampered byte miss it.</> },
+  "hashbreak": { Component: HashCollisionSection, title: <>Broken hashes &amp; the birthday bound</>, sub: <>SHA-1 still computes but is dead (SHAttered) — see the broken-hash family, why collision resistance is only half the bits, and what to use instead.</> },
+  "ratchet": { Component: RatchetSection, title: <>Double Ratchet</>, sub: <>Signal's per-message keys — build a conversation, compromise the device, and watch forward secrecy protect the past while a DH ratchet heals the future.</> },
+  "kerberos": { Component: KerberosSection, title: <>Kerberos</>, sub: <>Single sign-on without sending a password — step through the AS, TGS and AP exchanges and watch the tickets stay opaque to the client who just relays them.</> },
+  "revocation": { Component: RevocationSection, title: <>Revocation &amp; Certificate Transparency</>, sub: <>How a browser distrusts a compromised cert before it expires (CRL/OCSP/stapling), and how Certificate Transparency catches a mis-issued one in public.</> },
+  "ssh": { Component: SshSection, title: <>SSH transport</>, sub: <>How SSH builds an encrypted tunnel before any secret — step the handshake to NEWKEYS, then see host-key trust-on-first-use catch a man-in-the-middle.</> },
+  "cpusched": { Component: CpuSchedSection, title: <>CPU scheduling</>, sub: <>One job set, every classic policy. Edit arrivals and bursts, then watch the Gantt chart and the turnaround/waiting/response numbers reveal the trade-offs — the convoy effect, SJF/SRTF minimizing waiting, round-robin trading turnaround for responsiveness.</> },
+  "pagewalk": { Component: PageWalkSection, title: <>Page-table walk</>, sub: <>Type a virtual address and watch the MMU translate it: split into four 9-bit table indices plus a 12-bit offset, then chase CR3 → PML4 → PDPT → PD → PT to a physical frame — or hit a not-present entry, fault, and demand-page it in.</> },
+  "inode": { Component: InodeSection, title: <>inode &amp; indirect blocks</>, sub: <>How a classic Unix filesystem (ext2/3, FFS) maps a file offset to a disk block. A fixed-size inode holds a dozen direct pointers for small files (one read to the data), then single-, double-, and triple-indirect pointers — blocks of pointers to blocks of pointers — that extend the same tiny inode to address terabytes, at the cost of one extra disk read per level. Pick a block and watch which pointer path reaches it.</> },
+  "mesi": { Component: MesiSection, title: <>MESI cache coherence</>, sub: <>Several cores, one shared memory line. Press a core's read or write and watch its cache state move through Modified / Exclusive / Shared / Invalid as the snooping bus invalidates and downgrades the others — and see why false sharing is so costly.</> },
+  "falseshare": { Component: FalseSharingSection, title: <>False sharing</>, sub: <>The performance bug where two cores fight over a cache line even though their threads touch different variables. Because caches move memory in 64-byte lines, two counters that happen to share a line ping-pong between cores on every write — no shared data, yet a 10×+ slowdown. Toggle packed vs padded layout and watch the coherence traffic vanish.</> },
+  "joins": { Component: JoinsSection, title: <>Join algorithms</>, sub: <>The same two tables joined three ways — nested-loop, hash, and sort-merge. Edit the keys and watch the work each does: the nested-loop grid literally is its |R|·|S| comparisons, hash join builds a table on S, sort-merge sorts both for a single linear sweep. All three return identical rows; the optimizer picks by cost.</> },
+  "h2flow": { Component: FlowCtlSection, title: <>HTTP/2 &amp; QUIC flow control</>, sub: <>Two levels of credit, not one: every stream has its own window, and they all share a connection window. A DATA frame needs credit on both. Drain the shared connection window and watch a stream starve even while it still holds its own credit — until a MAX_DATA refills the pool.</> },
+  "tso": { Component: TsoSection, title: <>Memory consistency &amp; store buffers</>, sub: <>Why two threads can both read the old value. Run the store-buffer litmus test under Sequential Consistency vs x86-TSO and watch the r0=r1=0 outcome — impossible when memory is strongly ordered — appear the moment store buffers enter the picture, then vanish again when you add a fence.</> },
+  "ospf": { Component: LinkStateSection, title: <>OSPF link-state routing</>, sub: <>The opposite of distance-vector: every router floods one advertisement about its own links until all of them share an identical map of the network, then each runs Dijkstra over that map. Pick a source to see its shortest-path tree, and drag the link costs to watch the paths recompute.</> },
+  "maxflow": { Component: MaxFlowSection, title: <>Max-flow / min-cut</>, sub: <>How much can flow from source to sink through a capacitated network — and the bottleneck that limits it. Step through Edmonds-Karp: each augmenting path pushes its bottleneck along a shortest residual route, until none remains and the minimum cut reveals itself as the saturated edges leaving the reachable set.</> },
+  "ntt": { Component: NttSection, title: <>The Number-Theoretic Transform</>, sub: <>The FFT done in a finite field — the engine that makes lattice cryptography (Kyber/ML-KEM, Dilithium) fast. Multiply two polynomials by transforming both to the evaluation domain, multiplying pointwise, and transforming back — then watch it match the schoolbook negacyclic product exactly.</> },
+  "bwt": { Component: BwtSection, title: <>Burrows-Wheeler Transform</>, sub: <>A reversible permutation that scrambles a string yet makes it far more compressible — the heart of bzip2. Sort every rotation, read the last column, and watch the inverse rebuild the original exactly. The clustering meter shows why it helps the compressor that runs after it.</> },
+  "taillatency": { Component: TailLatencySection, title: <>Tail latency &amp; percentiles</>, sub: <>Why the average response time is a lie at scale. Watch p99 pull away from the median as the tail grows, then fan one request out to many servers and see a “rare” per-server tail become near-certain — and how hedged requests claw it back.</> },
+  "hdrhist": { Component: HdrHistSection, title: <>HdrHistogram — measuring the tail</>, sub: <>How you record latencies and read back p50/p99/p99.9 without storing every sample. Log-linear buckets give constant relative resolution across microseconds to seconds, in fixed memory no matter how many samples. Generate a heavy-tailed latency stream and watch the percentiles — and the memory footprint stay tiny.</> },
+  "ddsketch": { Component: DdSketchSection, title: <>DDSketch — relative-error quantiles</>, sub: <>A streaming quantile sketch that answers "what's my p99?" with a guaranteed relative error in tiny, mergeable memory. Values are bucketed on a logarithmic scale — edges a constant factor γ=(1+α)/(1−α) apart — so every estimate is within α of the truth at any magnitude, from microseconds to minutes. Drag the accuracy knob and watch the estimate stay inside the guarantee while the bucket count shrinks.</> },
+  "watermark": { Component: WatermarkSection, title: <>Stream watermarks &amp; late events</>, sub: <>How a streaming engine handles events that arrive out of order and late. A watermark — max event-time minus an allowed-lateness slack — is the engine's promise that it has seen everything up to that point; a window fires the moment the watermark passes its end, and anything later is dropped. Step the arrivals and tune the lateness to trade latency against tolerance.</> },
+  "mst": { Component: MstSection, title: <>Minimum spanning tree</>, sub: <>The cheapest set of edges that connects every node. Step through Kruskal (add the cheapest edge that doesn’t close a cycle) or Prim (grow one tree outward) and watch two different greedy strategies land on the same minimum-weight tree.</> },
+  "cfs": { Component: CfsSection, title: <>Linux CFS scheduler</>, sub: <>How Linux shared the CPU fairly for ~15 years. Each task carries a virtual runtime; CFS always runs the one that has had the least. Set nice values and run it — watch niced-down tasks fall behind in vruntime and the achieved CPU share converge to the weight-proportional ideal.</> },
+  "priorityinv": { Component: PriorityInvSection, title: <>Priority inversion — the Mars Pathfinder bug</>, sub: <>How a low-priority task can indirectly starve a high-priority one. The low task holds a lock the high task needs; a medium task that needs no lock preempts the low task, so it can't release — and the high task is stuck behind medium work. See it on two Gantt timelines, and watch priority inheritance bound the delay.</> },
+  "pipeline": { Component: PipelineSection, title: <>Pipeline hazards &amp; forwarding</>, sub: <>Why a CPU can’t just start one instruction every cycle. Edit an instruction stream and toggle forwarding: watch dependent instructions shift right (that gap is a stall), the ALU chain snap back-to-back once bypassing is on, and the load-use hazard that even forwarding can’t avoid.</> },
+  "scc": { Component: SccSection, title: <>Strongly connected components</>, sub: <>The maximal groups of nodes where everyone can reach everyone, found by Kosaraju’s two-pass DFS. Nodes are coloured by their component; collapse each to a point and you get the condensation — always a DAG, the cycle-free skeleton of the graph.</> },
+  "cycledetect": { Component: CycleDetectSection, title: <>Cycle detection — Floyd's tortoise &amp; hare</>, sub: <>Find a loop in a chain using O(1) memory. Two pointers walk a ρ-shaped graph — one slow, one twice as fast — until the hare laps the tortoise inside the loop; a second phase then finds exactly where the loop begins. Step through both phases and watch the pointers meet, with the same trick that powers Pollard's rho factorization.</> },
+  "queryplan": { Component: QueryPlanSection, title: <>Cost-based query planner</>, sub: <>Three tables, six join orders, costs that differ by ~100×. Drag a predicate’s selectivity and watch the optimizer’s ranking flip — joining the most selective edge first keeps every intermediate result tiny. Click any plan to see its left-deep tree and the rows it would materialize.</> },
+  "rum": { Component: RumSection, title: <>The RUM conjecture</>, sub: <>Read, Update, Memory — a storage engine can optimize at most two; the third pays. Drag the dataset size and LSM size ratio and watch the B-tree keep reads cheap, leveled-LSM keep space tight, and tiered-LSM keep writes cheap — each blowing up the dimension it sacrifices.</> },
+  "arith": { Component: ArithSection, title: <>Arithmetic coding</>, sub: <>How to beat Huffman’s one-whole-bit-per-symbol floor: encode the entire message as a single number in [0,1) by narrowing an interval symbol by symbol. The coded width is the product of the symbol probabilities, so the bit cost reaches the entropy — and the decode line proves it round-trips.</> },
+  "swim": { Component: SwimSection, title: <>SWIM failure detection</>, sub: <>How a cluster decides a node is dead without false alarms or all-to-all heartbeating. Cut the direct link but leave a helper up and the target stays alive (indirect ping-req); cut everything and it goes suspect, then dead — unless it refutes with a higher incarnation number.</> },
+  "ahocorasick": { Component: AhoCorasickSection, title: <>Aho-Corasick multi-pattern matching</>, sub: <>Find every occurrence of many patterns in one pass. The automaton is a trie of the dictionary plus failure links; step through the text and watch the state follow a child edge when it can and jump a failure link when it can’t, lighting up matches as whole patterns complete — the engine behind fgrep and intrusion detection.</> },
+};
