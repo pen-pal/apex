@@ -11858,3 +11858,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gam-note{fill:hsl(150 45% 62%);font-size:13px;font-family:var(--mono,monospace)}
 .gam-foot{fill:hsl(210 16% 60%);font-size:13px}
 .gam-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── Word embeddings story (EmbeddingSection) — 2-D vector space + analogy arithmetic ────────────── */
+.emb-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.emb-axis{fill:hsl(210 14% 50%);font-size:11px;font-family:var(--mono,monospace)}
+.emb-dir{stroke:hsl(190 60% 58%);stroke-width:2;opacity:.75}
+.emb-ana{stroke:hsl(280 55% 62%);stroke-width:2}
+.emb-ana.res{stroke:hsl(280 70% 68%);stroke-width:2.5;stroke-dasharray:5 3}
+.emb-target{fill:none;stroke:hsl(45 90% 60%);stroke-width:2}
+.emb-reslbl{fill:hsl(45 88% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
+.emb-pt{fill:hsl(210 45% 60%)}
+.emb-pt.near{fill:hsl(45 90% 60%)}
+.emb-word{fill:hsl(210 22% 78%);font-size:13px;font-family:var(--mono,monospace)}
+.emb-word.hot{fill:hsl(280 70% 80%);font-weight:600}
+.emb-foot{fill:hsl(210 16% 60%);font-size:13px}
+.emb-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.emb-pick{font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.emb-pick.on{background:hsl(280 50% 45% / .25);border-color:hsl(280 65% 62%)}
+.emb-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
