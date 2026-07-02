@@ -10619,3 +10619,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .vor-tab.ghost{color:var(--muted)}
 .vor-count{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto}
 .vor-canvas{width:100%;max-width:520px;height:auto;border:1px solid var(--line);border-radius:11px;cursor:crosshair;image-rendering:auto;display:block}
+
+/* ---- Perlin noise ---- */
+.pln{display:flex;flex-direction:column;gap:13px}
+.pln-intro,.pln-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.pln-intro strong,.pln-foot strong{color:var(--ink)}
+.pln-intro em,.pln-foot em{color:var(--ink);font-style:italic}
+.pln-intro code,.pln-foot code{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+.pln-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.pln-tab{font:inherit;font-size:12px;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.pln-tab.on{border-color:var(--accent);background:hsl(212 60% 50% / .12);color:var(--accent);font-weight:600}
+.pln-tab.ghost{color:var(--muted)}
+.pln-canvas{width:100%;max-width:520px;height:auto;border:1px solid var(--line);border-radius:11px;display:block;image-rendering:auto}
+.pln-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.pln-controls label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.pln-controls label b{color:var(--ink)}
+.pln-controls input{width:130px}
+.pln-hint{font-size:11px;color:var(--muted)}
