@@ -12020,3 +12020,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sat-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
 .sat-ctl b.hit{color:hsl(0 72% 66%)}
 .sat-ctl b.ok{color:hsl(150 55% 56%)}
+
+/* ── MSAA story (MsaaSection) — triangle over pixel grid, coverage-blended edges ──────────────────── */
+.aa-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.aa-px{stroke:hsl(220 18% 30% / .5);stroke-width:0.5}
+.aa-px.edge{stroke:hsl(45 90% 60%);stroke-width:1.5}
+.aa-samp.in{fill:hsl(150 70% 60%)}
+.aa-samp.out{fill:hsl(0 60% 60% / .7)}
+.aa-tri{fill:none;stroke:hsl(190 70% 72%);stroke-width:1.5}
+.aa-foot{fill:hsl(210 16% 60%);font-size:13px}
+.aa-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.aa-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.aa-btn.on{background:hsl(190 50% 42% / .22);border-color:hsl(190 60% 56%)}
+.aa-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
