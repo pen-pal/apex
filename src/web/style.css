@@ -11909,3 +11909,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rm-normal{stroke:hsl(150 65% 58%);stroke-width:2}
 .rm-foot{fill:hsl(210 16% 60%);font-size:13px}
 .rm-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── HDR tone-mapping story (HdrSection) — clip vs Reinhard scene + tone curve ────────────────────── */
+.hdr-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.hdr-lbl{fill:hsl(0 60% 72%);font-size:12.5px;font-family:var(--mono,monospace)}
+.hdr-lbl.ok{fill:hsl(150 55% 64%)}
+.hdr-img{image-rendering:auto}
+.hdr-frame{fill:none;stroke:hsl(0 55% 50%);stroke-width:1.5}
+.hdr-frame.ok{stroke:hsl(150 50% 48%)}
+.hdr-axis{stroke:hsl(220 16% 40%);stroke-width:1}
+.hdr-clipcurve{stroke:hsl(0 60% 60%);stroke-width:2}
+.hdr-reincurve{stroke:hsl(150 60% 55%);stroke-width:2.5}
+.hdr-clab{fill:hsl(0 60% 70%);font-size:10.5px;font-family:var(--mono,monospace)}
+.hdr-rlab{fill:hsl(150 55% 62%);font-size:10.5px;font-family:var(--mono,monospace)}
+.hdr-axlbl{fill:hsl(210 16% 58%);font-size:10.5px;font-family:var(--mono,monospace)}
+.hdr-foot{fill:hsl(210 16% 60%);font-size:13px}
+.hdr-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
