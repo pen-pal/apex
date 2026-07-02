@@ -10876,3 +10876,44 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tls-input{padding:5px 10px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:200px}
 .tls-live-note{color:hsl(150 45% 45%);font-size:12.5px;font-family:var(--mono,monospace)}
 @media(prefers-reduced-motion:reduce){.tls-flow{animation:none;opacity:.6}}
+
+/* ── Flash-cell story (FlashCellSection) — floating-gate transistor on the shared .story-* stage ── */
+.fg-lbl{fill:hsl(210 24% 82%);font-size:14px;font-family:var(--mono,monospace)}
+.fg-lbl.dim{fill:hsl(210 15% 58%);font-size:13px}
+.fg-ico{font-size:34px}
+.fg-pkg{fill:hsl(220 20% 20% / .7);stroke:hsl(220 18% 40%);stroke-width:1.5}
+.fg-die{fill:hsl(215 38% 26% / .8);stroke:hsl(215 45% 45%);stroke-width:1.5}
+.fg-cellbox{fill:hsl(200 40% 24% / .6);stroke:hsl(190 70% 55%);stroke-width:1.5}
+.fg-zoom{fill:none;stroke:hsl(190 90% 60%);stroke-width:2.5;stroke-dasharray:5 10;filter:drop-shadow(0 0 3px hsl(190 85% 55% / .7));animation:fgflow 1.2s linear infinite}
+.fg-ctrl{fill:hsl(220 15% 42% / .7);stroke:hsl(220 15% 60%);stroke-width:1.5}
+.fg-ctrl.hot{fill:hsl(40 60% 40% / .6);stroke:hsl(45 100% 62%);filter:drop-shadow(0 0 6px hsl(45 90% 55% / .6))}
+.fg-ctrl.read{fill:hsl(200 45% 36% / .6);stroke:hsl(195 90% 62%)}
+.fg-part{fill:hsl(210 22% 82%);font-size:13px;font-family:var(--mono,monospace)}
+.fg-part.sm{font-size:12px;fill:hsl(210 18% 70%)}
+.fg-part.on{fill:hsl(150 75% 60%)}
+.fg-part.off{fill:hsl(0 75% 66%)}
+.fg-float-lbl{fill:hsl(45 80% 70%);font-weight:600}
+.fg-volt{fill:hsl(210 20% 70%);font-size:14px;font-weight:700;font-family:var(--mono,monospace)}
+.fg-volt.on{fill:hsl(45 100% 64%)}
+.fg-volt.neg{fill:hsl(280 80% 72%)}
+.fg-volt.read{fill:hsl(195 90% 64%)}
+.fg-oxide2{fill:hsl(210 20% 30% / .5)}
+.fg-float{fill:hsl(45 40% 34% / .35);stroke:hsl(45 70% 58%);stroke-width:2}
+.fg-float.charged{fill:hsl(150 55% 34% / .5);stroke:hsl(150 80% 60%);filter:drop-shadow(0 0 8px hsl(150 75% 50% / .6))}
+.fg-float.worn{stroke:hsl(0 70% 58%);stroke-dasharray:6 4}
+.fg-tunnel{fill:hsl(210 25% 40% / .5)}
+.fg-tunnel.active{fill:hsl(190 70% 50% / .5);filter:drop-shadow(0 0 4px hsl(190 80% 55% / .6))}
+.fg-tunnel.worn{fill:hsl(0 55% 40% / .5)}
+.fg-side{fill:hsl(210 16% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.fg-sub{fill:hsl(220 14% 22% / .8);stroke:hsl(220 14% 36%);stroke-width:1}
+.fg-nplus{fill:hsl(210 45% 34% / .7);stroke:hsl(210 55% 50%);stroke-width:1}
+.fg-e{fill:hsl(195 92% 66%);filter:drop-shadow(0 0 3px hsl(195 85% 55% / .8))}
+.fg-e.trapped{animation:fgtrap 1.6s ease-in-out infinite}
+@keyframes fgtrap{0%,100%{opacity:.55}50%{opacity:1}}
+.fg-flow{fill:none;stroke:hsl(195 92% 66%);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:3 9;filter:drop-shadow(0 0 3px hsl(195 85% 55% / .9));animation:fgflow .8s linear infinite}
+.fg-flow.down{stroke:hsl(280 80% 70%)}
+@keyframes fgflow{to{stroke-dashoffset:-100}}
+.fg-worn{fill:hsl(0 78% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.fg-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+.fg-live b{color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.fg-flow,.fg-zoom{animation:none;opacity:.6}.fg-e.trapped{animation:none;opacity:.9}}
