@@ -26,6 +26,7 @@ import { KmpSection } from '../KmpSection';
 import { RabinKarpSection } from '../RabinKarpSection';
 import { HashTableSection } from '../HashTableSection';
 import { EditDistanceSection } from '../EditDistanceSection';
+import { DiffSection } from '../DiffSection';
 import { TopoSortSection } from '../TopoSortSection';
 import { AstarSection } from '../AstarSection';
 import { HeapSection } from '../HeapSection';
@@ -75,6 +76,7 @@ export const chunk1: Record<string, SectionEntry> = {
   "kmp": { Component: KmpSection, title: <>KMP string matching</>, sub: <>Find a pattern in text in O(n+m) without ever re-reading a character. Step through the search and watch the failure function slide the pattern on a mismatch while the text pointer only moves forward.</> },
   "rabinkarp": { Component: RabinKarpSection, title: <>Rabin-Karp</>, sub: <>String search by hashing, with a rolling hash that updates in O(1) as the window slides. Step the window and watch hash hits trigger a character check — the same rolling hash behind rsync and dedup.</> },
   "hashtable": { Component: HashTableSection, title: <>Hash table collisions</>, sub: <>Two classic ways to handle keys that hash to the same slot. Insert the same keys into separate chaining and open addressing side by side, and watch collisions either chain or probe forward.</> },
+  "diff": { Component: DiffSection, title: <>How diff works (git diff, code review)</>, sub: <>The algorithm behind git diff, code review, and patch. A diff is the smallest set of line inserts and deletes that turns the old file into the new — found by taking the longest common subsequence (the lines that stayed) and marking everything else + or −. Pictured as a shortest path through an edit grid: a diagonal is a free “keep,” right is a delete, down is an insert. Real LCS diff; Myers’ O(ND) is the fast version git uses. Pick an edit and watch the diff and its path recompute.</> },
   "editdist": { Component: EditDistanceSection, title: <>Edit distance</>, sub: <>The fewest inserts, deletes, and substitutions to turn one string into another. Watch the DP grid fill and the backtrace path reveal the actual alignment — the engine behind diff and spellcheck.</> },
   "toposort": { Component: TopoSortSection, title: <>Topological sort</>, sub: <>Order a dependency graph so every arrow points forward. Step Kahn's algorithm as it picks ready nodes and frees the next ones — and add a cyclic dependency to watch it become unorderable.</> },
   "astar": { Component: AstarSection, title: <>A* pathfinding</>, sub: <>Shortest path on a grid, but pointed at the goal. Paint walls and compare A*'s heuristic-focused search against goal-blind BFS — both find the same shortest path, but A* touches far fewer cells.</> },

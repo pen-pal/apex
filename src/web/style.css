@@ -11744,3 +11744,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .own-ctl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .own-pick{font-size:12.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .own-pick.on{background:hsl(28 60% 45% / .22);border-color:hsl(28 85% 58%)}
+
+/* ── Diff story (DiffSection) — unified diff + LCS edit-graph path ────────────────────────────────── */
+.dif-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.dif-row.keep{fill:hsl(220 18% 22% / .4)}
+.dif-row.del{fill:hsl(0 55% 34% / .28)}
+.dif-row.ins{fill:hsl(150 45% 30% / .3)}
+.dif-sign{font-size:15px;font-weight:700;font-family:var(--mono,monospace)}
+.dif-sign.del{fill:hsl(0 76% 66%)}
+.dif-sign.ins{fill:hsl(150 62% 58%)}
+.dif-line{fill:hsl(210 24% 82%);font-size:13.5px;font-family:var(--mono,monospace)}
+.dif-line.del{fill:hsl(0 60% 74%)}
+.dif-line.ins{fill:hsl(150 55% 72%)}
+.dif-grid{stroke:hsl(220 16% 30%);stroke-width:1}
+.dif-match{stroke:hsl(210 40% 55% / .55);stroke-width:2}
+.dif-path{stroke-width:3}
+.dif-path.keep{stroke:hsl(150 65% 52%)}
+.dif-path.del{stroke:hsl(0 70% 58%)}
+.dif-path.ins{stroke:hsl(150 55% 50%)}
+.dif-node{fill:hsl(45 90% 62%)}
+.dif-node.end{fill:hsl(150 70% 55%)}
+.dif-axis{fill:hsl(210 16% 56%);font-size:9px;font-family:var(--mono,monospace)}
+.dif-foot{fill:hsl(210 16% 60%);font-size:13px}
+.dif-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.dif-pick{font-size:12.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.dif-pick.on{background:hsl(210 55% 45% / .22);border-color:hsl(210 70% 58%)}
+.dif-live{color:var(--muted);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
