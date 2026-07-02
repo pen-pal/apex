@@ -12142,3 +12142,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rev-btn{font-size:12.5px;padding:6px 14px;border-radius:6px;border:1px solid hsl(150 55% 50%);background:hsl(150 50% 42% / .2);color:var(--ink);cursor:pointer}
 .rev-btn.dry{border-color:hsl(200 55% 55%);background:hsl(200 50% 45% / .2)}
 .rev-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── Orbit / integrator story (OrbitSection) — Euler spirals vs Verlet stable ─────────────────────── */
+.orb-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.orb-trail{stroke-width:1.25;fill:none}
+.orb-trail.e{stroke:hsl(0 65% 60% / .55)}
+.orb-trail.v{stroke:hsl(150 60% 55% / .7)}
+.orb-star{fill:hsl(45 95% 66%)}
+.orb-glow{fill:hsl(45 90% 60% / .18)}
+.orb-p.e{fill:hsl(0 70% 62%);stroke:#fff;stroke-width:1}
+.orb-p.v{fill:hsl(150 65% 56%);stroke:#fff;stroke-width:1}
+.orb-plbl{font-size:11px;font-family:var(--mono,monospace)}
+.orb-plbl.e{fill:hsl(0 65% 72%)}
+.orb-plbl.v{fill:hsl(150 55% 66%)}
+.orb-en{font-size:12.5px;font-family:var(--mono,monospace)}
+.orb-en.e{fill:hsl(0 65% 70%)}
+.orb-en.v{fill:hsl(150 55% 64%)}
+.orb-foot{fill:hsl(210 16% 60%);font-size:13px}
+.orb-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.orb-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.orb-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.orb-live{font-size:12.5px;font-family:var(--mono,monospace)}
+.orb-live .orb-e{color:hsl(0 65% 68%)}
+.orb-live .orb-v{color:hsl(150 55% 60%)}
