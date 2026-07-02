@@ -12033,3 +12033,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .aa-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .aa-btn.on{background:hsl(190 50% 42% / .22);border-color:hsl(190 60% 56%)}
 .aa-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── Spatial hash broad-phase story (SpatialHashSection) — grid buckets, candidate pairs ──────────── */
+.shg-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.shg-grid{stroke:hsl(220 16% 28%);stroke-width:0.75}
+.shg-cell{fill:hsl(190 50% 45% / .14)}
+.shg-allpair{stroke:hsl(0 50% 55% / .16);stroke-width:0.6}
+.shg-cand{stroke:hsl(190 60% 60% / .55);stroke-width:1}
+.shg-cand.hit{stroke:hsl(0 70% 60%);stroke-width:1.5}
+.shg-obj{fill:hsl(210 55% 60% / .85);stroke:hsl(210 60% 70%);stroke-width:1}
+.shg-obj.hit{fill:hsl(0 65% 58%);stroke:hsl(0 75% 70%)}
+.shg-foot{fill:hsl(210 16% 60%);font-size:13px}
+.shg-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.shg-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.shg-btn.on{background:hsl(190 50% 42% / .22);border-color:hsl(190 60% 56%)}
+.shg-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
