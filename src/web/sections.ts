@@ -350,6 +350,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'alu', label: 'ALU (the compute core)', icon: '🧮' },
   { id: 'membus', label: 'Address decoding & buses', icon: '🚌' },
   { id: 'io', label: 'Polling · interrupts · DMA', icon: '🔔' },
+  { id: 'keystroke', label: 'How a keystroke reaches the screen', icon: '🎬' },
   { id: 'ssd', label: 'How an SSD works (flash/FTL)', icon: '💽' },
   { id: 'flashcell', label: 'How flash stores a bit (floating gate)', icon: '🎬' },
   { id: 'gpu', label: 'GPU / SIMT execution', icon: '🎮' },
@@ -370,7 +371,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'usl', 'pid', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'gitobjects', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'rope', 'gapbuffer', 'sorting', 'kadane', 'lis', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'twosat', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft', 'fastinvsqrt', 'kahan', 'karatsuba', 'simanneal', 'bresenham', 'convexhull', 'marchsquares', 'voronoi', 'delaunay', 'perlin', 'poisson'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'cpucycle', 'compiler', 'bytecode', 'jit', 'pipeline', 'branchpredict', 'oooexec', 'spectre', 'cow', 'pagewalk', 'inode', 'tlb', 'numa', 'buddyalloc', 'gc', 'timingwheel', 'epoll', 'syscall', 'container', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
-  { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'membus', 'cpucache', 'dram', 'memorystory', 'io', 'ssd', 'flashcell', 'gpu'] },
+  { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'membus', 'cpucache', 'dram', 'memorystory', 'io', 'keystroke', 'ssd', 'flashcell', 'gpu'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */

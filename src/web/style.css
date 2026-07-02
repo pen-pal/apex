@@ -11171,3 +11171,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .jit-foot{fill:hsl(210 16% 60%);font-size:13px}
 .jit-live{color:var(--muted);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
 .jit-live.fast{color:hsl(150 55% 50%)}
+
+/* ── Keystroke-journey story (KeystrokeSection) — key→screen pipeline on the shared .story-* stage ─ */
+.kst-link{stroke:hsl(220 15% 45%);stroke-width:2}
+.kst-arrhead{fill:hsl(220 15% 55%)}
+.kst-flow{fill:none;stroke:hsl(190 90% 60%);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:5 10;filter:drop-shadow(0 0 3px hsl(190 85% 55% / .8));animation:kstflow .8s linear infinite}
+@keyframes kstflow{to{stroke-dashoffset:-100}}
+.kst-stage{fill:hsl(220 18% 20% / .55);stroke:hsl(220 16% 36%);stroke-width:1.5}
+.kst-stage.on{fill:hsl(200 40% 24% / .6);stroke:hsl(200 60% 52%)}
+.kst-stage.cur{fill:hsl(190 50% 28% / .7);stroke:hsl(190 90% 60%);filter:drop-shadow(0 0 8px hsl(190 75% 55% / .5))}
+.kst-stage-lbl{fill:hsl(210 28% 88%);font-size:15px;font-weight:600;font-family:var(--mono,monospace)}
+.kst-stage-detail{fill:hsl(210 20% 72%);font-size:11.5px;font-family:var(--mono,monospace)}
+.kst-stage-lat{fill:hsl(150 60% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.kst-stage-idx{fill:hsl(210 15% 56%);font-size:11px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.kst-key{fill:hsl(45 90% 66%);font-size:40px;font-weight:700;font-family:var(--mono,monospace)}
+.kst-pixel{fill:hsl(45 90% 64%)}
+.kst-foot{fill:hsl(210 16% 60%);font-size:13px}
+.kst-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
