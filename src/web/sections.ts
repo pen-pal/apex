@@ -332,6 +332,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'transistor', label: 'Transistors → logic gates', icon: '🔀' },
   { id: 'cpucache', label: 'CPU cache (sets & ways)', icon: '⚡' },
   { id: 'dram', label: 'How RAM works (DRAM)', icon: '🧠' },
+  { id: 'memorystory', label: 'Memory, up close (guided tour)', icon: '🎬' },
   { id: 'adder', label: 'Binary adder (gates→math)', icon: '➕' },
   { id: 'latch', label: 'Flip-flop (how bits are stored)', icon: '💾' },
   { id: 'alu', label: 'ALU (the compute core)', icon: '🧮' },
@@ -356,7 +357,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'usl', 'pid', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'rope', 'gapbuffer', 'sorting', 'kadane', 'lis', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'twosat', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft', 'fastinvsqrt', 'kahan', 'karatsuba', 'simanneal', 'bresenham', 'convexhull', 'marchsquares', 'voronoi', 'delaunay', 'perlin', 'poisson'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'oooexec', 'spectre', 'cow', 'pagewalk', 'inode', 'tlb', 'numa', 'buddyalloc', 'timingwheel', 'epoll', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
-  { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'membus', 'cpucache', 'dram', 'io', 'ssd', 'gpu'] },
+  { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'membus', 'cpucache', 'dram', 'memorystory', 'io', 'ssd', 'gpu'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */

@@ -10744,3 +10744,71 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tsat-verdict.bad{background:hsl(0 60% 50% / .1);border:1px solid hsl(0 60% 50% / .4);color:var(--muted)}
 .tsat-verdict b{color:var(--ink)}
 .tsat-asn{font-family:var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 6px;margin:0 3px;color:var(--ink)}
+
+/* ── Memory story: narrated zoom-through-the-scales DRAM tour (MemoryStorySection) ──────────────── */
+.mem{max-width:760px;margin:0 auto}
+.mem-stage{position:relative;aspect-ratio:900/480;border-radius:14px;overflow:hidden;
+  background:radial-gradient(circle at 50% 38%,#141c28,#090d13);border:1px solid #1f2a3a;box-shadow:inset 0 0 60px #05080caa}
+.mem-scene{position:absolute;inset:0;opacity:0;transform:scale(.72);transition:opacity .8s ease,transform .8s ease;pointer-events:none}
+.mem-scene.active{opacity:1;transform:scale(1);pointer-events:auto}
+.mem-scene.past{opacity:0;transform:scale(1.7)}      /* we flew into it */
+.mem-scene.future{opacity:0;transform:scale(.72)}    /* still waiting, small */
+.mem-svg{width:100%;height:100%;display:block}
+/* module */
+.mem-pcb{fill:hsl(150 42% 26%);stroke:hsl(150 40% 18%);stroke-width:2}
+.mem-chip{fill:hsl(220 16% 15%);stroke:hsl(220 15% 30%);stroke-width:1.5}
+.mem-chip.focus{stroke:hsl(190 85% 60%);stroke-width:2.5;filter:drop-shadow(0 0 6px hsl(190 85% 55% / .7))}
+.mem-pin{fill:hsl(45 68% 52%)}
+/* die + banks */
+.mem-die{fill:hsl(215 38% 24%);stroke:hsl(215 40% 40%);stroke-width:2}
+.mem-bank{fill:hsl(215 34% 34%);stroke:hsl(215 30% 48%);stroke-width:1}
+.mem-bank.focus{fill:hsl(190 45% 40%);stroke:hsl(190 85% 62%);stroke-width:2;filter:drop-shadow(0 0 6px hsl(190 80% 55% / .6))}
+/* grid */
+.mem-word{stroke:hsl(38 88% 56%);stroke-width:2;opacity:.5}
+.mem-word.focus{opacity:1;stroke-width:3;filter:drop-shadow(0 0 4px hsl(38 90% 55% / .7))}
+.mem-word.hot{opacity:1;stroke:hsl(45 100% 62%);stroke-width:4;filter:drop-shadow(0 0 7px hsl(45 100% 60% / .9))}
+.mem-bit{stroke:hsl(190 85% 58%);stroke-width:2;opacity:.5}
+.mem-bit.focus{opacity:1;stroke-width:3;filter:drop-shadow(0 0 4px hsl(190 85% 55% / .7))}
+.mem-bit.hot{opacity:1;stroke-width:3.5;filter:drop-shadow(0 0 7px hsl(190 90% 60% / .9))}
+.mem-cell{fill:hsl(210 28% 58%)}
+.mem-cell.focus{fill:hsl(150 80% 60%);filter:drop-shadow(0 0 6px hsl(150 80% 55% / .8))}
+/* cell schematic */
+.mem-tr{fill:hsl(265 45% 46% / .35);stroke:hsl(265 60% 68%);stroke-width:2}
+.mem-tr.open{fill:hsl(150 60% 45% / .4);stroke:hsl(150 80% 62%);filter:drop-shadow(0 0 6px hsl(150 70% 55% / .7))}
+.mem-wire{stroke:hsl(210 20% 70%);stroke-width:2.5}
+.mem-wire.hot{stroke:hsl(150 85% 60%);stroke-width:3;filter:drop-shadow(0 0 5px hsl(150 80% 55% / .8))}
+.mem-plate{stroke:hsl(0 0% 82%);stroke-width:5;stroke-linecap:round}
+.mem-gnd{stroke:hsl(210 20% 62%);stroke-width:2.5;stroke-linecap:round}
+.mem-capwell{fill:hsl(210 30% 20% / .5);stroke:hsl(210 25% 40%);stroke-width:1}
+.mem-charge{fill:hsl(150 85% 52% / .85);filter:drop-shadow(0 0 8px hsl(150 85% 50% / .7))}
+.mem-q{fill:hsl(150 95% 70%);animation:memq 1.4s ease-in-out infinite}
+@keyframes memq{0%,100%{opacity:.35}50%{opacity:1}}
+.mem-readflow{fill:none;stroke:hsl(150 90% 62%);stroke-width:3;stroke-linecap:round;stroke-dasharray:6 10;filter:drop-shadow(0 0 4px hsl(150 85% 55% / .9));animation:memread .7s linear infinite}
+@keyframes memread{to{stroke-dashoffset:-100}}
+/* labels */
+.mem-lbl{fill:hsl(210 22% 80%);font-size:14px;font-family:var(--mono,monospace)}
+.mem-lbl.big{fill:hsl(210 30% 90%);font-size:17px;font-weight:600}
+.mem-lbl.dim{fill:hsl(210 15% 58%);font-size:13px}
+.mem-lbl.word{fill:hsl(38 88% 62%)}
+.mem-lbl.word.hot{fill:hsl(45 100% 66%)}
+.mem-lbl.bit{fill:hsl(190 85% 64%)}
+.mem-lead.focus{stroke:hsl(190 85% 60%);stroke-width:1.5;stroke-dasharray:3 3}
+/* caption + controls */
+.mem-caption{margin-top:14px;padding:12px 16px;border-radius:10px;background:var(--subtle);border:1px solid var(--line);min-height:64px}
+.mem-cap-title{display:block;font-weight:650;color:var(--accent);margin-bottom:3px}
+.mem-cap-body{color:var(--ink);font-size:14.5px;line-height:1.5}
+.mem-controls-live{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;justify-content:center}
+.mem-controls-live button{padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-size:13px}
+.mem-controls-live button:hover{border-color:var(--accent)}
+.mem-controls-live button.on{background:hsl(150 60% 45% / .18);border-color:hsl(150 60% 50%);color:hsl(150 55% 40%)}
+.mem-transport{display:flex;align-items:center;gap:10px;margin-top:12px;justify-content:center}
+.mem-nav,.mem-play{padding:6px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-size:14px}
+.mem-nav:disabled{opacity:.35;cursor:default}
+.mem-play{font-weight:600;min-width:96px}
+.mem-dots{display:flex;gap:7px;margin-left:6px}
+.mem-dot{width:10px;height:10px;border-radius:50%;border:1px solid var(--muted);background:transparent;cursor:pointer;padding:0}
+.mem-dot.on{background:var(--accent);border-color:var(--accent)}
+@media(prefers-reduced-motion:reduce){
+  .mem-scene{transition:opacity .25s ease}.mem-scene.active{transform:none}.mem-scene.past,.mem-scene.future{transform:none}
+  .mem-q{animation:none;opacity:.9}.mem-readflow{animation:none}
+}
