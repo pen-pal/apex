@@ -18,8 +18,15 @@ for (const f of testFiles) {
   testCases += (src.match(/\b(it|test)\s*\(/g) || []).length; // it()/test() blocks (a floor; suite reports the exact pass count)
 }
 
-const stats = { sections, testFiles: testFiles.length, testCases };
+// Guided stories: section components using the narrated GuidedStory engine. Measured so "N of M" is never asserted.
+const webDir = join(root, 'src/web');
+const guidedStories = readdirSync(webDir)
+  .filter((f) => f.endsWith('.tsx'))
+  .filter((f) => /from '\.\/GuidedStory'/.test(readFileSync(join(webDir, f), 'utf8'))).length;
+
+const stats = { sections, testFiles: testFiles.length, testCases, guidedStories };
 console.log(JSON.stringify(stats, null, 2));
 console.log(`\n${sections} sections · ${testFiles.length} test files · ${testCases}+ test cases`);
+console.log(`${guidedStories} of ${sections} sections have a narrated guided story (cinematic rollout in progress).`);
 console.log('For the exact passing count, run: npm run test:run  (CI runs the full suite on every push).');
 export default stats;

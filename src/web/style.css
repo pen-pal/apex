@@ -10812,3 +10812,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
   .story-scene{transition:opacity .25s ease}.story-scene.active{transform:none}.story-scene.past,.story-scene.future{transform:none}
   .mem-q{animation:none;opacity:.9}.mem-readflow{animation:none}
 }
+
+/* ── CPU instruction-cycle story (CpuCycleSection) — content on the shared .story-* dark stage ──── */
+.cpu-lbl{fill:hsl(210 22% 80%);font-size:14px;font-family:var(--mono,monospace)}
+.cpu-lbl.big{fill:hsl(210 30% 90%);font-size:16px;font-weight:600}
+.cpu-lbl.dim{fill:hsl(210 15% 58%);font-size:13px}
+.cpu-mem{fill:hsl(220 18% 18%);stroke:hsl(220 15% 32%);stroke-width:1}
+.cpu-mem.code{fill:hsl(212 40% 26% / .6);stroke:hsl(212 45% 45%)}
+.cpu-mem.data{fill:hsl(150 35% 26% / .5);stroke:hsl(150 40% 42%)}
+.cpu-mem.hot{fill:hsl(190 55% 38% / .7);stroke:hsl(190 85% 60%);filter:drop-shadow(0 0 6px hsl(190 80% 55% / .6))}
+.cpu-addr{fill:hsl(210 15% 50%);font-size:12px;font-family:var(--mono,monospace)}
+.cpu-mval{fill:hsl(210 25% 82%);font-size:13px;font-family:var(--mono,monospace)}
+.cpu-box{fill:hsl(220 25% 12% / .4);stroke:hsl(220 20% 32%);stroke-width:1.5}
+.cpu-unit{fill:hsl(220 20% 20% / .6);stroke:hsl(220 18% 38%);stroke-width:1.5}
+.cpu-unit.lit{stroke:hsl(190 60% 50%);fill:hsl(200 35% 24% / .5)}
+.cpu-unit.hot{stroke:hsl(45 100% 60%);fill:hsl(40 55% 30% / .5);filter:drop-shadow(0 0 6px hsl(45 90% 55% / .6))}
+.cpu-unit-lbl{fill:hsl(210 25% 84%);font-size:13px;font-family:var(--mono,monospace)}
+.cpu-unit-val{fill:hsl(190 72% 72%);font-size:12.5px;font-family:var(--mono,monospace)}
+.cpu-reg-name{fill:hsl(210 20% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.cpu-reg-val{fill:hsl(210 28% 84%);font-size:14px;font-weight:600;font-family:var(--mono,monospace)}
+.cpu-reg-val.hot{fill:hsl(45 100% 66%);filter:drop-shadow(0 0 4px hsl(45 90% 55% / .7))}
+.cpu-alu{fill:hsl(265 45% 40% / .4);stroke:hsl(265 55% 65%);stroke-width:1.5}
+.cpu-alu.hot{fill:hsl(265 55% 48% / .6);stroke:hsl(280 80% 72%);filter:drop-shadow(0 0 8px hsl(270 70% 60% / .7))}
+.cpu-bus{stroke:hsl(220 15% 40%);stroke-width:2}
+.cpu-flow{fill:none;stroke:hsl(190 95% 62%);stroke-width:3;stroke-linecap:round;stroke-dasharray:5 12;filter:drop-shadow(0 0 3px hsl(190 90% 55% / .8));animation:cpuflow 1s linear infinite}
+.cpu-flow.res{stroke:hsl(45 100% 60%)}
+.cpu-flow.op{stroke:hsl(150 85% 58%)}
+@keyframes cpuflow{to{stroke-dashoffset:-100}}
+.cpu-live-lbl{color:var(--muted);font-size:13px;margin-right:2px}
+.cpu-live-state{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:4px}
+@media(prefers-reduced-motion:reduce){.cpu-flow{animation:none;opacity:.6}}

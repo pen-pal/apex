@@ -329,6 +329,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'cfs', label: 'Linux CFS scheduler', icon: '⚖️' },
   { id: 'priorityinv', label: 'Priority inversion', icon: '🔺' },
   { id: 'pipeline', label: 'Pipeline hazards', icon: '🚰' },
+  { id: 'cpucycle', label: 'How a CPU runs an instruction', icon: '🎬' },
   { id: 'transistor', label: 'Transistors → logic gates', icon: '🔀' },
   { id: 'cpucache', label: 'CPU cache (sets & ways)', icon: '⚡' },
   { id: 'dram', label: 'How RAM works (DRAM)', icon: '🧠' },
@@ -356,7 +357,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Distributed systems', icon: '🕸️', ids: ['chash', 'jumphash', 'rendezvous', 'chord', 'kademlia', 'lb', 'hll', 'countmin', 'minhash', 'majority', 'reservoir', 'bloom', 'snowflake', 'lamport', 'chandy', 'phiaccrual', 'taillatency', 'hdrhist', 'ddsketch', 'watermark', 'swim', 'hlc', 'truetime', 'vclock', 'causalbcast', 'crdt', 'optransform', 'gossip', 'antientropy', 'readrepair', 'hintedhandoff', 'paxos', 'bully', 'fencing', 'leases', 'pbft', 'raft', 'raftlog', 'consistency', 'cap', 'quorum', 'replication', 'chainrep', 'twopc', 'threepc', 'saga'] },
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'usl', 'pid', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'joins', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'rope', 'gapbuffer', 'sorting', 'kadane', 'lis', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'twosat', 'floyd', 'cycledetect', 'bellmanford', 'newton', 'fft', 'fastinvsqrt', 'kahan', 'karatsuba', 'simanneal', 'bresenham', 'convexhull', 'marchsquares', 'voronoi', 'delaunay', 'perlin', 'poisson'] },
-  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'pipeline', 'branchpredict', 'oooexec', 'spectre', 'cow', 'pagewalk', 'inode', 'tlb', 'numa', 'buddyalloc', 'timingwheel', 'epoll', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
+  { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'cpucycle', 'pipeline', 'branchpredict', 'oooexec', 'spectre', 'cow', 'pagewalk', 'inode', 'tlb', 'numa', 'buddyalloc', 'timingwheel', 'epoll', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
   { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'membus', 'cpucache', 'dram', 'memorystory', 'io', 'ssd', 'gpu'] },
 ];
 
