@@ -12127,3 +12127,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dp-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid hsl(205 55% 55%);background:hsl(205 50% 45% / .2);color:var(--ink);cursor:pointer}
 .dp-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
 .dp-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Convolution reverb story (ConvReverbSection) — dry ⊛ impulse response = wet ──────────────────── */
+.rev-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.rev-lbl2{fill:hsl(210 18% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.rev-axis{stroke:hsl(220 16% 32%);stroke-width:1}
+.rev-dry{stroke:hsl(200 70% 62%);stroke-width:2}
+.rev-ir{stroke:hsl(280 55% 66%);stroke-width:1.5}
+.rev-copy{stroke:hsl(280 50% 62% / .4);stroke-width:1}
+.rev-wet{stroke:hsl(150 60% 56%);stroke-width:1.25}
+.rev-note{fill:hsl(280 60% 74%);font-size:12px;font-family:var(--mono,monospace)}
+.rev-foot{fill:hsl(210 16% 60%);font-size:13px}
+.rev-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.rev-btn{font-size:12.5px;padding:6px 14px;border-radius:6px;border:1px solid hsl(150 55% 50%);background:hsl(150 50% 42% / .2);color:var(--ink);cursor:pointer}
+.rev-btn.dry{border-color:hsl(200 55% 55%);background:hsl(200 50% 45% / .2)}
+.rev-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
