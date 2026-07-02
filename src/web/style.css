@@ -11058,3 +11058,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cmp-live-lbl{color:var(--muted);font-size:13px}
 .cmp-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:200px}
 .cmp-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
+
+/* ── Git objects story (GitObjectsSection) — content-addressed store on the shared .story-* stage ── */
+.git-obj{stroke-width:1.5}
+.git-obj.commit{fill:hsl(265 40% 26% / .7);stroke:hsl(265 55% 60%)}
+.git-obj.tree{fill:hsl(210 40% 26% / .7);stroke:hsl(210 60% 55%)}
+.git-obj.blob{fill:hsl(150 40% 24% / .7);stroke:hsl(150 55% 48%)}
+.git-obj.hot{filter:drop-shadow(0 0 7px hsl(45 85% 55% / .5));stroke:hsl(45 100% 62%)}
+.git-obj-lbl{fill:hsl(210 28% 88%);font-size:14px;font-weight:600;font-family:var(--mono,monospace)}
+.git-obj-sub{fill:hsl(210 18% 70%);font-size:12px;font-family:var(--mono,monospace)}
+.git-tree-entry{fill:hsl(210 22% 78%);font-size:12.5px;font-family:var(--mono,monospace)}
+.git-blob-content{fill:hsl(150 55% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.git-edge{stroke:hsl(220 15% 45%);stroke-width:1.5}
+.git-mid{fill:hsl(210 24% 80%);font-size:15px;font-family:var(--mono,monospace)}
+.git-mid.dim{fill:hsl(210 15% 60%);font-size:13px}
+.git-foot{fill:hsl(210 16% 60%);font-size:13px}
+.git-live-lbl{color:var(--muted);font-size:13px}
+.git-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:180px}
+.git-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
