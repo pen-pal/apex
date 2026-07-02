@@ -26,4 +26,4 @@ export async function pbkdf2(
   return new Uint8Array(bits);
 }
 
-export const toHex = (b: Uint8Array): string => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+export { hex as toHex } from './bytes';

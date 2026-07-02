@@ -65,7 +65,7 @@ export function deriveSecret(secret: Uint8Array, label: string, transcript: Uint
   return hkdfExpandLabel(secret, label, sha256(transcript), HLEN);
 }
 
-export const toHex = (b: Uint8Array): string => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+export { hex as toHex } from './bytes';
 
 // ---- The TLS 1.3 key schedule (RFC 8446 §7.1), as a derivation tree ----------
 

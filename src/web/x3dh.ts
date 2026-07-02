@@ -18,7 +18,7 @@ export interface KeyPair { priv: bigint; pub: bigint }
 export const keypair = (priv: bigint, p: bigint, g: bigint): KeyPair => ({ priv, pub: modpow(g, priv, p) });
 
 const enc = (s: string) => new TextEncoder().encode(s);
-const hex = (b: Uint8Array) => Array.from(b).map((x) => x.toString(16).padStart(2, '0')).join('');
+import { hex } from './bytes';
 /** A real KDF over the concatenated DH outputs (SHA-256); returns the session key as hex. */
 const kdf = (dh: bigint[]) => hex(sha256(enc('X3DH|' + dh.map((d) => d.toString()).join('|')))).slice(0, 32);
 

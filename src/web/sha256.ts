@@ -127,5 +127,5 @@ export function sha256LengthExtend(origMac: Uint8Array, origTotalLen: number, ex
   return { glue, forgedMac: stateToBytes(H) };
 }
 
-export const hex = (b: Uint8Array): string => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+export { hex } from './bytes';
 export { concat as concatBytes };

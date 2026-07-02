@@ -17,7 +17,7 @@ import { sha256 } from './hashing';
 
 const BLOCK = 64; // SHA-256 block size in bytes
 
-const concat = (a: Uint8Array, b: Uint8Array): Uint8Array => { const c = new Uint8Array(a.length + b.length); c.set(a); c.set(b, a.length); return c; };
+import { concatBytes as concat } from './bytes';
 const xorPad = (k0: Uint8Array, pad: number): Uint8Array => k0.map((b) => b ^ pad);
 
 export interface HmacSteps { blockKey: Uint8Array; ipadKey: Uint8Array; opadKey: Uint8Array; inner: Uint8Array; mac: Uint8Array; keyWasHashed: boolean }
@@ -40,6 +40,5 @@ export async function naiveMac(key: Uint8Array, msg: Uint8Array): Promise<Uint8A
   return sha256(concat(key, msg));
 }
 
-export const enc = (s: string): Uint8Array => new TextEncoder().encode(s);
-export const hex = (b: Uint8Array): string => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+export { hex, enc } from './bytes';
 export const fromHex = (h: string): Uint8Array => new Uint8Array((h.match(/../g) ?? []).map((x) => parseInt(x, 16)));

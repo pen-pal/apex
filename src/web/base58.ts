@@ -39,7 +39,7 @@ export function decode(str: string): Uint8Array {
   return new Uint8Array(bytes);
 }
 
-const concat = (a: Uint8Array, b: Uint8Array): Uint8Array => { const c = new Uint8Array(a.length + b.length); c.set(a); c.set(b, a.length); return c; };
+import { concatBytes as concat } from './bytes';
 const sha256d = async (b: Uint8Array): Promise<Uint8Array> => sha256(await sha256(b));
 
 /** Base58Check-encode: version ‖ payload ‖ first4(SHA256d(version‖payload)). */
@@ -60,5 +60,5 @@ export async function decodeCheck(str: string): Promise<CheckResult> {
   return { version: data[0], payload: data.slice(1), valid, checksum, expected };
 }
 
-export const toHex = (b: Uint8Array): string => [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
+export { hex as toHex } from './bytes';
 export const fromHex = (h: string): Uint8Array => new Uint8Array((h.match(/../g) ?? []).map((x) => parseInt(x, 16)));
