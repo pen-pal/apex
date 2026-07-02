@@ -45,6 +45,13 @@ export function AnycastSection() {
               const cp = CLIENT_POS[c.id], sp = SITE_POS[site];
               return <line key={c.id} x1={cp.x} y1={cp.y} x2={sp.x} y2={sp.y} stroke={COLORS[site]} strokeWidth={0.5} vectorEffect="non-scaling-stroke" />;
             })}
+            {/* each client's packets flowing to its nearest site: a colored pulse glides client→site (re-routes on withdrawal) */}
+            {CLIENTS.map((c) => {
+              const site = d.assignment[c.id];
+              if (site === null) return null;
+              const cp = CLIENT_POS[c.id], sp = SITE_POS[site];
+              return <line key={`f${c.id}`} className="any-flow" pathLength={100} x1={cp.x} y1={cp.y} x2={sp.x} y2={sp.y} stroke={COLORS[site]} vectorEffect="non-scaling-stroke" />;
+            })}
           </svg>
           {sites.map((s) => (
             <button key={s.id} className={`any-site ${s.up ? 'up' : 'down'}`} style={{ left: `${SITE_POS[s.id].x}%`, top: `${SITE_POS[s.id].y}%`, borderColor: s.up ? COLORS[s.id] : undefined }} onClick={() => toggle(s.id)}>

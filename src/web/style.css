@@ -3461,6 +3461,10 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 /* ── Anycast (AnycastSection) ── */
 .any-map{position:relative;width:100%;aspect-ratio:2/1;max-width:560px;margin:12px auto;background:linear-gradient(hsl(212 40% 58% / .16),hsl(212 30% 58% / .16));border:1px solid var(--line);border-radius:12px}
 .any-lines{position:absolute;inset:0;width:100%;height:100%}
+/* per-site-colored traffic pulse gliding client→site (stroke colour set inline per assignment) */
+.any-flow{fill:none;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:4 11;animation:anyflow 1.3s linear infinite}
+@keyframes anyflow{to{stroke-dashoffset:-100}}
+@media(prefers-reduced-motion:reduce){.any-flow{animation:none;opacity:.5}}
 .any-site{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 9px;border:2px solid var(--line);border-radius:9px;background:var(--panel);cursor:pointer;z-index:2}
 .any-site.down{opacity:.5;border-style:dashed}
 .any-site-name{font-size:12px;font-weight:700}
