@@ -1,77 +1,44 @@
-// A narrated, zoom-through-the-scales tour of DRAM: module → chip → cell array → one 1T1C cell → charge/refresh.
-// The story auto-plays (paced like an explainer video), then hands the last scene's controls to you — the thing a
-// video can't do. Cinematic-schematic, not photoreal 3D: it matches the pacing and the pedagogy. Real DRAM structure
-// (1-transistor-1-capacitor cell, word/bit lines, leak-and-refresh); timings live in the separate DRAM section.
-import { useEffect, useRef, useState } from 'react';
+// The first guided story: a zoom-through-the-scales tour of DRAM — module → chip → cell array → one 1T1C cell →
+// charge/leak/refresh — driven by the reusable GuidedStory engine. The last scene is interactive: write a bit, read
+// it (word line HIGH, transistor opens, charge flows onto the bit line), or watch it leak — the reason DRAM refreshes.
+// Real DRAM structure (1-transistor-1-capacitor cell, word/bit lines); access timings live in the DRAM section.
+import { useState } from 'react';
+import { GuidedStory, type StoryScene } from './GuidedStory';
 
 type ChargeState = 'one' | 'zero' | 'reading' | 'leaking';
 
-const SCENES = [
-  { key: 'dimm', title: 'A stick of RAM', caption: 'Eight black chips on a green board. Each holds billions of bits — and every bit is the same tiny structure, repeated. Fly in.' },
-  { key: 'die', title: 'Inside one chip', caption: 'A silicon die, split into banks. Each bank is a grid of memory cells, reached by a row address and a column address.' },
-  { key: 'array', title: 'The cell grid', caption: 'Horizontal word lines pick a row; vertical bit lines carry the data. One cell sits at every crossing — millions per bank.' },
-  { key: 'cell', title: 'One cell', caption: 'Astonishingly simple: one transistor, one capacitor. The capacitor is the bit — charged is 1, empty is 0. The transistor is the gate.' },
-  { key: 'charge', title: 'Charge, leak, refresh', caption: 'Raise the word line and the transistor links the capacitor to the bit line, so a sense amp can read it. But the charge leaks in milliseconds — so every row is rewritten thousands of times a second. That refresh is why it is dynamic RAM.' },
-] as const;
-
 export function MemoryStorySection() {
-  const [scene, setScene] = useState(0);
-  const [playing, setPlaying] = useState(true);
   const [charge, setCharge] = useState<ChargeState>('one');
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const last = SCENES.length - 1;
+  const scene = (which: string, title: string, caption: string): StoryScene =>
+    ({ key: which, title, caption, render: (active) => <Scene which={which} charge={charge} active={active} /> });
 
-  // auto-advance while playing; stop at the last (interactive) scene so the viewer can take over
-  useEffect(() => {
-    if (!playing || scene >= last) return;
-    timer.current = setTimeout(() => setScene((s) => Math.min(last, s + 1)), 5200);
-    return () => { if (timer.current) clearTimeout(timer.current); };
-  }, [playing, scene, last]);
-
-  const go = (s: number) => { setPlaying(false); setScene(Math.max(0, Math.min(last, s))); };
+  const scenes: StoryScene[] = [
+    scene('dimm', 'A stick of RAM', 'Eight black chips on a green board. Each holds billions of bits — and every bit is the same tiny structure, repeated. Fly in.'),
+    scene('die', 'Inside one chip', 'A silicon die, split into banks. Each bank is a grid of memory cells, reached by a row address and a column address.'),
+    scene('array', 'The cell grid', 'Horizontal word lines pick a row; vertical bit lines carry the data. One cell sits at every crossing — millions per bank.'),
+    scene('cell', 'One cell', 'Astonishingly simple: one transistor, one capacitor. The capacitor is the bit — charged is 1, empty is 0. The transistor is the gate.'),
+    scene('charge', 'Charge, leak, refresh', 'Raise the word line and the transistor links the capacitor to the bit line, so a sense amp can read it. But the charge leaks in milliseconds — so every row is rewritten thousands of times a second. That refresh is why it is dynamic RAM.'),
+  ];
 
   return (
-    <div className="mem">
-      <div className="mem-stage" role="img" aria-label={`DRAM: ${SCENES[scene].title}. ${SCENES[scene].caption}`}>
-        {SCENES.map((sc, i) => (
-          <div key={sc.key} className={`mem-scene ${i === scene ? 'active' : i < scene ? 'past' : 'future'}`} aria-hidden={i !== scene}>
-            <Scene which={sc.key} charge={charge} active={i === scene} />
-          </div>
-        ))}
-      </div>
-
-      <div className="mem-caption">
-        <span className="mem-cap-title">{SCENES[scene].title}</span>
-        <span className="mem-cap-body">{SCENES[scene].caption}</span>
-      </div>
-
-      {scene === last && (
-        <div className="mem-controls-live">
+    <GuidedStory
+      scenes={scenes}
+      controls={(s) => s !== scenes.length - 1 ? null : (
+        <>
           <button type="button" className={charge === 'one' ? 'on' : ''} onClick={() => setCharge('one')}>write 1</button>
           <button type="button" className={charge === 'zero' ? 'on' : ''} onClick={() => setCharge('zero')}>write 0</button>
           <button type="button" onClick={() => { setCharge('reading'); setTimeout(() => setCharge((c) => (c === 'reading' ? 'one' : c)), 1400); }}>read (raise word line)</button>
           <button type="button" onClick={() => setCharge('leaking')}>wait — let it leak</button>
-        </div>
+        </>
       )}
-
-      <div className="mem-transport">
-        <button type="button" className="mem-nav" onClick={() => go(scene - 1)} disabled={scene === 0} aria-label="previous">‹</button>
-        <button type="button" className="mem-play" onClick={() => { if (scene >= last) { setScene(0); setPlaying(true); } else setPlaying((p) => !p); }}>
-          {scene >= last ? '↻ replay' : playing ? '❚❚ pause' : '▶ play'}
-        </button>
-        <button type="button" className="mem-nav" onClick={() => go(scene + 1)} disabled={scene === last} aria-label="next">›</button>
-        <div className="mem-dots">
-          {SCENES.map((sc, i) => <button key={sc.key} type="button" className={`mem-dot ${i === scene ? 'on' : ''}`} onClick={() => go(i)} aria-label={sc.title} title={sc.title} />)}
-        </div>
-      </div>
-    </div>
+    />
   );
 }
 
 function Scene({ which, charge, active }: { which: string; charge: ChargeState; active: boolean }) {
   const vb = '0 0 900 480';
   if (which === 'dimm') return (
-    <svg viewBox={vb} className="mem-svg">
+    <svg viewBox={vb} className="story-svg">
       <rect x="40" y="150" width="820" height="150" rx="8" className="mem-pcb" />
       {Array.from({ length: 8 }, (_, i) => <rect key={i} x={70 + i * 98} y="180" width="78" height="90" rx="4" className={`mem-chip ${i === 3 ? 'focus' : ''}`} />)}
       {Array.from({ length: 40 }, (_, i) => <rect key={i} x={52 + i * 20} y="300" width="12" height="26" className="mem-pin" />)}
@@ -82,7 +49,7 @@ function Scene({ which, charge, active }: { which: string; charge: ChargeState; 
     </svg>
   );
   if (which === 'die') return (
-    <svg viewBox={vb} className="mem-svg">
+    <svg viewBox={vb} className="story-svg">
       <rect x="250" y="70" width="400" height="340" rx="10" className="mem-die" />
       {Array.from({ length: 4 }, (_, r) => Array.from({ length: 4 }, (_, c) => (
         <rect key={`${r}-${c}`} x={278 + c * 90} y={98 + r * 78} width="76" height="64" rx="3" className={`mem-bank ${r === 1 && c === 2 ? 'focus' : ''}`} />
@@ -94,7 +61,7 @@ function Scene({ which, charge, active }: { which: string; charge: ChargeState; 
   if (which === 'array') {
     const rows = 6, cols = 8, x0 = 150, y0 = 90, dx = 78, dy = 52;
     return (
-      <svg viewBox={vb} className="mem-svg">
+      <svg viewBox={vb} className="story-svg">
         {Array.from({ length: rows }, (_, r) => <line key={`w${r}`} x1={x0 - 20} y1={y0 + r * dy} x2={x0 + cols * dx} y2={y0 + r * dy} className={`mem-word ${r === 2 ? 'focus' : ''}`} />)}
         {Array.from({ length: cols }, (_, c) => <line key={`b${c}`} x1={x0 + c * dx} y1={y0 - 20} x2={x0 + c * dx} y2={y0 + rows * dy} className={`mem-bit ${c === 3 ? 'focus' : ''}`} />)}
         {Array.from({ length: rows }, (_, r) => Array.from({ length: cols }, (_, c) => (
@@ -107,19 +74,15 @@ function Scene({ which, charge, active }: { which: string; charge: ChargeState; 
     );
   }
   if (which === 'cell') return (
-    <svg viewBox={vb} className="mem-svg">
-      {/* word line across the top into the transistor gate */}
+    <svg viewBox={vb} className="story-svg">
       <line x1="120" y1="150" x2="470" y2="150" className="mem-word focus" />
       <text x="140" y="135" className="mem-lbl word">word line (row select)</text>
-      {/* bit line down the right */}
       <line x1="640" y1="80" x2="640" y2="400" className="mem-bit focus" />
       <text x="660" y="90" className="mem-lbl bit">bit line (data)</text>
-      {/* transistor: gate from word line, channel between bit line and capacitor top plate */}
       <rect x="470" y="130" width="70" height="42" rx="4" className="mem-tr" />
       <text x="505" y="115" className="mem-lbl" textAnchor="middle">transistor</text>
       <line x1="540" y1="151" x2="640" y2="151" className="mem-wire" />
       <line x1="470" y1="172" x2="470" y2="250" className="mem-wire" />
-      {/* capacitor: two plates */}
       <line x1="420" y1="250" x2="520" y2="250" className="mem-plate" />
       <line x1="420" y1="278" x2="520" y2="278" className="mem-plate" />
       <line x1="470" y1="278" x2="470" y2="360" className="mem-wire" />
@@ -130,11 +93,10 @@ function Scene({ which, charge, active }: { which: string; charge: ChargeState; 
       <text x="450" y="450" className="mem-lbl dim" textAnchor="middle">one transistor + one capacitor = one bit (1T1C)</text>
     </svg>
   );
-  // charge scene — interactive
   const level = charge === 'one' || charge === 'reading' ? 1 : charge === 'leaking' ? 0.28 : 0;
   const reading = charge === 'reading';
   return (
-    <svg viewBox={vb} className="mem-svg">
+    <svg viewBox={vb} className="story-svg">
       <line x1="120" y1="140" x2="470" y2="140" className={`mem-word ${reading ? 'hot' : 'focus'}`} />
       <text x="140" y="125" className={`mem-lbl word ${reading ? 'hot' : ''}`}>word line {reading ? '= HIGH (reading)' : ''}</text>
       <line x1="640" y1="70" x2="640" y2="410" className={`mem-bit focus ${reading ? 'hot' : ''}`} />
@@ -143,12 +105,10 @@ function Scene({ which, charge, active }: { which: string; charge: ChargeState; 
       <text x="505" y="106" className="mem-lbl" textAnchor="middle">{reading ? 'transistor OPEN' : 'transistor'}</text>
       <line x1="540" y1="141" x2="640" y2="141" className={`mem-wire ${reading ? 'hot' : ''}`} />
       <line x1="470" y1="162" x2="470" y2="235" className="mem-wire" />
-      {/* capacitor plates + charge fill */}
       <line x1="415" y1="235" x2="525" y2="235" className="mem-plate" />
       <rect x="424" y="238" width="92" height="60" rx="2" className="mem-capwell" />
       <rect x="424" y={238 + 60 * (1 - level)} width="92" height={60 * level} rx="2" className="mem-charge" style={{ transition: 'y .9s ease, height .9s ease' }} />
       <line x1="415" y1="300" x2="525" y2="300" className="mem-plate" />
-      {/* charge particles when charged */}
       {active && level > 0.5 && Array.from({ length: 7 }, (_, i) => (
         <circle key={i} cx={438 + (i % 4) * 22} cy={252 + Math.floor(i / 4) * 24} r="4" className="mem-q" style={{ animationDelay: `${i * 0.18}s` }} />
       ))}
@@ -158,7 +118,6 @@ function Scene({ which, charge, active }: { which: string; charge: ChargeState; 
       <text x="470" y="330" className="mem-lbl" textAnchor="middle">
         {charge === 'one' ? 'charged = 1' : charge === 'zero' ? 'empty = 0' : charge === 'reading' ? 'draining onto bit line' : 'leaking away…'}
       </text>
-      {/* reading: charge pulse travels the wire to the bit line */}
       {reading && <line x1="470" y1="141" x2="640" y2="141" className="mem-readflow" pathLength={100} />}
       <text x="450" y="455" className="mem-lbl dim" textAnchor="middle">write a bit, then read it — or wait and watch it leak (that is why DRAM must refresh)</text>
     </svg>
