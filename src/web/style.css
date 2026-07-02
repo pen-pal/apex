@@ -3963,6 +3963,10 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .chord-keylabel{font-size:10px;fill:hsl(0 60% 45%);font-weight:600}
 .chord-hop{stroke:hsl(212 70% 50%);stroke-width:2;stroke-dasharray:4 2}
 .chord-hop.final{stroke:hsl(150 50% 45%)}
+/* the lookup pulse gliding hop→hop toward the owner (dashoffset marches in the source→target direction) */
+.chord-flow{fill:none;stroke:hsl(190 95% 60%);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:5 16;filter:drop-shadow(0 0 3px hsl(190 95% 60% / .9));animation:chordflow 1.4s linear infinite}
+@keyframes chordflow{to{stroke-dashoffset:-100}}
+@media(prefers-reduced-motion:reduce){.chord-flow{animation:none;opacity:.55}}
 .chord-arrhead{fill:hsl(212 65% 50%)}
 .chord-side{flex:1;min-width:200px;display:flex;flex-direction:column;gap:12px}
 .chord-finger{padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--soft)}

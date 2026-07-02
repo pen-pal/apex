@@ -52,6 +52,13 @@ export function ChordSection() {
             {result.hops.length > 0 && (
               <line x1={pos(result.hops[result.hops.length - 1]).x} y1={pos(result.hops[result.hops.length - 1]).y} x2={pos(result.target).x} y2={pos(result.target).y} className="chord-hop final" markerEnd="url(#chord-arr)" />
             )}
+            {/* the lookup itself, flowing: a bright pulse leaps hop→hop toward the owner (pathLength normalizes speed across uneven hops) */}
+            {result.hops.map((_, i) => i < result.hops.length - 1 && (
+              <line key={`flow${i}`} x1={pos(result.hops[i]).x} y1={pos(result.hops[i]).y} x2={pos(result.hops[i + 1]).x} y2={pos(result.hops[i + 1]).y} className="chord-flow" pathLength={100} />
+            ))}
+            {result.hops.length > 0 && result.hops[result.hops.length - 1] !== result.target && (
+              <line x1={pos(result.hops[result.hops.length - 1]).x} y1={pos(result.hops[result.hops.length - 1]).y} x2={pos(result.target).x} y2={pos(result.target).y} className="chord-flow" pathLength={100} />
+            )}
             <defs><marker id="chord-arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" className="chord-arrhead" /></marker></defs>
             {NODES.map((n) => {
               const p = pos(n);
