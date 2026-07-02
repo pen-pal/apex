@@ -13,7 +13,8 @@
     "test:run": "vitest run",
     "demo": "tsx src/main.ts",
     "typecheck": "tsc --noEmit",
-    "stats": "node scripts/stats.mjs"
+    "stats": "node scripts/stats.mjs",
+    "lint:slop": "node scripts/anti-slop.mjs"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

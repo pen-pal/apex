@@ -55,5 +55,10 @@ truth (a simulation), test invariants and comparative properties, and describe i
 For every claim you introduced, ask: **(1)** did I measure that number or type it? **(2)** does every comment match
 the code now? **(3)** is every dependency/config/file I added reachable on the real deploy target? **(4)** did I
 duplicate a helper that already exists? **(5)** is every sentence specific and true, not reassuring filler? **(6)**
-does each test's expected value come from somewhere *other* than the code under test? Fix any wrong answer before
-you say you're finished — slop enters as six small unchecked claims, one file at a time.
+does each test's expected value come from somewhere *other* than the code under test? **(7)** did I run
+`npm run lint:slop` (`scripts/anti-slop.mjs`) and clear every ERROR? Fix any wrong answer before you say you're
+finished — slop enters as six small unchecked claims, one file at a time.
+
+The rules above are enforced mechanically by `scripts/anti-slop.mjs` (dependency-free): ERRORs fail CI (fake
+metric badges, "no backend" vs shipped telemetry, dead deps, files over 800 lines); WARNs flag drift, duplicated
+utils, monolith dispatch, hype prose, and self-referential tests for review. See `scripts/README-anti-slop.md`.

@@ -1,0 +1,8 @@
+#!/bin/sh
+# Block a push if anti-slop finds ERRORs. Enable once with:
+#   git config core.hooksPath .githooks
+command -v node >/dev/null 2>&1 || { printf '%s\n' "anti-slop: node not on PATH; skipping (CI will still enforce)."; exit 0; }
+node scripts/anti-slop.mjs || {
+  printf '\n%s\n' "push blocked: fix the anti-slop ERRORs above (or 'git push --no-verify' to override)."
+  exit 1
+}

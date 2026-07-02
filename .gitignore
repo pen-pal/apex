@@ -7,3 +7,7 @@ coverage
 
 # local scratch (design mock-up, not part of the app)
 d.html
+
+# local staging for the anti-slop toolkit (now integrated into scripts/.githooks/AGENTS.md)
+all/
+all2/
