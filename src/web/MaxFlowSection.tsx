@@ -74,6 +74,8 @@ export function MaxFlowSection() {
             return (
               <g key={i}>
                 <line x1={x1} y1={y1} x2={x2} y2={y2} className={cls} markerEnd={mk} />
+                {/* the flow itself, gliding u→v toward the sink: amber+fast on the path being augmented, cyan on established flow */}
+                {(f > 0 || hot) && <line x1={x1} y1={y1} x2={x2} y2={y2} className={`mf-flow ${hot ? 'hot' : ''}`} pathLength={100} />}
                 <text x={mx} y={my} className={`mf-flbl ${f > 0 ? 'on' : ''}`}>{f}/{e.cap}</text>
               </g>
             );

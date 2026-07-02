@@ -5688,6 +5688,11 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mf-edge.used{stroke:hsl(212 55% 62%);stroke-width:3}
 .mf-edge.hot{stroke:hsl(28 85% 52%);stroke-width:4.5}
 .mf-edge.cut{stroke:hsl(0 70% 52%);stroke-width:4.5}
+/* the flow gliding u→v toward the sink; .hot = the path being augmented this step (amber + faster) */
+.mf-flow{fill:none;stroke:hsl(190 95% 62%);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:5 15;filter:drop-shadow(0 0 2px hsl(190 95% 60% / .8));animation:mfflow 1.6s linear infinite;pointer-events:none}
+.mf-flow.hot{stroke:hsl(45 100% 58%);stroke-dasharray:6 9;animation-duration:.85s;filter:drop-shadow(0 0 3px hsl(45 100% 58% / .9))}
+@keyframes mfflow{to{stroke-dashoffset:-100}}
+@media(prefers-reduced-motion:reduce){.mf-flow{animation:none;opacity:.5}}
 .mf-ah{fill:var(--line)}
 .mf-ah.hot{fill:hsl(28 85% 52%)}
 .mf-ah.cut{fill:hsl(0 70% 52%)}
