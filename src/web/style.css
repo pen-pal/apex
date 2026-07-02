@@ -189,7 +189,13 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .overhead strong{color:var(--ink)}
 
 /* flat byte-layout bar */
-.flatbar{display:flex;height:36px;border-radius:8px;overflow:hidden;font-family:var(--mono)}
+.flatbar{display:flex;height:36px;border-radius:8px;overflow:hidden;font-family:var(--mono);position:relative}
+/* a sheen of light sweeps across, like the frame streaming onto the link */
+.flatbar::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,transparent 35%,hsl(0 0% 100% / .28) 50%,transparent 65%);
+  background-size:220% 100%;animation:flatsheen 3.2s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes flatsheen{0%{background-position:130% 0}100%{background-position:-30% 0}}
+@media(prefers-reduced-motion:reduce){.flatbar::after{animation:none;background:none}}
 .flatseg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:600;
   min-width:0;overflow:hidden;text-shadow:0 1px 1px rgba(0,0,0,.3);border-right:1px solid rgba(255,255,255,.5)}
 .flatseg:last-child{border-right:0}
@@ -200,7 +206,13 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .wire{background:var(--subtle);border:1px solid var(--line);border-radius:9px;padding:10px}
 .wire-svg{display:block;height:50px}
 .wire-grid{stroke:#c8d2de;stroke-dasharray:2 3}
-.wire-path{stroke:hsl(212 70% 48%);stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.wire-path{stroke:hsl(212 55% 42% / .45);stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+/* flowing signal: pulses of light travelling along the wire (like current propagating down the link) */
+.wire-flow{stroke:hsl(190 95% 60%);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke;
+  stroke-dasharray:7 18;filter:drop-shadow(0 0 3px hsl(190 95% 60% / .9));animation:wireflow 2.4s linear infinite}
+@keyframes wireflow{to{stroke-dashoffset:-100}}
+[data-theme=dark] .wire-path{stroke:hsl(212 40% 55% / .4)}
+@media(prefers-reduced-motion:reduce){.wire-flow{animation:none;stroke:hsl(190 90% 55% / .7)}}
 .wire-tick{font-family:var(--mono);font-size:7px;fill:var(--muted);text-anchor:middle}
 
 /* router re-wrap */

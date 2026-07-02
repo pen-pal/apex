@@ -210,6 +210,8 @@ function Wire({ bytes }: { bytes: number[] }) {
         <line x1="0" y1={hi} x2={W} y2={hi} className="wire-grid" />
         <line x1="0" y1={lo} x2={W} y2={lo} className="wire-grid" />
         <path d={d} className="wire-path" fill="none" />
+        {/* the signal, flowing: bright pulses of energy march left→right along the exact waveform */}
+        <path d={d} className="wire-flow" fill="none" pathLength={100} />
         {bits.map((bit, i) => (
           <text key={i} x={i * unit + unit / 2} y={H - 3} className="wire-tick">{bit}</text>
         ))}
