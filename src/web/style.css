@@ -11253,3 +11253,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rtr-img-frame{fill:none;stroke:hsl(220 18% 40%);stroke-width:1.5}
 .rtr-foot{fill:hsl(210 16% 60%);font-size:13px}
 .rtr-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:8px}
+
+/* ── GPU rasterization story (RasterizeSection) — schematic + real render on the shared .story- stage ─ */
+.ras-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.ras-tri{fill:hsl(210 40% 30% / .25);stroke:hsl(210 40% 55%);stroke-width:1.5}
+.ras-vtx{stroke:#fff;stroke-width:1.5}
+.ras-testpt{fill:hsl(45 100% 66%);stroke:#fff;stroke-width:1}
+.ras-inside{fill:hsl(210 16% 60%);font-size:12.5px;font-family:var(--mono,monospace)}
+.ras-inside.yes{fill:hsl(150 65% 62%)}
+.ras-bline{stroke:hsl(280 60% 66%);stroke-width:1.2;stroke-dasharray:3 3}
+.ras-lbl{fill:hsl(210 20% 72%);font-size:12.5px;font-family:var(--mono,monospace)}
+.ras-img{image-rendering:pixelated}
+.ras-img-frame{fill:none;stroke:hsl(220 18% 40%);stroke-width:1.5}
+.ras-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ras-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
+.ras-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
