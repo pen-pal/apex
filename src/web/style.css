@@ -11383,3 +11383,31 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rop-btn.ghost{opacity:.75}
 .rop-btn:disabled{opacity:.4;cursor:default}
 .rop-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--accent);margin-left:6px}
+
+/* ── ASLR story (AslrSection) — libc base randomization + infoleak-recovers-base ───────────────── */
+.asl-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.asl-libc{fill:hsl(210 30% 24% / .5);stroke:hsl(210 40% 46%);stroke-width:1.5}
+.asl-row{fill:hsl(210 24% 82%);font-size:13px;font-family:var(--mono,monospace)}
+.asl-addr{fill:hsl(45 85% 66%)}
+.asl-addr.rand{fill:hsl(280 70% 74%)}
+.asl-addr.big{fill:hsl(45 90% 68%);font-size:19px}
+.asl-tag{fill:hsl(210 15% 54%);font-size:11px}
+.asl-div{stroke:hsl(210 20% 40%);stroke-width:1;stroke-dasharray:3 3}
+.asl-note{fill:hsl(210 15% 56%);font-size:11.5px;font-family:var(--mono,monospace);font-style:italic}
+.asl-target{fill:hsl(220 18% 20% / .6);stroke-width:1.5}
+.asl-target.stale{stroke:hsl(0 60% 55%)}
+.asl-target.computed{stroke:hsl(150 55% 50%)}
+.asl-cmp{font-size:14px;font-weight:600;font-family:var(--mono,monospace)}
+.asl-cmp.ok{fill:hsl(150 60% 58%)}
+.asl-cmp.bad{fill:hsl(0 75% 66%)}
+.asl-leak{fill:hsl(38 60% 30% / .18);stroke:hsl(38 70% 52%);stroke-width:1.5}
+.asl-out{font-size:14.5px;font-weight:600}
+.asl-out.ok{fill:hsl(150 62% 58%)}
+.asl-out.bad{fill:hsl(0 76% 66%)}
+.asl-foot{fill:hsl(210 16% 60%);font-size:13px}
+.asl-btn{font-size:13px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:6px}
+.asl-btn.fire{border-color:hsl(0 55% 52% / .6)}
+.asl-btn:disabled{opacity:.4;cursor:default}
+.asl-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--muted);margin-left:6px}
+.asl-live.ok{color:hsl(150 60% 56%)}
+.asl-live.bad{color:hsl(0 76% 66%)}
