@@ -11702,3 +11702,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dth-btn{font-size:13px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:6px}
 .dth-btn.on{background:hsl(38 55% 45% / .2);border-color:hsl(38 85% 58%)}
 .dth-live{color:var(--muted);font-size:12.5px;font-family:var(--mono,monospace);margin-left:4px}
+
+/* ── TOTP 2FA story (TotpSection) — shared secret → HMAC → dynamic-truncation → 6-digit code ─────── */
+.otp-secret{fill:hsl(45 55% 40% / .25);stroke:hsl(45 85% 58%);stroke-width:1.5}
+.otp-secretlbl{fill:hsl(45 88% 72%);font-size:12.5px;font-family:var(--mono,monospace)}
+.otp-party{fill:hsl(210 35% 30% / .5);stroke:hsl(210 45% 52%);stroke-width:1.5}
+.otp-partylbl{fill:hsl(210 26% 88%);font-size:13.5px;font-family:var(--mono,monospace)}
+.otp-wire{stroke:hsl(45 70% 55%);stroke-width:1.5}
+.otp-nonet{fill:hsl(210 15% 55%);font-size:11.5px;font-family:var(--mono,monospace);font-style:italic}
+.otp-lbl{fill:hsl(210 20% 74%);font-size:13px;font-family:var(--mono,monospace)}
+.otp-byte{fill:hsl(220 18% 24% / .6);stroke:hsl(220 16% 34%);stroke-width:1}
+.otp-byte.sel{fill:hsl(150 55% 40% / .6);stroke:hsl(150 62% 54%);stroke-width:1.5}
+.otp-byte.off{fill:hsl(45 60% 42% / .5);stroke:hsl(45 85% 58%);stroke-width:1.5}
+.otp-bytet{fill:hsl(210 26% 86%);font-size:11px;font-family:var(--mono,monospace)}
+.otp-offlbl{fill:hsl(45 85% 66%);font-size:10.5px;font-family:var(--mono,monospace)}
+.otp-sellbl{fill:hsl(150 60% 60%);font-size:12px;font-family:var(--mono,monospace)}
+.otp-codelbl{fill:hsl(210 16% 58%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.06em}
+.otp-code{fill:hsl(150 70% 62%);font-size:44px;font-weight:700;font-family:var(--mono,monospace);letter-spacing:.08em}
+.otp-ring{fill:none;stroke:hsl(220 16% 32%);stroke-width:4}
+.otp-ringfill{stroke:hsl(45 88% 58%);stroke-width:4;stroke-linecap:round}
+.otp-ringt{fill:hsl(210 22% 80%);font-size:13px;font-family:var(--mono,monospace)}
+.otp-foot{fill:hsl(210 16% 60%);font-size:13px}
+.otp-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
+.otp-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}

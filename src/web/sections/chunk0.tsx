@@ -47,6 +47,7 @@ import { HllSection } from '../HllSection';
 import { TtlHopSection } from '../TtlHopSection';
 import { BdpSection } from '../BdpSection';
 import { WebAuthnSection } from '../WebAuthnSection';
+import { TotpSection } from '../TotpSection';
 import { AnycastSection } from '../AnycastSection';
 import { MailAuthSection } from '../MailAuthSection';
 import { ConsistencySection } from '../ConsistencySection';
@@ -103,6 +104,7 @@ export const chunk0: Record<string, SectionEntry> = {
   "hll": { Component: HllSection, title: <>HyperLogLog</>, sub: <>Estimate how many distinct items a massive stream contains using a few hundred bytes. Add items and batches and watch the registers fill while the cardinality estimate tracks the truth — duplicates cost nothing.</> },
   "ttlhop": { Component: TtlHopSection, title: <>TTL &amp; header-checksum recompute</>, sub: <>The two things every router does to every packet. Watch the TTL count down hop by hop and the real IPv4 header checksum recompute — until the packet expires and an ICMP Time Exceeded heads home.</> },
   "bdp": { Component: BdpSection, title: <>Bandwidth-Delay Product</>, sub: <>Why a fast link can still feel slow. Slide bandwidth, RTT, and window size and watch how much of the pipe your window can actually fill — and why window scaling was essential for long fat networks.</> },
+  "totp": { Component: TotpSection, title: <>How your 2FA code works (TOTP)</>, sub: <>The 6-digit code in your authenticator app, demystified. At setup, the app and the server share one secret (the QR code); after that no messages pass between them, yet both compute the same code — it’s just HMAC-SHA1 of the current 30-second time step under that secret, dynamically truncated to 6 digits (HOTP, RFC 4226 / TOTP, RFC 6238). Real HMAC-SHA1 on the project’s sha1, verified against the RFC test vectors (counter 0 → 755224). Scrub time and watch the code recompute and flip every 30 seconds.</> },
   "webauthn": { Component: WebAuthnSection, title: <>Passkeys (WebAuthn / FIDO2)</>, sub: <>Passwordless login by public-key signature. Register a passkey, then watch a login succeed on the real site and fail on a phishing clone — because the device signs the origin it's actually visiting.</> },
   "anycast": { Component: AnycastSection, title: <>IP Anycast</>, sub: <>One IP address advertised from many locations — each client is routed to the nearest instance. Withdraw a site and watch its traffic re-route instantly. How root DNS, 1.1.1.1, and CDNs work.</> },
   "mailauth": { Component: MailAuthSection, title: <>Email authentication (SPF · DKIM · DMARC)</>, sub: <>Anyone can forge a From: address — these three DNS records make the claim checkable. Pick a scenario (genuine, spoofed, tampered, forwarded) and watch SPF, DKIM, and DMARC adjudicate it.</> },
