@@ -12048,3 +12048,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .shg-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .shg-btn.on{background:hsl(190 50% 42% / .22);border-color:hsl(190 60% 56%)}
 .shg-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Vector search / HNSW story (VectorSearchSection) — proximity graph + navigate to query ──────── */
+.ann-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.ann-edge{stroke:hsl(220 18% 34% / .55);stroke-width:0.75}
+.ann-path{stroke:hsl(45 90% 60%);stroke-width:2}
+.ann-pt{fill:hsl(210 40% 55%)}
+.ann-pt.vis{fill:hsl(45 80% 62%)}
+.ann-pt.found{fill:hsl(150 65% 55%);stroke:#fff;stroke-width:1.5}
+.ann-truenn{fill:none;stroke:hsl(0 65% 62%);stroke-width:2;stroke-dasharray:3 2}
+.ann-query{fill:hsl(280 65% 62%);stroke:#fff;stroke-width:1.5}
+.ann-qlbl{fill:hsl(280 60% 76%);font-size:12px;font-family:var(--mono,monospace)}
+.ann-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ann-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.ann-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.ann-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
