@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { cubicWindow, cubicK, simulateCubic, BETA, C } from '../src/web/cubic';
+import { cubicWindow, cubicK, simulateCubic, BETA } from '../src/web/cubic';
 
 describe('the CUBIC window formula W(t) = C·(t−K)³ + W_max', () => {
   it('at t=0 (just after loss) the window is β·W_max', () => {
