@@ -30,7 +30,8 @@ export function solve2sat(n: number, clauses: Clause[]): Solution {
     adj[neg(lb)].push(la); // ¬b ⇒ a
   }
 
-  // Tarjan SCC → comp[] in reverse topological order (a node's comp id < ids of components it can reach)
+  // Tarjan SCC → comp[] in reverse topological order (sink components finish first → SMALLER ids; a node's comp
+  // id is therefore GREATER than the ids of the components it can reach)
   const comp = new Array(N).fill(-1), low = new Array(N).fill(0), num = new Array(N).fill(-1), onStack = new Array(N).fill(false);
   const stack: number[] = []; let idx = 0, sccId = 0;
   const dfs = (u: number) => {
