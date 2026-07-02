@@ -1,6 +1,6 @@
-// Sidebar taxonomy — the 32 sections grouped into collapsible categories so the
-// nav stays navigable. Pure data + a tiny lookup, kept here (and tested) so the
-// grouping can't silently drift out of sync with the sections themselves.
+// Sidebar taxonomy — every section grouped into collapsible categories so the nav stays navigable. Pure data
+// plus a tiny lookup, kept here (and tested) so the grouping can't silently drift out of sync with the sections
+// themselves. (For the live count, run `npm run stats` — nothing here hardcodes it.)
 
 export interface SectionMeta { id: string; label: string; icon: string }
 

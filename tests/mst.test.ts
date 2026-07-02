@@ -55,4 +55,15 @@ describe('Kruskal and Prim agree', () => {
     expect(prim(g, 'A').weight).toBe(12);    // must agree — was 20 with the string-key bug
     expect(prim(g, 'A').weight).toBe(kruskal(g).weight);
   });
+
+  it('flags a disconnected graph instead of silently returning a partial forest', () => {
+    const connected: Edge[] = [{ u: 'A', v: 'B', w: 1 }, { u: 'B', v: 'C', w: 2 }];
+    expect(kruskal(connected).connected).toBe(true);
+    expect(prim(connected, 'A').connected).toBe(true);
+    // two components {A,B} and {C,D}, no edge between them
+    const split: Edge[] = [{ u: 'A', v: 'B', w: 1 }, { u: 'C', v: 'D', w: 1 }];
+    expect(kruskal(split).connected).toBe(false); // it is a spanning FOREST, not a tree
+    expect(prim(split, 'A').connected).toBe(false); // Prim from A can't reach C/D at all
+    expect(prim(split, 'A').tree.length).toBeLessThan(nodes(split).length - 1);
+  });
 });

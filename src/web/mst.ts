@@ -7,7 +7,10 @@
 
 export interface Edge { u: string; v: string; w: number }
 export interface KruskalStep { edge: Edge; accepted: boolean; reason: string }
-export interface MstResult { tree: Edge[]; weight: number; steps: KruskalStep[]; order: string[] }
+// `connected` is false when the graph is disconnected — then `tree` is a minimum spanning FOREST (one tree per
+// component), not a spanning tree, and no set of edges can connect every node. Callers should check it rather
+// than mistaking a partial forest for a full MST.
+export interface MstResult { tree: Edge[]; weight: number; steps: KruskalStep[]; order: string[]; connected: boolean }
 
 export function nodes(edges: Edge[]): string[] {
   const s = new Set<string>();
@@ -23,8 +26,9 @@ class DSU {
 }
 
 export function kruskal(edges: Edge[]): MstResult {
+  const ns = nodes(edges);
   const dsu = new DSU();
-  for (const n of nodes(edges)) dsu.parent[n] = n;
+  for (const n of ns) dsu.parent[n] = n;
   const sorted = [...edges].sort((a, b) => a.w - b.w || (a.u + a.v < b.u + b.v ? -1 : 1));
   const tree: Edge[] = [];
   const steps: KruskalStep[] = [];
@@ -33,7 +37,9 @@ export function kruskal(edges: Edge[]): MstResult {
     steps.push({ edge: e, accepted: ok, reason: ok ? 'connects two components' : 'would form a cycle — skip' });
     if (ok) tree.push(e);
   }
-  return { tree, weight: tree.reduce((a, e) => a + e.w, 0), steps, order: tree.map((e) => `${e.u}-${e.v}`) };
+  // a connected graph on n nodes has a spanning tree of exactly n−1 edges
+  const connected = tree.length === Math.max(0, ns.length - 1);
+  return { tree, weight: tree.reduce((a, e) => a + e.w, 0), steps, order: tree.map((e) => `${e.u}-${e.v}`), connected };
 }
 
 // --- Prim: grow one tree from a start node --------------------------------------
@@ -52,10 +58,11 @@ export function prim(edges: Edge[], start?: string): MstResult {
       const a = inTree.has(e.u), b = inTree.has(e.v);
       if (a !== b && (!best || e.w < best.w || (e.w === best.w && tie(e) < tie(best)))) best = e;
     }
-    if (!best) break; // disconnected graph
+    if (!best) break; // no edge leaves the tree → the graph is disconnected; stop with a partial forest
     inTree.add(inTree.has(best.u) ? best.v : best.u);
     tree.push(best);
     steps.push({ edge: best, accepted: true, reason: 'cheapest edge leaving the tree' });
   }
-  return { tree, weight: tree.reduce((a, e) => a + e.w, 0), steps, order: tree.map((e) => `${e.u}-${e.v}`) };
+  const connected = inTree.size === ns.length; // reached every node?
+  return { tree, weight: tree.reduce((a, e) => a + e.w, 0), steps, order: tree.map((e) => `${e.u}-${e.v}`), connected };
 }
