@@ -11686,3 +11686,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .klm-foot{fill:hsl(210 16% 60%);font-size:13px}
 .klm-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:8px}
 .klm-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Dithering story (DitherSection) — grayscale vs 1-bit threshold/Floyd-Steinberg ─────────────── */
+.dth-lbl{fill:hsl(210 18% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.dth-img{image-rendering:pixelated}
+.dth-frame{fill:none;stroke:hsl(220 18% 40%);stroke-width:1.5}
+.dth-zoomframe{fill:none;stroke:hsl(45 85% 58%);stroke-width:1.5}
+.dth-zoomlbl{fill:hsl(45 82% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.dth-kern{stroke-width:1.5}
+.dth-kern.cur{fill:hsl(210 40% 40% / .5);stroke:hsl(210 50% 58%)}
+.dth-kern.w{fill:hsl(38 55% 40% / .3);stroke:hsl(38 80% 56%)}
+.dth-kernt{fill:hsl(210 26% 88%);font-size:15px;font-weight:600;font-family:var(--mono,monospace)}
+.dth-note{fill:hsl(210 18% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.dth-foot{fill:hsl(210 16% 60%);font-size:13px}
+.dth-btn{font-size:13px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:6px}
+.dth-btn.on{background:hsl(38 55% 45% / .2);border-color:hsl(38 85% 58%)}
+.dth-live{color:var(--muted);font-size:12.5px;font-family:var(--mono,monospace);margin-left:4px}
