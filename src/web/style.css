@@ -11925,3 +11925,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hdr-axlbl{fill:hsl(210 16% 58%);font-size:10.5px;font-family:var(--mono,monospace)}
 .hdr-foot{fill:hsl(210 16% 60%);font-size:13px}
 .hdr-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── BK-tree story (BkTreeSection) — metric tree, distance edges, pruned subtrees ────────────────── */
+.bk-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.bk-edge{stroke:hsl(220 18% 42%);stroke-width:1.5}
+.bk-edge.pruned{stroke:hsl(220 14% 26%);stroke-dasharray:3 3}
+.bk-edist{fill:hsl(38 70% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.bk-edist.pruned{fill:hsl(220 12% 34%)}
+.bk-node{fill:hsl(220 24% 26%);stroke:hsl(220 18% 40%);stroke-width:1}
+.bk-node.vis{fill:hsl(210 40% 34%);stroke:hsl(210 55% 58%)}
+.bk-node.match{fill:hsl(150 50% 34%);stroke:hsl(150 60% 56%);stroke-width:2}
+.bk-node.pruned{fill:hsl(220 16% 18% / .5);stroke:hsl(220 14% 24%)}
+.bk-word{fill:hsl(210 26% 88%);font-size:12.5px;font-family:var(--mono,monospace)}
+.bk-word.pruned{fill:hsl(220 12% 42%)}
+.bk-d{fill:hsl(210 40% 72%);font-size:10.5px;font-family:var(--mono,monospace)}
+.bk-d.match{fill:hsl(150 60% 64%)}
+.bk-tri{fill:hsl(38 80% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.bk-foot{fill:hsl(210 16% 60%);font-size:13px}
+.bk-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.bk-pick{font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.bk-pick.on{background:hsl(150 45% 40% / .22);border-color:hsl(150 55% 52%)}
+.bk-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
