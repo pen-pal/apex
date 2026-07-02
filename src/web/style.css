@@ -12063,3 +12063,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ann-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .ann-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
 .ann-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Pitch detection story (PitchSection) — waveform + autocorrelation peak ───────────────────────── */
+.pit-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.pit-axis{stroke:hsl(220 16% 38%);stroke-width:1}
+.pit-wave{stroke:hsl(200 70% 62%);stroke-width:1.5}
+.pit-wave2{stroke:hsl(38 80% 60% / .8);stroke-width:1.5;stroke-dasharray:3 2}
+.pit-note{fill:hsl(210 16% 62%);font-size:11.5px;font-family:var(--mono,monospace)}
+.pit-acf{stroke:hsl(150 60% 58%);stroke-width:1.75}
+.pit-peak{stroke:hsl(45 90% 60%);stroke-width:1.5;stroke-dasharray:3 2}
+.pit-peakdot{fill:hsl(45 90% 62%);stroke:#fff;stroke-width:1}
+.pit-peaklbl{fill:hsl(45 88% 68%);font-size:12.5px;font-family:var(--mono,monospace)}
+.pit-foot{fill:hsl(210 16% 60%);font-size:13px}
+.pit-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.pit-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.pit-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.pit-btn.on{background:hsl(0 50% 45% / .22);border-color:hsl(0 65% 58%)}
+.pit-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
