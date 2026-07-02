@@ -10656,3 +10656,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pds-stat small{font-size:9.5px;text-transform:none}
 .pds-stat.ok b{color:hsl(150 55% 50%)}.pds-stat.ok small{color:hsl(150 55% 50%)}
 .pds-stat.bad b{color:hsl(0 60% 60%)}.pds-stat.bad small{color:hsl(0 60% 60%)}
+
+/* ---- Delaunay triangulation ---- */
+.dln{display:flex;flex-direction:column;gap:13px}
+.dln-intro,.dln-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.dln-intro strong,.dln-foot strong{color:var(--ink)}
+.dln-intro em,.dln-foot em{color:var(--ink);font-style:italic}
+.dln-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dln-tab{font:inherit;font-size:12px;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.dln-tab.on{border-color:var(--accent);background:hsl(212 60% 50% / .12);color:var(--accent);font-weight:600}
+.dln-tab.ghost{color:var(--muted)}
+.dln-count{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto}
+.dln-plane{width:100%;max-width:560px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px;cursor:crosshair}
+.dln-tri{fill:hsl(212 55% 50% / .05);stroke:hsl(212 55% 55% / .55);stroke-width:1;stroke-linejoin:round}
+.dln-dual{stroke:hsl(28 85% 58%);stroke-width:1.3;stroke-linecap:round}
+.dln-pt{fill:hsl(212 72% 62%);stroke:var(--panel);stroke-width:1.5}
