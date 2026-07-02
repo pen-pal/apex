@@ -32,6 +32,10 @@ export function PubKeySection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>Ordinary encryption needs both sides to already share one secret key — but how do you agree on that key with someone you have never met, over a line everyone is reading? Public-key crypto breaks the deadlock: the bank hands out an open padlock (a public key) that anyone can snap shut, while only the bank keeps the key that opens it. This walks from that padlock picture down to real, tiny RSA numbers you can check by hand.</>,
+        takeaway: <>It rests on a one-way function: easy forward, infeasible backward unless you know a secret. Multiplying two big primes is easy; factoring the product back into them is not — so the product can be public while the two factors stay private. Run the function one way and anyone can encrypt to you but only you can read; run it the other way and only you can sign but anyone can verify. Those two directions are exactly how a website proves its identity with a certificate and how the TLS handshake agrees on a key with a stranger.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="pk-live-lbl">encrypt a number (0–3232):</span>

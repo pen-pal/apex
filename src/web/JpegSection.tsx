@@ -35,7 +35,7 @@ export function JpegSection() {
     ({ key, title, caption, render: () => <Img phase={key} quality={key === 'quant' || key === 'encode' ? 30 : 90} /> });
 
   const scenes: StoryScene[] = [
-    narrated('lossy', 'Throw away what the eye won’t miss', 'A photo is millions of pixels. JPEG shrinks it about ten to one — and it is lossy: it deliberately discards detail your eye barely notices. The trick that makes that possible is to stop thinking in pixels and start thinking in frequencies.'),
+    narrated('lossy', 'Throw away what the eye won’t miss', 'A photo is millions of pixels. JPEG shrinks it about ten to one — and it is lossy: it deliberately discards detail your eye barely notices. What makes that possible is to stop thinking in pixels and start thinking in frequencies.'),
     narrated('blocks', 'Work in 8×8 blocks', 'The image is chopped into 8×8-pixel blocks, each compressed on its own. (Colour is split into brightness and two colour channels, and the colour is subsampled first, because eyes see brightness detail far better than colour.) Here is one block.'),
     narrated('dct', 'DCT — pixels to frequencies', 'The discrete cosine transform rewrites the 64 pixels as 64 frequency coefficients. Top-left is the block’s average brightness; moving right and down is finer and finer detail. For a typical block almost all the energy lands in the top-left few — the low frequencies.'),
     narrated('quant', 'Quantize — the lossy step', 'Now divide each coefficient by a value from a quantization table and round. The table uses big divisors for high frequencies, so those fine-detail coefficients round to zero — and that is exactly the information the eye won’t miss. All the loss, and most of the compression, happens right here.'),

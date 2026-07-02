@@ -33,6 +33,10 @@ export function FlashCellSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A flash memory cell is a transistor with a secret compartment: a “floating gate” sealed completely inside insulating glass. Force electrons onto it and they are trapped — with nowhere to leak, they stay for years with no power at all, and that trapped charge is the stored bit. This zooms from a whole SSD down to one cell and lets you program it, read it, and erase it.</>,
+        takeaway: <>Reading is gentle — you just sense whether the trapped charge has shifted the transistor’s switch-on voltage — but writing means forcing electrons through the insulator, which slowly damages it, so a cell survives only ~1k–100k write/erase cycles and erasing must clear a whole block at once. Those two facts (wear, and block-erase) are the entire reason an SSD needs a flash translation layer, wear leveling, and hidden spare capacity. Charge that stays put with no power is why flash is <em>storage</em>; charge that leaks away (DRAM) is why that is <em>memory</em>.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <button type="button" onClick={program}>program (write 0)</button>
