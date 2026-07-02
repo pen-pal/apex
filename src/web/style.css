@@ -11570,3 +11570,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .asp-s-verdict.bad{fill:hsl(0 76% 66%)}
 .asp-s-foot{fill:hsl(210 16% 60%);font-size:13px}
 .asp-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:center}
+
+/* ── Inter-frame video story (MotionCompSection) — reference/current/residual frames + motion vectors ── */
+.icf-img{image-rendering:pixelated}
+.icf-frame{fill:none;stroke:hsl(220 18% 40%);stroke-width:1.5}
+.icf-frame.hot{stroke:hsl(45 85% 58%);stroke-width:2}
+.icf-frame.ghost{fill:hsl(220 16% 20% / .4);stroke:hsl(220 14% 32%);stroke-dasharray:4 3}
+.icf-lbl{fill:hsl(210 18% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.icf-ghost{fill:hsl(210 15% 50%);font-size:12px;font-family:var(--mono,monospace);font-style:italic}
+.icf-mv{stroke:hsl(150 80% 60%);stroke-width:1.5}
+.icf-arrhead{fill:hsl(150 80% 60%)}
+.icf-mv0{fill:hsl(210 20% 55%)}
+.icf-costlbl{fill:hsl(210 16% 60%);font-size:12.5px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.icf-bar{opacity:.85}
+.icf-bar.full{fill:hsl(0 55% 48% / .55);stroke:hsl(0 60% 58%);stroke-width:1}
+.icf-bar.p{fill:hsl(150 55% 42% / .7);stroke:hsl(150 60% 52%);stroke-width:1}
+.icf-bartxt{fill:hsl(210 26% 86%);font-size:12px;font-family:var(--mono,monospace)}
+.icf-foot{fill:hsl(210 16% 60%);font-size:13px}
+.icf-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:8px}
+.icf-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:4px}
