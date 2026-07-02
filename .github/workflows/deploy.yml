@@ -10,21 +10,24 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment. Do NOT cancel an in-progress run: a rapid
-# series of pushes must not starve deploys — let each production deployment
-# finish so the live site keeps up. Newer queued runs supersede older queued ones.
+# One deployment at a time, and cancel an in-progress one when a newer push arrives.
+# The site only needs to converge to the latest commit; letting older deploys run to
+# completion made them pile up on the single `pages` environment and hit the Pages
+# 10-minute deploy timeout ("Timeout reached, aborting!"). Push cadence here is minutes
+# apart and a deploy takes ~2–3 min, so cancelling stale deploys can't starve the site.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run test:run
@@ -36,6 +39,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

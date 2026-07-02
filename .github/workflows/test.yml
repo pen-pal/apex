@@ -1,10 +1,11 @@
 # Runs the full test suite on every push and PR, so "tests passing" is a measured fact, not a hardcoded badge.
 name: tests
+# On push the deploy workflow's build job already runs the full suite before shipping, so this
+# runs on pull requests (and on demand) — keeping the per-push runner load light for the deploy.
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest

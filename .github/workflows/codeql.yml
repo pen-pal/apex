@@ -3,13 +3,14 @@
 # https://docs.github.com/en/code-security/code-scanning
 name: "CodeQL Advanced"
 
+# CodeQL is heavy (two languages, security-extended). Running it on every push starved the
+# GitHub Pages deploy of runners, so it runs on pull requests and a weekly schedule instead.
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   schedule:
     - cron: '24 7 * * 5'
+  workflow_dispatch:
 
 jobs:
   analyze:
