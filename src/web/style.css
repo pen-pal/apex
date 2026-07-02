@@ -11411,3 +11411,37 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .asl-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--muted);margin-left:6px}
 .asl-live.ok{color:hsl(150 60% 56%)}
 .asl-live.bad{color:hsl(0 76% 66%)}
+
+/* ── Stack-canary story (StackCanarySection) — a frame with the guard between locals and the return addr ── */
+.can-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.can-band{fill:hsl(220 18% 22% / .55);stroke:hsl(220 16% 34%);stroke-width:1}
+.can-band.canary{fill:hsl(45 45% 32% / .3);stroke:hsl(45 80% 55%);stroke-width:1.5}
+.can-band.smashed{fill:hsl(0 55% 34% / .4);stroke:hsl(0 72% 58%);filter:drop-shadow(0 0 6px hsl(0 65% 50% / .4))}
+.can-band.ok{fill:hsl(150 45% 30% / .35);stroke:hsl(150 60% 52%)}
+.can-name{fill:hsl(210 26% 84%);font-size:13.5px;font-family:var(--mono,monospace)}
+.can-name.guard{fill:hsl(45 90% 66%);font-weight:600}
+.can-tag{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.can-cell{stroke-width:1}
+.can-cell.empty{fill:hsl(220 16% 26% / .4);stroke:hsl(220 14% 34%)}
+.can-cell.fill{fill:hsl(0 55% 45% / .5);stroke:hsl(0 65% 58%)}
+.can-cell.canary-bad{fill:hsl(0 65% 45% / .6);stroke:hsl(0 75% 60%)}
+.can-cell.canary-ok{fill:hsl(150 55% 40% / .55);stroke:hsl(150 62% 54%)}
+.can-byte{fill:hsl(210 26% 88%);font-size:10.5px;font-family:var(--mono,monospace)}
+.can-chk{fill:hsl(210 22% 76%);font-size:13px;font-family:var(--mono,monospace)}
+.can-mono{font-family:var(--mono,monospace)}
+.can-mono.ok{fill:hsl(150 62% 58%)}
+.can-mono.bad{fill:hsl(0 76% 66%)}
+.can-mono.ref{fill:hsl(45 85% 66%)}
+.can-verdict{font-size:13.5px;font-weight:600;font-family:var(--mono,monospace)}
+.can-verdict.ok{fill:hsl(150 60% 56%)}
+.can-verdict.bad{fill:hsl(0 76% 66%)}
+.can-out{font-size:13px;font-family:var(--mono,monospace)}
+.can-out.ok{fill:hsl(150 58% 56%)}
+.can-out.bad{fill:hsl(0 74% 66%)}
+.can-foot{fill:hsl(210 16% 60%);font-size:13px}
+.can-toggle{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:10px}
+.can-btn{font-size:13px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:6px}
+.can-btn.ghost{opacity:.75}
+.can-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--muted);margin-left:4px}
+.can-live.ok{color:hsl(150 60% 56%)}
+.can-live.bad{color:hsl(0 76% 66%)}
