@@ -30,6 +30,10 @@ export function FloatSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A computer has to store 0.0000001 and 600000000000 and everything between, all in a fixed 32 bits. A fixed decimal point can’t do both at once — it either reaches the huge range or keeps the fine precision, never both. Floating point borrows scientific notation: store a number as a sign, a fraction, and an exponent that slides the point to wherever it is needed.</>,
+        takeaway: <>The 32 bits split into 1 sign bit, 8 exponent bits (offset so the exponent can go negative), and 23 fraction bits. Powers of two and simple fractions land exactly; most decimals do not, because a value like 0.1 is a <em>repeating</em> fraction in binary and has to be rounded to fit 23 bits. That rounding is not a bug, it is the format — and it is why 0.1 + 0.2 evaluates to 0.30000000000000004, why you compare floats with a tolerance instead of ==, and why money is counted in integer cents, never floats.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="flt-live-lbl">store a number:</span>

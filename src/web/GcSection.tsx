@@ -45,6 +45,10 @@ export function GcSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>In a managed language you allocate objects but never free them, so the runtime has to work out on its own which ones your program can never touch again — and reclaim exactly those. The key realization is that “still needed” means “reachable”: an object is alive if and only if you can get to it by following pointers from a root (a local variable, a global, a register).</>,
+        takeaway: <>A tracing collector marks everything reachable from the roots, then sweeps the rest — anything left unmarked has no path from any root, so nothing can ever reference it again and it is safe to free. This is why tracing beats simple reference counting: two objects that point at each other keep both their counts at 1 forever and leak, but tracing collects the whole cycle because no root reaches it. The price is a pause to trace; the benefit — never freeing by hand, and never freeing too early — is why most modern languages choose it.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <label className="gc-toggle"><input type="checkbox" checked={dropB} onChange={(e) => { setDropB(e.target.checked); setMode('all'); }} /> drop root → B</label>

@@ -30,6 +30,10 @@ export function ContainerSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A container feels like its own little machine, but there is no second operating system inside it — it is one ordinary process running on the host’s kernel. Two kernel features simply make it believe it is alone: namespaces control what it can <em>see</em>, and cgroups control what it can <em>use</em>. This shows both, plus the image that becomes its filesystem.</>,
+        takeaway: <>A namespace hands the process a private copy of some global resource — its own process IDs, its own network, its own filesystem root (the image’s layers). A cgroup caps how much CPU, memory, and I/O it may consume, so one container can’t starve the others. Those two ideas plus the image are all a container is. Because there’s no guest OS to boot, it starts in milliseconds where a virtual machine takes seconds — and because it shares the host kernel, its isolation is a policy the kernel enforces, not a hardware wall, which is exactly why kernel bugs matter more to container security than to VM security.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <label className="ctr-toggle"><input type="checkbox" checked={pidNs} onChange={(e) => setPidNs(e.target.checked)} /> PID namespace</label>

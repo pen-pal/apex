@@ -36,6 +36,10 @@ export function KeystrokeSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>Pressing a key and seeing a letter feels instant, but the signal actually crosses the entire computing stack to get there — the keyboard hardware, a CPU interrupt, the kernel, your application, and the display — each layer handing off to the next. This follows one keypress the whole way through.</>,
+        takeaway: <>The keyboard’s own controller scans a grid of switches, emits a scancode (a number for the physical key), sends it over USB, and raises a hardware interrupt that yanks the CPU into the driver. The kernel maps the scancode to a character through your layout, queues an input event, and delivers it to the focused window; the app updates its state and redraws, rasterizing the glyph into the framebuffer that the display then scans out to the panel. It is only a few milliseconds end to end — and the slowest hop, the display’s scan-out, is the one a low-latency gamer works hardest to shrink.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <button type="button" onClick={() => setReached((r) => (r >= 4 ? -1 : r + 1))}>{reached >= 4 ? '↻ reset' : reached < 0 ? 'press “a” ▶' : `→ ${STAGES[reached + 1].title}`}</button>

@@ -46,6 +46,10 @@ export function JpegSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A photo is millions of pixels, but your eye is far more sensitive to broad shapes than to the finest detail — so JPEG discards the detail you won’t miss and keeps what you will, shrinking a photo roughly ten to one. What makes that possible is to stop describing an image block as pixel values and start describing it as frequencies.</>,
+        takeaway: <>Each 8×8 block is run through the discrete cosine transform, which rewrites its 64 pixels as 64 frequency coefficients — smooth, broad frequencies in the top-left, fine, sharp ones toward the bottom-right. Quantization then divides each coefficient by a table and rounds, using large divisors on the high frequencies so most of them collapse to zero — and those zeros are where both the loss and the compression live. Lower the quality and more coefficients vanish, the file shrinks, and blockiness and ringing creep in. It is lossy by design: the decoded image is close to the original, never identical.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <label className="jpg-lbl">quality: {quality}<input type="range" min={2} max={95} value={quality} onChange={(e) => setQuality(Number(e.target.value))} /></label>

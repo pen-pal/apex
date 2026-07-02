@@ -52,6 +52,10 @@ export function GitObjectsSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>Git is not a pile of diffs; it is a content-addressed key/value store, where an object’s name <em>is</em> the SHA-1 hash of its own contents. Save the same file twice — anywhere, in any commit — and it lands at the same address and is stored once. This walks from a single file up to a full commit.</>,
+        takeaway: <>A file becomes a blob (named by its hash), a directory becomes a tree of name→hash entries, and a commit wraps one tree hash with a parent and a message — so a commit’s hash stands for an entire snapshot plus all its history. Because every hash is computed from the contents beneath it, changing one byte changes that blob’s hash, which changes its tree, which changes the commit, which changes every commit after it. That cascade is why you can’t quietly rewrite history: the ids would stop matching. And a branch is nothing but a name pointing at one commit hash.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="git-live-lbl">hello.txt:</span>

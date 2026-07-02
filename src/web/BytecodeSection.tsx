@@ -55,6 +55,10 @@ export function BytecodeSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>Rather than compile all the way down to one specific CPU’s machine code, many languages compile to a portable bytecode — a made-up instruction set — and ship a small program, the virtual machine, that interprets it. The same bytecode then runs anywhere the VM runs. This runs a real stack-based VM on an expression you type in.</>,
+        takeaway: <>Most bytecode VMs are stack machines: instructions push and pop an operand stack (PUSH 3, then ADD pops the top two and pushes their sum), which is compact and trivial for a compiler to generate. The VM keeps its own program counter and loops — fetch the opcode, decode it in one big switch, execute it, advance — which is the CPU’s own fetch-decode-execute cycle, just written in software. That software layer is what buys portability (Python, Java, WebAssembly) and safe sandboxing; the per-instruction overhead is precisely what a JIT later removes by recompiling the hot parts to native code.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <input className="bc-input" value={src} spellCheck={false} onChange={(e) => { setSrc(e.target.value); setPc(0); }} />

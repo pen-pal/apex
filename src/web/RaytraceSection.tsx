@@ -79,6 +79,10 @@ export function RaytraceSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>To turn a 3D scene into a 2D image, ray tracing shoots a ray from the eye out through each pixel and asks: what does this ray hit, and what colour is that point? It is light simulated in reverse — from the eye into the scene rather than from the lamp to the eye. This shows the mechanism beside a real image it renders from those rays.</>,
+        takeaway: <>For each ray you find the nearest object it meets (a sphere is a quadratic, a plane a single division); that hit point is what’s visible at the pixel. You colour it by how squarely it faces the light — bright head-on, dark edge-on — and test for shadow by firing a second ray toward the light: if something blocks it, the point is shaded. A mirror simply bounces the ray and traces again, recursively. It is slower than rasterization because it is one-or-more rays per pixel, but shadows, reflections, and realistic lighting all fall out of the same short idea — which is why films render this way and GPUs now race to do it in real time.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <label className="rtr-ctl">light<input type="range" min={-3} max={3} step={0.1} value={lightX} onChange={(e) => setLightX(Number(e.target.value))} /></label>

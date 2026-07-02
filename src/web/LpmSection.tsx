@@ -38,6 +38,10 @@ export function LpmSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A router receives a packet, reads its destination address, and in a fraction of a microsecond must choose which link to send it out — billions of times a second, without asking anyone. The answer is already sitting in its forwarding table: a list of address prefixes, each mapped to an output port. The complication is that one address usually matches several prefixes at once, so the router needs a rule to break the tie.</>,
+        takeaway: <>The rule is longest-prefix match: the most specific prefix wins — the one that pins down the most leading bits — because a /24 route for one small block should override the /8 route for the whole region and the /0 default that catches everything else. Routers keep the prefixes in a trie and walk the destination’s bits down it, remembering the deepest match, so the decision falls out of a single pass with no scanning. Learning <em>which</em> routes exist (BGP, OSPF) is a separate, slow control-plane job; this is the fast data plane that actually forwards each packet.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="lpm-live-lbl">destination:</span>

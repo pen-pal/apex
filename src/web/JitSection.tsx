@@ -30,6 +30,10 @@ export function JitSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>Interpreting bytecode is portable but slow — every instruction costs a fetch and a branch in software. Yet almost all of a program’s time is spent inside a few hot loops, so a JIT (just-in-time compiler) compiles just those to native machine code while the program is already running. This lets you warm a loop up and watch it switch over.</>,
+        takeaway: <>The runtime keeps a cheap counter on each function; when one crosses a threshold the code is “hot” and worth compiling, and the JIT emits native instructions specialized to the types it actually observed — dropping the interpreter’s generic, type-checking dispatch. The next call jumps straight into that fast version, often 10–100× quicker. Because the native code assumes what it saw stays true, a surprising value (an always-integer slot suddenly holding a string) makes it deoptimize back to the safe interpreter. Fast in the common case, still correct in the rare one — which is why a loop mysteriously speeds up the longer it runs.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <button type="button" onClick={() => setCalls((c) => Math.min(20000, c + 4000))}>run ×4,000</button>

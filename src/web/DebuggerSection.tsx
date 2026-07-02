@@ -35,6 +35,10 @@ export function DebuggerSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>You click a line and the debugger stops your program exactly there — but your code is native instructions running at full speed, and the debugger is not checking each one (that would be far too slow). So how does it pause at precisely that spot? It plants a trap in the code itself, by overwriting a single byte.</>,
+        takeaway: <>The debugger saves the target instruction’s first byte and replaces it with 0xCC, the x86 INT3 opcode. When the CPU reaches that byte, INT3 raises a software interrupt; the kernel stops the process and sends SIGTRAP to the debugger, which is attached via ptrace and can now read the halted program’s registers and memory. To continue, it must run the <em>real</em> instruction, so it restores the original byte, single-steps once, then re-inserts 0xCC so the breakpoint survives the next loop. A breakpoint is not the CPU watching an address — it is a booby-trapped byte.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <button type="button" onClick={() => setStep((v) => (v + 1) % 5)}>{['set breakpoint ▶', 'run → trap ▶', 'inspect ▶', 'continue ▶', '↻ again'][step]}</button>

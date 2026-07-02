@@ -88,6 +88,10 @@ export function CompilerSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A CPU only runs numbered opcodes; it has no idea what your source text means. A compiler bridges that gap in a series of passes, each rewriting the program into a simpler form closer to the machine. This runs a real, tiny compiler on an arithmetic expression so you can watch each pass actually happen to what you type.</>,
+        takeaway: <>Lexing first groups the raw characters into tokens — names, numbers, operators. Parsing then arranges the tokens into a tree that captures grouping and precedence, so <code>b * 2</code> sits below the <code>+</code> and the structure itself now encodes the order of operations. A final walk of that tree emits instructions bottom-up: compute the operands, then the operation. Each stage lowers one representation toward the hardware; a production compiler is these same bones with optimization passes and register allocation stacked on top.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="cmp-live-lbl">source:</span>
