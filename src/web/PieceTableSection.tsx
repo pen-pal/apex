@@ -93,20 +93,18 @@ export function PieceTableSection() {
       </div>
 
       <p className="ptb-foot">
-        The payoff is a cascade of nice properties from one rule — <em>never overwrite</em>. Edits are cheap
-        (append a few bytes, splice a descriptor) instead of shifting the whole tail of the file. <strong>Undo
-        and redo</strong> are nearly free: since no bytes were destroyed, you just keep old versions of the piece
-        list — the deleted text is still sitting in a buffer, merely unreferenced. The original file can stay
-        <strong> memory-mapped</strong> and read-only, so opening a huge file is instant. And because pieces are
-        immutable spans, you get cheap snapshots for collaborative editing and syntax re-highlighting. The
-        trade-offs: random access to "the character at offset k" means walking the piece list, so editors layer a
-        <strong> balanced tree</strong> (a red-black tree of pieces, keyed by length and line count) over it to
-        make position lookups and line queries O(log n) — this is exactly what VS Code did when it replaced its
-        line-array buffer with a piece tree to open gigabyte files. Over a long session the piece list
-        fragments, so editors periodically compact. Cousins solve the same "edit a sequence cheaply" problem
-        differently: a <strong>gap buffer</strong> (Emacs) keeps a movable hole at the cursor — great for local
-        typing, worse for scattered edits — and a <strong>rope</strong> is a balanced tree of string chunks.
-        (Crowley 1998; the VS Code text-buffer write-up.)
+        One rule, <em>never overwrite</em>, cascades into cheap everything. Edits append a few bytes and splice a
+        descriptor instead of shifting the file's tail. <strong>Undo and redo</strong> are nearly free: no bytes
+        were destroyed, so you keep old versions of the piece list and the deleted text still sits in a buffer,
+        merely unreferenced. The original file stays <strong>memory-mapped</strong> and read-only, so opening a huge
+        file is instant, and because pieces are immutable spans you get cheap snapshots for collaborative editing
+        and re-highlighting. The cost is random access: finding "the character at offset k" means walking the piece
+        list, so editors layer a <strong>balanced tree</strong> (a red-black tree of pieces keyed by length and line
+        count) to make position and line queries O(log n) — exactly what VS Code did when it replaced its line-array
+        buffer with a piece tree to open gigabyte files. The list fragments over a long session, so editors compact
+        periodically. Cousins solve the same problem differently: a <strong>gap buffer</strong> (Emacs) keeps a
+        movable hole at the cursor, good for local typing and worse for scattered edits; a <strong>rope</strong> is
+        a balanced tree of string chunks. (Crowley 1998; the VS Code text-buffer write-up.)
       </p>
     </div>
   );

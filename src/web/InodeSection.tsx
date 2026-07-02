@@ -74,19 +74,18 @@ export function InodeSection() {
       </div>
 
       <p className="ino-foot">
-        This scheme is a beautiful piece of asymmetric design: the common case (millions of small files) is
-        optimal — the inode is small, and reading a config file or a source file is a single block fetch — while
-        the rare case (a huge file) is merely <em>possible</em>, not fast. The depths matter: a random read deep
-        in a large file costs up to 4 disk I/Os just to <em>find</em> the data block, which is why databases and
-        big-file workloads care about the indirect-block overhead. Two consequences fall out. Sparse files are
-        free: a hole (a region never written) simply has null block pointers, so a "1 TB" file with one byte at
-        the end occupies almost nothing on disk — the filesystem allocates blocks lazily. And the inode is where
-        hard links live: a directory entry is just a (name → inode number) mapping, so several names can point at
-        the same inode (link count), and the data is freed only when the last link is removed. The main weakness
-        — indirect blocks fragment large files and cost extra reads — is exactly why modern filesystems (ext4,
-        XFS, btrfs, ZFS) switched big files to <strong>extents</strong>: instead of per-block pointers, record
-        "N contiguous blocks starting at X," which is far more compact and read-efficient for the large
-        sequential files the indirect scheme handled worst. (ext2 inode; McKusick's FFS, 1984.)
+        It is an asymmetric design: the common case (millions of small files) is optimal, since the inode is small
+        and reading a config or source file is a single block fetch, while the rare case, a huge file, is merely
+        <em>possible</em>, not fast. Depth costs I/O: a random read deep in a large file takes up to 4 disk seeks
+        just to <em>find</em> the data block, which is why big-file workloads care about indirect-block overhead.
+        Two things fall out. Sparse files are free: a hole (a region never written) is just null block pointers, so
+        a "1 TB" file with one byte at the end occupies almost nothing, because the filesystem allocates lazily.
+        And hard links live here: a directory entry is only a (name → inode number) mapping, so several names can
+        share one inode (link count), and the data frees only when the last link goes. That indirect-block weakness,
+        fragmenting large files and costing extra reads, is exactly why ext4, XFS, btrfs, and ZFS switched big files
+        to <strong>extents</strong>: record "N contiguous blocks starting at X" instead of per-block pointers, far
+        more compact for the large sequential files the indirect scheme handled worst. (ext2 inode; McKusick's FFS,
+        1984.)
       </p>
     </div>
   );

@@ -65,17 +65,16 @@ export function HammingSection() {
       </div>
 
       <p className="hmg-foot">
-        The elegance is that the syndrome isn't a yes/no — it's an address. Three parity bits give 2³ = 8 syndromes:
-        one says "clean," and the other seven name exactly which of the 7 positions to flip, so a single check
-        corrects any single-bit error with the theoretical minimum of redundancy. Push it and you find the honest
-        limit: with a minimum distance of 3 between valid codewords, Hamming(7,4) can correct one error <em>or</em>
-        detect two, but not both, and two flips get silently "corrected" to the wrong word (try flipping two bits
-        above — the syndrome points at an innocent third position). Adding one overall-parity bit gives the (8,4)
-        SECDED code — Single Error Correct, Double Error Detect — and that is exactly what runs on the ECC memory in
-        every server: each 64-bit word carries 8 check bits, silently fixing the single-bit flips that cosmic rays
-        and leaky capacitors cause and flagging the rarer double flips. The same family scales — (72,64) in DRAM,
-        bigger BCH and Reed-Solomon codes on disks, QR codes, and deep-space links — but they all descend from this
-        1950 insight: lay out the parity so the failing checks spell the error's address. (Hamming, BSTJ 1950.)
+        The syndrome isn't a yes/no, it's an address. Three parity bits give 2³ = 8 syndromes: one means clean, the
+        other seven name which of the 7 positions to flip, so a single check corrects any single-bit error with the
+        minimum possible redundancy. The honest limit: with a minimum distance of 3 between valid codewords,
+        Hamming(7,4) corrects one error <em>or</em> detects two, not both, and two flips get silently miscorrected
+        to the wrong word (flip two bits above and the syndrome points at an innocent third position). Add one
+        overall-parity bit and you get the (8,4) SECDED code (Single Error Correct, Double Error Detect), exactly
+        what runs on server ECC memory: each 64-bit word carries 8 check bits, fixing the single-bit flips that
+        cosmic rays and leaky capacitors cause and flagging the rarer doubles. The family scales to (72,64) in DRAM,
+        bigger BCH and Reed-Solomon codes on disks, QR codes, and deep-space links, all descending from Hamming's
+        1950 move: lay out the parity so the failing checks spell the error's address. (Hamming, BSTJ 1950.)
       </p>
     </div>
   );

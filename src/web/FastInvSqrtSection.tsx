@@ -67,18 +67,15 @@ export function FastInvSqrtSection() {
       </div>
 
       <p className="fis-foot">
-        The magic constant isn't magic — it's arithmetic. Writing x = 2<sup>e</sup>(1+m), its integer bit pattern is
-        (E + e)·2²³ + m·2²³ where E=127 is the exponent bias, and that quantity is a piecewise-linear approximation
-        of 2²³·(log₂x + 127). You want log₂(1/√x) = −½·log₂x, so you compute −(i≫1) — the shift halves the log, the
-        minus negates it — and then add back a constant to fix the bias the shift mangled and to re-center the
-        mantissa's linear fit. Optimizing that constant to minimize the worst-case error gives 0x5f3759df (Chris
-        Lomont later showed 0x5f375a86 is very slightly better). The remaining ~3.4% is cleaned up by Newton-
-        Raphson on f(y) = 1/y² − x, whose update happens to need only multiplies — no division — so the whole thing
-        is a handful of cheap integer and float ops. Today it's a historical curiosity: SSE's <code>rsqrtss</code>
-        instruction — shipped on the Pentium III the same year as Quake III (1999) and universal within a few years
-        — does this in hardware in one cycle, more accurately. But it remains the
-        canonical example of the deepest trick in low-level programming — that a float's bits <em>are</em> a
-        number you can do useful arithmetic on. (Quake III, 1999; Lomont 2003.)
+        Read a float's bit pattern as an integer and you get, almost for free, a piecewise-linear approximation of
+        2²³·(log₂x + 127): writing x = 2<sup>e</sup>(1+m), the bits are (E + e)·2²³ + m·2²³ with bias E=127. Since
+        1/√x means −½·log₂x, the code shifts right by one to halve the log and negates it as −(i≫1), then adds a
+        constant that repairs the bias the shift mangled and re-centers the mantissa's linear fit. Optimizing that
+        constant for worst-case error gives 0x5f3759df (Lomont later found 0x5f375a86 a hair better). One
+        Newton-Raphson step on 1/y² − x, all multiplies and no division, cleans the remaining ~3.4%. It is a
+        historical curiosity now: SSE's <code>rsqrtss</code>, shipped on the Pentium III the same year as Quake III
+        (1999), does it in hardware in one cycle and more accurately. What survives is the idea a float's bits
+        <em>are</em> themselves a number you can compute on. (Quake III, 1999; Lomont 2003.)
       </p>
     </div>
   );

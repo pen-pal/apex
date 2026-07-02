@@ -76,19 +76,17 @@ export function Base58Section() {
       <div className="b58-alpha">alphabet: <code>{ALPHABET}</code> <span className="b58-note">(58 chars — no 0, O, I, or l)</span></div>
 
       <p className="b58-foot">
-        The checksum math is worth pausing on: 4 bytes is 32 bits, so a random corruption slips through only with
-        probability 2⁻³² (~1 in 4 billion), and because the checksum is a cryptographic hash of the version and
-        payload, changing any of them — even swapping the version byte to send to the wrong network — invalidates
-        it. That's why you can paste a Bitcoin address with confidence a fat-fingered character won't silently
-        send funds into a black hole (though it's an <em>integrity</em> check, not an <em>authorization</em> one:
-        it stops typos, not an attacker who recomputes the checksum). Base58's downside is real, though — the
-        bignum division makes it slower and it has no fixed byte-to-char ratio, which is why newer Bitcoin
-        addresses use <strong>Bech32</strong> (the <code>bc1…</code> ones): a base-32 encoding with a BCH
-        error-correcting code that not only detects but can <em>locate</em> errors, is case-insensitive, and
-        packs into QR codes more tightly. The same Base58Check envelope wraps WIF private keys and extended keys;
-        IPFS's original content IDs (CIDv0) are Base58 too, before <strong>multibase</strong> CIDv1 made the
-        encoding self-describing. It's a small, human-centered design — optimize the bytes for the eyes and
-        fingers of the person copying them — in a field that usually optimizes for the machine. (Bitcoin
+        The checksum is 4 bytes = 32 bits, so a random corruption slips through with probability 2⁻³² (~1 in 4
+        billion), and because it is a cryptographic hash of the version and payload, changing anything (even
+        swapping the version byte to target the wrong network) invalidates it. That's why a fat-fingered Bitcoin
+        address won't silently send funds into a black hole, though it is an <em>integrity</em> check, not an
+        <em>authorization</em> one: it stops typos, not an attacker who recomputes the checksum. Base58's real
+        downsides, that bignum division is slow and there's no fixed byte-to-char ratio, are why newer addresses
+        use <strong>Bech32</strong> (the <code>bc1…</code> ones): a base-32 encoding with a BCH code that
+        <em>locates</em> errors, is case-insensitive, and packs into QR codes more tightly. The same Base58Check
+        envelope wraps WIF private keys and extended keys, and IPFS's original CIDv0 was Base58 before
+        <strong>multibase</strong> CIDv1 made the encoding self-describing. It's a human-centered choice, optimizing
+        the bytes for the eyes and fingers copying them in a field that usually optimizes for the machine. (Bitcoin
         base58check; BIP 173 Bech32.)
       </p>
     </div>

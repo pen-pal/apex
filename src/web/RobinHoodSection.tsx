@@ -61,20 +61,18 @@ export function RobinHoodSection() {
       </div>
 
       <p className="rbh-foot">
-        The win is variance, not average: Robin Hood doesn't reduce the <em>total</em> probing (the mean distance
-        is identical to plain linear probing for the same keys — the elements occupy the same set of slots), it
-        just redistributes it so no single key is a straggler. That flat distribution is what you want, because
-        lookup cost is bounded by the MAX probe distance, not the mean — and a table's tail latency is set by its
-        unluckiest key. It also enables the <strong>early-exit lookup</strong>: while probing for a key, if you
-        reach a slot whose resident is closer to home than you'd be, your key can't be here (Robin Hood would have
-        evicted that resident to place yours earlier), so you stop without walking the whole cluster. Deletion
-        uses a <strong>backward shift</strong> — pull each following displaced element one slot back toward its
-        home — which keeps the invariant without the tombstones that plague naive open addressing. The costs:
-        insertions do extra swaps (writes), and like all open addressing it degrades sharply past ~90% load, so
-        real implementations resize before then. Variants push further — <strong>hopscotch</strong> hashing keeps
-        each key within a small neighborhood of its home for cache-friendly lookups, and Swiss tables (Abseil,
-        Rust's current <code>HashMap</code>) use SIMD to scan control bytes — but Robin Hood remains a favorite
-        for its simplicity and predictable latency. (Celis, 1986.)
+        Robin Hood doesn't lower the <em>total</em> probing: the mean distance matches plain linear probing, since
+        the same keys occupy the same slots. It redistributes the probing so no key is a straggler, and that flat
+        distribution is the point, because lookup cost is bounded by the MAX probe distance and a table's tail
+        latency is set by its unluckiest key. The even distances also enable the <strong>early-exit lookup</strong>:
+        if you reach a slot whose resident sits closer to home than your key would, your key can't be here (Robin
+        Hood would have evicted that resident first), so you stop without walking the cluster. Deletion uses a
+        <strong>backward shift</strong>, pulling each following displaced element one slot toward home, which keeps
+        the invariant without the tombstones that plague naive open addressing. Costs: insertions do extra swaps,
+        and like all open addressing it degrades sharply past ~90% load, so implementations resize before then.
+        <strong>Hopscotch</strong> hashing keeps each key within a small cache-friendly neighborhood, and Swiss
+        tables (Abseil, Rust's <code>HashMap</code>) SIMD-scan control bytes, but Robin Hood stays a favorite for
+        its simplicity and predictable latency. (Celis, 1986.)
       </p>
     </div>
   );
