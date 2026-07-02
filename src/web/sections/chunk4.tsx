@@ -24,6 +24,7 @@ import { RevocationSection } from '../RevocationSection';
 import { SshSection } from '../SshSection';
 import { CpuSchedSection } from '../CpuSchedSection';
 import { PageWalkSection } from '../PageWalkSection';
+import { PageFaultSection } from '../PageFaultSection';
 import { InodeSection } from '../InodeSection';
 import { MesiSection } from '../MesiSection';
 import { FalseSharingSection } from '../FalseSharingSection';
@@ -75,6 +76,7 @@ export const chunk4: Record<string, SectionEntry> = {
   "ssh": { Component: SshSection, title: <>SSH transport</>, sub: <>How SSH builds an encrypted tunnel before any secret — step the handshake to NEWKEYS, then see host-key trust-on-first-use catch a man-in-the-middle.</> },
   "cpusched": { Component: CpuSchedSection, title: <>CPU scheduling</>, sub: <>One job set, every classic policy. Edit arrivals and bursts, then watch the Gantt chart and the turnaround/waiting/response numbers reveal the trade-offs — the convoy effect, SJF/SRTF minimizing waiting, round-robin trading turnaround for responsiveness.</> },
   "pagewalk": { Component: PageWalkSection, title: <>Page-table walk</>, sub: <>Type a virtual address and watch the MMU translate it: split into four 9-bit table indices plus a 12-bit offset, then chase CR3 → PML4 → PDPT → PD → PT to a physical frame — or hit a not-present entry, fault, and demand-page it in.</> },
+  "pagefault": { Component: PageFaultSection, title: <>How a page fault brings in memory</>, sub: <>What happens when the page-table walk hits a “not present” entry. A narrated walk through demand paging: the trap into the kernel, the handler choosing the page’s source (zero-fill, a file, or swap), filling a physical frame, and re-running the faulting instruction so the access just succeeds. Touch virtual pages yourself and watch hits fly while absent pages fault and load.</> },
   "inode": { Component: InodeSection, title: <>inode &amp; indirect blocks</>, sub: <>How a classic Unix filesystem (ext2/3, FFS) maps a file offset to a disk block. A fixed-size inode holds a dozen direct pointers for small files (one read to the data), then single-, double-, and triple-indirect pointers — blocks of pointers to blocks of pointers — that extend the same tiny inode to address terabytes, at the cost of one extra disk read per level. Pick a block and watch which pointer path reaches it.</> },
   "mesi": { Component: MesiSection, title: <>MESI cache coherence</>, sub: <>Several cores, one shared memory line. Press a core's read or write and watch its cache state move through Modified / Exclusive / Shared / Invalid as the snooping bus invalidates and downgrades the others — and see why false sharing is so costly.</> },
   "falseshare": { Component: FalseSharingSection, title: <>False sharing</>, sub: <>The performance bug where two cores fight over a cache line even though their threads touch different variables. Because caches move memory in 64-byte lines, two counters that happen to share a line ping-pong between cores on every write — no shared data, yet a 10×+ slowdown. Toggle packed vs padded layout and watch the coherence traffic vanish.</> },

@@ -11268,3 +11268,30 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ras-foot{fill:hsl(210 16% 60%);font-size:13px}
 .ras-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
 .ras-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
+
+/* ── Page-fault story (PageFaultSection) — demand paging on the shared .story- dark stage ────────── */
+.pgf-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.pgf-row{fill:hsl(220 18% 20% / .55);stroke:hsl(220 16% 34%);stroke-width:1}
+.pgf-row.sel{stroke:hsl(45 90% 58%)}
+.pgf-row.hit{fill:hsl(150 45% 28% / .5);stroke:hsl(150 70% 52%)}
+.pgf-row.fault{fill:hsl(0 50% 30% / .55);stroke:hsl(0 72% 58%);filter:drop-shadow(0 0 5px hsl(0 65% 50% / .4))}
+.pgf-vp{fill:hsl(210 26% 84%);font-size:14px;font-family:var(--mono,monospace)}
+.pgf-kind{fill:hsl(210 16% 62%);font-size:12.5px;font-family:var(--mono,monospace)}
+.pgf-pte{font-size:13px;font-family:var(--mono,monospace)}
+.pgf-pte.present{fill:hsl(150 60% 62%)}
+.pgf-pte.absent{fill:hsl(0 68% 66%)}
+.pgf-frame{fill:hsl(220 18% 20% / .5);stroke:hsl(220 16% 34%);stroke-width:1}
+.pgf-frame.used{fill:hsl(210 35% 26% / .6);stroke:hsl(210 50% 48%)}
+.pgf-frame.cur{stroke:hsl(150 70% 55%);filter:drop-shadow(0 0 5px hsl(150 60% 50% / .4))}
+.pgf-frame-lbl{fill:hsl(210 22% 78%);font-size:13px;font-family:var(--mono,monospace)}
+.pgf-frame-owner{fill:hsl(210 18% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.pgf-disk{fill:hsl(220 16% 18% / .7);stroke:hsl(220 16% 36%);stroke-width:1.5}
+.pgf-disk-lbl{fill:hsl(210 18% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.pgf-disk-lbl.load{fill:hsl(38 85% 64%)}
+.pgf-foot{fill:hsl(210 16% 60%);font-size:13px}
+.pgf-ctl-lbl{color:var(--muted);font-size:13px;margin-right:2px}
+.pgf-btn{width:30px;height:28px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace);margin-right:3px}
+.pgf-btn.res{border-color:hsl(150 50% 45%)}
+.pgf-btn.sel{background:hsl(45 60% 45% / .2);border-color:hsl(45 90% 58%)}
+.pgf-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:8px}
+.pgf-live.bad{color:hsl(0 75% 64%)}
