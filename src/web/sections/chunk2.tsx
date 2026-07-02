@@ -48,6 +48,7 @@ import { EliasCodeSection } from '../EliasCodeSection';
 import { GorillaSection } from '../GorillaSection';
 import { CobsSection } from '../CobsSection';
 import { ErrorDetectSection } from '../ErrorDetectSection';
+import { BarcodeSection } from '../BarcodeSection';
 import { IdentitySection } from '../IdentitySection';
 import { JwtSection } from '../JwtSection';
 import { AttacksSection } from '../AttacksSection';
@@ -103,6 +104,7 @@ export const chunk2: Record<string, SectionEntry> = {
   "gorilla": { Component: GorillaSection, title: <>Gorilla — time-series compression</>, sub: <>How monitoring systems (Prometheus, InfluxDB) store billions of metric points in a fraction of the space. Timestamps ride on delta-of-delta (regular intervals → one bit); values are XOR'd against the previous point (unchanged or similar → almost no bits). Pick a metric shape and watch a 128-bit-per-sample series collapse — losslessly.</> },
   "cobs": { Component: CobsSection, title: <>COBS — Consistent Overhead Byte Stuffing</>, sub: <>How you frame a raw byte stream so 0x00 can mark the end of a frame — even when the payload contains zeros. COBS removes every zero byte with a tiny, bounded overhead (⌊n/254⌋+1 bytes, never the doubling that escaping risks), leaving 0x00 free as the delimiter. Pick a payload and watch the zeros vanish into code bytes, then decode back exactly.</> },
   "errors": { Component: ErrorDetectSection, title: <>Error control</>, sub: <>How the wire catches — and sometimes repairs — flipped bits, from parity to CRC to Hamming.</> },
+  "barcode": { Component: BarcodeSection, title: <>How a barcode works (UPC check digit)</>, sub: <>The bars are just 12 digits a laser can read, and the last one isn’t data — it’s a mod-10 check digit computed from the other eleven that exists only to catch errors. Real UPC-A encoding (L/R codes + guard bars, 95 modules) and the real formula (odd positions ×3 + even, completed to a multiple of 10); it catches 100% of single-digit errors and adjacent transpositions. Click a digit to change it and watch the code go red, exactly as a scanner would reject it. The same idea as an ISBN, a credit card’s Luhn digit, and every packet checksum.</> },
   "identity": { Component: IdentitySection, title: <>Identity &amp; Auth</>, sub: <>Tokens, one-time codes, and delegated access — how systems prove who you are.</> },
   "jwt": { Component: JwtSection, title: <>JWT &amp; the alg=none attack</>, sub: <>The signed tokens behind most stateless auth: header.payload.signature, base64url-encoded, signed (not encrypted) so anyone can read the claims but only the key holder can forge a valid one. See a real HS256 token built with genuine HMAC-SHA256, toggle a claim to watch the signature change, then forge an alg=none token and watch a naive verifier accept the unsigned forgery while a strict one rejects it.</> },
   "attacks": { Component: AttacksSection, title: <>Attacks, made visible</>, sub: <>Real mechanisms with real numbers — each shown with its defence. For understanding, not harm.</> },
