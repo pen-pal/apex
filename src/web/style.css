@@ -11223,3 +11223,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dbg-reg.dim{fill:hsl(210 14% 56%);font-size:12px}
 .dbg-foot{fill:hsl(210 16% 60%);font-size:13px}
 .dbg-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Ray-tracing story (RaytraceSection) — schematic + real render on the shared .story-* stage ──── */
+.rtr-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.rtr-eye{fill:hsl(200 70% 60%);stroke:hsl(200 80% 72%);stroke-width:1.5}
+.rtr-lbl{fill:hsl(210 20% 74%);font-size:12px;font-family:var(--mono,monospace)}
+.rtr-plane{stroke:hsl(220 16% 45%);stroke-width:1.5;stroke-dasharray:3 3}
+.rtr-sphere{fill:hsl(8 55% 42% / .5);stroke:hsl(8 70% 62%);stroke-width:1.5}
+.rtr-ray{stroke:hsl(190 85% 62%);stroke-width:2}
+.rtr-ray.light{stroke:hsl(45 90% 62%);stroke-dasharray:4 3}
+.rtr-ray.shadowray{stroke:hsl(0 70% 60%)}
+.rtr-ray.refl{stroke:hsl(280 70% 70%)}
+.rtr-arrhead{fill:hsl(190 85% 62%)}
+.rtr-hitpt{fill:hsl(45 100% 66%);stroke:#fff;stroke-width:1}
+.rtr-normal{stroke:hsl(150 70% 60%);stroke-width:1.5}
+.rtr-light{fill:hsl(48 100% 66%);stroke:hsl(48 100% 80%);stroke-width:1.5}
+.rtr-ground{stroke:hsl(220 14% 40%);stroke-width:2}
+.rtr-shadow{fill:hsl(0 0% 0% / .45)}
+.rtr-img{image-rendering:pixelated}
+.rtr-img-frame{fill:none;stroke:hsl(220 18% 40%);stroke-width:1.5}
+.rtr-foot{fill:hsl(210 16% 60%);font-size:13px}
+.rtr-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:8px}
