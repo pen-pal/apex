@@ -1,6 +1,7 @@
 // GENERATED section registry chunk 2 — see sections/registry.tsx. One data row per section: title, sub, component.
 import type { SectionEntry } from './registry';
 import { ChandySection } from '../ChandySection';
+import { LpmSection } from '../LpmSection';
 import { VitSection } from '../VitSection';
 import { SctpSection } from '../SctpSection';
 import { MptcpSection } from '../MptcpSection';
@@ -96,6 +97,7 @@ export const chunk2: Record<string, SectionEntry> = {
   "jwt": { Component: JwtSection, title: <>JWT &amp; the alg=none attack</>, sub: <>The signed tokens behind most stateless auth: header.payload.signature, base64url-encoded, signed (not encrypted) so anyone can read the claims but only the key holder can forge a valid one. See a real HS256 token built with genuine HMAC-SHA256, toggle a claim to watch the signature change, then forge an alg=none token and watch a naive verifier accept the unsigned forgery while a strict one rejects it.</> },
   "attacks": { Component: AttacksSection, title: <>Attacks, made visible</>, sub: <>Real mechanisms with real numbers — each shown with its defence. For understanding, not harm.</> },
   "routing": { Component: RoutingSection, title: <>Routing &amp; paths</>, sub: <>Watch a link-state network compute shortest paths with Dijkstra — and reroute when a link cost changes.</> },
+  "lpm": { Component: LpmSection, title: <>How a router forwards a packet</>, sub: <>Routing protocols learn the routes; this is the split-second data-plane decision that uses them. A narrated walk through longest-prefix match: a packet arrives, several prefixes in the forwarding table match at once, and the most specific (longest) one wins — found fast by walking a trie. Type any destination and watch which port it takes.</> },
   "dns": { Component: DnsJourneySection, title: <>DNS journey</>, sub: <>Follow a name down the delegation hierarchy — root to TLD to authoritative — and see why caching makes it fast.</> },
   "subnet": { Component: SubnetSection, title: <>Subnetting &amp; CIDR</>, sub: <>See where the network ends and the host begins — on the actual bits — then split a block into subnets.</> },
 };
