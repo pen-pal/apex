@@ -11475,3 +11475,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cfi-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--muted);margin-left:4px}
 .cfi-live.ok{color:hsl(150 60% 56%)}
 .cfi-live.bad{color:hsl(0 76% 66%)}
+
+/* ── Padding-oracle guided story (PaddingOracleSection, converted) — plaintext falls right-to-left ── */
+.pdo-s-oracle{fill:hsl(38 82% 64%);font-size:13.5px;font-family:var(--mono,monospace)}
+.pdo-s-eq{fill:hsl(210 22% 74%);font-size:13.5px;font-family:var(--mono,monospace)}
+.pdo-s-rowlbl{fill:hsl(210 16% 58%);font-size:12.5px;font-family:var(--mono,monospace)}
+.pdo-s-pt{fill:hsl(220 18% 22% / .55);stroke:hsl(220 16% 34%);stroke-width:1}
+.pdo-s-pt.got{fill:hsl(150 45% 32% / .5);stroke:hsl(150 55% 50%)}
+.pdo-s-pt.pad{fill:hsl(280 45% 42% / .5);stroke:hsl(280 55% 62%)}
+.pdo-s-pt.focus{fill:hsl(45 60% 40% / .4);stroke:hsl(45 88% 58%);stroke-width:2}
+.pdo-s-char{fill:hsl(210 28% 90%);font-size:16px;font-weight:600;font-family:var(--mono,monospace)}
+.pdo-s-hex{fill:hsl(210 16% 60%);font-size:10px;font-family:var(--mono,monospace)}
+.pdo-s-focus{fill:hsl(45 90% 64%);font-size:11.5px;font-family:var(--mono,monospace)}
+.pdo-s-note{fill:hsl(210 18% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.pdo-s-win{fill:hsl(0 78% 68%);font-size:15px;font-weight:600;font-family:var(--mono,monospace)}
+.pdo-field2{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
+.pdo-field2 input{font-family:var(--mono,monospace);font-size:13px;padding:4px 7px;border-radius:5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:120px}
