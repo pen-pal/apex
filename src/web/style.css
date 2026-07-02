@@ -10697,3 +10697,25 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mgy-verdict.ok{background:hsl(150 50% 45% / .09);border:1px solid hsl(150 50% 45% / .4);color:var(--muted)}
 .mgy-verdict.bad{background:hsl(0 60% 50% / .09);border:1px solid hsl(0 60% 50% / .4)}
 .mgy-verdict b{font-family:var(--mono);color:var(--ink)}
+
+/* ---- 2-SAT ---- */
+.tsat{display:flex;flex-direction:column;gap:13px}
+.tsat-intro,.tsat-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.tsat-intro strong,.tsat-foot strong{color:var(--ink)}
+.tsat-intro em,.tsat-foot em{color:var(--ink);font-style:italic}
+.tsat-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tsat-tab{font:inherit;font-size:12px;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.tsat-tab.on{border-color:var(--accent);background:hsl(212 60% 50% / .12);color:var(--accent);font-weight:600}
+.tsat-formula{display:flex;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.tsat-clause b{color:var(--ink)}
+.tsat-clause:not(:last-child)::after{content:' ∧';color:var(--muted)}
+.tsat-graph{width:100%;max-width:560px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:11px}
+.tsat-edge{fill:none;stroke:var(--muted);stroke-width:1;opacity:.5}
+.tsat-ah{fill:var(--muted)}
+.tsat-nt{font-family:var(--mono);font-size:11px;fill:#fff;font-weight:600}
+.tsat-legend{font-size:10.5px;color:var(--muted)}
+.tsat-verdict{font-size:12.5px;padding:10px 13px;border-radius:9px;line-height:1.5}
+.tsat-verdict.ok{background:hsl(150 50% 45% / .1);border:1px solid hsl(150 50% 45% / .4);color:var(--muted)}
+.tsat-verdict.bad{background:hsl(0 60% 50% / .1);border:1px solid hsl(0 60% 50% / .4);color:var(--muted)}
+.tsat-verdict b{color:var(--ink)}
+.tsat-asn{font-family:var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 6px;margin:0 3px;color:var(--ink)}
