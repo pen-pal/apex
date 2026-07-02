@@ -11148,6 +11148,8 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gc-node.marked{fill:hsl(150 50% 30% / .85);stroke:hsl(150 75% 55%);filter:drop-shadow(0 0 6px hsl(150 65% 50% / .5))}
 .gc-node.dead{fill:hsl(0 45% 26% / .6);stroke:hsl(0 65% 52%);stroke-dasharray:4 3}
 .gc-node-lbl{fill:hsl(210 28% 90%);font-size:16px;font-weight:600;font-family:var(--mono,monospace)}
+.gc-leg{fill:hsl(210 20% 74%);font-size:12.5px;font-family:var(--mono,monospace)}
+.gc-leg.dim{fill:hsl(210 15% 58%);font-size:11.5px}
 .gc-note{fill:hsl(0 72% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
 .gc-foot{fill:hsl(210 16% 60%);font-size:13px}
 .gc-toggle{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px}

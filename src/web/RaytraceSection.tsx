@@ -68,7 +68,7 @@ export function RaytraceSection() {
     ({ key, title, caption, render: () => <RT phase={key} url={key === 'reflect' ? reflStill : still} /> });
 
   const scenes: StoryScene[] = [
-    scene('idea', 'Trace the light backwards', 'To turn a 3D scene into a 2D image, shoot a ray from the eye through each pixel and ask: what does it hit, and what colour is that point? It is light simulated in reverse — from the eye out into the scene, one ray per pixel.'),
+    scene('idea', 'Trace the light backwards', 'Real light leaves a lamp, bounces around the scene, and only a sliver of it ever lands in your eye — simulating all of it forward would waste almost everything. So ray tracing runs it in reverse: start at the eye, send one ray out through each pixel, and follow only the light that actually reaches you.'),
     scene('hit', 'Find the nearest hit', 'For one ray, test it against every object and keep the closest intersection. Solving where a line meets a sphere is a quadratic; a plane is one division. The nearest hit is what is visible at that pixel; everything behind it is blocked.'),
     scene('shade', 'Shade by the light', 'Colour the hit point by how it faces the light: a surface pointing straight at the light is bright, one turned away is dark. Brightness follows the cosine of the angle between the surface normal and the direction to the light.'),
     scene('shadow', 'Shadows for free', 'From the hit point, shoot a second ray toward the light. If it strikes another object first, the light is blocked and the point is in shadow. That single extra ray is why ray tracing gets real, sharp shadows almost for nothing.'),

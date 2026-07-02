@@ -71,6 +71,12 @@ function Heap({ phase, dropB, mode }: { phase: Phase; dropB: boolean; mode: Mode
       {/* roots */}
       <rect x="340" y="56" width="200" height="44" rx="8" className={`gc-roots ${on('roots') ? 'hot' : ''}`} />
       <text x="440" y="83" className="gc-roots-lbl" textAnchor="middle">roots: stack · globals</text>
+      {/* legend + label so the objects and colours read without the captions */}
+      <text x="46" y="150" className="gc-leg dim">objects on the heap:</text>
+      <circle cx="56" cy="176" r="8" className="gc-node marked" />
+      <text x="72" y="181" className="gc-leg">reachable — kept</text>
+      <circle cx="56" cy="204" r="8" className="gc-node dead" />
+      <text x="72" y="209" className="gc-leg">unreachable — freed</text>
       {/* edges */}
       {edges.map(([f, t], i) => {
         const a = ptOf(f), b = ptOf(t);
