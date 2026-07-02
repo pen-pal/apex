@@ -11770,3 +11770,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dif-pick{font-size:12.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .dif-pick.on{background:hsl(210 55% 45% / .22);border-color:hsl(210 70% 58%)}
 .dif-live{color:var(--muted);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Backprop story (BackpropSection) — 2-2-1 net, forward values + backward gradients + loss curve ── */
+.nn-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.nn-edge{stroke:hsl(210 45% 60%)}
+.nn-node{fill:hsl(220 30% 26%);stroke:hsl(210 45% 55%);stroke-width:1.5}
+.nn-node.in{fill:hsl(200 40% 28%);stroke:hsl(200 55% 58%)}
+.nn-node.out{fill:hsl(150 40% 28%);stroke:hsl(150 55% 55%)}
+.nn-val{fill:hsl(200 80% 82%);font-size:14px;font-family:var(--mono,monospace)}
+.nn-nlbl{fill:hsl(210 16% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.nn-grad{fill:hsl(30 90% 64%);font-size:11px;font-family:var(--mono,monospace)}
+.nn-target{fill:hsl(150 60% 62%);font-size:13px;font-family:var(--mono,monospace)}
+.nn-flow{fill:hsl(30 85% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.nn-loss{fill:hsl(45 88% 66%);font-size:15px;font-family:var(--mono,monospace)}
+.nn-spark{stroke:hsl(45 88% 60%);stroke-width:2}
+.nn-sparklbl{fill:hsl(210 16% 60%);font-size:11px;font-family:var(--mono,monospace)}
+.nn-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.nn-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid hsl(210 60% 50%);background:hsl(210 55% 45% / .2);color:var(--ink);cursor:pointer}
+.nn-btn.ghost{border-color:var(--line);background:var(--panel)}
+.nn-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
+.nn-foot{fill:hsl(210 16% 60%);font-size:13px}
