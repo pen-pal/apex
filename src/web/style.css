@@ -10978,3 +10978,25 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lpm-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
 .lpm-live-note b{color:hsl(150 55% 46%)}
 @media(prefers-reduced-motion:reduce){.lpm-flow{animation:none;opacity:.6}}
+
+/* ── IEEE-754 float story (FloatSection) — on the shared .story-* dark stage ─────────────────────── */
+.flt-flbl{font-size:12.5px;font-family:var(--mono,monospace)}
+.flt-flbl.sign{fill:hsl(200 85% 64%)}
+.flt-flbl.exp{fill:hsl(38 88% 62%)}
+.flt-flbl.mant{fill:hsl(150 70% 60%)}
+.flt-bit{stroke-width:1}
+.flt-bit.sign{fill:hsl(200 45% 26% / .7);stroke:hsl(200 70% 50%)}
+.flt-bit.exp{fill:hsl(38 45% 26% / .7);stroke:hsl(38 70% 50%)}
+.flt-bit.mant{fill:hsl(150 40% 24% / .7);stroke:hsl(150 60% 46%)}
+.flt-bit.hot{filter:drop-shadow(0 0 4px hsl(45 80% 55% / .5));stroke-width:1.5}
+.flt-bit-txt{fill:hsl(210 25% 88%);font-size:13px;font-family:var(--mono,monospace)}
+.flt-formula{fill:hsl(210 26% 86%);font-size:19px;font-family:var(--mono,monospace)}
+.flt-mid{fill:hsl(210 18% 66%);font-size:13.5px;font-family:var(--mono,monospace)}
+.flt-value{fill:hsl(150 75% 62%);font-size:18px;font-weight:600;font-family:var(--mono,monospace)}
+.flt-value.inexact{fill:hsl(0 78% 66%)}
+.flt-bug{fill:hsl(0 80% 68%);font-size:17px;font-weight:600;font-family:var(--mono,monospace)}
+.flt-foot{fill:hsl(210 16% 60%);font-size:13px}
+.flt-live-lbl{color:var(--muted);font-size:13px}
+.flt-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:130px}
+.flt-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
+.flt-live-note b{color:hsl(150 55% 50%)}
