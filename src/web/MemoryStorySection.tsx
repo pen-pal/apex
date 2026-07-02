@@ -23,6 +23,10 @@ export function MemoryStorySection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>Your computer’s main memory is billions of near-identical cells, and each one stores a single bit as a tiny electric charge held on a capacitor — charged means 1, empty means 0 — with one transistor acting as the gate that lets you read or write it. Everything above that (the rows, the banks, the chips, the stick you plug in) is just this one cell wired up and repeated. The tour zooms from the whole module down to that single capacitor so the scale stops being abstract.</>,
+        takeaway: <>Because a bit is charge on a <em>leaky</em> capacitor, it drains away in milliseconds, so the chip must read and rewrite every row thousands of times a second — that constant refresh is the “dynamic” in DRAM, and the reason it burns power even when idle. One transistor per bit is what makes RAM cheap and enormous; the six-transistor SRAM cell holds its bit in a feedback loop with no leak and no refresh, which is why your cache is fast but measured in megabytes while RAM is gigabytes.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <button type="button" className={charge === 'one' ? 'on' : ''} onClick={() => setCharge('one')}>write 1</button>

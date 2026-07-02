@@ -12,10 +12,13 @@ export interface StoryScene {
   render: (active: boolean) => ReactNode;
 }
 
-export function GuidedStory({ scenes, controls, aspect = '900 / 480', autoMs = 5200 }: {
+export function GuidedStory({ scenes, controls, explain, aspect = '900 / 480', autoMs = 5200 }: {
   scenes: StoryScene[];
   /** interactive controls for the current scene index (return null to show none) — the section owns their state */
   controls?: (scene: number) => ReactNode;
+  /** the written explanation that carries the understanding: a framing "idea" (above) and a "takeaway" (below), so a
+   *  reader learns from the words even without watching the animation. Every story should supply this. */
+  explain?: { idea: ReactNode; takeaway: ReactNode };
   aspect?: string;
   autoMs?: number;
 }) {
@@ -37,6 +40,7 @@ export function GuidedStory({ scenes, controls, aspect = '900 / 480', autoMs = 5
 
   return (
     <div className="story">
+      {explain && <p className="story-idea"><span className="story-idea-lbl">The idea</span>{explain.idea}</p>}
       <div className="story-stage" style={{ aspectRatio: aspect }} role="img" aria-label={`${cur.title}. ${typeof cur.caption === 'string' ? cur.caption : ''}`}>
         {scenes.map((sc, i) => (
           <div key={sc.key} className={`story-scene ${i === scene ? 'active' : i < scene ? 'past' : 'future'}`} aria-hidden={i !== scene}>
@@ -62,6 +66,8 @@ export function GuidedStory({ scenes, controls, aspect = '900 / 480', autoMs = 5
           {scenes.map((sc, i) => <button key={sc.key} type="button" className={`story-dot ${i === scene ? 'on' : ''}`} onClick={() => go(i)} aria-label={sc.title} title={sc.title} />)}
         </div>
       </div>
+
+      {explain && <div className="story-takeaway"><span className="story-take-lbl">Takeaway</span>{explain.takeaway}</div>}
     </div>
   );
 }

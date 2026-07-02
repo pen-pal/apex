@@ -39,6 +39,10 @@ export function CpuCycleSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>A CPU has no concept of a “program.” It only repeats one loop, forever: read the next instruction from memory, work out what it means, do it, save the result, and move to the next. A program counter holds the address of the next instruction; every app, game, and operating system is this loop run billions of times a second. The story walks a single instruction through the datapath — memory, registers, ALU — then lets you run a tiny three-instruction program by hand.</>,
+        takeaway: <>Fetch → decode → execute → writeback, one step per stage, with the program counter advancing to thread them together. A processor goes faster two ways: raising the clock (more loops per second), and overlapping the stages so several instructions are in flight at once — that overlap is <em>pipelining</em>, its own story. The key thing to hold onto is that there is nothing beneath this loop; it is the floor that everything else in computing is built on.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="cpu-live-lbl">run the program:</span>

@@ -25,6 +25,10 @@ export function TlsFlowSection() {
   return (
     <GuidedStory
       scenes={scenes}
+      explain={{
+        idea: <>You want to send your bank a password across the open internet, where every router, Wi-Fi point, and ISP on the path can read whatever crosses the wire — and you have never met the bank to agree on a secret code first. TLS builds a private, authenticated channel over that untrusted path anyway. The story walks the TLS 1.3 handshake from the eavesdropper’s point of view, so you can see exactly what leaks and what stays safe.</>,
+        takeaway: <>It solves three problems at once. <em>Who are you talking to?</em> — the server’s certificate, signed by a Certificate Authority the browser trusts, proves it really owns the domain. <em>How do you share a key over a tapped line?</em> — ECDHE has both sides mix their own private value with the other’s public value to derive the identical secret, while only the public values ever cross the wire, so a listener can’t reconstruct it. <em>How do you stay private?</em> — that secret keys the encryption, turning your data into opaque ciphertext. Defeat any one and the channel is no longer both private and trustworthy.</>,
+      }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <span className="tls-live-lbl">send over the secure channel:</span>
