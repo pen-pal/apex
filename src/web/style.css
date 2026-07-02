@@ -11321,3 +11321,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bof-btn{font-size:13px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:5px}
 .bof-btn.danger{border-color:hsl(0 50% 50% / .5)}
 .bof-len{font-family:var(--mono,monospace);font-size:12.5px;color:var(--muted)}
+
+/* ── NX/DEP story (NxSection) — a virtual-memory map with R/W/X page permissions ──────────────── */
+.nx-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.nx-seg{stroke-width:1.5}
+.nx-seg.code{fill:hsl(150 40% 40% / .16);stroke:hsl(150 45% 48%)}
+.nx-seg.data{fill:hsl(210 40% 45% / .16);stroke:hsl(210 45% 52%)}
+.nx-seg.fault{fill:hsl(0 60% 45% / .2);stroke:hsl(0 72% 58%);filter:drop-shadow(0 0 6px hsl(0 65% 50% / .4))}
+.nx-seg.run{fill:hsl(150 55% 42% / .22);stroke:hsl(150 65% 52%);filter:drop-shadow(0 0 6px hsl(150 55% 45% / .4))}
+.nx-seg-name{fill:hsl(210 26% 86%);font-size:14.5px;font-weight:600;font-family:var(--mono,monospace)}
+.nx-seg-addr{fill:hsl(210 16% 58%);font-size:11.5px;font-family:var(--mono,monospace)}
+.nx-seg-sc{fill:hsl(300 70% 72%);font-size:12.5px;font-family:var(--mono,monospace)}
+.nx-seg-note{fill:hsl(210 16% 62%);font-size:11.5px;font-family:var(--mono,monospace)}
+.nx-perm{stroke-width:1}
+.nx-perm.on{fill:hsl(210 45% 45% / .5);stroke:hsl(210 50% 58%)}
+.nx-perm.x{fill:hsl(150 55% 40% / .55);stroke:hsl(150 60% 52%)}
+.nx-perm.off{fill:hsl(220 15% 26% / .5);stroke:hsl(220 14% 36%)}
+.nx-perm-t{font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
+.nx-perm-t.on{fill:#fff}
+.nx-perm-t.off{fill:hsl(220 12% 44%)}
+.nx-cpu{fill:hsl(210 18% 64%);font-size:12.5px;font-family:var(--mono,monospace)}
+.nx-cpu-addr{fill:hsl(45 90% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.nx-jump{stroke:hsl(45 85% 60%);stroke-width:2;stroke-dasharray:4 3}
+.nx-arrhead{fill:hsl(45 85% 60%)}
+.nx-outcome{font-size:13px;font-family:var(--mono,monospace)}
+.nx-outcome.ok{fill:hsl(150 60% 58%)}
+.nx-outcome.bad{fill:hsl(0 75% 66%)}
+.nx-outcome.pivot{fill:hsl(38 88% 62%)}
+.nx-foot{fill:hsl(210 16% 60%);font-size:13px}
+.nx-toggle{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:10px}
+.nx-live{font-size:12.5px;font-family:var(--mono,monospace)}
+.nx-live.ok{color:hsl(150 55% 55%)}
+.nx-live.bad{color:hsl(0 75% 66%)}

@@ -28,6 +28,7 @@ import { KaminskySection } from '../KaminskySection';
 import { PaxosSection } from '../PaxosSection';
 import { WebInjectSection } from '../WebInjectSection';
 import { BufferOverflowSection } from '../BufferOverflowSection';
+import { NxSection } from '../NxSection';
 import { DhKexSection } from '../DhKexSection';
 import { CrcWalkSection } from '../CrcWalkSection';
 import { SnowflakeSection } from '../SnowflakeSection';
@@ -80,6 +81,7 @@ export const chunk0: Record<string, SectionEntry> = {
   "paxos": { Component: PaxosSection, title: <>Paxos consensus</>, sub: <>How distributed nodes agree on one value despite competing proposers and failures. Step through Prepare/Promise/Accept/Accepted and watch the safety rule that makes a chosen value impossible to override.</> },
   "webinject": { Component: WebInjectSection, title: <>Injection — SQLi &amp; XSS</>, sub: <>The most common web vulnerability class, made concrete: see the same payload pop a query built by string concatenation and a page built by raw HTML, then go inert against parameterization and escaping.</> },
   "bufferoverflow": { Component: BufferOverflowSection, title: <>How a buffer overflow hijacks a program</>, sub: <>The foundational binary exploit, shown byte by byte on a simulated stack frame: an unbounded copy writes past a fixed buffer, over the saved frame pointer, into the return address — so the function returns to an address you chose. A narrated walk from the overflow to a control-flow hijack to shellcode. Type input and watch it spill over the return address. Defenses (NX, ASLR, canaries) are the next stories.</> },
+  "nxbit": { Component: NxSection, title: <>How NX / DEP stops your shellcode</>, sub: <>The first mitigation in the exploitation arms race. The overflow still overwrites the return address, but every memory page now carries an execute bit and the stack is marked writable-but-not-executable (W^X) — so the jump into your shellcode faults instead of running. A walk through page permissions, the fault, and why it forces attackers to reuse existing code (return-to-libc / ROP). Toggle NX and watch the same overflow run or die.</> },
   "dhkex": { Component: DhKexSection, title: <>Diffie–Hellman key agreement</>, sub: <>Two strangers agree on a shared secret over a fully public channel while an eavesdropper watches every byte. The keystone behind TLS, SSH, WireGuard, and the Signal ratchet.</> },
   "crc32": { Component: CrcWalkSection, title: <>CRC-32 shift-register walk</>, sub: <>The checksum on every Ethernet frame, gzip stream, and PNG — watch the 32-bit register fold in each byte, expand the bit-level shifts, and flip one bit to see the whole checksum change.</> },
   "snowflake": { Component: SnowflakeSection, title: <>Snowflake IDs</>, sub: <>How a thousand servers mint unique, time-sortable 64-bit IDs without ever coordinating. Watch the four bit-fields and generate a burst to see the per-millisecond sequence climb.</> },
