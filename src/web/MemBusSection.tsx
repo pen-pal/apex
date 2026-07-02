@@ -54,15 +54,14 @@ export function MemBusSection() {
       </div>
 
       <p className="mbus-foot">
-        Two ideas fall out of this. First, memory-mapped I/O: because a device is chosen by an address range just
-        like RAM, the CPU drives a screen, keyboard, or disk controller with the same load/store instructions it
-        uses for memory — writing a byte to <code>0xC020</code> might set a pixel, reading <code>0xC000</code>
-        might return the last key. No special I/O opcodes. Second, the decoder can be as coarse or fine as you
-        like: use fewer high bits and a device answers a huge range (and the same registers alias at many
-        addresses, which is why old machines had memory that "mirrored"); use more bits and you carve out a
-        precise window. The chosen chip then runs its own internal decode — for DRAM, the offset splits further
-        into bank, row, and column. So a single load threads two decoders: one across chips on the bus, one inside
-        the chip that answers. (Classic 6502/Z80 memory maps; the 74x138 decoder.)
+        Two things follow. Memory-mapped I/O: since a device is chosen by an address range just like RAM, the CPU
+        drives a screen or disk with the same load/store instructions it uses for memory. Write a byte to
+        <code>0xC020</code> to set a pixel, read <code>0xC000</code> for the last key, no special I/O opcodes. And
+        the decoder can be coarse or fine: fewer high bits and a device answers a huge range (its registers
+        aliasing at many addresses, the "mirrored" memory of old machines); more bits and you carve a precise
+        window. The selected chip then runs its own internal decode, and for DRAM the offset splits again into
+        bank, row, and column. So one load threads two decoders: one across chips on the bus, one inside the chip
+        that answers. (Classic 6502/Z80 memory maps; the 74x138 decoder.)
       </p>
     </div>
   );
