@@ -12096,3 +12096,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .nbd-foot{fill:hsl(210 16% 60%);font-size:13px}
 .nbd-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
 .nbd-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Karplus-Strong story (KarplusStrongSection) — delay-line buffer + decaying plucked waveform ──── */
+.kps-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.kps-lbl2{fill:hsl(210 18% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.kps-samp{stroke:hsl(280 55% 66%);stroke-width:1.5}
+.kps-axis{stroke:hsl(220 16% 38%);stroke-width:1}
+.kps-loop{stroke:hsl(38 70% 56% / .6);stroke-width:1.5;stroke-dasharray:4 3}
+.kps-note{fill:hsl(38 80% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.kps-wave{stroke:hsl(150 65% 56%);stroke-width:1.25}
+.kps-foot{fill:hsl(210 16% 60%);font-size:13px}
+.kps-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.kps-btn{font-size:13px;padding:6px 16px;border-radius:6px;border:1px solid hsl(280 55% 56%);background:hsl(280 50% 45% / .25);color:var(--ink);cursor:pointer}
+.kps-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
