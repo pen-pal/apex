@@ -9,6 +9,7 @@ import { HttpThreeSection } from '../HttpThreeSection';
 import { GrpcSection } from '../GrpcSection';
 import { WebSocketSection } from '../WebSocketSection';
 import { TlsDowngradeSection } from '../TlsDowngradeSection';
+import { TlsFlowSection } from '../TlsFlowSection';
 import { PasswordHashSection } from '../PasswordHashSection';
 import { ShamirSection } from '../ShamirSection';
 import { EnvelopeSection } from '../EnvelopeSection';
@@ -59,6 +60,7 @@ export const chunk4: Record<string, SectionEntry> = {
   "grpc": { Component: GrpcSection, title: <>gRPC &amp; protobuf</>, sub: <>Build a request and watch it become protobuf bytes (tag/varint/length), get the gRPC length prefix, and ride an HTTP/2 stream's DATA frame with a trailing grpc-status.</> },
   "websocket": { Component: WebSocketSection, title: <>WebSocket</>, sub: <>Upgrade HTTP into a full-duplex channel — compute the Sec-WebSocket-Accept challenge, then build masked frames byte by byte.</> },
   "tlsdowngrade": { Component: TlsDowngradeSection, title: <>TLS downgrade</>, sub: <>The ClientHello offers cipher suites before any encryption exists — watch an attacker strip the strong ones to force a breakable suite, then defend with the handshake transcript MAC.</> },
+  "tlsflow": { Component: TlsFlowSection, title: <>How HTTPS secures a connection</>, sub: <>A narrated walk through the TLS 1.3 handshake over an open channel, from the eavesdropper’s point of view: the hellos and key shares are in the clear, the certificate proves who you are talking to, ECDHE derives a shared secret that is never sent, and application data becomes ciphertext Eve cannot read. Type a message and watch it turn to bytes.</> },
   "pwhash": { Component: PasswordHashSection, title: <>Password hashing</>, sub: <>Beyond salt and iterations — see why memory-hardness (scrypt, Argon2) is what actually defeats GPU/ASIC cracking, with a live attacker-cost comparison.</> },
   "shamir": { Component: ShamirSection, title: <>Shamir Secret Sharing</>, sub: <>Split a secret across n shares so any k reconstruct it and k−1 reveal nothing — gather shares and watch the vault open exactly at the threshold.</> },
   "envelope": { Component: EnvelopeSection, title: <>Envelope encryption (KMS)</>, sub: <>How cloud KMS encrypts data at scale without ever exposing the master key. A fresh Data Encryption Key (DEK) encrypts your data; a Key-Encryption Key (KEK) that lives only in the KMS wraps the DEK. Watch rotating the master key re-wrap only the tiny DEK — the ciphertext (your terabytes) is never touched.</> },
