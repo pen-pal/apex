@@ -11668,3 +11668,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mp3-foot{fill:hsl(210 16% 60%);font-size:13px}
 .mp3-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
 .mp3-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Kalman filter story (KalmanSection) — position/time plot: truth, noisy sensor, fused estimate ── */
+.klm-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.klm-axis{stroke:hsl(220 16% 40%);stroke-width:1}
+.klm-tick{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.klm-band{fill:hsl(38 70% 55% / .13)}
+.klm-true{stroke:hsl(150 60% 52%);stroke-width:2}
+.klm-meas{fill:hsl(210 16% 62% / .8)}
+.klm-est{stroke:hsl(38 90% 60%);stroke-width:2.2}
+.klm-pred{fill:none;stroke:hsl(200 70% 62%);stroke-width:2;stroke-dasharray:2 2}
+.klm-mfocus{fill:hsl(210 30% 78%);stroke:#fff;stroke-width:1}
+.klm-efocus{fill:hsl(38 95% 60%);stroke:#fff;stroke-width:1.5}
+.klm-resid{stroke:hsl(0 60% 62%);stroke-width:1.5;stroke-dasharray:3 2}
+.klm-lbl{fill:hsl(210 22% 76%);font-size:11.5px;font-family:var(--mono,monospace)}
+.klm-lbl.est{fill:hsl(38 88% 66%)}
+.klm-foot{fill:hsl(210 16% 60%);font-size:13px}
+.klm-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px;margin-right:8px}
+.klm-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
