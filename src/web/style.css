@@ -11725,3 +11725,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .otp-foot{fill:hsl(210 16% 60%);font-size:13px}
 .otp-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
 .otp-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Rust ownership story (RustOwnershipSection) — code + borrow-checker verdict ──────────────────── */
+.own-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.own-line{fill:hsl(220 18% 20% / .5);stroke:hsl(220 16% 30%);stroke-width:1}
+.own-line.bad{fill:hsl(0 55% 34% / .4);stroke:hsl(0 70% 58%);stroke-width:1.5}
+.own-code{fill:hsl(210 26% 86%);font-size:15px;font-family:var(--mono,monospace)}
+.own-comment{fill:hsl(150 40% 56%);font-size:13px;font-family:var(--mono,monospace)}
+.own-comment.bad{fill:hsl(0 72% 68%)}
+.own-verdict{stroke-width:1.5}
+.own-verdict.ok{fill:hsl(150 45% 28% / .3);stroke:hsl(150 55% 48%)}
+.own-verdict.bad{fill:hsl(0 55% 32% / .35);stroke:hsl(0 70% 56%)}
+.own-vlbl{font-size:16px;font-weight:600;font-family:var(--mono,monospace)}
+.own-vlbl.ok{fill:hsl(150 62% 58%)}
+.own-vlbl.bad{fill:hsl(0 76% 66%)}
+.own-vwhy{fill:hsl(210 22% 76%);font-size:13px;font-family:var(--mono,monospace)}
+.own-foot{fill:hsl(210 16% 60%);font-size:13px}
+.own-ctl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.own-pick{font-size:12.5px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.own-pick.on{background:hsl(28 60% 45% / .22);border-color:hsl(28 85% 58%)}
