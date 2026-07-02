@@ -1,0 +1,19 @@
+# Runs the full test suite on every push and PR, so "tests passing" is a measured fact, not a hardcoded badge.
+name: tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run test:run
+      - run: npm run stats

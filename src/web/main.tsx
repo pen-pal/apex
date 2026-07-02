@@ -5,9 +5,7 @@
 // Everything derives from real bytes; nothing is faked.
 import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Analytics } from '@vercel/analytics/react';
 import { initAnalytics, trackSection, trackDwell, trackInteraction } from './analytics';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ProtocolRegistry } from '../core/registry';
 import { registerCoreProtocols } from '../protocols';
 import { buildFrame } from '../core/builder';
@@ -4069,9 +4067,5 @@ function App() {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
-    {/* Vercel web analytics + Core Web Vitals. No-ops off Vercel (the beacon endpoint just 404s on
-        GitHub Pages), so the dual-host setup stays clean. */}
-    <Analytics />
-    <SpeedInsights />
   </StrictMode>,
 );

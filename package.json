@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A live, interactive way to see how computers actually work — ~275 correctness-first, tested visualizations across networking, cryptography, distributed systems, databases, algorithms, and OS internals. Real bytes, real checksums, real crypto.",
+  "description": "A live, interactive way to see how computers actually work — 334 correctness-first, tested visualizations across networking, cryptography, distributed systems, databases, algorithms, hardware, and OS internals. Real bytes, real checksums, real crypto.",
   "homepage": "https://pen-pal.github.io/apex",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "demo": "tsx src/main.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "stats": "node scripts/stats.mjs"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
@@ -25,8 +26,6 @@
     "vitest": "^2.0.3"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/speed-insights": "^2.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

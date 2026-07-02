@@ -4,21 +4,21 @@
 
 ### See how computers *actually* work — live, in your browser
 
-**~275 hands-on, correctness-first visualizations** you can poke, drag, and break — spanning networking,
-cryptography, transport & the web, distributed systems, databases, algorithms, and OS internals.
+**334 hands-on, correctness-first visualizations** you can poke, drag, and break — spanning networking,
+cryptography, transport & the web, distributed systems, databases, algorithms, hardware, and OS internals.
 Not static diagrams you have to synchronize in your head. Real bytes, real checksums, real crypto.
+<br><sub>(Counts are measured, not asserted — run <code>npm run stats</code>; CI runs the full suite on every push.)</sub>
 
 <br>
 
 [![Live demo](https://img.shields.io/badge/▶_Live_demo-pen--pal.github.io%2Fapex-2563eb?style=for-the-badge)](https://pen-pal.github.io/apex)
 
-[![Tests](https://img.shields.io/badge/tests-2510_passing-1a7f37?style=flat-square)](#)
-[![Sections](https://img.shields.io/badge/sections-~275-8250df?style=flat-square)](#whats-inside)
+[![tests](https://github.com/pen-pal/apex/actions/workflows/test.yml/badge.svg)](https://github.com/pen-pal/apex/actions/workflows/test.yml)
+[![Sections](https://img.shields.io/badge/sections-334-8250df?style=flat-square)](#whats-inside)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](#license)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white)](#)
 [![React](https://img.shields.io/badge/React-149eca?style=flat-square&logo=react&logoColor=white)](#)
 [![Vite](https://img.shields.io/badge/Vite-646cff?style=flat-square&logo=vite&logoColor=white)](#)
-[![CodeQL](https://img.shields.io/badge/CodeQL-enabled-0a7?style=flat-square&logo=github)](.github/workflows/codeql.yml)
 
 <br>
 
@@ -42,12 +42,16 @@ no faked outputs.
 > 🧩 **A protocol is data, not code.** The network dissector reads a small `ProtocolSpec` per protocol, so
 > adding one is adding a file — never rewriting the engine.
 >
-> ✅ **Every model is verified.** Each section ships a pure, framework-free model with its own test suite,
-> checked against the RFC / paper / reference implementation — not against its own output.
+> ✅ **Every model is tested; most are anchored to something external.** Each section ships a pure,
+> framework-free model with its own test suite. Where a ground truth exists — a published crypto vector, an
+> RFC field layout, a real capture, or a brute-force/reference computation — the test checks against *that*,
+> not the model's own output. Where none exists (many distributed-systems, OS, and SRE topics have no
+> byte-exact answer) the tests assert invariants and known behaviours instead. About a third of the test
+> files cite an external anchor directly; the rest lean on brute-force references and property checks.
 
 ## What's inside
 
-**~275 interactive sections across 10 areas** — plus **guided journeys** (curated end-to-end walks like
+**334 interactive sections across 10 areas** — plus **guided journeys** (curated end-to-end walks like
 *"How an HTTPS page loads"*, *"Inside the CPU"*, *"Build a database"*) and a global filterable catalog with
 a **dark-mode** toggle.
 
@@ -71,7 +75,7 @@ a **dark-mode** toggle.
 ```bash
 npm install
 npm run dev             # start the UI at http://localhost:5173
-npm run test:run        # run the full test suite (2500+ tests)
+npm run test:run        # run the full test suite (2,858 tests)
 npm run typecheck       # tsc --noEmit
 npm run demo            # CLI: build a real frame from "Hi" and dissect it back
 npm run demo -- "GET /" # try your own message
@@ -87,23 +91,24 @@ proving nothing is faked.
 src/core/        the generic dissection engine (types, bit reader, checksums, dissect, build)
 src/protocols/   the DATA: one ProtocolSpec per protocol — adding a protocol is a file here
 src/web/         the React UI — one tested model (.ts) + one view (*Section.tsx) per topic
-tests/           vitest — every protocol and every model ships an anchored test
+tests/           vitest — every model ships a test; most are anchored to a reference, some to invariants
 docs/            architecture.md · protocol-spec.md · views.md
 ```
 
 Each non-network section follows the same shape: a **pure, dependency-free model** in `src/web/<topic>.ts`
-(with `tests/<topic>.test.ts` anchored to the reference), a **view** in `src/web/<Topic>Section.tsx`, and one
-line of wiring. Models never import React, so they run in the CLI and the browser alike.
+(with `tests/<topic>.test.ts` — anchored to a reference where one exists), a **view** in `src/web/<Topic>Section.tsx`, and a few lines of
+wiring in `main.tsx` (import, a `section` union member, and a render block — the one part that is still a large
+hand-maintained file). Models never import React, so they run in the CLI and the browser alike.
 
 **Stack:** TypeScript + React + Vite, tested with [vitest](https://vitest.dev) — a fully static, client-side
-app with no backend (the engine and crypto run in the browser). CI runs the test suite and **CodeQL** code
-scanning on every push and PR; a deploy workflow publishes to GitHub Pages.
+app with no backend (the engine and crypto run in the browser). CI runs the full test suite on every push and PR; a deploy workflow publishes to GitHub Pages.
 
 ## Contributing
 
 The bar is simple and strict: a new section is a **tested model + a view**, and the model is validated against
-the source of truth (an RFC, a paper, a published test vector, or a brute-force reference) — never against
-itself. Keep `src/core/` free of protocol-specific knowledge so the engine stays generic. See
+an external source of truth where one exists (an RFC, a paper, a published test vector, or a brute-force
+reference); where none does, it is checked for invariants and known behaviour. Never circularly against its
+own output. Keep `src/core/` free of protocol-specific knowledge so the engine stays generic. See
 [`docs/protocol-spec.md`](docs/protocol-spec.md) to add a protocol and
 [`docs/architecture.md`](docs/architecture.md) for the design.
 
