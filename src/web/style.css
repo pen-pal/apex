@@ -12109,3 +12109,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .kps-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .kps-btn{font-size:13px;padding:6px 16px;border-radius:6px;border:1px solid hsl(280 55% 56%);background:hsl(280 50% 45% / .25);color:var(--ink);cursor:pointer}
 .kps-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── Double pendulum story (DoublePendulumSection) — two chaotic pendulums diverging ──────────────── */
+.dp-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.dp-trail{stroke-width:1.25;opacity:.5}
+.dp-trail.a{stroke:hsl(205 70% 60%)}
+.dp-trail.b{stroke:hsl(30 85% 60%)}
+.dp-rod{stroke-width:2.5;stroke-linecap:round}
+.dp-rod.a{stroke:hsl(205 60% 62%)}
+.dp-rod.b{stroke:hsl(30 75% 60%)}
+.dp-bob.a{fill:hsl(205 75% 66%)}
+.dp-bob.b{fill:hsl(30 85% 62%)}
+.dp-piv{fill:hsl(210 20% 78%)}
+.dp-en{fill:hsl(150 55% 64%);font-size:13px;font-family:var(--mono,monospace)}
+.dp-foot{fill:hsl(210 16% 60%);font-size:13px}
+.dp-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.dp-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid hsl(205 55% 55%);background:hsl(205 50% 45% / .2);color:var(--ink);cursor:pointer}
+.dp-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.dp-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
