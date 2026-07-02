@@ -11981,3 +11981,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gry-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
 .gry-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid hsl(150 50% 48%);background:hsl(150 45% 40% / .2);color:var(--ink);cursor:pointer}
 .gry-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Goertzel story (GoertzelSection) — DTMF keypad + per-frequency detector bank ─────────────────── */
+.gz-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.gz-key{fill:hsl(220 22% 26%);stroke:hsl(220 18% 40%);stroke-width:1}
+.gz-key.on{fill:hsl(150 45% 34%);stroke:hsl(150 60% 56%);stroke-width:2}
+.gz-keyt{fill:hsl(210 30% 90%);font-size:20px;font-family:var(--mono,monospace)}
+.gz-frq{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.gz-form{fill:hsl(45 85% 68%);font-size:15px;font-family:var(--mono,monospace)}
+.gz-form2{fill:hsl(210 18% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.gz-blbl{fill:hsl(210 18% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.gz-barbg{fill:hsl(220 18% 20% / .6)}
+.gz-bar{fill:hsl(220 30% 42%)}
+.gz-bar.lit{fill:hsl(150 60% 48%)}
+.gz-peak{fill:hsl(150 60% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.gz-cost{fill:hsl(200 55% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
+.gz-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gz-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
