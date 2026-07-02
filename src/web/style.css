@@ -11000,3 +11000,38 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .flt-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:130px}
 .flt-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
 .flt-live-note b{color:hsl(150 55% 50%)}
+
+/* ── Syscall / kernel-entry story (SyscallSection) — on the shared .story-* dark stage ──────────── */
+.sc-user{fill:hsl(210 40% 22% / .35);stroke:hsl(210 45% 45% / .6);stroke-width:1.5}
+.sc-user.active{fill:hsl(210 45% 26% / .5);stroke:hsl(200 75% 58%)}
+.sc-kernel{fill:hsl(20 45% 22% / .3);stroke:hsl(20 50% 45% / .6);stroke-width:1.5}
+.sc-kernel.active{fill:hsl(20 50% 26% / .45);stroke:hsl(30 80% 56%)}
+.sc-band-lbl{font-size:13px;font-family:var(--mono,monospace);letter-spacing:.03em}
+.sc-band-lbl.user{fill:hsl(200 80% 66%)}
+.sc-band-lbl.kernel{fill:hsl(30 85% 64%)}
+.sc-prog{fill:hsl(210 30% 24% / .7);stroke:hsl(210 40% 48%);stroke-width:1}
+.sc-prog-lbl{fill:hsl(210 24% 82%);font-size:14px;font-family:var(--mono,monospace)}
+.sc-code{fill:hsl(200 80% 70%);font-size:15px;font-family:var(--mono,monospace)}
+.sc-code.hot{fill:hsl(45 100% 66%);font-weight:700;filter:drop-shadow(0 0 4px hsl(45 90% 55% / .6))}
+.sc-reg{fill:hsl(210 20% 74%);font-size:13px;font-family:var(--mono,monospace)}
+.sc-reg.hot{fill:hsl(45 100% 66%)}
+.sc-reg.ok{fill:hsl(150 70% 60%)}
+.sc-wall{stroke:hsl(0 0% 55%);stroke-width:4;stroke-dasharray:2 4}
+.sc-gate{fill:hsl(220 20% 26% / .8);stroke:hsl(220 20% 55%);stroke-width:1.5}
+.sc-gate.hot{fill:hsl(45 55% 34% / .6);stroke:hsl(45 100% 62%);filter:drop-shadow(0 0 6px hsl(45 90% 55% / .6))}
+.sc-gate-lbl{fill:hsl(210 26% 86%);font-size:12px;font-family:var(--mono,monospace)}
+.sc-flow{fill:none;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:4 9;animation:scflow .9s linear infinite}
+.sc-flow.down{stroke:hsl(30 90% 60%);filter:drop-shadow(0 0 3px hsl(30 85% 55% / .8))}
+.sc-flow.up{stroke:hsl(150 80% 58%);filter:drop-shadow(0 0 3px hsl(150 80% 50% / .8))}
+.sc-flow.side{stroke:hsl(30 85% 60%);stroke-width:3}
+@keyframes scflow{to{stroke-dashoffset:-100}}
+.sc-box{fill:hsl(220 18% 20% / .7);stroke:hsl(220 16% 38%);stroke-width:1}
+.sc-box.lit{fill:hsl(30 40% 26% / .5);stroke:hsl(30 75% 52%);filter:drop-shadow(0 0 5px hsl(30 70% 50% / .4))}
+.sc-box-lbl{fill:hsl(210 24% 84%);font-size:14px;font-family:var(--mono,monospace)}
+.sc-box-sub{fill:hsl(210 16% 64%);font-size:12px;font-family:var(--mono,monospace)}
+.sc-tbl{fill:hsl(210 20% 74%);font-size:13px;font-family:var(--mono,monospace)}
+.sc-tbl.hot{fill:hsl(45 100% 66%);font-weight:700}
+.sc-disk{font-size:34px}
+.sc-foot{fill:hsl(210 16% 60%);font-size:13px}
+.sc-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:8px}
+@media(prefers-reduced-motion:reduce){.sc-flow{animation:none;opacity:.6}}
