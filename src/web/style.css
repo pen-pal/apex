@@ -11946,3 +11946,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bk-pick{font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .bk-pick.on{background:hsl(150 45% 40% / .22);border-color:hsl(150 55% 52%)}
 .bk-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── CORDIC story (CordicSection) — unit circle, vector spiralling to the angle via shift-adds ────── */
+.crd-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.crd-circle{fill:none;stroke:hsl(220 18% 38%);stroke-width:1.5}
+.crd-axis{stroke:hsl(220 16% 32%);stroke-width:1}
+.crd-target{stroke:hsl(150 55% 52%);stroke-width:1.5;stroke-dasharray:4 3}
+.crd-tpt{fill:hsl(150 60% 55%)}
+.crd-tlbl{fill:hsl(150 55% 64%);font-size:12px;font-family:var(--mono,monospace)}
+.crd-vec{stroke:hsl(45 90% 60%);stroke-width:2.5}
+.crd-step{fill:hsl(200 65% 72%);font-size:12px;font-family:var(--mono,monospace)}
+.crd-path{stroke:hsl(280 60% 66%);stroke-width:1.5}
+.crd-dot{fill:hsl(280 65% 72%)}
+.crd-res{fill:hsl(45 88% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
+.crd-gain{fill:hsl(200 60% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
+.crd-foot{fill:hsl(210 16% 60%);font-size:13px}
+.crd-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
