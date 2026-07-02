@@ -11998,3 +11998,25 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gz-cost{fill:hsl(200 55% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
 .gz-foot{fill:hsl(210 16% 60%);font-size:13px}
 .gz-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
+
+/* ── SAT collision story (SatSection) — two convex shapes, projection shadows, separating axis ────── */
+.sat-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.sat-shape{stroke-width:2}
+.sat-shape.a{fill:hsl(210 50% 45% / .5);stroke:hsl(210 60% 62%)}
+.sat-shape.b{fill:hsl(38 60% 48% / .5);stroke:hsl(38 75% 60%)}
+.sat-shape.b.hit{fill:hsl(0 55% 45% / .5);stroke:hsl(0 70% 62%)}
+.sat-normal{stroke:hsl(210 40% 62%);stroke-width:1.5}
+.sat-axis{stroke:hsl(220 16% 44%);stroke-width:1;stroke-dasharray:4 3}
+.sat-shadow{stroke-width:6;stroke-linecap:round}
+.sat-shadow.a{stroke:hsl(210 60% 62%)}
+.sat-shadow.b{stroke:hsl(38 75% 60%)}
+.sat-slbl{font-size:11px;font-family:var(--mono,monospace)}
+.sat-slbl.a{fill:hsl(210 55% 68%)}
+.sat-slbl.b{fill:hsl(38 70% 66%)}
+.sat-gap{fill:hsl(150 60% 60%);font-size:12.5px;font-family:var(--mono,monospace)}
+.sat-mtv{stroke:hsl(0 70% 62%);stroke-width:2.5}
+.sat-mtvlbl{fill:hsl(0 72% 70%);font-size:12px;font-family:var(--mono,monospace)}
+.sat-foot{fill:hsl(210 16% 60%);font-size:13px}
+.sat-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.sat-ctl b.hit{color:hsl(0 72% 66%)}
+.sat-ctl b.ok{color:hsl(150 55% 56%)}
