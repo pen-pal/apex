@@ -10607,3 +10607,15 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .msq-stat{font-size:11px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:6px}
 .msq-stat b{font-family:var(--mono);font-size:15px;color:var(--ink);text-transform:none}
 .msq-hint{font-size:11px;color:var(--muted)}
+
+/* ---- Voronoi ---- */
+.vor{display:flex;flex-direction:column;gap:13px}
+.vor-intro,.vor-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
+.vor-intro strong,.vor-foot strong{color:var(--ink)}
+.vor-intro em,.vor-foot em{color:var(--ink);font-style:italic}
+.vor-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.vor-tab{font:inherit;font-size:12px;padding:6px 13px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer;text-transform:capitalize}
+.vor-tab.on{border-color:var(--accent);background:hsl(212 60% 50% / .12);color:var(--accent);font-weight:600}
+.vor-tab.ghost{color:var(--muted)}
+.vor-count{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto}
+.vor-canvas{width:100%;max-width:520px;height:auto;border:1px solid var(--line);border-radius:11px;cursor:crosshair;image-rendering:auto;display:block}
