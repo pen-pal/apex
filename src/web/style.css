@@ -11491,3 +11491,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pdo-s-win{fill:hsl(0 78% 68%);font-size:15px;font-weight:600;font-family:var(--mono,monospace)}
 .pdo-field2{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
 .pdo-field2 input{font-family:var(--mono,monospace);font-size:13px;padding:4px 7px;border-radius:5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:120px}
+
+/* ── Spectre guided story (SpectreSection, converted) — gadget + memory + 256-line Flush+Reload chart ── */
+.spx-s-code{fill:hsl(210 22% 78%);font-size:13px;font-family:var(--mono,monospace)}
+.spx-s-code.fence{fill:hsl(150 60% 58%)}
+.spx-s-lbl{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace)}
+.spx-s-cell{stroke-width:1}
+.spx-s-cell.pub{fill:hsl(210 40% 40% / .35);stroke:hsl(210 45% 52%)}
+.spx-s-cell.secret{fill:hsl(0 45% 36% / .35);stroke:hsl(0 55% 50%)}
+.spx-s-cell.leaked{fill:hsl(0 60% 44% / .55);stroke:hsl(0 70% 60%)}
+.spx-s-cell.reading{stroke:hsl(45 90% 58%);stroke-width:2.5;filter:drop-shadow(0 0 5px hsl(45 85% 55% / .5))}
+.spx-s-cv{fill:hsl(210 28% 90%);font-size:14px;font-weight:600;font-family:var(--mono,monospace)}
+.spx-s-tag{fill:hsl(0 60% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.spx-s-axis{stroke:hsl(220 16% 38%);stroke-width:1}
+.spx-s-bar{fill:hsl(220 20% 42% / .5)}
+.spx-s-bar.hit{fill:hsl(45 95% 60%);filter:drop-shadow(0 0 4px hsl(45 90% 55% / .6))}
+.spx-s-spike{fill:hsl(45 95% 66%);font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
+.spx-s-flat{fill:hsl(150 60% 58%);font-size:13.5px;font-family:var(--mono,monospace)}
+.spx-s-foot{fill:hsl(210 16% 60%);font-size:13px}
