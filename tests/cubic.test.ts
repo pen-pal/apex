@@ -7,9 +7,12 @@ describe('the CUBIC window formula W(t) = C·(t−K)³ + W_max', () => {
     expect(cubicWindow(100, 0)).toBeCloseTo(BETA * 100, 6); // 70
   });
 
-  it('at t=K the window is exactly W_max again (the plateau)', () => {
-    const wmax = 80;
-    expect(cubicWindow(wmax, cubicK(wmax))).toBeCloseTo(wmax, 6);
+  it('K is exactly where the window crosses back through W_max (non-vacuous — depends on K value)', () => {
+    // W(cubicK(w))=w is trivially true since (K−K)³=0, so it proves nothing. Instead check that K is the CROSSING
+    // point: just before K the window is still below W_max, just after it is above. This fails if K is wrong.
+    const wmax = 80, k = cubicK(wmax);
+    expect(cubicWindow(wmax, k - 1)).toBeLessThan(wmax);
+    expect(cubicWindow(wmax, k + 1)).toBeGreaterThan(wmax);
   });
 
   it('grows past W_max for t>K (probing for new capacity)', () => {

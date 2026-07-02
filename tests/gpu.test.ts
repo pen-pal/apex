@@ -36,12 +36,17 @@ describe('memory coalescing', () => {
     const addrs = [0, 4, 8, 200, 204, 5000]; // lines 0,0,0,1,1,39 → 3 distinct
     expect(coalesce(addrs, 128).transactions).toBe(3);
   });
-  it('efficiency = bytes used / bytes fetched, always in [0,1]', () => {
+  it('bandwidth efficiency, hand-computed from the access pattern (not read back from the model fields)', () => {
+    // A 128-byte line holds 32 four-byte elements. Contiguous → all 32 in one line (100%). Stride-4 spreads them
+    // across 4 lines → 128 B used of 512 fetched (25%). Scattered wastes most of every line. Literals independent
+    // of the model's bytesUsed/bytesFetched.
+    expect(coalesce(patterns.contiguous(WARP)).efficiency).toBe(1);
+    expect(coalesce(patterns.strided(WARP, 4)).efficiency).toBeCloseTo(0.25, 5);
+    expect(coalesce(patterns.scattered(WARP)).efficiency).toBeLessThan(0.5);
     for (const p of [patterns.contiguous(WARP), patterns.strided(WARP, 4), patterns.scattered(WARP)]) {
-      const c = coalesce(p);
-      expect(c.efficiency).toBeGreaterThanOrEqual(0);
-      expect(c.efficiency).toBeLessThanOrEqual(1);
-      expect(c.efficiency).toBeCloseTo(c.bytesUsed / c.bytesFetched, 5);
+      const e = coalesce(p).efficiency;
+      expect(e).toBeGreaterThan(0);
+      expect(e).toBeLessThanOrEqual(1);
     }
   });
 });

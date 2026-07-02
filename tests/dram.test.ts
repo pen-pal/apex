@@ -24,7 +24,7 @@ describe('row buffer: hit / miss / conflict', () => {
     d.access(0);
     const r = d.access(1 << 17);                       // same bank, next row
     expect(r.state).toBe('conflict');
-    expect(r.latencyNs).toBeCloseTo(T.RP + T.RCD + T.CL, 5);
+    expect(r.latencyNs).toBeCloseTo(41.25, 5);         // DDR4-3200: tRP + tRCD + tCL = 13.75 × 3 (JEDEC ns, not the model's own T sum)
   });
   it('a different bank has its own row buffer (independent, no conflict)', () => {
     const d = new Dram();
@@ -34,9 +34,16 @@ describe('row buffer: hit / miss / conflict', () => {
     expect(other.state).toBe('miss');                 // bank 1 idle, not a conflict with bank 0
     expect(d.access(0).state).toBe('hit');            // bank 0's row stayed open
   });
-  it('latencies follow the model: hit < miss < conflict', () => {
-    expect(T.CL).toBeLessThan(T.RCD + T.CL);
-    expect(T.RCD + T.CL).toBeLessThan(T.RP + T.RCD + T.CL);
+  it('real accesses return hit < miss < conflict latency, at the JEDEC nanoseconds', () => {
+    const d = new Dram();
+    const miss = d.access(0);            // bank idle → activate + read
+    const hit = d.access(0);             // same row still open
+    const conflict = d.access(1 << 17);  // different row, same bank → precharge first
+    expect(hit.latencyNs).toBeCloseTo(13.75, 5);      // tCL
+    expect(miss.latencyNs).toBeCloseTo(27.5, 5);      // tRCD + tCL
+    expect(conflict.latencyNs).toBeCloseTo(41.25, 5); // tRP + tRCD + tCL
+    expect(hit.latencyNs).toBeLessThan(miss.latencyNs);
+    expect(miss.latencyNs).toBeLessThan(conflict.latencyNs);
   });
 });
 

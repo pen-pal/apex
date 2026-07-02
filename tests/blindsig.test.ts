@@ -34,10 +34,12 @@ describe('the signer learns nothing about the message', () => {
   it('different blinding factors give different blinded values for the same message', () => {
     expect(blind(100, 7)).not.toBe(blind(100, 29)); // signer can\'t link sessions
   });
-  it('the signer never computes m^d directly — only blinded^d', () => {
-    // signBlinded operates on the blinded value; m^d only appears after the client unblinds
-    const r = 13, blinded = blind(123, r);
-    expect(signBlinded(blinded)).toBe(modpow(blinded, D, N));
-    expect(signBlinded(blinded)).not.toBe(signDirect(123)); // the blind signature ≠ the final one
+  it('unblinding recovers a signature that RSA-verifies on m, though the signer never saw m', () => {
+    const m = 123, r = 13;
+    const blinded = blind(m, r);
+    expect(signBlinded(blinded)).not.toBe(signDirect(m));  // what the signer returns ≠ the final signature
+    const sig = unblind(signBlinded(blinded), r);
+    expect(verify(sig, m)).toBe(true);                     // sig^E mod N === m — verifies with the PUBLIC key, independent of d
+    expect(sig).toBe(signDirect(m));                       // and it is exactly the signature d would have produced
   });
 });

@@ -9,8 +9,11 @@ describe('chain construction', () => {
     expect(chain[0].prevHash).toBe(GENESIS_PREV);
     for (let i = 1; i < chain.length; i++) expect(chain[i].prevHash).toBe(chain[i - 1].hash);
   });
-  it('each block hash is the real SHA-256 over its contents', () => {
-    for (const b of chain) expect(b.hash).toBe(blockHash(b.index, b.data, b.prevHash));
+  it('a block hash is the real SHA-256 of index|data|prevHash (vs an independently-computed digest)', () => {
+    // Reference computed offline with a separate SHA-256 (Node crypto): sha256("0|genesis|<64 zeros>"). If the
+    // app's SHA-256 or the preimage layout were wrong, this fails — re-calling blockHash would not catch it.
+    expect(blockHash(0, 'genesis', '0'.repeat(64)))
+      .toBe('7aa8ce85a549ed6cfd94b03bcff2020f22ca8af0a4d91cf132fe9c240ae550d9');
     expect(chain[0].hash).toMatch(/^[0-9a-f]{64}$/);
   });
   it('an intact chain verifies', () => {
