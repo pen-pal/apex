@@ -46,9 +46,10 @@ export function VoronoiSection() {
     <div className="vor">
       <p className="vor-intro">
         A Voronoi diagram carves a plane into one <strong>cell per site</strong>, where every point belongs to its
-        <strong> nearest</strong> site. The edge between two cells is the <strong>perpendicular bisector</strong> of
-        their sites — the equidistant line — so each cell is an intersection of half-planes and hence convex. It's
-        how you answer "which is closest" instantly, and it's the exact dual of the Delaunay triangulation. Click
+        <strong> nearest</strong> site. Under straight-line (Euclidean) distance the edge between two cells is the
+        <strong> perpendicular bisector</strong> of their sites — the equidistant line — so each cell is an
+        intersection of half-planes and hence convex (other metrics bend those edges, as you'll see). It's how you
+        answer "which is closest" instantly, and it's the exact dual of the Delaunay triangulation. Click
         to add a site; change the distance metric to reshape the cells.
       </p>
 
