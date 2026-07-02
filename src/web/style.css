@@ -11129,3 +11129,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bc-foot{fill:hsl(210 16% 60%);font-size:13px}
 .bc-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:170px}
 .bc-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Garbage-collection story (GcSection) — mark & sweep on the shared .story-* dark stage ───────── */
+.gc-roots{fill:hsl(38 45% 28% / .6);stroke:hsl(38 70% 55%);stroke-width:1.5}
+.gc-roots.hot{filter:drop-shadow(0 0 7px hsl(38 85% 55% / .5));stroke:hsl(45 100% 62%)}
+.gc-roots-lbl{fill:hsl(38 85% 70%);font-size:13px;font-family:var(--mono,monospace)}
+.gc-edge{stroke:hsl(220 15% 48%);stroke-width:2}
+.gc-edge.cyc{stroke:hsl(0 55% 55%)}
+.gc-arrhead{fill:hsl(220 15% 55%)}
+.gc-node{fill:hsl(220 20% 24% / .85);stroke:hsl(220 18% 44%);stroke-width:1.5}
+.gc-node.marked{fill:hsl(150 50% 30% / .85);stroke:hsl(150 75% 55%);filter:drop-shadow(0 0 6px hsl(150 65% 50% / .5))}
+.gc-node.dead{fill:hsl(0 45% 26% / .6);stroke:hsl(0 65% 52%);stroke-dasharray:4 3}
+.gc-node-lbl{fill:hsl(210 28% 90%);font-size:16px;font-weight:600;font-family:var(--mono,monospace)}
+.gc-note{fill:hsl(0 72% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.gc-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gc-toggle{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px}
+.gc-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
