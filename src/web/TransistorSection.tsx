@@ -59,13 +59,11 @@ export function TransistorSection() {
       </div>
 
       <p className="trn-foot">
-        Here's the real magic: this one gate can build all the others. Tie a NAND's two inputs together and it
-        becomes a NOT. Feed that back in and you have AND. A few more give you OR and XOR. So a chip factory never
-        designs a thousand different parts — it obsesses over making <em>one</em> microscopic switch as small and
-        fast as possible, then stamps out billions of them. That's the whole secret of a processor: not clever
-        parts, but one dead-simple part repeated at a scale you can't quite picture. (It's also why your laptop
-        gets warm: in this design one half of every gate is always off, so it sips power only in the instant it
-        flips — which is exactly why a faster clock runs hotter.)
+        One gate builds all the others: tie a NAND's inputs together for a NOT, chain them for AND, OR, and XOR. So
+        a fab never designs a thousand parts — it perfects a single transistor pair and gets every logic function
+        for free, which is why chips are sold by transistor count. And because CMOS keeps one half of every gate
+        switched off, it draws power only when the output flips: the reason faster clocks run hotter, and the wall
+        that ended the GHz race. A processor is this one idea at unimaginable scale.
       </p>
     </div>
   );

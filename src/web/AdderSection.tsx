@@ -44,18 +44,14 @@ export function AdderSection() {
       </div>
 
       <p className="rca-foot">
-        Watch <code>255 + 1</code>: the carry out of bit 0 forces bit 1, which forces bit 2, all the way up — one
-        addition, but its answer isn't settled until a signal has rippled through all eight stages in sequence.
-        That serial dependency is the whole problem with the ripple adder: worst-case delay grows with the bit
-        width, so a 64-bit version is 64 gate-delays deep and would throttle the clock. Real ALUs break the chain
-        by computing carries in parallel: each bit exposes a <em>generate</em> (a AND b — makes a carry no matter
-        what) and a <em>propagate</em> (a XOR b — passes an incoming carry along) signal, and a
-        <strong> carry-lookahead</strong> tree combines them to know every carry in O(log n) depth instead of
-        O(n). Subtraction reuses this exact circuit — negate B (two's complement: invert and add 1, done by
-        feeding carry-in = 1 and XOR-ing B) — which is why one adder does both, and why the carry-out doubles as
-        the unsigned overflow flag. Stack a few more gates for AND/OR/XOR/shift, put a multiplexer on the output
-        selected by an opcode, and you have an <strong>ALU</strong> — the arithmetic core of every CPU, all of it
-        still just XOR, AND, and OR. (Harris &amp; Harris, Digital Design and Computer Architecture.)
+        Watch <code>255 + 1</code>: the carry out of bit 0 forces bit 1, then bit 2, all the way up — the answer
+        isn't final until a signal has rippled through all eight stages in order. That serial delay is the ripple
+        adder's flaw: a 64-bit version is 64 gate-delays deep, deep enough to throttle the clock. Real ALUs cut the
+        chain with <strong>carry-lookahead</strong> — each bit exposes whether it <em>generates</em> a carry (a AND
+        b) or merely <em>propagates</em> an incoming one (a XOR b), and a tree combines those to know every carry in
+        O(log n) depth instead of O(n). The same circuit subtracts for free: invert B and feed carry-in = 1 (two's
+        complement), and the carry-out doubles as the unsigned-overflow flag. Bolt on a few logic gates and an
+        output multiplexer, and that adder becomes the <strong>ALU</strong> at the heart of every CPU.
       </p>
     </div>
   );

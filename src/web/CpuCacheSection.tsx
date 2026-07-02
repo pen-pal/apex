@@ -89,18 +89,15 @@ export function CpuCacheSection() {
       </div>
 
       <p className="cch-foot">
-        Try it: set associativity to <em>direct-mapped</em> and hit "thrash 2 blocks" — two blocks that map to the
-        same set evict each other on every access, so the hit rate collapses to zero even though the cache is
-        nearly empty. Bump to 2-way and the same pattern sits happily in one set at ~100%. That's why real caches
-        are 4–16 way: a little associativity kills the pathological conflict misses that direct-mapped caches
-        suffer, without the cost of comparing every line. The three miss types (the "three Cs") are all visible
-        here: <em>compulsory</em> (the first touch of any block, unavoidable without prefetching), <em>capacity</em>
-        (the working set is bigger than the cache — random over 32 blocks in a 16-line cache), and <em>conflict</em>
-        (too many hot blocks landing in one set — the thrash demo). This is why data layout dominates performance:
-        walking an array by rows (the layout order) hits the same lines the hardware just fetched, while striding
-        by columns touches a new line every step and can turn a fast loop 10x slower. The address you decoded here
-        into tag/index/offset is the very same one the DRAM section split into bank/row/column — the cache checks
-        first, and only a miss reaches the memory chips. (Hennessy &amp; Patterson, memory hierarchy.)
+        Set associativity to <em>direct-mapped</em> and hit "thrash 2 blocks": two blocks that map to the same set
+        evict each other on every access, so the hit rate craters even though the cache is nearly empty. Two-way
+        holds both at ~100%. That's why real caches run 4–16 way — a little associativity kills those conflict
+        misses cheaply. Every miss is one of three kinds: <em>compulsory</em> (first touch of a block),
+        <em>capacity</em> (working set bigger than the cache), or <em>conflict</em> (too many hot blocks in one
+        set — the thrash above). It's also why layout dominates speed: walking an array by rows reuses lines the
+        hardware just fetched, while striding by columns touches a fresh line every step and can run 10× slower.
+        The tag/index/offset you decoded here is the same address DRAM splits into bank/row/column — the cache
+        checks first, and only a miss reaches the chips.
       </p>
     </div>
   );

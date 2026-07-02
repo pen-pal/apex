@@ -51,16 +51,14 @@ export function AluSection() {
       </div>
 
       <p className="alu-foot">
-        Those four flag bits are how comparisons become control flow. <code>if (a &gt; b)</code> compiles to a
-        SUB that throws the result away and keeps only the flags, then a conditional branch reads them: for signed
-        values <code>a ≥ b</code> is <code>N == V</code>, for unsigned it's <code>C set</code>, and a strict
-        <code>&gt;</code> also needs <code>Z</code> clear. The ALU itself is pure
-        combinational logic: no clock, no memory, outputs settle a few gate-delays after the inputs change. State
-        lives outside it, in the register file (flip-flops) that feeds operands in and latches the result back on
-        the clock edge. Widen it to 64 bits, add a fast multiplier and a shifter, split integer and floating-point
-        units, and duplicate the whole thing several times so a superscalar core can run multiple operations per
-        cycle — but every one of them is still this: an adder, some gates, a mux, and four flags. (Patterson &amp;
-        Hennessy; Harris &amp; Harris.)
+        Those four flags are how a comparison becomes a branch. <code>if (a &gt; b)</code> compiles to a SUB that
+        discards the result and keeps only the flags; the branch then reads them — signed <code>a ≥ b</code> is
+        <code>N == V</code>, unsigned is <code>C set</code>, and a strict <code>&gt;</code> also wants <code>Z</code>
+        clear. The ALU has no clock and no memory: outputs settle a few gate-delays after the inputs move. State
+        lives outside it, in the register file that feeds operands in and latches the result on the clock edge.
+        Widen it to 64 bits, add a multiplier, a shifter, and a floating-point unit, and duplicate it so a
+        superscalar core runs several ops per cycle — but the core is always this: an adder, some gates, a mux, and
+        four flags.
       </p>
     </div>
   );
