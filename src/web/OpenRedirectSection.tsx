@@ -1,6 +1,6 @@
 // Open redirect, made visible. A login link carries ?next=<target> and the app redirects there afterward.
 // Type a target (or pick a payload) and watch how a BROWSER actually resolves it relative to the trusted
-// origin — then see whether it stays on-site or quietly escapes to an attacker's host. The tricks are the
+// origin — then see whether it stays on-site or quietly escapes to an attacker's host. The bypasses are the
 // lesson: a backslash becomes a slash, an @ hides the real host, a leading // is scheme-relative. Real
 // model from openredirect.ts.
 import { useState } from 'react';

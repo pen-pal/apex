@@ -15,7 +15,7 @@ export function FencingSection() {
         <p className="jsec-sub">
           Client A acquires a distributed lock (token 1), then freezes — a long garbage-collection pause. Its lease expires, so the lock
           service grants the lock to Client B (token 2), which does its work. Then A wakes up, still believing it holds the lock, and
-          writes. A plain lock can’t stop this; the trick is to stamp each grant with an ever-increasing <strong>fencing token</strong> and
+          writes. A plain lock can’t stop this; the fix is to stamp each grant with an ever-increasing <strong>fencing token</strong> and
           have the resource reject any write whose token is older than the newest it has seen.
         </p>
 

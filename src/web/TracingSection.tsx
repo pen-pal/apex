@@ -60,7 +60,7 @@ export function TracingSection() {
       <p className="trc-foot">
         The waterfall makes serial-vs-parallel obvious (auth and the DB query here overlap; the cache and exec inside the DB span are
         sequential) and the self-time breakdown points straight at <strong>orders-db</strong> as the place to optimize — a flame graph is the
-        same data aggregated across many traces. The trick that makes it work across machines is <strong>context propagation</strong>: every hop
+        same data aggregated across many traces. What makes it work across machines is <strong>context propagation</strong>: every hop
         forwards the trace id and its parent span id (the W3C <code>traceparent</code> header), so independently-recorded spans stitch back into
         one tree. Pair traces with metrics (the SLO/latency numbers) and logs (the per-event detail) — the “three pillars” — and a sampling
         strategy so you keep the interesting traces without storing every request. (Dapper; OpenTelemetry.)

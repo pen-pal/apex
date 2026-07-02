@@ -43,7 +43,7 @@ export function SuffixArraySection() {
       {pat && res.positions.length > 0 && <div className="sfa-note">all suffixes starting with “{pat}” form rows {res.lo}–{res.hi - 1} — one contiguous block, found by two binary searches.</div>}
 
       <p className="sfa-foot">
-        Sorting the suffixes is the whole trick: any pattern’s matches are exactly the suffixes that have it as a prefix, and those sit next to
+        Sorting the suffixes is what does the work: any pattern’s matches are exactly the suffixes that have it as a prefix, and those sit next to
         each other, so two binary searches bracket the block in <strong>O(m log n)</strong> — no scanning the text. The array is just n integers
         (far smaller than a suffix tree) and, paired with an <strong>LCP array</strong> (longest common prefix between adjacent suffixes), answers
         longest-repeated-substring, distinct-substring counts, and more. It’s how genome aligners and full-text indexes search billions of

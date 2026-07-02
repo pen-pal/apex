@@ -83,7 +83,7 @@ export function SeqlockSection() {
       </div>
 
       <p className="sqk-foot">
-        The economics are the whole point: reads are the overwhelmingly common case (a clock, a routing table, a
+        The economics are the point: reads are the overwhelmingly common case (a clock, a routing table, a
         config snapshot read millions of times between rare updates), so seqlock pushes all the cost onto the rare
         writer and the even-rarer read-that-races-a-write. Readers take no lock, write nothing to shared memory
         (no cache-line ping-pong between CPUs), and never block — they just occasionally loop. Compare the

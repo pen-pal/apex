@@ -1,6 +1,6 @@
 // Memory consistency, made visible. Two cores run the store-buffer litmus test; toggle the memory
 // model (Sequential Consistency vs x86-TSO) and the fence, and watch the reachable outcomes change.
-// The whole point lands in one cell: r0=r1=0 is impossible under SC, appears the moment you switch to
+// The key result lands in one cell: r0=r1=0 is impossible under SC, appears the moment you switch to
 // TSO (store buffers let each core read past its own pending write), and vanishes again with a fence.
 // Outcomes come from an EXHAUSTIVE enumeration of the state space in tso.ts — not a sample.
 import { useMemo, useState } from 'react';

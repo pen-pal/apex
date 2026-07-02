@@ -31,7 +31,7 @@ export function TcpHandshakeSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>TCP — open a connection, then close it</h2></div>
         <p className="jsec-sub">
-          Every TCP connection begins with a three-way handshake and ends with a four-way teardown. The trick is in the numbers: each
+          Every TCP connection begins with a three-way handshake and ends with a four-way teardown. It is all in the numbers: each
           side chooses a random <strong>Initial Sequence Number</strong>, and because <code>SYN</code> and <code>FIN</code> each consume
           one sequence number, every <code>ACK</code> is exactly “your number + 1”. Step through it and watch both state machines move.
         </p>

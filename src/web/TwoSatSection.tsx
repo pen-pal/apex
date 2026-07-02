@@ -72,7 +72,7 @@ export function TwoSatSection() {
       </div>
 
       <p className="tsat-foot">
-        The magic is that one linear-time SCC computation answers both questions at once. Reachability in the
+        One linear-time SCC computation answers both questions at once. Reachability in the
         implication graph is transitive — a path xᵢ → … → ¬xᵢ means "assuming xᵢ true forces xᵢ false" — and a
         strongly-connected component is precisely a set of literals that all imply each other, hence must share a
         truth value. So xᵢ and ¬xᵢ in one component is an immediate, unfixable contradiction. When there's no such

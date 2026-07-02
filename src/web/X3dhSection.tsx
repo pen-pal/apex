@@ -23,7 +23,7 @@ export function X3dhSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>X3DH — agreeing on a key with someone who’s offline</h2></div>
         <p className="jsec-sub">
-          Signal can start an encrypted chat with a contact who isn’t online. The trick is <strong>X3DH</strong>: Bob publishes a
+          Signal can start an encrypted chat with a contact who isn’t online. The answer is <strong>X3DH</strong>: Bob publishes a
           <strong> prekey bundle</strong> (identity key, a signed prekey, one-time prekeys) to the server ahead of time. Alice grabs it, adds a
           fresh <strong>ephemeral</strong> key, and folds <strong>four Diffie-Hellman</strong> results into one shared secret. Bob derives the
           same secret whenever he reconnects — no round trip needed.

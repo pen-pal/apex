@@ -1,7 +1,7 @@
 // Branch prediction, made visible. Pick a branch-outcome pattern and step a 2-bit saturating counter
 // through it: watch the state move strong-NT ↔ weak-NT ↔ weak-T ↔ strong-T while predictions land or
 // miss, and compare the misprediction count against a 1-bit predictor on the same sequence. The
-// loop-exit pattern is the payoff — the 2 bits of hysteresis halve the mispredictions. Real model from branchpredict.ts.
+// loop-exit pattern is what it captures — the 2 bits of hysteresis halve the mispredictions. Real model from branchpredict.ts.
 import { useMemo, useState } from 'react';
 import { simulate, loopPattern } from './branchpredict';
 

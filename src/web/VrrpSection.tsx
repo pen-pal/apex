@@ -26,7 +26,7 @@ export function VrrpSection() {
         <p className="jsec-sub">
           A host knows exactly one default gateway, so a single router failure would strand it. VRRP puts a group of routers behind one
           <strong> virtual IP</strong> and <strong>virtual MAC</strong>; the highest-priority router is <strong>master</strong> and answers for
-          them. If it dies, a backup takes over and the virtual IP/MAC simply move — the host’s config never changes. The trick that stops two
+          them. If it dies, a backup takes over and the virtual IP/MAC simply move — the host’s config never changes. What stops two
           backups grabbing it at once is a <strong>skew</strong>: each backup’s takeover timer is offset by <code>(256 − priority)</code>, so the
           strongest backup fires first.
         </p>

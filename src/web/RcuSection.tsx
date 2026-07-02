@@ -83,7 +83,7 @@ export function RcuSection() {
       </div>
 
       <p className="rcu-foot">
-        The asymmetry is the whole point: reads are almost free (grab a pointer, use it — no atomics on the fast
+        The asymmetry is deliberate: reads are almost free (grab a pointer, use it — no atomics on the fast
         path, no cache-line ping-pong between CPUs), while the writer absorbs the cost of copying and waiting out
         the grace period. That makes RCU a huge win for <strong>read-mostly</strong> data — routing tables,
         mount trees, the directory cache — where writes are rare but reads are constant and must not stall. The

@@ -78,7 +78,7 @@ export function SplayTreeSection() {
         maintain. It also gives the <strong>working-set</strong> property: the cost of accessing a key is
         logarithmic in how many <em>distinct</em> keys you've touched since you last touched it — so on skewed,
         bursty workloads (exactly what caches see) it can beat a strictly-balanced AVL/red-black tree. The
-        catch: every read <em>writes</em> (rotations), which is bad for concurrency and for read-only memory.
+        cost: every read <em>writes</em> (rotations), which is bad for concurrency and for read-only memory.
         (Sleator &amp; Tarjan, 1985.)
       </p>
     </div>

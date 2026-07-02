@@ -61,7 +61,7 @@ export function VlanSection() {
           <div className="vl-link">access<br /><em>untagged</em></div>
           <div className="vl-host v10">PC-B<span>VLAN 10</span></div>
         </div>
-        <p className="vl-note">PC-A and PC-B share VLAN 10 and talk freely; a PC in VLAN 20 on the same switches is invisible to them — that isolation is the whole point. Routing between VLANs needs a layer-3 device.</p>
+        <p className="vl-note">PC-A and PC-B share VLAN 10 and talk freely; a PC in VLAN 20 on the same switches is invisible to them — that isolation is the entire goal. Routing between VLANs needs a layer-3 device.</p>
       </section>
 
       <section className="jsec">
@@ -85,7 +85,7 @@ export function VlanSection() {
         </div>
         <p className="vl-note">
           Mitigations: don’t put hosts on the native VLAN, set a dedicated unused native VLAN, or force <code>vlan dot1q tag
-          native</code> so even native traffic is tagged and the trick fails. It’s one-way (no return path), but enough to inject
+          native</code> so even native traffic is tagged and the attack fails. It’s one-way (no return path), but enough to inject
           frames into a segment you shouldn’t reach.
         </p>
       </section>

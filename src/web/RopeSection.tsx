@@ -76,7 +76,7 @@ export function RopeSection() {
       </div>
 
       <p className="rpe-foot">
-        The weight is the whole trick: because a node knows only how long its left side is, a search never has to
+        The weight is the key: because a node knows only how long its left side is, a search never has to
         look inside the right subtree to decide which way to go, and an edit only rewrites the nodes on one
         root-to-leaf path — a handful, not the whole document. Immutability comes for free: since edits build new
         nodes and share the untouched ones, every version of the document persists, which is exactly how an editor

@@ -91,7 +91,7 @@ export function AhoCorasickSection() {
       </div>
 
       <p className="ac-foot">
-        The magic is the <strong>failure link</strong>: when the text breaks the current path, instead of restarting from the root the automaton
+        The <strong>failure link</strong> is what lets one pass match everything: when the text breaks the current path, instead of restarting from the root the automaton
         jumps to the node spelling the longest proper suffix that’s still a live prefix — so no character is ever re-read. Building the links is one
         breadth-first pass; matching is then a single linear scan that finds <em>all</em> occurrences of <em>all</em> patterns at once, in
         O(text + matches) regardless of dictionary size. Output links chain accepting suffixes (matching “she” also reports “he”). It’s exactly

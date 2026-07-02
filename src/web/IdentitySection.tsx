@@ -137,7 +137,7 @@ function TotpTool() {
             <Row k="31-bit value mod 10⁶" val={`${trace.binary} → ${trace.code}`} />
           </div>
           <p className="enc-note">The offset picks 4 bytes from the HMAC, masks the sign bit, and takes the last 6
-            decimal digits — that’s the whole trick. Lose the secret and 2FA is gone, which is why backup codes exist.</p>
+            decimal digits — that’s the entire mechanism. Lose the secret and 2FA is gone, which is why backup codes exist.</p>
         </>
       ) : <p className="enc-err">Enter a base32 secret (A–Z, 2–7).</p>}
     </>

@@ -83,7 +83,7 @@ export function MailAuthSection() {
 
         <p className="mail-foot">
           The forwarding case is why DMARC accepts <em>either</em> SPF or DKIM: a forwarder relays from its own IP (breaking SPF) but
-          doesn’t touch the signed body (DKIM survives). The spoofing case is the whole point — an attacker’s server can pass its own
+          doesn’t touch the signed body (DKIM survives). The spoofing case is the crux — an attacker’s server can pass its own
           SPF, but it can’t make that authentication <em>align</em> with <code>bank.example</code>, so DMARC <code>p=reject</code> bounces
           it. (ARC preserves authentication across forwarders; BIMI rewards DMARC-passing senders with a logo.)
         </p>

@@ -56,7 +56,7 @@ export function BlindSigSection() {
       </div>
 
       <p className="bsig-foot">
-        The cancellation is the whole trick: <code>(m·r<sup>e</sup>)<sup>d</sup> · r<sup>−1</sup> = m<sup>d</sup>·r<sup>ed−1</sup> = m<sup>d</sup></code>
+        The cancellation is the key step: <code>(m·r<sup>e</sup>)<sup>d</sup> · r<sup>−1</sup> = m<sup>d</sup>·r<sup>ed−1</sup> = m<sup>d</sup></code>
         because <code>r<sup>ed</sup> ≡ r</code>. So the signer’s exponentiation lands on the real signature without the signer ever handling m, and
         the random r makes the blinded value statistically independent of the message — the signer literally cannot tell which later-presented
         signature came from which session. That <strong>unlinkability</strong> is the foundation of <strong>Chaum’s digital cash</strong> (a bank

@@ -86,7 +86,7 @@ export function PairingHeapSection() {
       <p className="prh-foot">
         Why the two-pass merge, and not just meld the children left to right? The naive way builds a long spine
         that degrades later deletes to O(n); pairing them first halves the depth each round, and that one change
-        is what buys the O(log n) amortized delete-min. The payoff over a binary heap is <strong>meld in O(1)</strong>
+        is what buys the O(log n) amortized delete-min. The gain over a binary heap is <strong>meld in O(1)</strong>
         and a cheap <strong>decrease-key</strong> (cut the node's subtree out and meld it back at the root) — the
         operations Dijkstra and Prim hammer, since relaxing an edge is a decrease-key. Its complexity is one of
         the loveliest open problems in data structures: pairing heaps are <em>conjectured</em> to match the

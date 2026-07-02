@@ -73,7 +73,7 @@ export function TlbSection() {
       </div>
 
       <p className="tlb-foot">
-        The whole point of virtual memory rests on this cache: without it, every load and store would chase a multi-level page table and run
+        Virtual memory’s speed rests on this cache: without it, every load and store would chase a multi-level page table and run
         an order of magnitude slower. Because real code has <strong>locality</strong>, a handful of entries cover the vast majority of accesses,
         so hit rates above 99% are normal and the page walk almost never runs. The danger is a working set that <strong>overflows the TLB</strong> —
         a big random scan, or pointer-chasing over a huge structure — where the hit rate craters and you feel the walk on every access. Mitigations:

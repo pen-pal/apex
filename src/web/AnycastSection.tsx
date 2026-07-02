@@ -33,7 +33,7 @@ export function AnycastSection() {
         <div className="jsec-head"><h2>Anycast — one IP, served from everywhere</h2></div>
         <p className="jsec-sub">
           The three sites below all advertise the <em>same</em> IP address into BGP. A client doesn’t choose one — the routing system
-          simply delivers its packets to the topologically nearest instance. The payoff is built-in: low latency by geography, free load
+          simply delivers its packets to the topologically nearest instance. The gains are built-in: low latency by geography, free load
           spreading, and instant failover. Click a site to withdraw it (simulate an outage) and watch its traffic re-route.
         </p>
 

@@ -124,7 +124,7 @@ export function VitSection() {
         </div>
 
         <p className="vit-foot">
-          The trellis is the trick: instead of comparing the received word against all 2ᴺ possible messages, Viterbi keeps just one survivor
+          The trellis is the key: instead of comparing the received word against all 2ᴺ possible messages, Viterbi keeps just one survivor
           per state at each step, so the cost is linear in message length. This exact decoder flew on Voyager, rides in every GSM call and
           Wi-Fi frame, and pairs with an outer Reed-Solomon code in the classic concatenated scheme. Modern LTE/5G and Wi-Fi have largely moved
           to turbo and LDPC codes, but they’re refinements of the same idea: add structured redundancy, then decode by finding the most likely

@@ -27,7 +27,7 @@ export function WebAuthnSection() {
         <p className="jsec-sub">
           A passkey is a key pair. At registration your device keeps the <strong>private</strong> key and the server stores only the
           <strong> public</strong> one — there’s no shared secret to steal, phish, or leak in a breach. To log in, the server sends a
-          random challenge and your device signs it. The trick that beats phishing: it signs the <em>origin it’s actually talking to</em>.
+          random challenge and your device signs it. What beats phishing: it signs the <em>origin it’s actually talking to</em>.
         </p>
 
         <div className="wan-reg">

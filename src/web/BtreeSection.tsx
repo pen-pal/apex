@@ -62,7 +62,7 @@ export function BtreeSection() {
         <div className="bpt-legend"><span><i className="bpt-node internal" /> internal (separators)</span><span><i className="bpt-node leaf" /> leaf (data)</span></div>
 
         <p className="bpt-foot">
-          The fan-out is the trick: real database pages hold hundreds of keys, so even a billion rows sit in a tree only 3–4 levels deep
+          The high fan-out is what does it: real database pages hold hundreds of keys, so even a billion rows sit in a tree only 3–4 levels deep
           — a handful of disk reads per lookup. Leaves are chained left-to-right, so a range query (<code>WHERE x BETWEEN …</code>) finds
           one leaf then walks sideways. Splits keep it balanced on insert; deletes do the reverse (merge/redistribute on underflow). This
           is the workhorse behind PostgreSQL, MySQL/InnoDB, and SQLite indexes — the read-optimized counterpart to the LSM-tree.

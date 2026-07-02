@@ -69,7 +69,7 @@ export function EliasCodeSection() {
       {list.length > 0 && <div className="elc-savings">γ uses <b>{Math.round((1 - gLen / fLen) * 100)}%</b> fewer bits than fixed-width here; δ pulls ahead once the numbers grow past ~32.</div>}
 
       <p className="elc-foot">
-        The trick both codes share is a <strong>prefix-free</strong> structure: no code is a prefix of another,
+        Both codes are <strong>prefix-free</strong>: no code is a prefix of another,
         so a decoder never has to guess or backtrack. γ spends its budget as a <em>unary</em> length prefix
         (⌊log2 n⌋ zeros) — cheap for small n, but the prefix itself grows linearly, so for big numbers you're
         paying ~2·log2 n bits. δ fixes that by encoding the length with γ instead of unary, giving ~log2 n +

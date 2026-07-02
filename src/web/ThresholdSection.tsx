@@ -70,7 +70,7 @@ export function ThresholdSection() {
         </div>
 
         <p className="thr-foot">
-          The cancellation is the whole trick: each party computes z_i = d_i + c·λ_i·s_i with its own share and Lagrange weight, and because
+          The cancellation is the key step: each party computes z_i = d_i + c·λ_i·s_i with its own share and Lagrange weight, and because
           <strong> Σ λ_i·s_i = f(0) = x</strong> (Lagrange at 0), the sum is z = Σd_i + c·x — a normal Schnorr signature for the group key,
           assembled with the private key never existing in one place. Real schemes (FROST) add a careful two-round nonce protocol to stay secure
           against concurrent signing, and use a 256-bit hash; here the curve is the toy order-19 one so the numbers are legible. Compare with

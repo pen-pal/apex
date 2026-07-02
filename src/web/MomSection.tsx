@@ -69,7 +69,7 @@ export function MomSection() {
       </div>
 
       <p className="mom-foot">
-        The proof is the payoff. There are ⌈n/5⌉ group medians; the pivot is their median, so it's ≥ half of them
+        Here is the proof. There are ⌈n/5⌉ group medians; the pivot is their median, so it's ≥ half of them
         (⌈n/10⌉ medians), and each of those medians is itself ≥ 3 elements of its group of 5 — so the pivot is ≥
         roughly 3n/10 elements, and symmetrically ≤ 3n/10. That's why neither side of the partition can exceed
         ~7n/10, which makes the recursion linear. Finding the pivot costs a recursive select on n/5 medians —

@@ -1,6 +1,6 @@
 // Reservoir sampling, made visible. Step a stream past a fixed-size reservoir and watch the
 // first k items fill it, then each later item keep-with-probability-k/i and evict a random
-// slot if kept. A "run 3000 trials" view shows the payoff: every item ends up selected about
+// slot if kept. A "run 3000 trials" view shows the result: every item ends up selected about
 // k/n of the time. Real logic in reservoir.ts (tested for mechanics + uniformity).
 import { useMemo, useState } from 'react';
 import { sample, mulberry32 } from './reservoir';

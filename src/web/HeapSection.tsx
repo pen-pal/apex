@@ -61,7 +61,7 @@ export function HeapSection() {
         {note && <div className="heap-note">{note}</div>}
 
         <p className="heap-foot">
-          The array layout is the magic: no pointers, perfect cache locality, and the tree shape is implicit in the indices. Building a
+          Storing the tree as a flat array drops the pointers entirely: contiguous memory for cache locality, and the tree shape is implicit in the indices. Building a
           heap from n items is O(n) (bottom-up “heapify”), and popping all of them sorts in O(n log n) — that’s <strong>heapsort</strong>,
           in place. A priority queue like this is what lets Dijkstra and A* always pull the closest frontier cell next, what merges
           Huffman’s two least-frequent nodes, and what event simulators use to fire the next-soonest event.

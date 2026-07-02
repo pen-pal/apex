@@ -27,7 +27,7 @@ export function FastInvSqrtSection() {
       <p className="fis-intro">
         3D graphics normalizes millions of vectors a second, and every one needs <strong>1/√x</strong>. In 1999 a
         hardware square root was slow, so Quake III computed it with no <code>sqrt</code> and no division — just
-        one integer subtraction and a refinement step. The trick: a float's raw bits, read as an integer, are
+        one integer subtraction and a refinement step. The insight: a float's raw bits, read as an integer, are
         almost exactly a scaled <strong>log₂(x)</strong>, so halving and negating that integer computes
         <strong> x<sup>−1/2</sup></strong> in log space.
       </p>

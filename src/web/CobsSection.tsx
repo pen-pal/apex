@@ -76,7 +76,7 @@ export function CobsSection() {
       </div>
 
       <p className="cob-foot">
-        The magic is the <strong>bounded, predictable</strong> overhead: exactly ⌊n/254⌋+1 bytes, no matter the
+        COBS’s overhead is <strong>bounded and predictable</strong>: exactly ⌊n/254⌋+1 bytes, no matter the
         data — so a 254-byte payload costs at most 2 bytes and you can size buffers exactly. Contrast escaping
         (SLIP/PPP), where every delimiter byte in the payload becomes two bytes, so a pathological packet full of
         delimiters <em>doubles</em> in size — unbounded overhead you must provision for. Why 254 and not 255? A

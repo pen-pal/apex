@@ -76,7 +76,7 @@ export function RsyncSection() {
         (rsync uses an Adler-style sum) can be updated in O(1) by subtracting the byte that leaves the window and
         adding the one that enters — so scanning the whole file is O(n). The second is the <strong>two-tier
         check</strong>: the weak checksum is fast but collides, so a candidate match is confirmed with a strong
-        hash (MD5/xxHash) before trusting it — cheap filtering, expensive confirmation only on hits. The magic
+        hash (MD5/xxHash) before trusting it — cheap filtering, expensive confirmation only on hits. Its key
         property is <strong>edit resilience</strong>: because the sender searches at every offset (not just block
         boundaries), inserting or deleting a few bytes near the start doesn't ruin the rest — the window simply
         re-aligns and keeps matching the shifted blocks, so an edit costs bytes proportional to the edit, not the

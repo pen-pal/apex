@@ -69,7 +69,7 @@ export function PbftSection() {
         </div>
 
         <p className="pbft-foot">
-          The honest node in every quorum-overlap is the whole trick: it would refuse to vote for two different values, so two
+          The honest node in every quorum overlap is the crux: it would refuse to vote for two different values, so two
           conflicting requests can never both gather a 2f+1 commit quorum — that’s safety. PBFT’s cost is O(n²) messages per request
           (everyone talks to everyone in the prepare/commit phases), which limits it to tens of nodes; modern BFT (Tendermint, HotStuff,
           and the consensus behind many blockchains) keeps the 3f+1 bound but streamlines the communication to scale further.

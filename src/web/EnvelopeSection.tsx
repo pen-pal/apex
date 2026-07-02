@@ -1,6 +1,6 @@
 // Envelope encryption, made visible. Your data is encrypted with a fresh Data Encryption Key (DEK); the DEK is
 // then wrapped (encrypted) with a Key-Encryption Key (KEK) that lives only inside the KMS. You store the big
-// ciphertext next to the tiny wrapped DEK. The payoff you can watch here: rotating the master KEK only re-wraps
+// ciphertext next to the tiny wrapped DEK. What you can watch here: rotating the master KEK only re-wraps
 // the 4-byte DEK — the ciphertext (your terabytes) is never touched. Real model from envelope.ts.
 import { useEffect, useState } from 'react';
 import { envelopeEncrypt, envelopeDecrypt, unwrapDEK, rotateKEK, bytes, str, type Envelope } from './envelope';
