@@ -10917,3 +10917,35 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fg-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
 .fg-live b{color:var(--ink)}
 @media(prefers-reduced-motion:reduce){.fg-flow,.fg-zoom{animation:none;opacity:.6}.fg-e.trapped{animation:none;opacity:.9}}
+
+/* ── Public-key crypto story (PubKeySection) — on the shared .story-* dark stage ────────────────── */
+.pk-node{fill:hsl(220 22% 18% / .7);stroke:hsl(220 20% 42%);stroke-width:1.5}
+.pk-node-lbl{fill:hsl(210 28% 86%);font-size:15px;font-weight:600}
+.pk-ico{font-size:40px}
+.pk-eve-ico{font-size:26px}
+.pk-eve-lbl{font-size:13px;font-family:var(--mono,monospace)}
+.pk-eve-lbl.danger{fill:hsl(0 75% 66%)}
+.pk-eve-lbl.safe{fill:hsl(150 60% 60%)}
+.pk-pill{stroke-width:1}
+.pk-pill.danger{fill:hsl(0 60% 32% / .8);stroke:hsl(0 70% 55%)}
+.pk-pill.cipher{fill:hsl(150 45% 26% / .9);stroke:hsl(150 60% 50%)}
+.pk-pill-txt{fill:hsl(210 25% 90%);font-size:13px;font-family:var(--mono,monospace)}
+.pk-flow{fill:none;stroke-width:3;stroke-linecap:round;stroke-dasharray:5 12;animation:pkflow 1.1s linear infinite}
+.pk-flow.danger{stroke:hsl(0 80% 62%);filter:drop-shadow(0 0 3px hsl(0 75% 55% / .8))}
+.pk-flow.cipher{stroke:hsl(150 85% 58%);filter:drop-shadow(0 0 3px hsl(150 80% 50% / .8))}
+@keyframes pkflow{to{stroke-dashoffset:-100}}
+.pk-mid{fill:hsl(210 18% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.pk-lock{font-size:34px}
+.pk-easy{fill:hsl(150 75% 62%);font-size:20px;font-weight:600;font-family:var(--mono,monospace)}
+.pk-hard{fill:hsl(0 75% 66%);font-size:20px;font-weight:600;font-family:var(--mono,monospace)}
+.pk-keytag{font-size:13px;font-family:var(--mono,monospace)}
+.pk-keytag.pub{fill:hsl(200 85% 64%)}
+.pk-keytag.priv{fill:hsl(45 90% 64%)}
+.pk-math{fill:hsl(210 28% 88%);font-size:22px;font-weight:600;font-family:var(--mono,monospace)}
+.pk-recovered{fill:hsl(150 78% 62%);font-size:16px;font-family:var(--mono,monospace)}
+.pk-foot{fill:hsl(210 16% 60%);font-size:13px}
+.pk-live-lbl{color:var(--muted);font-size:13px}
+.pk-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:96px}
+.pk-live-note{color:hsl(150 45% 46%);font-size:13px;font-family:var(--mono,monospace)}
+.pk-live-note b{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){.pk-flow{animation:none;opacity:.6}}

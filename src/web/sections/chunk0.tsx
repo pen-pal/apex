@@ -5,6 +5,7 @@ import { ClassicalSection } from '../ClassicalSection';
 import { OneTimePadSection } from '../OneTimePadSection';
 import { AeadSection } from '../AeadSection';
 import { RsaSection } from '../RsaSection';
+import { PubKeySection } from '../PubKeySection';
 import { EccSection } from '../EccSection';
 import { EcdsaSection } from '../EcdsaSection';
 import { SchnorrSection } from '../SchnorrSection';
@@ -55,6 +56,7 @@ export const chunk0: Record<string, SectionEntry> = {
   "otpad": { Component: OneTimePadSection, title: <>One-time pad</>, sub: <>The only cipher with proven perfect secrecy — XOR with a random pad reveals nothing, but reuse it once and it shatters.</> },
   "aead": { Component: AeadSection, title: <>CTR, nonce reuse &amp; AEAD</>, sub: <>Turn the block cipher into a stream cipher, watch a reused nonce leak two messages, then add a GHASH tag that catches tampering — all on real, NIST-verified bytes.</> },
   "rsa": { Component: RsaSection, title: <>RSA</>, sub: <>Pick two primes and watch the public/private keypair fall out — then encrypt the public way, decrypt the private way, sign, verify, and see the whole secret rest on factoring being hard.</> },
+  "pubkey": { Component: PubKeySection, title: <>How public-key crypto works</>, sub: <>The idea RSA, ECC, and the TLS handshake all rest on: how you share a secret with someone you have never met, over a line everyone is reading. A narrated walk from the padlock intuition to the one-way trapdoor to a real tiny RSA — 65 encrypts to 2790 with the public key and back to 65 with the private one — then signatures, and a box you can encrypt in yourself.</> },
   "ecc": { Component: EccSection, title: <>Elliptic curves &amp; ECDH</>, sub: <>The whole finite group on one grid: walk kG to feel the discrete-log trapdoor, watch point addition add indices, and run ECDH to a shared secret.</> },
   "ecdsa": { Component: EcdsaSection, title: <>ECDSA &amp; nonce reuse</>, sub: <>Sign with the private scalar, verify with the public point — then watch a reused nonce hand an attacker the private key, the real PS3 / Bitcoin bug.</> },
   "schnorr": { Component: SchnorrSection, title: <>Zero-knowledge proof (Schnorr)</>, sub: <>Prove you know a secret without revealing it — the three-move commit/challenge/response, and why the challenge must come after the commitment.</> },
