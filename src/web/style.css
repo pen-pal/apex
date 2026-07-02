@@ -11962,3 +11962,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .crd-gain{fill:hsl(200 60% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
 .crd-foot{fill:hsl(210 16% 60%);font-size:13px}
 .crd-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+
+/* ── Gray code story (GrayCodeSection) — binary vs Gray bit rows, single-bit transitions ─────────── */
+.gry-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.gry-rlbl{fill:hsl(210 20% 74%);font-size:13px;font-family:var(--mono,monospace)}
+.gry-bit{fill:hsl(220 22% 22%);stroke:hsl(220 18% 36%);stroke-width:1}
+.gry-bit.on{fill:hsl(210 40% 34%);stroke:hsl(210 50% 54%)}
+.gry-bit.flipbad{fill:hsl(0 55% 38%);stroke:hsl(0 70% 60%);stroke-width:2}
+.gry-bit.flipok{fill:hsl(150 50% 36%);stroke:hsl(150 60% 56%);stroke-width:2}
+.gry-bval{fill:hsl(210 30% 90%);font-size:18px;font-family:var(--mono,monospace)}
+.gry-warn{fill:hsl(0 72% 70%);font-size:12.5px;font-family:var(--mono,monospace)}
+.gry-safe{fill:hsl(150 55% 64%);font-size:12.5px;font-family:var(--mono,monospace)}
+.gry-trow{fill:hsl(210 22% 78%);font-size:14px;font-family:var(--mono,monospace)}
+.gry-trow.mono{letter-spacing:.12em}
+.gry-trow.ok{fill:hsl(150 55% 64%)}
+.gry-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gry-hint{fill:hsl(210 16% 56%);font-size:12px;font-family:var(--mono,monospace)}
+.gry-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.gry-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid hsl(150 50% 48%);background:hsl(150 45% 40% / .2);color:var(--ink);cursor:pointer}
+.gry-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
