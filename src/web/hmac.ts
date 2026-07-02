@@ -1,17 +1,13 @@
-// HMAC — Hash-based Message Authentication Code, the standard way to prove a message came from someone who
-// holds a shared secret key and wasn't tampered with (TLS record integrity, JWT signatures, API request signing,
-// webhooks). The naive idea — just hash the key prepended to the message, MAC = H(key ‖ msg) — is broken by a
-// LENGTH-EXTENSION attack: for Merkle–Damgård hashes (MD5, SHA-1, SHA-256) an attacker who sees H(key ‖ msg) can,
-// without knowing the key, compute a valid MAC for msg ‖ padding ‖ anything, because the hash's internal state
-// after msg is exactly its output. HMAC defends by hashing TWICE with two key-derived pads:
-//     HMAC(K, m) = H( (K ⊕ opad) ‖ H( (K ⊕ ipad) ‖ m) )
-// where ipad = 0x36 repeated, opad = 0x5c repeated, and K is zero-padded (or hashed first, if longer) to the
-// hash's block size (64 bytes for SHA-256). The inner hash binds the message under the key; the outer hash wraps
-// that digest under the key again, so an attacker only ever sees the OUTER hash of a fixed-length inner digest —
-// there's nothing to length-extend. This is provably secure given a reasonable hash, which is why HMAC is used
-// even with hashes (SHA-256) that are otherwise fine, and why it, not raw keyed hashing, is the standard. This
-// builds HMAC from the two-pass construction on real SHA-256, exposing the intermediate values, and checks it
-// against the platform's HMAC. Reference: RFC 2104 (HMAC); RFC 4231 (HMAC-SHA-256 test vectors); Bellare et al.
+// HMAC — prove a message came from someone holding a shared secret and wasn't tampered with (TLS, JWT, API
+// signing, webhooks). The naive MAC = H(key ‖ msg) is broken by a LENGTH-EXTENSION attack: for Merkle-Damgård
+// hashes (MD5, SHA-1, SHA-256) the digest IS the internal state after msg, so anyone who sees H(key ‖ msg) can
+// extend it to a valid MAC for msg ‖ padding ‖ more, without the key. HMAC hashes twice with two key-derived pads:
+//     HMAC(K, m) = H((K ⊕ opad) ‖ H((K ⊕ ipad) ‖ m))
+// (ipad = 0x36 and opad = 0x5c repeated to the block size; K zero-padded, or hashed first if longer, to 64 bytes
+// for SHA-256). The attacker only ever sees the OUTER hash of a fixed-length inner digest, so there is nothing to
+// length-extend. This is provably secure given a decent hash, which is why HMAC, not raw keyed hashing, is the
+// standard even with SHA-256. Built here from the two passes on real SHA-256, exposing the intermediate values
+// and checked against the platform's HMAC. Refs: RFC 2104; RFC 4231 (HMAC-SHA-256 vectors); Bellare et al.
 
 import { sha256 } from './hashing';
 

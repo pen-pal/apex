@@ -62,18 +62,16 @@ export function SsdSection() {
       </div>
 
       <p className="ssd-foot">
-        Hammer one page and watch stale pages pile up, then a block erase reclaim them — that relocation is
-        <strong> write amplification</strong>: the drive physically writes more than you asked, wearing the flash
-        faster and eating into throughput. The FTL fights back on three fronts. It spreads erases across all blocks
-        so no cell hits its program/erase limit first (<strong>wear leveling</strong> — the erase bars stay
-        roughly even). It needs the OS to say which logical pages are dead, via <strong>TRIM</strong>, or it wastes
-        effort relocating data the filesystem already deleted. And it keeps spare hidden capacity
-        (<strong>over-provisioning</strong>, typically 7–28%) so garbage collection always has somewhere to copy to
-        — which is why a nearly-full SSD slows down and wears faster. The cell itself trades endurance for density:
-        SLC stores one bit and survives ~100k erase cycles; QLC packs four bits per cell for cheap capacity but
-        lasts only ~1k, which is why consumer drives lean on a small SLC-mode write cache in front of QLC. It's a
-        stack of lies the drive tells to make forgetful, wear-prone, erase-in-bulk flash look like a simple array
-        of overwritable sectors. (Agrawal et al., 2008; flash datasheets.)
+        Hammer one page and stale pages pile up until a block erase reclaims them; that relocation is
+        <strong> write amplification</strong>, the drive physically writing more than you asked and wearing the
+        flash faster. The FTL fights it three ways: spread erases so no cell hits its program/erase limit first
+        (<strong>wear leveling</strong>); rely on the OS's <strong>TRIM</strong> to learn which pages are dead, or
+        it wastes effort relocating deleted data; and keep 7–28% hidden spare (<strong>over-provisioning</strong>)
+        so garbage collection always has somewhere to copy, which is why a nearly-full SSD slows and wears faster.
+        The cell trades endurance for density: SLC stores one bit and survives ~100k erases; QLC packs four bits
+        for cheap capacity but lasts ~1k, so consumer drives front it with a small SLC-mode write cache. It is a
+        stack of lies that makes forgetful, erase-in-bulk flash look like a plain array of overwritable sectors.
+        (Agrawal et al., 2008; flash datasheets.)
       </p>
     </div>
   );

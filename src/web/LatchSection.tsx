@@ -57,17 +57,15 @@ export function LatchSection() {
       </div>
 
       <p className="ltc-foot">
-        A gated D latch sits between these two: while its enable is high, Q tracks D continuously; while low, it
-        holds. That is fine but timing-fragile, because Q follows D the entire time the enable is high. The
-        flip-flop puts two such latches in series on opposite clock phases (master then slave) so the output can
-        only change on the clock edge, never mid-cycle. Chain n of them on one clock line and you have an n-bit
-        <strong> register</strong>: the CPU's program counter, its general-purpose registers, and the pipeline
-        latches between stages are all just rows of flip-flops. The same idea, shrunk to a 6-transistor cell (four
-        for the cross-coupled inverters, two to access it), is <strong>SRAM</strong> — your L1/L2/L3 cache. That
-        6-to-1 transistor cost against DRAM's one-capacitor cell is the reason cache is measured in megabytes and
-        main memory in gigabytes. So the whole storage hierarchy is two answers to one question — how do you hold
-        a bit: latch it in feedback (fast, big, SRAM) or park charge on a capacitor and refresh it (dense, slow,
-        DRAM). (Harris &amp; Harris, Digital Design and Computer Architecture.)
+        A gated D latch is the middle ground: while its enable is high, Q tracks D; while low, it holds. That is
+        timing-fragile, since Q follows D the entire time enable is high, so a flip-flop chains two latches on
+        opposite clock phases (master then slave) and the output can only change on the clock edge. Chain n of them
+        and you have an n-bit <strong>register</strong>: the program counter, the general-purpose registers, and
+        the pipeline latches between stages are all rows of flip-flops. Shrink the cell to six transistors (four
+        cross-coupled inverters, two to access it) and it is <strong>SRAM</strong>, your L1/L2/L3 cache. That 6:1
+        transistor cost against DRAM's one-capacitor cell is why cache is megabytes and main memory gigabytes. The
+        whole storage hierarchy is two answers to one question, how to hold a bit: latch it in feedback (fast, big)
+        or park charge on a capacitor and refresh it (dense, slow). (Harris &amp; Harris.)
       </p>
     </div>
   );

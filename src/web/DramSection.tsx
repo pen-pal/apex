@@ -73,13 +73,12 @@ export function DramSection() {
       </div>
 
       <p className="dram-foot">
-        Sequential access rides one open row and hits; strided and random access keep landing on new rows in the
-        same bank and pay precharge+activate every time — a 3× latency swing from the access pattern alone, no code
-        change. This is the hardware reason arrays beat linked lists, why the memory controller reorders requests to
-        group same-row accesses, and why spreading traffic across many banks lets their protocols overlap. SRAM
-        (CPU cache) skips all of this — it latches instead of leaking, so no refresh and near-uniform latency — but
-        costs ~6 transistors per bit versus DRAM's one, which is the entire reason your cache is megabytes and your
-        RAM is gigabytes. (JEDEC DDR4; timings ≈ DDR4-3200 CL22.)
+        Sequential access rides one open row and hits; strided or random access keeps landing on new rows in the
+        same bank, paying precharge+activate every time. That is a 3× latency swing from the access pattern alone,
+        no code change: the hardware reason arrays beat linked lists, and why controllers spread traffic across
+        banks so their timings overlap. SRAM (your cache) sidesteps all of it by latching instead of leaking, so no
+        refresh and flat latency, but at ~6 transistors per bit against DRAM's one capacitor. That 6:1 cost is the
+        whole reason cache is megabytes and RAM is gigabytes. (JEDEC DDR4-3200 CL22 timings.)
       </p>
     </div>
   );

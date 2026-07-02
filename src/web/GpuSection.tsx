@@ -70,17 +70,15 @@ export function GpuSection() {
       </div>
 
       <p className="gpu-foot">
-        Both hazards come from the same source — 32 threads forced to move as one. A single stray thread taking the
-        other side of a branch costs a whole extra pass, so GPU code is written to keep an entire warp on one path
-        (sort data so neighbors agree, replace branches with arithmetic/predication, or restructure so divergence
-        happens between warps, not within one). And because a load pulls a full 128-byte line whether you use 4
-        bytes or all 128, the layout that flies is thread <code>i</code> reads element <code>i</code> — structure-
-        of-arrays, not array-of-structures — so a warp's 32 reads land in one line. Get these two right and a GPU
-        delivers its terabytes-per-second and teraflops; get them wrong and it crawls despite the raw specs, which
-        is why GPU tuning is mostly about memory layout and divergence, not arithmetic. The same SIMT lockstep also
-        hides latency: when one warp stalls on memory, the scheduler instantly swaps in another that's ready, so
-        thousands of threads in flight keep the arithmetic units busy — a GPU trades single-thread speed for sheer
-        occupancy. (NVIDIA CUDA C Programming Guide; Hennessy &amp; Patterson ch. 4.)
+        Both hazards trace to one fact: 32 threads move as one. A stray thread on the other side of a branch costs
+        a whole extra pass, so GPU code keeps a warp on a single path (sort so neighbors agree, or replace the
+        branch with predication). And since a load pulls a full 128-byte line no matter how few bytes you use,
+        thread <code>i</code> should read element <code>i</code> (structure-of-arrays, not array-of-structures), so
+        a warp's 32 reads land in one line. Get layout and divergence right and the GPU hits its rated teraflops;
+        get them wrong and it crawls, which is why GPU tuning is mostly memory layout, not arithmetic. The same
+        lockstep hides latency: when a warp stalls on memory the scheduler swaps in a ready one, so thousands of
+        threads in flight keep the ALUs busy. A GPU trades single-thread speed for occupancy. (NVIDIA CUDA guide;
+        Hennessy &amp; Patterson ch. 4.)
       </p>
     </div>
   );
