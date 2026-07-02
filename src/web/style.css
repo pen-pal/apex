@@ -11105,3 +11105,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ctr-live{color:hsl(150 55% 46%);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
 .ctr-live.bad{color:hsl(0 78% 62%)}
 @media(prefers-reduced-motion:reduce){.ctr-leak{animation:none;opacity:.6}}
+
+/* ── Bytecode-VM story (BytecodeSection) — stack machine on the shared .story-* dark stage ──────── */
+.bc-src-box{fill:hsl(210 40% 24% / .7);stroke:hsl(210 55% 50%);stroke-width:1.5}
+.bc-bc-box{fill:hsl(265 40% 26% / .7);stroke:hsl(265 55% 58%);stroke-width:1.5}
+.bc-vm-box{fill:hsl(150 40% 24% / .7);stroke:hsl(150 55% 50%);stroke-width:1.5}
+.bc-src-txt{fill:hsl(210 26% 86%);font-size:15px;font-family:var(--mono,monospace)}
+.bc-src-sub{fill:hsl(150 55% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.bc-arrow{fill:hsl(210 20% 62%);font-size:26px}
+.bc-mid{fill:hsl(210 22% 76%);font-size:14px;font-family:var(--mono,monospace)}
+.bc-loop{fill:hsl(38 85% 64%);font-size:14px;font-family:var(--mono,monospace)}
+.bc-col-lbl{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.05em}
+.bc-err{fill:hsl(0 78% 66%);font-size:14px;font-family:var(--mono,monospace)}
+.bc-ins{fill:hsl(220 18% 20% / .7);stroke:hsl(220 16% 36%);stroke-width:1}
+.bc-ins.done{fill:hsl(150 30% 24% / .5);stroke:hsl(150 45% 42%)}
+.bc-ins.cur{fill:hsl(45 45% 30% / .6);stroke:hsl(45 100% 60%);filter:drop-shadow(0 0 5px hsl(45 90% 55% / .5))}
+.bc-ins-txt{fill:hsl(210 26% 86%);font-size:14px;font-family:var(--mono,monospace)}
+.bc-stack-base{stroke:hsl(210 20% 55%);stroke-width:2.5;stroke-linecap:round}
+.bc-cell{fill:hsl(200 45% 28% / .8);stroke:hsl(200 60% 52%);stroke-width:1}
+.bc-cell.top{fill:hsl(150 50% 30% / .85);stroke:hsl(150 70% 55%);filter:drop-shadow(0 0 5px hsl(150 65% 50% / .4))}
+.bc-cell-txt{fill:hsl(210 28% 90%);font-size:16px;font-weight:600;font-family:var(--mono,monospace)}
+.bc-empty{fill:hsl(210 14% 52%);font-size:13px;font-family:var(--mono,monospace)}
+.bc-foot{fill:hsl(210 16% 60%);font-size:13px}
+.bc-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:170px}
+.bc-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
