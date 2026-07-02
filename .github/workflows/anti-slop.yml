@@ -1,0 +1,23 @@
+name: anti-slop
+
+# Fails the build on the high-confidence slop patterns (hardcoded metric badges,
+# claim/artifact contradictions, dead dependencies, monolith files). Warnings are
+# printed for review but never block. See scripts/anti-slop.mjs and CLAUDE.md.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  anti-slop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # No install step: the linter is dependency-free, so it runs as-is.
+      - name: Run anti-slop linter
+        run: node scripts/anti-slop.mjs
