@@ -11145,3 +11145,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gc-foot{fill:hsl(210 16% 60%);font-size:13px}
 .gc-toggle{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:5px}
 .gc-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── JIT story (JitSection) — profile/compile/deopt on the shared .story-* dark stage ───────────── */
+.jit-fn{fill:hsl(220 20% 20% / .8);stroke:hsl(220 18% 42%);stroke-width:1.5}
+.jit-fn.hot{stroke:hsl(30 90% 58%);filter:drop-shadow(0 0 7px hsl(30 85% 55% / .5))}
+.jit-fn-lbl{fill:hsl(210 26% 88%);font-size:16px;font-family:var(--mono,monospace)}
+.jit-fn-sub{fill:hsl(210 18% 70%);font-size:13px;font-family:var(--mono,monospace)}
+.jit-bar{fill:hsl(220 18% 22% / .8);stroke:hsl(220 16% 36%);stroke-width:1}
+.jit-bar-fill{fill:hsl(200 60% 48% / .8)}
+.jit-bar-fill.hot{fill:hsl(30 85% 55% / .9)}
+.jit-bar-lbl{fill:hsl(210 16% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.jit-path{fill:hsl(220 18% 18% / .5);stroke:hsl(220 16% 34%);stroke-width:1.5}
+.jit-path.active{fill:hsl(200 40% 24% / .5);stroke:hsl(200 65% 52%)}
+.jit-path.native.active{fill:hsl(150 45% 26% / .55);stroke:hsl(150 70% 52%);filter:drop-shadow(0 0 8px hsl(150 60% 50% / .4))}
+.jit-path.dim{opacity:.45}
+.jit-path-lbl{fill:hsl(210 26% 86%);font-size:15px;font-weight:600;font-family:var(--mono,monospace)}
+.jit-path-sub{fill:hsl(210 16% 64%);font-size:12px;font-family:var(--mono,monospace)}
+.jit-speed{fill:hsl(210 20% 55%);font-size:26px;font-weight:700;font-family:var(--mono,monospace)}
+.jit-speed.on{fill:hsl(200 80% 66%)}
+.jit-speed.fast.on{fill:hsl(150 75% 60%)}
+.jit-flow-lbl{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace)}
+.jit-flow{fill:none;stroke:hsl(30 90% 60%);stroke-width:3;stroke-linecap:round;stroke-dasharray:5 10;filter:drop-shadow(0 0 3px hsl(30 85% 55% / .8));animation:jitflow 1s linear infinite}
+@keyframes jitflow{to{stroke-dashoffset:-100}}
+.jit-deopt{fill:hsl(0 78% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.jit-foot{fill:hsl(210 16% 60%);font-size:13px}
+.jit-live{color:var(--muted);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+.jit-live.fast{color:hsl(150 55% 50%)}
