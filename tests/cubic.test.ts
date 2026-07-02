@@ -18,8 +18,12 @@ describe('the CUBIC window formula W(t) = C·(t−K)³ + W_max', () => {
     expect(cubicWindow(wmax, k - 1)).toBeLessThan(wmax);
   });
 
-  it('K scales with the cube root of W_max', () => {
-    expect(cubicK(100)).toBeCloseTo(Math.cbrt((100 * (1 - BETA)) / C), 9);
+  it('K scales as the cube root of W_max — the "cubic" in CUBIC', () => {
+    // A property of the cube law, NOT a restatement of the K formula: with C and β fixed, K(a·W_max) =
+    // a^(1/3)·K(W_max). Using a = 8 gives a clean 8^(1/3) = 2. This catches a wrong exponent (say a square root)
+    // that copying the formula into the test would miss. K's absolute value is anchored by the W(0)=β·W_max test
+    // above, whose W(0) = W_max − C·K³ only equals β·W_max when K = cbrt(W_max(1−β)/C).
+    expect(cubicK(8 * 50) / cubicK(50)).toBeCloseTo(2, 9);
   });
 });
 
