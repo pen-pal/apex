@@ -12080,3 +12080,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pit-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .pit-btn.on{background:hsl(0 50% 45% / .22);border-color:hsl(0 65% 58%)}
 .pit-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Barnes-Hut N-body story (BarnesHutSection) — bodies, quadtree, center-of-mass approximation ──── */
+.nbd-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.nbd-frame{fill:none;stroke:hsl(220 18% 34%);stroke-width:1}
+.nbd-cell{fill:none;stroke:hsl(220 16% 30% / .7);stroke-width:0.5}
+.nbd-pair{stroke:hsl(0 50% 55% / .16);stroke-width:0.5}
+.nbd-usedbox{fill:hsl(190 55% 45% / .13);stroke:hsl(190 60% 56%);stroke-width:1}
+.nbd-force{stroke:hsl(45 85% 60% / .5);stroke-width:0.8}
+.nbd-com{fill:hsl(45 90% 62%);stroke:#fff;stroke-width:0.75}
+.nbd-lbl{fill:hsl(45 85% 68%);font-size:11px;font-family:var(--mono,monospace)}
+.nbd-body{fill:hsl(210 55% 66% / .9)}
+.nbd-body.focus{fill:hsl(280 65% 68%)}
+.nbd-focus{fill:none;stroke:hsl(280 70% 70%);stroke-width:2}
+.nbd-foot{fill:hsl(210 16% 60%);font-size:13px}
+.nbd-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nbd-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
