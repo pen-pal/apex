@@ -11837,3 +11837,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .vlt-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid hsl(190 55% 50%);background:hsl(190 50% 42% / .2);color:var(--ink);cursor:pointer}
 .vlt-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
 .vlt-hint{color:var(--muted);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Gamma story (GammaSection) — sRGB value→light curve, squint test, naive-vs-correct average ──── */
+.gam-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.gam-axis{stroke:hsl(220 16% 40%);stroke-width:1}
+.gam-diag{stroke:hsl(220 16% 38%);stroke-width:1;stroke-dasharray:4 3}
+.gam-curve{stroke:hsl(38 88% 60%);stroke-width:2.5}
+.gam-difflbl{fill:hsl(220 14% 52%);font-size:11px;font-family:var(--mono,monospace)}
+.gam-mark{stroke:hsl(0 65% 60%);stroke-width:1;stroke-dasharray:3 2}
+.gam-mark.ok{stroke:hsl(150 55% 52%)}
+.gam-mark.live{stroke:hsl(280 70% 66%);stroke-dasharray:none;stroke-width:1.5}
+.gam-dot{fill:hsl(0 70% 62%)}
+.gam-dot.ok{fill:hsl(150 60% 55%)}
+.gam-dot.live{fill:hsl(280 70% 66%)}
+.gam-tick{fill:hsl(0 60% 70%);font-size:11px;font-family:var(--mono,monospace)}
+.gam-tick.ok{fill:hsl(150 55% 62%)}
+.gam-swlbl{fill:hsl(210 20% 74%);font-size:12px;font-family:var(--mono,monospace)}
+.gam-swlbl.ok{fill:hsl(150 55% 64%)}
+.gam-op{fill:hsl(210 20% 70%);font-size:26px;font-family:var(--mono,monospace)}
+.gam-note{fill:hsl(150 45% 62%);font-size:13px;font-family:var(--mono,monospace)}
+.gam-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gam-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
