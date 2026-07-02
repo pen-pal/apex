@@ -28,6 +28,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'dot1x', label: '802.1X / EAPOL', icon: '🔌' },
   { id: 'vlan', label: 'VLAN tagging', icon: '🏷️' },
   { id: 'ntp', label: 'NTP clock sync', icon: '🕰️' },
+  { id: 'gps', label: 'How GPS finds your position', icon: '🎬' },
   { id: 'btree', label: 'B+tree index', icon: '🌲' },
   { id: 'gitobjects', label: 'How Git stores your code', icon: '🎬' },
   { id: 'pagereplace', label: 'Page replacement', icon: '📄' },
@@ -375,7 +376,7 @@ export const metaById: Record<string, SectionMeta> = Object.fromEntries(SECTION_
 export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
-  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp'] },
+  { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp', 'gps'] },
   { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'lpm', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgprr', 'routeflap', 'mpls', 'segrouting', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'kaminsky', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'timewait', 'tfo', 'zerortt', 'congestion', 'cubic', 'bbr', 'flow', 'sws', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'h2flow', 'http2', 'quic', 'quicmig', 'http3', 'grpc', 'websocket', 'realtime', 'sctp', 'mptcp', 'cdn', 'conditional', 'ratelimit', 'leakybucket', 'gcra', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'lenext', 'hmac', 'paddingoracle', 'montgomery', 'pubkey', 'rsa', 'ecc', 'ecdsa', 'eddsa', 'pedersen', 'blindsig', 'vrf', 'ot', 'paillier', 'elgamal', 'schnorr', 'dhkex', 'dhmitm', 'tlsdowngrade', 'tlsflow', 'pwhash', 'pqc', 'ntt', 'bb84', 'shamir', 'envelope', 'feldman', 'threshsig', 'pow', 'ratchet', 'x3dh', 'merkle', 'lamportsig', 'hashchain'] },

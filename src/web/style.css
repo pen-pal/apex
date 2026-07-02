@@ -11635,3 +11635,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rct-live{font-family:var(--mono,monospace);font-size:12.5px;margin-left:4px}
 .rct-live.ok{color:hsl(150 60% 56%)}
 .rct-live.bad{color:hsl(0 76% 66%)}
+
+/* ── GPS trilateration story (GpsSection) — satellites, distance circles, the fix ────────────────── */
+.gps-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.gps-ring{fill:none;stroke:hsl(200 65% 58% / .55);stroke-width:1.5}
+.gps-sat{fill:hsl(220 25% 28%);stroke:hsl(200 60% 60%);stroke-width:1.5}
+.gps-satlbl{font-size:13px}
+.gps-fix.locked{fill:hsl(150 70% 52%);stroke:#fff;stroke-width:1.5;filter:drop-shadow(0 0 7px hsl(150 65% 50% / .6))}
+.gps-fix.fuzzy{fill:hsl(0 60% 55% / .35);stroke:hsl(0 65% 60%);stroke-width:1.5;stroke-dasharray:3 3}
+.gps-fixlbl{fill:hsl(0 65% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.gps-fixlbl.locked{fill:hsl(150 65% 62%);font-weight:600}
+.gps-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gps-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:10px}
+.gps-btn{font-size:13px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:8px}
+.gps-live{font-family:var(--mono,monospace);font-size:12.5px}
+.gps-live.ok{color:hsl(150 60% 56%)}
+.gps-live.bad{color:hsl(0 74% 66%)}

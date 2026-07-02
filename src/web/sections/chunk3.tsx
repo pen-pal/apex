@@ -47,6 +47,7 @@ import { CsmaSection } from '../CsmaSection';
 import { MulticastSection } from '../MulticastSection';
 import { VlanSection } from '../VlanSection';
 import { NtpSection } from '../NtpSection';
+import { GpsSection } from '../GpsSection';
 import { ArqSection } from '../ArqSection';
 
 export const chunk3: Record<string, SectionEntry> = {
@@ -97,5 +98,6 @@ export const chunk3: Record<string, SectionEntry> = {
   "multicast": { Component: MulticastSection, title: <>Multicast &amp; IGMP</>, sub: <>One sender, many subscribers — join hosts to a group and watch an IGMP-snooping switch forward the frame to only the members, not every port.</> },
   "vlan": { Component: VlanSection, title: <>802.1Q VLAN tagging</>, sub: <>Build the 4-byte VLAN tag, follow a frame across access and trunk ports, and run the double-tagging hop that abuses the native VLAN.</> },
   "ntp": { Component: NtpSection, title: <>NTP clock sync</>, sub: <>Four timestamps recover the clock offset across an unknown network — slide the path delays and watch it stay exact when symmetric, and the server's own delay cancel out.</> },
+  "gps": { Component: GpsSection, title: <>How GPS finds your position</>, sub: <>Each satellite broadcasts its position and atomic-clock time; your receiver turns each signal's travel time into a distance, placing you on a circle. Intersect them and they meet at one point — trilateration. But your phone's cheap clock inflates every range by the same amount, so the circles miss; the fix is to solve the clock offset as a fourth unknown, which is why you need four satellites. Slide the assumed clock offset and watch the circles converge on your position — or run the real Gauss-Newton solve.</> },
   "arq": { Component: ArqSection, title: <>ARQ — Go-Back-N vs Selective Repeat</>, sub: <>Drop one frame and compare: Go-Back-N resends it and everything after; Selective Repeat buffers and resends only the gap.</> },
 };
