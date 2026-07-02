@@ -3423,7 +3423,7 @@ function App() {
           <>
             <header>
               <h1>Perlin noise — smooth randomness for procedural worlds</h1>
-              <p className="sub">The gradient-noise algorithm (Ken Perlin, 1983, Tron) behind procedural terrain, clouds, fire, and marble textures. Instead of a random value per pixel (harsh white noise), it assigns a random gradient to each grid point and blends the neighbors with the fade curve 6t⁵−15t⁴+10t³ — smooth everywhere, and exactly zero at the lattice points. Stack octaves at doubling frequency for fractal detail. Reseed, zoom, and add octaves to grow a landscape.</p>
+              <p className="sub">The gradient-noise algorithm (Ken Perlin, 1983, soon after working on Tron) behind procedural terrain, clouds, fire, and marble textures. Instead of a random value per pixel (harsh white noise), it assigns a random gradient to each grid point and blends the neighbors with the fade curve 6t⁵−15t⁴+10t³ — smooth everywhere, and exactly zero at the lattice points. Stack octaves at doubling frequency for fractal detail. Reseed, zoom, and add octaves to grow a landscape.</p>
             </header>
             <PerlinSection />
           </>

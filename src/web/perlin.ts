@@ -1,5 +1,5 @@
 // Perlin noise — the algorithm that made computer-generated worlds stop looking computer-generated. Ken Perlin
-// invented it in 1983 for the movie Tron, frustrated that everything CG looked too clean; it earned him a
+// developed it in 1983, soon after working on the movie Tron, frustrated that everything CG looked too clean; it earned him a
 // Technical Academy Award and now underlies procedural terrain, clouds, fire, marble and wood textures, and the
 // wobble in a thousand animations. The problem it solves: you want randomness that is SMOOTH — a value at every
 // point that looks noisy but has no jarring jumps, so zooming in reveals gentle hills, not static. Pure random
