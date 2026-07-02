@@ -11509,3 +11509,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .spx-s-spike{fill:hsl(45 95% 66%);font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
 .spx-s-flat{fill:hsl(150 60% 58%);font-size:13.5px;font-family:var(--mono,monospace)}
 .spx-s-foot{fill:hsl(210 16% 60%);font-size:13px}
+
+/* ── Kaminsky DNS-poisoning guided story (KaminskySection, converted) — the forgery race + entropy math ── */
+.kam-s-box{stroke-width:1.5}
+.kam-s-box.atk{fill:hsl(0 45% 34% / .35);stroke:hsl(0 60% 55%)}
+.kam-s-box.res{fill:hsl(210 40% 38% / .4);stroke:hsl(210 50% 55%)}
+.kam-s-box.auth{fill:hsl(150 38% 32% / .35);stroke:hsl(150 50% 50%)}
+.kam-s-boxlbl{fill:hsl(210 26% 88%);font-size:14px;font-weight:600;font-family:var(--mono,monospace)}
+.kam-s-sub{fill:hsl(210 16% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.kam-s-forge{stroke:hsl(0 70% 60%);stroke-width:1.5}
+.kam-s-ah-r{fill:hsl(0 70% 60%)}
+.kam-s-flbl{fill:hsl(0 68% 66%);font-size:11.5px;font-family:var(--mono,monospace)}
+.kam-s-real{stroke:hsl(150 55% 55%);stroke-width:2}
+.kam-s-ah-l{fill:hsl(150 55% 55%)}
+.kam-s-rlbl{fill:hsl(150 55% 60%);font-size:11.5px;font-family:var(--mono,monospace)}
+.kam-s-rand{fill:hsl(38 85% 64%);font-size:12.5px;font-family:var(--mono,monospace)}
+.kam-s-lock{fill:hsl(210 18% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.kam-s-cache{stroke-width:1.5}
+.kam-s-cache.ok{fill:hsl(150 40% 30% / .3);stroke:hsl(150 55% 48%)}
+.kam-s-cache.bad{fill:hsl(0 55% 36% / .4);stroke:hsl(0 70% 58%);filter:drop-shadow(0 0 6px hsl(0 65% 50% / .4))}
+.kam-s-cachelbl{fill:hsl(210 20% 74%);font-size:12.5px;font-family:var(--mono,monospace)}
+.kam-s-ip{font-size:14px;font-weight:600;font-family:var(--mono,monospace)}
+.kam-s-ip.ok{fill:hsl(150 60% 60%)}
+.kam-s-ip.bad{fill:hsl(0 78% 68%)}
+.kam-s-mathlbl{fill:hsl(210 16% 58%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.kam-s-stat{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace)}
+.kam-s-val{fill:hsl(210 28% 88%);font-size:17px;font-weight:600;font-family:var(--mono,monospace)}
+.kam-s-val.safe{fill:hsl(150 62% 58%)}
+.kam-s-val.danger{fill:hsl(0 78% 66%)}
+.kam-s-foot{fill:hsl(210 16% 60%);font-size:13px}
+.kam-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:center}
