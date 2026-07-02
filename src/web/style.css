@@ -11188,3 +11188,14 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .kst-pixel{fill:hsl(45 90% 64%)}
 .kst-foot{fill:hsl(210 16% 60%);font-size:13px}
 .kst-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── JPEG story (JpegSection) — DCT + quantization on the shared .story-* dark stage ─────────────── */
+.jpg-cell{stroke:hsl(220 15% 12%);stroke-width:.5}
+.jpg-cap{fill:hsl(210 18% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.jpg-arrow{fill:hsl(210 20% 62%);font-size:15px;font-family:var(--mono,monospace)}
+.jpg-note{fill:hsl(38 80% 64%);font-size:12px;font-family:var(--mono,monospace)}
+.jpg-mid{fill:hsl(210 24% 80%);font-size:15px;font-family:var(--mono,monospace)}
+.jpg-mid.dim{fill:hsl(210 15% 60%);font-size:13px}
+.jpg-foot{fill:hsl(210 16% 60%);font-size:13px}
+.jpg-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.jpg-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
