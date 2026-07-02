@@ -11035,3 +11035,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sc-foot{fill:hsl(210 16% 60%);font-size:13px}
 .sc-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:8px}
 @media(prefers-reduced-motion:reduce){.sc-flow{animation:none;opacity:.6}}
+
+/* ── Compiler story (CompilerSection) — lex/parse/codegen on the shared .story-* dark stage ─────── */
+.cmp-stage-lbl{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.05em}
+.cmp-src{fill:hsl(220 20% 20% / .7);stroke:hsl(220 18% 40%);stroke-width:1}
+.cmp-src-txt{fill:hsl(200 80% 74%);font-size:16px;font-family:var(--mono,monospace)}
+.cmp-arrow{fill:hsl(210 20% 62%);font-size:26px}
+.cmp-mc{fill:hsl(20 30% 22% / .6);stroke:hsl(20 45% 42%);stroke-width:1}
+.cmp-mc-txt{fill:hsl(30 60% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.cmp-mid{fill:hsl(210 22% 74%);font-size:14px;font-family:var(--mono,monospace)}
+.cmp-mid.dim{fill:hsl(210 15% 58%);font-size:13px}
+.cmp-tok{stroke-width:1}
+.cmp-tok.num{fill:hsl(150 45% 26% / .8);stroke:hsl(150 60% 50%)}
+.cmp-tok.id{fill:hsl(200 45% 28% / .8);stroke:hsl(200 65% 54%)}
+.cmp-tok.op{fill:hsl(38 45% 28% / .8);stroke:hsl(38 70% 52%)}
+.cmp-tok-txt{fill:hsl(210 28% 90%);font-size:14px;font-family:var(--mono,monospace)}
+.cmp-ast{fill:hsl(210 24% 82%);font-size:15px;font-family:var(--mono,monospace);white-space:pre}
+.cmp-ast.op{fill:hsl(38 90% 66%);font-weight:600}
+.cmp-asm{fill:hsl(150 65% 66%);font-size:15px;font-family:var(--mono,monospace)}
+.cmp-err{fill:hsl(0 78% 66%);font-size:15px;font-family:var(--mono,monospace)}
+.cmp-foot{fill:hsl(210 16% 60%);font-size:13px}
+.cmp-live-lbl{color:var(--muted);font-size:13px}
+.cmp-input{padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:200px}
+.cmp-live-note{color:var(--accent);font-size:13px;font-family:var(--mono,monospace)}
