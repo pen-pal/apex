@@ -11651,3 +11651,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gps-live{font-family:var(--mono,monospace);font-size:12.5px}
 .gps-live.ok{color:hsl(150 60% 56%)}
 .gps-live.bad{color:hsl(0 74% 66%)}
+
+/* ── MP3 psychoacoustic-masking story (Mp3Section) — spectrum + hearing/masking threshold curve ──── */
+.mp3-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
+.mp3-axis{stroke:hsl(220 16% 40%);stroke-width:1}
+.mp3-tick{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.mp3-curve{stroke:hsl(38 88% 60%);stroke-width:2}
+.mp3-curve.ath{stroke:hsl(200 65% 60%)}
+.mp3-inaud{fill:hsl(220 20% 40% / .14)}
+.mp3-curvelbl{fill:hsl(38 80% 66%);font-size:11.5px;font-family:var(--mono,monospace)}
+.mp3-bar{stroke-width:1}
+.mp3-bar.masker{fill:hsl(0 70% 55% / .85);stroke:hsl(0 75% 65%)}
+.mp3-bar.kept{fill:hsl(150 55% 48% / .85);stroke:hsl(150 60% 58%)}
+.mp3-bar.dropped{fill:hsl(220 12% 45% / .5);stroke:hsl(220 12% 40%)}
+.mp3-mlbl{fill:hsl(0 72% 68%);font-size:11px;font-family:var(--mono,monospace)}
+.mp3-foot{fill:hsl(210 16% 60%);font-size:13px}
+.mp3-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-right:8px}
+.mp3-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
