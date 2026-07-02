@@ -11353,3 +11353,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .nx-live{font-size:12.5px;font-family:var(--mono,monospace)}
 .nx-live.ok{color:hsl(150 55% 55%)}
 .nx-live.bad{color:hsl(0 75% 66%)}
+
+/* ── ROP story (RopSection) — gadget catalog + ROP chain on the stack + registers ─────────────── */
+.rop-col{fill:hsl(210 16% 60%);font-size:11.5px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.rop-gad{fill:hsl(150 30% 38% / .14);stroke:hsl(150 35% 44%);stroke-width:1}
+.rop-gad.used{fill:hsl(150 40% 40% / .2);stroke:hsl(150 48% 50%)}
+.rop-gad.active{fill:hsl(45 70% 45% / .28);stroke:hsl(45 90% 58%);filter:drop-shadow(0 0 5px hsl(45 80% 50% / .4))}
+.rop-gad-asm{fill:hsl(210 26% 86%);font-size:13px;font-family:var(--mono,monospace)}
+.rop-gad-addr{fill:hsl(210 16% 58%);font-size:11.5px;font-family:var(--mono,monospace)}
+.rop-note{fill:hsl(210 15% 52%);font-size:11px;font-family:var(--mono,monospace);font-style:italic}
+.rop-slot{fill:hsl(220 18% 22% / .55);stroke:hsl(220 16% 34%);stroke-width:1}
+.rop-slot.gadget{stroke:hsl(45 60% 50%)}
+.rop-slot.data{stroke:hsl(210 50% 55%)}
+.rop-slot.call{stroke:hsl(300 55% 58%)}
+.rop-slot.used{opacity:.4}
+.rop-slot.cur{filter:drop-shadow(0 0 6px hsl(45 85% 55% / .5));stroke-width:2}
+.rop-slot-addr{fill:hsl(45 85% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.rop-slot-lbl{fill:hsl(210 20% 74%);font-size:11.5px;font-family:var(--mono,monospace)}
+.rop-rsp{fill:hsl(150 65% 58%);font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
+.rop-foot{fill:hsl(210 16% 58%);font-size:12px}
+.rop-regs{fill:hsl(220 18% 16% / .7);stroke:hsl(220 16% 32%);stroke-width:1}
+.rop-reg{fill:hsl(210 20% 70%);font-size:13px;font-family:var(--mono,monospace)}
+.rop-reg-v{fill:hsl(210 28% 88%)}
+.rop-reg-v.set{fill:hsl(150 65% 60%)}
+.rop-reg-note{fill:hsl(210 15% 56%);font-size:11.5px;font-family:var(--mono,monospace)}
+.rop-reg-note.win{fill:hsl(150 65% 58%);font-weight:600}
+.rop-msg{color:hsl(210 22% 74%);font-size:13px;line-height:1.5;font-family:var(--sans,system-ui)}
+.rop-btn{font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:6px}
+.rop-btn.ghost{opacity:.75}
+.rop-btn:disabled{opacity:.4;cursor:default}
+.rop-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--accent);margin-left:6px}
