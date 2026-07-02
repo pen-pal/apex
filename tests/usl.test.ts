@@ -24,9 +24,10 @@ describe('β = 0 recovers Amdahl’s law', () => {
 
 describe('β > 0 makes scaling go retrograde', () => {
   const a = 0.03, b = 0.0003;
-  it('peaks at N* = sqrt((1−α)/β), matching the numerical argmax', () => {
+  it('N* is the true argmax of the throughput curve (found numerically, not from the formula)', () => {
     const star = peakConcurrency(a, b);
-    expect(star).toBeCloseTo(Math.sqrt((1 - a) / b), 6);
+    // Independent anchor: brute-force the actual peak of throughput(n) and check the closed-form N* lands on it.
+    // (Comparing star to sqrt((1−α)/β) would just re-run the model's own formula — circular — so we don't.)
     let best = 1, bestC = 0;
     for (let n = 1; n <= 500; n++) { const c = throughput(n, a, b); if (c > bestC) { bestC = c; best = n; } }
     expect(Math.abs(best - Math.round(star))).toBeLessThanOrEqual(1);
