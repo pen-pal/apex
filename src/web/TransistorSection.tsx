@@ -26,10 +26,11 @@ export function TransistorSection() {
   return (
     <div className="trn">
       <p className="trn-intro">
-        A transistor is a switch: an <strong>NMOS</strong> conducts when its gate is <strong>high</strong>, a
-        <strong> PMOS</strong> when its gate is <strong>low</strong>. A CMOS gate wires a PMOS <em>pull-up</em> to
-        power and an NMOS <em>pull-down</em> to ground so exactly one conducts for any input. Toggle the inputs of
-        a NAND (2 PMOS in parallel up top, 2 NMOS in series below):
+        Everything a computer does bottoms out in one part: a <strong>switch</strong>. A transistor is a switch you
+        flip with electricity — a little voltage on its gate lets current through. Pair two kinds (one opens on
+        high voltage, one on low) and you get a circuit that always slams its output firmly to <strong>1</strong>
+        or <strong>0</strong>, never in between. Below is a NAND gate made of four of them. Flip A and B and watch
+        which transistors switch on.
       </p>
 
       <div className="trn-inputs">
@@ -58,16 +59,13 @@ export function TransistorSection() {
       </div>
 
       <p className="trn-foot">
-        NOT is a NAND with its inputs tied together; AND is a NAND followed by that inverter; OR is a NAND fed two
-        inverted inputs (De Morgan); XOR takes four. Because one gate type suffices, a fab can pour its effort into
-        making a single transistor pair as small, fast, and reliable as possible and get every logic function for
-        free — which is why chips are specified in transistor counts (billions) and gate delays. The complementary
-        design is also why CMOS won: in steady state one network is always open and the other closed, so almost no
-        current flows from power to ground; energy is spent mainly when the output actually switches, charging and
-        discharging tiny capacitances. That is the direct link between clock speed and heat, and the wall that
-        ended the megahertz race. From here it is just scale: wire these gates into the adder and the ALU for
-        arithmetic, cross-couple them into the flip-flop for memory, and a few billion of them become a processor.
-        (Harris &amp; Harris; Weste &amp; Harris, CMOS VLSI Design.)
+        Here's the real magic: this one gate can build all the others. Tie a NAND's two inputs together and it
+        becomes a NOT. Feed that back in and you have AND. A few more give you OR and XOR. So a chip factory never
+        designs a thousand different parts — it obsesses over making <em>one</em> microscopic switch as small and
+        fast as possible, then stamps out billions of them. That's the whole secret of a processor: not clever
+        parts, but one dead-simple part repeated at a scale you can't quite picture. (It's also why your laptop
+        gets warm: in this design one half of every gate is always off, so it sips power only in the instant it
+        flips — which is exactly why a faster clock runs hotter.)
       </p>
     </div>
   );
