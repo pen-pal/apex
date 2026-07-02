@@ -11876,3 +11876,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .emb-pick{font-size:12px;padding:5px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .emb-pick.on{background:hsl(280 50% 45% / .25);border-color:hsl(280 65% 62%)}
 .emb-live{color:var(--accent);font-size:13px;font-family:var(--mono,monospace);margin-left:6px}
+
+/* ── Alpha-beta pruning story (AlphaBetaSection) — game tree, MAX/MIN nodes, pruned branches ─────── */
+.ab-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.ab-edge{stroke:hsl(220 16% 40%);stroke-width:1.5}
+.ab-edge.pruned{stroke:hsl(220 14% 28%);stroke-dasharray:3 3}
+.ab-max{fill:hsl(150 45% 34% / .7);stroke:hsl(150 55% 55%);stroke-width:1.5}
+.ab-min{fill:hsl(0 45% 36% / .6);stroke:hsl(0 60% 58%);stroke-width:1.5}
+.ab-nval{fill:hsl(210 30% 92%);font-size:15px;font-weight:600;font-family:var(--mono,monospace)}
+.ab-role{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace)}
+.ab-ab{fill:hsl(150 55% 62%);font-size:12.5px;font-family:var(--mono,monospace)}
+.ab-cut{fill:hsl(38 88% 64%);font-size:11.5px;font-family:var(--mono,monospace)}
+.ab-leaf{fill:hsl(220 24% 26%);stroke:hsl(220 18% 38%);stroke-width:1}
+.ab-leaf.pruned{fill:hsl(220 16% 18% / .5);stroke:hsl(220 14% 26%)}
+.ab-lval{fill:hsl(210 26% 86%);font-size:14px;font-family:var(--mono,monospace)}
+.ab-lval.pruned{fill:hsl(0 40% 46%)}
+.ab-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ab-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.ab-btn{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.ab-btn.on{background:hsl(150 45% 40% / .22);border-color:hsl(150 55% 52%)}
+.ab-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);margin-left:6px}
