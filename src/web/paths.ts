@@ -592,6 +592,20 @@ export const PATHS: LearningPath[] = [
       { id: 'maxflow', note: 'Push as much as the network allows: max-flow augments along residual paths until none remain, and the min-cut — the bottleneck edges — always equals the maximum flow.' },
     ],
   },
+  {
+    id: 'webtransport',
+    title: 'How the web got faster (HTTP/2 → HTTP/3)',
+    icon: '⚡',
+    blurb: 'HTTP/1 opened a fresh connection per request and blocked on the slow ones. Follow the fixes — multiplexing, flow control, a new transport on UDP, connection migration, and zero-round-trip resumption — that turned the web fast.',
+    steps: [
+      { id: 'http2', note: 'One connection, many streams: HTTP/2 multiplexes independent requests over a single connection, so a big download no longer blocks small ones behind it — the first cure for HTTP/1’s head-of-line blocking.' },
+      { id: 'h2flow', note: 'Share the pipe fairly: per-stream flow-control windows let the receiver throttle a firehose stream without stalling the others sharing the connection.' },
+      { id: 'quic', note: 'But TCP still blocks: one lost packet stalls every HTTP/2 stream (transport head-of-line blocking). QUIC rebuilds the transport on UDP so each stream recovers independently — and folds in the TLS handshake for fewer round trips.' },
+      { id: 'quicmig', note: 'Survive changing networks: QUIC names a connection by a connection ID, not the IP/port 4-tuple, so it keeps going as you walk from wifi onto cellular — where TCP would drop and reconnect.' },
+      { id: 'zerortt', note: 'Send data in the first packet: on resumption, TLS 1.3 / QUIC 0-RTT ships the request before the handshake completes — a round trip saved, at the cost of a replay risk that needs idempotent handling.' },
+      { id: 'http3', note: 'HTTP over QUIC: HTTP/3 carries the same HTTP semantics on QUIC, with QPACK header compression redesigned so a lost header block can’t stall unrelated streams — head-of-line blocking gone end to end.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
