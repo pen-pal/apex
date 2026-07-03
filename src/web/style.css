@@ -12243,3 +12243,14 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dbs-btn.on{border-color:hsl(205 55% 55%);background:hsl(205 50% 45% / .2)}
 .dbs-lbl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px}
 .dbs-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Logistic regression story (LogisticRegressionSection) — sigmoid probability field + GD ───────── */
+.lr-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.lr-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.lr-line{stroke:hsl(0 0% 96%);stroke-width:2.5;stroke-dasharray:5 4}
+.lr-pt{stroke:hsl(220 20% 15% / .7);stroke-width:0.8}
+.lr-leg{font-size:11px;font-family:var(--mono,monospace)}
+.lr-foot{fill:hsl(210 16% 60%);font-size:13px}
+.lr-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.lr-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lr-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
