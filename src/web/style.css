@@ -12746,3 +12746,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hm-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
 .hm-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .hm-btn.on{border-color:hsl(270 55% 60%);background:hsl(270 50% 45% / .25)}
+
+/* ── LLL lattice reduction story (LatticeSection) — lattice grid, basis vectors reducing ─────────── */
+.lat-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.lat-pt{fill:hsl(220 18% 46%)}
+.lat-pt.origin{fill:hsl(210 30% 80%)}
+.lat-b1{stroke:hsl(45 90% 60%);stroke-width:2.5}
+.lat-b1.short{stroke:hsl(45 100% 62%);stroke-width:3}
+.lat-b2{stroke:hsl(200 70% 60%);stroke-width:2.5}
+.lat-vlbl{font-size:11.5px;font-family:var(--mono,monospace);fill:hsl(210 25% 80%)}
+.lat-foot{fill:hsl(210 16% 60%);font-size:13px}
+.lat-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.lat-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lat-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}

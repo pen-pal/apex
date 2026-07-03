@@ -11,6 +11,7 @@ import { EccSection } from '../EccSection';
 import { EcdsaSection } from '../EcdsaSection';
 import { SchnorrSection } from '../SchnorrSection';
 import { ChachaSection } from '../ChachaSection';
+import { LatticeSection } from '../LatticeSection';
 import { LweSection } from '../LweSection';
 import { BB84Section } from '../BB84Section';
 import { StpSection } from '../StpSection';
@@ -71,6 +72,7 @@ export const chunk0: Record<string, SectionEntry> = {
   "schnorr": { Component: SchnorrSection, title: <>Zero-knowledge proof (Schnorr)</>, sub: <>Prove you know a secret without revealing it — the three-move commit/challenge/response, and why the challenge must come after the commitment.</> },
   "chacha": { Component: ChachaSection, title: <>ChaCha20</>, sub: <>A 4×4 matrix of words stirred by add–rotate–xor — step through the rounds, build the keystream, and XOR it over a message. No S-boxes, fast in software.</> },
   "pqc": { Component: LweSection, title: <>Post-quantum (LWE)</>, sub: <>Hide a secret in noise (Learning With Errors), encrypt a bit by burying it near 0 or q/2, and watch rounding recover it — the lattice kernel inside ML-KEM (Kyber).</> },
+  "lll": { Component: LatticeSection, title: <>How LLL reduces a lattice (&amp; breaks crypto)</>, sub: <>A lattice is every integer combination of some basis vectors — the same grid can be a good (short, orthogonal) basis or a bad (long, skewed) one. Lattice reduction turns bad into good using integer moves that never change the grid: subtract an integer multiple of the shorter vector from the longer, and swap when the shorter one changes. In 2-D this (Lagrange–Gauss) finds the exact shortest vector; LLL generalizes it to n dimensions. Verified in node: the reduced basis spans the same lattice (|det| invariant), b₁ is the shortest vector, and it’s size-reduced. LLL broke the knapsack cipher and is why post-quantum lattice crypto needs high dimensions. Step the reduction.</> },
   "bb84": { Component: BB84Section, title: <>Quantum key distribution (BB84)</>, sub: <>Agree on a key secured by physics — send qubits in random bases, sift the matches, and watch an eavesdropper's measurements inject detectable errors.</> },
   "stptree": { Component: StpSection, title: <>Spanning Tree Protocol</>, sub: <>Redundant links keep a LAN alive but create loops that flood broadcasts forever. Watch STP elect a root bridge and block exactly the right ports to leave a single loop-free tree.</> },
   "slaac": { Component: SlaacSection, title: <>IPv6 SLAAC &amp; address types</>, sub: <>No DHCP needed — watch a host turn its MAC into an interface identifier (EUI-64), mint its own link-local and global addresses, and classify any IPv6 address by its leading bits.</> },
