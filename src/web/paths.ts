@@ -128,11 +128,14 @@ export const PATHS: LearningPath[] = [
     steps: [
       { id: 'pipeline', note: 'Instructions overlap in a 5-stage pipeline — and stall when one depends on another.' },
       { id: 'branchpredict', note: 'A branch’s direction is guessed before it’s known; a 2-bit counter keeps the pipeline full.' },
+      { id: 'strideprefetch', note: 'The other predictor: spot a constant address stride and fetch the next line before the load asks for it.' },
       { id: 'mesi', note: 'Each core caches memory privately; MESI keeps those copies coherent over a snooping bus.' },
       { id: 'tso', note: 'Store buffers let a core reorder its own writes — why two threads can both read stale values.' },
       { id: 'pagewalk', note: 'Every memory access translates a virtual address through a 4-level page table.' },
+      { id: 'nestedpaging', note: 'Inside a VM the walk goes two-dimensional — guest and host tables — costing 24 accesses.' },
       { id: 'cpusched', note: 'The OS time-slices many processes onto the cores — FCFS, SJF, round-robin.' },
       { id: 'cfs', note: 'Linux’s CFS shares the CPU fairly by virtual runtime, weighted by nice value.' },
+      { id: 'eevdf', note: 'Its successor, EEVDF, adds eligibility and virtual deadlines for a latency bound — the scheduler since 6.6.' },
     ],
   },
   {
@@ -341,6 +344,18 @@ export const PATHS: LearningPath[] = [
       { id: 'vrf', note: 'A verifiable random function emits randomness plus a proof it was computed correctly — unpredictable yet checkable.' },
       { id: 'pqc', note: 'Post-quantum encryption hides a bit in noise (Learning With Errors), staying secure even against a quantum computer.' },
       { id: 'lll', note: 'And the attack that sets the bar: LLL reduces a lattice basis to find short vectors — why lattice crypto needs hundreds of dimensions.' },
+    ],
+  },
+  {
+    id: 'arithmetic',
+    title: 'From transistors to multiplication',
+    icon: '🔢',
+    blurb: 'Build arithmetic from the bottom up: a transistor is a switch, switches make an adder, an adder plus logic makes an ALU, and a tree of adders multiplies fast.',
+    steps: [
+      { id: 'transistor', note: 'The switch: a voltage on the gate opens or closes a channel — the physical 1s and 0s under everything else.' },
+      { id: 'adder', note: 'Wire gates into a binary adder; the carry ripples (or looks ahead) to sum two numbers bit by bit.' },
+      { id: 'alu', note: 'The compute core: an adder plus logic gates and a mux the opcode uses to pick add/sub/and/or/shift, raising the flags.' },
+      { id: 'wallace', note: 'Multiplication done fast: a Wallace tree reduces the partial-product dot diagram with carry-save adders in O(log n) depth.' },
     ],
   },
 ];
