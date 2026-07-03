@@ -468,6 +468,20 @@ export const PATHS: LearningPath[] = [
       { id: 'cartesian', note: 'The dual view: a tree that’s a BST on position and a heap on value at once, so range-minimum queries become lowest-common-ancestor lookups — two classic problems, one structure.' },
     ],
   },
+  {
+    id: 'routingpaths',
+    title: 'How packets find their way (routing)',
+    icon: '🗺️',
+    blurb: 'A packet carries a destination, not a route. Follow how each hop decides where to send it — the forwarding lookup, the two ways routers learn paths, inter-domain policy, and the trust gap that lets traffic be hijacked.',
+    steps: [
+      { id: 'lpm', note: 'The per-hop decision: a router matches the destination against its table and picks the most specific (longest) prefix — the single lookup every packet triggers at every hop.' },
+      { id: 'distvec', note: 'How routers learn routes without a map: each tells neighbors its distance to every destination and they keep the best — simple, but prone to slow count-to-infinity when a link fails.' },
+      { id: 'ospf', note: 'The link-state alternative: every router floods the whole topology to everyone, then each runs Dijkstra on the identical map — fast convergence, at the cost of flooding.' },
+      { id: 'bgp', note: 'Between autonomous systems it’s policy, not shortest path: BGP advertises AS-paths and each network picks by business rules, then forwards along the chosen one.' },
+      { id: 'bgphijack', note: 'BGP trusts what it’s told, so a network announcing a prefix it doesn’t own can pull the world’s traffic to itself — the routing attack behind real outages and interceptions.' },
+      { id: 'anycast', note: 'One IP announced from many locations at once; ordinary routing delivers each user to the nearest instance — how DNS roots and CDNs are everywhere at the same address.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
