@@ -523,6 +523,20 @@ export const PATHS: LearningPath[] = [
       { id: 'aba', note: 'The lock-free trap: a compare-and-swap sees the same pointer value and assumes nothing changed — but it was freed and reallocated in between (ABA), corrupting the structure. Fixed with version tags or hazard pointers.' },
     ],
   },
+  {
+    id: 'tcptuning',
+    title: 'TCP’s finer points',
+    icon: '🛠️',
+    blurb: 'The handshake and retransmission are only the start. These are the refinements and edge cases that decide how TCP actually behaves in production — from batching tiny writes to spreading one connection across two networks.',
+    steps: [
+      { id: 'nagle', note: 'Batch small writes: Nagle holds a tiny segment until the previous one is ACKed, coalescing keystrokes into fewer packets — but its interaction with delayed ACKs can stall a request 40–200 ms.' },
+      { id: 'sws', note: 'Silly window syndrome: a slow reader advertising tiny windows and an eager sender filling them collapse a connection into a flood of runt segments — cured by Clark’s receiver rule and Nagle on the sender.' },
+      { id: 'pmtud', note: 'Find the biggest packet that fits: Path MTU Discovery sends don’t-fragment probes and shrinks on the ICMP “too big” reply — and black-holes silently when a firewall eats those ICMPs.' },
+      { id: 'tfo', note: 'Skip a round trip: TCP Fast Open carries data in the SYN using a server-issued cookie, so a repeat connection delivers the request before the handshake even finishes.' },
+      { id: 'timewait', note: 'Why a closed socket lingers: the active closer holds TIME_WAIT for 2·MSL so a stray old segment can’t corrupt a new connection — which quietly exhausts ephemeral ports on a busy client.' },
+      { id: 'mptcp', note: 'One connection, many paths: Multipath TCP spreads a single stream across wifi and cellular at once, surviving a path loss and pooling bandwidth — why a download survives leaving the house.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));

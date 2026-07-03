@@ -78,7 +78,8 @@ export function NagleSection() {
             <text x={RX} y={14} className="ng-head" textAnchor="middle">Receiver</text>
             {/* data segments: sender -> receiver */}
             {sends.map((s) => {
-              const d = delivers.find((e) => e.seg === s.seg)!;
+              const d = delivers.find((e) => e.seg === s.seg);
+              if (!d) return null;
               return (
                 <g key={`s${s.seg}`}>
                   <line x1={SX} y1={y(s.t)} x2={RX} y2={y(d.t)} className="ng-data" markerEnd="url(#ngArrR)" />
