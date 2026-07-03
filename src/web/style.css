@@ -12693,3 +12693,17 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cs-verdict{font-family:var(--mono,monospace);font-size:12.5px}
 .cs-verdict.ok{color:hsl(150 60% 60%)}
 .cs-verdict.bad{color:hsl(0 78% 66%)}
+
+/* ── Wallace tree multiplier story (WallaceSection) — dot diagram, carry-save reduction ──────────── */
+.wt-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.wt-wt{fill:hsl(210 16% 50%);font-size:10.5px;font-family:var(--mono,monospace)}
+.wt-dot{stroke-width:1}
+.wt-dot.one{fill:hsl(200 75% 58%);stroke:hsl(200 60% 72%)}
+.wt-dot.zero{fill:hsl(220 18% 30%);stroke:hsl(220 16% 42%)}
+.wt-dot.hot{stroke:hsl(45 90% 60%);stroke-width:2}
+.wt-lbl{fill:hsl(210 20% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.wt-foot{fill:hsl(210 16% 60%);font-size:13px}
+.wt-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.wt-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.wt-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+.wt-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}

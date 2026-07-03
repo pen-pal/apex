@@ -424,6 +424,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'adder', label: 'Binary adder (gates→math)', icon: '➕' },
   { id: 'latch', label: 'Flip-flop (how bits are stored)', icon: '💾' },
   { id: 'alu', label: 'ALU (the compute core)', icon: '🧮' },
+  { id: 'wallace', label: 'How hardware multiplies fast (Wallace tree)', icon: '🎬' },
   { id: 'membus', label: 'Address decoding & buses', icon: '🚌' },
   { id: 'io', label: 'Polling · interrupts · DMA', icon: '🔔' },
   { id: 'keystroke', label: 'How a keystroke reaches the screen', icon: '🎬' },
@@ -448,7 +449,7 @@ export const GROUPS: SectionGroup[] = [
   { label: 'Operations & SRE', icon: '🛠️', ids: ['deployments', 'healthcheck', 'autoscale', 'usl', 'pid', 'kalman', 'slo', 'tracing', 'featureflags', 'gracefulshutdown', 'idempotency', 'loadshed', 'bulkhead', 'chaos', 'singleflight'] },
   { label: 'Storage & databases', icon: '🗄️', ids: ['btree', 'exthash', 'gitobjects', 'lsm', 'pagereplace', 'mvcc', 'wal', 'skiplist', 'locking', 'serializable', 'joins', 'gracejoin', 'queryplan', 'rum', 'trie', 'hamt', 'hashtable', 'cuckoo', 'robinhood', 'geohash', 'kdtree', 'unionfind', 'fenwick', 'sparsetable', 'cartesian', 'roaring', 'bitmapindex', 'heap', 'pairingheap', 'segtree', 'intervaltree', 'avl', 'splaytree', 'treap', 'piecetable', 'rope', 'gapbuffer', 'sorting', 'kadane', 'lis', 'quickselect', 'medianofmedians', 'dnf', 'shuffle', 'aliasmethod', 'montecarlo', 'ransac', 'kmp', 'rabinkarp', 'ahocorasick', 'boyermoore', 'suffixarray', 'manacher', 'zalgo', 'editdist', 'diff', 'bktree', 'knapsack', 'toposort', 'astar', 'maxflow', 'mst', 'scc', 'twosat', 'floyd', 'cycledetect', 'bellmanford', 'pagerank', 'kmeans', 'dbscan', 'gmm', 'pca', 'svd', 'perceptron', 'logisticregression', 'svm', 'decisiontree', 'randomforest', 'gradientboosting', 'newton', 'conjgrad', 'simplex', 'fft', 'haarwavelet', 'goertzel', 'pitch', 'karplus', 'convreverb', 'fastinvsqrt', 'kahan', 'cordic', 'karatsuba', 'simanneal', 'alphabeta', 'backprop', 'word2vec', 'vectorsearch', 'attention', 'bresenham', 'bezier', 'raytracing', 'rasterize', 'perspective', 'msaa', 'verlet', 'barneshut', 'doublependulum', 'orbit', 'raymarch', 'quaternion', 'convexhull', 'sat', 'spatialhash', 'marchsquares', 'voronoi', 'delaunay', 'perlin', 'poisson'] },
   { label: 'Systems & OS', icon: '🖥️', ids: ['cpusched', 'cfs', 'priorityinv', 'cpucycle', 'shuntingyard', 'compiler', 'regalloc', 'bytecode', 'wasm', 'jit', 'pipeline', 'branchpredict', 'oooexec', 'spectre', 'meltdown', 'rowhammer', 'killchain', 'cow', 'pagewalk', 'pagefault', 'inode', 'tlb', 'numa', 'buddyalloc', 'gc', 'cheney', 'refcount', 'ownership', 'timingwheel', 'epoll', 'syscall', 'container', 'breakpoint', 'futex', 'rcu', 'aba', 'seqlock', 'iouring', 'bakery', 'mesi', 'falseshare', 'tso'] },
-  { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'membus', 'cpucache', 'dram', 'memorystory', 'io', 'keystroke', 'ssd', 'flashcell', 'gpu', 'systolic'] },
+  { label: 'Hardware', icon: '🔌', ids: ['transistor', 'adder', 'latch', 'alu', 'wallace', 'membus', 'cpucache', 'dram', 'memorystory', 'io', 'keystroke', 'ssd', 'flashcell', 'gpu', 'systolic'] },
 ];
 
 /** The label of the group that contains `id` (or null if ungrouped). */
