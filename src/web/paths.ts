@@ -408,6 +408,21 @@ export const PATHS: LearningPath[] = [
       { id: 'simanneal', note: 'When exact is hopeless: wander the space accepting occasional worse moves, cooling over time — stochastic local search that escapes local optima.' },
     ],
   },
+  {
+    id: 'digitalaudio',
+    title: 'How digital audio works',
+    icon: '🎧',
+    blurb: 'A sound is just a list of numbers. Analyze it into frequencies, hear its pitch, synthesize new timbres from scratch, place it in a room, and shrink it by an order of magnitude — the signal-processing pipeline behind every note you hear from a computer.',
+    steps: [
+      { id: 'fft', note: 'Every sound is a sum of pure tones. The FFT converts between the waveform (samples in time) and its spectrum (how much of each frequency) in O(n log n) — the lens for everything else.' },
+      { id: 'pitch', note: 'What note is this? Autocorrelation slides a sound against itself and finds the lag where it best repeats — that period is the pitch a tuner shows.' },
+      { id: 'goertzel', note: 'Detecting one specific tone — a phone touch-tone — doesn’t need a full FFT: the Goertzel algorithm evaluates a single frequency bin with a tiny recurrence.' },
+      { id: 'karplus', note: 'Synthesize a plucked string from almost nothing: fill a short delay line with noise and feed it back through a lowpass — the Karplus–Strong pluck.' },
+      { id: 'fmsynth', note: 'Wobble one oscillator’s frequency with another and rich Bessel-weighted sidebands bloom — Chowning’s FM synthesis, the sound of the DX7.' },
+      { id: 'convreverb', note: 'Put a dry sound in a cathedral by convolving it with the room’s impulse response — every echo of the space applied at once.' },
+      { id: 'mp3', note: 'Shrink audio ~10× by discarding what the ear can’t hear: psychoacoustic masking drops quiet tones hidden next to loud ones.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
