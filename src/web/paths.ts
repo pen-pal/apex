@@ -150,6 +150,48 @@ export const PATHS: LearningPath[] = [
       { id: 'chaos', note: 'Inject failures on purpose to prove the blast radius is contained.' },
     ],
   },
+  {
+    id: 'mlclassify',
+    title: 'How machines learn to classify',
+    icon: '🧠',
+    blurb: 'From one neuron to tree ensembles — how supervised classifiers draw the boundary between classes, each method fixing the last one’s limitation.',
+    steps: [
+      { id: 'perceptron', note: 'The first neuron: one line, learning from its mistakes — but it can’t separate XOR.' },
+      { id: 'logisticregression', note: 'Keep the line, but output a probability, trained on a convex loss that always converges.' },
+      { id: 'svm', note: 'Among all separating lines, pick the widest-margin one — pinned by just a few support vectors.' },
+      { id: 'decisiontree', note: 'Swap lines for yes/no questions: axis-aligned regions that even solve the XOR a perceptron can’t.' },
+      { id: 'randomforest', note: 'One deep tree overfits; average many decorrelated trees to slash the variance.' },
+      { id: 'gradientboosting', note: 'Or add shallow trees in sequence, each fitting the errors the last one left behind.' },
+    ],
+  },
+  {
+    id: 'mlstructure',
+    title: 'Finding structure without labels',
+    icon: '🔍',
+    blurb: 'Unsupervised learning: compress the dimensions, then find clusters by centers, by density, and by probability — no labels required.',
+    steps: [
+      { id: 'pca', note: 'Compress high-dimensional data onto the few axes it actually varies along.' },
+      { id: 'kmeans', note: 'Partition the points into k round clusters, each owned by its nearest center.' },
+      { id: 'dbscan', note: 'Cluster by density instead — clusters of any shape, with outliers left labeled as noise.' },
+      { id: 'gmm', note: 'Soft, elliptical clusters via Expectation-Maximization; k-means is the hard-assignment special case.' },
+    ],
+  },
+  {
+    id: 'exploits',
+    title: 'Breaking a program: exploits & defenses',
+    icon: '💥',
+    blurb: 'The attacker–defender arms race, from a stack buffer overflow up through ASLR and CFI to the CPU speculation attacks that leak beneath them all. Sandboxed and conceptual.',
+    steps: [
+      { id: 'bufferoverflow', note: 'Overflow a stack buffer to overwrite the saved return address and hijack control flow.' },
+      { id: 'nxbit', note: 'First defense: mark the stack non-executable so injected shellcode can’t run as code.' },
+      { id: 'rop', note: 'Defeat NX by chaining gadgets — snippets of existing code that each end in a return.' },
+      { id: 'aslr', note: 'Randomize the address layout so the attacker can’t find those gadgets in the first place.' },
+      { id: 'stackcanary', note: 'A random guard between the locals and the return address; the linear overflow smashes it and aborts.' },
+      { id: 'cfi', note: 'Verify every indirect call and return lands on a legitimate target, not an attacker’s.' },
+      { id: 'spectre', note: 'Even with perfect software defenses, speculation leaks secrets through cache timing.' },
+      { id: 'meltdown', note: 'Out-of-order execution reads across the user/kernel boundary — fixed only by unmapping the kernel.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
