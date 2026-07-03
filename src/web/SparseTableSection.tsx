@@ -85,7 +85,7 @@ export function SparseTableSection() {
         <strong> min, max, gcd, and bitwise AND/OR</strong> — operations where processing an element twice
         changes nothing. It does <em>not</em> work for <strong>sum</strong> (the overlap would be counted twice);
         for sum you either use a different sparse-table split into <em>disjoint</em> blocks (O(log n) query) or a
-        prefix-sum array (O(1) but only for sum) or a Fenwick/segment tree. And the catch that sends people to a
+        prefix-sum array (O(1) but only for sum) or a Fenwick/segment tree. And the limitation that sends people to a
         segment tree is <strong>updates</strong>: a sparse table is baked at build time — change one element and
         you must rebuild the affected columns, so it's for read-mostly data. Where it shines is exactly that:
         an immutable array queried a huge number of times — a precomputed terrain or cost map, an LCA structure

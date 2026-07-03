@@ -13,7 +13,7 @@ const REQS: Req[] = DUR.map((d, i) => ({ client: CLIENTS[i % CLIENTS.length], du
 const ALGOS: { id: Algo; label: string; note: string }[] = [
   { id: 'round-robin', label: 'Round robin', note: 'Cycles in order. Simple and even when requests are uniform — but a slow request can pile up on one backend.' },
   { id: 'weighted', label: 'Weighted RR', note: 'Bigger servers (higher weight) get proportionally more requests. web-2 has weight 2.' },
-  { id: 'least-conn', label: 'Least connections', note: 'Sends each request to whoever has the fewest in flight — adapts to uneven durations automatically. The catch at scale: it must scan every backend on each request.' },
+  { id: 'least-conn', label: 'Least connections', note: 'Sends each request to whoever has the fewest in flight — adapts to uneven durations automatically. The cost at scale: it must scan every backend on each request.' },
   { id: 'ip-hash', label: 'IP hash (sticky)', note: 'Hashes the client → always the same backend. Keeps sessions/caches warm, but can balance unevenly.' },
   { id: 'random', label: 'Random', note: 'Picks a backend uniformly at random — zero state, but by luck some backend ends up much busier: the peak runs O(log n / log log n) above average.' },
   { id: 'p2c', label: 'Power of two choices', note: 'Samples TWO backends at random and sends to the less-loaded one. That single extra sample cuts the busiest server to O(log log n) above average — nearly least-connections quality at O(1) cost. The modern default (NGINX, HAProxy, Envoy, Netflix).' },

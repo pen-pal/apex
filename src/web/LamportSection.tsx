@@ -88,7 +88,7 @@ export function LamportSection() {
         </div>
 
         <div className="lam-caveat">
-          <strong>The catch.</strong> Notice <b>b1</b> (ts 1) and <b>a2</b> (ts 2): b1’s number is smaller, yet b1 doesn’t cause a2 —
+          <strong>The subtlety.</strong> Notice <b>b1</b> (ts 1) and <b>a2</b> (ts 2): b1’s number is smaller, yet b1 doesn’t cause a2 —
           they’re <em>concurrent</em>. Lamport timestamps preserve causality (cause ⟹ smaller) but can’t prove its absence: a smaller
           number doesn’t mean “happened before.” Telling concurrency apart from causality is exactly what vector clocks add.
         </div>

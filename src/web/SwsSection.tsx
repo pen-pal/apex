@@ -59,7 +59,7 @@ export function SwsSection() {
         the buffer) — it hides the dribbles, so the sender is never tempted. <strong>Nagle's algorithm</strong> on
         the sender refuses to <em>transmit</em> a small segment while earlier small data is still unacknowledged,
         coalescing bytes until it has a full segment or an ACK arrives. Together they turn a storm of runt packets
-        into a few fat ones. The catch — and a real-world gotcha — is that Nagle plus TCP's <strong>delayed
+        into a few fat ones. The snag — a real-world gotcha — is that Nagle plus TCP's <strong>delayed
         ACK</strong> can deadlock a request/response app for ~40 ms: the sender holds a small segment waiting for
         an ACK, while the receiver holds the ACK waiting for data to piggyback on. That's exactly why latency-
         sensitive code sets <code>TCP_NODELAY</code> to disable Nagle. So the same mechanism that saves bandwidth

@@ -84,7 +84,7 @@ export function AnycastSection() {
         <p className="any-foot">
           The same packets to the same IP reach different machines depending on where you are — which is exactly why anycast is perfect
           for stateless, read-mostly services: DNS (every root server is anycast), public resolvers like 1.1.1.1 and 8.8.8.8, NTP pools,
-          and CDN edges. It’s also a DDoS defence: an attack is absorbed by the nearest site instead of concentrating on one. The catch is
+          and CDN edges. It’s also a DDoS defence: an attack is absorbed by the nearest site instead of concentrating on one. The limitation is
           state — long-lived connections can break if routing shifts mid-session, so TCP-heavy anycast needs care (or per-flow stickiness).
         </p>
       </section>

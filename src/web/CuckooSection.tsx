@@ -34,7 +34,7 @@ export function CuckooSection() {
         <div className="jsec-head"><h2>Cuckoo hashing — two nests per key</h2></div>
         <p className="jsec-sub">
           Every key has exactly <em>two</em> possible slots, picked by two hash functions — so a lookup is at most two probes, a
-          worst-case guarantee a normal hash table can’t make. The catch is insertion: if both your slots’ logic lands you on an occupied
+          worst-case guarantee a normal hash table can’t make. The cost is insertion: if both your slots’ logic lands you on an occupied
           one, you <strong>evict</strong> the occupant (like a cuckoo chick) and it re-homes in <em>its</em> other slot, possibly kicking
           out the next key — a chain of relocations.
         </p>

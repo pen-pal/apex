@@ -68,7 +68,7 @@ export function GeohashSection() {
         </div>
 
         <p className="geo-foot">
-          The catch is the <em>edge problem</em>: two points can be metres apart yet straddle a box boundary and share no prefix, so a
+          The weakness is the <em>edge problem</em>: two points can be metres apart yet straddle a box boundary and share no prefix, so a
           real proximity search also checks the eight neighbouring cells. Geohashes are also a clever way to give spatial data a 1-D sort
           order (a space-filling Z-curve), which is exactly why key-value and search engines use them to index locations — Redis
           <code> GEOADD</code>, Elasticsearch geo-queries, and countless “restaurants near me” features.

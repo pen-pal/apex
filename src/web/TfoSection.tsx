@@ -23,7 +23,7 @@ export function TfoSection() {
         <div className="jsec-head"><h2>TCP Fast Open — sending data in the SYN</h2></div>
         <p className="jsec-sub">
           Normal TCP makes you finish the SYN/SYN-ACK/ACK handshake before sending a single byte, so a short request wastes a whole round trip
-          on setup. <strong>TFO</strong> lets a returning client put its request <em>in the SYN</em> and get an answer one RTT sooner. The catch
+          on setup. <strong>TFO</strong> lets a returning client put its request <em>in the SYN</em> and get an answer one RTT sooner. The caveat
           — a SYN’s address is unverified — is solved with a <strong>cookie</strong>: earned on the first visit, spent on later ones.
         </p>
 

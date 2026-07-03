@@ -30,7 +30,7 @@ export function ClickjackSection() {
         </div>
         <div className="cj-row"><span className="cj-cl">attacker page is:</span>
           {FRAMERS.map((f) => <button key={f} type="button" className={`cj-pbtn ${framer === f ? 'on' : ''}`} onClick={() => setFramer(f)}>{f}</button>)}
-          <label className="cj-reveal">reveal the trick <input type="range" min={0} max={100} value={reveal} onChange={(e) => setReveal(+e.target.value)} /></label>
+          <label className="cj-reveal">reveal the overlay <input type="range" min={0} max={100} value={reveal} onChange={(e) => setReveal(+e.target.value)} /></label>
         </div>
       </div>
 
