@@ -12531,3 +12531,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cg-swatch.sd{background:hsl(30 90% 60%)}
 .cg-swatch.cg{background:hsl(150 70% 52%)}
 .cg-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+
+/* ── Color spaces story (ColorSpaceSection) — sRGB vs OKLab blends, perceived-lightness dip ───────── */
+.ok-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.ok-lbl{fill:hsl(210 18% 64%);font-size:11.5px;font-family:var(--mono,monospace)}
+.ok-frame{fill:none;stroke:hsl(220 18% 42%);stroke-width:1}
+.ok-midmark{fill:none;stroke:hsl(0 0% 96%);stroke-width:1.5;stroke-dasharray:3 2}
+.ok-mud{fill:hsl(30 70% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.ok-axis{stroke:hsl(220 16% 36%);stroke-width:1}
+.ok-scurve{stroke:hsl(30 90% 60%);stroke-width:2.25}
+.ok-ocurve{stroke:hsl(150 70% 52%);stroke-width:2.25}
+.ok-scl{fill:hsl(30 90% 64%);font-size:10.5px;font-family:var(--mono,monospace)}
+.ok-ocl{fill:hsl(150 70% 60%);font-size:10.5px;font-family:var(--mono,monospace)}
+.ok-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ok-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.ok-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.ok-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
