@@ -316,6 +316,7 @@ export const PATHS: LearningPath[] = [
     blurb: 'A program asks for memory and later stops using it — but how is it handed out, and how does the system know when it’s free again? Allocation, then three ways to reclaim, each fixing the last one’s blind spot.',
     steps: [
       { id: 'buddyalloc', note: 'Allocation: the kernel hands out memory in power-of-two blocks, splitting and merging buddies to fight fragmentation.' },
+      { id: 'arena', note: 'The opposite extreme: one block, one bump pointer, no per-object free — reset the whole arena at once when the request or frame ends.' },
       { id: 'refcount', note: 'The simplest reclaim: count references and free at zero — but a reference cycle keeps itself alive and leaks.' },
       { id: 'gc', note: 'Tracing mark-and-sweep collects from the roots instead, so it reclaims the cycles reference counting can’t.' },
       { id: 'cheney', note: 'A copying collector goes further — it relocates the survivors into a fresh space, compacting fragmentation away.' },
