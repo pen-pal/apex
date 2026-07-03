@@ -537,6 +537,19 @@ export const PATHS: LearningPath[] = [
       { id: 'mptcp', note: 'One connection, many paths: Multipath TCP spreads a single stream across wifi and cellular at once, surviving a path loss and pooling bandwidth — why a download survives leaving the house.' },
     ],
   },
+  {
+    id: 'disttime',
+    title: 'Keeping time in a distributed system',
+    icon: '⏱️',
+    blurb: 'With no shared clock, machines disagree about “now” — and ordering events across them is a deep problem. Follow how systems synchronize physical time, bound its uncertainty, blend it with causality, and even use timing to decide who’s dead.',
+    steps: [
+      { id: 'ntp', note: 'Sync wall clocks over the network: NTP estimates the offset to a reference by timing a round trip and assuming symmetry — good to milliseconds, but never exact, and asymmetry skews it.' },
+      { id: 'gps', note: 'The reference itself: GPS satellites carry atomic clocks, and your receiver solves for position AND precise time from the signal delays — the source many NTP servers ultimately trust.' },
+      { id: 'truetime', note: 'Own the uncertainty instead of hiding it: Spanner’s TrueTime returns an interval [earliest, latest] for “now”, and commit-wait sleeps out that interval so transaction timestamps order globally.' },
+      { id: 'hlc', note: 'Blend causality with the clock: Hybrid Logical Clocks track happened-before like a logical clock while staying within a bound of physical time — monotonic timestamps that also read like wall time.' },
+      { id: 'phiaccrual', note: 'Turn timing into a verdict: the φ accrual failure detector scores how overdue a heartbeat is against its observed distribution, so “is that node dead?” becomes a tunable suspicion level, not a fixed timeout.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
