@@ -13182,3 +13182,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pho-btn{font-size:12.5px;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .pho-btn.go{border-color:hsl(150 50% 50%)}
 .pho-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%);font-size:12px}
+
+/* ── ADSR envelope story (AdsrSection) — four-stage amplitude contour ────────────────────────────── */
+.adsr-col{fill:hsl(210 16% 60%);font-size:11.5px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.02em}
+.adsr-axis{stroke:hsl(220 15% 34%);stroke-width:1}
+.adsr-axis2{stroke:hsl(220 15% 28%);stroke-width:1}
+.adsr-fill{fill:hsl(160 55% 46% / .18);stroke:none}
+.adsr-line{fill:none;stroke:hsl(160 60% 56%);stroke-width:2}
+.adsr-gate{stroke:hsl(150 60% 55%);stroke-width:1.5;stroke-dasharray:3 3}
+.adsr-gate.off{stroke:hsl(30 80% 58%)}
+.adsr-gt{fill:hsl(150 55% 66%);font-size:10px;font-family:var(--mono,monospace)}
+.adsr-gt.off{fill:hsl(30 80% 66%)}
+.adsr-seg{fill:hsl(210 26% 78%);font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.adsr-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.adsr-wave{fill:none;stroke:hsl(280 65% 66%);stroke-width:1.3}
+.adsr-foot{fill:hsl(210 16% 60%);font-size:13px}
+.adsr-ctl{display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.adsr-btn{font-size:12.5px;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.adsr-btn.on{border-color:hsl(160 55% 52%);background:hsl(160 45% 42% / .25)}
+.adsr-sep{color:hsl(220 12% 45%)}
+.adsr-lab{font-family:var(--mono,monospace);color:hsl(210 22% 68%);font-size:12px}
+.adsr-read{font-family:var(--mono,monospace);color:hsl(160 50% 68%);font-size:11.5px}

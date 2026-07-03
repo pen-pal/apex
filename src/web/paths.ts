@@ -420,6 +420,7 @@ export const PATHS: LearningPath[] = [
       { id: 'pitch', note: 'What note is this? Autocorrelation slides a sound against itself and finds the lag where it best repeats — that period is the pitch a tuner shows.' },
       { id: 'goertzel', note: 'Detecting one specific tone — a phone touch-tone — doesn’t need a full FFT: the Goertzel algorithm evaluates a single frequency bin with a tiny recurrence.' },
       { id: 'karplus', note: 'Synthesize a plucked string from almost nothing: fill a short delay line with noise and feed it back through a lowpass — the Karplus–Strong pluck.' },
+      { id: 'adsr', note: 'Shape the raw tone into a note: an ADSR envelope swells and fades the amplitude (attack, decay, sustain, release) so it doesn’t click and sounds like a pluck or a pad.' },
       { id: 'fmsynth', note: 'Wobble one oscillator’s frequency with another and rich Bessel-weighted sidebands bloom — Chowning’s FM synthesis, the sound of the DX7.' },
       { id: 'convreverb', note: 'Put a dry sound in a cathedral by convolving it with the room’s impulse response — every echo of the space applied at once.' },
       { id: 'mp3', note: 'Shrink audio ~10× by discarding what the ear can’t hear: psychoacoustic masking drops quiet tones hidden next to loud ones.' },
