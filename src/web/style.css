@@ -13017,3 +13017,15 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .wfc-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .wfc-btn.seed{border-color:hsl(130 45% 48%)}
 .wfc-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── Timsort story (TimsortSection) — natural runs coloured, adaptive merge ──────────────────────── */
+.tim-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.tim-bar{stroke:hsl(220 20% 12%);stroke-width:0.4}
+.tim-sep{stroke:hsl(210 30% 78%);stroke-width:1.5;stroke-dasharray:2 2}
+.tim-lbl{fill:hsl(210 22% 66%);font-size:11.5px;font-family:var(--mono,monospace)}
+.tim-foot{fill:hsl(210 16% 60%);font-size:13px}
+.tim-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.tim-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.tim-btn.on{border-color:hsl(205 55% 55%);background:hsl(205 50% 42% / .25)}
+.tim-btn.go{border-color:hsl(150 50% 50%)}
+.tim-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%);font-size:12px}
