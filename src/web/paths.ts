@@ -424,6 +424,7 @@ export const PATHS: LearningPath[] = [
       { id: 'adsr', note: 'Shape the raw tone into a note: an ADSR envelope swells and fades the amplitude (attack, decay, sustain, release) so it doesn’t click and sounds like a pluck or a pad.' },
       { id: 'fmsynth', note: 'Wobble one oscillator’s frequency with another and rich Bessel-weighted sidebands bloom — Chowning’s FM synthesis, the sound of the DX7.' },
       { id: 'convreverb', note: 'Put a dry sound in a cathedral by convolving it with the room’s impulse response — every echo of the space applied at once.' },
+      { id: 'biquad', note: 'Shape the tone with a filter: a two-pole biquad passes or cuts bands (lowpass, notch, resonant peak) — the unit cell of every EQ and synth filter.' },
       { id: 'mp3', note: 'Shrink audio ~10× by discarding what the ear can’t hear: psychoacoustic masking drops quiet tones hidden next to loud ones.' },
     ],
   },
