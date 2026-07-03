@@ -606,6 +606,20 @@ export const PATHS: LearningPath[] = [
       { id: 'http3', note: 'HTTP over QUIC: HTTP/3 carries the same HTTP semantics on QUIC, with QPACK header compression redesigned so a lost header block can’t stall unrelated streams — head-of-line blocking gone end to end.' },
     ],
   },
+  {
+    id: 'compgeom',
+    title: 'Computational geometry',
+    icon: '📐',
+    blurb: 'Reasoning about points and shapes in the plane underlies maps, meshes, graphics, and simulation. Six algorithms: wrap a point set, triangulate it, partition around it, index it for nearest-neighbor, scatter points evenly, and trace a contour.',
+    steps: [
+      { id: 'convexhull', note: 'The tightest boundary: the convex hull is the shape a rubber band snaps to around a scatter of points — a sort plus a stack scan (Graham/Andrew) in O(n log n), the first step of countless geometry algorithms.' },
+      { id: 'delaunay', note: 'The best triangulation: connect points into triangles so no point lies inside any triangle’s circumcircle, which maximizes the smallest angle and avoids slivers — the mesh behind terrain and finite-element grids.' },
+      { id: 'voronoi', note: 'The dual partition: split the plane into one cell per point, each the region closest to that point. It’s the exact dual of the Delaunay triangulation — two points’ cells touch iff they’re Delaunay neighbors.' },
+      { id: 'kdtree', note: 'Nearest neighbor, fast: a k-d tree recursively splits space on alternating axes, so a nearest-point query prunes whole half-spaces instead of scanning every point — O(log n) average in low dimensions.' },
+      { id: 'poisson', note: 'Points that don’t clump: Poisson-disk sampling scatters random points no two closer than r apart (“blue noise”), the natural, even spread used for stippling, textures, and anti-aliasing.' },
+      { id: 'marchsquares', note: 'From a field to a contour: marching squares walks a grid of scalar values and, cell by cell, draws the line where the field crosses a threshold — the 2D isoline, and the ancestor of marching cubes.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
