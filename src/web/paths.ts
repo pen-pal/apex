@@ -377,6 +377,20 @@ export const PATHS: LearningPath[] = [
       { id: 'systolic', note: 'Now tile multiply-accumulate cells into a grid: data flows through and a whole matrix multiply falls out — the heart of a TPU.' },
     ],
   },
+  {
+    id: 'sortselect',
+    title: 'How computers sort and select',
+    icon: '📊',
+    blurb: 'From the five textbook sorts to the one in your standard library, then the flip side: finding the k-th element without sorting at all. Partitioning is the thread that ties them together.',
+    steps: [
+      { id: 'sorting', note: 'The five textbook sorts — bubble, insertion, selection, merge, quicksort — and the O(n²) vs O(n log n) gap between them.' },
+      { id: 'timsort', note: 'The real-world hybrid (Python, Java, Rust default): exploit natural runs, merge in balanced order, gallop — adaptive and stable.' },
+      { id: 'dnf', note: 'Dutch national flag: partition into <, =, > a pivot in one linear pass — the three-way split quicksort and selection lean on.' },
+      { id: 'quickselect', note: 'Don’t sort to find the k-th element — partition and recurse into only the side that holds it, O(n) on average.' },
+      { id: 'medianofmedians', note: 'Choose the pivot as a median of medians and quickselect becomes O(n) even in the worst case — a provably good split.' },
+      { id: 'heap', note: 'A binary heap keeps the min or max at the root in O(log n) — heapsort, and the priority queue behind schedulers and Dijkstra.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
