@@ -54,7 +54,7 @@ export function SvmSection() {
         takeaway: <>A linear SVM finds the separating hyperplane <code>w·x + b = 0</code> that maximizes the <strong>margin</strong> — the distance <code>2/‖w‖</code> to the nearest point of each class — by minimizing <code>½‖w‖² + C·Σ max(0, 1 − yᵢ(w·xᵢ + b))</code> (the hinge loss, with C trading margin width against violations). The optimum is a weighted sum of just the <strong>support vectors</strong>: the points on or inside the margin. Points strictly outside the margin have zero weight, so the model is <em>sparse</em> and the decision boundary depends only on those few frontier points — verified here: sliding a non-support-vector deep in its own class leaves the boundary unchanged (0.02°), while moving a support vector shifts it. Maximizing the margin is what gives SVMs their strong generalization and robustness to outliers far from the boundary. For data no line can split, the <strong>kernel trick</strong> replaces every dot product xᵢ·xⱼ with a kernel K(xᵢ, xⱼ) that equals a dot product in a higher-dimensional feature space — so SVM fits a max-margin plane there, which projects back to a non-linear boundary (an RBF kernel gives smooth curved regions), all without ever computing the high-dimensional coordinates. SVMs dominated classification before deep learning and remain strong for small, high-dimensional datasets like text and genomics.</>,
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
-        <label className="svm-ctl">move point<input type="range" min={26} max={58} value={Math.round(mx * 100)} onChange={(e) => setMx(+e.target.value / 100)} /><b>{nSV} support vectors</b> · {mx < 0.5 ? 'non-SV → boundary fixed' : 'entered the margin → boundary moves'}</label>
+        <label className="svm-ctl">move point<input type="range" min={26} max={58} value={Math.round(mx * 100)} onChange={(e) => setMx(+e.target.value / 100)} /><b>{nSV} support vectors</b> · {isSV([mx, 0.5, -1]) ? 'entered the margin → boundary moves' : 'non-SV → boundary fixed'}</label>
       )}
     />
   );
@@ -93,7 +93,7 @@ function Svm({ phase, data, mx }: { phase: Phase; data: Pt[]; mx?: number }) {
           : on('support') ? 'the ringed support vectors alone pin the boundary'
           : on('robust') ? 'move a non-support-vector → boundary does not budge'
           : on('kernel') ? 'kernels give a curved max-margin boundary in disguise'
-          : mx !== undefined && mx < 0.5 ? 'non-support-vector: boundary holds perfectly still'
+          : mx !== undefined && !isSV([mx, 0.5, -1]) ? 'non-support-vector: boundary holds perfectly still'
           : 'the point entered the margin → now a support vector, boundary moves'}
       </text>
     </svg>

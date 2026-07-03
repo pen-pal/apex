@@ -2,7 +2,7 @@
 // of objects for collision is O(n²); a uniform grid buckets each object by cell, and two objects can only touch if
 // they share a cell, so you only test same-cell pairs — O(n) candidates for evenly-spread objects. Cheap filter, then
 // the exact test confirms. Verified in node: finds the SAME collisions as brute force (independent oracle) while
-// testing ~1% of the pairs (248 vs 19,900). Sandboxed/CONCEPTUAL.
+// testing ~4.4% of the pairs (876 vs 19,900). Sandboxed/CONCEPTUAL.
 import { useMemo, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
 
@@ -50,7 +50,7 @@ export function SpatialHashSection() {
       scenes={scenes}
       explain={{
         idea: <>Finding which objects in a scene are touching seems to need checking every pair — but that’s n² checks, and it explodes: a thousand objects is half a million pairs every frame. A <strong>spatial hash grid</strong> is the standard fix. Overlay a uniform grid, drop each object into its cell, and use one fact: two objects can only collide if they occupy the same cell (or an adjacent one). So you only ever test objects that share a cell, and the work collapses from n² toward n.</>,
-        takeaway: <>This is the <strong>broad phase</strong> of collision detection: a cheap filter that produces candidate pairs, before the exact <strong>narrow-phase</strong> test (circle-vs-circle, or SAT for polygons) confirms actual contacts. You bucket each object by the grid cell it falls in; to find its potential collisions you look only in its own cell and the neighbours its radius can reach. For similar-sized objects spread evenly, each cell holds O(1) of them, so the total candidate pairs are O(n) instead of O(n²) — verified here as the identical set of collisions a brute-force scan finds, from testing about 1% of the pairs (248 candidates vs 19,900 for 200 objects). The <strong>cell size</strong> is the tuning knob: roughly the object size is ideal, since too-small cells make each object span many cells and too-large cells pack in too many, both drifting back toward all-pairs. Uneven, clumped distributions defeat a uniform grid — that’s when quadtrees, BVHs, and k-d trees take over. Every physics engine and particle system runs a broad phase like this before the exact test.</>,
+        takeaway: <>This is the <strong>broad phase</strong> of collision detection: a cheap filter that produces candidate pairs, before the exact <strong>narrow-phase</strong> test (circle-vs-circle, or SAT for polygons) confirms actual contacts. You bucket each object by the grid cell it falls in; to find its potential collisions you look only in its own cell and the neighbours its radius can reach. For similar-sized objects spread evenly, each cell holds O(1) of them, so the total candidate pairs are O(n) instead of O(n²) — verified here as the identical set of collisions a brute-force scan finds, from testing about 4.4% of the pairs (876 candidates vs 19,900 for 200 objects). The <strong>cell size</strong> is the tuning knob: roughly the object size is ideal, since too-small cells make each object span many cells and too-large cells pack in too many, both drifting back toward all-pairs. Uneven, clumped distributions defeat a uniform grid — that’s when quadtrees, BVHs, and k-d trees take over. Every physics engine and particle system runs a broad phase like this before the exact test.</>,
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <div className="shg-ctl">

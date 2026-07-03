@@ -1,6 +1,6 @@
 // Guided story: how a Kalman filter tracks a moving thing from noisy measurements — fuse a prediction (from a motion
 // model) with a measurement, weighted by their uncertainties (the Kalman gain), to beat either alone. Real 1D
-// constant-velocity Kalman (verified in node: RMSE 2.23 measurements → 1.29 estimate). Deterministic noise so the plot
+// constant-velocity Kalman (verified in node: RMSE 2.50 measurements → 1.38 estimate). Deterministic noise so the plot
 // is stable; the R/Q sliders change how the filter trusts sensor vs model. Pairs with GPS (which uses a Kalman to
 // smooth position). Sandboxed/CONCEPTUAL; the optimal linear estimator under Gaussian noise.
 import { useMemo, useState } from 'react';

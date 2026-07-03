@@ -2,7 +2,7 @@
 // nearly identical, so instead of coding each frame whole (like a JPEG), a P-frame predicts this frame from the
 // previous one: block matching finds each block's motion vector (the offset to its best match in the reference), and
 // only the tiny leftover residual is coded (DCT+quantize, like JPEG). Real block-matching motion estimation (verified:
-// a pan recovers the exact motion vectors, residual 0); canvas-rendered frames. Complements JPEG (spatial → temporal).
+// a pan recovers the exact motion vectors, residual near-zero except at the frame edges); canvas-rendered frames. Complements JPEG (spatial → temporal).
 import { useMemo, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
 

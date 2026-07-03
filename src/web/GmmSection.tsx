@@ -2,7 +2,7 @@
 // as a blend of K Gaussians (mean + covariance ellipse + weight); fit by Expectation-Maximization: E-step computes
 // each point's soft responsibilities (posterior prob of each Gaussian), M-step refits each Gaussian to its
 // responsibility-weighted points. A theorem guarantees the log-likelihood never decreases (verified in node: climbs
-// 210→262 monotonically). Captures tilted overlapping clusters + ambiguity that k-means' hard round cells can't. Live.
+// ≈213→254 monotonically). Captures tilted overlapping clusters + ambiguity that k-means' hard round cells can't. Live.
 import { useEffect, useRef, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
 

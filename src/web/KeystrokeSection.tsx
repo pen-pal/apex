@@ -43,7 +43,7 @@ export function KeystrokeSection() {
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
           <button type="button" onClick={() => setReached((r) => (r >= 4 ? -1 : r + 1))}>{reached >= 4 ? '↻ reset' : reached < 0 ? 'press “a” ▶' : `→ ${STAGES[reached + 1].title}`}</button>
-          <span className="kst-live">{reached < 0 ? 'idle' : reached >= 4 ? '“a” on screen · ~8.6 ms total' : `at: ${STAGES[reached].title}`}</span>
+          <span className="kst-live">{reached < 0 ? 'idle' : reached >= 4 ? '“a” on screen · ~8.7 ms total' : `at: ${STAGES[reached].title}`}</span>
         </>
       )}
     />

@@ -17,7 +17,7 @@ export function MemoryStorySection() {
     scene('die', 'Inside one chip', 'A silicon die, split into banks. Each bank is a grid of memory cells, reached by a row address and a column address.'),
     scene('array', 'The cell grid', 'Horizontal word lines pick a row; vertical bit lines carry the data. One cell sits at every crossing — millions per bank.'),
     scene('cell', 'One cell', 'Astonishingly simple: one transistor, one capacitor. The capacitor is the bit — charged is 1, empty is 0. The transistor is the gate.'),
-    scene('charge', 'Charge, leak, refresh', 'Raise the word line and the transistor links the capacitor to the bit line, so a sense amp can read it. But the charge leaks in milliseconds — so every row is rewritten thousands of times a second. That refresh is why it is dynamic RAM.'),
+    scene('charge', 'Charge, leak, refresh', 'Raise the word line and the transistor links the capacitor to the bit line, so a sense amp can read it. But the charge leaks in milliseconds — so every row is rewritten about fifteen times a second. That refresh is why it is dynamic RAM.'),
   ];
 
   return (
@@ -25,7 +25,7 @@ export function MemoryStorySection() {
       scenes={scenes}
       explain={{
         idea: <>Your computer’s main memory is billions of near-identical cells, and each one stores a single bit as a tiny electric charge held on a capacitor — charged means 1, empty means 0 — with one transistor acting as the gate that lets you read or write it. Everything above that (the rows, the banks, the chips, the stick you plug in) is just this one cell wired up and repeated. The tour zooms from the whole module down to that single capacitor so the scale stops being abstract.</>,
-        takeaway: <>Because a bit is charge on a <em>leaky</em> capacitor, it drains away in milliseconds, so the chip must read and rewrite every row thousands of times a second — that constant refresh is the “dynamic” in DRAM, and the reason it burns power even when idle. One transistor per bit is what makes RAM cheap and enormous; the six-transistor SRAM cell holds its bit in a feedback loop with no leak and no refresh, which is why your cache is fast but measured in megabytes while RAM is gigabytes.</>,
+        takeaway: <>Because a bit is charge on a <em>leaky</em> capacitor, it drains away in milliseconds, so the chip must read and rewrite every row about fifteen times a second — that constant refresh is the “dynamic” in DRAM, and the reason it burns power even when idle. One transistor per bit is what makes RAM cheap and enormous; the six-transistor SRAM cell holds its bit in a feedback loop with no leak and no refresh, which is why your cache is fast but measured in megabytes while RAM is gigabytes.</>,
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
