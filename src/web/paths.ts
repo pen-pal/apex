@@ -392,6 +392,20 @@ export const PATHS: LearningPath[] = [
       { id: 'heap', note: 'A binary heap keeps the min or max at the root in O(log n) — heapsort, and the priority queue behind schedulers and Dijkstra.' },
     ],
   },
+  {
+    id: 'searching',
+    title: 'How computers search for a solution',
+    icon: '🧭',
+    blurb: 'Most hard problems are a search through an enormous space of possibilities. The art is not visiting all of it — heuristics to aim, pruning to skip, propagation to shrink, and randomness to escape when exact search is hopeless.',
+    steps: [
+      { id: 'astar', note: 'Informed search: A* aims toward the goal with a heuristic, expanding far fewer nodes than blind breadth-first while still finding the shortest path.' },
+      { id: 'alphabeta', note: 'Adversarial search: explore a game tree, but prune whole branches that provably can’t change the decision (alpha-beta) — searching deeper for free.' },
+      { id: 'dpll', note: 'Systematic search: DPLL tries a variable, propagates forced consequences (unit propagation), and backtracks on conflict — the backbone of SAT solvers.' },
+      { id: 'twosat', note: 'When structure helps: 2-SAT looks NP-hard but the implication graph makes it linear-time — the right model collapses the search entirely.' },
+      { id: 'wfc', note: 'Constraint propagation as generation: collapse the most-constrained choice, then ripple the consequences outward — arc-consistency building a valid pattern.' },
+      { id: 'simanneal', note: 'When exact is hopeless: wander the space accepting occasional worse moves, cooling over time — stochastic local search that escapes local optima.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
