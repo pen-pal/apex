@@ -83,6 +83,7 @@ export const PATHS: LearningPath[] = [
       { id: 'wal', note: 'Write-ahead logging makes a crash recoverable — log the change first, then apply it.' },
       { id: 'mvcc', note: 'MVCC gives each transaction a consistent snapshot without blocking readers.' },
       { id: 'locking', note: 'Where snapshots aren’t enough, locks serialize access — and can deadlock.' },
+      { id: 'serializable', note: 'The correctness those locks enforce: a schedule is safe exactly when its precedence graph is acyclic.' },
       { id: 'lsm', note: 'LSM-trees flip the design for write-heavy loads: append to memory, then compact.' },
       { id: 'replication', note: 'Ship the WAL to replicas so a copy of the data survives a node loss.' },
       { id: 'quorum', note: 'Read/write quorums (R + W > N) keep replicas consistent under failure.' },
@@ -311,6 +312,19 @@ export const PATHS: LearningPath[] = [
       { id: 'refcount', note: 'The simplest reclaim: count references and free at zero — but a reference cycle keeps itself alive and leaks.' },
       { id: 'gc', note: 'Tracing mark-and-sweep collects from the roots instead, so it reclaims the cycles reference counting can’t.' },
       { id: 'cheney', note: 'A copying collector goes further — it relocates the survivors into a fresh space, compacting fragmentation away.' },
+    ],
+  },
+  {
+    id: 'query',
+    title: 'How a database answers a query',
+    icon: '📇',
+    blurb: 'The read path: find the rows with an index, combine tables with a join, handle inputs far bigger than memory, and let the planner pick the cheapest way to do it all.',
+    steps: [
+      { id: 'btree', note: 'The B+tree index finds a row by sorted key in a handful of disk seeks — the default database index.' },
+      { id: 'exthash', note: 'A hash index finds rows by exact key and grows without rehashing, splitting one bucket at a time.' },
+      { id: 'joins', note: 'Combine two tables on a key — nested-loop, hash, or sort-merge, all returning the same rows at different costs.' },
+      { id: 'gracejoin', note: 'When both tables dwarf memory, partition by hash and join the aligned partition-pairs one at a time.' },
+      { id: 'queryplan', note: 'The optimizer estimates the cost of each index and join order, then picks the cheapest plan to execute.' },
     ],
   },
 ];
