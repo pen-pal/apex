@@ -423,6 +423,19 @@ export const PATHS: LearningPath[] = [
       { id: 'mp3', note: 'Shrink audio ~10× by discarding what the ear can’t hear: psychoacoustic masking drops quiet tones hidden next to loud ones.' },
     ],
   },
+  {
+    id: 'noisychannel',
+    title: 'How bits survive a noisy channel',
+    icon: '📡',
+    blurb: 'A wire carries voltage, not bits, and it corrupts what it carries. Follow a message down the stack: turned into a signal, framed into packets, checked for corruption, and — when noise still wins — repaired in place without asking for a resend.',
+    steps: [
+      { id: 'linecode', note: 'First bits become a physical signal — voltage levels and transitions. A good line code (Manchester, 8b/10b) keeps the receiver’s clock recoverable and the line DC-balanced.' },
+      { id: 'cobs', note: 'The receiver must find where each packet ends. COBS byte-stuffing removes every zero byte so a lone zero can mark the boundary unambiguously — framing at almost no cost.' },
+      { id: 'crc32', note: 'Noise flips bits in transit. A CRC treats the message as a polynomial and divides by a fixed one; the remainder is a checksum that catches virtually all real-world errors cheaply.' },
+      { id: 'hamming', note: 'Detection only means “resend.” To fix a single flipped bit in place, add parity bits: Hamming(7,4) pinpoints exactly which bit went wrong and flips it back.' },
+      { id: 'reedsolomon', note: 'Real channels corrupt whole bursts — scratches, fades, dead pixels. Reed–Solomon works over polynomials to correct bursts and erasures; it’s in CDs, QR codes, and deep-space links.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
