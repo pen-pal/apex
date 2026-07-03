@@ -13082,3 +13082,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .fm-btn.on{border-color:hsl(280 55% 60%);background:hsl(280 45% 46% / .25)}
 .fm-sep{color:hsl(220 12% 45%)}
 .fm-read{font-family:var(--mono,monospace);color:hsl(280 55% 74%);font-size:12px}
+
+/* ── SSA form story (SsaSection) — single-assignment CFG with phi nodes ──────────────────────────── */
+.ssa-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.02em}
+.ssa-edge{stroke:hsl(220 15% 40%);stroke-width:1.5;fill:none}
+.ssa-edge.on{stroke:hsl(150 60% 52%);stroke-width:2.5}
+.ssa-ah{fill:hsl(220 15% 46%)}
+.ssa-blk{fill:hsl(220 22% 18%);stroke:hsl(220 18% 34%);stroke-width:1}
+.ssa-blk.entry{fill:hsl(210 30% 22%);stroke:hsl(210 40% 48%)}
+.ssa-blk.merge{fill:hsl(265 28% 22%);stroke:hsl(265 40% 50%)}
+.ssa-blk.taken{stroke:hsl(150 60% 52%);stroke-width:2.5}
+.ssa-bt{fill:hsl(210 18% 60%);font-size:10.5px;font-family:var(--mono,monospace)}
+.ssa-code{fill:hsl(200 55% 82%);font-size:13px;font-family:var(--mono,monospace)}
+.ssa-sel{fill:hsl(150 70% 62%);font-weight:700}
+.ssa-dim{fill:hsl(220 12% 48%)}
+.ssa-note{fill:hsl(265 45% 74%);font-size:10.5px;font-family:var(--mono,monospace)}
+.ssa-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ssa-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.ssa-lab{font-family:var(--mono,monospace);color:hsl(210 22% 68%);font-size:12px}
+.ssa-btn{font-size:13px;padding:3px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.ssa-v{font-family:var(--mono,monospace);color:hsl(200 60% 80%);min-width:20px;text-align:center;font-size:15px}
+.ssa-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:12px}
