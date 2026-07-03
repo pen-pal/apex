@@ -12511,3 +12511,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .seam-ctl label{display:inline-flex;align-items:center;gap:6px}
 .seam-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .seam-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+
+/* ── Conjugate gradient story (ConjGradSection) — quadratic bowl, steepest-descent zigzag vs CG ───── */
+.cg-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.cg-contour{fill:none;stroke:hsl(210 40% 52% / .5);stroke-width:1}
+.cg-min{fill:hsl(150 65% 55%)}
+.cg-start{fill:hsl(210 40% 80%)}
+.cg-lbl{fill:hsl(210 22% 70%);font-size:11px;font-family:var(--mono,monospace)}
+.cg-sd{stroke:hsl(30 90% 60%);stroke-width:1.75}
+.cg-sddot{fill:hsl(30 90% 62%)}
+.cg-cg{stroke:hsl(150 70% 52%);stroke-width:2.5}
+.cg-cgdot{fill:hsl(150 75% 58%)}
+.cg-leglbl{fill:hsl(210 20% 72%);font-size:11.5px;font-family:var(--mono,monospace)}
+.cg-foot{fill:hsl(210 16% 60%);font-size:13px}
+.cg-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.cg-ctl label{display:inline-flex;align-items:center;gap:6px}
+.cg-leg{display:inline-flex;align-items:center;gap:5px}
+.cg-swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
+.cg-swatch.sd{background:hsl(30 90% 60%)}
+.cg-swatch.cg{background:hsl(150 70% 52%)}
+.cg-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
