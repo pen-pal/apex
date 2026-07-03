@@ -227,6 +227,7 @@ export const PATHS: LearningPath[] = [
       { id: 'dfa', note: 'Lexing: a finite-state machine scans characters into tokens — numbers, names, operators — in one linear pass.' },
       { id: 'shuntingyard', note: 'Parsing: shunting-yard turns infix tokens into unambiguous postfix, resolving precedence with a stack.' },
       { id: 'compiler', note: 'Codegen: walk the parsed expression and emit the actual machine instructions a CPU runs.' },
+      { id: 'hindley', note: 'Type-checking: Hindley-Milner infers every type from usage alone, catching mismatches before a line runs.' },
       { id: 'regalloc', note: 'A backend pass fits the code’s unlimited temporaries into the CPU’s few registers by coloring an interference graph.' },
       { id: 'bytecode', note: 'Or target a portable bytecode and run it on a stack VM — how the JVM and CPython execute.' },
       { id: 'jit', note: 'Hot bytecode is compiled to native code at runtime — profile, specialize, and patch the call site.' },
@@ -325,6 +326,20 @@ export const PATHS: LearningPath[] = [
       { id: 'joins', note: 'Combine two tables on a key — nested-loop, hash, or sort-merge, all returning the same rows at different costs.' },
       { id: 'gracejoin', note: 'When both tables dwarf memory, partition by hash and join the aligned partition-pairs one at a time.' },
       { id: 'queryplan', note: 'The optimizer estimates the cost of each index and join order, then picks the cheapest plan to execute.' },
+    ],
+  },
+  {
+    id: 'moderncrypto',
+    title: 'Cryptography beyond secrecy',
+    icon: '🔏',
+    blurb: 'Crypto is more than hiding messages. Commit to a value, prove membership, transfer a choice obliviously, generate verifiable randomness — then go post-quantum and meet the lattice attack that sets the bar.',
+    steps: [
+      { id: 'pedersen', note: 'A commitment locks in a value you can’t change but haven’t revealed — Pedersen commitments are perfectly hiding, computationally binding.' },
+      { id: 'merkle', note: 'A Merkle tree commits to a whole set with one hash and proves any member belongs with a short path.' },
+      { id: 'ot', note: 'Oblivious transfer: the sender offers two messages, the receiver takes one, and neither learns the other’s choice — the seed of secure computation.' },
+      { id: 'vrf', note: 'A verifiable random function emits randomness plus a proof it was computed correctly — unpredictable yet checkable.' },
+      { id: 'pqc', note: 'Post-quantum encryption hides a bit in noise (Learning With Errors), staying secure even against a quantum computer.' },
+      { id: 'lll', note: 'And the attack that sets the bar: LLL reduces a lattice basis to find short vectors — why lattice crypto needs hundreds of dimensions.' },
     ],
   },
 ];
