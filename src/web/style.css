@@ -12607,3 +12607,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sx-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
 .sx-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .sx-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── Register allocation story (RegAllocSection) — interference graph, Chaitin coloring, spills ───── */
+.ra-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.ra-edge{stroke:hsl(220 18% 44%);stroke-width:1.5}
+.ra-node{fill:hsl(220 20% 30%);stroke:hsl(220 20% 50%);stroke-width:1.5}
+.ra-node.spill{fill:hsl(0 40% 30%);stroke:hsl(0 60% 55%);stroke-dasharray:4 2;stroke-width:2}
+.ra-nm{fill:#fff;font-size:14px;font-weight:700;font-family:var(--mono,monospace)}
+.ra-reg{fill:hsl(0 0% 100% / .85);font-size:9.5px;font-family:var(--mono,monospace)}
+.ra-lbl{fill:hsl(210 20% 68%);font-size:11px;font-family:var(--mono,monospace)}
+.ra-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ra-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.ra-ctl label{display:inline-flex;align-items:center;gap:6px}
+.ra-read{font-family:var(--mono,monospace)}
+.ra-read.ok{color:hsl(150 60% 60%)}
+.ra-read.bad{color:hsl(0 75% 66%)}
