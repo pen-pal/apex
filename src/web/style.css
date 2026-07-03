@@ -12547,3 +12547,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ok-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
 .ok-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .ok-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+
+/* ── Cheney copying GC story (CheneySection) — semispaces, forwarding pointers, scan/free BFS ─────── */
+.cy-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.cy-lbl{fill:hsl(210 18% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.cy-hdr{fill:hsl(210 22% 70%);font-size:12px;font-family:var(--mono,monospace);font-weight:600}
+.cy-root{fill:hsl(45 60% 40% / .5);stroke:hsl(45 70% 60%);stroke-width:1}
+.cy-rt{fill:hsl(45 80% 82%);font-size:11px;font-family:var(--mono,monospace)}
+.cy-obj{fill:hsl(220 20% 22%);stroke:hsl(220 18% 36%);stroke-width:1}
+.cy-obj.moved{opacity:.42}
+.cy-obj.garbage{fill:hsl(0 45% 26%);stroke:hsl(0 50% 45%)}
+.cy-obj.hot{stroke:hsl(45 100% 62%);stroke-width:2}
+.cy-obj.to{fill:hsl(210 42% 30% / .55);stroke:hsl(210 55% 55%)}
+.cy-obj.to.scanned{fill:hsl(150 40% 28% / .5);stroke:hsl(150 50% 50%)}
+.cy-obj.to.scan{stroke:hsl(45 100% 62%);stroke-width:2}
+.cy-ot{fill:hsl(210 30% 86%);font-size:12px;font-family:var(--mono,monospace)}
+.cy-fwd{fill:hsl(210 22% 58%);font-size:10px;font-family:var(--mono,monospace)}
+.cy-scan{fill:hsl(45 90% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.cy-free{fill:hsl(150 65% 60%);font-size:11px;font-family:var(--mono,monospace)}
+.cy-fwline{stroke:hsl(45 80% 60% / .6);stroke-width:1.25;stroke-dasharray:4 3}
+.cy-act{fill:hsl(150 55% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.cy-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.cy-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.cy-step{font-family:var(--mono,monospace);color:hsl(210 18% 64%)}
