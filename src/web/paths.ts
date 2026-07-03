@@ -455,6 +455,19 @@ export const PATHS: LearningPath[] = [
       { id: 'rendezvous', note: 'Highest-Random-Weight: score a key against every node and pick the top — no ring, an even spread, and the full ranking doubles as a replica preference list.' },
     ],
   },
+  {
+    id: 'balanced',
+    title: 'Keeping search O(log n) (balanced structures)',
+    icon: '⚖️',
+    blurb: 'A plain binary search tree degrades to a linked list on sorted input. Five different strategies keep search logarithmic — strict rotations, randomness, self-adjustment, coin-flip lanes, and a heap-BST hybrid.',
+    steps: [
+      { id: 'avl', note: 'The strict way: after each insert, rotate so no node’s two subtrees differ in height by more than 1 — a guaranteed O(log n) height, paid for with rebalancing on every change.' },
+      { id: 'treap', note: 'The lazy way: give each key a random priority and keep a heap on priorities atop the BST on keys. Random priorities balance the tree in expectation, with no explicit balance rules.' },
+      { id: 'splaytree', note: 'The adaptive way: don’t balance by height at all — splay every accessed node to the root, so recently-used keys stay near the top and hot workloads run fast (amortized O(log n)).' },
+      { id: 'skiplist', note: 'Drop the tree: stack sorted linked lists with coin-flip express lanes; a search rides the top lane down — O(log n) expected with far simpler code (it’s inside Redis and LevelDB).' },
+      { id: 'cartesian', note: 'The dual view: a tree that’s a BST on position and a heap on value at once, so range-minimum queries become lowest-common-ancestor lookups — two classic problems, one structure.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
