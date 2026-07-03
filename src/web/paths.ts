@@ -564,6 +564,20 @@ export const PATHS: LearningPath[] = [
       { id: 'sat', note: 'Confirm the hit: the Separating Axis Theorem checks whether two convex shapes actually overlap by looking for a gap along any of their face normals — no separating axis means a collision.' },
     ],
   },
+  {
+    id: 'webattacks',
+    title: 'How web apps get attacked (and defended)',
+    icon: '🕳️',
+    blurb: 'Most breaches aren’t exotic — they abuse a server that trusts input too much or a browser boundary that isn’t enforced. Six classic web-app attack classes, each shown sandboxed with the fix that closes it.',
+    steps: [
+      { id: 'ssrf', note: 'Make the server fetch for you: if an app requests a user-supplied URL, an attacker points it at internal services or cloud metadata (169.254.169.254) the outside can’t reach — closed by allow-lists and blocking link-local ranges.' },
+      { id: 'xxe', note: 'Abuse the XML parser: a crafted external entity makes the parser read local files or make requests on the attacker’s behalf — closed by disabling external-entity resolution.' },
+      { id: 'smuggle', note: 'Desync the pipeline: front-end and back-end disagree on where one request ends (Content-Length vs Transfer-Encoding), so a smuggled prefix poisons the next user’s response — closed by consistent parsing and HTTP/2.' },
+      { id: 'openredirect', note: 'Borrow the site’s trust: an unvalidated redirect parameter sends users to an attacker’s page from a legitimate domain — the pivot in phishing and OAuth token theft, closed by allow-listing redirect targets.' },
+      { id: 'clickjack', note: 'Steal the click: frame the real site invisibly over a decoy so a click on “win a prize” lands on “delete account” — closed by X-Frame-Options / frame-ancestors CSP.' },
+      { id: 'protopollute', note: 'Poison the prototype: injecting a __proto__ key into a merged object writes onto every object’s prototype, flipping security checks — closed by null-prototype objects and rejecting __proto__ keys.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
