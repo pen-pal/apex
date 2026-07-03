@@ -217,6 +217,61 @@ export const PATHS: LearningPath[] = [
       { id: 'ransac', note: 'Fit a model despite 50% outliers by random sampling plus consensus — where averaging with least-squares gets dragged off.' },
     ],
   },
+  {
+    id: 'language',
+    title: 'How your code actually runs',
+    icon: '⚙️',
+    blurb: 'Follow a line of source from characters to running native code: lex it, parse it, compile it, run it on a VM, JIT the hot paths, and let the collector reclaim memory.',
+    steps: [
+      { id: 'dfa', note: 'Lexing: a finite-state machine scans characters into tokens — numbers, names, operators — in one linear pass.' },
+      { id: 'shuntingyard', note: 'Parsing: shunting-yard turns infix tokens into unambiguous postfix, resolving precedence with a stack.' },
+      { id: 'compiler', note: 'Codegen: walk the parsed expression and emit the actual machine instructions a CPU runs.' },
+      { id: 'bytecode', note: 'Or target a portable bytecode and run it on a stack VM — how the JVM and CPython execute.' },
+      { id: 'jit', note: 'Hot bytecode is compiled to native code at runtime — profile, specialize, and patch the call site.' },
+      { id: 'gc', note: 'The runtime reclaims unreachable memory automatically, so the program never has to free by hand.' },
+    ],
+  },
+  {
+    id: 'graphics',
+    title: 'How a screen gets drawn',
+    icon: '🎨',
+    blurb: 'From the humblest pixel line to photorealistic rays: the primitives and paradigms that turn geometry and math into the image on your display.',
+    steps: [
+      { id: 'bresenham', note: 'The humblest primitive: draw a straight line on a pixel grid with nothing but integer adds.' },
+      { id: 'bezier', note: 'Smooth curves from a few control points — every font glyph and SVG path is Béziers.' },
+      { id: 'rasterize', note: 'Fill a triangle by testing pixels against its edges — the primitive every GPU is built around.' },
+      { id: 'raytracing', note: 'The other paradigm: trace a ray from the eye through each pixel to find what it hits.' },
+      { id: 'raymarch', note: 'March along each ray in steps sized by a signed-distance field — the shader and demoscene way.' },
+      { id: 'perlin', note: 'Procedural noise builds textures, terrain, and clouds — infinite detail with no stored image.' },
+    ],
+  },
+  {
+    id: 'compression',
+    title: 'Compression: keep what matters',
+    icon: '🗜️',
+    blurb: 'How data shrinks — from lossless codes that give back every bit, through repeat-finding and byte-reordering, to lossy schemes that throw away exactly what you won’t miss.',
+    steps: [
+      { id: 'huffman', note: 'Lossless entropy coding: give frequent symbols shorter codes with an optimal prefix tree.' },
+      { id: 'lz77', note: 'Replace repeated substrings with back-references to earlier text — the core of gzip and zip.' },
+      { id: 'bwt', note: 'The Burrows-Wheeler transform reversibly clusters similar bytes so the coder compresses harder (bzip2).' },
+      { id: 'jpeg', note: 'Go lossy for images: the DCT concentrates energy into low frequencies you can quantize away.' },
+      { id: 'svd', note: 'Low-rank approximation keeps only an image’s top singular values — the provably optimal rank-k.' },
+    ],
+  },
+  {
+    id: 'strings',
+    title: 'Searching and assembling text',
+    icon: '🔤',
+    blurb: 'Work with sequences at scale: find one pattern without backtracking, match thousands at once, index every suffix, search inside compressed data, and reassemble a whole sequence from fragments.',
+    steps: [
+      { id: 'kmp', note: 'Find a pattern in text without ever backtracking, using a precomputed failure function.' },
+      { id: 'rabinkarp', note: 'A rolling hash slides a fingerprint along the text to spot candidate matches in O(1) per step.' },
+      { id: 'ahocorasick', note: 'Match thousands of patterns at once with a trie threaded by failure links.' },
+      { id: 'suffixarray', note: 'Sort all suffixes once, then answer any substring query by binary search.' },
+      { id: 'bwt', note: 'The Burrows-Wheeler transform powers the FM-index — full-text search inside compressed data.' },
+      { id: 'debruijn', note: 'Assemble a whole sequence from short overlapping k-mers by walking an Eulerian path.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
