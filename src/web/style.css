@@ -12254,3 +12254,13 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lr-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .lr-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .lr-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── GMM / EM story (GmmSection) — Gaussian ellipses fit by EM, soft responsibilities ────────────── */
+.gmm-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.gmm-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.gmm-ell{fill:none;stroke-width:2}
+.gmm-pt{stroke:hsl(220 20% 15% / .5);stroke-width:0.5}
+.gmm-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gmm-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.gmm-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.gmm-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
