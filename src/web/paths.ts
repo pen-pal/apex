@@ -54,7 +54,9 @@ export const PATHS: LearningPath[] = [
       { id: 'aead', note: 'AEAD (GCM / ChaCha-Poly) gives confidentiality AND integrity in a single pass.' },
       { id: 'dhkex', note: 'Diffie–Hellman lets two strangers agree on a key over a fully public wire.' },
       { id: 'rsa', note: 'Public-key crypto: encrypt with the public key, decrypt with the private one.' },
+      { id: 'crt', note: 'The Chinese Remainder Theorem behind fast RSA: work mod p and mod q separately, then recombine — ~4× quicker.' },
       { id: 'ecdsa', note: 'Sign with elliptic curves — and watch how one reused nonce leaks the private key.' },
+      { id: 'montladder', note: 'Do the secret exponentiation without leaking it: the Montgomery ladder runs the same operations every bit, constant-time.' },
     ],
   },
   {
@@ -219,6 +221,7 @@ export const PATHS: LearningPath[] = [
       { id: 'aliasmethod', note: 'Draw from a weighted distribution in O(1) — one die roll plus one coin flip, after a clever setup.' },
       { id: 'shuffle', note: 'Shuffle an array so every permutation is equally likely (Fisher–Yates) — and the subtle bias of doing it the wrong way.' },
       { id: 'ransac', note: 'Fit a model despite 50% outliers by random sampling plus consensus — where averaging with least-squares gets dragged off.' },
+      { id: 'wfc', note: 'Generate structure with chance: wave function collapse makes a random choice at the most-constrained cell and propagates, building a rule-abiding map.' },
     ],
   },
   {
@@ -339,10 +342,12 @@ export const PATHS: LearningPath[] = [
     steps: [
       { id: 'pedersen', note: 'A commitment locks in a value you can’t change but haven’t revealed — Pedersen commitments are perfectly hiding, computationally binding.' },
       { id: 'merkle', note: 'A Merkle tree commits to a whole set with one hash and proves any member belongs with a short path.' },
+      { id: 'accumulator', note: 'An RSA accumulator commits to a set with one number and proves membership with one number — constant size, no growing path.' },
       { id: 'ot', note: 'Oblivious transfer: the sender offers two messages, the receiver takes one, and neither learns the other’s choice — the seed of secure computation.' },
       { id: 'garbled', note: 'Yao garbled circuits build on OT: two parties compute f(a,b) revealing neither input, by evaluating an encrypted, shuffled gate.' },
       { id: 'vrf', note: 'A verifiable random function emits randomness plus a proof it was computed correctly — unpredictable yet checkable.' },
       { id: 'sumcheck', note: 'The sumcheck protocol proves a huge sum over 2ⁿ inputs in n cheap rounds and one evaluation — the engine inside modern SNARKs.' },
+      { id: 'vdf', note: 'A verifiable delay function forces a fixed sequential compute (repeated squaring) that a tiny proof checks fast — unbiasable randomness beacons.' },
       { id: 'pqc', note: 'Post-quantum encryption hides a bit in noise (Learning With Errors), staying secure even against a quantum computer.' },
       { id: 'lll', note: 'And the attack that sets the bar: LLL reduces a lattice basis to find short vectors — why lattice crypto needs hundreds of dimensions.' },
     ],
