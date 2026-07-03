@@ -578,6 +578,20 @@ export const PATHS: LearningPath[] = [
       { id: 'protopollute', note: 'Poison the prototype: injecting a __proto__ key into a merged object writes onto every object’s prototype, flipping security checks — closed by null-prototype objects and rejecting __proto__ keys.' },
     ],
   },
+  {
+    id: 'graphalgos',
+    title: 'Classic graph algorithms',
+    icon: '🔗',
+    blurb: 'So many problems are secretly a graph — dependencies, maps, networks, exchange rates. Six workhorse algorithms answer the recurring questions: order it, cluster it, connect it cheaply, find shortest paths, and push maximum flow.',
+    steps: [
+      { id: 'toposort', note: 'Order a DAG so every edge points forward: topological sort turns a graph of dependencies (build steps, course prereqs) into a valid linear schedule — or reports the cycle that makes one impossible.' },
+      { id: 'scc', note: 'Find the tightly-knit clusters: a strongly connected component is a maximal set where every node reaches every other; condensing them collapses any directed graph into a DAG (Tarjan finds them in one DFS).' },
+      { id: 'unionfind', note: 'Track connectivity as it grows: union-find answers “are these two in the same group?” in near-constant time with union-by-rank and path compression — the engine inside Kruskal and connected-components.' },
+      { id: 'mst', note: 'Connect everything as cheaply as possible: a minimum spanning tree is the lowest-weight edge set that keeps the graph connected — Kruskal sorts edges and adds each unless it forms a cycle (checked with union-find).' },
+      { id: 'bellmanford', note: 'Shortest paths even with negative edges: Bellman-Ford relaxes every edge V−1 times, and a further relaxation that still improves proves a negative cycle — which over exchange rates is an arbitrage loop.' },
+      { id: 'maxflow', note: 'Push as much as the network allows: max-flow augments along residual paths until none remain, and the min-cut — the bottleneck edges — always equals the maximum flow.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
