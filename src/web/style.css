@@ -12447,3 +12447,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dbj-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
 .dbj-ok{color:hsl(150 60% 60%)}
 .dbj-bad{color:hsl(30 85% 64%)}
+
+/* ── SVD story (SvdSection) — image = UΣVᵀ, rank-k compression, singular-value spectrum ──────────── */
+.svd-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.svd-frame{fill:none;stroke:hsl(220 18% 40%);stroke-width:1}
+.svd-lbl{fill:hsl(210 18% 64%);font-size:11px;font-family:var(--mono,monospace)}
+.svd-bar{fill:hsl(220 22% 40%)}
+.svd-bar.kept{fill:hsl(200 75% 58%)}
+.svd-bar.all{fill:hsl(45 75% 58%)}
+.svd-kept{fill:hsl(200 75% 58%)}
+.svd-drop{fill:hsl(220 22% 40%)}
+.svd-axis{stroke:hsl(220 16% 36%);stroke-width:1}
+.svd-foot{fill:hsl(210 16% 60%);font-size:13px}
+.svd-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
