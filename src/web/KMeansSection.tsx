@@ -1,7 +1,7 @@
 // Guided story: k-means clustering (Lloyd's algorithm) — group unlabeled points into k clusters by alternating two
 // steps: assign each point to its nearest center, then move each center to the mean of its points. Both steps only
 // lower the total squared distance (inertia), so it decreases monotonically and converges. Verified in node: inertia
-// drops every step (15.3 → 0.79) to a fixed point in a few iterations. Caveats: local optima (re-seed for different
+// drops every step (5.4 → 0.79) to a fixed point in a few iterations. Caveats: local optima (re-seed for different
 // results) and you must pick k. The entry point to unsupervised learning; live animation. Sandboxed/CONCEPTUAL.
 import { useEffect, useRef, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
