@@ -12220,3 +12220,12 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pcp-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .pcp-btn.on{border-color:hsl(150 55% 55%);background:hsl(150 50% 42% / .2)}
 .pcp-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Decision tree story (DecisionTreeSection) — axis-aligned splits carving pure regions ─────────── */
+.dt-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.dt-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.dt-region{transition:fill .3s}
+.dt-split{stroke:hsl(210 30% 85%);stroke-width:2}
+.dt-pt{stroke:hsl(220 20% 15% / .6);stroke-width:0.6}
+.dt-foot{fill:hsl(210 16% 60%);font-size:13px}
+.dt-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
