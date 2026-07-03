@@ -239,6 +239,7 @@ export const PATHS: LearningPath[] = [
     steps: [
       { id: 'bresenham', note: 'The humblest primitive: draw a straight line on a pixel grid with nothing but integer adds.' },
       { id: 'bezier', note: 'Smooth curves from a few control points — every font glyph and SVG path is Béziers.' },
+      { id: 'perspective', note: 'Project the 3D scene onto the 2D screen by dividing by depth — and interpolate perspective-correctly, or the texture warps.' },
       { id: 'rasterize', note: 'Fill a triangle by testing pixels against its edges — the primitive every GPU is built around.' },
       { id: 'raytracing', note: 'The other paradigm: trace a ray from the eye through each pixel to find what it hits.' },
       { id: 'raymarch', note: 'March along each ray in steps sized by a signed-distance field — the shader and demoscene way.' },
@@ -297,6 +298,18 @@ export const PATHS: LearningPath[] = [
       { id: 'pagerank', note: 'Find a matrix’s dominant eigenvector by multiplying repeatedly — the random surfer’s stationary distribution.' },
       { id: 'kmeans', note: 'Alternate assign-to-nearest and move-the-center until the clustering stops changing.' },
       { id: 'montecarlo', note: 'When you can’t integrate, sample at random — the estimate’s error shrinks as 1/√N.' },
+    ],
+  },
+  {
+    id: 'memory',
+    title: 'Allocating and reclaiming memory',
+    icon: '🧹',
+    blurb: 'A program asks for memory and later stops using it — but how is it handed out, and how does the system know when it’s free again? Allocation, then three ways to reclaim, each fixing the last one’s blind spot.',
+    steps: [
+      { id: 'buddyalloc', note: 'Allocation: the kernel hands out memory in power-of-two blocks, splitting and merging buddies to fight fragmentation.' },
+      { id: 'refcount', note: 'The simplest reclaim: count references and free at zero — but a reference cycle keeps itself alive and leaks.' },
+      { id: 'gc', note: 'Tracing mark-and-sweep collects from the roots instead, so it reclaims the cycles reference counting can’t.' },
+      { id: 'cheney', note: 'A copying collector goes further — it relocates the survivors into a fresh space, compacting fragmentation away.' },
     ],
   },
 ];
