@@ -55,6 +55,7 @@ import { ReedSolomonSection } from '../ReedSolomonSection';
 import { CubicSection } from '../CubicSection';
 import { WpaSection } from '../WpaSection';
 import { BbrSection } from '../BbrSection';
+import { ExtHashSection } from '../ExtHashSection';
 import { BtreeSection } from '../BtreeSection';
 import { LsmSection } from '../LsmSection';
 
@@ -114,6 +115,7 @@ export const chunk0: Record<string, SectionEntry> = {
   "wpa": { Component: WpaSection, title: <>WPA2 4-way handshake</>, sub: <>How your phone and the access point agree on a fresh encryption key from a shared Wi-Fi password — exchanging only nonces, never the key itself. Step through it and watch both sides derive the identical PTK.</> },
   "bbr": { Component: BbrSection, title: <>TCP BBR</>, sub: <>Congestion control that models the path instead of waiting for loss. Compare BBR and a loss-based flow on the same link — same throughput, but watch BBR keep the buffer empty while the other drowns in bufferbloat.</> },
   "btree": { Component: BtreeSection, title: <>B+tree index</>, sub: <>The balanced, sorted structure behind every database index. Insert keys and watch nodes fill, split, and push separators up — keeping every leaf at the same depth so every lookup is O(log n).</> },
+  "exthash": { Component: ExtHashSection, title: <>How a hash index grows (extendible hashing)</>, sub: <>The other kind of database index: a hash index that grows without ever rehashing everything. A directory of pointers, indexed by the low bits of a key’s hash, points to fixed-size buckets — and several slots can share a bucket. When a bucket overflows it splits (one page), and only if needed does the directory double, which just copies pointers, never the keys. Verified in node over 300 insert sequences: lookups match a reference set, no bucket overflows, the directory is always 2^globalDepth, and every local depth ≤ global. Step through inserts and watch it split and double.</> },
   "gitobjects": { Component: GitObjectsSection, title: <>How Git stores your code</>, sub: <>Git is a content-addressed key/value store: every object is named by the SHA-1 of its own content. A narrated walk from blobs (a file by its hash) to trees (a directory) to commits (a snapshot plus history), and why one changed byte cascades up so history can’t be quietly rewritten. Edit a file and watch its real git object id — the exact one `git hash-object` prints — change.</> },
   "lsm": { Component: LsmSection, title: <>LSM-tree</>, sub: <>The write-optimized engine behind RocksDB and Cassandra. Put keys into the memtable, watch it flush to immutable SSTables, see read amplification grow — then compact to merge them and drop tombstones.</> },
 };
