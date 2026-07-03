@@ -1,7 +1,7 @@
 // Guided story: logistic regression — the probabilistic upgrade of the perceptron. Same linear score z = w·x + b,
 // but squashed through the sigmoid σ(z)=1/(1+e^-z) into a probability in (0,1), and trained by gradient descent on
 // the cross-entropy loss. That loss is CONVEX — one bowl, no local minima — so gradient descent reaches the single
-// global minimum from any start (verified in node: 3 inits → same min 0.2778), and it converges even on non-separable
+// global minimum from any start (verified in node: 3 inits → same min ~0.245), and it converges even on non-separable
 // data where the perceptron thrashes. It's the output unit of a classifier neural net (softmax = multiclass). Live.
 import { useEffect, useRef, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';

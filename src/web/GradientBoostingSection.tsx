@@ -1,7 +1,7 @@
 // Guided story: gradient boosting — the sequential ensemble. Start with a constant prediction, then repeatedly fit a
 // small tree to the RESIDUAL errors (target − current prediction) and add a shrunk copy to the model. For squared
 // loss the residual is the negative gradient of the loss, so each tree is one step of gradient descent in function
-// space, and the train loss drops monotonically. Verified in node: MSE falls 0.0497→0.0002 (281x) over 40 rounds,
+// space, and the train loss drops monotonically. Verified in node: MSE falls 0.0500→0.0002 (305x) over 40 rounds,
 // never rising. The sequential counterpart to a random forest's parallel bagging. Live 1-D regression. Sandboxed.
 import { useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
@@ -43,7 +43,7 @@ export function GradientBoostingSection() {
     scene('add', 'Add it, then repeat', 'Add a shrunk copy of that correction (scaled by a small learning rate) to the model, and the prediction bends toward the data. Compute the new, smaller residuals and fit another tree to those. Each round targets exactly what the ensemble still gets wrong.', 4),
     scene('gradient', 'Each tree is a gradient step', 'Here’s why it’s called gradient boosting: for squared-error loss, the residual (target − prediction) is exactly the negative gradient of the loss. So each tree takes one step of gradient descent — but in function space, adding a whole function instead of nudging a number. The loss falls every round.', 14),
     scene('sequential', 'Sequential, unlike a forest', 'A random forest grows many trees in parallel and averages them; boosting grows them in sequence, each fixing the errors of the ones before. That dependency makes boosting fit complex targets with tiny trees — and why a small learning rate plus many rounds resists overfitting.', 34),
-    { key: 'run', title: 'Boost round by round', caption: 'Slide the number of rounds up. The flat line grows a staircase that hugs the wiggly target ever more tightly, the residual stubs shrink toward nothing, and the training loss drops monotonically — never rising, because every tree is fit to what’s still wrong. Weak learners, added greedily, become a strong one.', render: () => <GB phase="run" m={m} onM={setM} /> },
+    { key: 'run', title: 'Boost round by round', caption: 'Slide the number of rounds up. The flat line grows a staircase that hugs the wiggly target ever more tightly, the residual stubs shrink toward nothing, and the training loss drops monotonically — never rising, because every tree is fit to what’s still wrong. Weak learners, added greedily, become a strong one.', render: () => <GB phase="run" m={m} /> },
   ];
 
   return (
@@ -51,7 +51,7 @@ export function GradientBoostingSection() {
       scenes={scenes}
       explain={{
         idea: <>Gradient boosting builds a strong model out of many weak ones, added one at a time. Start with a trivial prediction (the average), then repeatedly fit a small tree to the <strong>residuals</strong> — the errors the current model still makes — and add a shrunken copy of it. Each new tree targets exactly what the ensemble gets wrong, so the prediction bends toward the data round by round. Because for squared loss the residual <em>is</em> the negative gradient of the loss, each tree is one step of gradient descent, and the training loss falls every round.</>,
-        takeaway: <>Gradient boosting fits an additive model <code>F(x) = F₀ + η·Σ hₘ(x)</code> stagewise. It starts with a constant F₀ (the mean for squared loss), then at each round m computes the <strong>residuals</strong> <code>r = y − F(x)</code>, fits a small regression tree <code>hₘ</code> to those residuals, and adds a shrunken copy <code>η·hₘ</code> (η is the learning rate). The key insight: the residual for squared-error loss is exactly the <strong>negative gradient</strong> of the loss with respect to the current prediction, so fitting a tree to it and adding it is a step of <strong>gradient descent in function space</strong> — hence “gradient” boosting; for other losses you fit the tree to that loss’s negative gradient instead. Each round reduces the training loss (verified here: MSE falls monotonically 0.0497→0.0002, ~281× over 40 rounds), and shallow trees (“weak learners”) suffice because their errors are corrected by later trees. This is the opposite construction to a random forest: a forest grows deep trees <em>in parallel</em> on bootstrap samples and averages to cut variance, while boosting grows shallow trees <em>sequentially</em>, each dependent on the last, to cut bias. A small learning rate with many trees (plus subsampling and tree-depth limits) controls overfitting; implementations like XGBoost and LightGBM add second-order gradients and regularization and are the dominant method for tabular machine-learning competitions.</>,
+        takeaway: <>Gradient boosting fits an additive model <code>F(x) = F₀ + η·Σ hₘ(x)</code> stagewise. It starts with a constant F₀ (the mean for squared loss), then at each round m computes the <strong>residuals</strong> <code>r = y − F(x)</code>, fits a small regression tree <code>hₘ</code> to those residuals, and adds a shrunken copy <code>η·hₘ</code> (η is the learning rate). The key insight: the residual for squared-error loss is exactly the <strong>negative gradient</strong> of the loss with respect to the current prediction, so fitting a tree to it and adding it is a step of <strong>gradient descent in function space</strong> — hence “gradient” boosting; for other losses you fit the tree to that loss’s negative gradient instead. Each round reduces the training loss (verified here: MSE falls monotonically 0.0500→0.0002, ~305× over 40 rounds), and shallow trees (“weak learners”) suffice because their errors are corrected by later trees. This is the opposite construction to a random forest: a forest grows deep trees <em>in parallel</em> on bootstrap samples and averages to cut variance, while boosting grows shallow trees <em>sequentially</em>, each dependent on the last, to cut bias. A small learning rate with many trees (plus subsampling and tree-depth limits) controls overfitting; implementations like XGBoost and LightGBM add second-order gradients and regularization and are the dominant method for tabular machine-learning competitions.</>,
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <label className="gb-ctl">boosting rounds<input type="range" min={0} max={NROUND} value={m} onChange={(e) => setM(+e.target.value)} /><b>{m}</b> · training loss (MSE) <b>{MSE[m].toFixed(4)}</b>{m > 0 ? ` · ${(MSE[0] / MSE[m]).toFixed(0)}× smaller` : ''}</label>
@@ -60,9 +60,8 @@ export function GradientBoostingSection() {
   );
 }
 
-function GB({ phase, m, onM }: { phase: Phase; m: number; onM?: (m: number) => void }) {
+function GB({ phase, m }: { phase: Phase; m: number }) {
   const on = (p: Phase) => phase === p;
-  void onM;
   const pred = F[m];
   const showResid = !on('sequential');
   return (

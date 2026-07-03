@@ -1,7 +1,7 @@
 // Guided story: random forest — the ensemble that fixes a decision tree's overfitting. A single deep tree memorizes
 // noise (jagged boundary, high test error). A forest trains many decorrelated trees — each on a bootstrap resample
 // with a random feature subset per split — and votes. Their errors cancel: same low bias, far lower variance, a
-// smooth boundary that generalizes. Verified in node: single deep tree 99% train / 71% test (overfit); forest ~76%
+// smooth boundary that generalizes. Verified in node: single deep tree 98% train / 72% test (overfit); forest ~76%
 // test by 5+ trees. Bias-variance / wisdom of crowds. Interactive tree-count slider. Sandboxed/CONCEPTUAL.
 import { useMemo, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
