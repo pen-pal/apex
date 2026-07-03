@@ -1,7 +1,8 @@
 // Guided story: how a UPC-A barcode works — the bars encode 12 digits, and the last one is a mod-10 check digit that
 // catches scan errors. Real UPC-A encoding (L/R codes + guard bars, 95 modules) and the real check-digit formula
 // (odd positions ×3 + even positions, complement to a multiple of 10). Verified in node: check digits match 3 real
-// barcodes, encoding is 95 modules, and it catches 100% of single-digit errors and adjacent transpositions. The same
+// barcodes, encoding is 95 modules, and it catches 100% of single-digit errors and adjacent transpositions except when
+// the two swapped digits differ by 5 (the change 2·Δ is then a multiple of 10). The same
 // one-extra-digit idea as ISBN / Luhn / packet checksums. Sandboxed/CONCEPTUAL.
 import { useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
@@ -25,7 +26,7 @@ export function BarcodeSection() {
     scene('digits', 'A barcode is just digits', 'Those bars encode 12 digits (a UPC-A code). Each digit becomes 7 black-and-white modules; taller guard bars mark the start, middle, and end so the scanner can orient itself and measure the module width. Read the widths and you recover the digits — the bars are only a font a laser can read.'),
     scene('notdata', 'The last digit isn’t data', 'Eleven of the digits identify the manufacturer and product. The twelfth carries no product information at all — it’s a check digit, computed from the other eleven. Its entire job is to catch errors: a smudged bar, a misread, a mistyped number.'),
     scene('formula', 'The mod-10 check digit', 'The formula: add the digits in the odd positions and multiply by 3, add the digits in the even positions, sum those, and the check digit is whatever brings the total up to the next multiple of 10. For this code that comes out to 2 — and a correct scan always totals a clean multiple of 10.'),
-    scene('why', 'Why the ×3 catches errors', 'That weighting is what makes it work. Change any single digit and the weighted sum shifts by an amount that is never a multiple of 10, so the check fails — 100% of single-digit errors are caught. And because odd and even positions are weighted differently (3 vs 1), swapping two adjacent digits — the other common human error — also changes the sum and is caught.'),
+    scene('why', 'Why the ×3 catches errors', 'That weighting is what makes it work. Change any single digit and the weighted sum shifts by an amount that is never a multiple of 10, so the check fails — 100% of single-digit errors are caught. And because odd and even positions are weighted differently (3 vs 1), swapping two adjacent digits — the other common human error — usually changes the sum and is caught (the one blind spot: two digits that differ by 5).'),
     scene('scanner', 'The scanner just re-checks', 'On every scan the reader recomputes the check digit from the first eleven and compares it to the twelfth. A mismatch means it rejects the read and beeps, instead of ringing up the wrong product. The exact same one-extra-digit idea is an ISBN’s check digit, a credit card’s Luhn digit, and the checksum inside every network packet.'),
     { key: 'run', title: 'Break it and watch it catch', caption: 'Click any digit to change it (each click adds 1). Change one of the first eleven and the printed check digit no longer matches the recomputed one — the code goes red, exactly as a real scanner would reject it. Match the check digit back up and it turns green. This is error detection you can see.', render: () => <Bar phase="run" d={d} onBump={bump} /> },
   ];
