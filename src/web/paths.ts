@@ -337,6 +337,7 @@ export const PATHS: LearningPath[] = [
       { id: 'pedersen', note: 'A commitment locks in a value you can’t change but haven’t revealed — Pedersen commitments are perfectly hiding, computationally binding.' },
       { id: 'merkle', note: 'A Merkle tree commits to a whole set with one hash and proves any member belongs with a short path.' },
       { id: 'ot', note: 'Oblivious transfer: the sender offers two messages, the receiver takes one, and neither learns the other’s choice — the seed of secure computation.' },
+      { id: 'garbled', note: 'Yao garbled circuits build on OT: two parties compute f(a,b) revealing neither input, by evaluating an encrypted, shuffled gate.' },
       { id: 'vrf', note: 'A verifiable random function emits randomness plus a proof it was computed correctly — unpredictable yet checkable.' },
       { id: 'pqc', note: 'Post-quantum encryption hides a bit in noise (Learning With Errors), staying secure even against a quantum computer.' },
       { id: 'lll', note: 'And the attack that sets the bar: LLL reduces a lattice basis to find short vectors — why lattice crypto needs hundreds of dimensions.' },

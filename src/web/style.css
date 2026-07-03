@@ -12801,3 +12801,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sp-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
 .sp-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .sp-btn.on{border-color:hsl(150 50% 50%);background:hsl(150 45% 40% / .25)}
+
+/* ── Yao garbled circuits story (YaoSection) — wire keys, garbled table, one row decrypts ────────── */
+.yao-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.yao-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.yao-wn{fill:hsl(280 40% 72%);font-size:12px;font-family:var(--mono,monospace)}
+.yao-key{fill:hsl(220 22% 24%);stroke:hsl(220 18% 38%);stroke-width:1}
+.yao-key.held{fill:hsl(200 55% 40% / .8);stroke:hsl(200 60% 60%);stroke-width:2}
+.yao-key.outkey{fill:hsl(150 50% 38% / .8);stroke:hsl(150 60% 58%);stroke-width:2}
+.yao-kt{fill:hsl(210 30% 84%);font-size:11px;font-family:var(--mono,monospace)}
+.yao-tt{fill:hsl(210 22% 72%);font-size:12.5px;font-family:var(--mono,monospace)}
+.yao-tt.sel{fill:hsl(45 90% 66%);font-weight:700}
+.yao-row{fill:hsl(265 25% 22%);stroke:hsl(265 25% 38%);stroke-width:1}
+.yao-row.dec{fill:hsl(150 45% 30% / .85);stroke:hsl(150 60% 55%);stroke-width:2}
+.yao-ct{fill:hsl(210 28% 80%);font-size:12px;font-family:var(--mono,monospace)}
+.yao-arrow{fill:hsl(150 65% 66%);font-size:12px;font-weight:700;font-family:var(--mono,monospace)}
+.yao-out{fill:hsl(150 60% 68%);font-size:12.5px;font-family:var(--mono,monospace)}
+.yao-foot{fill:hsl(210 16% 60%);font-size:13px}
+.yao-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.yao-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.yao-btn.on{border-color:hsl(280 50% 60%);background:hsl(280 45% 45% / .25)}
+.yao-sep{color:hsl(220 12% 45%)}
