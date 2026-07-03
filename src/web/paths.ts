@@ -54,6 +54,7 @@ export const PATHS: LearningPath[] = [
       { id: 'aead', note: 'AEAD (GCM / ChaCha-Poly) gives confidentiality AND integrity in a single pass.' },
       { id: 'dhkex', note: 'Diffie–Hellman lets two strangers agree on a key over a fully public wire.' },
       { id: 'rsa', note: 'Public-key crypto: encrypt with the public key, decrypt with the private one.' },
+      { id: 'millerrabin', note: 'But first you need the primes: Miller–Rabin decides primality in a few exponentiations, so you can pick 2048-bit primes for the key.' },
       { id: 'crt', note: 'The Chinese Remainder Theorem behind fast RSA: work mod p and mod q separately, then recombine — ~4× quicker.' },
       { id: 'ecdsa', note: 'Sign with elliptic curves — and watch how one reused nonce leaks the private key.' },
       { id: 'montladder', note: 'Do the secret exponentiation without leaking it: the Montgomery ladder runs the same operations every bit, constant-time.' },
