@@ -12730,3 +12730,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ee-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
 .ee-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .ee-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── Hindley-Milner story (HindleySection) — subexpr:type rows, principal type, occurs check ─────── */
+.hm-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.hm-term{fill:hsl(210 35% 88%);font-size:22px;font-family:var(--mono,monospace)}
+.hm-fail{fill:hsl(0 70% 70%);font-size:13.5px;font-family:var(--mono,monospace)}
+.hm-note{fill:hsl(210 18% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.hm-expr{fill:hsl(210 35% 86%);font-size:14px;font-family:var(--mono,monospace)}
+.hm-colon{fill:hsl(210 16% 50%);font-size:14px;font-family:var(--mono,monospace)}
+.hm-ty{fill:hsl(270 60% 74%);font-size:14px;font-family:var(--mono,monospace)}
+.hm-rule{stroke:hsl(220 16% 38%);stroke-width:1}
+.hm-plbl{fill:hsl(210 18% 60%);font-size:12px;font-family:var(--mono,monospace)}
+.hm-principal{fill:hsl(150 65% 64%);font-size:18px;font-weight:700;font-family:var(--mono,monospace)}
+.hm-foot{fill:hsl(210 16% 60%);font-size:13px}
+.hm-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.hm-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.hm-btn.on{border-color:hsl(270 55% 60%);background:hsl(270 50% 45% / .25)}
