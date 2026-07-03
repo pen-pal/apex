@@ -496,6 +496,20 @@ export const PATHS: LearningPath[] = [
       { id: 'threshsig', note: 'Split the private key so no one holds it: any k of n parties jointly produce a valid signature but fewer cannot — threshold signing for custody and validators.' },
     ],
   },
+  {
+    id: 'dnssystem',
+    title: 'The name system and its attacks',
+    icon: '🏷️',
+    blurb: 'Turning a name into an IP is a cached, trusting, plaintext lookup — which makes it a target. Follow the resolution, the classic cache-poisoning attack, the two things that harden it (signing and encryption), and two ways attackers still abuse names.',
+    steps: [
+      { id: 'dns', note: 'The lookup: a name becomes an IP by walking root → TLD → authoritative, and the answer is cached at every resolver along the way — which is exactly what makes it worth attacking.' },
+      { id: 'kaminsky', note: 'Poison that cache: guess the query’s 16-bit ID and race a forged answer to the resolver before the real one arrives — the 2008 Kaminsky attack that forced source-port randomization.' },
+      { id: 'dnssec', note: 'Sign the answers: a chain of signatures from the root down lets a resolver cryptographically reject forged records — authentication for DNS (but not encryption).' },
+      { id: 'encdns', note: 'Hide the query: DoH/DoT wrap DNS in TLS so the network can’t see which names you look up or tamper with the reply — encryption, where DNSSEC only signs.' },
+      { id: 'dnsrebind', note: 'Turn the browser into a proxy: after a page loads, rebind its hostname to 127.0.0.1 so the same-origin policy now lets the page talk to services on the victim’s own network.' },
+      { id: 'subdomain', note: 'The dangling pointer: a DNS record still aimed at a deprovisioned cloud resource lets whoever re-registers that resource serve content as your subdomain.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
