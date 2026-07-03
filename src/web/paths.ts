@@ -348,14 +348,15 @@ export const PATHS: LearningPath[] = [
   },
   {
     id: 'arithmetic',
-    title: 'From transistors to multiplication',
+    title: 'From transistors to matrix multiply',
     icon: '🔢',
-    blurb: 'Build arithmetic from the bottom up: a transistor is a switch, switches make an adder, an adder plus logic makes an ALU, and a tree of adders multiplies fast.',
+    blurb: 'Build arithmetic from the bottom up: a transistor is a switch, switches make an adder, an adder plus logic makes an ALU, a tree of adders multiplies fast, and a grid of multiply-accumulate cells becomes the matrix engine inside a TPU.',
     steps: [
       { id: 'transistor', note: 'The switch: a voltage on the gate opens or closes a channel — the physical 1s and 0s under everything else.' },
       { id: 'adder', note: 'Wire gates into a binary adder; the carry ripples (or looks ahead) to sum two numbers bit by bit.' },
       { id: 'alu', note: 'The compute core: an adder plus logic gates and a mux the opcode uses to pick add/sub/and/or/shift, raising the flags.' },
       { id: 'wallace', note: 'Multiplication done fast: a Wallace tree reduces the partial-product dot diagram with carry-save adders in O(log n) depth.' },
+      { id: 'systolic', note: 'Now tile multiply-accumulate cells into a grid: data flows through and a whole matrix multiply falls out — the heart of a TPU.' },
     ],
   },
 ];
