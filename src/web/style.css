@@ -12272,3 +12272,14 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rf-leg{font-size:11px;font-family:var(--mono,monospace)}
 .rf-foot{fill:hsl(210 16% 60%);font-size:13px}
 .rf-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── Gradient boosting story (GradientBoostingSection) — fit residuals, staircase to target ───────── */
+.gb-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.gb-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.gb-zero{stroke:hsl(220 16% 40%);stroke-width:1;stroke-dasharray:3 3}
+.gb-resid{stroke:hsl(0 60% 58% / .55);stroke-width:1.2}
+.gb-target{fill:hsl(210 60% 66%)}
+.gb-model{stroke:hsl(45 90% 60%);stroke-width:2.5}
+.gb-leg{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.gb-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gb-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
