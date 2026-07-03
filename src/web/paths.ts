@@ -482,6 +482,20 @@ export const PATHS: LearningPath[] = [
       { id: 'anycast', note: 'One IP announced from many locations at once; ordinary routing delivers each user to the nearest instance — how DNS roots and CDNs are everywhere at the same address.' },
     ],
   },
+  {
+    id: 'curvesigs',
+    title: 'Signing on elliptic curves',
+    icon: '🔏',
+    blurb: 'Elliptic curves give a group where signatures are short and forgery is hard. Follow how curve signatures evolved — from the standard with its dangerous nonce, to deterministic, linear, aggregatable, and finally split-across-parties.',
+    steps: [
+      { id: 'ecc', note: 'The setting: adding points on an elliptic curve forms a group where a scalar times a point is easy but recovering the scalar (discrete log) is hard — far smaller keys than RSA for the same strength.' },
+      { id: 'ecdsa', note: 'The standard curve signature (Bitcoin, TLS) — but it needs a fresh random nonce per signature, and a repeated or biased one leaks the private key outright.' },
+      { id: 'eddsa', note: 'The modern fix: Ed25519 derives the nonce deterministically from the key and message, so a broken RNG can’t leak the key — fast and misuse-resistant.' },
+      { id: 'schnorr', note: 'The clean scheme underneath: Schnorr signatures are linear, so several signers’ keys and signatures add into one — the basis of multisignatures (MuSig, Bitcoin Taproot).' },
+      { id: 'bls', note: 'Go further with a pairing: BLS aggregates any number of signatures — even on different messages — into a single short one, verified in one shot (Ethereum consensus).' },
+      { id: 'threshsig', note: 'Split the private key so no one holds it: any k of n parties jointly produce a valid signature but fewer cannot — threshold signing for custody and validators.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
