@@ -12570,3 +12570,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cy-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
 .cy-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .cy-step{font-family:var(--mono,monospace);color:hsl(210 18% 64%)}
+
+/* ── Perspective projection story (PerspectiveSection) — receding floor, affine vs perspective-correct ─ */
+.pp-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.pp-horizon{stroke:hsl(210 30% 40%);stroke-width:1;stroke-dasharray:4 4}
+.pp-vp{fill:hsl(45 90% 62%)}
+.pp-lbl{fill:hsl(210 22% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.pp-tile.a{fill:hsl(210 45% 60%)}
+.pp-tile.b{fill:hsl(220 25% 22%)}
+.pp-guide{stroke:hsl(45 70% 55% / .35);stroke-width:1}
+.pp-note{fill:hsl(210 20% 70%);font-size:11.5px;font-family:var(--mono,monospace)}
+.pp-note2{fill:hsl(210 18% 60%);font-size:10.5px;font-family:var(--mono,monospace)}
+.pp-verdict{font-size:12px;font-family:var(--mono,monospace)}
+.pp-verdict.ok{fill:hsl(150 60% 62%)}
+.pp-verdict.bad{fill:hsl(0 75% 66%)}
+.pp-foot{fill:hsl(210 16% 60%);font-size:13px}
+.pp-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.pp-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.pp-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
