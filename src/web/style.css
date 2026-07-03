@@ -12867,3 +12867,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cnf-ctl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center}
 .cnf-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .cnf-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+
+/* ── Differential privacy story (DiffPrivSection) — two Laplace curves, ε knob ───────────────────── */
+.dpv-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.dpv-axis{stroke:hsl(220 16% 42%);stroke-width:1}
+.dpv-tick{fill:hsl(210 18% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.dpv-xl{fill:hsl(210 18% 56%);font-size:11px}
+.dpv-cd{fill:hsl(200 70% 55% / .18);stroke:hsl(200 75% 62%);stroke-width:2}
+.dpv-cn{fill:hsl(30 80% 55% / .16);stroke:hsl(30 85% 60%);stroke-width:2}
+.dpv-mu{stroke-dasharray:3 3;stroke-width:1.5}
+.dpv-mu.dpv-d{stroke:hsl(200 75% 62%)}
+.dpv-mu.dpv-n{stroke:hsl(30 85% 60%)}
+.dpv-ld{fill:hsl(200 70% 74%);font-size:11px;font-family:var(--mono,monospace)}
+.dpv-ln{fill:hsl(30 80% 70%);font-size:11px;font-family:var(--mono,monospace)}
+.dpv-foot{fill:hsl(210 16% 60%);font-size:13px}
+.dpv-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.dpv-lab{font-family:var(--mono,monospace);color:hsl(210 22% 74%);font-size:12.5px}
+.dpv-range{width:280px;accent-color:hsl(200 70% 55%)}
+.dpv-note{font-family:var(--mono,monospace);color:hsl(45 70% 66%);font-size:12px}
