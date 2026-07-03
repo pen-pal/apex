@@ -13141,3 +13141,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mr-lab{font-family:var(--mono,monospace);color:hsl(210 22% 68%);font-size:12px}
 .mr-v{font-family:var(--mono,monospace);color:hsl(265 55% 80%);min-width:24px;text-align:center;font-size:15px}
 .mr-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:12px}
+
+/* ── Pollard's rho story (PollardRhoSection) — factoring by cycle collision ──────────────────────── */
+.prho-col{fill:hsl(210 16% 60%);font-size:11.5px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.02em}
+.prho-tail{fill:none;stroke:hsl(265 45% 60%);stroke-width:2}
+.prho-loop{fill:none;stroke:hsl(265 45% 60%);stroke-width:2}
+.prho-lbl{fill:hsl(210 22% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.prho-lbl2{fill:hsl(210 18% 56%);font-size:10px;font-family:var(--mono,monospace)}
+.prho-tort{fill:hsl(150 55% 50%)}
+.prho-hare{fill:hsl(30 85% 58%)}
+.prho-dot{fill:hsl(210 28% 88%);font-size:10px;font-family:var(--mono,monospace);font-weight:700}
+.prho-calc{fill:hsl(200 50% 80%);font-size:13px;font-family:var(--mono,monospace)}
+.prho-hit{fill:hsl(45 90% 62%);font-weight:700}
+.prho-one{fill:hsl(210 20% 60%)}
+.prho-cell{fill:hsl(220 22% 20%);stroke:hsl(220 18% 32%);stroke-width:1}
+.prho-cell.hit{fill:hsl(45 70% 46% / .8);stroke:hsl(45 90% 62%)}
+.prho-cell.cur{stroke:hsl(200 70% 62%);stroke-width:2}
+.prho-cellt{fill:hsl(210 26% 84%);font-size:11px;font-family:var(--mono,monospace)}
+.prho-found{fill:hsl(45 85% 66%);font-size:13.5px;font-weight:700;font-family:var(--mono,monospace)}
+.prho-foot{fill:hsl(210 16% 60%);font-size:13px}
+.prho-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.prho-btn{font-size:12px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.prho-btn.on{border-color:hsl(265 55% 60%);background:hsl(265 45% 46% / .25)}
+.prho-btn.go{border-color:hsl(45 60% 52%)}
+.prho-sep{color:hsl(220 12% 45%)}
+.prho-read{font-family:var(--mono,monospace);color:hsl(45 75% 66%);font-size:12px}
