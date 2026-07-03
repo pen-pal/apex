@@ -12500,3 +12500,14 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .qt-ctl label{display:inline-flex;align-items:center;gap:6px}
 .qt-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .qt-btn.on{border-color:hsl(150 55% 50%);background:hsl(150 50% 42% / .25)}
+
+/* ── Seam carving story (SeamCarveSection) — energy map, min-seam DP, content-aware resize ────────── */
+.seam-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.seam-frame{fill:none;stroke:hsl(220 18% 42%);stroke-width:1}
+.seam-ghost{fill:hsl(220 20% 30% / .28);stroke:hsl(220 18% 40% / .5);stroke-width:1;stroke-dasharray:4 3}
+.seam-lbl{fill:hsl(210 18% 64%);font-size:11.5px;font-family:var(--mono,monospace)}
+.seam-foot{fill:hsl(210 16% 60%);font-size:13px}
+.seam-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.seam-ctl label{display:inline-flex;align-items:center;gap:6px}
+.seam-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.seam-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
