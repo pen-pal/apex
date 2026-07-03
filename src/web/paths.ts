@@ -510,6 +510,19 @@ export const PATHS: LearningPath[] = [
       { id: 'subdomain', note: 'The dangling pointer: a DNS record still aimed at a deprovisioned cloud resource lets whoever re-registers that resource serve content as your subdomain.' },
     ],
   },
+  {
+    id: 'lockfree',
+    title: 'Coordinating threads without locks',
+    icon: '🔀',
+    blurb: 'A mutex is easy to get wrong and slow when contended. Walk from a correct lock built from plain reads and writes, to a fast one, to lock-free reads, to readers that never block — and the subtle bug lurking underneath it all.',
+    steps: [
+      { id: 'bakery', note: 'A correct mutex from nothing but reads and writes: take a numbered ticket like a bakery queue and wait until you hold the lowest — Lamport’s proof that mutual exclusion needs no special hardware.' },
+      { id: 'futex', note: 'The fast path: when a lock is uncontended, spin on an atomic in userspace and never enter the kernel; only call futex to sleep when you actually have to block. The mutex behind pthreads.' },
+      { id: 'seqlock', note: 'Lock-free reads: a writer bumps a sequence counter around its update and a reader retries if it changed mid-read — perfect for rarely-written, often-read data like the kernel clock.' },
+      { id: 'rcu', note: 'Readers that never block: read-copy-update publishes a new version and defers freeing the old copy until every pre-existing reader has finished — how Linux scales read-mostly structures across many cores.' },
+      { id: 'aba', note: 'The lock-free trap: a compare-and-swap sees the same pointer value and assumes nothing changed — but it was freed and reallocated in between (ABA), corrupting the structure. Fixed with version tags or hazard pointers.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
