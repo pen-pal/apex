@@ -12622,3 +12622,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ra-read{font-family:var(--mono,monospace)}
 .ra-read.ok{color:hsl(150 60% 60%)}
 .ra-read.bad{color:hsl(0 75% 66%)}
+
+/* ── Systolic array story (SystolicSection) — PE grid, skewed dataflow, diagonal wavefront ───────── */
+.sa-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.sa-lbl{fill:hsl(210 22% 68%);font-size:12px;font-family:var(--mono,monospace);font-weight:600}
+.sa-mv{fill:hsl(210 20% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.sa-pe{fill:hsl(220 22% 22%);stroke:hsl(220 20% 40%);stroke-width:1}
+.sa-pe.active{fill:hsl(45 55% 30% / .6);stroke:hsl(45 90% 60%);stroke-width:2}
+.sa-pe.done{fill:hsl(150 40% 26% / .6);stroke:hsl(150 55% 52%)}
+.sa-acc{fill:hsl(210 35% 90%);font-size:19px;font-weight:700;font-family:var(--mono,monospace)}
+.sa-mac{fill:hsl(45 90% 68%);font-size:12px;font-family:var(--mono,monospace)}
+.sa-pl{fill:hsl(210 16% 50%);font-size:10.5px;font-family:var(--mono,monospace)}
+.sa-arr{fill:hsl(210 30% 55%);font-size:14px}
+.sa-foot{fill:hsl(210 16% 60%);font-size:13px}
+.sa-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.sa-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.sa-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
