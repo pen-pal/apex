@@ -226,6 +226,7 @@ export const PATHS: LearningPath[] = [
       { id: 'dfa', note: 'Lexing: a finite-state machine scans characters into tokens — numbers, names, operators — in one linear pass.' },
       { id: 'shuntingyard', note: 'Parsing: shunting-yard turns infix tokens into unambiguous postfix, resolving precedence with a stack.' },
       { id: 'compiler', note: 'Codegen: walk the parsed expression and emit the actual machine instructions a CPU runs.' },
+      { id: 'regalloc', note: 'A backend pass fits the code’s unlimited temporaries into the CPU’s few registers by coloring an interference graph.' },
       { id: 'bytecode', note: 'Or target a portable bytecode and run it on a stack VM — how the JVM and CPython execute.' },
       { id: 'jit', note: 'Hot bytecode is compiled to native code at runtime — profile, specialize, and patch the call site.' },
       { id: 'gc', note: 'The runtime reclaims unreachable memory automatically, so the program never has to free by hand.' },
