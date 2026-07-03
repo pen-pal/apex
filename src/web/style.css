@@ -12656,3 +12656,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .eh-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
 .eh-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .eh-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── Grace hash join story (GraceJoinSection) — partition by hash, join partition-pairs ──────────── */
+.gj-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.gj-lbl{fill:hsl(210 20% 66%);font-size:12px;font-family:var(--mono,monospace);font-weight:600}
+.gj-chip{fill:hsl(210 30% 90%);font-size:11px;font-family:var(--mono,monospace)}
+.gj-note{fill:hsl(210 16% 56%);font-size:12px;font-family:var(--mono,monospace)}
+.gj-part{fill:hsl(220 20% 20% / .5);stroke:hsl(220 18% 36%);stroke-width:1}
+.gj-part.active{stroke:hsl(45 90% 60%);stroke-width:2}
+.gj-plbl{font-size:14px;font-weight:700;font-family:var(--mono,monospace)}
+.gj-mini{fill:hsl(210 18% 55%);font-size:11px;font-family:var(--mono,monospace)}
+.gj-div{stroke:hsl(220 16% 40%);stroke-width:1;stroke-dasharray:3 3}
+.gj-out{fill:hsl(150 60% 68%);font-size:12.5px;font-family:var(--mono,monospace)}
+.gj-foot{fill:hsl(210 16% 60%);font-size:13px}
+.gj-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.gj-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.gj-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
