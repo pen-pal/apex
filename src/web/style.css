@@ -13223,3 +13223,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .biq-sep{color:hsl(220 12% 45%)}
 .biq-lab{font-family:var(--mono,monospace);color:hsl(210 22% 68%);font-size:12px}
 .biq-read{font-family:var(--mono,monospace);color:hsl(160 50% 68%);font-size:11.5px}
+
+/* ── Extended Euclid story (XgcdSection) — modular inverse via division chain ────────────────────── */
+.xgcd-col{fill:hsl(210 16% 60%);font-size:11.5px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.02em}
+.xgcd-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.xgcd-eq{fill:hsl(200 55% 82%);font-size:14px;font-family:var(--mono,monospace)}
+.xgcd-gcd{fill:hsl(150 65% 60%);font-weight:700}
+.xgcd-res{fill:hsl(210 24% 74%);font-size:12.5px;font-family:var(--mono,monospace)}
+.xgcd-coef{fill:hsl(45 70% 74%);font-size:12.5px;font-family:var(--mono,monospace)}
+.xgcd-inv{fill:hsl(150 60% 64%);font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.xgcd-bad{fill:hsl(0 65% 66%);font-size:13px;font-family:var(--mono,monospace)}
+.xgcd-foot{fill:hsl(210 16% 60%);font-size:13px}
+.xgcd-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.xgcd-btn{font-size:12px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.xgcd-btn.on{border-color:hsl(45 60% 55%);background:hsl(45 50% 44% / .22)}
+.xgcd-sep{color:hsl(220 12% 45%)}
+.xgcd-v{font-family:var(--mono,monospace);color:hsl(200 60% 80%);min-width:36px;text-align:center}
+.xgcd-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:11.5px}
