@@ -12842,3 +12842,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .su-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .su-btn.on{border-color:hsl(0 55% 55%);background:hsl(0 50% 42% / .25)}
 .su-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── DPLL SAT-solver story (DpllSection) — CNF clauses, assignment, search trail ─────────────────── */
+.cnf-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.cnf-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.cnf-cl{fill:hsl(220 22% 24%);stroke:hsl(220 18% 38%);stroke-width:1}
+.cnf-cl.sat{fill:hsl(150 45% 32% / .8);stroke:hsl(150 55% 52%)}
+.cnf-cl.unit{fill:hsl(45 55% 40% / .7);stroke:hsl(45 70% 56%)}
+.cnf-cl.conflict{fill:hsl(0 55% 40% / .8);stroke:hsl(0 65% 58%)}
+.cnf-clt{fill:hsl(210 32% 86%);font-size:12.5px;font-family:var(--mono,monospace)}
+.cnf-var{fill:hsl(220 22% 24%);stroke:hsl(220 18% 38%);stroke-width:1}
+.cnf-var.tt{fill:hsl(150 45% 34% / .8);stroke:hsl(150 55% 55%)}
+.cnf-var.ff{fill:hsl(220 30% 34% / .8);stroke:hsl(220 30% 52%)}
+.cnf-vt{fill:hsl(210 32% 88%);font-size:12px;font-family:var(--mono,monospace)}
+.cnf-ev{font-size:11.5px;font-family:var(--mono,monospace);fill:hsl(210 22% 74%)}
+.cnf-ev.decide{fill:hsl(200 60% 70%)}
+.cnf-ev.propagate{fill:hsl(150 50% 66%)}
+.cnf-ev.conflict{fill:hsl(0 65% 68%)}
+.cnf-ev.backtrack{fill:hsl(35 70% 66%)}
+.cnf-result{font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.cnf-result.sat{fill:hsl(150 60% 62%)}
+.cnf-result.unsat{fill:hsl(0 65% 66%)}
+.cnf-foot{fill:hsl(210 16% 60%);font-size:13px}
+.cnf-ctl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center}
+.cnf-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.cnf-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}

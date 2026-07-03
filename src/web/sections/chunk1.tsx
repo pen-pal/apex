@@ -30,6 +30,7 @@ import { EditDistanceSection } from '../EditDistanceSection';
 import { DiffSection } from '../DiffSection';
 import { BkTreeSection } from '../BkTreeSection';
 import { TopoSortSection } from '../TopoSortSection';
+import { DpllSection } from '../DpllSection';
 import { AstarSection } from '../AstarSection';
 import { HeapSection } from '../HeapSection';
 import { PairingHeapSection } from '../PairingHeapSection';
@@ -86,6 +87,7 @@ export const chunk1: Record<string, SectionEntry> = {
   "editdist": { Component: EditDistanceSection, title: <>Edit distance</>, sub: <>The fewest inserts, deletes, and substitutions to turn one string into another. Watch the DP grid fill and the backtrace path reveal the actual alignment — the engine behind diff and spellcheck.</> },
   "toposort": { Component: TopoSortSection, title: <>Topological sort</>, sub: <>Order a dependency graph so every arrow points forward. Step Kahn's algorithm as it picks ready nodes and frees the next ones — and add a cyclic dependency to watch it become unorderable.</> },
   "astar": { Component: AstarSection, title: <>A* pathfinding</>, sub: <>Shortest path on a grid, but pointed at the goal. Paint walls and compare A*'s heuristic-focused search against goal-blind BFS — both find the same shortest path, but A* touches far fewer cells.</> },
+  "dpll": { Component: DpllSection, title: <>How a SAT solver works (DPLL)</>, sub: <>Boolean satisfiability: given a formula in CNF (an AND of OR-clauses), is there a true/false assignment making it true? DPLL — the backtracking core of every modern SAT solver — interleaves unit propagation (a clause with one unassigned literal forces it), decisions (guess a variable, recurse), and backtracking (a clause gone all-false is a conflict; flip the last guess). Verified in node against a 2ⁿ brute-force oracle: DPLL’s SAT/UNSAT verdict matches on 6000 random formulas and every SAT assignment satisfies the CNF. Step it on a satisfiable and an unsatisfiable formula. (This is boolean SAT, not the Separating Axis Theorem.)</> },
   "heap": { Component: HeapSection, title: <>Binary heap</>, sub: <>The priority queue behind Dijkstra, A*, Huffman, and heapsort. Push values and watch them sift up, pop the minimum and watch the replacement sink down — shown as both a tree and the flat array it really is.</> },
   "pairingheap": { Component: PairingHeapSection, title: <>Pairing heap — the practical mergeable heap</>, sub: <>A heap that is trivial to implement yet fast enough for Dijkstra and Prim (it's in Boost). Unlike an array-based binary heap it merges two heaps in O(1) and supports cheap decrease-key. It's one multi-way tree built almost entirely from "meld"; the only real work is delete-min, which two-pass merges the root's orphaned children. Insert keys and delete the min to watch the tree meld and recombine.</> },
   "sorting": { Component: SortingSection, title: <>Sorting algorithms</>, sub: <>The same array, five ways. Step or play through bubble, insertion, selection, merge, and quicksort on a bar chart, and compare their comparison/swap counts to feel the O(n²) vs O(n log n) gap.</> },
