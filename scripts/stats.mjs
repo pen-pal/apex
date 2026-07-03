@@ -42,6 +42,14 @@ if (process.argv.includes('--write')) {
     .replace(/\*\*\d+ hands-on[^*]*visualizations\*\*/g, `**${sections} hands-on visualizations**`); // title tagline
   if (after !== before) { writeFileSync(readmePath, after); console.log(`\nREADME.md regenerated → ${sections} sections, ${groups} areas.`); }
   else console.log('\nREADME.md already current.');
+  // index.html meta + package.json description carry the same count — keep them in lockstep so no two
+  // files ever disagree (rule 1: the same number must never appear with two different values).
+  for (const rel of ['index.html', 'package.json']) {
+    const p = join(root, rel);
+    const b = readFileSync(p, 'utf8');
+    const a = b.replace(/\b\d+( (?:live|tested)[^"]{0,50}?visualizations)/g, `${sections}$1`);
+    if (a !== b) { writeFileSync(p, a); console.log(`${rel} regenerated → ${sections}.`); }
+  }
 }
 
 export default stats;

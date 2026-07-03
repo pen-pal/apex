@@ -12962,3 +12962,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .crm-btn{width:24px;height:24px;border-radius:5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .crm-rv{font-family:var(--mono,monospace);min-width:14px;text-align:center;color:hsl(210 30% 85%)}
 .crm-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-weight:700}
+
+/* ── Montgomery ladder story (MontLadderSection) — constant-time exponentiation, side-channel trace ── */
+.mgl-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.mgl-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.mgl-warn{fill:hsl(40 85% 60%)}
+.mgl-bit{fill:hsl(210 20% 55%);font-size:13px;font-family:var(--mono,monospace)}
+.mgl-bit.one{fill:hsl(40 85% 64%);font-weight:700}
+.mgl-op{stroke-width:0.5}
+.mgl-op.sqr{fill:hsl(205 60% 50%);stroke:hsl(205 60% 62%)}
+.mgl-op.mul{fill:hsl(40 85% 55%);stroke:hsl(40 85% 66%)}
+.mgl-leak{fill:hsl(40 85% 64%);font-size:9.5px;font-family:var(--mono,monospace)}
+.mgl-flat{fill:hsl(150 55% 62%);font-size:11.5px;font-family:var(--mono,monospace)}
+.mgl-lg{fill:hsl(210 22% 70%);font-size:11px;font-family:var(--mono,monospace)}
+.mgl-res{fill:hsl(210 26% 78%);font-size:11.5px;font-family:var(--mono,monospace)}
+.mgl-foot{fill:hsl(210 16% 60%);font-size:13px}
+.mgl-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.mgl-btn{font-size:12px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.mgl-btn.on{border-color:hsl(205 55% 55%);background:hsl(205 50% 42% / .25)}
+.mgl-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%);font-size:12px}
