@@ -272,6 +272,33 @@ export const PATHS: LearningPath[] = [
       { id: 'debruijn', note: 'Assemble a whole sequence from short overlapping k-mers by walking an Eulerian path.' },
     ],
   },
+  {
+    id: 'dp',
+    title: 'Dynamic programming everywhere',
+    icon: '🧩',
+    blurb: 'One idea — build the answer from overlapping subproblems and never recompute one twice — solves a startling range of problems. Watch the same table-filling logic reappear across sequences, images, and probabilities.',
+    steps: [
+      { id: 'lis', note: 'The core move: the best answer ending here is built from the best answers before it (longest increasing subsequence).' },
+      { id: 'knapsack', note: 'DP over choices: a table of best value per weight budget, each cell reusing smaller ones.' },
+      { id: 'editdist', note: 'DP over two sequences: the cheapest edits to turn one string into another, one cell per prefix pair.' },
+      { id: 'diff', note: 'The same longest-common-subsequence DP is exactly how git diff lines up two files.' },
+      { id: 'seamcarve', note: 'DP over a pixel grid: the least-energy connected seam, for content-aware image resizing.' },
+      { id: 'viterbi', note: 'DP over a probability trellis: the single most likely hidden sequence — speech, decoding, tagging.' },
+    ],
+  },
+  {
+    id: 'iterative',
+    title: 'How computers converge on an answer',
+    icon: '🔁',
+    blurb: 'Most real math has no closed form, so computers iterate: start with a guess and improve it until it stops changing. Five very different problems, all solved by convergence.',
+    steps: [
+      { id: 'newton', note: 'Root-finding by tangent steps — the correct digits roughly double each iteration (quadratic convergence).' },
+      { id: 'conjgrad', note: 'Solve a linear system Ax=b by conjugate directions — exact in n steps, far fewer when preconditioned.' },
+      { id: 'pagerank', note: 'Find a matrix’s dominant eigenvector by multiplying repeatedly — the random surfer’s stationary distribution.' },
+      { id: 'kmeans', note: 'Alternate assign-to-nearest and move-the-center until the clustering stops changing.' },
+      { id: 'montecarlo', note: 'When you can’t integrate, sample at random — the estimate’s error shrinks as 1/√N.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
