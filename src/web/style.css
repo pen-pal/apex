@@ -12389,3 +12389,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rh-live{font-size:12.5px;font-family:var(--mono,monospace)}
 .rh-live.bad{color:hsl(0 75% 66%)}
 .rh-live.ok{color:hsl(150 55% 60%)}
+
+/* ── Bézier / de Casteljau story (BezierSection) — control points, lerp pyramid, traced curve ─────── */
+.bez-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.bez-hull{fill:hsl(150 45% 55% / .1);stroke:hsl(150 45% 55% / .5);stroke-width:1;stroke-dasharray:4 3}
+.bez-poly{stroke:hsl(220 20% 48%);stroke-width:1.25;stroke-dasharray:5 4}
+.bez-lvl{stroke-width:1.25}
+.bez-curve{stroke:hsl(200 80% 62%);stroke-width:2.5}
+.bez-sub.a{stroke:hsl(30 85% 62%);stroke-width:1.5}
+.bez-sub.b{stroke:hsl(280 60% 66%);stroke-width:1.5}
+.bez-subpt{fill:hsl(45 85% 66%)}
+.bez-ctrl{fill:hsl(210 70% 62% / .25);stroke:hsl(210 75% 68%);stroke-width:2}
+.bez-ctrl.drag{cursor:grab}
+.bez-plbl{fill:hsl(210 30% 78%);font-size:11px;font-family:var(--mono,monospace)}
+.bez-foot{fill:hsl(210 16% 60%);font-size:13px}
+.bez-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.bez-hint{color:hsl(210 16% 58%)}
