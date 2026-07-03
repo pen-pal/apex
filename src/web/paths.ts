@@ -133,6 +133,7 @@ export const PATHS: LearningPath[] = [
       { id: 'pipeline', note: 'Instructions overlap in a 5-stage pipeline — and stall when one depends on another.' },
       { id: 'branchpredict', note: 'A branch’s direction is guessed before it’s known; a 2-bit counter keeps the pipeline full.' },
       { id: 'strideprefetch', note: 'The other predictor: spot a constant address stride and fetch the next line before the load asks for it.' },
+      { id: 'branchless', note: 'When a branch is unpredictable, don’t guess — eliminate it: compute both sides and select with a bitmask or cmov, no misprediction.' },
       { id: 'mesi', note: 'Each core caches memory privately; MESI keeps those copies coherent over a snooping bus.' },
       { id: 'tso', note: 'Store buffers let a core reorder its own writes — why two threads can both read stale values.' },
       { id: 'pagewalk', note: 'Every memory access translates a virtual address through a 4-level page table.' },
