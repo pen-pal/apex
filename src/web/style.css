@@ -12925,3 +12925,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pir-btn.on{border-color:hsl(150 55% 50%);background:hsl(150 45% 40% / .25)}
 .pir-btn.reroll{border-color:hsl(200 55% 55%)}
 .pir-note{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:12px}
+
+/* ── VDF story (VdfSection) — sequential squaring chain + fast Wesolowski proof ──────────────────── */
+.vdf-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.vdf-box{fill:hsl(220 22% 22%);stroke:hsl(220 18% 38%);stroke-width:1}
+.vdf-box.start{fill:hsl(200 45% 30% / .7);stroke:hsl(200 60% 58%)}
+.vdf-box.end{fill:hsl(150 45% 30% / .8);stroke:hsl(150 60% 55%);stroke-width:2}
+.vdf-box.cur{stroke:hsl(45 90% 60%);stroke-width:2}
+.vdf-val{fill:hsl(210 32% 88%);font-size:13px;font-family:var(--mono,monospace)}
+.vdf-exp{fill:hsl(210 18% 56%);font-size:10.5px;font-family:var(--mono,monospace)}
+.vdf-op{fill:hsl(45 80% 62%);font-size:15px;font-family:var(--mono,monospace)}
+.vdf-more{fill:hsl(210 18% 56%);font-size:11.5px;font-family:var(--mono,monospace)}
+.vdf-lbl{fill:hsl(210 24% 74%);font-size:12px;font-family:var(--mono,monospace)}
+.vdf-check{font-size:12.5px;font-family:var(--mono,monospace)}
+.vdf-check.ok{fill:hsl(150 60% 64%)}
+.vdf-check.bad{fill:hsl(0 65% 66%)}
+.vdf-foot{fill:hsl(210 16% 60%);font-size:13px}
+.vdf-ctl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.vdf-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.vdf-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
