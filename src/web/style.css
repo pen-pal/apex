@@ -12309,3 +12309,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dart-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .dart-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .dart-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── RANSAC story (RansacSection) — robust fit ignores outliers vs least-squares ─────────────────── */
+.rns-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.rns-frame{fill:none;stroke:hsl(220 18% 34%);stroke-width:1}
+.rns-band{fill:hsl(150 50% 55% / .12)}
+.rns-pt{stroke:hsl(220 20% 12% / .6);stroke-width:0.6}
+.rns-pt.in{fill:hsl(150 65% 58%)}
+.rns-pt.out{fill:hsl(220 12% 52%)}
+.rns-pt.pick{stroke:hsl(48 100% 60%);stroke-width:2.5}
+.rns-lsq{stroke:hsl(0 70% 60%);stroke-width:2.5}
+.rns-cand{stroke:hsl(48 95% 62%);stroke-width:1.5;stroke-dasharray:5 3}
+.rns-best{stroke:hsl(150 65% 58%);stroke-width:2.5}
+.rns-key{font-size:11px;font-family:var(--mono,monospace)}
+.rns-klsq{fill:hsl(0 70% 66%)}
+.rns-kbest{fill:hsl(150 60% 62%)}
+.rns-kcand{fill:hsl(48 90% 66%)}
+.rns-foot{fill:hsl(210 16% 60%);font-size:13px}
+.rns-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.rns-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.rns-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
