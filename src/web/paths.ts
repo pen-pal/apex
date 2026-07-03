@@ -57,6 +57,7 @@ export const PATHS: LearningPath[] = [
       { id: 'crt', note: 'The Chinese Remainder Theorem behind fast RSA: work mod p and mod q separately, then recombine — ~4× quicker.' },
       { id: 'ecdsa', note: 'Sign with elliptic curves — and watch how one reused nonce leaks the private key.' },
       { id: 'montladder', note: 'Do the secret exponentiation without leaking it: the Montgomery ladder runs the same operations every bit, constant-time.' },
+      { id: 'tonelli', note: 'Recover a point from a compressed key: a modular square root (Tonelli–Shanks) turns x and a sign bit back into y = √(x³+ax+b) mod p.' },
     ],
   },
   {
