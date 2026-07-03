@@ -12283,3 +12283,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gb-leg{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
 .gb-foot{fill:hsl(210 16% 60%);font-size:13px}
 .gb-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── SVM story (SvmSection) — max-margin boundary + support vectors ───────────────────────────────── */
+.svm-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.svm-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.svm-alt{stroke:hsl(210 20% 45% / .5);stroke-width:1.25;stroke-dasharray:3 3}
+.svm-band{fill:hsl(150 40% 55% / .1)}
+.svm-mline{stroke:hsl(150 45% 60% / .6);stroke-width:1.25;stroke-dasharray:5 4}
+.svm-bound{stroke:hsl(150 65% 60%);stroke-width:2.5}
+.svm-pt{stroke:hsl(220 20% 12% / .7);stroke-width:0.8}
+.svm-pt.sv{stroke:hsl(0 0% 98%);stroke-width:2}
+.svm-pt.mov{stroke:hsl(48 100% 60%);stroke-width:2.5}
+.svm-foot{fill:hsl(210 16% 60%);font-size:13px}
+.svm-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
