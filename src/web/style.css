@@ -12364,3 +12364,28 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .hw-scale{fill:hsl(210 14% 54%);font-size:11px;font-family:var(--mono,monospace)}
 .hw-foot{fill:hsl(210 16% 60%);font-size:13px}
 .hw-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── Rowhammer story (RowhammerSection) — DRAM disturbance model, adjacent-row bit flips ─────────── */
+.rh-col{fill:hsl(0 60% 66%);font-size:11px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.rh-rlabel{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.rh-rlabel.agg{fill:hsl(45 90% 66%);font-weight:600}
+.rh-distbg{fill:hsl(220 18% 24%)}
+.rh-dist{fill:hsl(45 85% 58%)}
+.rh-dist.over{fill:hsl(0 75% 58%)}
+.rh-cell{stroke:hsl(220 22% 12% / .6);stroke-width:0.4}
+.rh-cell.zero{fill:hsl(220 16% 30%)}
+.rh-cell.one{fill:hsl(205 45% 50%)}
+.rh-cell.aggrow{fill:hsl(45 55% 42%)}
+.rh-cell.flip{fill:hsl(0 78% 56%)}
+.rh-key{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.rh-kdist{fill:hsl(45 85% 58%)}
+.rh-kflip{fill:hsl(0 78% 56%)}
+.rh-foot{fill:hsl(210 16% 60%);font-size:13px}
+.rh-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.rh-seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.rh-seg button{font-size:12px;padding:6px 11px;border:0;background:var(--panel);color:var(--ink);cursor:pointer}
+.rh-seg button.on{background:hsl(0 55% 45% / .3);color:hsl(0 70% 80%)}
+.rh-lbl{color:var(--ink);font-size:12.5px;display:inline-flex;align-items:center;gap:5px}
+.rh-live{font-size:12.5px;font-family:var(--mono,monospace)}
+.rh-live.bad{color:hsl(0 75% 66%)}
+.rh-live.ok{color:hsl(150 55% 60%)}
