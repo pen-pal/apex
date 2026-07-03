@@ -192,6 +192,31 @@ export const PATHS: LearningPath[] = [
       { id: 'meltdown', note: 'Out-of-order execution reads across the user/kernel boundary — fixed only by unmapping the kernel.' },
     ],
   },
+  {
+    id: 'sketches',
+    title: 'Approximate answers in tiny memory',
+    icon: '📊',
+    blurb: 'Trade exactness for space: four probabilistic sketches that answer membership, frequency, cardinality, and similarity in a fraction of the memory, with tunable error.',
+    steps: [
+      { id: 'bloom', note: 'Membership in a few bits per element — no false negatives, tunable false positives, and it never stores the items themselves.' },
+      { id: 'countmin', note: 'The frequency of each item in a high-volume stream, in sublinear space — counts that can overestimate but never miss.' },
+      { id: 'hll', note: 'Count distinct items (cardinality) in kilobytes even for billions, from the longest run of leading zeros in their hashes.' },
+      { id: 'minhash', note: 'Estimate how similar two sets are (their Jaccard overlap) from a handful of min-hashes — the engine of near-duplicate detection.' },
+    ],
+  },
+  {
+    id: 'randomized',
+    title: 'Randomness as an algorithm',
+    icon: '🎲',
+    blurb: 'Randomness isn’t just noise — it’s a tool. Estimate, sample from a stream, draw by weight, shuffle fairly, and fit through outliers, each solved cleanly by the controlled use of chance.',
+    steps: [
+      { id: 'montecarlo', note: 'Estimate a quantity by random sampling — throw darts to get π, with error shrinking as 1/√N in any number of dimensions.' },
+      { id: 'reservoir', note: 'Sample k items uniformly from a stream of unknown length, in a single pass and O(k) memory.' },
+      { id: 'aliasmethod', note: 'Draw from a weighted distribution in O(1) — one die roll plus one coin flip, after a clever setup.' },
+      { id: 'shuffle', note: 'Shuffle an array so every permutation is equally likely (Fisher–Yates) — and the subtle bias of doing it the wrong way.' },
+      { id: 'ransac', note: 'Fit a model despite 50% outliers by random sampling plus consensus — where averaging with least-squares gets dragged off.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
