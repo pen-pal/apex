@@ -342,8 +342,21 @@ export const PATHS: LearningPath[] = [
       { id: 'ot', note: 'Oblivious transfer: the sender offers two messages, the receiver takes one, and neither learns the other’s choice — the seed of secure computation.' },
       { id: 'garbled', note: 'Yao garbled circuits build on OT: two parties compute f(a,b) revealing neither input, by evaluating an encrypted, shuffled gate.' },
       { id: 'vrf', note: 'A verifiable random function emits randomness plus a proof it was computed correctly — unpredictable yet checkable.' },
+      { id: 'sumcheck', note: 'The sumcheck protocol proves a huge sum over 2ⁿ inputs in n cheap rounds and one evaluation — the engine inside modern SNARKs.' },
       { id: 'pqc', note: 'Post-quantum encryption hides a bit in noise (Learning With Errors), staying secure even against a quantum computer.' },
       { id: 'lll', note: 'And the attack that sets the bar: LLL reduces a lattice basis to find short vectors — why lattice crypto needs hundreds of dimensions.' },
+    ],
+  },
+  {
+    id: 'privacy',
+    title: 'Privacy beyond encryption',
+    icon: '🕶️',
+    blurb: 'Encryption hides the contents of your data — but not the statistics you publish, the computation you run, the queries you make, or the blocks you touch. Four techniques that hide those too.',
+    steps: [
+      { id: 'diffpriv', note: 'Publish statistics about a group while provably hiding every individual — add calibrated Laplace noise (differential privacy).' },
+      { id: 'garbled', note: 'Compute a function of two parties’ secret inputs, revealing neither — Yao garbled circuits.' },
+      { id: 'pir', note: 'Fetch a record from a database without the server learning which record you asked for.' },
+      { id: 'oram', note: 'Hide even your access pattern to your own outsourced storage — every access looks like a random path.' },
     ],
   },
   {
