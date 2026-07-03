@@ -12405,3 +12405,27 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bez-foot{fill:hsl(210 16% 60%);font-size:13px}
 .bez-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
 .bez-hint{color:hsl(210 16% 58%)}
+
+/* ── Cyber kill chain story (KillChainSection) — stages, attacker reach, defense-in-depth ────────── */
+.kc-col{fill:hsl(0 55% 66%);font-size:11px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.kc-progress{stroke:hsl(0 70% 58%);stroke-width:3;stroke-linecap:round}
+.kc-attacker{font-size:15px}
+.kc-box{fill:hsl(220 20% 20%);stroke:hsl(220 18% 34%);stroke-width:1}
+.kc-box.breached{fill:hsl(0 45% 26%);stroke:hsl(0 55% 48%)}
+.kc-box.contained{fill:hsl(150 40% 24%);stroke:hsl(150 55% 50%);stroke-width:2}
+.kc-box.unreached{fill:hsl(220 18% 16%);opacity:.5}
+.kc-box.click:hover{stroke:hsl(210 60% 62%)}
+.kc-stage{fill:hsl(210 30% 88%);font-size:11.5px;font-weight:600;font-family:var(--mono,monospace)}
+.kc-tech{fill:hsl(0 55% 74%);font-size:10.5px;font-family:var(--mono,monospace)}
+.kc-sec{fill:hsl(210 16% 60%);font-size:9.5px;font-family:var(--mono,monospace)}
+.kc-def{fill:hsl(220 20% 26%);stroke:hsl(220 16% 38%);stroke-width:0.75}
+.kc-def.on{fill:hsl(150 45% 30%);stroke:hsl(150 55% 55%)}
+.kc-deflbl{fill:hsl(210 16% 62%);font-size:9.5px;font-family:var(--mono,monospace)}
+.kc-deflbl.on{fill:hsl(150 60% 78%)}
+.kc-arrow{fill:hsl(220 16% 50%);font-size:20px}
+.kc-foot{fill:hsl(210 16% 60%);font-size:13px}
+.kc-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+.kc-hint{color:hsl(210 16% 58%);font-size:12px}
+.kc-live{font-size:13px;font-family:var(--mono,monospace)}
+.kc-live.bad{color:hsl(0 75% 68%)}
+.kc-live.ok{color:hsl(150 60% 62%)}
