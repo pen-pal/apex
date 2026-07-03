@@ -9,6 +9,7 @@ import { RsaSection } from '../RsaSection';
 import { PubKeySection } from '../PubKeySection';
 import { EccSection } from '../EccSection';
 import { EcdsaSection } from '../EcdsaSection';
+import { SumcheckSection } from '../SumcheckSection';
 import { SchnorrSection } from '../SchnorrSection';
 import { ChachaSection } from '../ChachaSection';
 import { LatticeSection } from '../LatticeSection';
@@ -70,6 +71,7 @@ export const chunk0: Record<string, SectionEntry> = {
   "ecc": { Component: EccSection, title: <>Elliptic curves &amp; ECDH</>, sub: <>The whole finite group on one grid: walk kG to feel the discrete-log trapdoor, watch point addition add indices, and run ECDH to a shared secret.</> },
   "ecdsa": { Component: EcdsaSection, title: <>ECDSA &amp; nonce reuse</>, sub: <>Sign with the private scalar, verify with the public point — then watch a reused nonce hand an attacker the private key, the real PS3 / Bitcoin bug.</> },
   "schnorr": { Component: SchnorrSection, title: <>Zero-knowledge proof (Schnorr)</>, sub: <>Prove you know a secret without revealing it — the three-move commit/challenge/response, and why the challenge must come after the commitment.</> },
+  "sumcheck": { Component: SumcheckSection, title: <>Proving a huge sum cheaply (sumcheck)</>, sub: <>The workhorse of modern interactive proofs and SNARKs. A prover claims a polynomial sums to C over all 2ᵛ boolean inputs; instead of adding 2ᵛ terms, the verifier runs v rounds — each checking g_i(0)+g_i(1) equals the running claim, then folding in a random challenge — and evaluates the polynomial just once at the end. Verified in node over a prime field: the honest prover passes every round and the final check, a wrong claim is caught, and the initial claim equals the brute-force hypercube sum. Step the rounds, or flip to a cheating prover and watch it get caught.</> },
   "chacha": { Component: ChachaSection, title: <>ChaCha20</>, sub: <>A 4×4 matrix of words stirred by add–rotate–xor — step through the rounds, build the keystream, and XOR it over a message. No S-boxes, fast in software.</> },
   "pqc": { Component: LweSection, title: <>Post-quantum (LWE)</>, sub: <>Hide a secret in noise (Learning With Errors), encrypt a bit by burying it near 0 or q/2, and watch rounding recover it — the lattice kernel inside ML-KEM (Kyber).</> },
   "lll": { Component: LatticeSection, title: <>How LLL reduces a lattice (&amp; breaks crypto)</>, sub: <>A lattice is every integer combination of some basis vectors — the same grid can be a good (short, orthogonal) basis or a bad (long, skewed) one. Lattice reduction turns bad into good using integer moves that never change the grid: subtract an integer multiple of the shorter vector from the longer, and swap when the shorter one changes. In 2-D this (Lagrange–Gauss) finds the exact shortest vector; LLL generalizes it to n dimensions. Verified in node: the reduced basis spans the same lattice (|det| invariant), b₁ is the shortest vector, and it’s size-reduced. LLL broke the knapsack cipher and is why post-quantum lattice crypto needs high dimensions. Step the reduction.</> },

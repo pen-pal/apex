@@ -12822,3 +12822,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .yao-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .yao-btn.on{border-color:hsl(280 50% 60%);background:hsl(280 45% 45% / .25)}
 .yao-sep{color:hsl(220 12% 45%)}
+
+/* ── Sumcheck protocol story (SumcheckSection) — hypercube, per-round checks, fold, final eval ───── */
+.su-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.su-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.su-hc{fill:hsl(265 30% 26%);stroke:hsl(265 30% 44%);stroke-width:1}
+.su-hct{fill:hsl(265 30% 86%);font-size:10.5px;font-family:var(--mono,monospace)}
+.su-rn{fill:hsl(200 55% 66%);font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.su-rv{fill:hsl(210 30% 82%);font-size:12.5px;font-family:var(--mono,monospace)}
+.su-check{font-size:12.5px;font-family:var(--mono,monospace)}
+.su-check.ok{fill:hsl(150 60% 62%)}
+.su-check.bad{fill:hsl(0 70% 66%);font-weight:700}
+.su-fold{fill:hsl(45 80% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.su-final{font-size:12.5px;font-family:var(--mono,monospace)}
+.su-final.ok{fill:hsl(150 60% 64%)}
+.su-final.bad{fill:hsl(0 70% 66%)}
+.su-foot{fill:hsl(210 16% 60%);font-size:13px}
+.su-ctl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.su-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.su-btn.on{border-color:hsl(0 55% 55%);background:hsl(0 50% 42% / .25)}
+.su-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
