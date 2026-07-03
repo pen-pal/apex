@@ -439,6 +439,20 @@ export const PATHS: LearningPath[] = [
       { id: 'reedsolomon', note: 'Real channels corrupt whole bursts — scratches, fades, dead pixels. Reed–Solomon works over polynomials to correct bursts and erasures; it’s in CDs, QR codes, and deep-space links.' },
     ],
   },
+  {
+    id: 'hashing',
+    title: 'Where does this key go? (hashing)',
+    icon: '🪣',
+    blurb: 'A hash turns a key into a location. Start with one table and its collisions, tighten the worst-case lookup, then scale the same question across a whole cluster — where adding or removing a server should move as few keys as possible.',
+    steps: [
+      { id: 'hashtable', note: 'Turn a key into a bucket index with a hash, and handle two keys landing in the same bucket — collisions — by chaining or probing. The O(1)-average lookup behind every dictionary.' },
+      { id: 'cuckoo', note: 'Guarantee O(1) worst-case lookup: each key lives in one of just two buckets, and inserting kicks the current occupant to its alternate slot, cuckoo-style, until everyone fits.' },
+      { id: 'robinhood', note: 'Even out probe lengths in open addressing: if you’ve probed further than the key you’re looking at, steal its slot and push it onward — robbing the rich to help the poor, so the worst lookup stays short.' },
+      { id: 'chash', note: 'Now spread keys across many servers so adding or removing one moves only ~1/N of keys, not all of them: consistent hashing places servers and keys on a ring.' },
+      { id: 'jumphash', note: 'A memoryless consistent hash: map a key to one of N shards with a tiny loop — no ring, no table — so growing N by one moves only the keys that should move.' },
+      { id: 'rendezvous', note: 'Highest-Random-Weight: score a key against every node and pick the top — no ring, an even spread, and the full ranking doubles as a replica preference list.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
