@@ -12204,3 +12204,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pca-mlbl{fill:hsl(210 16% 60%);font-size:10px;font-family:var(--mono,monospace)}
 .pca-foot{fill:hsl(210 16% 60%);font-size:13px}
 .pca-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── Perceptron story (PerceptronSection) — two classes, learned decision boundary ───────────────── */
+.pcp-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.pcp-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.pcp-line{stroke:hsl(150 65% 58%);stroke-width:2.5}
+.pcp-line.fail{stroke:hsl(0 65% 60%);stroke-dasharray:6 4}
+.pcp-wvec{stroke:hsl(150 55% 62%);stroke-width:1.5}
+.pcp-pt{stroke:hsl(220 20% 15% / .6);stroke-width:0.6}
+.pcp-pt.pos{fill:hsl(210 70% 62%)}
+.pcp-pt.neg{fill:hsl(30 85% 60%)}
+.pcp-pt.wrong{stroke:hsl(0 80% 66%);stroke-width:2}
+.pcp-foot{fill:hsl(210 16% 60%);font-size:13px}
+.pcp-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.pcp-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.pcp-btn.on{border-color:hsl(150 55% 55%);background:hsl(150 50% 42% / .2)}
+.pcp-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
