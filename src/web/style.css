@@ -12981,3 +12981,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mgl-btn{font-size:12px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .mgl-btn.on{border-color:hsl(205 55% 55%);background:hsl(205 50% 42% / .25)}
 .mgl-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%);font-size:12px}
+
+/* ── RSA accumulator story (AccumulatorSection) — set→one number, membership witness ────────────── */
+.acu-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.acu-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.acu-chip{fill:hsl(265 30% 26%);stroke:hsl(265 35% 46%);stroke-width:1}
+.acu-chip.sel{fill:hsl(150 45% 32% / .8);stroke:hsl(150 60% 55%);stroke-width:2}
+.acu-chipt{fill:hsl(265 30% 88%);font-size:14px;font-family:var(--mono,monospace)}
+.acu-acc{fill:hsl(200 45% 30% / .7);stroke:hsl(200 60% 58%);stroke-width:1.5}
+.acu-acct{fill:hsl(200 60% 82%);font-size:14px;font-weight:700;font-family:var(--mono,monospace)}
+.acu-wit{fill:hsl(210 28% 80%);font-size:12px;font-family:var(--mono,monospace)}
+.acu-ok{fill:hsl(150 65% 62%);font-weight:700}
+.acu-bad{fill:hsl(0 65% 66%);font-weight:700}
+.acu-size{fill:hsl(210 22% 68%);font-size:11.5px;font-family:var(--mono,monospace)}
+.acu-hi{fill:hsl(45 85% 66%);font-weight:700}
+.acu-foot{fill:hsl(210 16% 60%);font-size:13px}
+.acu-ctl{display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.acu-lab{font-family:var(--mono,monospace);color:hsl(210 20% 66%);font-size:12px}
+.acu-btn{font-size:12.5px;min-width:30px;height:28px;padding:0 8px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.acu-btn.on{border-color:hsl(150 55% 50%);background:hsl(150 45% 40% / .25)}
+.acu-btn.add{border-color:hsl(200 55% 55%)}
+.acu-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:12px}
