@@ -13002,3 +13002,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .acu-btn.on{border-color:hsl(150 55% 50%);background:hsl(150 45% 40% / .25)}
 .acu-btn.add{border-color:hsl(200 55% 55%)}
 .acu-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:12px}
+
+/* ── Wave Function Collapse story (WfcSection) — superposition grid, collapse + propagate ────────── */
+.wfc-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.wfc-lg{fill:hsl(210 24% 74%);font-size:11px;font-family:var(--mono,monospace)}
+.wfc-note{fill:hsl(210 18% 56%);font-size:10px;font-family:var(--mono,monospace)}
+.wfc-cell{stroke:hsl(220 20% 12%);stroke-width:1}
+.wfc-cell.just{stroke:hsl(45 95% 62%);stroke-width:2.5}
+.wfc-super{fill:hsl(220 22% 18%);stroke:hsl(220 18% 32%);stroke-width:1}
+.wfc-strip{opacity:0.75}
+.wfc-cnt{fill:hsl(210 25% 78%);font-size:9px;font-family:var(--mono,monospace)}
+.wfc-foot{fill:hsl(210 16% 60%);font-size:13px}
+.wfc-ctl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.wfc-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.wfc-btn.seed{border-color:hsl(130 45% 48%)}
+.wfc-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
