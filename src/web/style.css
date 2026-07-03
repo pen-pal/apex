@@ -12351,3 +12351,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mlt-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .mlt-live{color:hsl(210 16% 60%);font-size:12.5px;font-family:var(--mono,monospace)}
 .mlt-live.ok{color:hsl(150 60% 60%)}
+
+/* ── Haar wavelet story (HaarWaveletSection) — multi-resolution, compaction, compression ─────────── */
+.hw-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.hw-lbl{fill:hsl(210 18% 64%);font-size:12px;font-family:var(--mono,monospace)}
+.hw-sig{stroke:hsl(205 75% 62%);stroke-width:2}
+.hw-recon{stroke:hsl(30 85% 60%);stroke-width:2;stroke-dasharray:4 3}
+.hw-dot{fill:hsl(205 75% 66%)}
+.hw-pair{stroke:hsl(45 80% 60%);stroke-width:2}
+.hw-axis{stroke:hsl(220 16% 34%);stroke-width:1}
+.hw-coef{transition:opacity .2s}
+.hw-scale{fill:hsl(210 14% 54%);font-size:11px;font-family:var(--mono,monospace)}
+.hw-foot{fill:hsl(210 16% 60%);font-size:13px}
+.hw-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
