@@ -12588,3 +12588,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pp-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .pp-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .pp-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+
+/* ── Simplex / LP story (SimplexSection) — feasible polygon, vertex walk, objective climb ─────────── */
+.sx-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.sx-axis{stroke:hsl(220 16% 44%);stroke-width:1}
+.sx-axl{fill:hsl(210 20% 68%);font-size:12px;font-family:var(--mono,monospace)}
+.sx-feasible{fill:hsl(200 55% 52% / .16);stroke:hsl(200 55% 58% / .6);stroke-width:1.5}
+.sx-cons{stroke:hsl(220 20% 46% / .55);stroke-width:1;stroke-dasharray:4 3}
+.sx-contour{stroke:hsl(45 85% 60% / .5);stroke-width:1.25;stroke-dasharray:5 3}
+.sx-grad{stroke:hsl(45 90% 60%);stroke-width:2}
+.sx-gradl{fill:hsl(45 85% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.sx-path{stroke:hsl(150 70% 52%);stroke-width:2.5}
+.sx-vert{fill:hsl(220 25% 45%)}
+.sx-vlbl{fill:hsl(210 20% 64%);font-size:10.5px;font-family:var(--mono,monospace)}
+.sx-cur{fill:hsl(150 75% 56%);stroke:hsl(150 40% 85%);stroke-width:1.5}
+.sx-cur.opt{fill:hsl(45 95% 60%);stroke:hsl(45 60% 90%)}
+.sx-foot{fill:hsl(210 16% 60%);font-size:13px}
+.sx-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.sx-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.sx-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
