@@ -12944,3 +12944,21 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .vdf-ctl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
 .vdf-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .vdf-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── CRT story (CrtSection) — moduli, residue fingerprint, basis reconstruction ─────────────────── */
+.crm-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.crm-mod{fill:hsl(220 22% 22%);stroke-width:1.5}
+.crm-modt{font-size:13px;font-family:var(--mono,monospace)}
+.crm-basis{fill:hsl(210 28% 80%);font-size:12px;font-family:var(--mono,monospace)}
+.crm-basissub{fill:hsl(210 16% 52%);font-size:9.5px;font-family:var(--mono,monospace)}
+.crm-lbl{fill:hsl(210 20% 64%);font-size:12px;font-family:var(--mono,monospace)}
+.crm-formula{fill:hsl(210 30% 84%);font-size:14px;font-family:var(--mono,monospace)}
+.crm-x{fill:hsl(150 65% 62%);font-weight:700}
+.crm-verify{fill:hsl(150 55% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.crm-foot{fill:hsl(210 16% 60%);font-size:13px}
+.crm-ctl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.crm-dial{display:inline-flex;align-items:center;gap:5px}
+.crm-dl{font-family:var(--mono,monospace);font-size:12.5px}
+.crm-btn{width:24px;height:24px;border-radius:5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.crm-rv{font-family:var(--mono,monospace);min-width:14px;text-align:center;color:hsl(210 30% 85%)}
+.crm-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-weight:700}
