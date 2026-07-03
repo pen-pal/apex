@@ -12480,3 +12480,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .sy-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .sy-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
 .sy-ans{color:hsl(150 60% 64%);font-size:14px;font-family:var(--mono,monospace)}
+
+/* ── Quaternion story (QuaternionSection) — 3D rotation, gimbal lock, slerp on the 4-sphere ──────── */
+.qt-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.qt-edge{stroke:hsl(210 30% 62%);stroke-width:1.5;opacity:.85}
+.qt-axl{font-size:12px;font-family:var(--mono,monospace);font-weight:600}
+.qt-lock{fill:hsl(45 100% 62%);font-size:13px;font-family:var(--mono,monospace)}
+.qt-foot{fill:hsl(210 16% 60%);font-size:13px}
+.qt-sphere{fill:hsl(260 40% 55% / .06);stroke:hsl(260 40% 60% / .5);stroke-width:1}
+.qt-sphere2{fill:none;stroke:hsl(260 30% 55% / .3);stroke-width:1;stroke-dasharray:3 3}
+.qt-arc{stroke:hsl(150 65% 55%);stroke-width:2.5}
+.qt-chord{stroke:hsl(30 85% 60%);stroke-width:1.75;stroke-dasharray:5 3}
+.qt-pt{fill:hsl(210 60% 66%);stroke:hsl(210 40% 85%);stroke-width:1}
+.qt-ptl{fill:hsl(210 30% 82%);font-size:12px;font-family:var(--mono,monospace)}
+.qt-cur.quat{fill:hsl(150 70% 58%)}
+.qt-cur.euler{fill:hsl(30 90% 60%)}
+.qt-slbl{fill:hsl(260 25% 66%);font-size:10.5px;font-family:var(--mono,monospace)}
+.qt-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.qt-ctl label{display:inline-flex;align-items:center;gap:6px}
+.qt-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.qt-btn.on{border-color:hsl(150 55% 50%);background:hsl(150 50% 42% / .25)}
