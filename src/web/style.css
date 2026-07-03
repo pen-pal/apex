@@ -12707,3 +12707,26 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .wt-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .wt-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
 .wt-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── EEVDF scheduler story (EevdfSection) — lag bars, eligibility, virtual deadlines, shares ─────── */
+.ee-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.ee-zero{stroke:hsl(210 30% 55%);stroke-width:1.5;stroke-dasharray:3 3}
+.ee-lbl{fill:hsl(210 20% 64%);font-size:11px;font-family:var(--mono,monospace)}
+.ee-tn{font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.ee-w{fill:hsl(210 18% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.ee-lag{stroke-width:1}
+.ee-lag.owed{fill:hsl(150 55% 42% / .7);stroke:hsl(150 60% 58%)}
+.ee-lag.ahead{fill:hsl(0 55% 42% / .7);stroke:hsl(0 60% 58%)}
+.ee-lag.pick{stroke:hsl(45 90% 60%);stroke-width:2.5}
+.ee-lagv{fill:hsl(210 22% 66%);font-size:10.5px;font-family:var(--mono,monospace)}
+.ee-vd{fill:hsl(210 22% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.ee-vd.pick{fill:hsl(45 90% 66%);font-weight:700}
+.ee-vd.inelig{fill:hsl(0 50% 55%)}
+.ee-bench{fill:hsl(0 60% 60%);font-size:10px;font-family:var(--mono,monospace)}
+.ee-sharebg{fill:hsl(220 20% 22%)}
+.ee-ideal{stroke:hsl(45 90% 62%);stroke-width:1.5}
+.ee-sharel{fill:hsl(210 30% 88%);font-size:10.5px;font-family:var(--mono,monospace)}
+.ee-foot{fill:hsl(210 16% 60%);font-size:13px}
+.ee-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.ee-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.ee-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
