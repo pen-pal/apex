@@ -12460,3 +12460,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .svd-axis{stroke:hsl(220 16% 36%);stroke-width:1}
 .svd-foot{fill:hsl(210 16% 60%);font-size:13px}
 .svd-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+
+/* ── Shunting-yard story (ShuntingYardSection) — infix→RPN two-stack, then evaluate ──────────────── */
+.sy-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.sy-lbl{fill:hsl(210 18% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.sy-tok{fill:hsl(220 16% 52%);font-size:17px;font-family:var(--mono,monospace)}
+.sy-tok.done{fill:hsl(210 25% 74%)}
+.sy-tok.cur{fill:hsl(48 100% 62%);font-weight:700}
+.sy-stk{fill:hsl(280 45% 34% / .5);stroke:hsl(280 55% 60%);stroke-width:1}
+.sy-stkt{fill:hsl(280 60% 82%);font-size:14px;font-family:var(--mono,monospace)}
+.sy-out{fill:hsl(210 45% 34% / .5);stroke:hsl(210 55% 58%);stroke-width:1}
+.sy-out.op{fill:hsl(30 55% 34% / .5);stroke:hsl(30 70% 58%)}
+.sy-outt{fill:hsl(210 30% 86%);font-size:13px;font-family:var(--mono,monospace)}
+.sy-act{fill:hsl(150 55% 66%);font-size:12.5px;font-family:var(--mono,monospace)}
+.sy-val{fill:hsl(150 45% 30% / .5);stroke:hsl(150 55% 55%);stroke-width:1}
+.sy-valt{fill:hsl(150 55% 82%);font-size:13px;font-family:var(--mono,monospace)}
+.sy-foot{fill:hsl(210 16% 60%);font-size:13px}
+.sy-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.sy-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
+.sy-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+.sy-ans{color:hsl(150 60% 64%);font-size:14px;font-family:var(--mono,monospace)}
