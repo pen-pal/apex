@@ -550,6 +550,20 @@ export const PATHS: LearningPath[] = [
       { id: 'phiaccrual', note: 'Turn timing into a verdict: the φ accrual failure detector scores how overdue a heartbeat is against its observed distribution, so “is that node dead?” becomes a tunable suspicion level, not a fixed timeout.' },
     ],
   },
+  {
+    id: 'physicsim',
+    title: 'Simulating the physical world',
+    icon: '⚛️',
+    blurb: 'A physics or game engine turns forces into motion, keeps energy from leaking, scales to millions of bodies, and decides when things collide. Follow the pieces that make a simulated world move and touch.',
+    steps: [
+      { id: 'verlet', note: 'Move things by integrating forces: Verlet integration updates a particle from its last two positions, which makes stiff constraints (a rope’s links, a cloth’s grid) trivial to enforce — the backbone of game physics.' },
+      { id: 'orbit', note: 'Keep energy from leaking: a naive integrator slowly spirals a stable orbit inward or outward, but a symplectic integrator conserves energy over millions of steps, so the planet keeps orbiting.' },
+      { id: 'doublependulum', note: 'The limit of prediction: a double pendulum is fully deterministic yet chaotic — two runs a hair apart diverge exponentially, the same sensitivity that makes weather unforecastable past days.' },
+      { id: 'barneshut', note: 'Scale to a galaxy: computing gravity between every pair is O(n²); the Barnes-Hut tree lumps a distant cluster into one mass, dropping it to O(n log n) with bounded error.' },
+      { id: 'spatialhash', note: 'Find collision candidates fast: bucket objects into a grid by position so each one only tests its neighbors — skipping the O(n²) all-pairs check that dooms a naïve collision loop.' },
+      { id: 'sat', note: 'Confirm the hit: the Separating Axis Theorem checks whether two convex shapes actually overlap by looking for a gap along any of their face normals — no separating axis means a collision.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
