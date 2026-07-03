@@ -12264,3 +12264,11 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gmm-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .gmm-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .gmm-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+
+/* ── Random forest story (RandomForestSection) — single tree vs bagged ensemble boundary ─────────── */
+.rf-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.rf-frame{fill:none;stroke:hsl(220 18% 32%);stroke-width:1}
+.rf-pt{stroke:hsl(220 20% 12% / .8);stroke-width:0.8}
+.rf-leg{font-size:11px;font-family:var(--mono,monospace)}
+.rf-foot{fill:hsl(210 16% 60%);font-size:13px}
+.rf-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
