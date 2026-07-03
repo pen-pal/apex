@@ -12672,3 +12672,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .gj-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
 .gj-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .gj-read{font-family:var(--mono,monospace);color:hsl(210 18% 66%)}
+
+/* ── Conflict serializability story (SerializableSection) — swim lanes, precedence graph, cycle ──── */
+.cs-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
+.cs-tlbl{font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.cs-lane{stroke:hsl(220 16% 32%);stroke-width:1;stroke-dasharray:2 3}
+.cs-op{stroke-width:1}
+.cs-opt{fill:hsl(210 35% 90%);font-size:11.5px;font-family:var(--mono,monospace)}
+.cs-time{fill:hsl(210 16% 52%);font-size:10.5px;font-family:var(--mono,monospace)}
+.cs-lbl{fill:hsl(210 20% 66%);font-size:11px;font-family:var(--mono,monospace)}
+.cs-edge{stroke:hsl(210 30% 55%);stroke-width:1.75}
+.cs-edge.bad{stroke:hsl(0 75% 60%);stroke-width:2.5}
+.cs-node{stroke:hsl(210 30% 55%);stroke-width:1.5}
+.cs-node.bad{stroke:hsl(0 80% 62%);stroke-width:2.5}
+.cs-nt{fill:hsl(0 0% 100%);font-size:13px;font-weight:700;font-family:var(--mono,monospace)}
+.cs-foot{fill:hsl(210 16% 60%);font-size:13px}
+.cs-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.cs-btn{font-size:12.5px;padding:5px 11px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.cs-btn.on{border-color:hsl(200 55% 55%);background:hsl(200 50% 42% / .25)}
+.cs-verdict{font-family:var(--mono,monospace);font-size:12.5px}
+.cs-verdict.ok{color:hsl(150 60% 60%)}
+.cs-verdict.bad{color:hsl(0 78% 66%)}

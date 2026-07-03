@@ -4,6 +4,7 @@ import { MvccSection } from '../MvccSection';
 import { WalSection } from '../WalSection';
 import { SkipListSection } from '../SkipListSection';
 import { PedersenSection } from '../PedersenSection';
+import { SerializableSection } from '../SerializableSection';
 import { LockingSection } from '../LockingSection';
 import { TrieSection } from '../TrieSection';
 import { HamtSection } from '../HamtSection';
@@ -59,6 +60,7 @@ export const chunk1: Record<string, SectionEntry> = {
   "skiplist": { Component: SkipListSection, title: <>Skip list</>, sub: <>O(log n) search from nothing but linked lists and coin flips — the structure inside Redis sorted sets and LSM memtables. Search a key and watch the path ride the express lanes and skip most nodes.</> },
   "pedersen": { Component: PedersenSection, title: <>Pedersen commitments</>, sub: <>Seal a value in an envelope that reveals nothing yet binds you to it — and that you can add to other sealed envelopes. The homomorphism behind confidential transactions and zero-knowledge proofs.</> },
   "locking": { Component: LockingSection, title: <>Locking &amp; deadlock</>, sub: <>The lock-based path to concurrency correctness — and its hazard. Pick a scenario and watch shared/exclusive locks grant or block, the wait-for graph form, and a cycle light up as a deadlock.</> },
+  "serializable": { Component: SerializableSection, title: <>When is an interleaving safe? (conflict serializability)</>, sub: <>Databases interleave transactions for throughput, but the result must equal some serial order. Two operations conflict if they touch the same item from different transactions and at least one writes; draw a precedence graph (edge Ti→Tj when an op of Ti conflicts with a later op of Tj), and the schedule is conflict-serializable exactly when that graph is acyclic — a cycle is an anomaly like a lost update. Verified in node: acyclicity matches a brute-force search of all n! serial orders (0 mismatch over 3000 schedules). Pick a schedule and watch the graph and verdict.</> },
   "trie": { Component: TrieSection, title: <>Trie (prefix tree)</>, sub: <>A tree shaped like its keys: words sharing a prefix share a path. Type a prefix and watch the matching subtree light up and autocomplete fill — the same walk that powers IP longest-prefix routing.</> },
   "hamt": { Component: HamtSection, title: <>HAMT — the persistent map</>, sub: <>How immutable maps (Clojure, Scala, immutable.js) make "copies" cheap. A hash array mapped trie stores entries in sparse bitmap nodes; updating a key copies only the nodes on the path to it and shares every other subtree with the old version. Insert a key and watch which nodes are copied vs reused — both versions coexist, valid and unchanged.</> },
   "pbft": { Component: PbftSection, title: <>PBFT — Byzantine fault tolerance</>, sub: <>Consensus when nodes can lie, not just crash. Slide the replica count and the number of malicious nodes to see why tolerating f Byzantine faults needs n ≥ 3f+1 replicas and 2f+1 quorums.</> },
