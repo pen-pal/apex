@@ -676,6 +676,20 @@ export const PATHS: LearningPath[] = [
       { id: 'consttime', note: 'The timing side channel: comparing a tag or password byte by byte and returning on the first mismatch leaks how many bytes matched through timing — so crypto compares in constant time, touching every byte regardless of where they differ.' },
     ],
   },
+  {
+    id: 'failover',
+    title: 'Agreeing and failing over',
+    icon: '🗳️',
+    blurb: 'When any node can crash, pause, or lie, a cluster still has to agree who leads, replicate consistently, and commit work. Walk from electing a leader to Byzantine consensus and transaction failover.',
+    steps: [
+      { id: 'bully', note: 'Pick a coordinator when the old one dies: the bully algorithm has any node that notices the leader is gone challenge everyone with a higher id, and the highest-id live node wins and announces itself — leader election after a crash.' },
+      { id: 'leases', note: 'Hold leadership on a timer: a leader takes a lease valid for a bounded time and must renew it, so if it dies the lease simply expires and another can take over — but the scheme rests on clocks not drifting too far apart.' },
+      { id: 'fencing', note: 'Stop a zombie leader: one that paused (a GC stall) can wake believing it still leads. A monotonically increasing fencing token on every write lets the storage reject anything stamped with an old number.' },
+      { id: 'chainrep', note: 'Replicate in a line: chain replication passes each write head→tail through the replicas and serves reads only at the tail, giving strong consistency and a simple, well-defined failover when any link dies.' },
+      { id: 'pbft', note: 'Agree despite traitors: Practical Byzantine Fault Tolerance reaches consensus even when up to a third of nodes lie or send conflicting messages, by voting in rounds and acting only on a two-thirds quorum — the basis of many permissioned blockchains.' },
+      { id: 'saga', note: 'Fail forward across services: a saga replaces one distributed transaction with a chain of local ones, each paired with a compensating action, so a failure partway is cleaned up by running the compensations backward — no global lock.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
