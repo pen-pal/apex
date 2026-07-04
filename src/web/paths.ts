@@ -690,6 +690,19 @@ export const PATHS: LearningPath[] = [
       { id: 'saga', note: 'Fail forward across services: a saga replaces one distributed transaction with a chain of local ones, each paired with a compensating action, so a failure partway is cleaned up by running the compensations backward — no global lock.' },
     ],
   },
+  {
+    id: 'texteditor',
+    title: 'Data structures inside a text editor',
+    icon: '📝',
+    blurb: 'Editing a big document means inserting and deleting anywhere, fast, thousands of times a second — a plain array can’t keep up. Follow the buffers that make it cheap, plus the trie behind autocomplete and the persistent map behind undo.',
+    steps: [
+      { id: 'gapbuffer', note: 'The classic buffer (Emacs): keep an empty gap in the array right at the cursor, so typing and deleting there are O(1) — just move the gap’s edges. Moving the cursor shuffles the gap to the new spot.' },
+      { id: 'piecetable', note: 'The modern buffer (VS Code): never mutate the loaded file; append every insertion to a separate add-buffer and keep an ordered list of pieces pointing into the original or the add-buffer — cheap edits and near-free undo.' },
+      { id: 'rope', note: 'For a huge document: a rope stores the text as a balanced tree of small chunks, so insert, delete, and index-by-position are O(log n) instead of O(n) on one giant contiguous array — the buffer that scales to gigabytes.' },
+      { id: 'trie', note: 'Autocomplete as you type: a trie stores words along shared-prefix paths, so completing what you’ve typed is a walk of one node per character down to the subtree of everything that continues it.' },
+      { id: 'hamt', note: 'Undo without copying: a hash array mapped trie is an immutable map where each edit shares almost all its structure with the previous version — so keeping every past state for undo (or collaborative editing) costs only the changed path.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
