@@ -703,6 +703,20 @@ export const PATHS: LearningPath[] = [
       { id: 'hamt', note: 'Undo without copying: a hash array mapped trie is an immutable map where each edit shares almost all its structure with the previous version — so keeping every past state for undo (or collaborative editing) costs only the changed path.' },
     ],
   },
+  {
+    id: 'localnet',
+    title: 'How a local network works',
+    icon: '🔌',
+    blurb: 'Before a packet ever reaches the internet it has to survive the local link — sharing the medium, getting an address, and finding its neighbors. Follow a device from joining the wire to discovering the printer down the hall.',
+    steps: [
+      { id: 'csma', note: 'Share the air with no scheduler: WiFi’s CSMA/CA has each device listen first and, if the channel is busy, wait a random backoff before transmitting — collisions are avoided by politeness, not a central slot assignment.' },
+      { id: 'stptree', note: 'Keep frames from looping forever: with redundant links a broadcast would circulate endlessly, so the Spanning Tree Protocol elects a root switch and disables backup links to leave one loop-free path — re-enabled if a link fails.' },
+      { id: 'vlan', note: 'Many networks on one switch: an 802.1Q VLAN tag in the frame header partitions a physical switch fabric into isolated virtual LANs, so ports in different VLANs can’t reach each other without going through a router.' },
+      { id: 'dhcp', note: 'Get an address on joining: a new device broadcasts and a DHCP server answers in four steps — Discover, Offer, Request, Ack (DORA) — leasing it an IP, gateway, and DNS server so it can start talking.' },
+      { id: 'icmp', note: 'How the network reports back: ICMP carries the control and error messages IP itself can’t — echo request/reply is ping, and time-exceeded is how traceroute maps every hop along a path.' },
+      { id: 'mdns', note: 'Find services with no server: mDNS resolves .local names by multicasting the query to the whole link and DNS-SD advertises what each device offers — how your laptop finds a printer or a Chromecast with nothing configured.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
