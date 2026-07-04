@@ -717,6 +717,20 @@ export const PATHS: LearningPath[] = [
       { id: 'mdns', note: 'Find services with no server: mDNS resolves .local names by multicasting the query to the whole link and DNS-SD advertises what each device offers — how your laptop finds a printer or a Chromecast with nothing configured.' },
     ],
   },
+  {
+    id: 'trafficshape',
+    title: 'Shaping and limiting traffic',
+    icon: '🚦',
+    blurb: 'A shared link or service has a finite rate, so traffic has to be capped, smoothed, prioritized, and told to slow down. Follow the algorithms that limit senders and keep queues — and latency — under control.',
+    steps: [
+      { id: 'ratelimit', note: 'Cap the rate with room for bursts: a token bucket adds tokens at a fixed rate up to a cap and each request spends one, so steady traffic is limited but a short burst can drain the saved tokens at once — the classic API rate limiter.' },
+      { id: 'leakybucket', note: 'Smooth a bursty stream: the leaky bucket queues arrivals and drains at a constant rate, so however spiky the input, the output is a steady trickle — shaping traffic to a fixed rate rather than only capping it.' },
+      { id: 'gcra', note: 'Rate-limit with no queue: the generic cell rate algorithm tracks a single theoretical arrival time and admits a packet only if it isn’t too early — enforcing a rate and a burst allowance with one comparison and no stored queue.' },
+      { id: 'qos', note: 'Decide who goes first: when a link is contended, QoS scheduling — priority queues, weighted fair queuing — serves classes of traffic in a chosen order, so a latency-sensitive packet isn’t stuck behind a bulk download.' },
+      { id: 'ecn', note: 'Signal congestion without dropping: instead of discarding a packet when a queue fills, ECN sets a mark the receiver echoes back, telling the sender to slow down — congestion feedback a full round trip earlier than a loss would give.' },
+      { id: 'bufferbloat', note: 'The latency trap: oversized buffers never drop, so they fill with a huge standing backlog that adds seconds of delay; active queue management (CoDel) watches how long packets sit and drops early to keep the queue — and latency — short.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
