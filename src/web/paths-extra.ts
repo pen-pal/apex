@@ -376,4 +376,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'pow', note: 'Burn computation as proof: proof of work makes a prover search for a nonce whose hash has enough leading zeros — expensive to find, instant to check — turning spam and Sybil attacks costly (Hashcash) and anchoring Nakamoto consensus (Bitcoin).' },
     ],
   },
+  {
+    id: 'dbindex',
+    title: 'Structures that make queries fast',
+    icon: '📇',
+    blurb: 'A database or search engine can’t rescan everything for each query, so it keeps auxiliary structures that answer filters, range aggregates, and overlaps in log time or less. Follow the bitmap and tree indexes behind fast lookups.',
+    steps: [
+      { id: 'bitmapindex', note: 'Filter without scanning: a bitmap index keeps one bit-vector per column value, so color=red AND size=L is a bitwise AND of two vectors — the set bits are the matching rows, found in one pass over compact bitmaps instead of the whole table.' },
+      { id: 'roaring', note: 'Keep the bitmaps small: a sparse or dense column wastes space as a plain bitmap, so roaring bitmaps split the key range into 65k-key chunks and store each as a sorted array, a bitmap, or run-lengths — whichever is smallest — staying compact and fast to AND at any density.' },
+      { id: 'fenwick', note: 'Running totals with live updates: a Fenwick (binary indexed) tree answers “sum of the first k” and “add to position i” both in O(log n) by storing partial sums at cleverly-chosen indices — the compact structure behind rank queries and cumulative frequencies.' },
+      { id: 'segtree', note: 'Any range aggregate: a segment tree generalizes to range min, max, sum, or gcd with range updates via lazy propagation — O(log n) per query, the workhorse for “what’s the min between i and j, and add 5 to that whole range”.' },
+      { id: 'sparsetable', note: 'Instant range-min, if nothing changes: for immutable data a sparse table precomputes every power-of-two-length window in O(n log n), then answers any range-minimum in O(1) by overlapping two windows — no per-query work at all.' },
+      { id: 'intervaltree', note: 'Which intervals overlap: an interval tree stores ranges so “which stored intervals contain this point or overlap this range” takes O(log n + k) — behind calendars, genome browsers, and which firewall rule matches a packet.' },
+    ],
+  },
 ];
