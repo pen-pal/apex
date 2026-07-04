@@ -731,6 +731,20 @@ export const PATHS: LearningPath[] = [
       { id: 'bufferbloat', note: 'The latency trap: oversized buffers never drop, so they fill with a huge standing backlog that adds seconds of delay; active queue management (CoDel) watches how long packets sit and drops early to keep the queue — and latency — short.' },
     ],
   },
+  {
+    id: 'osinternals',
+    title: 'Inside the operating system',
+    icon: '🐧',
+    blurb: 'The kernel gives every process the illusion of its own CPU, memory, and machine. Follow the mechanisms behind that illusion — entering the kernel, faulting in memory, forking cheaply, scaling I/O, and isolating a container.',
+    steps: [
+      { id: 'syscall', note: 'The only door into the kernel: a system call runs a trap instruction that switches the CPU to kernel mode and jumps to a fixed handler, so user code can ask for I/O or memory without touching hardware directly — the boundary every read, write, and mmap crosses.' },
+      { id: 'pagefault', note: 'Memory on demand: a process’s pages aren’t all resident, so touching one that isn’t mapped traps into the kernel as a page fault, which allocates or loads it and resumes the instruction — how lazy allocation, mmap, and swap all work.' },
+      { id: 'tlb', note: 'Cache the translations: every access needs a virtual→physical lookup, and walking the page table each time would be ruinous, so the TLB caches recent translations — a hit is a few cycles, a miss triggers the walk and refills it.' },
+      { id: 'cow', note: 'Fork without copying: copy-on-write gives the child the parent’s whole address space as shared read-only pages, and only when one side writes does the kernel duplicate that single page — so fork then exec stays cheap.' },
+      { id: 'epoll', note: 'One thread, ten thousand sockets: epoll registers interest in many file descriptors and returns only the ready ones in O(1), instead of rescanning every socket each call like poll/select — the kernel side of every high-concurrency server.' },
+      { id: 'container', note: 'Isolation without a VM: namespaces give a process its own view of the filesystem, network, PIDs, and users while cgroups cap its CPU and memory — so it looks alone on the machine while sharing one kernel, no hypervisor needed.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
