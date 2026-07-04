@@ -759,6 +759,20 @@ export const PATHS: LearningPath[] = [
       { id: 'interframe', note: 'Send only what changed: video encodes most frames as differences from earlier ones — a motion vector says a block moved here, and only the small residual is stored, so a mostly-static scene costs almost nothing.' },
     ],
   },
+  {
+    id: 'insidehw',
+    title: 'Inside the hardware',
+    icon: '🔩',
+    blurb: 'Under the software, bits are real charge in real cells that leak, wear out, and must be addressed and moved. Follow how a single bit is stored, how RAM and flash differ, and how the CPU reaches the right cell and talks to devices.',
+    steps: [
+      { id: 'latch', note: 'Store one bit: a flip-flop is a feedback loop of gates that holds a 0 or 1 until told to change — the storage cell inside every CPU register and every line of SRAM cache, fast because it’s pure logic.' },
+      { id: 'dram', note: 'Store billions cheaply: DRAM packs one capacitor and one transistor per bit, but the charge leaks in milliseconds, so the controller must read and rewrite every row thousands of times a second — the refresh main memory never stops doing.' },
+      { id: 'flashcell', note: 'Store without power: a flash cell traps electrons on a floating gate insulated so well the charge lasts years, and sensing that charge reads the bit — non-volatile, but writing tunnels electrons through the insulator, which slowly wears it out.' },
+      { id: 'ssd', note: 'Build a disk from flash: flash erases a whole block before rewriting and each cell survives limited writes, so an SSD’s flash translation layer remaps addresses to spread wear and garbage-collect stale blocks — hiding those quirks behind a plain read/write interface.' },
+      { id: 'membus', note: 'Find the right cell: an address decoder turns an N-bit address into exactly one active line among 2ᴺ, and the bus carries data to and from whichever chip and row that selects — how “read address X” physically lands on one location.' },
+      { id: 'io', note: 'Talk to the outside world: a CPU can poll a device in a busy loop, let the device raise an interrupt when ready, or hand a bulk transfer to a DMA engine that moves data straight to memory — three strategies trading latency against wasted cycles.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
