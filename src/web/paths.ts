@@ -773,6 +773,20 @@ export const PATHS: LearningPath[] = [
       { id: 'io', note: 'Talk to the outside world: a CPU can poll a device in a busy loop, let the device raise an interrupt when ready, or hand a bulk transfer to a DMA engine that moves data straight to memory — three strategies trading latency against wasted cycles.' },
     ],
   },
+  {
+    id: 'sysperf',
+    title: 'Why fast code runs slow',
+    icon: '🏎️',
+    blurb: 'Correct code can still crawl for reasons the source never shows — cache layout, cores fighting over a line, memory on the wrong socket. Follow the performance gotchas every systems programmer eventually hits, and the fixes.',
+    steps: [
+      { id: 'cpucache', note: 'Memory isn’t flat: a CPU reads L1 in a few cycles but main memory in hundreds, and the cache’s sets-and-ways layout means one stride or alignment change can swing a program’s speed 100× — locality is the first performance lever.' },
+      { id: 'falseshare', note: 'The invisible parallel slowdown: when two cores write different variables that share one 64-byte cache line, the line ping-pongs between their caches on every write, erasing the speedup threads promised — fixed by padding hot fields apart.' },
+      { id: 'numa', note: 'Memory has a home: on a multi-socket server, RAM attached to another CPU is slower to reach, and the first core to touch a page decides where it lives — so whoever allocates and whoever uses memory must agree, or every access pays the remote tax.' },
+      { id: 'priorityinv', note: 'The scheduling deadlock: a low-priority thread holding a lock can be preempted forever by mid-priority work while a high-priority thread waits on that lock — the bug that froze Mars Pathfinder, fixed by priority inheritance.' },
+      { id: 'timingwheel', note: 'Millions of timers, O(1): scheduling and cancelling timeouts through a per-timer heap costs O(log n) each; a timing wheel — buckets on a rotating clock hand — inserts and expires in constant time, behind every network stack’s retransmit timers.' },
+      { id: 'iouring', note: 'Thousands of I/Os, no syscall storm: io_uring gives the app and kernel two shared ring buffers, submission and completion, so a program queues many reads and writes and reaps results without a syscall per operation — the async I/O behind high-throughput servers.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
