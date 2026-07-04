@@ -662,6 +662,20 @@ export const PATHS: LearningPath[] = [
       { id: 'antientropy', note: 'Reconcile what reads miss: nodes periodically compare Merkle-tree hashes of their key ranges and exchange only the differing parts, healing replicas no recent read touched — the backstop for eventual consistency.' },
     ],
   },
+  {
+    id: 'symmcrypto',
+    title: 'Inside symmetric crypto',
+    icon: '🔐',
+    blurb: 'One shared key, used to both scramble and authenticate. Follow the building blocks — a reversible block cipher, a modern stream cipher, two kinds of message authenticator, and the timing side channel that undoes them if you compare carelessly.',
+    steps: [
+      { id: 'feistel', note: 'Make a cipher reversible for free: a Feistel network (DES) splits each block in half and each round mixes one half through a function of the other, then swaps — decryption runs the identical steps in reverse, so the round function itself never needs to be invertible.' },
+      { id: 'aesround', note: 'The modern block cipher: each AES round substitutes bytes through an S-box, shifts rows, mixes columns, and XORs in a round key — confusion and diffusion repeated 10–14 times until every output bit depends on every input and key bit.' },
+      { id: 'chacha', note: 'Encrypt as a keystream: ChaCha20 builds a stream cipher from add-rotate-XOR quarter-rounds on a 4×4 state — no S-box, no data-dependent table lookups — and XORs the output over the plaintext, fast and constant-time in software.' },
+      { id: 'poly1305', note: 'Authenticate in one shot: Poly1305 treats the message as the coefficients of a polynomial and evaluates it at a secret point modulo 2¹³⁰−5, producing a 16-byte tag — a one-time MAC that pairs with ChaCha20 for authenticated encryption.' },
+      { id: 'hmac', note: 'A MAC from any hash: HMAC nests two keyed hashes — H((k⊕opad) ∥ H((k⊕ipad) ∥ m)) — authenticating a message and resisting the length-extension attack that a naive H(k ∥ m) falls to.' },
+      { id: 'consttime', note: 'The timing side channel: comparing a tag or password byte by byte and returning on the first mismatch leaks how many bytes matched through timing — so crypto compares in constant time, touching every byte regardless of where they differ.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
