@@ -620,6 +620,20 @@ export const PATHS: LearningPath[] = [
       { id: 'marchsquares', note: 'From a field to a contour: marching squares walks a grid of scalar values and, cell by cell, draws the line where the field crosses a threshold — the 2D isoline, and the ancestor of marching cubes.' },
     ],
   },
+  {
+    id: 'authpath',
+    title: 'Proving who you are online',
+    icon: '🪪',
+    blurb: 'Every login is a proof of identity — and each protocol makes that proof differently. Walk from the basic factors through a second factor, stateless tokens, enterprise single sign-on, server login, and proving which domain sent an email.',
+    steps: [
+      { id: 'identity', note: 'The landscape: authentication proves who you are, authorization decides what you may do. Factors are things you know (a password), have (a phone or key), or are (a fingerprint) — and combining kinds is what makes two-factor strong.' },
+      { id: 'totp', note: 'A second factor from a shared secret: TOTP hashes a secret with the current 30-second time window (RFC 6238) into a 6-digit code, so your authenticator app and the server derive the same number without ever communicating.' },
+      { id: 'jwt', note: 'A token trusted without a lookup: a JWT is a signed JSON claim the client carries, verified by signature alone — fast and stateless, but infamous for the alg=none and algorithm-confusion attacks when the verifier believes the token’s own header.' },
+      { id: 'kerberos', note: 'Single sign-on with tickets: authenticate once to a key distribution center for a ticket-granting ticket, then exchange it for per-service tickets — proving identity to many services without resending your password.' },
+      { id: 'ssh', note: 'Logging into a server: SSH authenticates you by public key (the server challenges, you sign) and authenticates the server by its host key, pinned on first use — the mutual check that stops a machine-in-the-middle.' },
+      { id: 'mailauth', note: 'Proving a domain sent the mail: SPF lists which IPs may send for a domain and DKIM signs the message with the domain’s key, so a receiver can reject forgeries — the anti-phishing backbone, aligned by DMARC.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
