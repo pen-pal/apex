@@ -634,6 +634,20 @@ export const PATHS: LearningPath[] = [
       { id: 'mailauth', note: 'Proving a domain sent the mail: SPF lists which IPs may send for a domain and DKIM signs the message with the domain’s key, so a receiver can reject forgeries — the anti-phishing backbone, aligned by DMARC.' },
     ],
   },
+  {
+    id: 'numerics',
+    title: 'Fast and careful arithmetic',
+    icon: '🧮',
+    blurb: 'Numbers on a computer are neither exact nor free. Follow how fractions are actually stored, how precision is lost and recovered, and the bit-level and divide-and-conquer tricks that make square roots, trig, and big multiplies fast.',
+    steps: [
+      { id: 'float', note: 'How a computer stores a fraction: IEEE-754 splits a number into sign, exponent, and mantissa — which is why 0.1 has no exact binary form and 0.1 + 0.2 ≠ 0.3. The representation every other numeric trick works within.' },
+      { id: 'kahan', note: 'Careful summation: adding many floats drops the low bits of each step, so a long sum drifts; Kahan’s algorithm carries a running compensation term for what was lost, recovering near-full precision.' },
+      { id: 'fastinvsqrt', note: 'The bit-level hack: Quake’s 1/√x reinterprets the float’s bits as an integer, subtracts that from 0x5f3759df to halve-and-negate the exponent, then refines with one Newton step — a reciprocal square root with no divide.' },
+      { id: 'cordic', note: 'Trig with only shifts and adds: CORDIC rotates a vector by ever-smaller fixed angles, picking each direction by sign, to compute sine, cosine, and more — how calculators and FPGAs do trig with no multiplier.' },
+      { id: 'karatsuba', note: 'Multiply big numbers faster: splitting each factor in half naively needs four sub-multiplies, but Karatsuba does it in three, turning O(n²) into O(n^1.585) — the first step beyond schoolbook multiplication.' },
+      { id: 'ntt', note: 'Fast polynomial multiply: the number-theoretic transform is an FFT over a finite field — transform, multiply pointwise, transform back for O(n log n) products. The engine inside lattice crypto like Kyber.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
