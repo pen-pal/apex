@@ -648,6 +648,20 @@ export const PATHS: LearningPath[] = [
       { id: 'ntt', note: 'Fast polynomial multiply: the number-theoretic transform is an FFT over a finite field — transform, multiply pointwise, transform back for O(n log n) products. The engine inside lattice crypto like Kyber.' },
     ],
   },
+  {
+    id: 'leaderless',
+    title: 'A datastore with no leader',
+    icon: '🌐',
+    blurb: 'Dynamo-style stores (Cassandra, Riak) have no primary node — every peer is equal. Follow how a leaderless cluster locates keys, spreads news, detects failures, and stays consistent, all without a central coordinator.',
+    steps: [
+      { id: 'chord', note: 'Locate a key with no directory: Chord arranges nodes in a hash ring, each owning the keys up to its successor, and routes lookups in O(log n) hops with a finger table of exponentially-spaced shortcuts — a distributed hash table with no central index.' },
+      { id: 'gossip', note: 'Spread news like a rumor: each node periodically tells a few random peers what it knows, so an update reaches everyone in O(log n) rounds — the epidemic protocol that disseminates membership and state without a coordinator.' },
+      { id: 'swim', note: 'Detect failures at scale: SWIM has each node ping a random peer and, on silence, ask others to ping it before declaring it dead — spreading suspicion over gossip, so failure detection stays constant work per node.' },
+      { id: 'hintedhandoff', note: 'Stay writable when a replica is down: a peer accepts the write on the absent node’s behalf and stores a hint, replaying it once the node returns — availability during a partition, at the cost of temporary divergence.' },
+      { id: 'readrepair', note: 'Fix staleness on read: when a read gathers replicas that disagree, the newest value is returned and the lagging replicas are updated in the background — cheap convergence driven by ordinary traffic.' },
+      { id: 'antientropy', note: 'Reconcile what reads miss: nodes periodically compare Merkle-tree hashes of their key ranges and exchange only the differing parts, healing replicas no recent read touched — the backstop for eventual consistency.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
