@@ -13270,3 +13270,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bls-btn{font-size:12.5px;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .bls-btn.on{border-color:hsl(0 60% 58%);background:hsl(0 50% 44% / .25)}
 .bls-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-size:12px}
+
+/* --- QR code story (qr-) --- */
+.qr-svg{height:100%;width:auto;max-width:100%;display:block;margin:0 auto}
+.qr-encpanel{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px;box-sizing:border-box}
+.qr-encstep{display:flex;gap:10px;align-items:baseline}
+.qr-encbits{font-family:var(--mono);color:var(--accent);letter-spacing:1px;font-size:14px}
+.qr-encnote{color:var(--muted);font-size:12px}
+.qr-byterow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px;max-width:660px}
+.qr-byterow-lbl{color:var(--muted);font-size:12px;min-width:52px;text-align:right}
+.qr-bytes{display:flex;gap:3px;flex-wrap:wrap}
+.qr-byte{font-family:var(--mono);font-size:12px;padding:2px 5px;border-radius:3px;color:var(--ink);border:1px solid var(--line)}
+.qr-byterow-n{color:var(--muted);font-size:11px}
+.qr-note{color:var(--muted);font-size:12px;margin-top:8px;text-align:center;max-width:540px}
+.qr-ctl{display:flex;flex-direction:column;gap:8px;align-items:center;width:100%}
+.qr-input{font-family:var(--mono);font-size:15px;letter-spacing:1px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:220px;text-align:center}
+.qr-presets{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.qr-preset{font-family:var(--mono);font-size:12px;padding:4px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer}
+.qr-preset.on{border-color:var(--accent);color:var(--accent)}
+.qr-read{color:var(--muted);font-size:12.5px;text-align:center}
+.qr-read b{color:var(--ink);font-family:var(--mono)}
