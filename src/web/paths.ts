@@ -745,6 +745,20 @@ export const PATHS: LearningPath[] = [
       { id: 'container', note: 'Isolation without a VM: namespaces give a process its own view of the filesystem, network, PIDs, and users while cgroups cap its CPU and memory — so it looks alone on the machine while sharing one kernel, no hypervisor needed.' },
     ],
   },
+  {
+    id: 'imaging',
+    title: 'How color and images are encoded',
+    icon: '🎨',
+    blurb: 'A pixel is a number, but turning numbers into what your eye accepts as a smooth, correctly-lit photo takes real work. Follow how brightness and color are stored, how few colors fake many, and how photos and video are compressed.',
+    steps: [
+      { id: 'gamma', note: 'Why 128 isn’t half-bright: displays emit light nonlinearly and the eye perceives it nonlinearly, so pixels are stored gamma-encoded to pack precision into the darks — and blending or resizing without decoding to linear first darkens the result.' },
+      { id: 'colorspace', note: 'Why RGB blends look muddy: sRGB isn’t perceptually uniform, so the numeric midpoint of two colors isn’t the one you’d call halfway. OKLab reshapes the space so equal steps look equally different and gradients pass through the right hues.' },
+      { id: 'dithering', note: 'Fake gray with black and white: dithering scatters pixels so a few colors read as many — error diffusion pushes each pixel’s rounding error onto its neighbors, so a 1-bit image looks like smooth shading from a distance.' },
+      { id: 'jpeg', note: 'Throw away what the eye won’t miss: JPEG splits an image into 8×8 blocks, transforms each to frequencies with the DCT, and quantizes the high frequencies hardest — because we notice fine detail far less than broad shapes.' },
+      { id: 'hdr', note: 'Fit the sun on your screen: a real scene spans a dynamic range a display can’t emit, so tone-mapping compresses highlights and lifts shadows, keeping local contrast while squeezing the global range into the panel’s limits.' },
+      { id: 'interframe', note: 'Send only what changed: video encodes most frames as differences from earlier ones — a motion vector says a block moved here, and only the small residual is stored, so a mostly-static scene costs almost nothing.' },
+    ],
+  },
 ];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
