@@ -534,4 +534,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'vrrp', note: 'Survive a dead gateway: VRRP lets two routers share one virtual IP and MAC, so if the active default gateway fails the backup answers within a second — and no client ever changes its configured gateway.' },
     ],
   },
+  {
+    id: 'cryptomath',
+    title: 'The arithmetic behind public-key crypto',
+    icon: '🔓',
+    blurb: 'RSA and Diffie–Hellman are modular arithmetic on enormous numbers. Follow the two primitives that make them run — modular inverse and fast modular multiply — and the two classic attacks whose cost dictates how big the keys must be.',
+    steps: [
+      { id: 'xgcd', note: 'Division in modular arithmetic: there’s no “divide” mod m, so you multiply by the modular inverse — and the extended Euclidean algorithm finds a⁻¹ (the x with ax ≡ 1) in a few steps. RSA key generation, ECDSA, and CRT all rest on it.' },
+      { id: 'montgomery', note: 'Multiply mod m without dividing: a naive modular multiply needs a costly division to reduce, so Montgomery form replaces it with shifts and adds — making the millions of modular multiplications in an RSA or DH exponentiation fast.' },
+      { id: 'pollardrho', note: 'Factor by accident: Pollard’s rho hunts a factor of n with a cycle-detecting random walk that collides modulo a hidden prime factor in about n^(1/4) steps — cheap enough that RSA moduli must be thousands of bits.' },
+      { id: 'bsgs', note: 'Meet in the middle on a discrete log: baby-step giant-step solves gˣ ≡ h by precomputing √n “baby” values and striding in √n “giant” steps until they meet — O(√n), which is why Diffie–Hellman groups must be enormous.' },
+    ],
+  },
 ];
