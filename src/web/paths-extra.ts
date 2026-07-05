@@ -403,4 +403,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'vectorsearch', note: 'Retrieval at scale: once text is embeddings, finding the nearest among millions can’t be a linear scan; HNSW builds a navigable small-world graph so nearest-neighbor search is roughly logarithmic — the retrieval behind semantic search and RAG.' },
     ],
   },
+  {
+    id: 'shrinkdata',
+    title: 'How data gets smaller',
+    icon: '🗜️',
+    blurb: 'Beyond the LZ77/Huffman basics, shrinking data takes a toolbox: dictionary coders, fractional-bit entropy coding, transforms that expose structure, and the dedup and delta tricks that avoid storing or sending anything twice.',
+    steps: [
+      { id: 'lzw', note: 'Spot repetition as you go: LZW builds a dictionary of substrings while reading, emitting one code per phrase it has seen before — no separate table to ship, the scheme behind GIF and early Unix compress.' },
+      { id: 'mtf', note: 'Exploit recency: move-to-front recodes each symbol as its position in a list that promotes it to the front, so locally-repetitive data turns into a stream of small numbers — the step after Burrows-Wheeler in bzip2.' },
+      { id: 'arith', note: 'Beat the whole-bit limit: arithmetic coding represents the entire message as one number in [0,1), so a symbol can cost a fractional bit — squeezing closer to the entropy floor than Huffman, which must spend at least one bit per symbol.' },
+      { id: 'cdc', note: 'Split so edits stay local: content-defined chunking cuts a file at boundaries chosen by the data via a rolling hash, so inserting a byte re-chunks only nearby — the basis of deduplication in backup and sync systems.' },
+      { id: 'rsync', note: 'Send only the difference: rsync rolls a weak-then-strong hash over both copies to find the blocks the receiver already has, transferring just the changed ones — updating a huge file over a slow link in seconds.' },
+      { id: 'gorilla', note: 'Compress a firehose of floats: Gorilla XORs each metric value against the previous one — near-identical values become mostly zeros — and delta-encodes timestamps, shrinking time-series data roughly 10× in memory.' },
+    ],
+  },
 ];
