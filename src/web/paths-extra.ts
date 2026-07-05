@@ -456,4 +456,17 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'bktree', note: 'Find the typo: a BK-tree indexes words by edit distance using the triangle inequality, so a spell-checker retrieves every word within k edits of a query without comparing against the whole dictionary.' },
     ],
   },
+  {
+    id: 'numcoding',
+    title: 'Encoding numbers compactly',
+    icon: '🔢',
+    blurb: 'A 32-bit int wastes most of its bytes on small values, and a raw number can’t be read aloud or survive a noisy dial. Follow the codes that pack integers tight, self-delimit any magnitude, and stay safe to transcribe.',
+    steps: [
+      { id: 'varint', note: 'Small numbers, few bytes: a varint stores 7 data bits per byte with the top bit meaning “more follows”, so 5 takes one byte and 300 takes two — Protobuf’s integer format. Zigzag first folds signed numbers (−1→1, 1→2) so a small negative doesn’t cost ten bytes.' },
+      { id: 'eliascode', note: 'Encode any positive integer with no agreed width: Elias gamma writes the number’s bit-length in unary, then its bits — a self-delimiting universal code, so a stream of wildly different magnitudes needs no fixed field size.' },
+      { id: 'golombrice', note: 'Optimal when small values dominate: Golomb-Rice splits each value into a quotient coded in unary and a remainder in binary, near-optimal for geometric distributions — the coder inside FLAC, many image formats, and compressed search indexes.' },
+      { id: 'graycode', note: 'Change one bit at a time: Gray code orders the integers so consecutive values differ in exactly one bit, so a rotary or position encoder caught mid-transition reads an adjacent value, never a wildly wrong one.' },
+      { id: 'base58', note: 'Numbers humans can copy: Base58 drops the look-alike 0, O, I, and l from base64 and appends a checksum (Base58Check), so a Bitcoin address or key survives being read aloud, written down, or mistyped.' },
+    ],
+  },
 ];
