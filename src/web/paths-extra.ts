@@ -507,4 +507,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'ipsec', note: 'Encrypt the whole packet in a tunnel: IPsec ESP wraps and encrypts an entire IP packet between two gateways, so a site-to-site VPN carries private traffic across the public internet — authenticated and confidential.' },
     ],
   },
+  {
+    id: 'causalorder',
+    title: 'Ordering events in a distributed system',
+    icon: '⏳',
+    blurb: 'With no shared clock and messages that overtake each other, “what happened before what?” is genuinely hard. Follow how systems recover a causal order, snapshot themselves mid-run, promise clients a consistency level, and reconcile concurrent edits.',
+    steps: [
+      { id: 'lamport', note: 'Logical time: a Lamport clock is a counter bumped on each event and carried on each message, giving an ordering consistent with cause-and-effect — a total order without any synchronized wall clock.' },
+      { id: 'causalbcast', note: 'Deliver in causal order: causal broadcast holds each message until every message that causally precedes it has been delivered, so no node ever sees an effect before its cause — buffering out-of-order arrivals until their dependencies are met.' },
+      { id: 'chandy', note: 'A snapshot without stopping: the Chandy-Lamport algorithm records a consistent global state — each node’s state plus the messages in flight — by sending markers along channels, so you can checkpoint or detect deadlock without pausing the system.' },
+      { id: 'consistency', note: 'What order clients are promised: consistency models form a spectrum — linearizable, sequential, causal, eventual — each a weaker guarantee about the order in which replicas appear to apply operations, trading correctness for availability and speed.' },
+      { id: 'watermark', note: 'Ordering an endless stream: a watermark is the system’s assertion that “no event older than time T will still arrive,” letting a windowed computation finalize its result despite late, out-of-order data.' },
+      { id: 'optransform', note: 'Converging concurrent edits: operational transformation rewrites each edit against the ones made concurrently, so two people typing in the same document at once converge to an identical result — the classic collaborative-editor algorithm.' },
+    ],
+  },
 ];
