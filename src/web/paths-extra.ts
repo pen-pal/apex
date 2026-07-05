@@ -443,4 +443,17 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'ratchet', note: 'A fresh key for every message: the Double Ratchet advances a DH ratchet each reply and a symmetric ratchet each message, so keys only move forward — a stolen key can’t decrypt past messages (forward secrecy) and the conversation heals after a compromise.' },
     ],
   },
+  {
+    id: 'stringsearch',
+    title: 'Searching inside text',
+    icon: '🔎',
+    blurb: 'Finding a pattern in a string is deeper than a nested loop. Follow the algorithms that search without backtracking, skip whole chunks, compute matches in linear time, and even find words a typo away.',
+    steps: [
+      { id: 'kmp', note: 'Exact search without backtracking: KMP precomputes a failure table from the pattern, so on a mismatch it slides forward by the longest prefix that’s still a suffix — never re-reading a text character, O(n + m).' },
+      { id: 'boyermoore', note: 'Skip whole chunks: Boyer-Moore compares the pattern right-to-left and, on a mismatch, jumps ahead by the bad-character and good-suffix rules — often examining far fewer than n characters, which is why it’s the core of grep.' },
+      { id: 'zalgo', note: 'One array, many string problems: the Z-algorithm computes, for every position, how long a substring starting there matches the string’s own prefix — in linear time — a primitive that solves pattern matching, periodicity, and more.' },
+      { id: 'manacher', note: 'Longest palindrome in linear time: Manacher’s algorithm finds the longest palindromic substring in O(n) by reusing the mirror of palindromes already found, instead of expanding around every center from scratch.' },
+      { id: 'bktree', note: 'Find the typo: a BK-tree indexes words by edit distance using the triangle inequality, so a spell-checker retrieves every word within k edits of a query without comparing against the whole dictionary.' },
+    ],
+  },
 ];
