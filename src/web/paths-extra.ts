@@ -495,4 +495,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'pwhash', note: 'Why a fast hash is wrong for passwords: SHA-256 is too fast — a GPU tries billions a second. Password hashes (bcrypt, scrypt, Argon2) are deliberately slow and memory-hard, with a per-user salt, so cracking a leaked database stays infeasible.' },
     ],
   },
+  {
+    id: 'overlays',
+    title: 'Network tunnels and overlays',
+    icon: '🚇',
+    blurb: 'A packet often rides inside another packet — to stretch a LAN across the globe, switch faster than an IP lookup, pin a route from the source, or cross the public internet privately. Follow the encapsulations that make one network run on top of another.',
+    steps: [
+      { id: 'vxlan', note: 'A virtual LAN over the internet: VXLAN wraps each Ethernet frame in a UDP packet with a 24-bit segment ID, so two machines in different data centers behave as if on the same L2 switch — the overlay under cloud and container networking.' },
+      { id: 'mpls', note: 'Switch on a label, not an IP: MPLS pushes a short fixed label onto each packet at the network edge, and core routers forward by a fast label lookup along a pre-built path — separating forwarding from the full IP routing table.' },
+      { id: 'segrouting', note: 'Put the route in the packet: segment routing encodes the path as an ordered list of segments in the header, so the source picks the route and the core keeps no per-flow state — MPLS’s successor for traffic engineering.' },
+      { id: 'ipsec', note: 'Encrypt the whole packet in a tunnel: IPsec ESP wraps and encrypts an entire IP packet between two gateways, so a site-to-site VPN carries private traffic across the public internet — authenticated and confidential.' },
+    ],
+  },
 ];
