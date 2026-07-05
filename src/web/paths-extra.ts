@@ -482,4 +482,17 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'gorilla', note: 'Store the firehose of samples: Gorilla compresses time-series by XORing each float against the last and delta-encoding timestamps, shrinking metrics ~10× so a monitoring system holds millions of latency points in memory to compute those percentiles fast.' },
     ],
   },
+  {
+    id: 'hashfns',
+    title: 'How hash functions work and break',
+    icon: '#️⃣',
+    blurb: 'A cryptographic hash is a one-way fingerprint everything from certificates to passwords depends on. Follow what one actually computes, the structural flaw that bites naïve use, how a hash dies, and why passwords need a different kind.',
+    steps: [
+      { id: 'hashint', note: 'What a hash actually does: SHA-256 chops the message into blocks and runs each through a 64-round compression function — mixing, rotating, adding — so every input bit avalanches across all 256 output bits, and the digest is fixed-size, one-way, and collision-resistant.' },
+      { id: 'lenext', note: 'The length-extension flaw: because a Merkle-Damgård hash’s output IS its internal state, an attacker who knows H(secret ‖ message) can resume hashing and compute H(secret ‖ message ‖ extra) without the secret — forging a valid tag for data they append.' },
+      { id: 'hmac', note: 'Keyed hashing done right: HMAC wraps the hash in two keyed passes — H((k⊕opad) ‖ H((k⊕ipad) ‖ m)) — so the output no longer exposes a resumable state, closing the length-extension hole a naïve H(k ‖ m) leaves open.' },
+      { id: 'hashbreak', note: 'When a hash breaks: a collision is two different inputs with the same digest, and once one is cheap the hash is dead — MD5 collisions are trivial today and SHA-1’s were demonstrated, enough to forge certificates and sign malicious files as trusted.' },
+      { id: 'pwhash', note: 'Why a fast hash is wrong for passwords: SHA-256 is too fast — a GPU tries billions a second. Password hashes (bcrypt, scrypt, Argon2) are deliberately slow and memory-hard, with a per-user salt, so cracking a leaked database stays infeasible.' },
+    ],
+  },
 ];
