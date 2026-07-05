@@ -469,4 +469,17 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'base58', note: 'Numbers humans can copy: Base58 drops the look-alike 0, O, I, and l from base64 and appends a checksum (Base58Check), so a Bitcoin address or key survives being read aloud, written down, or mistyped.' },
     ],
   },
+  {
+    id: 'latencymetrics',
+    title: 'Measuring latency at scale',
+    icon: '📊',
+    blurb: 'The average response time hides everything that matters. Follow why the tail dominates, how to measure and merge percentiles honestly, why adding servers eventually backfires, and how to store the firehose of samples.',
+    steps: [
+      { id: 'taillatency', note: 'Why the average lies: one page touches dozens of services, so the slowest of many calls sets the total — the p99 tail, not the mean, is what users feel. Shaving the median barely helps; taming the tail is the real work.' },
+      { id: 'hdrhist', note: 'Measure percentiles honestly: you can’t recover a p99 from an average, so HdrHistogram records every value into log-spaced buckets spanning microseconds to seconds at fixed relative precision — cheap to update and accurate out in the tail.' },
+      { id: 'ddsketch', note: 'Percentiles you can merge: DDSketch buckets values with a guaranteed relative error and — crucially — its sketches add together, so a fleet-wide p99 comes from summing each server’s sketch instead of shipping raw samples.' },
+      { id: 'usl', note: 'Why more servers stop helping: the Universal Scalability Law models throughput as linear speedup minus a contention term (serialized work) and a coherency term (crosstalk between nodes) — predicting the peak beyond which adding capacity makes the system slower.' },
+      { id: 'gorilla', note: 'Store the firehose of samples: Gorilla compresses time-series by XORing each float against the last and delta-encoding timestamps, shrinking metrics ~10× so a monitoring system holds millions of latency points in memory to compute those percentiles fast.' },
+    ],
+  },
 ];
