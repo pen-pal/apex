@@ -431,4 +431,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'featureflags', note: 'Separate deploy from release: a feature flag ships code dark and turns it on for 1% → 100% at runtime, with an instant kill switch — so a bad change is disabled in seconds without a rollback deploy.' },
     ],
   },
+  {
+    id: 'signal',
+    title: 'End-to-end encrypted messaging (Signal)',
+    icon: '💬',
+    blurb: 'How Signal and WhatsApp keep a chat readable only to its two ends — starting from a shared secret, defeating the middleman, opening a conversation while one side is offline, and giving every single message its own key.',
+    steps: [
+      { id: 'dhkex', note: 'Agree on a secret in the open: Diffie–Hellman lets two parties who’ve never met derive a shared key over a public channel — each mixes their own secret with the other’s public value and only they compute the same result. The foundation every key exchange builds on.' },
+      { id: 'dhmitm', note: 'Why raw DH isn’t enough: plain Diffie–Hellman authenticates nobody, so an attacker in the middle can run a separate exchange with each side and read everything — the reason a key exchange must be tied to verified identities.' },
+      { id: 'x3dh', note: 'Start a conversation even if you’re offline: Signal’s X3DH combines several Diffie–Hellman results — including against prekeys the recipient published in advance — so the first message is authenticated and encrypted without both devices ever being online at once.' },
+      { id: 'ratchet', note: 'A fresh key for every message: the Double Ratchet advances a DH ratchet each reply and a symmetric ratchet each message, so keys only move forward — a stolen key can’t decrypt past messages (forward secrecy) and the conversation heals after a compromise.' },
+    ],
+  },
 ];
