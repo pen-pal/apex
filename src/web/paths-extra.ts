@@ -417,4 +417,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'gorilla', note: 'Compress a firehose of floats: Gorilla XORs each metric value against the previous one — near-identical values become mostly zeros — and delta-encodes timestamps, shrinking time-series data roughly 10× in memory.' },
     ],
   },
+  {
+    id: 'resilience',
+    title: 'How a service survives failure and load',
+    icon: '🛟',
+    blurb: 'Every dependency will eventually be slow, down, or overwhelmed. Follow the patterns that keep a service standing when they are — retrying safely, shedding overload, isolating faults, and deploying without dropping a request.',
+    steps: [
+      { id: 'retry', note: 'Retry the transient, stop hammering the dead: retry a failed call with exponential backoff and jitter so a blip recovers, but wrap it in a circuit breaker that trips open after repeated failures — sparing a struggling dependency until it heals.' },
+      { id: 'loadshed', note: 'Reject early when overloaded: past capacity, quickly refusing the excess (a fast 503) keeps the requests you do accept inside their deadline — a service that sheds load degrades gracefully instead of collapsing under it.' },
+      { id: 'bulkhead', note: 'Isolate so one failure can’t sink the ship: give each dependency its own bounded pool of threads or connections, so a slow downstream call exhausts only its own bulkhead and the rest of the service keeps serving.' },
+      { id: 'singleflight', note: 'Do duplicate work once: when a cached value expires, a thousand requests can stampede the backend at once; request coalescing runs the fetch a single time and hands the one result to every waiter.' },
+      { id: 'gracefulshutdown', note: 'Deploy without dropping requests: on SIGTERM, stop accepting new connections, finish the in-flight ones, close pools, then exit — so a rolling deploy or scale-down loses zero requests instead of cutting them mid-flight.' },
+      { id: 'featureflags', note: 'Separate deploy from release: a feature flag ships code dark and turns it on for 1% → 100% at runtime, with an instant kill switch — so a bad change is disabled in seconds without a rollback deploy.' },
+    ],
+  },
 ];
