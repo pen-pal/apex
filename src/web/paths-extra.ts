@@ -390,4 +390,17 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'intervaltree', note: 'Which intervals overlap: an interval tree stores ranges so “which stored intervals contain this point or overlap this range” takes O(log n + k) — behind calendars, genome browsers, and which firewall rule matches a packet.' },
     ],
   },
+  {
+    id: 'neuralnet',
+    title: 'How modern AI works',
+    icon: '🧠',
+    blurb: 'From a 1950s threshold unit to the transformer behind today’s language models. Follow how a network learns, how words become geometry, how attention replaced recurrence, and how millions of embeddings are searched.',
+    steps: [
+      { id: 'perceptron', note: 'The first neural net: a perceptron sums weighted inputs and fires if the total clears a threshold — it learns any linearly-separable rule, but famously can’t learn XOR, the limit that stalled the field until hidden layers broke it.' },
+      { id: 'backprop', note: 'How a deep net learns: backpropagation runs the chain rule backward through the layers to get the gradient of the loss for every weight at once, so gradient descent can nudge millions of them toward lower error.' },
+      { id: 'word2vec', note: 'Words as geometry: word2vec learns a vector per word from nothing but which words co-occur, and meaning becomes direction — similar words cluster, and king − man + woman lands near queen.' },
+      { id: 'attention', note: 'The transformer’s core: attention lets each token look at every other and weight them by relevance, mixing in the ones that matter — replacing recurrence with a parallel operation, the mechanism under every large language model.' },
+      { id: 'vectorsearch', note: 'Retrieval at scale: once text is embeddings, finding the nearest among millions can’t be a linear scan; HNSW builds a navigable small-world graph so nearest-neighbor search is roughly logarithmic — the retrieval behind semantic search and RAG.' },
+    ],
+  },
 ];
