@@ -521,4 +521,17 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'optransform', note: 'Converging concurrent edits: operational transformation rewrites each edit against the ones made concurrently, so two people typing in the same document at once converge to an identical result — the classic collaborative-editor algorithm.' },
     ],
   },
+  {
+    id: 'advrouting',
+    title: 'Advanced routing: scale and redundancy',
+    icon: '🛰️',
+    blurb: 'Picking a route is only the start; a real network must scale that decision to every router, damp instability, use all its links, and survive a dead gateway. Follow the mechanisms that keep large networks fast and up.',
+    steps: [
+      { id: 'bgp', note: 'The internet’s routing protocol: BGP is a path-vector protocol where each network advertises which destinations it can reach and by what AS path, and a long tie-break list (local preference, AS-path length, …) picks the best route among all offers.' },
+      { id: 'bgprr', note: 'Scale iBGP without a full mesh: every router in an AS must learn every external route, but a full mesh is n(n−1)/2 sessions; a route reflector re-advertises routes to its clients, collapsing that mesh into hub-and-spoke.' },
+      { id: 'routeflap', note: 'Damp a flapping route: a link bouncing up and down would ripple withdrawals across the whole internet, so flap damping adds a penalty on each change that decays exponentially and suppresses the route until it settles.' },
+      { id: 'ecmp', note: 'Use every equal path: when several paths tie for best, ECMP hashes each flow’s 5-tuple to pick one consistently — so a connection stays on a single path (no reordering) while the aggregate traffic spreads across all of them.' },
+      { id: 'vrrp', note: 'Survive a dead gateway: VRRP lets two routers share one virtual IP and MAC, so if the active default gateway fails the backup answers within a second — and no client ever changes its configured gateway.' },
+    ],
+  },
 ];
