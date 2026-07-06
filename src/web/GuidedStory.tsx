@@ -39,35 +39,41 @@ export function GuidedStory({ scenes, controls, explain, aspect = '900 / 480', a
   const live = controls?.(scene);
 
   return (
-    <div className="story">
-      {explain && <p className="story-idea"><span className="story-idea-lbl">The idea</span>{explain.idea}</p>}
-      <div className="story-stage" style={{ aspectRatio: aspect }} role="img" aria-label={`${cur.title}. ${typeof cur.caption === 'string' ? cur.caption : ''}`}>
-        {scenes.map((sc, i) => (
-          <div key={sc.key} className={`story-scene ${i === scene ? 'active' : i < scene ? 'past' : 'future'}`} aria-hidden={i !== scene}>
-            {sc.render(i === scene)}
+    <div className={`story ${explain ? 'has-rail' : ''}`}>
+      <div className="story-viz">
+        <div className="story-stage" style={{ aspectRatio: aspect }} role="img" aria-label={`${cur.title}. ${typeof cur.caption === 'string' ? cur.caption : ''}`}>
+          {scenes.map((sc, i) => (
+            <div key={sc.key} className={`story-scene ${i === scene ? 'active' : i < scene ? 'past' : 'future'}`} aria-hidden={i !== scene}>
+              {sc.render(i === scene)}
+            </div>
+          ))}
+        </div>
+
+        <div className="story-caption">
+          <span className="story-cap-title">{cur.title}</span>
+          <span className="story-cap-body">{cur.caption}</span>
+        </div>
+
+        {live && <div className="story-live">{live}</div>}
+
+        <div className="story-transport">
+          <button type="button" className="story-nav" onClick={() => go(scene - 1)} disabled={scene === 0} aria-label="previous scene">‹</button>
+          <button type="button" className="story-play" onClick={() => { if (scene >= last) { setScene(0); setPlaying(true); } else setPlaying((p) => !p); }}>
+            {scene >= last ? '↻ replay' : playing ? '❚❚ pause' : '▶ play'}
+          </button>
+          <button type="button" className="story-nav" onClick={() => go(scene + 1)} disabled={scene === last} aria-label="next scene">›</button>
+          <div className="story-dots">
+            {scenes.map((sc, i) => <button key={sc.key} type="button" className={`story-dot ${i === scene ? 'on' : ''}`} onClick={() => go(i)} aria-label={sc.title} title={sc.title} />)}
           </div>
-        ))}
-      </div>
-
-      <div className="story-caption">
-        <span className="story-cap-title">{cur.title}</span>
-        <span className="story-cap-body">{cur.caption}</span>
-      </div>
-
-      {live && <div className="story-live">{live}</div>}
-
-      <div className="story-transport">
-        <button type="button" className="story-nav" onClick={() => go(scene - 1)} disabled={scene === 0} aria-label="previous scene">‹</button>
-        <button type="button" className="story-play" onClick={() => { if (scene >= last) { setScene(0); setPlaying(true); } else setPlaying((p) => !p); }}>
-          {scene >= last ? '↻ replay' : playing ? '❚❚ pause' : '▶ play'}
-        </button>
-        <button type="button" className="story-nav" onClick={() => go(scene + 1)} disabled={scene === last} aria-label="next scene">›</button>
-        <div className="story-dots">
-          {scenes.map((sc, i) => <button key={sc.key} type="button" className={`story-dot ${i === scene ? 'on' : ''}`} onClick={() => go(i)} aria-label={sc.title} title={sc.title} />)}
         </div>
       </div>
 
-      {explain && <div className="story-takeaway"><span className="story-take-lbl">Takeaway</span>{explain.takeaway}</div>}
+      {explain && (
+        <aside className="story-rail">
+          <p className="story-idea"><span className="story-idea-lbl">The idea</span>{explain.idea}</p>
+          <div className="story-takeaway"><span className="story-take-lbl">Takeaway</span>{explain.takeaway}</div>
+        </aside>
+      )}
     </div>
   );
 }
