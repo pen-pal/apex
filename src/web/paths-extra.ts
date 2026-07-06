@@ -648,4 +648,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'breakpoint', note: 'Freeze it to look: a debugger overwrites one instruction byte with a trap (INT3); when the CPU reaches it, the OS stops the process and hands control to the debugger to inspect registers and memory.' },
     ],
   },
+  {
+    id: 'serviceatscale',
+    title: 'Operating a service at scale',
+    icon: '📈',
+    blurb: 'One box becomes a fleet, and new failure modes appear. Spread the load, understand why latency explodes near capacity, control the fleet with feedback, and mint unique ids across it all with no coordinator.',
+    steps: [
+      { id: 'lb', note: 'Spread requests across a pool of backends — round-robin, least-connections, or hash-based — so no single server melts while others sit idle.' },
+      { id: 'queueing', note: 'Why latency explodes near capacity: an M/M/1 queue shows wait time shooting toward infinity as utilization nears 100% — the reason you never run a server flat out.' },
+      { id: 'pid', note: 'Feedback control for autoscaling: a PID controller sets capacity from the error between target and actual load, damping oscillation the way cruise control or a thermostat does.' },
+      { id: 'snowflake', note: 'Unique ids with no coordinator: a Snowflake id packs a timestamp, a machine id, and a counter into 64 bits, so thousands of servers mint sortable ids without ever talking to each other.' },
+    ],
+  },
 ];
