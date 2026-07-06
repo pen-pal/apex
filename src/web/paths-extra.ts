@@ -684,4 +684,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'rum', note: 'Every storage engine picks two of three: fast Reads, cheap Updates, small Memory — the RUM tradeoff that separates a B-tree from an LSM-tree from a hash index.' },
     ],
   },
+  {
+    id: 'joinnetwork',
+    title: 'How a device joins a network',
+    icon: '🔌',
+    blurb: 'Before a device sends a single real packet it has to get onto the network: prove it’s allowed on, encrypt the air link, lease an address, and find the gateway. The four steps that happen before your first byte of data.',
+    steps: [
+      { id: 'dot1x', note: 'Prove you’re allowed on: 802.1X / EAPOL keeps the port blocked until you authenticate (often to a RADIUS server) — the gate on enterprise wifi and wired ports.' },
+      { id: 'wpa', note: 'Derive the wifi keys: the WPA2 four-way handshake turns the shared secret into fresh per-session encryption keys, so the air link is encrypted and replay-proof.' },
+      { id: 'dhcp', note: 'Get an address: DHCP’s discover / offer / request / ack leases you an IP plus the gateway and DNS server — no manual configuration.' },
+      { id: 'arp', note: 'Find the gateway’s MAC: to reach anything off-subnet, ARP resolves the gateway’s IP to a hardware address so that first frame has somewhere to go.' },
+    ],
+  },
 ];
