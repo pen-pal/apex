@@ -14,7 +14,7 @@ export function TcpHandshakeSection() {
   const [c, setC] = useState(1000);
   const [s, setS] = useState(5000);
   const segs = useMemo(() => handshake(c, s), [c, s]);
-  const [step, setStep] = useState(0); // start before the SYN so the handshake plays out
+  const [step, setStep] = useState(3); // show the completed 3-way handshake first; rewind or advance from here
 
   const shownThrough = Math.min(step, segs.length);
   const cur = shownThrough > 0 ? segs[shownThrough - 1] : null;
@@ -31,9 +31,14 @@ export function TcpHandshakeSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>TCP — open a connection, then close it</h2></div>
         <p className="jsec-sub">
-          Every TCP connection begins with a three-way handshake and ends with a four-way teardown. It is all in the numbers: each
-          side chooses a random <strong>Initial Sequence Number</strong>, and because <code>SYN</code> and <code>FIN</code> each consume
-          one sequence number, every <code>ACK</code> is exactly “your number + 1”. Step through it and watch both state machines move.
+          The network can lose, duplicate, or reorder the envelopes you send — raw packets alone are unreliable. <strong>TCP</strong>
+          builds a <strong>reliable, in-order stream</strong> on top, like a phone call where both sides keep confirming they were
+          heard. Before any data flows, the two machines <strong>shake hands</strong> to sync up: the client sends <code>SYN</code>
+          (“let’s talk — I’ll number my bytes from X”), the server replies <code>SYN-ACK</code> (“okay, mine start at Y, and I got
+          your X”), and the client sends <code>ACK</code> (“got your Y”). Now each side knows the other’s starting <strong>sequence
+          number</strong> — the counter that numbers every byte so a lost or reordered one can be caught and resent — and that both
+          directions work. Because <code>SYN</code> and <code>FIN</code> each count as one byte, every <code>ACK</code> is exactly
+          “their number + 1.” Step through it and watch both state machines move.
         </p>
 
         <div className="tcph-isn">
