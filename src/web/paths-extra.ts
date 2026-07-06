@@ -624,4 +624,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'haarwavelet', note: 'Compress by scale: the Haar wavelet splits the image into a coarse average plus fine details — and since the details are mostly near-zero, keeping the largest few rebuilds it from a fraction of the data.' },
     ],
   },
+  {
+    id: 'exoticcrypto',
+    title: 'Cryptography’s exotic corners',
+    icon: '🧪',
+    blurb: 'Beyond textbook RSA lies a stranger world: encryption that’s randomized, that lets you add numbers while they stay secret, that wraps keys inside keys, and that rests on quantum physics rather than hard math.',
+    steps: [
+      { id: 'elgamal', note: 'A public-key scheme built on the discrete log: ElGamal is randomized, so the same message encrypts to a different ciphertext every time — the ancestor of much modern crypto.' },
+      { id: 'paillier', note: 'Add numbers while they stay encrypted: Paillier is additively homomorphic, so a server can sum ciphertexts it cannot read — the engine behind private voting and aggregation.' },
+      { id: 'envelope', note: 'Encrypt the key, not just the data: a data key encrypts the payload and a master key in an HSM/KMS encrypts that data key, so rotating or revoking access is cheap and centralized.' },
+      { id: 'bb84', note: 'Agree on a key with physics: BB84 sends qubits in random bases, and any measurement disturbs them — so an eavesdropper injects detectable errors. Security from quantum mechanics, not a hard problem.' },
+    ],
+  },
 ];
