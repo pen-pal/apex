@@ -12426,9 +12426,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .rns-kbest{fill:hsl(150 60% 62%)}
 .rns-kcand{fill:hsl(48 90% 66%)}
 .rns-foot{fill:hsl(210 16% 60%);font-size:13px}
-.rns-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.rns-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
-.rns-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+.rns-ctl{display:flex;flex-direction:column;gap:8px;align-items:center}
+.rns-ctl-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center}
+.rns-slider{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink)}
+.rns-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:border-color .12s,background .12s}
+.rns-btn:hover{border-color:var(--accent)}
+.rns-btn.on{background:hsl(38 70% 50% / .18);border-color:hsl(38 70% 55%);color:hsl(38 75% 60%)}
+.rns-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);text-align:center;max-width:760px}
+.rns-live.warn{color:hsl(38 85% 62%)}
+.rns-true{stroke:hsl(150 40% 60%);stroke-width:1.5;stroke-dasharray:5 4;opacity:.5}
+.rns-best.wrong{stroke:hsl(38 85% 60%)}
+.rns-ktrue{fill:hsl(150 40% 60%)}
+.rns-foot.warn{fill:hsl(38 85% 64%)}
 
 /* ── Meltdown story (MeltdownSection) — transient exec + Flush+Reload cache side channel ─────────── */
 .mlt-col{fill:hsl(0 60% 66%);font-size:11px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
