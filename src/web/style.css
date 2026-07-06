@@ -12333,9 +12333,16 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .lr-pt{stroke:hsl(220 20% 15% / .7);stroke-width:0.8}
 .lr-leg{font-size:11px;font-family:var(--mono,monospace)}
 .lr-foot{fill:hsl(210 16% 60%);font-size:13px}
-.lr-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.lr-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
-.lr-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+.lr-ctl{display:flex;flex-direction:column;gap:8px;align-items:center}
+.lr-ctl-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center}
+.lr-ctl-lbl{color:var(--muted);font-size:12px;font-weight:600}
+.lr-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:border-color .12s,background .12s}
+.lr-btn:hover{border-color:var(--accent)}
+.lr-btn.on{background:hsl(210 55% 50% / .18);border-color:hsl(210 55% 55%);color:hsl(210 55% 62%)}
+.lr-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);text-align:center;max-width:760px}
+.lr-live.warn{color:hsl(0 65% 62%)}
+.lr-col.warn{fill:hsl(0 65% 64%)}
+.lr-foot.warn{fill:hsl(0 62% 66%)}
 
 /* ── GMM / EM story (GmmSection) — Gaussian ellipses fit by EM, soft responsibilities ────────────── */
 .gmm-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
