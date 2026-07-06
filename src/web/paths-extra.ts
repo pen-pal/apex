@@ -612,4 +612,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'sctp', note: 'A transport built for this: SCTP carries multiple independent message streams over one association and multi-homes across network paths, avoiding the head-of-line blocking of a single TCP stream.' },
     ],
   },
+  {
+    id: 'scene2pixels',
+    title: 'From a 3D scene to pixels',
+    icon: '🎨',
+    blurb: 'How a rendered image comes to be. Orient objects in 3D without gimbal lock, draw them on a GPU’s thousands of parallel threads, smooth the jagged edges, then compress the finished image by scale.',
+    steps: [
+      { id: 'quaternion', note: 'Rotate in 3D without gimbal lock: a quaternion composes rotations cleanly and slerp interpolates between orientations smoothly — how engines orient every camera and object.' },
+      { id: 'gpu', note: 'Render in parallel: a GPU runs thousands of threads in lockstep (SIMT), each shading a pixel or vertex — the hardware behind real-time graphics (and, later, ML).' },
+      { id: 'msaa', note: 'Kill the jaggies: sampling a shape once per pixel stairsteps its edges; MSAA takes several sub-pixel coverage samples and averages them, softening the aliasing.' },
+      { id: 'haarwavelet', note: 'Compress by scale: the Haar wavelet splits the image into a coarse average plus fine details — and since the details are mostly near-zero, keeping the largest few rebuilds it from a fraction of the data.' },
+    ],
+  },
 ];
