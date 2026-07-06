@@ -22,10 +22,14 @@ export function lookup(obj: Record<string, any>, key: string, env: Env): unknown
   return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : env.proto[key];
 }
 
-/** The VULNERABLE deep merge: it honours "__proto__", writing into the shared prototype. */
+/** The VULNERABLE deep merge: it honours both routes to the shared prototype, writing attacker data onto it. */
 export function vulnerableMerge(target: Record<string, any>, source: Record<string, any>, env: Env): void {
   for (const key of Object.keys(source)) {
-    if (key === '__proto__') { vulnerableMerge(env.proto as Record<string, any>, source[key], env); continue; } // pollutes!
+    // "__proto__" is the live link to the shared prototype — a naive merge follows it and pollutes.
+    if (key === '__proto__') { vulnerableMerge(env.proto as Record<string, any>, source[key], env); continue; }
+    // ...and so is "constructor.prototype": obj.constructor.prototype IS the shared prototype, so the same
+    // pollution goes through a payload that dodges a filter blocking only the literal "__proto__" key.
+    if (key === 'constructor' && isObj(source[key]) && isObj(source[key].prototype)) { vulnerableMerge(env.proto as Record<string, any>, source[key].prototype, env); continue; }
     if (isObj(source[key])) { if (!isObj(target[key])) target[key] = {}; vulnerableMerge(target[key], source[key], env); }
     else target[key] = source[key];
   }

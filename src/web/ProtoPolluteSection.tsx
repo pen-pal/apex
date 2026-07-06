@@ -8,6 +8,7 @@ import { demo } from './protopollute';
 
 const PROBES = ['isAdmin', 'role', 'greeting'];
 const ATTACK = '{\n  "user": "guest",\n  "__proto__": { "isAdmin": true, "role": "root" }\n}';
+const ATTACK2 = '{\n  "user": "guest",\n  "constructor": { "prototype": { "isAdmin": true, "role": "root" } }\n}';
 const CLEAN = '{\n  "user": "guest",\n  "prefs": { "theme": "dark" }\n}';
 
 export function ProtoPolluteSection() {
@@ -28,11 +29,14 @@ export function ProtoPolluteSection() {
         A server deep-merges attacker JSON onto a config object. In JavaScript, the key <code>__proto__</code> is
         a live link to the <strong>shared prototype every object inherits from</strong>. A naive merge that
         follows it writes attacker data onto that prototype — so <strong>every object in the program</strong>,
-        including ones created later, starts seeing those properties. Edit the payload and merge:
+        including ones created later, starts seeing those properties. A filter that blocks only the literal
+        <code>__proto__</code> key is dodged by <code>constructor.prototype</code> — a different path to the very
+        same object. Edit the payload and merge:
       </p>
 
       <div className="ppl-presets">
-        <button type="button" className="ppl-preset atk" onClick={() => setPayload(ATTACK)}>😈 auth-bypass payload</button>
+        <button type="button" className="ppl-preset atk" onClick={() => setPayload(ATTACK)}>😈 __proto__ payload</button>
+        <button type="button" className="ppl-preset atk" onClick={() => setPayload(ATTACK2)}>😈 constructor.prototype</button>
         <button type="button" className="ppl-preset" onClick={() => setPayload(CLEAN)}>clean config</button>
         <div className="ppl-modes">
           <button type="button" className={`ppl-mode ${mode === 'vulnerable' ? 'on bad' : ''}`} onClick={() => setMode('vulnerable')}>vulnerable merge</button>
@@ -49,7 +53,7 @@ export function ProtoPolluteSection() {
             <div className="ppl-panel">
               <div className="ppl-ph">the merged object</div>
               <pre className="ppl-obj">{JSON.stringify(result.target, null, 1) || '{}'}</pre>
-              <div className="ppl-note">{Object.keys(result.target).length && mode === 'vulnerable' && payload.includes('__proto__') ? 'looks normal — the attack is nowhere in here' : 'the object you merged into'}</div>
+              <div className="ppl-note">{Object.keys(result.target).length && mode === 'vulnerable' && pollutedKeys.length ? 'looks normal — the attack is nowhere in here' : 'the object you merged into'}</div>
             </div>
             <div className={`ppl-panel ${pollutedKeys.length ? 'danger' : ''}`}>
               <div className="ppl-ph">🌐 the shared prototype</div>

@@ -38,6 +38,33 @@ describe('the fix', () => {
   });
 });
 
+describe('the constructor.prototype vector (dodges a filter that only blocks __proto__)', () => {
+  const CTOR = '{"constructor":{"prototype":{"isAdmin":true,"role":"root"}}}';
+  it('rests on a real-JS fact: obj.constructor.prototype IS Object.prototype', () => {
+    expect(({}).constructor.prototype).toBe(Object.prototype); // the independent oracle
+  });
+  it('vulnerable merge pollutes the shared prototype via constructor.prototype too', () => {
+    const r = demo(CTOR, 'vulnerable', ['isAdmin', 'role']);
+    expect(r.freshObjectSees.isAdmin).toBe(true);
+    expect(r.freshObjectSees.role).toBe('root');
+    expect(Object.keys(r.target)).toHaveLength(0); // invisible on the target, exactly like __proto__
+  });
+  it('both vectors pollute identically', () => {
+    const a = demo(ATTACK, 'vulnerable', ['isAdmin', 'role']).freshObjectSees;
+    expect(demo(CTOR, 'vulnerable', ['isAdmin', 'role']).freshObjectSees).toEqual(a);
+  });
+  it('the safe merge blocks the constructor vector too', () => {
+    expect(demo(CTOR, 'safe', ['isAdmin']).freshObjectSees.isAdmin).toBeUndefined();
+  });
+  it('a constructor key without a prototype sub-object does not pollute', () => {
+    expect(Object.keys(demo('{"constructor":{"x":1}}', 'vulnerable', []).polluted)).toHaveLength(0);
+  });
+  it('the sandbox still never touches the real Object.prototype', () => {
+    demo(CTOR, 'vulnerable', ['isAdmin']);
+    expect(Object.prototype.hasOwnProperty.call(Object.prototype, 'isAdmin')).toBe(false);
+  });
+});
+
 describe('normal deep merges still work (both modes)', () => {
   it('non-dangerous nested data merges the same', () => {
     const json = '{"theme":"dark","nested":{"a":1,"b":{"c":2}}}';
