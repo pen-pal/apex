@@ -10925,6 +10925,23 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tls-live-lbl{color:var(--muted);font-size:13px}
 .tls-input{padding:5px 10px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:13px;font-family:var(--mono,monospace);width:200px}
 .tls-live-note{color:hsl(150 45% 45%);font-size:12.5px;font-family:var(--mono,monospace)}
+/* deepened TLS: interactive "forge the cert" + live ECDHE attack in the story-live slot */
+.tls-check.bad{fill:hsl(0 75% 66%)}
+.tls-cert.forged{fill:hsl(0 72% 66%)}
+.tls-bad{color:hsl(0 68% 58%);font-weight:650}
+.tls-attack{flex-basis:100%;display:flex;flex-direction:column;align-items:center;gap:8px;max-width:760px;margin:0 auto}
+.tls-attack-btn{padding:7px 15px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-size:13px;font-weight:600;transition:border-color .14s,background .14s}
+.tls-attack-btn:hover{border-color:hsl(0 60% 58%)}
+.tls-attack-btn.on{background:hsl(0 60% 50% / .16);border-color:hsl(0 60% 55%);color:hsl(0 62% 62%)}
+.tls-attack-note{font-size:12.5px;line-height:1.55;color:var(--muted);text-align:center;max-width:700px}
+.tls-attack-note code,.tls-dh-out code{font-family:var(--mono,monospace);background:hsl(212 40% 55% / .12);border-radius:4px;padding:0 4px}
+.tls-dh{flex-basis:100%;display:flex;flex-direction:column;align-items:center;gap:9px;max-width:780px;margin:0 auto}
+.tls-dh-row{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.tls-dh-knob{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink)}
+.tls-dh-knob>b{color:hsl(212 70% 55%)}
+.tls-dh-out{font-size:12.5px;color:var(--muted);text-align:center;line-height:1.65}
+.tls-dh-secret{color:hsl(150 55% 55%);font-weight:650}
+.tls-dh-eve{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:2px}
 @media(prefers-reduced-motion:reduce){.tls-flow{animation:none;opacity:.6}}
 
 /* ── Flash-cell story (FlashCellSection) — floating-gate transistor on the shared .story-* stage ── */
