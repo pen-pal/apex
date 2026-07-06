@@ -607,7 +607,7 @@ export const EXTRA_PATHS: LearningPath[] = [
     blurb: 'The web began as one-shot request-response, but modern apps need servers that push and connections that stream. Four steps past plain HTTP — a full-duplex socket, the server-push patterns, typed streaming RPC, and a transport built for many streams at once.',
     steps: [
       { id: 'websocket', note: 'HTTP is one-shot; a WebSocket starts as an HTTP request then upgrades the same TCP connection to a full-duplex channel where either side sends any time.' },
-      { id: 'realtime', note: 'Server push, two ways: Server-Sent Events (simple, one-way, auto-reconnecting) versus WebSockets (bidirectional) — choose by whether the client also needs to talk back.' },
+      { id: 'realtime', note: 'Server push, along a spectrum: long-poll, Server-Sent Events, and WebSockets deliver the same events at different latencies — SSE is simple and one-way, WebSocket is bidirectional; choose by whether the client also needs to talk back.' },
       { id: 'grpc', note: 'Typed, streaming RPC: gRPC serializes calls with protobuf over HTTP/2 and supports client-, server-, and bidirectional streams — the backbone of internal microservice traffic.' },
       { id: 'sctp', note: 'A transport that survives a dead path: SCTP binds multiple network links into one association and fails over to an alternate when one times out — multi-homing a connection instead of dropping it the way single-path TCP would.' },
     ],
@@ -678,7 +678,7 @@ export const EXTRA_PATHS: LearningPath[] = [
     icon: '🗄️',
     blurb: 'Storage is a set of tradeoffs. See how a filesystem scatters a file into blocks, how Git stores content by its hash, how the OS decides which pages to evict from RAM, and the three-way tradeoff every storage engine must pick from.',
     steps: [
-      { id: 'inode', note: 'A file isn’t one contiguous thing: an inode holds its metadata and a list of block pointers — direct, then singly and doubly indirect — so one scheme spans a tiny file and a huge one.' },
+      { id: 'inode', note: 'A file isn’t one contiguous thing: an inode holds its metadata and a list of block pointers — direct, then single, double, and triple indirect — so one scheme spans a tiny file and a huge one.' },
       { id: 'gitobjects', note: 'Git stores content, not files: every blob, tree, and commit is named by the SHA of its contents and stored once, so identical data is deduplicated automatically.' },
       { id: 'pagereplace', note: 'RAM is smaller than the working set, so the OS evicts pages — LRU, the clock algorithm, and their approximations decide what to drop when a new page is faulted in.' },
       { id: 'rum', note: 'Every storage engine picks two of three: fast Reads, cheap Updates, small Memory — a B-tree keeps reads cheap, a leveled-LSM keeps space tight, a tiered-LSM keeps writes cheap, and none escapes the third.' },
