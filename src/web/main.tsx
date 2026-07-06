@@ -272,8 +272,11 @@ function App() {
             <header>
               <h1>Network</h1>
               <p className="sub">
-                Type a message — it becomes a real Ethernet/IPv4/TCP frame with real checksums — or load one of
-                90+ protocols and follow it across the stack, byte by byte.
+                Your computer never sends your message alone: it wraps it in nested <strong>envelopes</strong>, one per
+                layer — TCP for a reliable connection, IP for an address across the internet, Ethernet for the local wire —
+                each adding a header. Type a message and watch the envelopes get built byte by byte, cross the wire, and get
+                unwrapped at the far end — real frames, real checksums (or load a real protocol capture). Every network
+                attack, later, is a forged or tampered envelope somewhere in this stack.
               </p>
             </header>
 
