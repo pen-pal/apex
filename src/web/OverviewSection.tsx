@@ -5,7 +5,7 @@
 // the section + path registries, plus local search/expand state.
 import { useEffect, useMemo, useState } from 'react';
 import { GROUPS, metaById } from './sections';
-import { PATHS, type LearningPath } from './paths';
+import { PATHS, JOURNEY_AREAS, FEATURED_JOURNEYS, pathById, type LearningPath } from './paths';
 
 export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id: string) => void; onStartPath: (pathId: string) => void; current: string }) {
   const total = GROUPS.reduce((n, g) => n + g.ids.length, 0);
@@ -24,6 +24,31 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
   const ql = q.trim().toLowerCase();
   const searching = ql !== '';
   const toggle = (label: string) => setExpanded((s) => { const n = new Set(s); n.has(label) ? n.delete(label) : n.add(label); return n; });
+  const [jexpanded, setJexpanded] = useState<Set<string>>(new Set());
+  const toggleJ = (label: string) => setJexpanded((s) => { const n = new Set(s); n.has(label) ? n.delete(label) : n.add(label); return n; });
+
+  const card = (p: LearningPath) => (
+    <button key={p.id} type="button" className="jp-card" onClick={() => setPreview(p)}>
+      <div className="jp-card-top">
+        <span className="jp-icon" aria-hidden="true">{p.icon}</span>
+        <span className="jp-title">{p.title}</span>
+        <span className="jp-count">{p.steps.length} steps</span>
+      </div>
+      <p className="jp-blurb">{p.blurb}</p>
+      <div className="jp-trail">
+        {p.steps.slice(0, 4).map((s, i) => (
+          <span key={s.id} className="jp-stop">
+            {i > 0 && <span className="jp-arrow" aria-hidden="true">→</span>}
+            <span className="jp-stop-lbl">{metaById[s.id]?.label ?? s.id}</span>
+          </span>
+        ))}
+        {p.steps.length > 4 && (
+          <span className="jp-stop"><span className="jp-arrow" aria-hidden="true">→</span><span className="jp-stop-lbl jp-more">+{p.steps.length - 4} more</span></span>
+        )}
+      </div>
+      <span className="jp-start">Preview journey →</span>
+    </button>
+  );
 
   const visible = useMemo(() => GROUPS.map((g) => ({
     ...g,
@@ -48,29 +73,28 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
       {!searching && (
         <div className="jp">
           <div className="jp-head"><span className="jp-eyebrow">Guided journeys</span><h2>Walk one idea end to end</h2></div>
-          <div className="jp-grid">
-            {PATHS.map((p) => (
-              <button key={p.id} type="button" className="jp-card" onClick={() => setPreview(p)}>
-                <div className="jp-card-top">
-                  <span className="jp-icon" aria-hidden="true">{p.icon}</span>
-                  <span className="jp-title">{p.title}</span>
-                  <span className="jp-count">{p.steps.length} steps</span>
+          <div className="jp-featured">
+            <span className="jp-featured-lbl">Start here</span>
+            <div className="jp-grid">
+              {FEATURED_JOURNEYS.map((id) => pathById[id]).filter(Boolean).map(card)}
+            </div>
+          </div>
+          <div className="jpg">
+            <div className="jpg-lbl">Or browse all {PATHS.length} journeys by area</div>
+            {JOURNEY_AREAS.map((area) => {
+              const open = jexpanded.has(area.label);
+              return (
+                <div className={`jpg-area ${open ? 'open' : ''}`} key={area.label}>
+                  <button type="button" className="jpg-head" onClick={() => toggleJ(area.label)} aria-expanded={open}>
+                    <span className="jpg-icon" aria-hidden="true">{area.icon}</span>
+                    <h3>{area.label}</h3>
+                    <span className="jpg-count">{area.ids.length}</span>
+                    <span className="jpg-expand" aria-hidden="true">{open ? '⌄' : '›'}</span>
+                  </button>
+                  {open && <div className="jp-grid">{area.ids.map((id) => pathById[id]).filter(Boolean).map(card)}</div>}
                 </div>
-                <p className="jp-blurb">{p.blurb}</p>
-                <div className="jp-trail">
-                  {p.steps.slice(0, 4).map((s, i) => (
-                    <span key={s.id} className="jp-stop">
-                      {i > 0 && <span className="jp-arrow" aria-hidden="true">→</span>}
-                      <span className="jp-stop-lbl">{metaById[s.id]?.label ?? s.id}</span>
-                    </span>
-                  ))}
-                  {p.steps.length > 4 && (
-                    <span className="jp-stop"><span className="jp-arrow" aria-hidden="true">→</span><span className="jp-stop-lbl jp-more">+{p.steps.length - 4} more</span></span>
-                  )}
-                </div>
-                <span className="jp-start">Preview journey →</span>
-              </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { PATHS, pathById, stepIndexOf } from '../src/web/paths';
+import { PATHS, pathById, stepIndexOf, JOURNEY_AREAS, FEATURED_JOURNEYS } from '../src/web/paths';
 import { metaById } from '../src/web/sections';
 
 describe('guided journeys are well-formed', () => {
@@ -16,6 +16,23 @@ describe('guided journeys are well-formed', () => {
   it('path ids are unique', () => {
     const ids = PATHS.map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('every journey is in exactly one area, and areas list only real journeys', () => {
+    const pathIds = new Set(PATHS.map((p) => p.id));
+    const seen = new Map<string, number>();
+    for (const area of JOURNEY_AREAS) {
+      for (const id of area.ids) {
+        expect(pathIds.has(id), `area "${area.label}" lists unknown journey ${id}`).toBe(true);
+        seen.set(id, (seen.get(id) ?? 0) + 1);
+      }
+    }
+    for (const id of pathIds) expect(seen.get(id), `journey ${id} must be in exactly one area`).toBe(1);
+    expect(seen.size, 'areas cover no extra ids').toBe(pathIds.size);
+  });
+
+  it('featured journeys are real paths', () => {
+    for (const id of FEATURED_JOURNEYS) expect(pathById[id], `featured ${id}`).toBeTruthy();
   });
 
   it('every step references a REAL section (taxonomy guard — no drift)', () => {

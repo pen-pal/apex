@@ -444,6 +444,25 @@ export const PATHS: LearningPath[] = [...CORE_PATHS, ...EXTRA_PATHS];
 
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
 
+/** A few flagship journeys surfaced as "start here" above the grouped list. */
+export const FEATURED_JOURNEYS = ['https', 'cpu', 'database'];
+
+/** Journeys grouped into browsable areas so ~80 of them don't render as one wall.
+ *  Every PATH id must appear in exactly one area — tests/paths.test.ts enforces it. */
+export const JOURNEY_AREAS: { label: string; icon: string; ids: string[] }[] = [
+  { label: 'Networking', icon: '🌐', ids: ['packet', 'routingpaths', 'dnssystem', 'localnet', 'trafficshape', 'overlays', 'advrouting', 'iplayer', 'joinnetwork'] },
+  { label: 'Transport & the web', icon: '🚀', ids: ['https', 'tcp', 'tcptuning', 'webtransport', 'httpstls', 'realtimeweb', 'latencymetrics'] },
+  { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'moderncrypto', 'curvesigs', 'symmcrypto', 'cryptoblocks', 'cryptomath', 'signal', 'exoticcrypto', 'hashfns'] },
+  { label: 'Security & privacy', icon: '🛡️', ids: ['websec', 'exploits', 'webattacks', 'authpath', 'attacktour', 'privacy'] },
+  { label: 'Distributed systems', icon: '🕸️', ids: ['distributed', 'disttime', 'leaderless', 'failover', 'causalorder'] },
+  { label: 'Storage & databases', icon: '🗄️', ids: ['database', 'query', 'dbindex', 'wheredatalives'] },
+  { label: 'Algorithms & data structures', icon: '🧮', ids: ['sketches', 'randomized', 'strings', 'dp', 'iterative', 'sortselect', 'searching', 'hashing', 'balanced', 'graphalgos', 'compgeom', 'numerics', 'texteditor', 'stringsearch', 'elegantalgos'] },
+  { label: 'Systems, OS & hardware', icon: '🖥️', ids: ['cpu', 'language', 'memory', 'lockfree', 'osinternals', 'insidehw', 'sysperf', 'machineinmotion', 'arithmetic'] },
+  { label: 'Graphics, media & encoding', icon: '🎨', ids: ['graphics', 'compression', 'digitalaudio', 'noisychannel', 'imaging', 'shrinkdata', 'numcoding', 'scene2pixels', 'robustcodes'] },
+  { label: 'AI & simulation', icon: '🤖', ids: ['mlclassify', 'mlstructure', 'neuralnet', 'physicsim'] },
+  { label: 'Operations & SRE', icon: '🛠️', ids: ['production', 'serviceatscale', 'resilience'] },
+];
+
 /** The index of `sectionId` within a path's steps, or -1 if the learner has stepped off the path. */
 export function stepIndexOf(path: LearningPath, sectionId: string): number {
   return path.steps.findIndex((s) => s.id === sectionId);
