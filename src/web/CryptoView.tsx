@@ -32,6 +32,15 @@ export function CryptoView() {
   return (
     <div className="journey">
       <section className="jsec">
+        <p className="jsec-sub">
+          <strong>Cryptography</strong> is the math that keeps data secret and honest. To <strong>encrypt</strong> is to
+          scramble a message with a secret <strong>key</strong> so only someone holding the key can turn it back — the same
+          scrambling recipe (the <em>cipher</em>) with a different key gives completely different output. It buys two things:
+          <strong> confidentiality</strong> (nobody else can read your data) and <strong>integrity</strong> (nobody can alter it
+          without you noticing). Every tab below is a real algorithm running live on the value you type — nothing faked.
+          Together they are what seals your data inside the TLS envelope from the network stage, and every crypto attack later
+          is an attempt to break one of these guarantees.
+        </p>
         <nav className="subtabs">
           {TOOLS.map((t) => (
             <button key={t.id} className={tool === t.id ? 'on' : ''} onClick={() => setTool(t.id)}>{t.label}</button>
@@ -590,9 +599,10 @@ function EncryptTool() {
     <>
       <h2>TLS encryption sandbox — real AES-256-GCM</h2>
       <p className="jsec-sub">
-        This runs genuine WebCrypto AES-GCM on the value you type below — a sandbox value, never a
-        captured stream. After a TLS handshake, application data looks exactly like this: an opaque
-        record of ciphertext + authentication tag. Apex never invents decrypted plaintext for real captures.
+        Encryption turns readable text into unreadable <strong>ciphertext</strong> that only the key can reverse. This runs
+        genuine WebCrypto AES-GCM on the value you type below — a sandbox value, never a captured stream. After a TLS
+        handshake, application data looks exactly like this: an opaque record of ciphertext + an <strong>authentication
+        tag</strong> (a few bytes that prove it wasn’t tampered with). Apex never invents decrypted plaintext for real captures.
       </p>
       <label className="crypto-input">
         <span>plaintext (sandbox)</span>
