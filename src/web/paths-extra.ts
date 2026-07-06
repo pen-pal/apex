@@ -66,7 +66,7 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'ecc', note: 'The setting: adding points on an elliptic curve forms a group where a scalar times a point is easy but recovering the scalar (discrete log) is hard — far smaller keys than RSA for the same strength.' },
       { id: 'ecdsa', note: 'The standard curve signature (Bitcoin, TLS) — but it needs a fresh random nonce per signature, and a repeated or biased one leaks the private key outright.' },
       { id: 'eddsa', note: 'The modern fix: Ed25519 derives the nonce deterministically from the key and message, so a broken RNG can’t leak the key — fast and misuse-resistant.' },
-      { id: 'schnorr', note: 'The clean scheme underneath: Schnorr signatures are linear, so several signers’ keys and signatures add into one — the basis of multisignatures (MuSig, Bitcoin Taproot).' },
+      { id: 'schnorr', note: 'The idea underneath signatures: Schnorr’s three-move zero-knowledge proof shows you know the secret x behind Y = xG without revealing it — Fiat–Shamir turns that into a signature, and its linearity is what lets keys add into multisignatures (MuSig, Taproot).' },
       { id: 'bls', note: 'Go further with a pairing: BLS aggregates any number of signatures — even on different messages — into a single short one, verified in one shot (Ethereum consensus).' },
       { id: 'threshsig', note: 'Split the private key so no one holds it: any k of n parties jointly produce a valid signature but fewer cannot — threshold signing for custody and validators.' },
     ],
