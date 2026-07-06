@@ -39,6 +39,16 @@ export function PageWalkSection() {
 
   return (
     <div className="pgw">
+      <p className="pgw-intro">
+        Every running program is handed its own private, <em>pretend</em> view of memory: it believes it starts at address 0
+        and owns the whole space — even though dozens of programs share the real RAM at once. Those <strong>virtual</strong>
+        addresses aren’t real locations. On <em>every</em> memory access, the CPU translates the virtual address into a real
+        <strong> physical</strong> one in the RAM chips, by walking a set of lookup tables the operating system fills in. That
+        one layer of indirection buys three enormous things: <strong>isolation</strong> (a program literally can’t name another’s
+        memory), the <strong>illusion of more memory than exists</strong> (idle pages get parked on disk), and the freedom to
+        load a program anywhere. It is also the map an attacker studies — and the thing <em>ASLR</em> later randomizes. Type a
+        virtual address below and watch the CPU translate it, table by table.
+      </p>
       <div className="pgw-bar">
         <label className="pgw-input">virtual address
           <input value={vaHex} spellCheck={false} onChange={(e) => setVaHex(e.target.value.trim())} />
@@ -55,6 +65,7 @@ export function PageWalkSection() {
 
       {valid && fields && (
         <>
+          <p className="pgw-splitlbl">The address is really five numbers stacked together — an index into each of four nested lookup tables, then the offset into the final 4 KB page:</p>
           <div className="pgw-split">
             {groups.map((bits, i) => (
               <div key={i} className="pgw-field" style={{ borderColor: `hsl(${FIELD_HUES[i]} 60% 60%)`, flexGrow: bits.length }}>

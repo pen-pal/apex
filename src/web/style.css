@@ -5525,6 +5525,9 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pgw-mfr{color:hsl(150 45% 32%)}
 .pgw-foot{font-size:12.5px;color:var(--muted);line-height:1.65}
 .pgw-foot strong{color:var(--ink)}
+.pgw-intro{font-size:13.5px;color:var(--ink);line-height:1.6;max-width:82ch;margin:0}
+.pgw-intro strong{font-weight:600}
+.pgw-splitlbl{font-size:12.5px;color:var(--muted);margin:0;max-width:82ch}
 @media(max-width:680px){.pgw-fbits{font-size:10px}.pgw-split{gap:3px}}
 
 /* ── MESI cache coherence ────────────────────────────────────────────────────── */
