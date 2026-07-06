@@ -588,4 +588,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'killchain', note: 'Zoom out: real intrusions chain these — recon, initial access, escalation, lateral movement — and defense-in-depth means breaking any single link stops the whole chain.' },
     ],
   },
+  {
+    id: 'elegantalgos',
+    title: 'Elegant algorithmic tricks',
+    icon: '✨',
+    blurb: 'Some algorithms are startlingly simple once you see the trick. Four that crack a seemingly-hard problem in one pass or O(1) extra space — a max-sum scan, a majority vote, a cycle finder, and an all-pairs shortest path.',
+    steps: [
+      { id: 'kadane', note: 'Max-sum subarray in one pass: track the best sum ending here, and drop it whenever it turns negative — O(n) for a problem that looks like it needs O(n²).' },
+      { id: 'majority', note: 'Find the element appearing more than n/2 times in O(1) space: Boyer–Moore keeps one candidate and a counter, cancelling opposing pairs — whatever survives is the majority.' },
+      { id: 'cycledetect', note: 'Detect a loop with two pointers and no extra memory: a slow and a fast walker must eventually meet inside any cycle — Floyd’s tortoise and hare.' },
+      { id: 'floyd', note: 'All-pairs shortest paths in one triple loop: Floyd–Warshall relaxes every route through each intermediate vertex in turn — cubic time, a few lines, handles negative edges.' },
+    ],
+  },
 ];
