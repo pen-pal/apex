@@ -57,3 +57,41 @@ describe('DMARC alignment and policy', () => {
     expect(dmarc(from, spfFail, dkimFail, 'none').action).toBe('deliver'); // monitor only
   });
 });
+
+describe('the attacker-controlled scenarios the section produces', () => {
+  const from = 'bank.example';
+  const A = ['198.51.100.10'];
+  const atkKey = rsaKeygen(71n, 59n, 17n); // the attacker's OWN DKIM key / domain
+  const good = 'Your monthly statement is ready to view.';
+  const tampered = good + ' PS: wire $5000.';
+  const bankSig = dkimSign(good, key); // the bank signed the ORIGINAL body
+
+  it('a MITM who tampers in transit relays from its OWN IP → SPF fails AND DKIM fails → rejected', () => {
+    const spf = spfCheck('203.0.113.66', from, A);        // attacker's IP, not a bank sender
+    const dkim = dkimVerify(tampered, bankSig, key, from); // altered body → the real signature breaks
+    expect(spf.pass).toBe(false);
+    expect(dkim.pass).toBe(false);
+    expect(dmarc(from, spf, dkim, 'reject').action).toBe('reject');
+  });
+
+  it('a VALID DKIM signature from the WRONG domain verifies but does not align → rejected', () => {
+    const spf = spfCheck('203.0.113.66', from, A);
+    const atkSig = dkimSign('Click to verify!', atkKey);
+    const dkim = dkimVerify('Click to verify!', atkSig, atkKey, 'attacker.test');
+    expect(dkim.pass).toBe(true);          // the signature really is valid...
+    const d = dmarc(from, spf, dkim, 'reject');
+    expect(d.dkimAligned).toBe(false);     // ...but d=attacker.test ≠ From, so it doesn't align
+    expect(d.action).toBe('reject');
+  });
+
+  it('SPF authenticates the sender, not the content: a tamper from an AUTHORIZED IP still passes DMARC', () => {
+    const spf = spfCheck('198.51.100.10', from, A);       // an authorized IP (compromised relay / list re-send)
+    const dkim = dkimVerify(tampered, bankSig, key, from); // DKIM fails — the body was altered
+    expect(spf.pass).toBe(true);
+    expect(dkim.pass).toBe(false);
+    const d = dmarc(from, spf, dkim, 'reject');
+    expect(d.spfAligned).toBe(true);
+    expect(d.pass).toBe(true);             // SPF alignment alone passes DMARC...
+    expect(d.action).toBe('deliver');      // ...so the tampered body is DELIVERED. SPF never hashed it.
+  });
+});

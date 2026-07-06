@@ -3484,10 +3484,19 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mail-pick{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}
 .mail-pick button{font:inherit;font-size:12px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
 .mail-pick button.on{background:hsl(212 60% 55% / .14);border-color:hsl(212 55% 72%);font-weight:600}
-.mail-env{padding:12px 15px;border-radius:10px;background:var(--subtle);border:1px solid var(--line);margin-bottom:14px;display:flex;flex-direction:column;gap:5px;font-size:12.5px}
-.mail-env span{color:var(--muted);display:inline-block;min-width:118px}
-.mail-env code{font-family:var(--mono);font-size:12px}
 .mail-body{line-height:1.5}
+.mail-compose{padding:12px 15px;border-radius:10px;background:var(--subtle);border:1px solid var(--line);margin-bottom:14px;display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.mail-row{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.mail-row>span{color:var(--muted);min-width:100px}
+.mail-row code{font-family:var(--mono);font-size:12px}
+.mail-row em{color:var(--muted);font-size:11.5px}
+.ma-opt{font:inherit;font-size:11.5px;padding:4px 9px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono)}
+.ma-opt:hover{border-color:var(--accent)}
+.ma-opt.on{background:hsl(212 60% 55% / .16);border-color:hsl(212 55% 62%);color:hsl(212 60% 58%);font-weight:600}
+.mail-bodyedit{display:flex;flex-direction:column;gap:4px}
+.mail-bodyedit>span{color:var(--muted)}
+.mail-bodyedit textarea{width:100%;box-sizing:border-box;font-family:var(--mono);font-size:12px;padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);resize:vertical}
+.ma-tamp{color:hsl(0 72% 60%);font-style:normal;font-weight:600;margin-left:6px}
 .mail-checks{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
 .mail-check{display:grid;grid-template-columns:60px 70px 1fr;gap:10px;align-items:baseline;padding:9px 13px;border-radius:9px;border:1px solid var(--line)}
 .mail-check.ok{background:hsl(150 50% 55% / .14);border-color:hsl(150 42% 84%)}
