@@ -600,4 +600,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'floyd', note: 'All-pairs shortest paths in one triple loop: Floyd–Warshall relaxes every route through each intermediate vertex in turn — cubic time, a few lines, handles negative edges.' },
     ],
   },
+  {
+    id: 'realtimeweb',
+    title: 'Beyond request-response (real-time & streaming)',
+    icon: '📡',
+    blurb: 'The web began as one-shot request-response, but modern apps need servers that push and connections that stream. Four steps past plain HTTP — a full-duplex socket, the server-push patterns, typed streaming RPC, and a transport built for many streams at once.',
+    steps: [
+      { id: 'websocket', note: 'HTTP is one-shot; a WebSocket starts as an HTTP request then upgrades the same TCP connection to a full-duplex channel where either side sends any time.' },
+      { id: 'realtime', note: 'Server push, two ways: Server-Sent Events (simple, one-way, auto-reconnecting) versus WebSockets (bidirectional) — choose by whether the client also needs to talk back.' },
+      { id: 'grpc', note: 'Typed, streaming RPC: gRPC serializes calls with protobuf over HTTP/2 and supports client-, server-, and bidirectional streams — the backbone of internal microservice traffic.' },
+      { id: 'sctp', note: 'A transport built for this: SCTP carries multiple independent message streams over one association and multi-homes across network paths, avoiding the head-of-line blocking of a single TCP stream.' },
+    ],
+  },
 ];
