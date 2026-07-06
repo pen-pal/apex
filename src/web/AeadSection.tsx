@@ -34,6 +34,18 @@ function Bytes({ data, hue = true, onByte, mark }: { data: Uint8Array; hue?: boo
 export function AeadSection() {
   return (
     <div className="journey">
+      <section className="jsec">
+        <div className="jsec-head"><h2>Authenticated encryption — hide the data, and prove it wasn’t touched</h2></div>
+        <p className="jsec-sub">
+          Encryption hides your data — but hiding isn’t enough. If an attacker can flip bits in the ciphertext without you
+          noticing, they can corrupt or steer the message even without reading it. Modern crypto solves both at once with
+          <strong> AEAD</strong> (Authenticated Encryption with Associated Data): <strong>confidentiality</strong> (nobody can
+          read it) <em>and</em> <strong>integrity</strong> (nobody can change it undetected), in one pass. This section builds it
+          in three steps — first how a cipher encrypts any-length data (<strong>CTR</strong>), then the single most common bug
+          that shatters it (<strong>nonce reuse</strong>), then how an authentication <strong>tag</strong> catches tampering
+          (<strong>GCM</strong>). Every TLS record you send uses exactly this.
+        </p>
+      </section>
       <CtrPanel />
       <NoncePanel />
       <AeadPanel />
@@ -50,9 +62,12 @@ function CtrPanel() {
     <section className="jsec">
       <div className="jsec-head"><h2>① CTR mode — a block cipher, used as a stream cipher</h2></div>
       <p className="jsec-sub">
-        Instead of encrypting the <em>message</em>, CTR encrypts a <strong>counter</strong> (nonce ‖ block number) and XORs the
-        resulting <strong>keystream</strong> over the data. No padding, blocks are independent (parallelisable, random-access),
-        and decrypting is the <em>same</em> operation — XOR the keystream back.
+        AES on its own is a <strong>block cipher</strong> — it only scrambles fixed 16-byte blocks. To encrypt a message of
+        <em> any</em> length, <strong>CTR mode</strong> turns it into a <strong>stream cipher</strong>: instead of encrypting the
+        message, it encrypts a simple <strong>counter</strong> (a per-message <strong>nonce</strong> — a number used once — glued
+        to a block number), producing a pseudo-random <strong>keystream</strong>, then <strong>XORs</strong> that keystream over
+        the data (XOR flips bits so that applying the same keystream again undoes it). No padding, blocks are independent (decrypt
+        any part at random), and decrypting is the <em>same</em> operation — XOR the keystream back.
       </p>
       <label className="ag-field"><span>message</span>
         <input value={msg} onChange={(e) => setMsg(e.target.value)} /></label>
