@@ -10,7 +10,7 @@ const INITIAL: Host[] = [
   { ip: '192.168.1.10', mac: '00:1a:aa', name: 'PC-A' },
   { ip: '192.168.1.20', mac: '00:1b:bb', name: 'PC-B' },
   { ip: '192.168.1.30', mac: '00:1c:cc', name: 'PC-C' },
-  { ip: '192.168.1.1', mac: '00:1g:gw', name: 'Gateway' },
+  { ip: '192.168.1.1', mac: '00:1d:dd', name: 'Gateway' },
 ];
 const UNKNOWN = '192.168.1.99';
 
@@ -37,7 +37,7 @@ export function ArpSection() {
   const gratuitousFrom = (ip: string, failover: boolean) => {
     let announcer = hosts.find((h) => h.ip === ip)!;
     if (failover) {
-      const newMac = `00:9${ip.slice(-1)}:fo`;
+      const newMac = `00:9${ip.slice(-1)}:fe`;
       announcer = { ...announcer, mac: newMac };
       setHosts((hs) => hs.map((h) => (h.ip === ip ? announcer : h)));
     }
@@ -59,7 +59,7 @@ export function ArpSection() {
           number burned into the network card. To actually hand a frame to a machine on your local wire — the
           <strong> LAN</strong>, the devices sharing one switch — you need its MAC, but you only know its IP. <strong>ARP</strong>
           bridges the two: check a small cache; on a miss, <strong>broadcast</strong> to everyone (“who has 192.168.1.1?”),
-          the owner <strong>replies</strong> (“it’s at 00:1g:gw”), and you cache the answer so the next send skips all this.
+          the owner <strong>replies</strong> (“it’s at 00:1d:dd”), and you cache the answer so the next send skips all this.
           Pick a sender and target and watch.
         </p>
 
