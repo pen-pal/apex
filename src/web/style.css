@@ -12311,6 +12311,22 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dt-pt{stroke:hsl(220 20% 15% / .6);stroke-width:0.6}
 .dt-foot{fill:hsl(210 16% 60%);font-size:13px}
 .dt-ctl{color:var(--ink);font-size:13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dt-acc.warn{color:hsl(0 72% 64%)}
+.dt-pt.test{fill:none;stroke-width:1.4}
+.dt-cv-frame{fill:none;stroke:hsl(220 18% 30%);stroke-width:1}
+.dt-cv-title{fill:hsl(210 16% 60%);font-size:12px}
+.dt-cv-grid{stroke:hsl(220 18% 26%);stroke-width:.7;stroke-dasharray:2 3}
+.dt-cv-ax{fill:hsl(210 16% 55%);font-size:10px;font-family:var(--mono,monospace)}
+.dt-cv-best{stroke:hsl(150 45% 50%);stroke-width:1;stroke-dasharray:3 3;opacity:.55}
+.dt-cv-best-lbl{fill:hsl(150 45% 55%);font-size:10px}
+.dt-cv-train{fill:none;stroke:hsl(255 60% 70%);stroke-width:2}
+.dt-cv-test{fill:none;stroke:hsl(2 74% 62%);stroke-width:2}
+.dt-cv-now{stroke:hsl(210 20% 72%);stroke-width:1.5;opacity:.45}
+.dt-cv-dot.train{fill:hsl(255 60% 72%)}
+.dt-cv-dot.test{fill:hsl(2 74% 64%)}
+.dt-cv-lbl.train{fill:hsl(255 60% 72%);font-size:11px;font-weight:600}
+.dt-cv-lbl.test{fill:hsl(2 74% 64%);font-size:11px;font-weight:600}
+.dt-foot.warn{fill:hsl(2 74% 64%)}
 
 /* ── DBSCAN story (DbscanSection) — density clustering: rings + noise vs k-means ──────────────────── */
 .dbs-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
