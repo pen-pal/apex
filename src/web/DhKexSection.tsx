@@ -22,10 +22,13 @@ export function DhKexSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>Diffie–Hellman — a shared secret in the open</h2></div>
         <p className="jsec-sub">
-          Alice and Bob have never met and share no secret, yet over a fully public channel they agree on one — and an eavesdropper
-          who records every byte still can’t reproduce it. <code>G<sup>a</sup></code> is easy to compute but
-          un-inverting it (the discrete logarithm) is not. Public parameters: prime <code>p = {String(P)}</code>, generator
-          <code> g = {String(G)}</code>.
+          Alice and Bob have never met and share no secret, yet over a fully public channel they agree on one. Picture
+          <strong> mixing paint</strong>: they openly agree on a shared base colour, each stirs in a <em>secret</em> colour of
+          their own, and they swap the resulting mixtures in plain sight. Now each stirs their own secret into the mixture they
+          received — and both land on the <em>same</em> final shade, because it holds all three colours. Eve saw the base and
+          both mixtures, but pulling a mixed colour back apart into its ingredients is the hard part. Here the “colours” are
+          numbers: mixing is <code>g<sup>x</sup> mod p</code> (easy forward), un-mixing is the <strong>discrete logarithm</strong>
+          (infeasible). Public parameters: prime <code>p = {String(P)}</code>, generator <code>g = {String(G)}</code>.
         </p>
 
         <div className="dhk-grid">
