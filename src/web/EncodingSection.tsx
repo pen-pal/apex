@@ -10,8 +10,8 @@ const hex2 = (v: number) => v.toString(16).toUpperCase().padStart(2, '0');
 
 type Tool = 'utf8' | 'bases' | 'base64' | 'float' | 'varint' | 'der' | 'puny' | 'url' | 'urlanat' | 'hexdump';
 const TOOLS: { id: Tool; label: string }[] = [
+  { id: 'bases', label: 'Bits & bytes' },
   { id: 'utf8', label: 'Text → UTF-8' },
-  { id: 'bases', label: 'Number bases' },
   { id: 'base64', label: 'Base64' },
   { id: 'float', label: 'Float (IEEE-754)' },
   { id: 'varint', label: 'Varint / ZigZag' },
@@ -23,13 +23,18 @@ const TOOLS: { id: Tool; label: string }[] = [
 ];
 
 export function EncodingSection() {
-  const [tool, setTool] = useState<Tool>('utf8');
+  const [tool, setTool] = useState<Tool>('bases');
   return (
     <div className="journey">
       <section className="jsec">
         <div className="jsec-head">
           <h2>Encoding — how data becomes bytes</h2>
         </div>
+        <p className="jsec-sub">
+          Underneath everything, a computer stores only numbers. A <strong>byte</strong> is 8 <strong>bits</strong> — eight tiny
+          on/off switches — and their pattern is a number from 0 to 255. Text, colours, sound, code: all of it is just bytes,
+          encoded one way or another. Pick a tab, type something, and watch it turn into the actual bytes.
+        </p>
         <nav className="subtabs">
           {TOOLS.map((t) => (
             <button key={t.id} className={tool === t.id ? 'on' : ''} onClick={() => setTool(t.id)}>{t.label}</button>
@@ -215,8 +220,10 @@ function BasesTool() {
   return (
     <>
       <p className="jsec-sub">
-        The same value in every base. Negatives use two’s complement at the chosen width. <strong>Click any bit</strong> to
-        flip it and watch the number change.
+        Start at the very bottom: a byte is <strong>8 bits</strong>, and each bit is one on/off switch — a <strong>0 or a 1</strong>.
+        Line them up and the pattern <em>is</em> a number. <strong>Click the switches</strong> to flip them and watch the same value
+        appear in <strong>decimal</strong> (base 10, how we count), <strong>hex</strong> (base 16, how bytes are usually written), and
+        <strong> binary</strong> (the bits themselves). Wider numbers use 16 or 32 bits; negatives use two’s complement.
       </p>
       <div className="enc-row">
         <input className="enc-input narrow" value={text} onChange={(e) => setText(e.target.value)} placeholder="Integer, e.g. 200 or -1" spellCheck={false} />
