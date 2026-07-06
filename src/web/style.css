@@ -12380,9 +12380,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dart-est{fill:hsl(45 90% 68%);font-size:20px;font-family:var(--mono,monospace)}
 .dart-sub{fill:hsl(210 16% 62%);font-size:12.5px;font-family:var(--mono,monospace)}
 .dart-foot{fill:hsl(210 16% 60%);font-size:13px}
-.dart-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.dart-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
-.dart-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+.dart-ctl{display:flex;flex-direction:column;gap:8px;align-items:center}
+.dart-ctl-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.dart-ctl-lbl{color:var(--muted);font-size:12px;font-weight:600}
+.dart-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:border-color .12s,background .12s}
+.dart-btn:hover{border-color:var(--accent)}
+.dart-btn.on{background:hsl(150 55% 45% / .18);border-color:hsl(150 55% 50%);color:hsl(150 50% 45%)}
+.dart-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);text-align:center;max-width:760px}
+.dart-hbar{fill:hsl(150 55% 55% / .72)}
+.dart-pi{stroke:hsl(45 85% 62%);stroke-width:1.5;stroke-dasharray:4 3}
+.dart-pilbl{fill:hsl(45 82% 66%);font-size:12px;font-family:var(--mono,monospace)}
+.dart-tick{fill:hsl(210 16% 58%);font-size:11px;font-family:var(--mono,monospace)}
+.dart-axis{stroke:hsl(210 16% 40%);stroke-width:1}
+.dart-spread{stroke:hsl(0 65% 64%);stroke-width:3;stroke-linecap:round}
+.dart-spread-lbl{fill:hsl(0 60% 66%);font-size:12px}
 
 /* ── RANSAC story (RansacSection) — robust fit ignores outliers vs least-squares ─────────────────── */
 .rns-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
