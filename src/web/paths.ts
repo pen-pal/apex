@@ -24,6 +24,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'aead', note: 'From here every record is encrypted AND authenticated; an eavesdropper sees only ciphertext.' },
       { id: 'http2', note: 'The actual GET — multiplexed as HTTP/2 streams over the one encrypted connection.' },
       { id: 'cdn', note: 'The response is often served from a nearby CDN edge, not the distant origin.' },
+      { id: 'conditional', note: 'On the next visit, don’t re-download: conditional requests (If-None-Match / If-Modified-Since) let the server reply 304 Not Modified, and range requests fetch only the missing bytes.' },
     ],
   },
   {
@@ -76,6 +77,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'cubic', note: 'CUBIC grows the window along a cubic curve to fill fat, fast links quickly.' },
       { id: 'bbr', note: 'BBR models bottleneck bandwidth and RTT instead of treating loss as the only signal.' },
       { id: 'sack', note: 'Selective ACK tells the sender exactly which segments already arrived.' },
+      { id: 'bdp', note: 'How much data should be in flight: the window must cover the bandwidth-delay product (bandwidth × RTT) or the pipe sits half-empty — why long, fast links need large windows.' },
     ],
   },
   {
@@ -109,6 +111,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'raftlog', note: 'The leader replicates its log; an entry commits once a majority have stored it.' },
       { id: 'paxos', note: 'Paxos is the classic consensus core that Raft repackages to be teachable.' },
       { id: 'crdt', note: 'CRDTs let replicas edit independently and always merge without conflict.' },
+      { id: 'kademlia', note: 'Find data with no central server: a Kademlia DHT routes to whoever holds a key by XOR distance, halving the gap each hop — O(log n) lookups across millions of peers.' },
       { id: 'cap', note: 'Under a network partition you must choose: stay consistent, or stay available.' },
     ],
   },
@@ -244,6 +247,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'peephole', note: 'The last polish: a sliding window rewrites local patterns into cheaper ones — mul by a power of two becomes a shift, no-ops vanish.' },
       { id: 'bytecode', note: 'Or target a portable bytecode and run it on a stack VM — how the JVM and CPython execute.' },
       { id: 'jit', note: 'Hot bytecode is compiled to native code at runtime — profile, specialize, and patch the call site.' },
+      { id: 'wasm', note: 'A portable compile target: WebAssembly is a compact, sandboxed bytecode that runs untrusted code at near-native speed in the browser and beyond.' },
       { id: 'gc', note: 'The runtime reclaims unreachable memory automatically, so the program never has to free by hand.' },
     ],
   },
