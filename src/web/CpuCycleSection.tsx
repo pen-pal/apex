@@ -7,21 +7,28 @@ import { GuidedStory, type StoryScene } from './GuidedStory';
 
 type Phase = 'idle' | 'fetch' | 'decode' | 'execute' | 'writeback';
 const PROG = ['LOAD  r1, [5]', 'ADD   r1, r2', 'STORE r1, [6]'];
+const PHASES: Phase[] = ['fetch', 'decode', 'execute', 'writeback'];
 
 export function CpuCycleSection() {
   const [pc, setPc] = useState(0);
+  const [ph, setPh] = useState(-1); // -1 = before fetch; 0..3 = fetch → decode → execute → writeback
   const [r1, setR1] = useState('·');
   const [mem6, setMem6] = useState('·');
-  const [live, setLive] = useState<Phase>('idle');
   const done = pc > 2;
+  const live: Phase = done || ph < 0 ? 'idle' : PHASES[ph];
 
+  // advance the cycle ONE phase at a time, so you watch fetch → decode → execute → writeback for each instruction
   const step = () => {
-    if (done) { setPc(0); setR1('·'); setMem6('·'); setLive('idle'); return; }
-    setLive('execute');
-    if (pc === 0) setR1('10');
-    else if (pc === 1) setR1((v) => String(Number(v) + 3));
-    else if (pc === 2) setMem6((_) => r1);
-    setTimeout(() => { setPc((p) => p + 1); setLive('idle'); }, 750);
+    if (done) { setPc(0); setPh(-1); setR1('·'); setMem6('·'); return; }
+    const nx = ph + 1;
+    if (nx <= 3) {
+      setPh(nx);
+      if (PHASES[nx] === 'writeback') { // the result is saved back on writeback
+        if (pc === 0) setR1('10');
+        else if (pc === 1) setR1((v) => String(Number(v) + 3));
+        else if (pc === 2) setMem6(r1);
+      }
+    } else { setPc((p) => p + 1); setPh(-1); } // instruction complete → on to the next
   };
 
   const narrated = (key: Phase, title: string, caption: string): StoryScene =>
@@ -33,21 +40,29 @@ export function CpuCycleSection() {
     narrated('decode', 'Decode', 'The control unit splits the bits: an opcode (LOAD / ADD / STORE — what to do) and operands (which registers). It wires up the datapath to match.'),
     narrated('execute', 'Execute', 'The register file drives the operands into the ALU, which does the arithmetic or logic — a sum for ADD, an address for LOAD.'),
     narrated('writeback', 'Writeback, then repeat', 'The result goes back to a register or memory, and the PC advances. Repeat this loop billions of times a second and you have a running program.'),
-    { key: 'run', title: 'Run it yourself', caption: 'Step through all three instructions. Watch the PC walk 0 → 1 → 2, r1 fill from memory then take the sum, and the store land in memory[6].', render: (a) => <Datapath phase={live} pc={done ? 2 : pc} r1={r1} mem6={mem6} active={a} /> },
+    { key: 'run', title: 'Run it yourself', caption: 'Now drive the cycle by hand, one phase at a time. Click through fetch → decode → execute → writeback and watch the datapath light up each unit — the PC walks 0 → 1 → 2, r1 fills from memory then takes the sum, and the store lands in memory[6]. Three instructions, four phases each: this is a CPU running a program, and the whole of computing is this loop, repeated.', render: (a) => <Datapath phase={live} pc={done ? 2 : pc} r1={r1} mem6={mem6} active={a} /> },
   ];
 
   return (
     <GuidedStory
       scenes={scenes}
       explain={{
-        idea: <>A CPU has no concept of a “program.” It only repeats one loop, forever: read the next instruction from memory, work out what it means, do it, save the result, and move to the next. A program counter holds the address of the next instruction; every app, game, and operating system is this loop run billions of times a second. The story walks a single instruction through the datapath — memory, registers, ALU — then lets you run a tiny three-instruction program by hand.</>,
+        idea: <>A CPU has no concept of a “program.” It only repeats one loop, forever: read the next instruction from memory — which is just <strong>bytes</strong>, like everything else, read now as a command — work out what it means, do it, save the result, and move to the next. A program counter holds the address of the next instruction; every app, game, and operating system is this loop run billions of times a second. The story walks a single instruction through the datapath — memory, registers, ALU — then lets you run a tiny three-instruction program by hand.</>,
         takeaway: <>Fetch → decode → execute → writeback, one step per stage, with the program counter advancing to thread them together. A processor goes faster two ways: raising the clock (more loops per second), and overlapping the stages so several instructions are in flight at once — that overlap is <em>pipelining</em>, its own story. The key thing to hold onto is that there is nothing beneath this loop; it is the floor that everything else in computing is built on.</>,
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
-          <span className="cpu-live-lbl">run the program:</span>
-          <button type="button" onClick={step}>{done ? '↻ reset' : `step — PC=${pc}: ${PROG[pc].trim()}`}</button>
-          <span className="cpu-live-state">{done ? 'done · r1 = 13 · mem[6] = 13' : `r1 = ${r1}`}</span>
+          <button type="button" onClick={step}>
+            {done ? '↻ reset'
+              : ph < 0 ? `▶ fetch — PC ${pc}: ${PROG[pc].trim()}`
+              : ph < 3 ? `→ ${PHASES[ph + 1]}`
+              : '→ next instruction'}
+          </button>
+          <span className="cpu-live-state">
+            {done ? 'program done · r1 = 13 · mem[6] = 13'
+              : ph < 0 ? `PC = ${pc} · ready to fetch`
+              : `PC ${pc} · ${live}${r1 !== '·' ? ` · r1=${r1}` : ''}${mem6 !== '·' ? ` · mem[6]=${mem6}` : ''}`}
+          </span>
         </>
       )}
     />
