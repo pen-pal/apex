@@ -660,4 +660,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'snowflake', note: 'Unique ids with no coordinator: a Snowflake id packs a timestamp, a machine id, and a counter into 64 bits, so thousands of servers mint sortable ids without ever talking to each other.' },
     ],
   },
+  {
+    id: 'robustcodes',
+    title: 'Encoding data for the real world',
+    icon: '🔡',
+    blurb: 'Data has to survive smudges, misreads, and dropped bits — and sometimes encode where a thing is. Add redundancy to detect corruption, then correct it, then turn a location into a searchable string.',
+    steps: [
+      { id: 'errors', note: 'The fundamentals: add redundancy so corruption is detectable (parity, checksums) or even correctable — the basis of every reliable channel and storage medium.' },
+      { id: 'barcode', note: 'A tiny error check: a UPC barcode’s last digit is a weighted checksum of the rest, so a single misread is caught at the register instead of charging for the wrong item.' },
+      { id: 'qrcode', note: 'Correction, not just detection: a QR code carries Reed–Solomon parity, so a torn or smudged code — up to roughly 30% damaged — still decodes cleanly.' },
+      { id: 'geohash', note: 'Encode a location as a string: interleaving latitude and longitude bits makes nearby places share a common prefix, so proximity search becomes a prefix match.' },
+    ],
+  },
 ];
