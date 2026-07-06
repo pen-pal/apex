@@ -13395,10 +13395,24 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bsgs-sub{fill:hsl(210 20% 66%);font-size:9px;font-family:var(--mono,monospace)}
 .bsgs-found{fill:hsl(45 80% 66%);font-size:12px;font-family:var(--mono,monospace)}
 .bsgs-foot{fill:hsl(210 16% 60%);font-size:13px}
-.bsgs-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;color:var(--ink);font-size:13px}
+.bsgs-ctl{display:flex;flex-direction:column;gap:8px;align-items:center;color:var(--ink);font-size:13px}
+.bsgs-ctl-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
 .bsgs-btn{font-size:12px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .bsgs-btn.on{border-color:hsl(45 60% 55%);background:hsl(45 50% 44% / .22)}
-.bsgs-read{font-family:var(--mono,monospace);color:hsl(45 75% 68%);font-size:11.5px}
+.bsgs-read{font-family:var(--mono,monospace);color:hsl(45 75% 68%);font-size:11.5px;text-align:center;max-width:840px;line-height:1.5}
+.bsgs-chart-title{fill:hsl(210 16% 62%);font-size:12px;font-family:var(--mono,monospace)}
+.bsgs-axis{stroke:hsl(220 18% 34%);stroke-width:1}
+.bsgs-horizon{stroke:hsl(0 60% 55%);stroke-width:1;stroke-dasharray:5 4;opacity:.7}
+.bsgs-horizon-lbl{fill:hsl(0 62% 66%);font-size:10.5px;font-family:var(--mono,monospace)}
+.bsgs-brute{stroke:hsl(210 20% 55%);stroke-width:1.5;opacity:.55}
+.bsgs-bsgs{stroke:hsl(150 60% 55%);stroke-width:2.5}
+.bsgs-brute-lbl{fill:hsl(210 20% 62%);font-size:11px;font-family:var(--mono,monospace)}
+.bsgs-bsgs-lbl{fill:hsl(150 60% 62%);font-size:11px;font-weight:600;font-family:var(--mono,monospace)}
+.bsgs-mark-now{fill:hsl(150 70% 60%);stroke:hsl(150 70% 30%);stroke-width:1}
+.bsgs-mark-lbl{fill:hsl(150 55% 66%);font-size:10.5px;font-family:var(--mono,monospace)}
+.bsgs-mark-bad{fill:hsl(0 70% 60%);stroke:hsl(0 70% 30%);stroke-width:1}
+.bsgs-mark-bad-lbl{fill:hsl(0 65% 68%);font-size:10.5px;font-family:var(--mono,monospace)}
+.bsgs-tick{fill:hsl(210 16% 52%);font-size:10px;font-family:var(--mono,monospace)}
 
 /* ── BLS signatures story (BlsSection) — sign / pairing-verify / aggregate ───────────────────────── */
 .bls-col{fill:hsl(210 16% 60%);font-size:11px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.01em}

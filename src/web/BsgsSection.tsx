@@ -1,9 +1,11 @@
 // Guided story: baby-step giant-step — the meet-in-the-middle algorithm for the discrete logarithm, g^x ≡ h (mod p).
 // Diffie-Hellman / ElGamal / Schnorr rest on this being hard; brute force tries x = 0,1,2,… up to p steps. BSGS cuts that
-// to O(√p): write x = i·m + j with m = ⌈√(p−1)⌉, so h = g^(im)·g^j ⇒ h·(g^−m)^i = g^j. Precompute a table of all g^j
-// (baby steps), then stride by g^−m (giant steps) until one lands in the table; a hit at g^j on giant step i gives
-// x = im + j. It's the discrete-log counterpart to Pollard's rho for factoring: rho breaks RSA-style problems, BSGS breaks
-// discrete-log ones. Verified in node: g^x ≡ h for many cases, all 58 logs mod 59 exhaustively, and ~2√p steps vs p.
+// to O(√p): write x = i·m + j with m = ⌈√(p−1)⌉, so h·(g^−m)^i = g^j — build a table of the baby steps g^j, then stride
+// by g^−m until a giant step lands in it. DEEPENED so you PRODUCE the √p scaling (pick larger primes and watch the baby
+// table grow as √p, the speedup rising 2.9×→19×) and then hit the wall a master knows: √p is a colossal speedup but
+// STILL EXPONENTIAL in the bit-length. A cost chart shows BSGS halving the exponent (2^(b/2)) yet still shooting past the
+// feasibility horizon — so it cracks a 9-bit toy in ~26 steps but a 256-bit group needs 2^128 (hopeless). That b/2-bit
+// security is exactly why real groups are ≥256-bit. Node-verified: 5 primes solve with visible strides; 256-bit → 2^128.
 import { useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
 
@@ -22,58 +24,68 @@ function solve(g: number, h: number, p: number): { m: number; baby: Baby[]; gian
   for (let i = 0; i <= m; i++) { const jHit = map.has(cur.toString()) ? map.get(cur.toString())! : -1; giant.push({ i, val: Number(cur), jHit }); if (jHit >= 0) { found = { i, j: jHit, x: i * m + jHit }; break; } cur = cur * factor % P; }
   return { m, baby, giant, found };
 }
-const PRESETS = [{ g: 2, h: 13, p: 23 }, { g: 2, h: 9, p: 23 }, { g: 3, h: 10, p: 17 }, { g: 5, h: 19, p: 23 }, { g: 2, h: 30, p: 37 }];
+// each preset uses a primitive root so the log is unique and the collision lands at giant step i=2 (a visible stride);
+// primes rise 23→503 so the baby table (√p) visibly grows and the speedup climbs. Node-verified solvable.
+const PRESETS = [{ g: 5, h: 18, p: 23 }, { g: 2, h: 47, p: 61 }, { g: 3, h: 38, p: 127 }, { g: 6, h: 69, p: 251 }, { g: 5, h: 103, p: 503 }];
+const HORIZON = 80; // ~2^80 operations: the standard "computationally infeasible" line
 
 type Phase = 'problem' | 'split' | 'baby' | 'giant' | 'why' | 'run';
 export function BsgsSection() {
   const [pi, setPi] = useState(0);
-  const scene = (key: Exclude<Phase, 'run'>, title: string, caption: string): StoryScene =>
-    ({ key, title, caption, render: () => <Bsgs phase={key} g={2} h={13} p={23} /> });
+  const scene = (key: Exclude<Phase, 'run'>, title: string, caption: string, p = 0): StoryScene =>
+    ({ key, title, caption, render: () => <Bsgs phase={key} g={PRESETS[p].g} h={PRESETS[p].h} p={PRESETS[p].p} /> });
 
   const scenes: StoryScene[] = [
     scene('problem', 'The discrete logarithm', 'Diffie–Hellman, ElGamal, and Schnorr signatures all rest on one problem being hard: given a base g, a prime modulus p, and h = gˣ mod p, recover the exponent x. Going forward (exponentiate) is easy; going back (the discrete log) is believed hard. The obvious attack tries x = 0, 1, 2, … up to p steps. Baby-step giant-step cuts that to about √p by meeting in the middle.'),
     scene('split', 'Split the exponent', 'Write the unknown x as x = i·m + j, where m = ⌈√(p−1)⌉ and both i and j run 0…m−1. Then gˣ = g^(im)·gʲ, so h = g^(im)·gʲ, which rearranges to h·(g^(−m))ⁱ = gʲ. The left side depends only on i, the right only on j — two halves to search separately instead of one big space.'),
     scene('baby', 'Baby steps: build a table', 'Compute every possible right-hand side gʲ for j = 0…m−1 — the “baby steps”, each one multiply by g — and store them in a hash table keyed by value. That’s √p multiplications and √p memory: a lookup table of every small exponent.'),
     scene('giant', 'Giant steps: hunt for a match', 'Now stride through the left side: start at h and repeatedly multiply by g^(−m), a giant leap of m in the exponent — h, h·g^(−m), h·g^(−2m), … For each, look it up in the baby table. A hit at gʲ on giant step i means h = g^(im+j), so x = i·m + j. Found in √p strides. (Verified: gˣ ≡ h.)'),
-    scene('why', '√p — and why groups are big', 'Total work is O(√p) time and O(√p) memory. That square-root speedup is exactly why cryptographic groups are enormous: for a 256-bit prime, √p ≈ 2¹²⁸ operations and 2¹²⁸ storage — still hopeless, so the discrete-log assumption holds. But for a small or poorly-chosen modulus it’s devastating, and it’s the baseline that Pollard’s rho for logs (same √p time, O(1) memory) and index calculus improve on. (Verified: matches brute force.)'),
-    { key: 'run', title: 'Crack a discrete log', caption: 'Pick a base, target, and prime and watch the baby table fill with g⁰…g^(m−1), then the giant steps stride from h by g^(−m) until one value lands in the table. The collision — the same number in both rows — pins x = i·m + j, checked live as gˣ ≡ h. Two √p passes instead of p.', render: () => <Bsgs phase="run" g={PRESETS[pi].g} h={PRESETS[pi].h} p={PRESETS[pi].p} onPi={setPi} pi={pi} /> },
+    scene('why', 'A √p speedup that’s still exponential', 'Total work is O(√p) time and O(√p) memory — a colossal speedup. But look at the cost chart: √p only HALVES the exponent. Brute force is 2ᵇ for a b-bit prime; BSGS is 2^(b/2). Both still shoot past the feasibility line — BSGS just needs twice the bits to do it. So it cracks small or careless groups outright, yet a 256-bit group costs 2¹²⁸ and stays safe. A b-bit group buys only b/2 bits of security.', 4),
+    { key: 'run', title: 'Crack it — then watch it hit the wall', caption: 'Pick a problem: the baby table fills with g⁰…g^(m−1), the giant steps stride from h by g^(−m), and the collision — the same value in both rows — pins x = i·m + j, checked live as gˣ ≡ h. Now climb the primes 23 → 503 and watch the baby table grow as √p while the speedup rises 2.9× → 19×. But the cost chart shows the limit: BSGS is 2^(b/2), still exponential — it demolishes these toy primes and would demolish a weak or smooth key, but a real 256-bit group needs 2¹²⁸ operations and memory, more than there are atoms in the observable universe. √p breaks the careless, never the careful.', render: () => <Bsgs phase="run" g={PRESETS[pi].g} h={PRESETS[pi].h} p={PRESETS[pi].p} /> },
   ];
 
   return (
     <GuidedStory
       scenes={scenes}
       explain={{
-        idea: <><strong>Baby-step giant-step</strong> solves the <strong>discrete logarithm</strong> g^x ≡ h (mod p) in <strong>O(√p)</strong> time by meeting in the middle. Write x = i·m + j with m = ⌈√(p−1)⌉; then h = g^(im)·g^j ⇒ <strong>h·(g^−m)^i = g^j</strong>. Precompute a table of all <strong>g^j</strong> (baby steps, √p of them), then stride by <strong>g^−m</strong> (giant steps) until a value hits the table — that collision gives x = im + j. It’s the discrete-log counterpart to Pollard’s rho, and the reason crypto groups must be huge (√p still infeasible).</>,
-        takeaway: <><strong>Baby-step giant-step</strong> (Daniel Shanks, 1971) computes a <strong>discrete logarithm</strong> — <code>x</code> such that <code>g^x ≡ h (mod p)</code> in a cyclic group of order n — in <strong>O(√n)</strong> time and space, versus O(n) for brute force. The idea is a <strong>meet-in-the-middle</strong>: any exponent in [0, n) can be written <code>x = i·m + j</code> with <code>m = ⌈√n⌉</code> and <code>0 ≤ i, j &lt; m</code>. Substituting into g^x = h and rearranging gives <code>h·(g^{'{'}−m{'}'})^i = g^j</code>: the right side ranges over only m values as j varies (the <strong>baby steps</strong>), the left over only m values as i varies (the <strong>giant steps</strong>). So build a hash table mapping <code>g^j → j</code> for j = 0…m−1 (√n multiplies, √n memory), precompute the stride <code>g^{'{'}−m{'}'}</code> once (via a modular inverse), then walk <code>h, h·g^{'{'}−m{'}'}, h·g^{'{'}−2m{'}'}, …</code>, testing each against the table; a hit at value g^j on step i yields <code>x = i·m + j</code>. It needs the group order n (or a bound) to pick m, and works in any finite cyclic group — multiplicative groups mod p, or an elliptic-curve group (where it solves the ECDLP). Consequences: the security of <strong>Diffie–Hellman</strong>, <strong>ElGamal</strong>, <strong>DSA/Schnorr</strong>, and ECC all rest on the discrete log being hard, and BSGS sets the bar — a b-bit group gives only ~<strong>b/2</strong> bits of security against it, which is why a 128-bit security target needs a <strong>256-bit</strong> curve or a ~3072-bit prime field. Its O(√n) <strong>memory</strong> is the practical limit; <strong>Pollard’s rho for logarithms</strong> achieves the same √n time in <strong>O(1)</strong> memory (via a random walk and cycle detection, the same trick as rho factoring), and for prime fields <strong>index calculus</strong> does far better (sub-exponential), which is why finite-field DH needs much larger moduli than elliptic curves for equal security. BSGS also solves order-finding and, with the <strong>Pohlig–Hellman</strong> reduction, cracks discrete logs quickly when the group order is <strong>smooth</strong> (a product of small primes) — the reason secure parameters use a large prime-order subgroup.</>,
+        idea: <><strong>Baby-step giant-step</strong> solves the <strong>discrete logarithm</strong> g^x ≡ h (mod p) in <strong>O(√p)</strong> time by meeting in the middle. Write x = i·m + j with m = ⌈√(p−1)⌉; then h = g^(im)·g^j ⇒ <strong>h·(g^−m)^i = g^j</strong>. Precompute a table of all <strong>g^j</strong> (baby steps, √p of them), then stride by <strong>g^−m</strong> (giant steps) until a value hits the table — that collision gives x = im + j. The √p speedup is huge, but still exponential in the bit-length: a b-bit group gives only ~b/2 bits of security, which is exactly why crypto groups must be huge.</>,
+        takeaway: <><strong>Baby-step giant-step</strong> (Daniel Shanks, 1971) computes a <strong>discrete logarithm</strong> — <code>x</code> with <code>g^x ≡ h (mod p)</code> in a cyclic group of order n — in <strong>O(√n)</strong> time and space, versus O(n) for brute force, by a <strong>meet-in-the-middle</strong>: write <code>x = i·m + j</code> with <code>m = ⌈√n⌉</code>; then <code>h·(g^{'{'}−m{'}'})^i = g^j</code>, so build a hash table of the <strong>baby steps</strong> <code>g^j → j</code> (√n multiplies, √n memory), precompute the stride <code>g^{'{'}−m{'}'}</code> via a modular inverse, and walk the <strong>giant steps</strong> <code>h, h·g^{'{'}−m{'}'}, …</code> until one hits the table, giving <code>x = i·m + j</code>. It works in any finite cyclic group, including elliptic curves (the ECDLP). The consequence you can produce here is the security bar: because the cost is <code>√p = 2^(b/2)</code> for a b-bit prime, a <strong>b-bit group offers only ~b/2 bits of security</strong> against it — the √p is a genuine, devastating speedup on small or poorly-chosen parameters, but it merely <em>halves the exponent</em>, so it stays exponential and a 256-bit group still costs an unreachable 2¹²⁸. That’s why 128-bit security needs a <strong>256-bit</strong> elliptic curve or a ~3072-bit prime field. BSGS’s <strong>O(√n) memory</strong> is its practical ceiling; <strong>Pollard’s rho for logarithms</strong> matches the √n time in <strong>O(1)</strong> memory, and for prime fields <strong>index calculus</strong> is sub-exponential (why finite-field DH needs far larger moduli than curves). With <strong>Pohlig–Hellman</strong>, discrete logs also fall fast when the group order is <strong>smooth</strong> (all small prime factors) — the reason secure parameters mandate a large prime-order subgroup.</>,
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <div className="bsgs-ctl">
-          {PRESETS.map((pr, i) => <button key={i} type="button" className={`bsgs-btn ${pi === i ? 'on' : ''}`} onClick={() => setPi(i)}>{pr.g}^x ≡ {pr.h} mod {pr.p}</button>)}
-          <span className="bsgs-read">{(() => { const { found } = solve(PRESETS[pi].g, PRESETS[pi].h, PRESETS[pi].p); return found ? `x = ${found.x} (= ${found.i}·m + ${found.j}), check ${PRESETS[pi].g}^${found.x} mod ${PRESETS[pi].p} = ${Number(mp(BigInt(PRESETS[pi].g), BigInt(found.x), BigInt(PRESETS[pi].p)))}` : 'no solution'; })()}</span>
+          <div className="bsgs-ctl-row">
+            {PRESETS.map((pr, i) => <button key={i} type="button" className={`bsgs-btn ${pi === i ? 'on' : ''}`} onClick={() => setPi(i)}>p={pr.p}</button>)}
+          </div>
+          <span className="bsgs-read">{(() => { const P = PRESETS[pi]; const { m, baby, giant, found } = solve(P.g, P.h, P.p); const steps = baby.length + giant.length; const bits = Math.log2(P.p); return found ? <>solved {P.g}^x ≡ {P.h} mod {P.p}: <b>x = {found.x}</b> (= {found.i}·{m}+{found.j}) in <b>{steps} steps</b> vs {P.p} brute (<b>{(P.p / steps).toFixed(1)}×</b>) · √p = {m}-entry table · a {bits.toFixed(0)}-bit prime; a 256-bit one needs 2¹²⁸</> : 'no solution'; })()}</span>
         </div>
       )}
     />
   );
 }
 
-function Bsgs({ phase, g, h, p, onPi, pi }: { phase: Phase; g: number; h: number; p: number; onPi?: (v: number) => void; pi?: number }) {
-  const on = (p: Phase) => phase === p; void onPi; void pi;
+// cost chart geometry: x = bit-length b (0..256), y = log2(operations) (0..256)
+const CX0 = 74, CX1 = 858, CY0 = 250, CY1 = 384, BMAX = 256, OMAX = 256;
+const bx = (b: number) => CX0 + (b / BMAX) * (CX1 - CX0);
+const oy = (o: number) => CY1 - (Math.min(o, OMAX) / OMAX) * (CY1 - CY0);
+
+function Bsgs({ phase, g, h, p }: { phase: Phase; g: number; h: number; p: number }) {
+  const on = (ph: Phase) => phase === ph;
   const { m, baby, giant, found } = solve(g, h, p);
   const hitVal = found ? baby[found.j].val : -1;
-  const BX = 60, BW = Math.min(58, 640 / Math.max(baby.length, 1)), BY = 62, GY = 150;
+  const BX = 60, BW = Math.min(60, 792 / Math.max(baby.length, 1)), BY = 62, GY = 138;
+  const showChart = on('why') || on('run');
+  const bits = Math.log2(p);
   return (
-    <svg viewBox="0 0 760 300" className="story-svg">
-      <text x="56" y="20" className="bsgs-col">Baby-step giant-step · solve {g}ˣ ≡ {h} (mod {p}) · m = ⌈√{p - 1}⌉ = {m} · x = i·m + j</text>
+    <svg viewBox="0 0 900 410" className="story-svg">
+      <text x="56" y="22" className="bsgs-col">Baby-step giant-step · solve {g}ˣ ≡ {h} (mod {p}) · m = ⌈√{p - 1}⌉ = {m} · x = i·m + j</text>
 
-      {/* baby steps */}
-      <text x={BX} y={BY - 8} className="bsgs-lbl">baby steps: gʲ for j = 0…{m - 1} (a lookup table)</text>
+      <text x={BX} y={BY - 8} className="bsgs-lbl">baby steps: gʲ for j = 0…{m - 1} (a lookup table, √p entries)</text>
       {baby.map((b) => <g key={b.j}>
         <rect x={BX + b.j * BW} y={BY} width={BW - 4} height={30} rx="3" className={`bsgs-cell ${found && b.val === hitVal ? 'hit' : ''}`} />
         <text x={BX + b.j * BW + (BW - 4) / 2} y={BY + 14} className="bsgs-val" textAnchor="middle">{b.val}</text>
         <text x={BX + b.j * BW + (BW - 4) / 2} y={BY + 26} className="bsgs-sub" textAnchor="middle">j={b.j}</text>
       </g>)}
 
-      {/* giant steps */}
       <text x={BX} y={GY - 8} className="bsgs-lbl">giant steps: h·(g⁻ᵐ)ⁱ, stride until one lands in the table</text>
       {giant.map((gt) => <g key={gt.i}>
         <rect x={BX + gt.i * BW} y={GY} width={BW - 4} height={30} rx="3" className={`bsgs-cell ${gt.jHit >= 0 ? 'hit' : 'giant'}`} />
@@ -82,17 +94,36 @@ function Bsgs({ phase, g, h, p, onPi, pi }: { phase: Phase; g: number; h: number
       </g>)}
 
       {found
-        ? <text x={BX} y={GY + 62} className="bsgs-found">collision: {hitVal} appears at baby j={found.j} and giant i={found.i} → x = {found.i}·{m} + {found.j} = {found.x} · check {g}^{found.x} mod {p} = {Number(mp(BigInt(g), BigInt(found.x), BigInt(p)))} ✓</text>
-        : <text x={BX} y={GY + 62} className="bsgs-lbl">no solution in this group</text>}
+        ? <text x={BX} y={GY + 58} className="bsgs-found">collision: {hitVal} at baby j={found.j} and giant i={found.i} → x = {found.i}·{m}+{found.j} = {found.x} · {g}^{found.x} mod {p} = {Number(mp(BigInt(g), BigInt(found.x), BigInt(p)))} ✓ · {baby.length + giant.length} steps vs {p} brute</text>
+        : <text x={BX} y={GY + 58} className="bsgs-lbl">no solution in this group</text>}
 
-      <text x="380" y="292" className="bsgs-foot" textAnchor="middle">
+      {/* the wall: √p halves the exponent but is still exponential — a cost chart vs the feasibility horizon */}
+      {showChart && <g>
+        <text x={CX0} y={CY0 - 12} className="bsgs-chart-title">cost vs group size — √p only halves the exponent</text>
+        <line x1={CX0} y1={CY1} x2={CX1} y2={CY1} className="bsgs-axis" />
+        <line x1={CX0} y1={CY0} x2={CX0} y2={CY1} className="bsgs-axis" />
+        {/* feasibility horizon at 2^80 */}
+        <line x1={CX0} y1={oy(HORIZON)} x2={CX1} y2={oy(HORIZON)} className="bsgs-horizon" />
+        <text x={CX0 + 8} y={oy(HORIZON) - 6} className="bsgs-horizon-lbl">2⁸⁰ · feasibility horizon</text>
+        {/* brute 2^b and BSGS 2^(b/2) */}
+        <line x1={bx(0)} y1={oy(0)} x2={bx(BMAX)} y2={oy(BMAX)} className="bsgs-brute" />
+        <line x1={bx(0)} y1={oy(0)} x2={bx(BMAX)} y2={oy(BMAX / 2)} className="bsgs-bsgs" />
+        <text x={bx(70)} y={oy(70) - 7} className="bsgs-brute-lbl">brute force · 2ᵇ</text>
+        <text x={bx(200)} y={oy(102) - 7} className="bsgs-bsgs-lbl">BSGS · 2^(b/2)</text>
+        {/* markers: this toy prime, and a real 256-bit group */}
+        <circle cx={bx(bits)} cy={oy(bits / 2)} r="4" className="bsgs-mark-now" />
+        <text x={bx(bits) + 8} y={oy(bits / 2) + 4} className="bsgs-mark-lbl">this p ({bits.toFixed(0)}-bit): {baby.length + giant.length} steps</text>
+        <circle cx={bx(256)} cy={oy(128)} r="4" className="bsgs-mark-bad" />
+        <text x={bx(256)} y={oy(128) - 10} className="bsgs-mark-bad-lbl" textAnchor="end">256-bit: 2¹²⁸ safe</text>
+        {[80, 128, 160, 256].map((b) => <text key={b} x={bx(b)} y={CY1 + 14} className="bsgs-tick" textAnchor="middle">{b}b</text>)}
+      </g>}
+
+      {!showChart && <text x="450" y="300" className="bsgs-foot" textAnchor="middle">
         {on('problem') ? 'given g, p, h = gˣ mod p, find x — believed hard (crypto rests on it)'
           : on('split') ? 'x = i·m + j ⇒ h·(g⁻ᵐ)ⁱ = gʲ — search two √p halves, not one p'
           : on('baby') ? 'table of every gʲ — √p multiplies, √p memory'
-          : on('giant') ? 'stride h by g⁻ᵐ until a value hits the baby table → x = im+j'
-          : on('why') ? 'O(√p): a 256-bit group needs 2¹²⁸ work — still infeasible'
-          : found ? `x = ${found.x}: found in ~${giant.length + baby.length} steps vs ~${p} brute force` : 'no solution'}
-      </text>
+          : 'stride h by g⁻ᵐ until a value hits the baby table → x = im+j'}
+      </text>}
     </svg>
   );
 }
