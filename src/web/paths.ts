@@ -404,6 +404,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'quickselect', note: 'Don’t sort to find the k-th element — partition and recurse into only the side that holds it, O(n) on average.' },
       { id: 'medianofmedians', note: 'Choose the pivot as a median of medians and quickselect becomes O(n) even in the worst case — a provably good split.' },
       { id: 'heap', note: 'A binary heap keeps the min or max at the root in O(log n) — heapsort, and the priority queue behind schedulers and Dijkstra.' },
+      { id: 'pairingheap', note: 'When a plain heap can’t merge, a pairing heap does: it unions two heaps and decreases a key in near-O(1) amortized — the simple, fast mergeable priority queue.' },
     ],
   },
   {
