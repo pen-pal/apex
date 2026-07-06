@@ -560,4 +560,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'sri', note: 'The last gap: a page loads scripts from CDNs it doesn’t control — Subresource Integrity pins each file’s hash, so a tampered or swapped resource is rejected instead of run.' },
     ],
   },
+  {
+    id: 'iplayer',
+    title: 'The IP layer, modernized',
+    icon: '🌐',
+    blurb: 'IPv4 ran out of addresses years ago, yet the internet kept growing. Follow how a host gets on today’s network and moves a packet — the v6 addressing that replaced it, configuring itself with no server, sizing packets to the path, one-to-many delivery, racing dual-stack, and punching through NAT.',
+    steps: [
+      { id: 'ipcompare', note: 'IPv4’s 32-bit space ran dry; IPv6 gives every device a 128-bit address and a fixed 40-byte header — the addressing everything below rests on.' },
+      { id: 'slaac', note: 'No DHCP server needed: an IPv6 host builds its own address from the router-advertised prefix plus an interface id, then checks nobody else already has it (duplicate-address detection).' },
+      { id: 'fragment', note: 'A packet larger than a link’s MTU is split into fragments the destination reassembles — and why IPv6 moves that job to the sender via Path MTU discovery.' },
+      { id: 'multicast', note: 'One sender, many receivers: IGMP lets hosts join a group so a single stream reaches all of them, instead of the network duplicating a unicast per receiver.' },
+      { id: 'happyeyeballs', note: 'With both IPv4 and IPv6 available, the client races connections to both and keeps whichever answers first — so a broken v6 path never stalls the page.' },
+      { id: 'natpunch', note: 'Two hosts both behind NAT still connect directly: they punch holes by sending outward at the same time, so each NAT accepts the other’s return traffic — the trick behind peer-to-peer and video calls.' },
+    ],
+  },
 ];
