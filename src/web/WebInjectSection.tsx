@@ -49,6 +49,17 @@ export function WebInjectSection() {
                   <li className={sa.comments ? 'hit' : ''}>{sa.comments ? '✗' : '·'} comment truncates the rest</li>
                 </ul>
                 <div className={`inj-verdict ${sa.vulnerable ? 'bad' : 'ok'}`}>{sa.vulnerable ? 'INJECTED — attacker controls the query' : 'no break-out for this input'}</div>
+                {sa.vulnerable && (
+                  <p className="inj-outcome">
+                    {/;\s*(drop|delete|update|insert|select)/i.test(sqli)
+                      ? '→ the attacker appended a second statement after the “;” — it runs against the database (here, destroying the users table).'
+                      : sa.tautology
+                      ? '→ on a login lookup the always-true condition returns a user row, so you are logged in as the first user (admin) — with no password.'
+                      : sa.comments
+                      ? '→ the “--” comments out the password check that followed, so you are logged in as the account you named.'
+                      : '→ the attacker’s text is now SQL, not a name — they decide what the query does.'}
+                  </p>
+                )}
               </div>
 
               <div className="inj-card ok">
@@ -71,6 +82,9 @@ export function WebInjectSection() {
                 <h3>❌ inserted as raw HTML</h3>
                 <pre className="inj-code">{xa.rawHtml}</pre>
                 <div className={`inj-verdict ${xa.executesRaw ? 'bad' : 'ok'}`}>{xa.executesRaw ? 'SCRIPT RUNS in every viewer’s browser' : 'no executable markup'}</div>
+                {xa.executesRaw && (
+                  <p className="inj-outcome">→ that script runs with the victim’s session — it can read their login cookie and send it to the attacker (account takeover), or act as them silently.</p>
+                )}
               </div>
 
               <div className="inj-card ok">
