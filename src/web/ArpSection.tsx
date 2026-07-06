@@ -54,10 +54,13 @@ export function ArpSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>ARP — finding the MAC behind an IP</h2></div>
         <p className="jsec-sub">
-          On a LAN, frames are addressed by MAC, but apps talk in IP — so a host must map the two. <strong>ARP</strong>
-          does it: check the cache; on a miss, <strong>broadcast</strong> “who has 192.168.1.1?”, the owner
-          <strong> unicasts</strong> “it’s at 00:1g:gw”, and you cache it. The next send skips ARP entirely. Pick a
-          sender and target and watch.
+          Every machine on a network has <strong>two</strong> addresses. Its <strong>IP address</strong> is a logical label
+          that routes across the internet and can move between machines; its <strong>MAC address</strong> is a fixed serial
+          number burned into the network card. To actually hand a frame to a machine on your local wire — the
+          <strong> LAN</strong>, the devices sharing one switch — you need its MAC, but you only know its IP. <strong>ARP</strong>
+          bridges the two: check a small cache; on a miss, <strong>broadcast</strong> to everyone (“who has 192.168.1.1?”),
+          the owner <strong>replies</strong> (“it’s at 00:1g:gw”), and you cache the answer so the next send skips all this.
+          Pick a sender and target and watch.
         </p>
 
         <div className="arp-controls">
