@@ -41,9 +41,14 @@ export function DnsJourneySection() {
       <section className="jsec">
         <div className="jsec-head"><h2>DNS resolution — how a name finds its address</h2></div>
         <p className="jsec-sub">
-          Your device asks one question; the recursive resolver does the walking — from a root server down through
-          the TLD to the domain’s own authoritative servers, each <strong>referring</strong> it one label closer.
-          Then it <strong>caches</strong> the answer, which is why the next visit is instant. Step through it.
+          Computers find each other by IP number, but you type <strong>names</strong> like <code>www.example.com</code>.
+          <strong> DNS</strong> is the internet’s phone book that turns a name into an address. No single machine could hold
+          every domain on earth, so the phone book is split into a <strong>tree</strong>: a <strong>root</strong> server knows
+          where the <code>.com</code> servers are, the <code>.com</code> (<strong>TLD</strong>) servers know where
+          <code> example.com</code>’s own (<strong>authoritative</strong>) servers are, and those hold the final address. Your
+          device asks one question and a <strong>recursive resolver</strong> does the walking, each server
+          <strong> referring</strong> it one label closer, then <strong>caches</strong> the answer so the next visit is instant.
+          Step through it.
         </p>
 
         <div className="dns-controls">
@@ -112,7 +117,11 @@ export function DnsJourneySection() {
         </div>
 
         <p className="enc-note">Caching with a TTL is the whole reason DNS scales: the root and TLD servers would melt if every
-          lookup walked the full tree. Lower a record’s TTL for faster changes; raise it for fewer queries.</p>
+          lookup walked the full tree. Lower a record’s TTL for faster changes; raise it for fewer queries. But caching has a
+          dark side: classic DNS has no signatures, and a resolver believes whatever reply arrives first — so an attacker who
+          slips a forged answer in ahead of the real one gets the resolver to <strong>cache the lie</strong> and send everyone
+          who asks to the attacker’s server. That is DNS <strong>cache poisoning</strong> (the Kaminsky attack), later on;
+          query randomization and DNSSEC are the defenses.</p>
       </section>
     </div>
   );
