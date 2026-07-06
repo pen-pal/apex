@@ -448,7 +448,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'encoding', note: 'Start here: everything a computer touches is bytes. See how text and numbers become the bits an attacker ultimately manipulates.' },
       { id: 'cpucycle', note: 'How a CPU actually runs your code — fetch, decode, execute — register by register. Every exploit is just making it run the wrong instructions.' },
       { id: 'pagewalk', note: 'Programs don’t see real memory; they see virtual addresses translated through page tables — the map an attacker learns to read and forge.' },
-      { id: 'memorystory', note: 'How one process is laid out in memory — code, heap, and the stack of function calls. The stack is where the very first exploit lives.' },
+      { id: 'memlayout', note: 'How one process is laid out in memory — code and globals at the bottom, the heap growing up, the stack of function calls growing down. Each frame holds the return address the very first exploit overwrites.' },
       { id: 'syscall', note: 'How a program crosses into the kernel to do anything real. That user↔kernel boundary is the line half of these attacks try to cross.' },
       // how data moves across a network
       { id: 'network', note: 'Zoom out: how machines on a wire find each other and pass packets. Every network attack is a lie told somewhere in this flow.' },

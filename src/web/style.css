@@ -5528,6 +5528,36 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pgw-intro{font-size:13.5px;color:var(--ink);line-height:1.6;max-width:82ch;margin:0}
 .pgw-intro strong{font-weight:600}
 .pgw-splitlbl{font-size:12.5px;color:var(--muted);margin:0;max-width:82ch}
+/* process memory layout (MemLayoutSection) — code/globals/heap/stack map */
+.mlay{display:flex;flex-direction:column;gap:16px}
+.mlay-intro{font-size:13.5px;color:var(--ink);line-height:1.6;max-width:82ch;margin:0}
+.mlay-intro strong{font-weight:600}
+.mlay-ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mlay-ctl button{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.mlay-ctl button:hover:not(:disabled){border-color:var(--accent)}
+.mlay-ctl button:disabled{opacity:.4;cursor:default}
+.mlay-sep{width:1px;height:20px;background:var(--line)}
+.mlay-svg{width:100%;max-width:660px;margin:0 auto;display:block}
+.mlay-addr{fill:var(--muted);font-size:11px;font-family:var(--mono,monospace)}
+.mlay-addr.dim{opacity:.6;font-size:10px}
+.mlay-frame{fill:hsl(210 55% 50% / .16);stroke:hsl(210 55% 55%);stroke-width:1}
+.mlay-frame.top{fill:hsl(210 60% 52% / .3);stroke:hsl(210 60% 62%);stroke-width:1.6}
+.mlay-fn{fill:var(--ink);font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
+.mlay-fsub{fill:var(--muted);font-size:10.5px}
+.mlay-ret{fill:hsl(0 70% 55% / .55)}
+.mlay-retlbl{fill:hsl(0 72% 64%);font-size:9.5px}
+.mlay-heap{fill:hsl(150 45% 45% / .2);stroke:hsl(150 42% 50%);stroke-width:1}
+.mlay-data{fill:hsl(38 55% 50% / .18);stroke:hsl(38 55% 52%);stroke-width:1}
+.mlay-code{fill:hsl(280 40% 55% / .18);stroke:hsl(280 40% 60%);stroke-width:1}
+.mlay-region{fill:var(--ink);font-size:11.5px;font-weight:500}
+.mlay-side{font-size:12px;font-weight:600}
+.mlay-side.stack{fill:hsl(210 55% 62%)}
+.mlay-side.heap{fill:hsl(150 45% 56%)}
+.mlay-side.dim{fill:var(--muted);font-weight:400;font-size:10px}
+.mlay-gap{fill:var(--muted);font-size:11px;font-style:italic}
+.mlay-collide{fill:hsl(0 72% 64%);font-size:12px;font-weight:600}
+.mlay-foot{font-size:12.5px;color:var(--muted);line-height:1.65;max-width:82ch;margin:0}
+.mlay-foot strong{color:var(--ink)}
 @media(max-width:680px){.pgw-fbits{font-size:10px}.pgw-split{gap:3px}}
 
 /* ── MESI cache coherence ────────────────────────────────────────────────────── */
