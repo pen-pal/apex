@@ -10792,12 +10792,12 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .story{max-width:min(1480px,95vw);margin:0 auto}
 /* two-column guided story on wide screens: visualization column | knowledge rail (fills the side space) */
 .story-viz{min-width:0}
-.story-rail{display:flex;flex-direction:column;gap:14px;margin-top:16px}
-.story-rail .story-idea,.story-rail .story-takeaway{margin:0;max-width:none}
+.story-kr{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.story-kr .story-idea,.story-kr .story-takeaway{margin:0;max-width:none}
 @media(min-width:1150px){
   .story.has-rail{display:flex;align-items:flex-start;gap:30px}
   .story.has-rail .story-viz{flex:1 1 0}
-  .story.has-rail .story-rail{flex:0 0 clamp(320px,26%,400px);margin-top:0}
+  .story.has-rail .story-kr{flex:0 0 clamp(320px,26%,400px);margin-top:0}
 }
 .story-stage{position:relative;aspect-ratio:900/450;max-height:min(700px,72vh);margin-inline:auto;border-radius:14px;overflow:hidden;
   background:radial-gradient(circle at 50% 38%,#141c28,#090d13);border:1px solid #1f2a3a;box-shadow:inset 0 0 60px #05080caa}

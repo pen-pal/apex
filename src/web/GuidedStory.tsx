@@ -69,7 +69,7 @@ export function GuidedStory({ scenes, controls, explain, aspect = '900 / 480', a
       </div>
 
       {explain && (
-        <aside className="story-rail">
+        <aside className="story-kr">
           <p className="story-idea"><span className="story-idea-lbl">The idea</span>{explain.idea}</p>
           <div className="story-takeaway"><span className="story-take-lbl">Takeaway</span>{explain.takeaway}</div>
         </aside>
