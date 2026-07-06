@@ -438,6 +438,51 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'mp3', note: 'Shrink audio ~10× by discarding what the ear can’t hear: psychoacoustic masking drops quiet tones hidden next to loud ones.' },
     ],
   },
+  {
+    id: 'blackhat',
+    title: 'Zero to black hat: from bits to breaking',
+    icon: '🎯',
+    blurb: 'The whole climb, no prior knowledge assumed. Start at what a byte is; learn how a program lives in memory, how data crosses a network, and how encryption actually works — then break each one using the exact concept you just learned. Every attack is preceded by the thing it exploits, so you see WHY it works, not just that it does. Sandboxed and conceptual throughout.',
+    steps: [
+      // the substrate — bits, and how a computer runs
+      { id: 'encoding', note: 'Start here: everything a computer touches is bytes. See how text and numbers become the bits an attacker ultimately manipulates.' },
+      { id: 'cpucycle', note: 'How a CPU actually runs your code — fetch, decode, execute — register by register. Every exploit is just making it run the wrong instructions.' },
+      { id: 'pagewalk', note: 'Programs don’t see real memory; they see virtual addresses translated through page tables — the map an attacker learns to read and forge.' },
+      { id: 'memorystory', note: 'How one process is laid out in memory — code, heap, and the stack of function calls. The stack is where the very first exploit lives.' },
+      { id: 'syscall', note: 'How a program crosses into the kernel to do anything real. That user↔kernel boundary is the line half of these attacks try to cross.' },
+      // how data moves across a network
+      { id: 'network', note: 'Zoom out: how machines on a wire find each other and pass packets. Every network attack is a lie told somewhere in this flow.' },
+      { id: 'arp', note: 'On a LAN, a machine asks “who has this IP?” and trusts whoever answers. Hold onto that trust — it is the whole of ARP spoofing later.' },
+      { id: 'tcphand', note: 'Two machines set up a reliable stream with a three-way handshake before any data flows — the connection an attacker wants to hijack or reset.' },
+      { id: 'dns', note: 'A name becomes an address through the internet’s trusted lookup. Poison that lookup and you redirect everyone — the DNS attacks build on this.' },
+      // the crypto that protects it, from scratch
+      { id: 'crypto', note: 'What encryption actually is — confusion, diffusion, and a key. No formulas assumed; build the intuition the later attacks will target.' },
+      { id: 'aead', note: 'Modern encryption doesn’t just hide data, it authenticates it. Understand what the tag protects — and what happens when a mode gets it wrong.' },
+      { id: 'hashint', note: 'A hash is a one-way fingerprint everything leans on — passwords, signatures, integrity. Its properties, and where they break, drive several attacks.' },
+      { id: 'pubkey', note: 'The counter-intuitive trick that lets two strangers who’ve never met share a secret over an open wire: a public key and a private one.' },
+      { id: 'dhkex', note: 'Diffie–Hellman in the flesh — agree on a shared key in the open. Its hardness assumption is exactly what the discrete-log attack tries to break.' },
+      { id: 'tlsflow', note: 'How the browser and server tie all of the above into one secure handshake — so you can then see precisely where a downgrade attack cuts in.' },
+      // break the web
+      { id: 'webinject', note: 'The most common attack there is: when user input is treated as code. Type the SQL and the script yourself and watch authentication fall.' },
+      { id: 'ssrf', note: 'Turn the server’s own network access against it — reach the cloud metadata endpoint it can see and you can’t. Encode the IP to slip the filter.' },
+      { id: 'jwt', note: 'Forge a login token when the server trusts the token to say how it should be checked — flip the algorithm to “none” and become admin.' },
+      { id: 'protopollute', note: 'Poison JavaScript’s shared prototype with attacker JSON, and every object in the program — even ones created later — inherits your properties.' },
+      // break the program
+      { id: 'bufferoverflow', note: 'Now the classic: overflow a stack buffer (you met the stack above) and overwrite the saved return address to hijack control flow.' },
+      { id: 'rop', note: 'Defenders make the stack non-executable so you can’t inject code. Answer: chain gadgets — snippets of the program’s OWN code — into a new program.' },
+      { id: 'aslr', note: 'So they randomize where everything lives and your gadgets vanish. See the cat-and-mouse: leak one address and the whole map comes back.' },
+      { id: 'spectre', note: 'Even with perfect software defenses, the CPU’s own speculation leaks secrets through cache timing — an attack beneath the code entirely.' },
+      // break the crypto
+      { id: 'paddingoracle', note: 'You don’t always need the key. A single “bad padding” error, asked enough times, decrypts the ciphertext one byte at a time.' },
+      { id: 'ecdsa', note: 'Signatures are unforgeable — unless the signer reuses a random nonce. Two such signatures and the private key falls out with algebra.' },
+      { id: 'bsgs', note: 'Crack a discrete log by meeting in the middle — and see exactly why a real 256-bit key stays out of reach while a toy one falls in seconds.' },
+      { id: 'tlsdowngrade', note: 'Strip the strong ciphers to force an export-grade handshake, then break it and forge the integrity check — this is how FREAK and Logjam worked.' },
+      // break the network, then step back
+      { id: 'arpspoof', note: 'Cash in that ARP trust: forge the replies and every packet on the LAN routes through you — the man in the middle, produced.' },
+      { id: 'kaminsky', note: 'Poison a resolver’s DNS cache and you redirect a whole network to your servers — the lookup you learned at the start, weaponized.' },
+      { id: 'killchain', note: 'Step all the way back: how a real intrusion chains reconnaissance → exploitation → command-and-control → action, and where defense-in-depth breaks it.' },
+    ],
+  },
 ];
 
 export const PATHS: LearningPath[] = [...CORE_PATHS, ...EXTRA_PATHS];
@@ -445,7 +490,7 @@ export const PATHS: LearningPath[] = [...CORE_PATHS, ...EXTRA_PATHS];
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
 
 /** A few flagship journeys surfaced as "start here" above the full list. */
-export const FEATURED_JOURNEYS = ['https', 'cpu', 'database'];
+export const FEATURED_JOURNEYS = ['blackhat', 'https', 'cpu', 'database'];
 
 /** The index of `sectionId` within a path's steps, or -1 if the learner has stepped off the path. */
 export function stepIndexOf(path: LearningPath, sectionId: string): number {
