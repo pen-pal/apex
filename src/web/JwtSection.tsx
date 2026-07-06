@@ -41,9 +41,12 @@ export function JwtSection() {
   return (
     <div className="jwv">
       <p className="jwv-intro">
-        A JWT is three base64url parts — <span className="jwv-h">header</span>.<span className="jwv-p">payload</span>.<span className="jwv-s">signature</span> — that are <strong>signed, not encrypted</strong>:
-        anyone can read the claims, only the key holder can forge a valid signature (here HMAC-SHA256 over
-        <code> header.payload</code>). The token:
+        After you log in, the server hands you a <strong>JWT</strong> — a small signed <em>ticket</em> you present on every
+        later request to prove who you are, so you never resend your password. It is three base64url parts —
+        <span className="jwv-h"> header</span>.<span className="jwv-p">payload</span>.<span className="jwv-s">signature</span> — that are
+        <strong> signed, not encrypted</strong>: anyone can read the claims (it is just base64), but only the holder of the
+        server’s secret key can produce a valid signature (here HMAC-SHA256 over <code>header.payload</code>). So if you can
+        trick the server into accepting a token <em>you</em> forged, you log in as anyone. The token:
       </p>
 
       <ColoredToken token={token} />
