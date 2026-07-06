@@ -556,7 +556,7 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'pubkey', note: 'What makes the handshake possible: a keypair where the public key encrypts or verifies and only the private key decrypts or signs — so two strangers agree on a secret nobody listening can read.' },
       { id: 'revocation', note: 'Trust must be revocable: when a certificate is stolen or mis-issued, OCSP and CRLs mark it dead, and Certificate Transparency logs make every issued cert publicly auditable so a rogue one is caught.' },
       { id: 'tlsdowngrade', note: 'The attack: a meddler-in-the-middle nudges the negotiation down to an obsolete, breakable cipher or protocol version — which only fails if both sides refuse to go that low.' },
-      { id: 'hsts', note: 'The defense: HSTS tells the browser “only ever reach me over HTTPS,” so an attacker can’t silently strip that first request down to plaintext http and sit in the middle.' },
+      { id: 'hsts', note: 'The defense: HSTS tells the browser “only ever reach me over HTTPS,” so after the first visit an attacker can’t strip later requests down to plaintext http — the first plaintext visit is still exposed (trust-on-first-use) unless the domain is preloaded.' },
       { id: 'sri', note: 'The last gap: a page loads scripts from CDNs it doesn’t control — Subresource Integrity pins each file’s hash, so a tampered or swapped resource is rejected instead of run.' },
     ],
   },
