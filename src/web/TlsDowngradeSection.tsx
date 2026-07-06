@@ -1,9 +1,11 @@
 // TLS cipher-suite negotiation and the downgrade attack. The client offers suites
 // strongest-first; the server picks the best it shares. An on-path attacker editing
-// the ClientHello strips the strong ones to force a breakable suite — until the
-// handshake is integrity-protected. Model in tlsneg.ts (tested).
+// the ClientHello strips the strong ones to force a breakable suite. The Finished MAC
+// over the transcript catches that tampering — EXCEPT when the forced suite is export-
+// grade, where the attacker recovers the master secret and forges a matching Finished
+// (that exception is FREAK/Logjam). Model + honest verdict in tlsneg.ts (tested).
 import { useState } from 'react';
-import { SUITES, negotiate, strip, isDowngrade, type Strength } from './tlsneg';
+import { SUITES, negotiate, strip, isDowngrade, outcome, type Strength } from './tlsneg';
 
 const CAPS: { cap: Strength; label: string }[] = [
   { cap: 'strong', label: 'no attack' },
@@ -21,8 +23,7 @@ export function TlsDowngradeSection() {
   const survived = new Set(offered.map((s) => s.id));
   const actual = negotiate(offered, SUITES)!;
   const downgraded = isDowngrade(honest, actual);
-  const detected = auth && downgraded;
-  const verdict = detected ? 'detected' : downgraded ? 'broken' : 'secure';
+  const verdict = outcome(actual, downgraded, auth); // 'secure' | 'detected' | 'forged' | 'broken'
 
   return (
     <div className="journey">
@@ -63,14 +64,19 @@ export function TlsDowngradeSection() {
         <div className={`tn-verdict ${verdict}`}>
           {verdict === 'secure' && <>🔒 Negotiated <strong>{actual.id}</strong> ({actual.enc}) — the strongest both sides support, untouched.</>}
           {verdict === 'broken' && <>☠️ Forced down to <strong>{actual.id}</strong> — <strong>{actual.attack}</strong>. The attacker can now break the session, and nothing in the handshake noticed the offer was edited.</>}
-          {verdict === 'detected' && <>🛡️ Downgrade <strong>detected</strong>. The Finished MAC covers the whole handshake transcript, so the edited ClientHello doesn’t match what the client actually sent — the MAC fails and the connection aborts.</>}
+          {verdict === 'detected' && <>🛡️ Downgrade <strong>detected</strong>. The Finished MAC covers the whole transcript, and this suite’s key exchange is strong enough that the attacker can’t recover the master secret — so it can’t forge a matching Finished. The MAC mismatch aborts the connection.</>}
+          {verdict === 'forged' && <>☠️ <strong>Finished MAC forged.</strong> The handshake WAS integrity-protected — but the attacker forced an <strong>export</strong> key exchange ({actual.enc}), broke it offline to recover the master secret, and computed a Finished MAC that matches the client’s transcript. Integrity didn’t help: the MAC is only as strong as the key exchange keying it. <strong>This is exactly FREAK / Logjam.</strong></>}
         </div>
 
         <p className="tn-note">
-          Two protections make this stick in modern TLS: the <strong>Finished</strong> message MACs the entire handshake transcript
-          (any tampering changes the hash, so both ends abort), and a TLS 1.3 server that negotiates an older version writes a fixed{' '}
-          <strong>downgrade sentinel</strong> into the last bytes of its ServerRandom — a 1.3-capable client sees it and refuses.
-          Removing export ciphers and SSLv3/RC4/3DES from servers entirely is what finally closed FREAK, Logjam and POODLE for good.
+          The <strong>Finished</strong> message MACs the entire handshake transcript, so a stripped ClientHello normally makes the two
+          ends compute different Finished values and abort — but that MAC is <em>only as strong as the key exchange keying it</em>. Force
+          an <strong>export</strong> suite and the attacker recovers the master secret (factor the 512-bit RSA / solve the 512-bit DH
+          offline) and forges a Finished that matches: that is precisely how <strong>FREAK</strong> and <strong>Logjam</strong> beat
+          handshake integrity. Two things actually closed the hole — servers <strong>removing export/RC4/3DES/SSLv3 suites entirely</strong>{' '}
+          (no weak target left to force), and, for <em>version</em> downgrade specifically, a TLS 1.3 server stamping a fixed{' '}
+          <strong>downgrade sentinel</strong> into its <em>signed</em> ServerRandom that a 1.3-capable client refuses. Integrity buys you
+          nothing when the crypto underneath it is breakable.
         </p>
       </section>
     </div>

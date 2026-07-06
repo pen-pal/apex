@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { SUITES, negotiate, strip, isDowngrade, RANK } from '../src/web/tlsneg';
+import { SUITES, negotiate, strip, isDowngrade, RANK, outcome, type Strength } from '../src/web/tlsneg';
 
 const byId = (id: string) => SUITES.find((s) => s.id === id)!;
 
@@ -39,5 +39,29 @@ describe('the downgrade attack', () => {
     expect(RANK[negotiate(strip(SUITES, 'legacy'), SUITES)!.strength]).toBeGreaterThan(
       RANK[negotiate(strip(SUITES, 'weak'), SUITES)!.strength],
     );
+  });
+});
+
+describe('the Finished MAC is only as strong as the key exchange (FREAK/Logjam)', () => {
+  const honest = negotiate(SUITES, SUITES)!;
+  const forced = (cap: Strength) => negotiate(strip(SUITES, cap), SUITES)!;
+  const dg = (cap: Strength) => isDowngrade(honest, forced(cap));
+
+  it('no integrity: any downgrade sticks silently', () => {
+    expect(outcome(forced('weak'), dg('weak'), false)).toBe('broken');
+  });
+  it('with the Finished MAC, a downgrade to a strong-KEX suite is DETECTED (attacker can’t forge it)', () => {
+    const f = forced('weak'); // RC4/3DES over RSA-2048 — the record cipher is weak but the KEX is not
+    expect(f.exportGrade).toBeFalsy();
+    expect(outcome(f, dg('weak'), true)).toBe('detected');
+  });
+  it('but the Finished MAC is FORGED when forced to an EXPORT suite — the real FREAK/Logjam bypass', () => {
+    const f = forced('broken');
+    expect(f.exportGrade).toBe(true);                    // 40-bit RSA / 512-bit DH: the master secret is recoverable
+    expect(outcome(f, dg('broken'), true)).toBe('forged'); // integrity present, and STILL bypassed
+  });
+  it('an untouched handshake is secure with or without integrity', () => {
+    expect(outcome(honest, false, true)).toBe('secure');
+    expect(outcome(honest, false, false)).toBe('secure');
   });
 });
