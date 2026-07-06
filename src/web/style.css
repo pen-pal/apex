@@ -6888,6 +6888,12 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ssrf-presets{display:flex;gap:7px;flex-wrap:wrap}
 .ssrf-presets button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:var(--soft);color:hsl(212 70% 45%);cursor:pointer}
 .ssrf-presets button:hover{border-color:hsl(212 70% 60%)}
+.ssrf-prot-sel{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.ssrf-prot-lbl{font-size:12px;color:var(--muted);margin-right:2px}
+.ssrf-prot-sel button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:var(--soft);color:var(--ink);cursor:pointer}
+.ssrf-prot-sel button:hover{border-color:var(--accent)}
+.ssrf-prot-sel button.on{background:hsl(150 45% 45% / .18);border-color:hsl(150 45% 50%);color:hsl(150 45% 55%);font-weight:600}
+.ssrf-note{font-style:normal;color:hsl(0 72% 62%);font-weight:600}
 .ssrf-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--panel)}
 .ssrf-node{border:1px solid var(--line);border-radius:9px;padding:11px 14px;font-size:12.5px;font-weight:600;color:var(--ink);background:var(--panel)}
 .ssrf-node.srv{background:hsl(212 55% 55% / .14);border-color:hsl(212 50% 80%);color:hsl(212 70% 35%)}
