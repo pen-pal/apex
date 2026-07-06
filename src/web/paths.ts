@@ -93,6 +93,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'replication', note: 'Ship the WAL to replicas so a copy of the data survives a node loss.' },
       { id: 'quorum', note: 'Read/write quorums (R + W > N) keep replicas consistent under failure.' },
       { id: 'twopc', note: 'Two-phase commit makes one transaction atomic across several machines.' },
+      { id: 'threepc', note: 'Three-phase commit adds a pre-commit round so a coordinator crash can’t leave the others blocked forever — the fix for 2PC’s blocking flaw.' },
     ],
   },
   {
@@ -313,6 +314,8 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'pagerank', note: 'Find a matrix’s dominant eigenvector by multiplying repeatedly — the random surfer’s stationary distribution.' },
       { id: 'kmeans', note: 'Alternate assign-to-nearest and move-the-center until the clustering stops changing.' },
       { id: 'montecarlo', note: 'When you can’t integrate, sample at random — the estimate’s error shrinks as 1/√N.' },
+      { id: 'simplex', note: 'Optimization converges too: simplex walks vertex to vertex of the feasible region, each step raising the objective until no neighbour is higher — the optimum.' },
+      { id: 'kalman', note: 'Estimation as iteration: a Kalman filter refines its guess every step, blending its prediction and each measurement by their uncertainties toward the true state.' },
     ],
   },
   {
@@ -326,6 +329,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'refcount', note: 'The simplest reclaim: count references and free at zero — but a reference cycle keeps itself alive and leaks.' },
       { id: 'gc', note: 'Tracing mark-and-sweep collects from the roots instead, so it reclaims the cycles reference counting can’t.' },
       { id: 'cheney', note: 'A copying collector goes further — it relocates the survivors into a fresh space, compacting fragmentation away.' },
+      { id: 'ownership', note: 'Or reclaim at compile time: Rust’s ownership and borrow rules let the compiler insert every free automatically — no GC pauses, no leaks, no use-after-free.' },
     ],
   },
   {
