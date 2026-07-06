@@ -5342,19 +5342,18 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .jp-arrow{color:hsl(212 50% 70%);font-size:11px}
 .jp-stop-lbl{font-size:11px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
 .jp-start{font-size:12.5px;font-weight:600;color:hsl(212 70% 45%);margin-top:auto;padding-top:4px}
-/* Featured "start here" row + collapsible journey areas (so ~80 journeys don't wall the page) */
+/* "Start here" featured row + a show-all/filter control for the full journey list */
 .jp-featured{margin-bottom:22px}
 .jp-featured-lbl{display:block;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:hsl(212 70% 48%);margin-bottom:9px}
-.jpg-arealbl{font-size:12.5px;color:var(--muted);font-weight:600;margin:2px 0 11px}
-.jpg-area{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;overflow:hidden;background:var(--panel)}
-.jpg-area.open{border-color:hsl(212 55% 60% / .5)}
-.jpg-head{width:100%;display:flex;align-items:center;gap:10px;padding:12px 15px;background:none;border:none;cursor:pointer;font:inherit;color:var(--ink);text-align:left;transition:background .12s}
-.jpg-head:hover{background:hsl(212 40% 55% / .07)}
-.jpg-icon{font-size:18px;line-height:1}
-.jpg-head h3{font-size:14.5px;margin:0;flex:1;font-weight:640;letter-spacing:-.01em}
-.jpg-count{font-size:11px;color:var(--muted);background:hsl(212 40% 55% / .14);border-radius:20px;padding:2px 9px}
-.jpg-expand{font-size:15px;color:var(--muted);width:14px;text-align:center}
-.jpg-area .jp-grid{padding:2px 13px 15px}
+.jp-browse{margin-top:2px}
+.jp-showall{font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:hsl(212 70% 45%);background:none;border:1px dashed var(--line);border-radius:10px;padding:11px 18px;width:100%;transition:border-color .14s,background .14s}
+.jp-showall:hover{border-color:hsl(212 60% 60%);background:hsl(212 40% 55% / .06)}
+.jp-browse-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.jp-browse-lbl{font-size:12.5px;color:var(--muted);font-weight:600}
+.jp-filter{flex:1;min-width:160px;font:inherit;font-size:13px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--ink)}
+.jp-collapse{font:inherit;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;padding:4px}
+.jp-collapse:hover{color:var(--ink)}
+.jp-noresult{font-size:13px;color:var(--muted);padding:10px 2px}
 
 /* ── Journey preview panel (modal shown when a journey card is clicked) ───────── */
 .jpv-backdrop{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;

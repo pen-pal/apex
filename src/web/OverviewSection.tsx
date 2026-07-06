@@ -5,7 +5,7 @@
 // the section + path registries, plus local search/expand state.
 import { useEffect, useMemo, useState } from 'react';
 import { GROUPS, metaById } from './sections';
-import { PATHS, JOURNEY_AREAS, FEATURED_JOURNEYS, pathById, type LearningPath } from './paths';
+import { PATHS, FEATURED_JOURNEYS, pathById, type LearningPath } from './paths';
 
 export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id: string) => void; onStartPath: (pathId: string) => void; current: string }) {
   const total = GROUPS.reduce((n, g) => n + g.ids.length, 0);
@@ -24,8 +24,14 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
   const ql = q.trim().toLowerCase();
   const searching = ql !== '';
   const toggle = (label: string) => setExpanded((s) => { const n = new Set(s); n.has(label) ? n.delete(label) : n.add(label); return n; });
-  const [jexpanded, setJexpanded] = useState<Set<string>>(new Set());
-  const toggleJ = (label: string) => setJexpanded((s) => { const n = new Set(s); n.has(label) ? n.delete(label) : n.add(label); return n; });
+  const [showAllJ, setShowAllJ] = useState(false);
+  const [jq, setJq] = useState('');
+  const journeyMatches = useMemo(() => {
+    const t = jq.trim().toLowerCase();
+    if (!t) return PATHS;
+    return PATHS.filter((p) => p.title.toLowerCase().includes(t) || p.blurb.toLowerCase().includes(t)
+      || p.steps.some((s) => (metaById[s.id]?.label ?? s.id).toLowerCase().includes(t)));
+  }, [jq]);
 
   const card = (p: LearningPath) => (
     <button key={p.id} type="button" className="jp-card" onClick={() => setPreview(p)}>
@@ -79,22 +85,23 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
               {FEATURED_JOURNEYS.map((id) => pathById[id]).filter(Boolean).map(card)}
             </div>
           </div>
-          <div className="jpg">
-            <div className="jpg-arealbl">Or browse all {PATHS.length} journeys by area</div>
-            {JOURNEY_AREAS.map((area) => {
-              const open = jexpanded.has(area.label);
-              return (
-                <div className={`jpg-area ${open ? 'open' : ''}`} key={area.label}>
-                  <button type="button" className="jpg-head" onClick={() => toggleJ(area.label)} aria-expanded={open}>
-                    <span className="jpg-icon" aria-hidden="true">{area.icon}</span>
-                    <h3>{area.label}</h3>
-                    <span className="jpg-count">{area.ids.length}</span>
-                    <span className="jpg-expand" aria-hidden="true">{open ? '⌄' : '›'}</span>
-                  </button>
-                  {open && <div className="jp-grid">{area.ids.map((id) => pathById[id]).filter(Boolean).map(card)}</div>}
+          <div className="jp-browse">
+            {showAllJ || jq ? (
+              <>
+                <div className="jp-browse-head">
+                  <span className="jp-browse-lbl">All {PATHS.length} journeys</span>
+                  <input className="jp-filter" type="search" value={jq} placeholder="🔎 filter journeys…" onChange={(e) => setJq(e.target.value)} aria-label="Filter journeys" />
+                  <button type="button" className="jp-collapse" onClick={() => { setShowAllJ(false); setJq(''); }}>collapse ▴</button>
                 </div>
-              );
-            })}
+                {journeyMatches.length ? (
+                  <div className="jp-grid">{journeyMatches.map(card)}</div>
+                ) : (
+                  <div className="jp-noresult">No journeys match “{jq}”.</div>
+                )}
+              </>
+            ) : (
+              <button type="button" className="jp-showall" onClick={() => setShowAllJ(true)}>Show all {PATHS.length} journeys →</button>
+            )}
           </div>
         </div>
       )}
