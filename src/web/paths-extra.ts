@@ -546,4 +546,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'bsgs', note: 'Meet in the middle on a discrete log: baby-step giant-step solves gˣ ≡ h by precomputing √n “baby” values and striding in √n “giant” steps until they meet — O(√n), which is why Diffie–Hellman groups must be enormous.' },
     ],
   },
+  {
+    id: 'httpstls',
+    title: 'How HTTPS really secures you',
+    icon: '🔐',
+    blurb: 'A padlock is the least of it. Follow the machinery that makes a connection trustworthy — the handshake and the public-key math under it, how a stolen certificate gets caught, and the downgrade and stripping attacks it must survive, down to verifying the very scripts a page pulls in.',
+    steps: [
+      { id: 'tlsflow', note: 'The TLS handshake as one flow: agree on a cipher, prove the server’s identity with a certificate chain, derive a shared key over the public wire, then encrypt and authenticate everything after.' },
+      { id: 'pubkey', note: 'What makes the handshake possible: a keypair where the public key encrypts or verifies and only the private key decrypts or signs — so two strangers agree on a secret nobody listening can read.' },
+      { id: 'revocation', note: 'Trust must be revocable: when a certificate is stolen or mis-issued, OCSP and CRLs mark it dead, and Certificate Transparency logs make every issued cert publicly auditable so a rogue one is caught.' },
+      { id: 'tlsdowngrade', note: 'The attack: a meddler-in-the-middle nudges the negotiation down to an obsolete, breakable cipher or protocol version — which only fails if both sides refuse to go that low.' },
+      { id: 'hsts', note: 'The defense: HSTS tells the browser “only ever reach me over HTTPS,” so an attacker can’t silently strip that first request down to plaintext http and sit in the middle.' },
+      { id: 'sri', note: 'The last gap: a page loads scripts from CDNs it doesn’t control — Subresource Integrity pins each file’s hash, so a tampered or swapped resource is rejected instead of run.' },
+    ],
+  },
 ];
