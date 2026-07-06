@@ -80,7 +80,7 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
             </div>
           </div>
           <div className="jpg">
-            <div className="jpg-lbl">Or browse all {PATHS.length} journeys by area</div>
+            <div className="jpg-arealbl">Or browse all {PATHS.length} journeys by area</div>
             {JOURNEY_AREAS.map((area) => {
               const open = jexpanded.has(area.label);
               return (
