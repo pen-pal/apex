@@ -1,119 +1,124 @@
-// Offensive-security arc #3: how ROP bypasses NX — return-oriented programming, on the GuidedStory engine. NX stopped
-// injected code, but you still own the stack, and `ret` blindly follows whatever addresses are on it. ROP chains
-// "gadgets" — short instruction sequences ending in ret, already sitting in executable memory — to call system('/bin/sh')
-// without executing a single injected byte. A step-through of the chain: ret pops each gadget address, the gadget runs,
-// its ret pops the next. Conceptual + sandboxed (real x86-64 calling convention; illustrative addresses). Motivates ASLR.
-import { useState } from 'react';
-import { GuidedStory, type StoryScene } from './GuidedStory';
+// How ROP bypasses NX — REBUILT as a producible puzzle. NX made the stack non-executable, so injected shellcode
+// won't run; but you still own the stack and `ret` follows whatever address is on it. So you reuse code that is
+// already executable — "gadgets" ending in ret — chaining their addresses up the stack. Here the learner assembles
+// the chain from a gadget palette, sets each popped value, and runs it on a tiny register machine (rop.ts) to build
+// execve("/bin/sh") and pop a shell. Real x86-64 syscall ABI (execve = 59); illustrative gadget addresses.
+import { useMemo, useState } from 'react';
+import { GADGETS, WORDS, runChain, BINSH, type Gadget, type Word, type ChainEntry } from './rop';
 
-const GADGETS = [
-  { asm: 'pop rdi ; ret', addr: '0x4011a3', used: true },
-  { asm: 'pop rsi ; ret', addr: '0x4011b0', used: false },
-  { asm: 'mov [rax], rbx ; ret', addr: '0x40120c', used: false },
-];
-const BINSH = '0x7f3ad8e0', SYSTEM = '0x7f3a4520';
-// the ROP chain the overflow writes above the saved return slot (lowest address first = consumed first):
-const CHAIN = [
-  { addr: '0x4011a3', label: '&(pop rdi ; ret)', kind: 'gadget' },
-  { addr: BINSH, label: '"/bin/sh" pointer', kind: 'data' },
-  { addr: SYSTEM, label: '&system()', kind: 'call' },
-];
-
-// step machine: 0 laid out → 1 ret→gadget → 2 pop rdi → 3 ret→system → 4 executed
-function frame(step: number) {
-  const rspIdx = Math.min(step, 3); // which chain entry RSP points at (3 = past the end)
-  const rdi = step >= 2 ? BINSH : '—';
-  const pc = step <= 0 ? 'caller — ret next'
-    : step <= 2 ? 'pop rdi ; ret   @0x4011a3'
-      : 'system   @0x7f3a4520';
-  const onGadget = step === 1 || step === 2;
-  const msg = [
-    'The overflow wrote this chain above the saved return address. RSP points at the first entry, and the function is about to run its ret.',
-    'ret pops the first address and jumps to it — the gadget pop rdi ; ret, real code already living in .text. NX is irrelevant: this page is executable.',
-    'pop rdi loads the next stack value — the pointer to "/bin/sh" — into rdi, the register that holds a function’s first argument.',
-    'The gadget’s own ret pops the next address off the stack: libc’s system(). rdi is already set up from the last step.',
-    'system("/bin/sh") runs — a shell. Every instruction executed was already in an executable page, so NX never fired. No injected code ran.',
-  ][step];
-  return { rspIdx, rdi, pc, onGadget, msg, done: step >= 4 };
-}
-
-type Phase = 'left' | 'gadget' | 'chain' | 'call' | 'run';
+const REG_GOAL: Record<string, number | string> = { rax: 59, rdi: BINSH, rsi: 0, rdx: 0 };
 
 export function RopSection() {
-  const [step, setStep] = useState(0);
-  const sceneStep: Record<Exclude<Phase, 'run'>, number> = { left: 0, gadget: 1, chain: 2, call: 3 };
+  const [chain, setChain] = useState<ChainEntry[]>([]);
+  const [revealed, setRevealed] = useState(0); // gadgets executed so far (0 = not run yet)
+  const result = useMemo(() => runChain(chain), [chain]);
+  const trace = result.trace;
 
-  const scene = (key: Exclude<Phase, 'run'>, title: string, caption: string): StoryScene =>
-    ({ key, title, caption, render: () => <Rop step={sceneStep[key]} /> });
+  const reset = () => setRevealed(0);
+  const addGadget = (g: Gadget) => { setChain((c) => [...c, { gadget: g, word: g.pops ? WORDS[0] : undefined }]); reset(); };
+  const setWord = (i: number, w: Word) => { setChain((c) => c.map((e, j) => (j === i ? { ...e, word: w } : e))); reset(); };
+  const removeAt = (i: number) => { setChain((c) => c.filter((_, j) => j !== i)); reset(); };
+  const clear = () => { setChain([]); reset(); };
 
-  const scenes: StoryScene[] = [
-    scene('left', 'NX left you the stack', 'NX stopped you from running injected code — but you still overflow the stack and control every value on it, and the ret instruction blindly jumps to whatever address it pops. What if the “code” you run is already sitting in memory, on a page that is allowed to execute?'),
-    scene('gadget', 'A gadget is borrowed code', 'Scattered through the binary and libc are short instruction sequences that happen to end in ret — pop rdi ; ret, pop rsi ; ret, and thousands more. Each is a gadget: one small operation you can borrow, whose ret then hands control to whatever address is next on the stack.'),
-    scene('chain', 'Chain them up the stack', 'Instead of one return address, the overflow writes a list of gadget addresses. The first ret jumps to gadget one; its ret pops and jumps to gadget two; and so on. The stack has become the program, and ret is the program counter walking down it.'),
-    scene('call', 'Call system("/bin/sh")', 'A real chain: pop rdi ; ret loads the address of the "/bin/sh" string into rdi (the first-argument register), then the chain returns straight into libc’s system(). The argument is set up and a real function is called — using only code that was already executable.'),
-    { key: 'run', title: 'Walk the chain', caption: 'Step the ROP chain one gadget at a time. Watch RSP march down the stack as each ret pops the next address, the gadget execute and set rdi, and finally system() get called. Nothing on a writable page is ever executed — NX is fully bypassed with code that was already there.', render: () => <Rop step={step} /> },
-  ];
+  const done = revealed >= trace.length && trace.length > 0;
+  const curEntry = revealed > 0 ? revealed - 1 : -1; // chain entry currently executing (1:1 with trace)
+  const regs = revealed > 0 ? trace[Math.min(revealed, trace.length) - 1].regs : null;
 
   return (
-    <GuidedStory
-      scenes={scenes}
-      explain={{
-        idea: <>NX stopped you from running code you inject — but it left you in complete control of the stack, and the stack is full of return addresses that the <code>ret</code> instruction blindly follows. Return-oriented programming turns that into a weapon: rather than inject code, you find short snippets already in the program that end in <code>ret</code> — “gadgets” — and chain them by laying their addresses up the stack. Each gadget does one small thing and its <code>ret</code> jumps to the next. Every instruction executed already lives on an executable page, so NX never fires.</>,
-        takeaway: <>A gadget is any useful instruction (or two) immediately followed by <code>ret</code>; a large binary plus libc holds thousands — enough to be Turing-complete. The overflow overwrites the saved return address <em>and</em> writes a list of gadget addresses above it, so <code>ret</code> becomes the program counter, popping the next gadget each time it fires. The classic chain loads the address of <code>"/bin/sh"</code> into the argument register (<code>pop rdi ; ret</code>) and returns into libc’s <code>system()</code> — arbitrary code execution without executing one injected byte. This is why NX alone was not enough, and it is exactly what ASLR (hide the addresses) and control-flow integrity (check where <code>ret</code>s land) were built to stop — the next stories.</>,
-      }}
-      controls={(s) => s !== scenes.length - 1 ? null : (
-        <>
-          <button type="button" className="rop-btn" onClick={() => setStep((n) => Math.min(4, n + 1))} disabled={step >= 4}>step ▸</button>
-          <button type="button" className="rop-btn ghost" onClick={() => setStep(0)}>reset</button>
-          <span className="rop-live">{step >= 4 ? '● shell spawned — NX bypassed' : `step ${step}/4`}</span>
-        </>
-      )}
-    />
-  );
-}
+    <div className="journey">
+      <section className="jsec">
+        <div className="jsec-head"><h2>Return-oriented programming — build the chain, pop the shell</h2></div>
+        <p className="jsec-sub">
+          In the buffer overflow you overwrote the return address and jumped to <em>your own bytes</em> on the stack. Defenders
+          answered with <strong>NX</strong> — a non-executable stack: the CPU refuses to run instructions from a writable page,
+          so injected shellcode is dead on arrival. But you still own the stack, and <code>ret</code> still blindly jumps to
+          whatever address sits on it. So instead of injecting code, you <strong>reuse code that is already executable</strong> —
+          short snippets in the program and its libraries that happen to end in <code>ret</code>, called <strong>gadgets</strong>.
+          Lay a list of gadget addresses up the stack and each gadget’s <code>ret</code> runs the next: the stack becomes your
+          program. Build one below that calls a shell — every instruction it runs was already there, so NX never fires.
+        </p>
 
-function Rop({ step }: { step: number }) {
-  const f = frame(step);
-  return (
-    <svg viewBox="0 0 900 480" className="story-svg">
-      {/* gadget catalog */}
-      <text x="40" y="46" className="rop-col">gadgets — already in .text / libc</text>
-      {GADGETS.map((g, i) => (
-        <g key={g.addr}>
-          <rect x="40" y={62 + i * 46} width="250" height="38" rx="6" className={`rop-gad ${g.used && f.onGadget ? 'active' : ''} ${g.used ? 'used' : ''}`} />
-          <text x="54" y={86 + i * 46} className="rop-gad-asm">{g.asm}</text>
-          <text x="278" y={86 + i * 46} className="rop-gad-addr" textAnchor="end">{g.addr}</text>
-        </g>
-      ))}
-      <text x="40" y={62 + 3 * 46 + 22} className="rop-note">…a large binary + libc holds thousands</text>
+        <p className="rop-goal">
+          🎯 <strong>Goal:</strong> <code>execve("/bin/sh", NULL, NULL)</code> — a shell. On x86-64 Linux that is
+          <strong> syscall with rax = 59</strong>, <strong>rdi = &amp;"/bin/sh"</strong>, <strong>rsi = 0</strong>,
+          <strong> rdx = 0</strong>. Add gadgets to load those registers, finish with <code>syscall ; ret</code>, then run it.
+        </p>
 
-      {/* the stack / ROP chain */}
-      <text x="360" y="46" className="rop-col" textAnchor="middle">the stack — your ROP chain</text>
-      {CHAIN.map((c, i) => {
-        const consumed = i < f.rspIdx; const cur = i === f.rspIdx;
-        return (
-          <g key={i}>
-            <rect x="330" y={62 + i * 58} width="230" height="48" rx="6" className={`rop-slot ${c.kind} ${consumed ? 'used' : ''} ${cur ? 'cur' : ''}`} />
-            <text x="346" y={82 + i * 58} className="rop-slot-addr">{c.addr}</text>
-            <text x="346" y={100 + i * 58} className="rop-slot-lbl">{c.label}</text>
-            {cur && <text x="300" y={90 + i * 58} className="rop-rsp" textAnchor="end">RSP →</text>}
-          </g>
-        );
-      })}
-      {f.rspIdx >= 3 && <text x="300" y={62 + 3 * 58 + 14} className="rop-rsp" textAnchor="end">RSP →</text>}
-      <text x="445" y="452" className="rop-foot" textAnchor="middle">ret pops the next address ↓ and jumps to it</text>
+        <div className="rop-build">
+          <div className="rop-palette">
+            <h3>gadgets <span>already executable · .text / libc</span></h3>
+            {GADGETS.map((g) => (
+              <button key={g.id} type="button" className={`rop-pal-btn ${g.decoy ? 'decoy' : ''} ${g.syscall ? 'sys' : ''}`} onClick={() => addGadget(g)}>
+                <code className="rop-pal-asm">{g.asm}</code>
+                <code className="rop-pal-addr">{g.addr}</code>
+              </button>
+            ))}
+            <p className="rop-pal-note">click a gadget to append it to the chain →</p>
+          </div>
 
-      {/* registers + status */}
-      <text x="620" y="46" className="rop-col">registers</text>
-      <rect x="620" y="60" width="250" height="132" rx="8" className="rop-regs" />
-      <text x="638" y="90" className="rop-reg">pc  <tspan className="rop-reg-v">{f.pc}</tspan></text>
-      <text x="638" y="120" className="rop-reg">rdi <tspan className={`rop-reg-v ${f.rdi !== '—' ? 'set' : ''}`}>{f.rdi}{f.rdi !== '—' ? '  ("/bin/sh")' : ''}</tspan></text>
-      <text x="638" y="150" className="rop-reg">rsp <tspan className="rop-reg-v">{f.rspIdx >= 3 ? 'past chain' : `chain[${f.rspIdx}]`}</tspan></text>
-      <text x="638" y="180" className={`rop-reg-note ${f.done ? 'win' : ''}`}>{f.done ? '→ execve("/bin/sh") — shell' : 'NX: every page above is executable'}</text>
+          <div className="rop-chainbox">
+            <h3>your chain <span>the stack — <code>ret</code> walks down it</span></h3>
+            {chain.length === 0 ? (
+              <p className="rop-empty">empty — add gadgets from the palette</p>
+            ) : (
+              <div className="rop-chain">
+                {chain.map((e, i) => (
+                  <div key={i} className={`rop-entry ${i === curEntry ? 'active' : ''} ${revealed > 0 && i < curEntry ? 'done' : ''} ${e.gadget.syscall ? 'syscall' : ''}`}>
+                    {i === curEntry && <span className="rop-rsp">RSP▸</span>}
+                    <code className="rop-e-addr">{e.gadget.addr}</code>
+                    <code className="rop-e-asm">{e.gadget.asm}</code>
+                    {e.gadget.pops ? (
+                      <select className="rop-e-word" value={e.word?.label} onChange={(ev) => setWord(i, WORDS.find((w) => w.label === ev.target.value)!)}>
+                        {WORDS.map((w) => <option key={w.label} value={w.label}>{w.label}</option>)}
+                      </select>
+                    ) : <span className="rop-e-word ghost">—</span>}
+                    <button type="button" className="rop-e-x" onClick={() => removeAt(i)} aria-label="remove">✕</button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="rop-run">
+              <button type="button" className="rop-btn" onClick={() => setRevealed((r) => Math.min(trace.length, r + 1))} disabled={!chain.length || done}>step ▸</button>
+              <button type="button" className="rop-btn" onClick={() => setRevealed(trace.length)} disabled={!chain.length || done}>▶ run</button>
+              <button type="button" className="rop-btn ghost" onClick={reset} disabled={!revealed}>↺ reset</button>
+              <button type="button" className="rop-btn ghost" onClick={clear} disabled={!chain.length}>clear</button>
+            </div>
+          </div>
 
-      <foreignObject x="600" y="210" width="285" height="230">
-        <div className="rop-msg">{f.msg}</div>
-      </foreignObject>
-    </svg>
+          <div className="rop-state">
+            <h3>registers</h3>
+            <div className="rop-regbox">
+              {(['rax', 'rdi', 'rsi', 'rdx'] as const).map((r) => {
+                const v = regs ? regs[r] : '—';
+                const ok = regs != null && v === REG_GOAL[r];
+                const show = v === BINSH ? '&"/bin/sh"' : String(v);
+                return (
+                  <div key={r} className={`rop-regrow ${ok ? 'ok' : ''}`}>
+                    <code className="rop-regn">{r}</code>
+                    <code className="rop-regv">{show}</code>
+                    {ok && <span className="rop-tick">✓</span>}
+                  </div>
+                );
+              })}
+            </div>
+            {!done && revealed > 0 && <p className="rop-tracenote">{trace[revealed - 1]?.note}</p>}
+            {done && (
+              <div className={`rop-verdict ${result.shell ? 'win' : 'fail'}`}>
+                <div className="rop-verdict-h">{result.shell ? '🐚 shell spawned — NX bypassed' : '✗ no shell'}</div>
+                <p>{result.reason}</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <p className="rop-foot">
+          Gadgets ending in <code>ret</code> are so plentiful that a large binary plus libc is effectively Turing-complete — you
+          can compute anything without injecting a byte, which is why NX alone was never enough. The next defense hides the
+          addresses: <strong>ASLR</strong> randomizes where the code and gadgets live, so the fixed <code>0x4011…</code> addresses
+          here would be wrong on every run — the attacker first needs an <em>info leak</em> to discover the real base. And
+          <strong> control-flow integrity</strong> checks that every <code>ret</code> lands somewhere it is actually allowed to.
+        </p>
+      </section>
+    </div>
   );
 }

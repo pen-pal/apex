@@ -11476,34 +11476,52 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .nx-live.bad{color:hsl(0 75% 66%)}
 
 /* ── ROP story (RopSection) — gadget catalog + ROP chain on the stack + registers ─────────────── */
-.rop-col{fill:hsl(210 16% 60%);font-size:11.5px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
-.rop-gad{fill:hsl(150 30% 38% / .14);stroke:hsl(150 35% 44%);stroke-width:1}
-.rop-gad.used{fill:hsl(150 40% 40% / .2);stroke:hsl(150 48% 50%)}
-.rop-gad.active{fill:hsl(45 70% 45% / .28);stroke:hsl(45 90% 58%);filter:drop-shadow(0 0 5px hsl(45 80% 50% / .4))}
-.rop-gad-asm{fill:hsl(210 26% 86%);font-size:13px;font-family:var(--mono,monospace)}
-.rop-gad-addr{fill:hsl(210 16% 58%);font-size:11.5px;font-family:var(--mono,monospace)}
-.rop-note{fill:hsl(210 15% 52%);font-size:11px;font-family:var(--mono,monospace);font-style:italic}
-.rop-slot{fill:hsl(220 18% 22% / .55);stroke:hsl(220 16% 34%);stroke-width:1}
-.rop-slot.gadget{stroke:hsl(45 60% 50%)}
-.rop-slot.data{stroke:hsl(210 50% 55%)}
-.rop-slot.call{stroke:hsl(300 55% 58%)}
-.rop-slot.used{opacity:.4}
-.rop-slot.cur{filter:drop-shadow(0 0 6px hsl(45 85% 55% / .5));stroke-width:2}
-.rop-slot-addr{fill:hsl(45 85% 66%);font-size:13px;font-family:var(--mono,monospace)}
-.rop-slot-lbl{fill:hsl(210 20% 74%);font-size:11.5px;font-family:var(--mono,monospace)}
-.rop-rsp{fill:hsl(150 65% 58%);font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
-.rop-foot{fill:hsl(210 16% 58%);font-size:12px}
-.rop-regs{fill:hsl(220 18% 16% / .7);stroke:hsl(220 16% 32%);stroke-width:1}
-.rop-reg{fill:hsl(210 20% 70%);font-size:13px;font-family:var(--mono,monospace)}
-.rop-reg-v{fill:hsl(210 28% 88%)}
-.rop-reg-v.set{fill:hsl(150 65% 60%)}
-.rop-reg-note{fill:hsl(210 15% 56%);font-size:11.5px;font-family:var(--mono,monospace)}
-.rop-reg-note.win{fill:hsl(150 65% 58%);font-weight:600}
-.rop-msg{color:hsl(210 22% 74%);font-size:13px;line-height:1.5;font-family:var(--sans,system-ui)}
+/* ROP builder (RopSection) — producible gadget-chain puzzle */
+.rop-goal{font-size:12.5px;line-height:1.5;color:var(--ink);background:hsl(210 60% 50% / .08);border:1px solid hsl(210 55% 55% / .3);border-radius:8px;padding:9px 12px;margin:0 0 4px}
+.rop-goal code{font-size:11.5px}
+.rop-build{display:grid;grid-template-columns:minmax(170px,1fr) minmax(250px,1.5fr) minmax(170px,1fr);gap:14px;align-items:start;margin-top:6px}
+@media(max-width:900px){.rop-build{grid-template-columns:1fr}}
+.rop-palette,.rop-chainbox,.rop-state{display:flex;flex-direction:column;gap:8px}
+.rop-palette h3,.rop-chainbox h3,.rop-state h3{font-size:12px;font-weight:600;margin:0;color:var(--ink)}
+.rop-palette h3 span,.rop-chainbox h3 span{font-weight:400;color:var(--muted);font-size:10.5px;display:block}
+.rop-pal-btn{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer;text-align:left}
+.rop-pal-btn:hover{border-color:var(--accent)}
+.rop-pal-btn.sys{border-color:hsl(150 45% 45% / .5)}
+.rop-pal-btn.decoy{opacity:.7}
+.rop-pal-asm{font-size:12px;color:var(--ink)}
+.rop-pal-addr{font-size:10.5px;color:var(--muted)}
+.rop-pal-note{font-size:10.5px;color:var(--muted);margin:2px 0 0}
+.rop-empty{font-size:12px;color:var(--muted);font-style:italic;padding:14px;text-align:center;border:1px dashed var(--line);border-radius:8px}
+.rop-chain{display:flex;flex-direction:column;gap:4px}
+.rop-entry{position:relative;display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+.rop-entry.active{border-color:hsl(45 90% 55%);background:hsl(45 90% 55% / .12)}
+.rop-entry.done{opacity:.5}
+.rop-entry.syscall{border-left:3px solid hsl(150 45% 50%)}
+.rop-rsp{position:absolute;left:-36px;font-size:10px;font-weight:700;color:hsl(45 90% 52%)}
+.rop-e-addr{font-size:10.5px;color:var(--muted)}
+.rop-e-asm{font-size:12px;color:var(--ink)}
+.rop-e-word{font-size:11px;padding:2px 4px;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.rop-e-word.ghost{border:0;background:none;color:var(--muted)}
+.rop-e-x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:11px;padding:2px;line-height:1}
+.rop-e-x:hover{color:hsl(0 60% 55%)}
+.rop-run{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.rop-regbox{display:flex;flex-direction:column;gap:4px}
+.rop-regrow{display:flex;align-items:center;gap:8px;padding:5px 9px;border-radius:6px;background:var(--panel);border:1px solid var(--line)}
+.rop-regrow.ok{border-color:hsl(150 45% 45% / .6);background:hsl(150 45% 45% / .1)}
+.rop-regn{font-size:12px;font-weight:600;color:var(--accent);min-width:28px}
+.rop-regv{font-size:11.5px;color:var(--ink)}
+.rop-tick{margin-left:auto;color:hsl(150 50% 45%);font-weight:700}
+.rop-tracenote{font-size:11px;color:var(--muted);line-height:1.5;margin:4px 0 0;font-family:var(--mono,monospace)}
+.rop-verdict{border-radius:8px;padding:10px 12px;margin-top:4px}
+.rop-verdict.win{background:hsl(150 50% 45% / .15);border:1px solid hsl(150 50% 45% / .5)}
+.rop-verdict.fail{background:hsl(0 55% 55% / .1);border:1px solid hsl(0 55% 55% / .4)}
+.rop-verdict-h{font-size:13px;font-weight:700;color:var(--ink)}
+.rop-verdict p{font-size:11.5px;line-height:1.5;color:var(--muted);margin:5px 0 0}
+.rop-foot{font-size:12px;line-height:1.6;color:var(--muted);margin-top:8px}
+.rop-foot strong{color:var(--ink)}
 .rop-btn{font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:6px}
 .rop-btn.ghost{opacity:.75}
 .rop-btn:disabled{opacity:.4;cursor:default}
-.rop-live{font-family:var(--mono,monospace);font-size:12.5px;color:var(--accent);margin-left:6px}
 
 /* ── ASLR story (AslrSection) — libc base randomization + infoleak-recovers-base ───────────────── */
 .asl-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.04em}
