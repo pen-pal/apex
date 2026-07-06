@@ -12242,9 +12242,17 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pr-name{fill:hsl(210 30% 92%);font-size:13px;font-weight:600;font-family:var(--mono,monospace)}
 .pr-rank{fill:hsl(210 26% 88%);font-size:11px;font-family:var(--mono,monospace)}
 .pr-foot{fill:hsl(210 16% 60%);font-size:13px}
-.pr-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.pr-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid hsl(210 55% 55%);background:hsl(210 50% 45% / .2);color:var(--ink);cursor:pointer}
-.pr-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+.pr-edge.trap{stroke:hsl(0 62% 60%);stroke-width:2}
+.pr-node.trap{fill:hsl(0 55% 48%);stroke:hsl(0 65% 66%)}
+.pr-foot.warn{fill:hsl(0 62% 66%)}
+.pr-ctl{display:flex;flex-direction:column;gap:8px;align-items:center}
+.pr-ctl-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center}
+.pr-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:border-color .12s,background .12s}
+.pr-btn:hover{border-color:var(--accent)}
+.pr-btn.on{background:hsl(210 55% 50% / .2);border-color:hsl(210 55% 55%);color:hsl(210 55% 62%)}
+.pr-damp{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink)}
+.pr-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);text-align:center;max-width:760px}
+.pr-live.warn{color:hsl(0 65% 62%)}
 
 /* ── k-means story (KMeansSection) — points coloured by cluster, centroids as X, live convergence ─── */
 .km-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
