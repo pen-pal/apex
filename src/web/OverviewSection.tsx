@@ -58,12 +58,15 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
                 </div>
                 <p className="jp-blurb">{p.blurb}</p>
                 <div className="jp-trail">
-                  {p.steps.map((s, i) => (
+                  {p.steps.slice(0, 4).map((s, i) => (
                     <span key={s.id} className="jp-stop">
                       {i > 0 && <span className="jp-arrow" aria-hidden="true">→</span>}
                       <span className="jp-stop-lbl">{metaById[s.id]?.label ?? s.id}</span>
                     </span>
                   ))}
+                  {p.steps.length > 4 && (
+                    <span className="jp-stop"><span className="jp-arrow" aria-hidden="true">→</span><span className="jp-stop-lbl jp-more">+{p.steps.length - 4} more</span></span>
+                  )}
                 </div>
                 <span className="jp-start">Preview journey →</span>
               </button>

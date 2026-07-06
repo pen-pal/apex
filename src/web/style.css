@@ -5335,8 +5335,9 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .jp-icon{font-size:20px;line-height:1}
 .jp-title{font-size:15px;font-weight:650;flex:1;letter-spacing:-.01em}
 .jp-count{font-size:11px;color:var(--muted);background:hsl(212 40% 55% / .14);border-radius:20px;padding:3px 9px;white-space:nowrap}
-.jp-blurb{font-size:12.5px;color:var(--muted);line-height:1.55;margin:0}
-.jp-trail{display:flex;flex-wrap:wrap;align-items:center;gap:3px 4px;margin-top:1px}
+.jp-blurb{font-size:12.5px;color:var(--muted);line-height:1.55;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.jp-trail{display:flex;flex-wrap:wrap;align-content:flex-start;gap:3px 4px;margin-top:1px;min-height:52px}
+.jp-more{color:var(--muted);font-style:italic}
 .jp-stop{display:inline-flex;align-items:center;gap:4px}
 .jp-arrow{color:hsl(212 50% 70%);font-size:11px}
 .jp-stop-lbl{font-size:11px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
