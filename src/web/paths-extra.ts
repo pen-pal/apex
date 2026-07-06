@@ -672,4 +672,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'geohash', note: 'Encode a location as a string: interleaving latitude and longitude bits makes nearby places share a common prefix, so proximity search becomes a prefix match.' },
     ],
   },
+  {
+    id: 'wheredatalives',
+    title: 'Where your data lives',
+    icon: '🗄️',
+    blurb: 'Storage is a set of tradeoffs. See how a filesystem scatters a file into blocks, how Git stores content by its hash, how the OS decides which pages to evict from RAM, and the three-way tradeoff every storage engine must pick from.',
+    steps: [
+      { id: 'inode', note: 'A file isn’t one contiguous thing: an inode holds its metadata and a list of block pointers — direct, then singly and doubly indirect — so one scheme spans a tiny file and a huge one.' },
+      { id: 'gitobjects', note: 'Git stores content, not files: every blob, tree, and commit is named by the SHA of its contents and stored once, so identical data is deduplicated automatically.' },
+      { id: 'pagereplace', note: 'RAM is smaller than the working set, so the OS evicts pages — LRU, the clock algorithm, and their approximations decide what to drop when a new page is faulted in.' },
+      { id: 'rum', note: 'Every storage engine picks two of three: fast Reads, cheap Updates, small Memory — the RUM tradeoff that separates a B-tree from an LSM-tree from a hash index.' },
+    ],
+  },
 ];
