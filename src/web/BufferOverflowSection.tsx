@@ -34,13 +34,14 @@ type Phase = 'stack' | 'copy' | 'overflow' | 'hijack' | 'shellcode' | 'run';
 
 export function BufferOverflowSection() {
   const [text, setText] = useState('Alice');
-  const payload = chars(text).slice(0, N);
+  const [exploit, setExploit] = useState(false); // load the crafted NOP-sled + shellcode + buffer-address payload
+  const payload = exploit ? EXPLOIT : chars(text).slice(0, N);
 
   const scene = (key: Phase, title: string, caption: string, p: Byte[]): StoryScene =>
     ({ key, title, caption, render: () => <Stack phase={key} payload={p} /> });
 
   const scenes: StoryScene[] = [
-    scene('stack', 'The stack holds more than your data', 'When a function runs, the CPU lays out a frame on the stack: room for local variables, the saved frame pointer, and — right above them — the return address, the spot to resume the caller when the function finishes. That return address is a plain value in writable memory.', chars('Alice')),
+    scene('stack', 'The stack holds more than your data', 'This is the stack frame from the process-memory-layout rung, up close. When a function runs, the CPU lays out a frame on the stack: room for local variables, the saved frame pointer, and — right above them — the return address, the spot to resume the caller when the function finishes. That return address (the red band you saw earlier) is a plain value in writable memory.', chars('Alice')),
     scene('copy', 'A copy with no bounds check', 'The function copies input into a fixed 8-byte buffer with strcpy — which stops at the input’s end, not the buffer’s. A short name fits inside the buffer and everything is fine. The length of the input is never checked against the size of the buffer.', chars('Alice')),
     scene('overflow', 'Write past the end', 'Feed it more than 8 bytes and the copy keeps going — straight past the buffer, over the saved frame pointer, and into the return address. The bytes are really there in memory now; the write simply didn’t stop where the buffer did.', chars('AAAAAAAAAAAAAAAAAAAA')),
     scene('hijack', 'You control the return address', 'Overflow all the way through and the return address is now your bytes. When the function returns, the CPU loads that value into the instruction pointer and jumps there. Fill it with A’s and it jumps to 0x4141414141414141 — proof you decide where the program goes next.', chars('AAAAAAAAAAAAAAAAAAAAAAAA')),
@@ -57,10 +58,11 @@ export function BufferOverflowSection() {
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
-          <input className="bof-in" value={text} maxLength={N} onChange={(e) => setText(e.target.value)} placeholder="type input…" />
-          <button type="button" className="bof-btn" onClick={() => setText('AAAAAAAAAAAAAAAAAAAAAAAA')}>overflow</button>
-          <button type="button" className="bof-btn danger" onClick={() => setText('')}>reset</button>
-          <span className="bof-len">{text.length}/8 bytes {text.length > BUF && '· overflowing'}</span>
+          <input className="bof-in" value={exploit ? '' : text} maxLength={N} onChange={(e) => { setText(e.target.value); setExploit(false); }} placeholder="type input…" />
+          <button type="button" className="bof-btn" onClick={() => { setText('AAAAAAAAAAAAAAAAAAAAAAAA'); setExploit(false); }}>overflow (AAAA…)</button>
+          <button type="button" className={`bof-btn crafted ${exploit ? 'on' : ''}`} onClick={() => setExploit(true)}>💣 load exploit</button>
+          <button type="button" className="bof-btn danger" onClick={() => { setText(''); setExploit(false); }}>reset</button>
+          <span className="bof-len">{exploit ? 'crafted exploit loaded → CPU jumps into the buffer, shellcode runs' : `${text.length}/8 bytes ${text.length > BUF ? '· overflowing' : ''}`}</span>
         </>
       )}
     />

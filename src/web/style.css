@@ -11439,6 +11439,8 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bof-in{font-family:var(--mono,monospace);font-size:13px;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:170px;margin-right:6px}
 .bof-btn{font-size:13px;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-right:5px}
 .bof-btn.danger{border-color:hsl(0 50% 50% / .5)}
+.bof-btn.crafted{border-color:hsl(280 60% 60% / .6);color:hsl(280 55% 62%);font-weight:600}
+.bof-btn.crafted.on{background:hsl(280 60% 55% / .18);border-color:hsl(280 60% 60%)}
 .bof-len{font-family:var(--mono,monospace);font-size:12.5px;color:var(--muted)}
 
 /* ── NX/DEP story (NxSection) — a virtual-memory map with R/W/X page permissions ──────────────── */
