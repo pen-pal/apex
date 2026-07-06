@@ -3,14 +3,23 @@
 // ordered walks); below, a single search box + an accordion of groups (collapsed by default, click to
 // expand) make the 200-section catalog navigable WITHOUT duplicating the top nav. Pure presentation over
 // the section + path registries, plus local search/expand state.
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { GROUPS, metaById } from './sections';
-import { PATHS } from './paths';
+import { PATHS, type LearningPath } from './paths';
 
 export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id: string) => void; onStartPath: (pathId: string) => void; current: string }) {
   const total = GROUPS.reduce((n, g) => n + g.ids.length, 0);
   const [q, setQ] = useState('');
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [preview, setPreview] = useState<LearningPath | null>(null);
+
+  // Escape closes the journey preview.
+  useEffect(() => {
+    if (!preview) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setPreview(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [preview]);
 
   const ql = q.trim().toLowerCase();
   const searching = ql !== '';
@@ -41,7 +50,7 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
           <div className="jp-head"><span className="jp-eyebrow">Guided journeys</span><h2>Walk one idea end to end</h2></div>
           <div className="jp-grid">
             {PATHS.map((p) => (
-              <button key={p.id} type="button" className="jp-card" onClick={() => onStartPath(p.id)}>
+              <button key={p.id} type="button" className="jp-card" onClick={() => setPreview(p)}>
                 <div className="jp-card-top">
                   <span className="jp-icon" aria-hidden="true">{p.icon}</span>
                   <span className="jp-title">{p.title}</span>
@@ -56,7 +65,7 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
                     </span>
                   ))}
                 </div>
-                <span className="jp-start">Start journey →</span>
+                <span className="jp-start">Preview journey →</span>
               </button>
             ))}
           </div>
@@ -104,6 +113,34 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
         })}
       </div>
       </div>
+
+      {preview && (
+        <div className="jpv-backdrop" role="dialog" aria-modal="true" aria-label={`${preview.title} — journey preview`} onClick={() => setPreview(null)}>
+          <div className="jpv" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="jpv-close" aria-label="Close preview" onClick={() => setPreview(null)}>✕</button>
+            <div className="jpv-head">
+              <span className="jpv-icon" aria-hidden="true">{preview.icon}</span>
+              <div>
+                <h2 className="jpv-title">{preview.title}</h2>
+                <span className="jpv-count">{preview.steps.length} steps · guided journey</span>
+              </div>
+            </div>
+            <p className="jpv-blurb">{preview.blurb}</p>
+            <ol className="jpv-steps">
+              {preview.steps.map((s, i) => (
+                <li key={s.id} className="jpv-step">
+                  <span className="jpv-num" aria-hidden="true">{i + 1}</span>
+                  <div className="jpv-step-body">
+                    <span className="jpv-step-lbl">{metaById[s.id]?.label ?? s.id}</span>
+                    <p className="jpv-step-note">{s.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <button type="button" className="jpv-start" onClick={() => onStartPath(preview.id)}>Start journey →</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
