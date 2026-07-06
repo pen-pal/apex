@@ -57,9 +57,12 @@ export function EcdsaSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>② Reuse the nonce → leak the private key</h2></div>
         <p className="jsec-sub">
-          The nonce k must be unique and secret per signature. Sign two different messages with the <strong>same</strong> k and both
-          signatures share the same r — a dead giveaway. Then{' '}
-          <code>k = (z₁−z₂)(s₁−s₂)⁻¹</code> and <code>d = (s₁k − z₁)·r⁻¹</code>, all mod {N}. The key is gone.
+          The nonce k must be unique and secret per signature. Here is <em>why</em> reuse is fatal: each signature
+          <code> s = k⁻¹(z + r·d)</code> is one equation with two unknowns you don’t know — the nonce k and the private key d — so
+          a single signature is unsolvable. But sign two different messages with the <strong>same</strong> k and you now have
+          <strong> two equations in those same two unknowns</strong> (and both signatures share the same r — a dead giveaway). Two
+          equations, two unknowns: solve them. <code>k = (z₁−z₂)(s₁−s₂)⁻¹</code>, then <code>d = (s₁k − z₁)·r⁻¹</code>, all mod {N}.
+          The key is gone.
         </p>
         <div className="ec-sliders">
           <label>message hash z₁ = {z1}<input type="range" min={1} max={N - 1} value={z1} onChange={(e) => setZ1(Number(e.target.value))} /></label>
