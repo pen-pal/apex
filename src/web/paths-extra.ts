@@ -574,4 +574,18 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'natpunch', note: 'Two hosts both behind NAT still connect directly: they punch holes by sending outward at the same time, so each NAT accepts the other’s return traffic — the trick behind peer-to-peer and video calls.' },
     ],
   },
+  {
+    id: 'attacktour',
+    title: 'How systems get attacked, layer by layer',
+    icon: '💀',
+    blurb: 'Attacks come from every layer. A tour of distinct techniques — intercepting a LAN, prising out a key one byte at a time, weaponizing an algorithm’s worst case, flipping bits inside a chip — then the kill-chain view that strings them into a real intrusion. Sandboxed and defensive throughout.',
+    steps: [
+      { id: 'arpspoof', note: 'Intercept a LAN: forge ARP replies so the victim and the gateway both send their traffic through you — the classic man-in-the-middle on a switched network, and why we authenticate above L2.' },
+      { id: 'paddingoracle', note: 'Extract a secret without the key: a server that merely leaks whether a ciphertext’s padding is valid lets an attacker decrypt it one byte at a time — why modern modes authenticate first.' },
+      { id: 'hashflood', note: 'Weaponize a data structure: feed a hash table keys that all collide and its O(1) lookups become O(n²), stalling the server — algorithmic-complexity denial of service, fixed by seeded hashing.' },
+      { id: 'redos', note: 'Weaponize a regex: a pattern with catastrophic backtracking takes exponential time on a crafted input, hanging the thread that runs it — the reason engines cap or linearize matching.' },
+      { id: 'rowhammer', note: 'Attack the silicon: electrically hammering one DRAM row flips bits in an adjacent row you can’t even address, breaking memory isolation from pure software — mitigated by ECC and target-row refresh.' },
+      { id: 'killchain', note: 'Zoom out: real intrusions chain these — recon, initial access, escalation, lateral movement — and defense-in-depth means breaking any single link stops the whole chain.' },
+    ],
+  },
 ];
