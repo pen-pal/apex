@@ -12245,9 +12245,15 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .km-pt{stroke:hsl(220 20% 15% / .5);stroke-width:0.5}
 .km-cen{stroke-width:3;stroke-linecap:round}
 .km-foot{fill:hsl(210 16% 60%);font-size:13px}
-.km-ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.km-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
-.km-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace)}
+.km-ctl{display:flex;flex-direction:column;gap:8px;align-items:center}
+.km-ctl-row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center}
+.km-ctl-lbl{color:var(--muted);font-size:12px;font-weight:600}
+.km-btn{font-size:12.5px;padding:6px 13px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:border-color .12s,background .12s}
+.km-btn:hover{border-color:var(--accent)}
+.km-btn.on{background:hsl(210 60% 50% / .16);border-color:hsl(210 60% 55%);color:hsl(210 60% 62%)}
+.km-k{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink)}
+.km-live{color:var(--accent);font-size:12.5px;font-family:var(--mono,monospace);text-align:center;max-width:720px}
+.km-live.warn{color:hsl(0 65% 62%)}
 
 /* ── PCA story (PcaSection) — point cloud, candidate axis + projections, principal components ─────── */
 .pca-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
