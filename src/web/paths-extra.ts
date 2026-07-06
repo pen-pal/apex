@@ -636,4 +636,16 @@ export const EXTRA_PATHS: LearningPath[] = [
       { id: 'bb84', note: 'Agree on a key with physics: BB84 sends qubits in random bases, and any measurement disturbs them — so an eavesdropper injects detectable errors. Security from quantum mechanics, not a hard problem.' },
     ],
   },
+  {
+    id: 'machineinmotion',
+    title: 'The running machine, up close',
+    icon: '⚙️',
+    blurb: 'What actually happens when a computer runs your code. Follow one instruction through the CPU, see why real chips run things out of order, trace a single keystroke from key to pixel, then freeze the whole thing in a debugger to look inside.',
+    steps: [
+      { id: 'cpucycle', note: 'One instruction, step by step: fetch it from memory, decode what it means, execute in the ALU, write the result back — the cycle a CPU repeats billions of times a second.' },
+      { id: 'oooexec', note: 'Real CPUs don’t wait in order: they execute each instruction as soon as its inputs are ready and retire them in program order, hiding memory stalls behind useful work.' },
+      { id: 'keystroke', note: 'From key to pixel: a keypress becomes a scan code, an interrupt, a driver event, an app update, and a repaint — the whole stack behind one letter appearing on screen.' },
+      { id: 'breakpoint', note: 'Freeze it to look: a debugger overwrites one instruction byte with a trap (INT3); when the CPU reaches it, the OS stops the process and hands control to the debugger to inspect registers and memory.' },
+    ],
+  },
 ];
