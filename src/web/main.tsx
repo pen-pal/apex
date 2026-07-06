@@ -414,7 +414,7 @@ function App() {
           <>
             <header>
               <h1>SHA-256 internals</h1>
-              <p className="sub">Pad and block a message, watch the Merkle–Damgård chain fold each block into the 256-bit state, step the 64 compression rounds — and see why the digest <em>is</em> the state, the root of length extension.</p>
+              <p className="sub">A <strong>hash</strong> is a one-way fingerprint of data: feed SHA-256 any input — one letter or a whole movie — and it returns the same fixed <strong>256-bit</strong> string every time; flip a single input bit and the output looks entirely different; and you cannot run it backwards to recover the input. Those properties — deterministic, fixed-size, avalanche, irreversible, and <strong>collision-resistant</strong> (no two inputs should ever share a fingerprint) — are why hashes underpin passwords, digital signatures, and integrity checks. Below, watch <em>how</em> SHA-256 does it: pad and block the message, fold each block into the 256-bit state through 64 compression rounds, and see why the digest <em>is</em> that state — the quirk behind length-extension attacks.</p>
             </header>
             <HashInternalsSection onOpen={(id) => setSection(id as Section)} />
           </>
