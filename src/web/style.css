@@ -1927,6 +1927,50 @@ i.siem-ev{position:static;display:inline-block;transform:none;vertical-align:mid
 .siem-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .siem-foot strong{color:var(--ink)}
 @media(max-width:620px){.siem-lane{grid-template-columns:130px 1fr}.siem-axis{padding-left:142px}}
+
+/* seccomp sandbox puzzle (SeccompSection) — build a syscall allowlist; run a trace; win = program runs, exploit blocked. */
+.scmp{display:flex;flex-direction:column;gap:14px}
+.scmp-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scmp-panel{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px 13px}
+.scmp-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:9px}
+.scmp-sys{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:var(--subtle);color:var(--ink);cursor:pointer;margin-bottom:5px;transition:border-color .14s,background .14s}
+.scmp-sys:hover{border-color:var(--accent)}
+.scmp-sys.on{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));background:hsl(186 40% 45% / .1)}
+.scmp-sys.scmp-danger.on{border-color:hsl(0 65% 55%);background:hsl(0 55% 50% / .12)}
+.scmp-chk{font-size:14px;color:var(--muted);flex:none}
+.scmp-sys.on .scmp-chk{color:var(--accent)}
+.scmp-sys.scmp-danger.on .scmp-chk{color:hsl(0 68% 60%)}
+.scmp-sys code{font-family:var(--mono);font-size:12.5px;flex:none;min-width:58px}
+.scmp-note{font-size:11px;color:var(--muted)}
+.scmp-danger .scmp-note{color:hsl(0 60% 58%)}
+.scmp-def{margin-top:10px;font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.scmp-defbtn{font-family:var(--mono);font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.scmp-defbtn.on{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .1)}
+.scmp-trace{display:flex;flex-direction:column;gap:5px}
+.scmp-step{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 10px;border:1px solid var(--line);border-radius:7px;background:var(--subtle);font-size:12px}
+.scmp-step code{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.scmp-fate{font-family:var(--mono);font-size:10.5px;flex:none}
+.scmp-step.scmp-allow{border-color:hsl(150 45% 45% / .4)}
+.scmp-step.scmp-allow .scmp-fate{color:hsl(150 50% 46%)}
+.scmp-step.scmp-errno{border-color:hsl(35 80% 50% / .45);background:hsl(35 78% 50% / .07)}
+.scmp-step.scmp-errno .scmp-fate{color:hsl(35 85% 50%)}
+.scmp-step.scmp-kill{border-color:hsl(0 65% 55% / .5);background:hsl(0 55% 50% / .1)}
+.scmp-step.scmp-kill .scmp-fate{color:hsl(0 70% 60%)}
+.scmp-step.scmp-skipped{opacity:.4;border-style:dashed}
+.scmp-step.scmp-drow.scmp-allow{border-color:hsl(0 65% 55%);background:hsl(0 55% 50% / .14)}
+.scmp-step.scmp-drow.scmp-allow .scmp-fate{color:hsl(0 72% 62%)}
+.scmp-verdict{padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.scmp-verdict strong{font-weight:700}
+.scmp-verdict.scmp-secure{border-color:hsl(150 45% 45% / .45);background:hsl(150 40% 45% / .08)}
+.scmp-verdict.scmp-secure strong{color:hsl(150 55% 46%)}
+.scmp-verdict.scmp-escaped{border-color:hsl(0 60% 55% / .5);background:hsl(0 55% 50% / .1)}
+.scmp-verdict.scmp-escaped strong{color:hsl(0 72% 62%)}
+.scmp-verdict.scmp-broke-program{border-color:hsl(35 80% 50% / .45);background:hsl(35 78% 50% / .08)}
+.scmp-verdict.scmp-broke-program strong{color:hsl(35 85% 50%)}
+.scmp-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.scmp-foot strong{color:var(--ink)}
+.scmp-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+@media(max-width:680px){.scmp-cols{grid-template-columns:1fr}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
