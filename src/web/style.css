@@ -424,8 +424,9 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 /* full-bleed sticky header bar; the inner row is centered + capped to the
    content column so the nav stays aligned with the page below. Eight SHORT
    single-word tabs are kept compact so they all share ONE row. */
+/* Masthead: a crisp editorial edge — a hairline over a thin ink rule — and a warm, theme-neutral shadow. */
 .topbar{position:sticky;top:0;z-index:30;background:var(--panel);
-  border-bottom:1px solid var(--line);box-shadow:0 1px 2px rgba(20,30,50,.04)}
+  border-bottom:2px solid var(--ink);box-shadow:0 1px 0 var(--line),0 3px 10px hsl(30 18% 18% / .06)}
 .topbar-inner{max-width:min(1600px,95vw);margin:0 auto;padding:9px 18px;display:flex;
   align-items:center;gap:8px;box-sizing:border-box}
 
