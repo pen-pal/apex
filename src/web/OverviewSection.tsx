@@ -3,9 +3,51 @@
 // ordered walks); below, a single search box + an accordion of groups (collapsed by default, click to
 // expand) make the 200-section catalog navigable WITHOUT duplicating the top nav. Pure presentation over
 // the section + path registries, plus local search/expand state.
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { GROUPS, metaById } from './sections';
 import { PATHS, FEATURED_JOURNEYS, pathById, type LearningPath } from './paths';
+
+// Ambient hero art: a packet drifting a lattice, painted from the live theme tokens. No data — pure atmosphere,
+// echoing the "watch a packet travel the wire" idea. Repaints on resize and theme flip; honors reduced-motion.
+function HeroArt() {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+  useEffect(() => {
+    const cv = ref.current;
+    if (!cv) return;
+    const css = (k: string) => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+    const reduce = window.matchMedia?.('(prefers-reduced-motion:reduce)').matches;
+    let raf = 0, t0 = performance.now();
+    const draw = (now: number) => {
+      const p = cv.parentElement!;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2), w = p.clientWidth, h = p.clientHeight;
+      cv.width = w * dpr; cv.height = h * dpr;
+      const g = cv.getContext('2d')!; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const line = css('--line'), ac = css('--accent'), am = css('--gold'), ink = css('--muted');
+      const N = 6, m = 28, sx = (w - 2 * m) / (N - 1), sy = (h - 2 * m) / (N - 1);
+      g.clearRect(0, 0, w, h); g.strokeStyle = line; g.lineWidth = 1;
+      for (let i = 0; i < N; i++) {
+        g.beginPath(); g.moveTo(m, m + i * sy); g.lineTo(w - m, m + i * sy); g.stroke();
+        g.beginPath(); g.moveTo(m + i * sx, m); g.lineTo(m + i * sx, h - m); g.stroke();
+      }
+      g.fillStyle = ink;
+      for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) { g.beginPath(); g.arc(m + j * sx, m + i * sy, 1.3, 0, 7); g.fill(); }
+      const path = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [4, 3], [4, 4], [5, 4], [5, 5]];
+      const T = (now - t0) / 1400, seg = Math.floor(T) % (path.length - 1), k = T % 1, a = path[seg], b = path[seg + 1];
+      const px = m + (a[0] + (b[0] - a[0]) * k) * sx, py = m + (a[1] + (b[1] - a[1]) * k) * sy;
+      g.fillStyle = ac; g.beginPath(); g.arc(m, m, 3.5, 0, 7); g.fill();
+      g.beginPath(); g.arc(w - m, h - m, 3.5, 0, 7); g.fill();
+      g.fillStyle = am; g.shadowColor = am; g.shadowBlur = 8; g.beginPath(); g.arc(px, py, 4.5, 0, 7); g.fill(); g.shadowBlur = 0;
+      if (!reduce) raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+    const ro = new ResizeObserver(() => { t0 = performance.now(); });
+    ro.observe(cv.parentElement!);
+    const mo = new MutationObserver(() => { /* token colors re-read each frame; nudge a repaint if reduced-motion */ if (reduce) requestAnimationFrame(draw); });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); mo.disconnect(); };
+  }, []);
+  return <canvas ref={ref} aria-hidden="true" />;
+}
 
 export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id: string) => void; onStartPath: (pathId: string) => void; current: string }) {
   const total = GROUPS.reduce((n, g) => n + g.ids.length, 0);
@@ -67,16 +109,18 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
   return (
     <div className="ov">
       <div className="ov-hero">
-        <div className="ov-kicker">Learn a system by running it</div>
-        <h1 className="ov-htitle">
-          The systems that run the world, as playgrounds you can <em>build, break, and&nbsp;watch.</em>
-        </h1>
-        <p className="ov-lede">
-          Not another wiki. Each of the {total} sections is a live simulation that runs in your browser — real bytes, real
-          checksums, honest crypto, every model checked against an independent reference. Wire it up, press go, and watch the
-          mechanics move. New here? Take a <strong>guided journey</strong> below; after something specific? Pick an area from
-          the menu above, or search.
-        </p>
+        <div className="ov-hero-text">
+          <div className="ov-kicker">Learn a system by running it</div>
+          <h1 className="ov-htitle">
+            The systems that run the world, as playgrounds you can <em>build, break, and&nbsp;watch.</em>
+          </h1>
+          <p className="ov-lede">
+            Not another wiki. Each of the {total} sections is a <strong>live simulation</strong> in your browser — real bytes,
+            real checksums, honest crypto, every model checked against an independent reference. Wire it up, press go, and watch
+            the mechanics move. New here? Take a guided journey below; after something specific? Search or pick an area above.
+          </p>
+        </div>
+        <div className="ov-hero-art"><HeroArt /></div>
       </div>
       <div className="ov-feats">
         {([
