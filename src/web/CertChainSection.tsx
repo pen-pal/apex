@@ -36,9 +36,13 @@ export function CertChainSection({ onOpen }: { onOpen?: (id: string) => void }) 
       <section className="jsec">
         <div className="jsec-head"><h2>Certificate chain — why your browser trusts a site</h2></div>
         <p className="jsec-sub">
-          A TLS server sends a chain of certificates. Your browser only trusts it if <em>every</em> link checks out: each
-          cert is signed by the one above, the signers are CAs, none are expired, the chain ends at a root your browser
-          already trusts, and the leaf is actually valid for the site you asked for. Break a link and watch it fail.
+          Remember the man-in-the-middle problem from public-key crypto: how do you know a public key really belongs to
+          <code> shop.example.com</code> and not an impostor who slipped you theirs? A <strong>certificate</strong> answers
+          it — a signed statement, “this public key belongs to this name,” vouched for by a <strong>Certificate Authority</strong>.
+          Why trust that CA? Because its own certificate is signed by another, up a <strong>chain</strong> to a
+          <strong> root</strong> pre-installed in your browser. Your browser trusts the site only if <em>every</em> link checks
+          out: each cert is signed by the one above, the signers are CAs, none are expired, the chain ends at a trusted root,
+          and the leaf is valid for the site you asked for. Break a link and watch it fail.
         </p>
 
         <div className="cert-controls">
