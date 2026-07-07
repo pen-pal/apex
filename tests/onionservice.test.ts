@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rendezvousKnowledge, mutuallyAnonymous, selfAuthenticates } from '../src/web/onionservice';
+import { rendezvousKnowledge, mutuallyAnonymous, selfAuthenticates, adversaryView, TOPOLOGY } from '../src/web/onionservice';
 
 // Independent oracle: the Tor onion-service (v3) rendezvous design. No single relay sees both the client's and the
 // service's IP; the rendezvous point sees neither (only two spliced circuits); the .onion address = the service's
@@ -34,5 +34,35 @@ describe('onion service rendezvous (v3)', () => {
     expect(selfAuthenticates(true, true)).toBe(true);
     expect(selfAuthenticates(false, true)).toBe(false);
     expect(selfAuthenticates(true, false)).toBe(false);
+  });
+});
+
+// Independent oracle: end-to-end correlation. A single compromised relay can never deanonymize (mutual anonymity);
+// linking the two ends requires learning the client IP from one relay AND the service IP from another — in the Tor
+// design that means controlling both guards. Interior relays (middles, rendezvous, intro) reveal no endpoint at all.
+describe('deanonymization: what a relay-compromising adversary learns', () => {
+  const byRole = (r: string) => TOPOLOGY.find((t) => t.role === r)!;
+
+  it('no single compromised relay can deanonymize', () => {
+    for (const relay of TOPOLOGY) {
+      expect(adversaryView([relay]).canDeanonymize).toBe(false);
+    }
+  });
+  it('controlling only interior relays (rendezvous + intro + both middles) reveals neither IP', () => {
+    const interior = TOPOLOGY.filter((r) => !r.role.includes('guard'));
+    const v = adversaryView(interior);
+    expect(v.seesClientIp).toBe(false);
+    expect(v.seesServiceIp).toBe(false);
+    expect(v.canDeanonymize).toBe(false);
+  });
+  it("controlling BOTH guards sees both IPs and can correlate the two circuits", () => {
+    const v = adversaryView([byRole("client's guard"), byRole("service's guard")]);
+    expect(v.seesClientIp).toBe(true);
+    expect(v.seesServiceIp).toBe(true);
+    expect(v.canDeanonymize).toBe(true);
+  });
+  it('one guard alone is not enough — it sees its own side only', () => {
+    expect(adversaryView([byRole("client's guard")]).canDeanonymize).toBe(false);
+    expect(adversaryView([byRole("service's guard")]).canDeanonymize).toBe(false);
   });
 });

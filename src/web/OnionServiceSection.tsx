@@ -1,79 +1,80 @@
-// Onion (hidden) services — reach a server that has no public IP, with neither side learning the other's location.
-// Auto-plays the rendezvous protocol step by step; a small table shows the mutual-anonymity guarantee. Model in
-// onionservice.ts.
-import { useEffect, useState } from 'react';
-import { rendezvousKnowledge, mutuallyAnonymous } from './onionservice';
+// Onion (hidden) services — reach a server with no public IP, with neither side learning the other's location. Made
+// hands-on: compromise relays on the two Tor circuits and watch what the adversary learns. No single relay ever sees
+// both ends (mutual anonymity); only collecting the client IP from one relay AND the service IP from another — both
+// guards — deanonymizes, which is the real end-to-end correlation attack. Model + property tests in onionservice.ts.
+import { useMemo, useState } from 'react';
+import { TOPOLOGY, adversaryView, type RelayRole } from './onionservice';
 
-const STEPS = [
-  { icon: '🧅', title: 'No public IP', desc: 'The service has no address to connect to. It builds Tor circuits out to a few relays and asks them to be its introduction points.' },
-  { icon: '📖', title: 'Publish descriptor', desc: 'It signs a descriptor — its public key + those intro points — and stores it in the DHT, keyed by its .onion address, which IS its public key (self-authenticating, no certificate authority).' },
-  { icon: '🔎', title: 'Client fetches it', desc: 'You enter the .onion address; your client looks it up in the DHT, gets the signed descriptor, verifies it against the address itself, and learns the intro points — never the server’s IP.' },
-  { icon: '🤝', title: 'Rendezvous setup', desc: 'Your client picks a rendezvous relay, builds a circuit to it, and — through an introduction point — tells the service: “meet me at rendezvous R, here’s a one-time cookie.”' },
-  { icon: '🔒', title: 'Connected — both anonymous', desc: 'Both sides extend a Tor circuit to the rendezvous point, which splices them together. It sees two circuits, not two IPs: the client never learns the server’s location, the server never learns the client’s.' },
-];
+const CLIENT_IP = '198.51.100.7';
+// The circuit as a chain of relays between the two endpoints; the intro point hangs off the service side.
+const CHAIN = ["client's guard", "client's middle", 'rendezvous point', "service's middle", "service's guard"];
 
 export function OnionServiceSection() {
-  const [step, setStep] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  useEffect(() => {
-    if (!playing) return;
-    const last = step >= STEPS.length - 1;
-    const t = setTimeout(() => setStep((s) => (s >= STEPS.length - 1 ? 0 : s + 1)), last ? 2600 : 1800);
-    return () => clearTimeout(t);
-  }, [playing, step]);
+  const [pwned, setPwned] = useState<Set<string>>(new Set());
+  const controlled = useMemo(() => TOPOLOGY.filter((r) => pwned.has(r.role)), [pwned]);
+  const view = adversaryView(controlled);
+  const toggle = (role: string) => setPwned((s) => { const n = new Set(s); n.has(role) ? n.delete(role) : n.add(role); return n; });
+  const byRole = (r: string) => TOPOLOGY.find((t) => t.role === r)!;
 
-  const know = rendezvousKnowledge();
-  const anon = mutuallyAnonymous(know);
+  const chip = (r: RelayRole) => {
+    const on = pwned.has(r.role);
+    const leaks = r.seesClientIp ? 'client IP' : r.seesServiceIp ? 'service IP' : 'nothing';
+    return (
+      <button type="button" key={r.role} className={`ons-relay ${on ? 'pwned' : ''} ${r.seesClientIp || r.seesServiceIp ? 'guard' : ''}`} onClick={() => toggle(r.role)}>
+        <span className="ons-relay-name">{r.role.replace("'s", '’s')}</span>
+        {on && <span className="ons-relay-leak">sees: {leaks}</span>}
+      </button>
+    );
+  };
 
   return (
     <div className="ons">
       <p className="ons-intro">
-        Normally a server has an IP you connect to — which means it can be found, blocked, or seized. An
-        <strong> onion service</strong> (a <code>.onion</code> address) has <em>no public IP at all</em>. You still reach it,
-        and the twist is that <strong>neither side learns the other’s location</strong> — the anonymity is mutual. Here’s how
-        the rendezvous does it.
+        Normally a server has an IP you connect to — so it can be found, blocked, or seized. An <strong>onion service</strong>
+        {' '}(a <code>.onion</code> address) has <em>no public IP at all</em>, and the anonymity is <strong>mutual</strong>:
+        neither side learns the other's location. Both reach a <strong>rendezvous point</strong> over their own 3-hop circuit,
+        so it splices two circuits without seeing two IPs. <strong>Compromise relays below</strong> and see what leaks.
       </p>
 
-      <div className="ons-flowbar">
-        <div className="ons-flow">
-          {STEPS.map((st, i) => (
-            <div key={st.title} className="ons-cell">
-              <div className={`ons-step ${i === step ? 'on' : ''} ${i < step ? 'done' : ''}`}>
-                <div className="ons-ico">{st.icon}</div>
-                <div className="ons-st-title">{i + 1}. {st.title}</div>
-              </div>
-              {i < STEPS.length - 1 && <div className={`ons-arrow ${i < step ? 'lit' : ''}`}>→</div>}
-            </div>
+      <div className="ons-net">
+        <div className="ons-end client"><span className="ons-end-ico">👤</span><span className="ons-end-lbl">client</span><code>{view.seesClientIp ? CLIENT_IP : 'IP hidden'}</code></div>
+        <div className="ons-chain">
+          {CHAIN.map((role, i) => (
+            <span key={role} className="ons-hop">
+              {i > 0 && <span className="ons-link" aria-hidden="true" />}
+              {chip(byRole(role))}
+            </span>
           ))}
         </div>
-        <button type="button" className={`ons-play ${playing ? 'on' : ''}`} onClick={() => setPlaying((p) => !p)}>{playing ? '❚❚' : '▶'}</button>
+        <div className="ons-end service"><span className="ons-end-ico">🧅</span><span className="ons-end-lbl">service</span><code>{view.seesServiceIp ? 'location exposed' : '.onion · no IP'}</code></div>
+        <div className="ons-intro-pt">also on the service side: {chip(byRole('introduction point'))}</div>
       </div>
 
-      <div className="ons-caption"><strong>{STEPS[step].title}.</strong> {STEPS[step].desc}</div>
-
-      <div className="ons-know">
-        <div className="ons-know-h">who learns what, once connected — {anon ? 'no relay sees both ends' : 'anonymity broken'}</div>
-        <table className="ons-table">
-          <thead><tr><th>relay</th><th>sees client IP?</th><th>sees service IP?</th></tr></thead>
-          <tbody>
-            {know.map((r) => (
-              <tr key={r.role}>
-                <td>{r.role}</td>
-                <td className={r.seesClientIp ? 'yes' : 'no'}>{r.seesClientIp ? 'yes' : 'no'}</td>
-                <td className={r.seesServiceIp ? 'yes' : 'no'}>{r.seesServiceIp ? 'yes' : 'no'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className={`ons-verdict ${view.canDeanonymize ? 'broken' : 'safe'}`}>
+        <div className="ons-verdict-h">
+          {controlled.length === 0 ? 'adversary controls no relays' : `adversary controls ${controlled.length} relay${controlled.length > 1 ? 's' : ''}`}
+        </div>
+        <div className="ons-verdict-grid">
+          <div className={view.seesClientIp ? 'yes' : 'no'}>client IP · {view.seesClientIp ? 'exposed' : 'hidden'}</div>
+          <div className={view.seesServiceIp ? 'yes' : 'no'}>service location · {view.seesServiceIp ? 'exposed' : 'hidden'}</div>
+          <div className={view.canDeanonymize ? 'yes' : 'no'}>deanonymized · {view.canDeanonymize ? 'YES' : 'no'}</div>
+        </div>
+        <p className="ons-verdict-txt">
+          {view.canDeanonymize
+            ? 'Both ends linked. You control a relay that sees the client and one that sees the service — that’s the end-to-end correlation attack, and in Tor it means controlling BOTH guards (or watching both). No relay did it alone.'
+            : controlled.length > 0
+              ? 'Still anonymous. Every interior relay sees only circuit traffic; a single guard sees only its own side. Mutual anonymity holds until you control a relay on the client end AND one on the service end.'
+              : 'Click relays to compromise them. You’ll find no single one links both ends.'}
+        </p>
       </div>
 
       <p className="ons-foot">
-        The result is <strong>mutual anonymity</strong>: each side reaches the rendezvous over its own 3-hop circuit, so the
-        rendezvous point splices two circuits without seeing either endpoint, and no single relay knows both IPs. Because the
-        address <em>is</em> the public key, the connection is <strong>self-authenticating</strong> — no certificate authority,
-        and you’re guaranteed you reached the real service, not an impostor. This is the backbone of censorship-resistant
-        publishing (and, yes, of hidden marketplaces): there is no server location to raid and no domain to seize. (Tor
-        rendezvous specification; v3 onion services.)
+        The address <em>is</em> the service's public key, so the descriptor is <strong>self-authenticating</strong> — no
+        certificate authority, and you're guaranteed the real service, not an impostor. This is the backbone of
+        censorship-resistant publishing (and hidden marketplaces): no server location to raid, no domain to seize. Its real
+        weakness isn't a single relay — it's <strong>guard discovery + traffic correlation</strong> by an adversary who can
+        watch or control both ends, which is why guards rotate slowly and why higher-latency designs (see <strong>mix
+        networks</strong>) resist it better. (Tor rendezvous spec; v3 onion services.)
       </p>
     </div>
   );
