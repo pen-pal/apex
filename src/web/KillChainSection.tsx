@@ -6,13 +6,13 @@
 import { useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
 
-type Stage = { name: string; tech: string; sections: string; defense: string };
+type Stage = { name: string; tech: string; sections: string; defense: string; rungs?: { id: string; label: string }[] };
 const STAGES: Stage[] = [
   { name: 'Reconnaissance', tech: 'Scan & map the target', sections: 'find an exposed, vulnerable service', defense: 'attack-surface reduction' },
-  { name: 'Exploitation', tech: 'buffer overflow → ROP', sections: 'bufferoverflow · rop (beat NX)', defense: 'ASLR · canary · CFI' },
-  { name: 'Priv. escalation', tech: 'Meltdown / Rowhammer', sections: 'meltdown · rowhammer', defense: 'KPTI · TRR/ECC' },
-  { name: 'Lateral movement', tech: 'ARP spoof / DNS poison', sections: 'arpspoof · kaminsky', defense: 'DAI · DNSSEC' },
-  { name: 'Collection', tech: 'padding oracle / Spectre', sections: 'paddingoracle · spectre', defense: 'AEAD · const-time' },
+  { name: 'Exploitation', tech: 'buffer overflow → ROP', sections: 'bufferoverflow · rop (beat NX)', defense: 'ASLR · canary · CFI', rungs: [{ id: 'bufferoverflow', label: 'buffer overflow' }, { id: 'rop', label: 'ROP' }] },
+  { name: 'Priv. escalation', tech: 'Meltdown / Rowhammer', sections: 'meltdown · rowhammer', defense: 'KPTI · TRR/ECC', rungs: [{ id: 'meltdown', label: 'Meltdown' }, { id: 'rowhammer', label: 'Rowhammer' }] },
+  { name: 'Lateral movement', tech: 'ARP spoof / DNS poison', sections: 'arpspoof · kaminsky', defense: 'DAI · DNSSEC', rungs: [{ id: 'arpspoof', label: 'ARP spoofing' }, { id: 'kaminsky', label: 'Kaminsky' }] },
+  { name: 'Collection', tech: 'padding oracle / Spectre', sections: 'paddingoracle · spectre', defense: 'AEAD · const-time', rungs: [{ id: 'paddingoracle', label: 'padding oracle' }, { id: 'spectre', label: 'Spectre' }] },
   { name: 'Exfiltration', tech: 'covert channel out', sections: 'DNS tunnel / timing channel', defense: 'egress filtering' },
 ];
 const reach = (defended: boolean[]) => { for (let i = 0; i < STAGES.length; i++) if (defended[i]) return i; return STAGES.length; };
@@ -21,7 +21,7 @@ const BW = 138, BH = 92, BX = 20, BY = 70, GAP = 6;
 
 type Phase = 'chain' | 'techniques' | 'defenses' | 'break' | 'layers' | 'run';
 
-export function KillChainSection() {
+export function KillChainSection({ onOpen }: { onOpen?: (id: string) => void }) {
   const [defended, setDefended] = useState<boolean[]>([false, false, true, false, false, false]);
   const toggle = (i: number) => setDefended((d) => d.map((v, k) => (k === i ? !v : v)));
 
@@ -39,6 +39,7 @@ export function KillChainSection() {
   ];
 
   return (
+    <>
     <GuidedStory
       scenes={scenes}
       explain={{
@@ -52,6 +53,24 @@ export function KillChainSection() {
         </div>
       )}
     />
+    {onOpen && (
+      <div className="kc-launchpad">
+        <div className="kc-lp-title">The whole journey, in one attack — jump back to any stage’s rung:</div>
+        <div className="kc-lp-grid">
+          {STAGES.filter((s) => s.rungs?.length).map((s) => (
+            <div key={s.name} className="kc-lp-row">
+              <span className="kc-lp-stage">{s.name}</span>
+              <span className="kc-lp-links">
+                {s.rungs!.map((r) => (
+                  <button key={r.id} type="button" className="kc-lp-link" onClick={() => onOpen(r.id)}>{r.label} ↗</button>
+                ))}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    </>
   );
 }
 

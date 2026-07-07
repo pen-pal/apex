@@ -9,7 +9,9 @@ import { chunk4 } from './chunk4';
 import { chunk5 } from './chunk5';
 import { chunk6 } from './chunk6';
 
-export interface SectionEntry { Component: ComponentType; title: ReactNode; sub: ReactNode }
+// onOpen lets a section navigate to another (e.g. the kill-chain finale linking back to each stage's rung).
+// Optional, so the 400+ sections that don't navigate need no change.
+export interface SectionEntry { Component: ComponentType<{ onOpen?: (id: string) => void }>; title: ReactNode; sub: ReactNode }
 
 export const SECTIONS: Record<string, SectionEntry> = {
   ...chunk0,

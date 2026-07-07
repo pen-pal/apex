@@ -398,7 +398,7 @@ function App() {
           </>
         )}
 
-        {SECTIONS[section] && <SectionHost id={section} />}
+        {SECTIONS[section] && <SectionHost id={section} onOpen={(id) => setSection(id as Section)} />}
 
         {section === 'aesround' && (
           <>
