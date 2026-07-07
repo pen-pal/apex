@@ -483,6 +483,20 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'killchain', note: 'Step all the way back: how a real intrusion chains reconnaissance → exploitation → command-and-control → action, and where defense-in-depth breaks it.' },
     ],
   },
+  {
+    id: 'anonymity',
+    title: 'How torrents & anonymity work',
+    icon: '🧅',
+    blurb: 'The technology the file-sharing generation lived on: a distributed hash table finds peers with no central server, torrents move files across a swarm, and onion routing hides who is talking to whom — down to a server with no address at all.',
+    steps: [
+      { id: 'kademlia', note: 'First, how a network finds things with no central index: a distributed hash table (Kademlia) locates whoever holds a key by XOR-distance, in a logarithmic number of hops.' },
+      { id: 'bittorrent', note: 'A file split into pieces, pulled from a swarm of peers at once — rarest piece first, uploads traded tit-for-tat. No server to overload or seize.' },
+      { id: 'magnet', note: 'Drop the tracker entirely: a magnet link is just an infohash (a content address), and the DHT above finds the peers. Nothing to host, nothing to take down.' },
+      { id: 'tor', note: 'Now hide WHO is talking: wrap your traffic in layers of encryption through a 3-hop circuit, so no single relay links you to your destination.' },
+      { id: 'censorship', note: 'When a firewall blocks Tor itself, disguise the traffic — obfs4 makes it look random, bridges are unlisted entry points, domain fronting hides behind a CDN.' },
+      { id: 'onionservice', note: 'Finally hide the SERVER too: an onion service has no public IP, and a rendezvous meeting means neither side ever learns the other’s location — censorship-resistant publishing.' },
+    ],
+  },
 ];
 
 export const PATHS: LearningPath[] = [...CORE_PATHS, ...EXTRA_PATHS];
@@ -490,7 +504,7 @@ export const PATHS: LearningPath[] = [...CORE_PATHS, ...EXTRA_PATHS];
 export const pathById: Record<string, LearningPath> = Object.fromEntries(PATHS.map((p) => [p.id, p]));
 
 /** A few flagship journeys surfaced as "start here" above the full list. */
-export const FEATURED_JOURNEYS = ['blackhat', 'https', 'cpu', 'database'];
+export const FEATURED_JOURNEYS = ['blackhat', 'anonymity', 'https', 'cpu', 'database'];
 
 /** The index of `sectionId` within a path's steps, or -1 if the learner has stepped off the path. */
 export function stepIndexOf(path: LearningPath, sectionId: string): number {
