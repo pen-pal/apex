@@ -3,7 +3,7 @@
 // seq/ack numbers; a step slider walks the exchange and lights up where each side sits
 // in the TCP state machine. Edit either ISN and every number recomputes. Real logic in
 // tcphandshake.ts (tested against RFC 9293).
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { handshake, statePath, type Segment } from './tcphandshake';
 
 const ROW = 52, TOP = 30, LX = 70, RX = 330;
@@ -14,9 +14,16 @@ export function TcpHandshakeSection() {
   const [c, setC] = useState(1000);
   const [s, setS] = useState(5000);
   const segs = useMemo(() => handshake(c, s), [c, s]);
-  const [step, setStep] = useState(3); // show the completed 3-way handshake first; rewind or advance from here
+  const [step, setStep] = useState(0);
+  const [playing, setPlaying] = useState(true); // cinematic auto-play: draw the handshake → teardown segment by segment, then loop
+  const manual = (fn: () => void) => { setPlaying(false); fn(); };
 
   const shownThrough = Math.min(step, segs.length);
+  useEffect(() => {
+    if (!playing) return;
+    const t = setTimeout(() => setStep((v) => (v >= segs.length ? 0 : v + 1)), shownThrough >= segs.length ? 1700 : 950);
+    return () => clearTimeout(t);
+  }, [playing, shownThrough, segs.length]);
   const cur = shownThrough > 0 ? segs[shownThrough - 1] : null;
   const cPath = statePath(segs, 'client');
   const sPath = statePath(segs, 'server');
@@ -94,11 +101,12 @@ export function TcpHandshakeSection() {
         </div>
 
         <div className="tcph-controls">
-          <button onClick={() => setStep(0)} disabled={shownThrough === 0}>⏮</button>
-          <button onClick={() => setStep(Math.max(0, shownThrough - 1))} disabled={shownThrough === 0}>◀</button>
+          <button className={`tcph-auto ${playing ? 'on' : ''}`} onClick={() => setPlaying((p) => !p)}>{playing ? '❚❚ pause' : '▶ auto'}</button>
+          <button onClick={() => manual(() => setStep(0))} disabled={shownThrough === 0}>⏮</button>
+          <button onClick={() => manual(() => setStep(Math.max(0, shownThrough - 1)))} disabled={shownThrough === 0}>◀</button>
           <span className="tcph-count">step {shownThrough} / {segs.length}</span>
-          <button onClick={() => setStep(shownThrough + 1)} disabled={shownThrough >= segs.length}>▶</button>
-          <button onClick={() => setStep(segs.length)} disabled={shownThrough >= segs.length}>⏭</button>
+          <button onClick={() => manual(() => setStep(shownThrough + 1))} disabled={shownThrough >= segs.length}>▶</button>
+          <button onClick={() => manual(() => setStep(segs.length))} disabled={shownThrough >= segs.length}>⏭</button>
         </div>
 
         {cur && <div className="tcph-note">{cur.note}</div>}

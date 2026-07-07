@@ -3043,6 +3043,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tcph-controls{display:flex;align-items:center;gap:8px;margin:14px 0 8px;flex-wrap:wrap}
 .tcph-controls button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:var(--panel);cursor:pointer}
 .tcph-controls button:disabled{opacity:.4;cursor:default}
+.tcph-controls button.tcph-auto.on{border-color:hsl(150 45% 45% / .6);background:hsl(150 45% 45% / .12);color:var(--ink)}
 .tcph-count{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:0 4px}
 .tcph-note{font-size:13px;padding:10px 14px;border-radius:9px;background:hsl(212 55% 55% / .14);border:1px solid hsl(212 50% 58% / .16)}
 .tcph-foot{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px}
