@@ -4864,7 +4864,12 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .sort-controls button:disabled{opacity:.4;cursor:default}
 .sort-play{font-weight:600}
 .sort-prog{font-family:var(--mono);font-size:12px;color:var(--muted)}
-.sort-shuffle{margin-left:auto}
+.sort-shapes{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.sort-shapes-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sort-shapes button{font:inherit;font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.sort-shapes button.on{background:hsl(186 60% 55% / .14);border-color:hsl(186 55% 72%);font-weight:600}
+.sort-worstcase{font-size:12.5px;line-height:1.55;color:var(--ink);padding:10px 13px;margin-bottom:14px;border:1px solid hsl(35 80% 50% / .45);border-radius:9px;background:hsl(35 78% 50% / .08)}
+.sort-worstcase strong{color:var(--ink)}
 .sort-table{display:flex;flex-direction:column;gap:2px}
 .sort-trow{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:10px;padding:6px 12px;border-radius:7px;font-size:12.5px}
 .sort-trow.head{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}

@@ -48,4 +48,15 @@ describe('the trace', () => {
     const input = Array.from({ length: 32 }, (_, i) => (i * 7 + 3) % 32);
     expect(ALGOS.merge(input).comparisons).toBeLessThan(ALGOS.bubble(input).comparisons);
   });
+
+  it("quicksort's O(n²) worst case: a sorted array (last-element pivot) forces Θ(n²) comparisons, worse than merge", () => {
+    const n = 32;
+    const asc = Array.from({ length: n }, (_, i) => i + 1);   // already sorted → maximally unbalanced Lomuto partitions
+    const desc = Array.from({ length: n }, (_, i) => n - i);  // reversed → also worst case
+    const worst = (n * (n - 1)) / 2;                          // n(n-1)/2 comparisons for fully unbalanced partitioning
+    expect(ALGOS.quick(asc).comparisons).toBe(worst);
+    expect(ALGOS.quick(desc).comparisons).toBeGreaterThanOrEqual(worst);
+    // and the pathological input makes quicksort do MORE comparisons than merge, inverting their usual ranking
+    expect(ALGOS.quick(asc).comparisons).toBeGreaterThan(ALGOS.merge(asc).comparisons);
+  });
 });
