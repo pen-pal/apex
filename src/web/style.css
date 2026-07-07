@@ -1843,6 +1843,51 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .tc-btn:hover{border-color:var(--accent)}
 .tc-btn.tog.on{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .1)}
 @media(max-width:620px){.tc-exits{grid-template-columns:1fr}}
+
+/* Firewall rules (FirewallSection) — reorderable iptables chain + live traffic verdicts. */
+.ipt{display:flex;flex-direction:column;gap:14px}
+.ipt-goal{font-size:13px;line-height:1.55;color:var(--ink);padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ipt-goal.ipt-leak{border-color:hsl(0 60% 55% / .45);background:hsl(0 55% 50% / .08)}
+.ipt-goal.ipt-won{border-color:hsl(150 45% 45% / .45);background:hsl(150 40% 45% / .08)}
+.ipt-goal b{color:var(--ink)}
+.ipt-cols{display:grid;grid-template-columns:1.15fr 1fr;gap:14px}
+.ipt-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px}
+.ipt-chain,.ipt-traffic{padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ipt-rule{display:flex;align-items:center;gap:9px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;margin-bottom:5px;background:var(--subtle)}
+.ipt-rule.hot{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.ipt-rule.off{opacity:.42}
+.ipt-ord{font-family:var(--mono);font-size:11px;color:var(--muted);width:14px;flex:none;text-align:center}
+.ipt-match{font-family:var(--mono);font-size:11.5px;color:var(--ink);flex:1;white-space:pre;overflow-x:auto}
+.ipt-act{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;flex:none}
+.ipt-act.accept{color:hsl(150 50% 42%);background:hsl(150 45% 45% / .14)}
+.ipt-act.drop{color:hsl(0 68% 56%);background:hsl(0 55% 50% / .14)}
+.ipt-ctl{display:flex;gap:2px;flex:none}
+.ipt-ctl button{font-size:12px;width:22px;height:22px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer;padding:0}
+.ipt-ctl button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.ipt-ctl button:disabled{opacity:.3;cursor:default}
+.ipt-en.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.ipt-policy{width:100%;margin-top:5px;font-family:var(--mono);font-size:11.5px;padding:7px 10px;border:1px dashed var(--line);border-radius:7px;background:var(--panel);color:var(--muted);cursor:pointer;text-align:left}
+.ipt-policy b{color:var(--ink)}
+.ipt-policy.drop b{color:hsl(0 68% 56%)}
+.ipt-policy.accept b{color:hsl(150 50% 46%)}
+.ipt-pkt{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;margin-bottom:5px;font-size:12px}
+.ipt-pkt.ipt-fail{border-color:hsl(0 60% 55% / .4);background:hsl(0 55% 50% / .07)}
+.ipt-pkt.ipt-pass{border-color:hsl(150 45% 45% / .3)}
+.ipt-pkt-lbl{flex:1;color:var(--ink)}
+.ipt-pkt-flow{font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none}
+.ipt-verdict{font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 6px;border-radius:5px;flex:none}
+.ipt-verdict.accept{color:hsl(150 50% 42%);background:hsl(150 45% 45% / .14)}
+.ipt-verdict.drop{color:hsl(0 68% 56%);background:hsl(0 55% 50% / .14)}
+.ipt-by{font-family:var(--mono);font-size:9.5px;color:var(--muted);flex:none;width:56px}
+.ipt-ok{font-size:11px;flex:none;font-family:var(--mono)}
+.ipt-pkt.ipt-fail .ipt-ok{color:hsl(0 68% 58%)}
+.ipt-pkt.ipt-pass .ipt-ok{color:hsl(150 50% 46%)}
+.ipt-reset{margin-top:6px;font-size:11.5px;font-family:var(--mono);padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:var(--subtle);color:var(--accent);cursor:pointer}
+.ipt-reset:hover{border-color:var(--accent)}
+.ipt-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ipt-foot strong{color:var(--ink)}
+.ipt-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+@media(max-width:720px){.ipt-cols{grid-template-columns:1fr}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
