@@ -2010,6 +2010,41 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .hpot-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .hpot-foot strong{color:var(--ink)}
 @media(max-width:620px){.hpot-scores{grid-template-columns:1fr}}
+
+/* Port knocking (PortKnockSection) — knock the secret sequence to open the closed port. */
+.knk{display:flex;flex-direction:column;gap:14px}
+.knk-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);display:block;margin-bottom:7px}
+.knk-combo{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.knk-seq{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.knk-step{display:flex;align-items:center;gap:8px}
+.knk-arrow{color:var(--muted)}
+.knk-seq code{font-family:var(--mono);font-size:14px;padding:4px 10px;border:1px solid var(--line);border-radius:7px;background:var(--subtle);color:var(--ink)}
+.knk-seq code.knk-done{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .12)}
+.knk-door{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;transition:border-color .2s,background .2s}
+.knk-door.knk-closed{background:var(--panel)}
+.knk-door.knk-open{border-color:hsl(150 45% 45% / .5);background:hsl(150 40% 45% / .09)}
+.knk-lock{font-size:30px;line-height:1}
+.knk-door-txt{display:flex;flex-direction:column;gap:3px}
+.knk-door-txt strong{font-size:13.5px;color:var(--ink);font-family:var(--mono)}
+.knk-door.knk-open .knk-door-txt strong{color:hsl(150 55% 46%)}
+.knk-door-txt span{font-size:12px;color:var(--muted);line-height:1.5}
+.knk-ports{display:flex;gap:8px;flex-wrap:wrap}
+.knk-knock{font-family:var(--mono);font-size:12.5px;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);color:var(--ink);cursor:pointer;transition:transform .1s,border-color .14s}
+.knk-knock:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+.knk-knock:disabled{opacity:.45;cursor:default}
+.knk-log{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.knk-log-row{display:flex;gap:5px;flex-wrap:wrap;min-height:22px;align-items:center}
+.knk-empty{font-size:12px;color:var(--muted)}
+.knk-hit{font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line)}
+.knk-hit.knk-good{color:hsl(150 50% 46%);border-color:hsl(150 45% 45% / .45);background:hsl(150 45% 45% / .1)}
+.knk-hit.knk-bad{color:var(--muted);background:var(--subtle)}
+.knk-controls{display:flex;gap:10px;flex-wrap:wrap}
+.knk-btn{font-family:var(--mono);font-size:12px;padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);color:var(--ink);cursor:pointer}
+.knk-btn:hover:not(:disabled){border-color:var(--accent)}
+.knk-btn:disabled{opacity:.45;cursor:default}
+.knk-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.knk-foot strong{color:var(--ink)}
+.knk-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
