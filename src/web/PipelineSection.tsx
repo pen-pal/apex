@@ -2,7 +2,7 @@
 // grid shows each instruction marching through IF/ID/EX/MEM/WB, and an instruction that depends on a
 // not-yet-ready result shifts right — that gap is the stall (bubble). Forwarding bypasses EX results so
 // the ALU chain runs back-to-back; only the load-use hazard still costs a cycle. Real timing from pipeline.ts.
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { simulate, parseProgram } from './pipeline';
 
 const STAGES = ['IF', 'ID', 'EX', 'MEM', 'WB'] as const;
@@ -21,6 +21,19 @@ export function PipelineSection() {
   const r = useMemo(() => simulate(instrs, fwd), [instrs, fwd]);
   const other = useMemo(() => simulate(instrs, !fwd), [instrs, fwd]);
   const maxCycle = r.cycles;
+
+  // cinematic auto-play: a cycle-by-cycle "playhead" sweeps the grid so instructions visibly march through the
+  // pipeline (and bubbles appear where a dependency stalls), then loops. On by default; pause/scrub, and editing
+  // the program restarts the sweep.
+  const [playhead, setPlayhead] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  useEffect(() => { setPlayhead(0); }, [instrs, fwd]);
+  useEffect(() => {
+    if (!playing) return;
+    const t = setTimeout(() => setPlayhead((p) => (p >= maxCycle ? 0 : p + 1)), playhead >= maxCycle ? 1200 : 440);
+    return () => clearTimeout(t);
+  }, [playing, playhead, maxCycle]);
+
   const stageAt = (row: typeof r.rows[number], cyc: number): string | null => {
     for (const s of STAGES) if (row[s.toLowerCase() as 'if' | 'id' | 'ex' | 'mem' | 'wb'] === cyc) return s;
     return null;
@@ -33,6 +46,7 @@ export function PipelineSection() {
           {Object.keys(PRESETS).map((k) => <button key={k} type="button" onClick={() => setSrc(PRESETS[k])}>{k}</button>)}
         </div>
         <label className="pipe-fwd"><input type="checkbox" checked={fwd} onChange={(e) => setFwd(e.target.checked)} /> forwarding (bypass)</label>
+        <button type="button" className={`pipe-play ${playing ? 'on' : ''}`} onClick={() => setPlaying((p) => !p)}>{playing ? '⏸ pause' : '▶ play'} <span className="pipe-cyc">cyc {Math.min(playhead, maxCycle)}/{maxCycle}</span></button>
       </div>
 
       <div className="pipe-main">
@@ -41,7 +55,7 @@ export function PipelineSection() {
         <div className="pipe-grid-wrap">
           <table className="pipe-grid">
             <thead>
-              <tr><th className="pipe-instr-h">instruction</th>{Array.from({ length: maxCycle }, (_, c) => <th key={c}>{c + 1}</th>)}</tr>
+              <tr><th className="pipe-instr-h">instruction</th>{Array.from({ length: maxCycle }, (_, c) => <th key={c} className={c + 1 === playhead ? 'cur' : ''}>{c + 1}</th>)}</tr>
             </thead>
             <tbody>
               {r.rows.map((row, i) => (
@@ -49,7 +63,8 @@ export function PipelineSection() {
                   <td className={`pipe-instr ${row.stalledBy !== null ? 'stalled' : ''}`}>{row.instr.text}</td>
                   {Array.from({ length: maxCycle }, (_, c) => {
                     const st = stageAt(row, c + 1);
-                    return <td key={c} className="pipe-cell">{st && <span className="pipe-stage" style={{ background: `hsl(${STAGE_HUE[st]} 60% 88%)`, color: `hsl(${STAGE_HUE[st]} 60% 30%)` }}>{st}</span>}</td>;
+                    const cur = c + 1 === playhead;
+                    return <td key={c} className={`pipe-cell ${cur ? 'cur' : ''}`}>{st && c + 1 <= playhead && <span className="pipe-stage" style={{ background: `hsl(${STAGE_HUE[st]} 60% 88%)`, color: `hsl(${STAGE_HUE[st]} 60% 30%)` }}>{st}</span>}</td>;
                   })}
                 </tr>
               ))}

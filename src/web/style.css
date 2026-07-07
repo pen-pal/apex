@@ -5994,7 +5994,13 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .pipe-instr{font-family:var(--mono);font-size:12px;color:var(--ink);text-align:left;padding-left:11px!important;white-space:nowrap;border-right:1px solid var(--line)}
 .pipe-instr.stalled{color:hsl(28 75% 40%)}
 .pipe-cell{min-width:34px}
-.pipe-stage{display:inline-block;width:30px;padding:3px 0;border-radius:5px;font-weight:700;font-size:10.5px}
+.pipe-stage{display:inline-block;width:30px;padding:3px 0;border-radius:5px;font-weight:700;font-size:10.5px;animation:pipe-pop .32s ease}
+.pipe-cell.cur{background:hsl(212 70% 55% / .12)}
+.pipe-grid th.cur{background:hsl(212 70% 55% / .18);border-radius:4px 4px 0 0}
+@keyframes pipe-pop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+.pipe-play{font-size:12px;padding:4px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap}
+.pipe-play.on{border-color:hsl(212 70% 55% / .6);background:hsl(212 70% 55% / .1)}
+.pipe-cyc{color:var(--muted);font-size:11px;margin-left:4px;font-family:var(--mono,monospace)}
 .pipe-stats{display:flex;gap:10px;flex-wrap:wrap}
 .pipe-stat{flex:1;min-width:86px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:var(--panel)}
 .pipe-stat span{font-size:11px;color:var(--muted);display:block}
