@@ -12,10 +12,21 @@ const NAMES: { id: AlgoName; label: string; big: string }[] = [
   { id: 'merge', label: 'Merge', big: 'O(n log n)' },
   { id: 'quick', label: 'Quick', big: 'O(n log n)' },
 ];
+const N = 12;
+// Input shapes — the point is that shape, not just size, decides the work. Sorted/reversed are quicksort's
+// (last-element-pivot Lomuto) O(n²) worst case; nearly-sorted is where insertion sort wins.
+const SHAPES: { id: string; label: string; make: () => number[] }[] = [
+  { id: 'random', label: '🔀 random', make: () => { const a = Array.from({ length: N }, (_, i) => i + 1); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; } },
+  { id: 'sorted', label: '↗ sorted', make: () => Array.from({ length: N }, (_, i) => i + 1) },
+  { id: 'reversed', label: '↘ reversed', make: () => Array.from({ length: N }, (_, i) => N - i) },
+  { id: 'nearly', label: '≈ nearly sorted', make: () => { const a = Array.from({ length: N }, (_, i) => i + 1); [a[3], a[4]] = [a[4], a[3]]; [a[8], a[9]] = [a[9], a[8]]; return a; } },
+  { id: 'fewunique', label: '▦ few unique', make: () => [3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2] },
+];
 const INITIAL = [7, 3, 9, 2, 8, 5, 1, 6, 4, 10, 12, 11];
 
 export function SortingSection() {
   const [data, setData] = useState<number[]>(INITIAL);
+  const [shape, setShape] = useState('custom');
   const [algo, setAlgo] = useState<AlgoName>('quick');
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -34,8 +45,9 @@ export function SortingSection() {
     return () => clearTimeout(id);
   }, [playing, s, frames.length]);
 
-  const shuffle = () => { const a = [...INITIAL]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } setData(a); };
+  const preset = (sh: typeof SHAPES[number]) => { setShape(sh.id); setData(sh.make()); };
   const activeSet = new Set(frame.active), sortedSet = new Set(frame.sorted);
+  const quadratic = algo === 'quick' && (shape === 'sorted' || shape === 'reversed');
 
   return (
     <div className="journey">
@@ -51,6 +63,20 @@ export function SortingSection() {
           {NAMES.map((n) => <button key={n.id} className={algo === n.id ? 'on' : ''} onClick={() => setAlgo(n.id)}>{n.label} <i>{n.big}</i></button>)}
         </div>
 
+        <div className="sort-shapes">
+          <span className="sort-shapes-lbl">input shape:</span>
+          {SHAPES.map((sh) => <button key={sh.id} className={shape === sh.id ? 'on' : ''} onClick={() => preset(sh)}>{sh.label}</button>)}
+        </div>
+
+        {quadratic && (
+          <div className="sort-worstcase">
+            ⚠ <strong>Quicksort's worst case.</strong> This quicksort takes the <em>last</em> element as its pivot; on an
+            already-{shape === 'reversed' ? 'reverse-' : ''}sorted array that pivot is the extreme value every time, so each
+            partition peels off just one element — <strong>n levels of O(n) work → O(n²)</strong>. Watch its comparison count
+            below blow past the O(n log n) sorts. Real libraries dodge this with a randomized or median-of-three pivot.
+          </div>
+        )}
+
         <div className="sort-bars">
           {frame.array.map((v, i) => (
             <div key={i} className={`sort-bar ${activeSet.has(i) ? 'active' : ''} ${sortedSet.has(i) ? 'sorted' : ''}`} style={{ height: `${(v / max) * 100}%` }} />
@@ -64,7 +90,6 @@ export function SortingSection() {
           <button onClick={() => { setPlaying(false); setStep(Math.min(frames.length, s + 1)); }} disabled={s >= frames.length}>▶|</button>
           <button onClick={() => { setPlaying(false); setStep(frames.length); }} disabled={s >= frames.length}>⏭</button>
           <span className="sort-prog">frame {s} / {frames.length}</span>
-          <button onClick={shuffle} className="sort-shuffle">🔀 shuffle</button>
         </div>
 
         <div className="sort-table">
