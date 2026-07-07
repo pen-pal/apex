@@ -44,6 +44,7 @@ import { SegRouteSection } from '../SegRouteSection';
 import { NatTraversalSection } from '../NatTraversalSection';
 import { IpCompareSection } from '../IpCompareSection';
 import { ArpSection } from '../ArpSection';
+import { TorSection } from '../TorSection';
 import { CsmaSection } from '../CsmaSection';
 import { MulticastSection } from '../MulticastSection';
 import { VlanSection } from '../VlanSection';
@@ -96,6 +97,7 @@ export const chunk3: Record<string, SectionEntry> = {
   "natpunch": { Component: NatTraversalSection, title: <>NAT traversal (STUN / TURN / ICE)</>, sub: <>How two peers behind NATs connect — hole-punch a direct path, or fall back to a relay when a symmetric NAT blocks it.</> },
   "ipcompare": { Component: IpCompareSection, title: <>IPv4 vs IPv6 headers</>, sub: <>The two headers side by side — what IPv6 removed, renamed, and added, and why it forwards faster.</> },
   "arp": { Component: ArpSection, title: <>ARP resolution</>, sub: <>Map an IP to its MAC on the LAN — who-has broadcast, is-at reply, the cache, and gratuitous ARP.</> },
+  "tor": { Component: TorSection, title: <>Tor &amp; onion routing</>, sub: <>Wrap a request in one encryption layer per relay and send it through a 3-hop circuit; each relay peels one layer and learns only the previous and next hop. No single relay links you to the site — watch when a guard+exit collusion breaks it.</> },
   "csma": { Component: CsmaSection, title: <>WiFi CSMA/CA</>, sub: <>How stations share one wireless channel — random backoff, collisions, and the contention window growing under load.</> },
   "multicast": { Component: MulticastSection, title: <>Multicast &amp; IGMP</>, sub: <>One sender, many subscribers — join hosts to a group and watch an IGMP-snooping switch forward the frame to only the members, not every port.</> },
   "vlan": { Component: VlanSection, title: <>802.1Q VLAN tagging</>, sub: <>Build the 4-byte VLAN tag, follow a frame across access and trunk ports, and run the double-tagging hop that abuses the native VLAN.</> },
