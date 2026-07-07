@@ -1782,6 +1782,33 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .cen-verdict.bad{background:hsl(0 55% 55% / .1);border:1px solid hsl(0 55% 55% / .4);color:var(--ink)}
 .cen-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .cen-foot strong{color:var(--ink)}
+/* Onion services (OnionServiceSection) */
+.ons{display:flex;flex-direction:column;gap:14px}
+.ons-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
+.ons-intro strong{font-weight:600}
+.ons-flowbar{display:flex;align-items:center;gap:10px}
+.ons-flow{display:flex;align-items:center;flex:1;flex-wrap:wrap;gap:2px}
+.ons-cell{display:flex;align-items:center}
+.ons-step{display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--panel);min-width:92px;transition:all .25s;opacity:.55}
+.ons-step.done{opacity:.85;border-color:hsl(150 45% 45% / .4)}
+.ons-step.on{opacity:1;border-color:hsl(280 55% 60%);background:hsl(280 55% 55% / .12);box-shadow:0 0 0 2px hsl(280 55% 60% / .35)}
+.ons-ico{font-size:20px;line-height:1}
+.ons-st-title{font-size:10.5px;font-weight:600;color:var(--ink);text-align:center}
+.ons-arrow{color:var(--line);font-size:15px;margin:0 1px;transition:color .25s}
+.ons-arrow.lit{color:hsl(150 45% 50%)}
+.ons-play{font-size:13px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ons-play.on{border-color:hsl(280 55% 60% / .6);background:hsl(280 55% 55% / .1)}
+.ons-caption{font-size:12.5px;line-height:1.55;color:var(--ink);min-height:2.6em;padding:9px 12px;border-radius:8px;background:hsl(280 40% 55% / .07);border:1px solid hsl(280 40% 55% / .2)}
+.ons-caption strong{color:var(--ink)}
+.ons-know{border:1px solid var(--line);border-radius:9px;padding:11px 13px;background:var(--panel)}
+.ons-know-h{font-size:11.5px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.ons-table{width:100%;border-collapse:collapse;font-size:12px}
+.ons-table th{text-align:left;color:var(--muted);font-weight:600;font-size:11px;padding:4px 8px;border-bottom:1px solid var(--line)}
+.ons-table td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink)}
+.ons-table td.yes{color:hsl(0 62% 58%);font-weight:600}
+.ons-table td.no{color:hsl(150 45% 48%)}
+.ons-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ons-foot strong{color:var(--ink)}
 .arp-controls label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
 .arp-controls select{padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit}
 .arp-hosts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:12px 0}
