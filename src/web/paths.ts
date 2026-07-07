@@ -495,6 +495,7 @@ const CORE_PATHS: LearningPath[] = [
       { id: 'tor', note: 'Now hide WHO is talking: wrap your traffic in layers of encryption through a 3-hop circuit, so no single relay links you to your destination.' },
       { id: 'censorship', note: 'When a firewall blocks Tor itself, disguise the traffic — obfs4 makes it look random, bridges are unlisted entry points, domain fronting hides behind a CDN.' },
       { id: 'onionservice', note: 'Finally hide the SERVER too: an onion service has no public IP, and a rendezvous meeting means neither side ever learns the other’s location — censorship-resistant publishing.' },
+      { id: 'mixnet', note: 'The limit of Tor’s speed: an adversary watching both ends can still correlate timing. A mix network gives that up — it batches, reorders, and delays — buying an anonymity set no low-latency system can, at the cost of latency.' },
     ],
   },
 ];

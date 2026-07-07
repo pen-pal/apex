@@ -1777,6 +1777,41 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mag-reset:hover{border-color:var(--accent)}
 .mag-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .mag-foot strong{color:var(--ink)}
+
+/* Mix networks (MixnetSection) — batching/shuffle anonymity, with revealable linkage wires. */
+.mx{display:flex;flex-direction:column;gap:14px}
+.mx-foot{font-size:12px;line-height:1.62;color:var(--muted);margin:0;max-width:88ch}
+.mx-foot strong{color:var(--ink);font-weight:600}
+.mx-controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.mx-slider{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.mx-slider b{color:var(--accent);font-family:var(--mono)}
+.mx-slider input{accent-color:var(--accent);width:120px}
+.mx-toggle,.mx-play{font-size:12px;font-family:var(--mono);padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);color:var(--ink);cursor:pointer}
+.mx-toggle.on{border-color:var(--accent);color:var(--accent)}
+.mx-toggle:hover,.mx-play:hover{border-color:var(--accent)}
+.mx-play{margin-left:auto}
+.mx-stage{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px 14px}
+.mx-heads{display:grid;grid-template-columns:1fr 1.3fr 1fr;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px}
+.mx-heads span:nth-child(2){text-align:center}
+.mx-heads span:last-child{text-align:right}
+.mx-rows{position:relative;display:grid;grid-template-columns:1fr 1.3fr 1fr;min-height:200px}
+.mx-col{display:flex;flex-direction:column;justify-content:space-around;gap:5px}
+.mx-in{align-items:flex-start}
+.mx-out{align-items:flex-end}
+.mx-msg{display:flex;align-items:center;gap:7px;padding:3px 8px;border:1px solid color-mix(in srgb,hsl(var(--hue) 55% 55%) 45%,var(--line));border-radius:6px;background:color-mix(in srgb,hsl(var(--hue) 55% 55%) 10%,var(--panel))}
+.mx-msg code{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.mx-msg-dot{width:9px;height:9px;border-radius:50%;background:hsl(var(--hue) 60% 55%);flex:none}
+.mx-wires{position:relative;width:100%;height:100%}
+.mx-wire{stroke-width:1.4;opacity:.14;transition:opacity .3s;vector-effect:non-scaling-stroke}
+.mx-wire.shown{opacity:.8}
+.mx-mixbox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 16px;border:1.5px solid var(--accent);border-radius:10px;background:var(--panel);box-shadow:0 2px 14px hsl(30 20% 20% / .12);z-index:2}
+.mx-mixbox span{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+.mx-mixbox small{font-family:var(--mono);font-size:9.5px;color:var(--muted);letter-spacing:.04em}
+.mx-metric{display:flex;align-items:center;gap:18px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:hsl(186 40% 45% / .07)}
+.mx-metric.broken{background:hsl(0 55% 50% / .09);border-color:hsl(0 60% 55% / .35)}
+.mx-metric-big{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--accent);flex:none;min-width:130px;text-align:center}
+.mx-metric.broken .mx-metric-big{color:hsl(0 70% 60%)}
+.mx-metric-txt{font-size:12.5px;line-height:1.55;color:var(--ink)}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
