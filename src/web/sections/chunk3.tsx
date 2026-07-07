@@ -47,6 +47,7 @@ import { ArpSection } from '../ArpSection';
 import { TorSection } from '../TorSection';
 import { BitTorrentSection } from '../BitTorrentSection';
 import { MagnetSection } from '../MagnetSection';
+import { CensorshipSection } from '../CensorshipSection';
 import { CsmaSection } from '../CsmaSection';
 import { MulticastSection } from '../MulticastSection';
 import { VlanSection } from '../VlanSection';
@@ -101,6 +102,7 @@ export const chunk3: Record<string, SectionEntry> = {
   "arp": { Component: ArpSection, title: <>ARP resolution</>, sub: <>Map an IP to its MAC on the LAN — who-has broadcast, is-at reply, the cache, and gratuitous ARP.</> },
   "tor": { Component: TorSection, title: <>Tor &amp; onion routing</>, sub: <>Wrap a request in one encryption layer per relay and send it through a 3-hop circuit; each relay peels one layer and learns only the previous and next hop. No single relay links you to the site — watch when a guard+exit collusion breaks it.</> },
   "bittorrent": { Component: BitTorrentSection, title: <>BitTorrent &amp; the swarm</>, sub: <>No central server: a file is split into pieces, a swarm of peers each holds some, and you pull from many at once — rarest piece first so nothing goes extinct, uploading tit-for-tat. Watch a file fill in live, each piece coloured by the peer it came from.</> },
+  "censorship": { Component: CensorshipSection, title: <>Censorship circumvention</>, sub: <>A national firewall hunts and blocks Tor with DPI, a relay blocklist, and SNI filtering. Watch a connection pick up obfs4, a bridge, and domain fronting one at a time until it slips through — each technique defeats exactly one layer.</> },
   "magnet": { Component: MagnetSection, title: <>Magnet links &amp; the infohash</>, sub: <>A magnet link is nothing but an infohash — the SHA-1 content address of a torrent’s piece list. From that one number a client finds peers via the DHT and fetches everything else, with no tracker or file to seize. Watch the trackerless flow, and why content addressing makes it censorship-resistant.</> },
   "csma": { Component: CsmaSection, title: <>WiFi CSMA/CA</>, sub: <>How stations share one wireless channel — random backoff, collisions, and the contention window growing under load.</> },
   "multicast": { Component: MulticastSection, title: <>Multicast &amp; IGMP</>, sub: <>One sender, many subscribers — join hosts to a group and watch an IGMP-snooping switch forward the frame to only the members, not every port.</> },
