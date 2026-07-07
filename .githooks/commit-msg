@@ -1,0 +1,12 @@
+#!/bin/sh
+# Commit-message policy:
+#  1) never carry Claude/Anthropic tool attribution (no Co-Authored-By: Claude, no "Generated with Claude",
+#     no noreply@anthropic.com). Plain references to the CLAUDE.md rules file are left alone.
+#  2) ensure a Signed-off-by trailer exists; if the commit has none, default to the maintainer's.
+# Enabled via: git config core.hooksPath .githooks
+msg="$1"
+grep -viE '^Co-Authored-By:.*(claude|anthropic)|noreply@anthropic\.com|Generated with .*Claude' "$msg" > "$msg.tmp" && mv "$msg.tmp" "$msg"
+if ! grep -qiE '^Signed-off-by:' "$msg"; then
+  printf '\nSigned-off-by: pen-pal <unameme@protonmail.com>\n' >> "$msg"
+fi
+exit 0
