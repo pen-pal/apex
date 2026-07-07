@@ -41,9 +41,11 @@ export function CondSection() {
       <section className="jsec">
         <div className="jsec-head"><h2>Conditional &amp; range requests — don’t resend what the client already has</h2></div>
         <p className="jsec-sub">
-          Every resource carries a <strong>validator</strong>: an <strong>ETag</strong> (an opaque version id) and a Last-Modified time. Clients
-          turn them into <strong>preconditions</strong> — “only send the body if it changed” (revalidation), “send only these bytes” (resume),
-          “only write if nobody beat me to it” (optimistic concurrency). The server answers with a status that can skip the body entirely.
+          You loaded the page once; on the next visit most of it hasn’t changed — re-downloading it would be pure waste, and that is
+          what <strong>conditional requests</strong> prevent. Every resource carries a <strong>validator</strong>: an
+          <strong> ETag</strong> (an opaque version id) and a Last-Modified time. Clients turn them into <strong>preconditions</strong> —
+          “only send the body if it changed” (revalidation), “send only these bytes” (resume), “only write if nobody beat me to it”
+          (optimistic concurrency). The server answers with a status that can skip the body entirely.
         </p>
 
         <div className="cond-res">
