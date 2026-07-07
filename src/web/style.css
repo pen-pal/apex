@@ -25,6 +25,10 @@
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
 .wrap{max-width:min(1600px,95vw);margin:0 auto}
 h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
+/* Interior section title — serif display with a hairline rule running to the right edge (the artifact's
+   section-header look). Scoped to .content header h1 so it never touches the landing hero or the topbar. */
+.content header h1{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:-.01em;display:flex;align-items:center;gap:22px}
+.content header h1::after{content:"";flex:1 1 40px;height:1px;background:var(--line)}
 .sub{color:var(--muted);margin:6px 0 18px;max-width:70ch}
 
 /* controls */
