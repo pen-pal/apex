@@ -1725,6 +1725,29 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .bt-leg-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
 .bt-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .bt-foot strong{color:var(--ink)}
+/* Magnet links / infohash (MagnetSection) */
+.mag{display:flex;flex-direction:column;gap:14px}
+.mag-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
+.mag-intro strong{font-weight:600}
+.mag-uri{font-family:var(--mono,monospace);font-size:12.5px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);overflow-x:auto;white-space:nowrap}
+.mag-uri-k{color:var(--muted)}
+.mag-hash{color:hsl(280 55% 62%);font-weight:700}
+.mag-flowbar{display:flex;align-items:center;gap:10px}
+.mag-flow{display:flex;align-items:center;flex:1;flex-wrap:wrap;gap:2px}
+.mag-cell{display:flex;align-items:center}
+.mag-stage{display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--panel);min-width:78px;transition:all .25s;opacity:.55}
+.mag-stage.done{opacity:.85;border-color:hsl(150 45% 45% / .4)}
+.mag-stage.on{opacity:1;border-color:hsl(280 55% 60%);background:hsl(280 55% 55% / .12);box-shadow:0 0 0 2px hsl(280 55% 60% / .35)}
+.mag-ico{font-size:22px;line-height:1}
+.mag-st-title{font-size:11px;font-weight:600;color:var(--ink);text-align:center}
+.mag-arrow{color:var(--line);font-size:16px;margin:0 2px;transition:color .25s}
+.mag-arrow.lit{color:hsl(150 45% 50%)}
+.mag-play{font-size:13px;padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+.mag-play.on{border-color:hsl(280 55% 60% / .6);background:hsl(280 55% 55% / .1)}
+.mag-caption{font-size:12.5px;line-height:1.55;color:var(--ink);min-height:2.6em;padding:9px 12px;border-radius:8px;background:hsl(280 40% 55% / .07);border:1px solid hsl(280 40% 55% / .2)}
+.mag-caption strong{color:var(--ink)}
+.mag-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.mag-foot strong{color:var(--ink)}
 .arp-controls label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
 .arp-controls select{padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit}
 .arp-hosts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:12px 0}
