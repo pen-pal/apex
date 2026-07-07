@@ -5620,7 +5620,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 /* ── Guided journeys: featured cards on the overview ─────────────────────────── */
 .jp{margin:6px 0 30px}
 .jp-head{display:flex;flex-direction:column;gap:2px;margin-bottom:14px}
-.jp-eyebrow{font-size:11px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:hsl(186 70% 48%)}
+.jp-eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
 .jp-head h2{font-size:18px;margin:0;letter-spacing:-.01em}
 .jp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
 .jp-card{position:relative;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:9px;
@@ -5642,7 +5642,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .jp-start{font-size:12.5px;font-weight:600;color:hsl(186 70% 45%);margin-top:auto;padding-top:4px}
 /* "Start here" featured row + a show-all/filter control for the full journey list */
 .jp-featured{margin-bottom:22px}
-.jp-featured-lbl{display:block;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:hsl(186 70% 48%);margin-bottom:9px}
+.jp-featured-lbl{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
 .jp-browse{margin-top:2px}
 .jp-showall{font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:hsl(186 70% 45%);background:none;border:1px dashed var(--line);border-radius:10px;padding:11px 18px;width:100%;transition:border-color .14s,background .14s}
 .jp-showall:hover{border-color:hsl(186 60% 60%);background:hsl(186 40% 55% / .06)}
