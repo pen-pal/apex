@@ -2045,6 +2045,44 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .knk-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .knk-foot strong{color:var(--ink)}
 .knk-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+
+/* Certificate Transparency (CertTransSection) — the rogue-cert dilemma + a Merkle inclusion proof in the public log. */
+.ctlog{display:flex;flex-direction:column;gap:14px}
+.ctlog-cert{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid hsl(0 60% 55% / .4);border-radius:10px;background:hsl(0 55% 50% / .06)}
+.ctlog-cert-ico{font-size:22px;line-height:1}
+.ctlog-cert strong{font-size:13.5px;color:var(--ink);display:block}
+.ctlog-cert strong code{font-family:var(--mono);color:hsl(0 70% 60%)}
+.ctlog-cert-sub{font-size:12px;color:var(--muted);line-height:1.5}
+.ctlog-togs{display:flex;gap:9px;flex-wrap:wrap}
+.ctlog-tog{font-family:var(--mono);font-size:11.5px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);color:var(--muted);cursor:pointer}
+.ctlog-tog.ctlog-on{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .1)}
+.ctlog-verdict{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ctlog-verdict-h{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:8px}
+.ctlog-verdict p{font-size:12.5px;line-height:1.55;color:var(--ink);margin:0}
+.ctlog-silent-compromise{border-color:hsl(0 60% 55% / .5);background:hsl(0 55% 50% / .09)}
+.ctlog-silent-compromise .ctlog-verdict-h{color:hsl(0 70% 60%)}
+.ctlog-rejected{border-color:hsl(150 45% 45% / .45);background:hsl(150 40% 45% / .08)}
+.ctlog-rejected .ctlog-verdict-h{color:hsl(150 50% 46%)}
+.ctlog-caught{border-color:hsl(150 45% 45% / .5);background:hsl(150 40% 45% / .1)}
+.ctlog-caught .ctlog-verdict-h{color:hsl(150 55% 46%)}
+.ctlog-accepted-unwatched{border-color:hsl(35 80% 50% / .45);background:hsl(35 78% 50% / .08)}
+.ctlog-accepted-unwatched .ctlog-verdict-h{color:hsl(35 85% 50%)}
+.ctlog-log{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ctlog-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
+.ctlog-lbl code{font-family:var(--mono);color:var(--accent);text-transform:none}
+.ctlog-tree{display:flex;flex-direction:column;gap:6px;align-items:center;overflow-x:auto}
+.ctlog-row{display:flex;gap:6px;justify-content:center}
+.ctlog-node{font-family:var(--mono);font-size:10.5px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;background:var(--subtle);color:var(--muted);white-space:nowrap}
+.ctlog-node.ctlog-path{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .12)}
+.ctlog-node.ctlog-sib{border-color:hsl(35 80% 50% / .55);color:hsl(35 85% 50%);background:hsl(35 78% 50% / .1)}
+.ctlog-proof{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.ctlog-proof-lbl{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ctlog-proof-lbl.ctlog-ok{color:hsl(150 50% 46%)}
+.ctlog-proof-txt{font-size:12px;line-height:1.5;color:var(--ink)}
+.ctlog-path-k{color:var(--accent)}
+.ctlog-sib-k{color:hsl(35 85% 50%)}
+.ctlog-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ctlog-foot strong{color:var(--ink)}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}

@@ -10,6 +10,7 @@ import { RetrySection } from '../RetrySection';
 import { SmuggleSection } from '../SmuggleSection';
 import { PhiSection } from '../PhiSection';
 import { CtSection } from '../CtSection';
+import { CertTransSection } from '../CertTransSection';
 import { CondSection } from '../CondSection';
 import { IsoSection } from '../IsoSection';
 import { VxSection } from '../VxSection';
@@ -71,6 +72,7 @@ export const chunk2: Record<string, SectionEntry> = {
   "retry": { Component: RetrySection, title: <>Retry &amp; circuit breaker</>, sub: <>How resilient clients avoid making an outage worse. Compare backoff strategies and watch jitter flatten a thundering-herd retry storm, then see a circuit breaker trip open, shed load, and probe its way back to healthy.</> },
   "smuggle": { Component: SmuggleSection, title: <>HTTP request smuggling</>, sub: <>When a front-end proxy and back-end server disagree on how to delimit a request body, the leftover bytes get smuggled onto the next victim's request. Watch CL.TE and TE.CL desyncs split the same bytes at different offsets.</> },
   "phiaccrual": { Component: PhiSection, title: <>Failure detectors (φ-accrual)</>, sub: <>How distributed systems decide a peer is dead without a brittle fixed timeout. A continuous suspicion level adapts to the link's jitter — drag the threshold and compare it against a naive timeout across a GC pause and a real crash.</> },
+  "certtrans": { Component: CertTransSection, title: <>Certificate Transparency</>, sub: <>Any of hundreds of CAs can issue a cert for your domain, and before Certificate Transparency you’d never know a mis-issued one existed. CT forces every cert into public, append-only Merkle logs — so a rogue cert is either rejected (no proof it was logged) or public (logged, and your monitor catches it). Play the rogue CA and watch the dilemma, with a live inclusion proof putting the forged cert in the log.</> },
   "consttime": { Component: CtSection, title: <>Timing attacks</>, sub: <>Why comparing a secret with <code>==</code> is a vulnerability. A naive compare leaks the matching-prefix length through its running time — watch the byte-by-byte attack walk the secret out of it, and watch constant-time compare give the attacker nothing.</> },
   "conditional": { Component: CondSection, title: <>Conditional &amp; range requests</>, sub: <>ETags and validators let HTTP skip work: 304 Not Modified reuses a cached body, 206 Partial Content resumes a download, and If-Match prevents lost updates. Build requests and watch the server's status and bytes-sent change.</> },
   "siteisolation": { Component: IsoSection, title: <>Site isolation</>, sub: <>How a page earns its own process and re-unlocks SharedArrayBuffer post-Spectre. Set COOP and COEP headers and watch crossOriginIsolated resolve, plus which cross-origin subresources are still allowed to embed.</> },
