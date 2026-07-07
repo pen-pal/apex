@@ -8,6 +8,7 @@
   --sans:Georgia,"Iowan Old Style",Charter,Cambria,"Times New Roman",serif;
   --serif:"Didot","Bodoni 72","Hoefler Text","Playfair Display",Georgia,serif;
   --grid-line:hsl(212 22% 45% / .05);
+  --gold:hsl(38 60% 42%);
 }
 /* Dark theme — overrides only the variables; every hardcoded light neutral in the sheet is mapped to one of
    these vars (a no-op in light mode), so this flip carries the whole UI. --on-bg keeps inverted "active"
@@ -16,6 +17,7 @@
   --bg:#0f141b; --panel:#161d27; --ink:#e7ecf3; --muted:#93a0b2; --line:#2a3542;
   --accent:hsl(212 80% 66%); --subtle:#1b2431; --soft:#121924; --on-bg:var(--accent);
   --grid-line:hsl(210 30% 72% / .045);
+  --gold:hsl(40 68% 58%);
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1918,24 +1920,20 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .app{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:44px 44px;background-position:center -1px}
 .brand{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:.005em}
 .brand .logo{font-family:var(--sans);font-size:14px}
-.ov-hero{position:relative;background:#0b0c0e;border:1px solid #24262c;border-radius:16px;padding:30px 40px 34px;margin-bottom:20px;overflow:hidden;background-image:linear-gradient(rgba(232,236,245,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(232,236,245,.045) 1px,transparent 1px);background-size:40px 40px;background-position:center top}
-.ov-masthead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:15px;margin-bottom:26px;border-bottom:1px solid #23252b}
-.ov-mast-brand{font-family:var(--serif);font-size:22px;font-weight:600;color:#ece7db;letter-spacing:.02em}
-.ov-mast-tag{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8b8f98}
-.ov-kicker{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#c9a24a;margin-bottom:18px}
-.ov-htitle{font-family:var(--serif);font-weight:500;font-size:clamp(23px,3.1vw,38px);line-height:1.12;letter-spacing:-.005em;color:#ece7db;margin:0 0 22px;max-width:none;text-wrap:balance}
-.ov-htitle em{font-style:italic;color:#a3c1ce}
-.ov-lede{font-family:var(--sans);font-size:15px;line-height:1.66;color:#9a9c98;max-width:60ch;margin:0}
-.ov-lede strong{color:#dcdcd6;font-weight:600}
-.ov-feats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #24262c;border-radius:14px;overflow:hidden;margin-bottom:30px;background:#0b0c0e}
-.ov-feat{padding:18px 18px 20px;border-right:1px solid #23252b}
+.ov-hero{position:relative;padding:8px 0 28px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.ov-kicker{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.ov-htitle{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.8vw,48px);line-height:1.08;letter-spacing:-.01em;color:var(--ink);margin:0 0 22px;max-width:none;text-wrap:balance}
+.ov-htitle em{font-style:italic;color:var(--accent)}
+.ov-lede{font-family:var(--sans);font-size:15px;line-height:1.66;color:var(--muted);max-width:66ch;margin:0}
+.ov-lede strong{color:var(--ink);font-weight:600}
+.ov-feats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:32px;background:var(--panel)}
+.ov-feat{padding:18px 18px 20px;border-right:1px solid var(--line)}
 .ov-feat:last-child{border-right:none}
-.ov-feat-n{font-family:var(--mono);font-size:12px;color:#79aebd;letter-spacing:.06em}
-.ov-feat-t{font-family:var(--serif);font-weight:600;font-size:20px;margin:9px 0 6px;color:#e6e1d6;letter-spacing:.01em}
-.ov-feat-d{font-size:12px;line-height:1.55;color:#8a8c88;margin:0}
-@media(max-width:820px){.ov-feats{grid-template-columns:repeat(2,1fr)}.ov-feat:nth-child(2n){border-right:none}.ov-feat:nth-child(1),.ov-feat:nth-child(2){border-bottom:1px solid #23252b}}
-@media(max-width:480px){.ov-feats{grid-template-columns:1fr}.ov-feat{border-right:none;border-bottom:1px solid #23252b}.ov-feat:last-child{border-bottom:none}}
-@media(max-width:640px){.ov-hero{padding:22px 22px 26px}}
+.ov-feat-n{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em}
+.ov-feat-t{font-family:var(--serif);font-weight:600;font-size:20px;margin:9px 0 6px;color:var(--ink);letter-spacing:.01em}
+.ov-feat-d{font-size:12px;line-height:1.55;color:var(--muted);margin:0}
+@media(max-width:820px){.ov-feats{grid-template-columns:repeat(2,1fr)}.ov-feat:nth-child(2n){border-right:none}.ov-feat:nth-child(1),.ov-feat:nth-child(2){border-bottom:1px solid var(--line)}}
+@media(max-width:480px){.ov-feats{grid-template-columns:1fr}.ov-feat{border-right:none;border-bottom:1px solid var(--line)}.ov-feat:last-child{border-bottom:none}}
 .jp-head h2,.ov-browse-head h2,.ov-group-head h2,.jpv-title,.jp-title{font-family:var(--serif);letter-spacing:.005em}
 .jp-head h2{font-size:23px;font-weight:600}
 .jpv-title{font-size:24px}
