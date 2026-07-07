@@ -1659,6 +1659,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 
 /* ---- ARP resolution ---- */
 .arp-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:10px 0}
+.arp-controls .arp-auto.on{border-color:hsl(150 45% 45% / .6);background:hsl(150 45% 45% / .12);color:var(--ink)}
 .arp-controls label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
 .arp-controls select{padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit}
 .arp-hosts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:12px 0}

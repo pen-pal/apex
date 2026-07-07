@@ -3,7 +3,7 @@
 // "X is at <mac>", and the answer is cached so the next send skips ARP. A gratuitous
 // ARP (after an IP moves to a new NIC) updates everyone's cache. Real ARP semantics
 // (see arp.ts). The legit mechanism — the Attacks section shows how it's abused.
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { resolve, gratuitous, type Host, type Cache } from './arp';
 
 const INITIAL: Host[] = [
@@ -25,14 +25,37 @@ export function ArpSection() {
 
   const cacheOf = (ip: string): Cache => caches[ip] ?? {};
 
-  const send = () => {
-    const s = hosts.find((h) => h.ip === sender)!;
-    const r = resolve(s, target, cacheOf(sender), hosts, clock);
-    setCaches((c) => ({ ...c, [sender]: r.cache }));
+  const sendPair = (from: string, to: string) => {
+    setSender(from); setTarget(to);
+    const s = hosts.find((h) => h.ip === from)!;
+    const r = resolve(s, to, cacheOf(from), hosts, clock);
+    setCaches((c) => ({ ...c, [from]: r.cache }));
     setSteps(r.steps);
-    setActive({ sender, owner: r.mac ? target : null, broadcast: r.broadcast });
+    setActive({ sender: from, owner: r.mac ? to : null, broadcast: r.broadcast });
     setClock((c) => c + 1);
   };
+  const send = () => sendPair(sender, target);
+
+  // cinematic auto-play: loop a little script — cold-miss broadcast, then a cache hit, then another host resolves,
+  // then reset — so ARP visibly resolves on its own (hosts light up, the log fills, caches build). Any manual control pauses it.
+  const [auto, setAuto] = useState(true);
+  const [ai, setAi] = useState(0);
+  const SEQ: { act: 'reset' | 'send'; from?: string; to?: string }[] = [
+    { act: 'reset' },
+    { act: 'send', from: '192.168.1.10', to: '192.168.1.1' },
+    { act: 'send', from: '192.168.1.10', to: '192.168.1.1' },
+    { act: 'send', from: '192.168.1.20', to: '192.168.1.30' },
+  ];
+  useEffect(() => {
+    if (!auto) return;
+    const st = SEQ[ai];
+    if (st.act === 'reset') { setCaches({}); setSteps([]); setActive(null); }
+    else sendPair(st.from!, st.to!);
+    const t = setTimeout(() => setAi((i) => (i + 1) % SEQ.length), st.act === 'reset' ? 900 : 2600);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auto, ai]);
+  const manual = (fn: () => void) => { setAuto(false); fn(); };
 
   const gratuitousFrom = (ip: string, failover: boolean) => {
     let announcer = hosts.find((h) => h.ip === ip)!;
@@ -64,14 +87,15 @@ export function ArpSection() {
         </p>
 
         <div className="arp-controls">
-          <label>from<select value={sender} onChange={(e) => setSender(e.target.value)}>{hosts.map((h) => <option key={h.ip} value={h.ip}>{h.name}</option>)}</select></label>
-          <label>send to<select value={target} onChange={(e) => setTarget(e.target.value)}>
+          <button className={`ghost small arp-auto ${auto ? 'on' : ''}`} onClick={() => setAuto((a) => !a)}>{auto ? '❚❚ pause' : '▶ auto-play'}</button>
+          <label>from<select value={sender} onChange={(e) => manual(() => setSender(e.target.value))}>{hosts.map((h) => <option key={h.ip} value={h.ip}>{h.name}</option>)}</select></label>
+          <label>send to<select value={target} onChange={(e) => manual(() => setTarget(e.target.value))}>
             {hosts.filter((h) => h.ip !== sender).map((h) => <option key={h.ip} value={h.ip}>{h.name} ({h.ip})</option>)}
             <option value={UNKNOWN}>unknown ({UNKNOWN})</option>
           </select></label>
-          <button className="ghost small" onClick={send}>send →</button>
-          <button className="ghost small" onClick={() => gratuitousFrom(target === UNKNOWN ? sender : target, true)}>⚡ {hosts.find((h) => h.ip === (target === UNKNOWN ? sender : target))?.name} fails over (gratuitous ARP)</button>
-          <button className="ghost small" onClick={reset}>↺ reset</button>
+          <button className="ghost small" onClick={() => manual(send)}>send →</button>
+          <button className="ghost small" onClick={() => manual(() => gratuitousFrom(target === UNKNOWN ? sender : target, true))}>⚡ {hosts.find((h) => h.ip === (target === UNKNOWN ? sender : target))?.name} fails over (gratuitous ARP)</button>
+          <button className="ghost small" onClick={() => manual(reset)}>↺ reset</button>
         </div>
 
         <div className="arp-hosts">
