@@ -2,13 +2,26 @@
 // charge/leak/refresh — driven by the reusable GuidedStory engine. The last scene is interactive: write a bit, read
 // it (word line HIGH, transistor opens, charge flows onto the bit line), or watch it leak — the reason DRAM refreshes.
 // Real DRAM structure (1-transistor-1-capacitor cell, word/bit lines); access timings live in the DRAM section.
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GuidedStory, type StoryScene } from './GuidedStory';
 
 type ChargeState = 'one' | 'zero' | 'reading' | 'leaking';
+// the auto-played cinematic loop on the final scene: store → read → restore → leak → refresh, forever.
+const CYCLE: { s: ChargeState; ms: number }[] = [
+  { s: 'one', ms: 1500 }, { s: 'reading', ms: 1700 }, { s: 'one', ms: 1100 }, { s: 'leaking', ms: 2100 }, { s: 'one', ms: 1300 },
+];
 
 export function MemoryStorySection() {
   const [charge, setCharge] = useState<ChargeState>('one');
+  const [auto, setAuto] = useState(true); // cinematic auto-play, on by default; any manual control pauses it
+  const [ci, setCi] = useState(0);
+  useEffect(() => {
+    if (!auto) return;
+    setCharge(CYCLE[ci].s);
+    const t = setTimeout(() => setCi((i) => (i + 1) % CYCLE.length), CYCLE[ci].ms);
+    return () => clearTimeout(t);
+  }, [auto, ci]);
+  const manual = (fn: () => void) => { setAuto(false); fn(); };
   const scene = (which: string, title: string, caption: string): StoryScene =>
     ({ key: which, title, caption, render: (active) => <Scene which={which} charge={charge} active={active} /> });
 
@@ -29,10 +42,11 @@ export function MemoryStorySection() {
       }}
       controls={(s) => s !== scenes.length - 1 ? null : (
         <>
-          <button type="button" className={charge === 'one' ? 'on' : ''} onClick={() => setCharge('one')}>write 1</button>
-          <button type="button" className={charge === 'zero' ? 'on' : ''} onClick={() => setCharge('zero')}>write 0</button>
-          <button type="button" onClick={() => { setCharge('reading'); setTimeout(() => setCharge((c) => (c === 'reading' ? 'one' : c)), 1400); }}>read (raise word line)</button>
-          <button type="button" onClick={() => setCharge('leaking')}>wait — let it leak</button>
+          <button type="button" className={`mem-play ${auto ? 'on' : ''}`} onClick={() => setAuto((a) => !a)}>{auto ? '⏸ pause' : '▶ auto-play'}</button>
+          <button type="button" className={!auto && charge === 'one' ? 'on' : ''} onClick={() => manual(() => setCharge('one'))}>write 1</button>
+          <button type="button" className={!auto && charge === 'zero' ? 'on' : ''} onClick={() => manual(() => setCharge('zero'))}>write 0</button>
+          <button type="button" onClick={() => manual(() => { setCharge('reading'); setTimeout(() => setCharge((c) => (c === 'reading' ? 'one' : c)), 1400); })}>read (raise word line)</button>
+          <button type="button" onClick={() => manual(() => setCharge('leaking'))}>wait — let it leak</button>
         </>
       )}
     />
