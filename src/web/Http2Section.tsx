@@ -46,9 +46,11 @@ export function Http2Section() {
       <section className="jsec">
         <div className="jsec-head"><h2>HTTP/2 multiplexing — one connection, many streams</h2></div>
         <p className="jsec-sub">
-          HTTP/1.1 sends one response at a time per connection, so a big file <strong>head-of-line blocks</strong> the
-          small ones queued behind it. HTTP/2 splits every response into frames and <strong>interleaves</strong> them on
-          a single connection, so short requests finish early. Same bytes, much snappier page. Toggle and watch.
+          The encrypted connection is up — now the browser fetches the page and everything it needs (scripts, styles,
+          images), each an <strong>HTTP request</strong>. How those share the one connection decides slow versus snappy:
+          HTTP/1.1 sends one response at a time, so a big file <strong>head-of-line blocks</strong> the small ones queued
+          behind it. HTTP/2 splits every response into frames and <strong>interleaves</strong> them on a single connection,
+          so short requests finish early. Same bytes, much snappier page. Toggle and watch.
         </p>
 
         <div className="h2-controls">
