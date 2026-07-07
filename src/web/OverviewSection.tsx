@@ -67,13 +67,30 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
   return (
     <div className="ov">
       <div className="ov-hero">
-        <h1>Apex — see how computers actually work</h1>
-        <p>
-          {total} live, correctness-first visualizations across {GROUPS.length} areas — networking, cryptography, transport &amp; the web,
-          distributed systems, storage &amp; databases, algorithms, CPU &amp; operating systems, and operating in production. Real bytes, real
-          checksums, real crypto, honest encryption. New here? Take a <strong>guided journey</strong> below; looking for something specific?
-          Pick an area from the menu at the top, or search it.
+        <div className="ov-kicker">Learn a system by running it</div>
+        <h1 className="ov-htitle">
+          The systems that run the world, as playgrounds you can <em>build, break, and&nbsp;watch.</em>
+        </h1>
+        <p className="ov-lede">
+          Not another wiki. Each of the {total} sections is a live simulation that runs in your browser — real bytes, real
+          checksums, honest crypto, every model checked against an independent reference. Wire it up, press go, and watch the
+          mechanics move. New here? Take a <strong>guided journey</strong> below; after something specific? Pick an area from
+          the menu above, or search.
         </p>
+      </div>
+      <div className="ov-feats">
+        {([
+          ['01', 'Validated', 'Every model is checked against an independent source — an RFC, a FIPS/NIST test vector, or a reference implementation.'],
+          ['02', 'In-browser', 'The simulator is the page. No downloads, no accounts, no server round-trip.'],
+          ['03', 'Cinematic', 'Sections auto-play their mechanism — a moving picture, not a static diagram.'],
+          ['04', 'Offline', 'Fully static, no backend. Once loaded it runs on a plane, in a lab, behind an airgap.'],
+        ] as const).map(([n, t, d]) => (
+          <div className="ov-feat" key={n}>
+            <span className="ov-feat-n">{n}</span>
+            <h3 className="ov-feat-t">{t}</h3>
+            <p className="ov-feat-d">{d}</p>
+          </div>
+        ))}
       </div>
 
       {!searching && (

@@ -3,6 +3,8 @@
   --accent:hsl(212 70% 50%); --subtle:#f2f5f9; --soft:#fbfcfe; --on-bg:var(--ink);
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:"Didot","Bodoni 72","Hoefler Text",Georgia,"Times New Roman",serif;
+  --grid-line:hsl(212 22% 45% / .05);
 }
 /* Dark theme — overrides only the variables; every hardcoded light neutral in the sheet is mapped to one of
    these vars (a no-op in light mode), so this flip carries the whole UI. --on-bg keeps inverted "active"
@@ -10,6 +12,7 @@
 :root[data-theme="dark"]{
   --bg:#0f141b; --panel:#161d27; --ink:#e7ecf3; --muted:#93a0b2; --line:#2a3542;
   --accent:hsl(212 80% 66%); --subtle:#1b2431; --soft:#121924; --on-bg:var(--accent);
+  --grid-line:hsl(210 30% 72% / .045);
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1872,6 +1875,63 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .dnt-detect strong{font-weight:600}
 .dnt-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .dnt-foot strong{color:var(--ink)}
+/* IDS/IPS (IdsSection) */
+.ids{display:flex;flex-direction:column;gap:13px}
+.ids-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
+.ids-intro strong{font-weight:600}
+.ids-controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.ids-seg{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
+.ids-seg button{font:inherit;font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ids-seg button.on{border-color:hsl(210 60% 55%);background:hsl(210 60% 55% / .14)}
+.ids-thr{display:flex;flex-direction:column;gap:2px;font-size:11px;color:var(--muted);font-weight:600}
+.ids-thr.off{opacity:.4}
+.ids-thr input{width:150px}
+.ids-play{margin-left:auto;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ids-play.on{border-color:hsl(280 55% 60% / .6);background:hsl(280 55% 55% / .1)}
+.ids-stream{display:flex;flex-direction:column;gap:4px}
+.ids-row{display:flex;align-items:center;gap:10px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);transition:box-shadow .15s}
+.ids-row.scanning{box-shadow:0 0 0 2px hsl(45 90% 55% / .5)}
+.ids-row.true-positive{border-color:hsl(0 60% 55% / .5);background:hsl(0 60% 55% / .07)}
+.ids-row.false-negative{border-color:hsl(35 80% 50% / .5);background:hsl(35 80% 50% / .07)}
+.ids-row.false-positive{border-color:hsl(45 85% 50% / .5);background:hsl(45 85% 50% / .06)}
+.ids-kind{font-size:14px}
+.ids-desc{flex:1;font-size:12px;color:var(--ink);min-width:150px}
+.ids-bar{width:90px;height:7px;border-radius:4px;background:var(--line);overflow:hidden;flex-shrink:0}
+.ids-bar-fill{display:block;height:100%;background:linear-gradient(90deg,hsl(150 45% 50%),hsl(35 85% 55%),hsl(0 65% 55%))}
+.ids-verdict{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;min-width:76px;text-align:center}
+.ids-verdict.true-positive{color:hsl(0 62% 58%);background:hsl(0 60% 55% / .14)}
+.ids-verdict.false-negative{color:hsl(35 85% 52%);background:hsl(35 80% 50% / .16)}
+.ids-verdict.false-positive{color:hsl(45 80% 45%);background:hsl(45 85% 50% / .16)}
+.ids-verdict.true-negative{color:var(--muted);background:hsl(0 0% 50% / .1)}
+.ids-tally{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;padding:8px 12px;border-radius:8px;background:var(--panel);border:1px solid var(--line)}
+.ids-t{color:var(--muted)}
+.ids-t b{color:var(--ink);font-size:13px}
+.ids-t.caught b{color:hsl(0 62% 58%)}
+.ids-t.missed b{color:hsl(35 85% 52%)}
+.ids-t.fa b{color:hsl(45 80% 48%)}
+.ids-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ids-foot strong{color:var(--ink)}
+/* ===== Editorial theme — classic serif look & feel ===== */
+.app{background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:44px 44px;background-position:center -1px}
+.brand{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:.005em}
+.brand .logo{font-family:var(--sans);font-size:14px}
+.ov-hero{padding:14px 0 22px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.ov-kicker{font-family:var(--sans);font-size:11px;font-weight:650;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.ov-htitle{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5.4vw,56px);line-height:1.05;letter-spacing:-.005em;color:var(--ink);margin:0 0 20px;max-width:19ch}
+.ov-htitle em{font-style:italic;color:var(--accent)}
+.ov-lede{font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--muted);max-width:62ch;margin:0}
+.ov-lede strong{color:var(--ink);font-weight:600}
+.ov-feats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:30px;background:var(--panel)}
+.ov-feat{padding:17px 18px 19px;border-right:1px solid var(--line)}
+.ov-feat:last-child{border-right:none}
+.ov-feat-n{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em}
+.ov-feat-t{font-family:var(--serif);font-weight:600;font-size:20px;margin:9px 0 6px;color:var(--ink);letter-spacing:.01em}
+.ov-feat-d{font-size:12px;line-height:1.55;color:var(--muted);margin:0}
+@media(max-width:820px){.ov-feats{grid-template-columns:repeat(2,1fr)}.ov-feat:nth-child(2n){border-right:none}.ov-feat:nth-child(1),.ov-feat:nth-child(2){border-bottom:1px solid var(--line)}}
+@media(max-width:480px){.ov-feats{grid-template-columns:1fr}.ov-feat{border-right:none;border-bottom:1px solid var(--line)}.ov-feat:last-child{border-bottom:none}}
+.jp-head h2,.ov-browse-head h2,.ov-group-head h2,.jpv-title,.jp-title{font-family:var(--serif);letter-spacing:.005em}
+.jp-head h2{font-size:23px;font-weight:600}
+.jpv-title{font-size:24px}
 .arp-controls label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted)}
 .arp-controls select{padding:6px 8px;border:1px solid var(--line);border-radius:7px;font:inherit}
 .arp-hosts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:12px 0}
