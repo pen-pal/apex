@@ -209,6 +209,11 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
       </div>
       </div>
 
+      <footer className="ov-foot">
+        <span>Living proofs of one idea — a simulation you can poke at beats a diagram you can only read.</span>
+        <span className="ov-foot-mono">Apex · {total} live sections · in-browser, offline, no backend</span>
+      </footer>
+
       {preview && (
         <div className="jpv-backdrop" role="dialog" aria-modal="true" aria-label={`${preview.title} — journey preview`} onClick={() => setPreview(null)}>
           <div className="jpv" onClick={(e) => e.stopPropagation()}>
