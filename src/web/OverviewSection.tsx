@@ -67,6 +67,10 @@ export function OverviewSection({ onPick, onStartPath, current }: { onPick: (id:
   return (
     <div className="ov">
       <div className="ov-hero">
+        <div className="ov-masthead">
+          <span className="ov-mast-brand">Apex</span>
+          <span className="ov-mast-tag">Interactive Simulators · In&nbsp;the&nbsp;Browser</span>
+        </div>
         <div className="ov-kicker">Learn a system by running it</div>
         <h1 className="ov-htitle">
           The systems that run the world, as playgrounds you can <em>build, break, and&nbsp;watch.</em>
