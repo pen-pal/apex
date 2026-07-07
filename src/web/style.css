@@ -1971,6 +1971,45 @@ i.siem-ev{position:static;display:inline-block;transform:none;vertical-align:mid
 .scmp-foot strong{color:var(--ink)}
 .scmp-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
 @media(max-width:680px){.scmp-cols{grid-template-columns:1fr}}
+
+/* Honeypot (HoneypotSection) — decoy on a network map; compare its precision to a threshold IDS's false alarms. */
+.hpot{display:flex;flex-direction:column;gap:14px}
+.hpot-controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.hpot-deploy{font-family:var(--mono);font-size:12px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);color:var(--ink);cursor:pointer}
+.hpot-deploy.on{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .1)}
+.hpot-slider{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted)}
+.hpot-slider b{color:var(--accent);font-family:var(--mono)}
+.hpot-slider input{accent-color:var(--accent);width:96px}
+.hpot-slider input:disabled{opacity:.4}
+.hpot-net{display:flex;gap:12px;flex-wrap:wrap;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.hpot-host{flex:1;min-width:120px;display:flex;flex-direction:column;gap:6px;padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:var(--subtle)}
+.hpot-host.hpot-decoy{border-style:dashed;border-color:hsl(38 70% 50% / .6);background:hsl(38 70% 50% / .07)}
+.hpot-host.hpot-tripped{border-style:solid;border-color:hsl(0 65% 55%);background:hsl(0 55% 50% / .12)}
+.hpot-host-top{display:flex;align-items:center;gap:7px}
+.hpot-host-top code{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+.hpot-ico{font-size:15px}
+.hpot-tag{font-family:var(--mono);font-size:9.5px;color:var(--gold);text-transform:uppercase;letter-spacing:.04em}
+.hpot-dots{display:flex;flex-wrap:wrap;gap:4px;min-height:12px}
+.hpot-dot{width:10px;height:10px;border-radius:50%;flex:none}
+i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
+.hpot-user{background:var(--accent)}
+.hpot-job{background:hsl(38 75% 52%)}
+.hpot-atk{background:hsl(0 68% 56%)}
+.hpot-trip{font-family:var(--mono);font-size:10px;color:hsl(0 70% 60%);text-transform:uppercase;letter-spacing:.04em}
+.hpot-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.hpot-scores{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hpot-score{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.hpot-score.hpot-good{border-color:hsl(150 45% 45% / .45);background:hsl(150 40% 45% / .07)}
+.hpot-score.hpot-warn{border-color:hsl(35 80% 50% / .45);background:hsl(35 78% 50% / .07)}
+.hpot-score-h{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);margin-bottom:9px}
+.hpot-score-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--muted);padding:3px 0}
+.hpot-score-row b{font-family:var(--mono);font-size:13px}
+.hpot-score-row b.hpot-y{color:hsl(150 50% 46%)}
+.hpot-score-row b.hpot-n{color:hsl(0 70% 60%)}
+.hpot-score-note{font-size:11.5px;line-height:1.5;color:var(--ink);margin:7px 0 0}
+.hpot-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.hpot-foot strong{color:var(--ink)}
+@media(max-width:620px){.hpot-scores{grid-template-columns:1fr}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
