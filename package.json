@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A live, interactive way to see how computers actually work — 458 tested visualizations across networking, cryptography, distributed systems, databases, algorithms, hardware, and OS internals. Real bytes, real checksums, real crypto.",
+  "description": "A live, interactive way to see how computers actually work — 470 tested visualizations across networking, cryptography, distributed systems, databases, algorithms, hardware, and OS internals. Real bytes, real checksums, real crypto.",
   "homepage": "https://pen-pal.github.io/apex",
   "scripts": {
     "dev": "vite",
