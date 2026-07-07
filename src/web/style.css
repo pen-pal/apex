@@ -1923,7 +1923,7 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .ov-mast-brand{font-family:var(--serif);font-size:22px;font-weight:600;color:#ece7db;letter-spacing:.02em}
 .ov-mast-tag{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8b8f98}
 .ov-kicker{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#c9a24a;margin-bottom:18px}
-.ov-htitle{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5.4vw,58px);line-height:1.04;letter-spacing:-.005em;color:#ece7db;margin:0 0 22px;max-width:19ch}
+.ov-htitle{font-family:var(--serif);font-weight:500;font-size:clamp(23px,3.1vw,38px);line-height:1.12;letter-spacing:-.005em;color:#ece7db;margin:0 0 22px;max-width:none;text-wrap:balance}
 .ov-htitle em{font-style:italic;color:#a3c1ce}
 .ov-lede{font-family:var(--sans);font-size:15px;line-height:1.66;color:#9a9c98;max-width:60ch;margin:0}
 .ov-lede strong{color:#dcdcd6;font-weight:600}
