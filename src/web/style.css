@@ -1813,6 +1813,36 @@ h1{font-size:28px;font-weight:650;letter-spacing:-.02em}
 .mx-metric-big{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--accent);flex:none;min-width:130px;text-align:center}
 .mx-metric.broken .mx-metric-big{color:hsl(0 70% 60%)}
 .mx-metric-txt{font-size:12.5px;line-height:1.55;color:var(--ink)}
+
+/* Traffic correlation (TrafficCorrSection) — a match-the-shape attack game with real Pearson scoring. */
+.tc{display:flex;flex-direction:column;gap:14px}
+.tc-foot{font-size:12px;line-height:1.62;color:var(--muted);margin:0;max-width:88ch}
+.tc-foot strong{color:var(--ink);font-weight:600}
+.tc-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.tc-lbl em{color:var(--gold);font-style:normal}
+.tc-target{padding:11px 13px;border:1px solid var(--accent);border-radius:10px;background:hsl(186 40% 45% / .06)}
+.tc-spark{display:flex;align-items:flex-end;gap:3px;height:56px}
+.tc-bar{flex:1;min-height:2px;background:var(--muted);border-radius:2px 2px 0 0;transition:height .2s}
+.tc-bar.acc{background:var(--accent)}
+.tc-exits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tc-exit{display:flex;flex-direction:column;text-align:left;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:pointer;transition:border-color .15s,transform .1s,opacity .2s}
+.tc-exit:not(:disabled):hover{border-color:var(--accent);transform:translateY(-2px)}
+.tc-exit:disabled{cursor:default}
+.tc-exit.right{border-color:hsl(0 65% 55%);background:hsl(0 55% 50% / .12)}
+.tc-exit.right .tc-bar{background:hsl(0 68% 58%)}
+.tc-exit.wrong{border-color:hsl(150 45% 45% / .5)}
+.tc-exit.dim{opacity:.5}
+.tc-score{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink);margin-top:7px}
+.tc-exit.right .tc-score{color:hsl(0 70% 60%)}
+.tc-verdict{font-size:12.5px;line-height:1.55;color:var(--ink);padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel)}
+.tc-verdict.linked{border-color:hsl(0 60% 55% / .45);background:hsl(0 55% 50% / .09)}
+.tc-verdict.miss{border-color:hsl(150 45% 45% / .4);background:hsl(150 40% 45% / .07)}
+.tc-verdict strong{font-weight:600}
+.tc-controls{display:flex;gap:10px;flex-wrap:wrap}
+.tc-btn{font-size:12px;font-family:var(--mono);padding:7px 13px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);color:var(--ink);cursor:pointer}
+.tc-btn:hover{border-color:var(--accent)}
+.tc-btn.tog.on{border-color:var(--accent);color:var(--accent);background:hsl(186 40% 45% / .1)}
+@media(max-width:620px){.tc-exits{grid-template-columns:1fr}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
