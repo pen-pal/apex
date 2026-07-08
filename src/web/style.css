@@ -2620,6 +2620,43 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 [data-theme="dark"] .kvc-verdict.kvc-good{color:hsl(145 55% 62%)}
 [data-theme="dark"] .kvc-verdict.kvc-bad{color:hsl(35 80% 62%)}
 @media(max-width:560px){.kvc-grid{grid-template-columns:repeat(8,1fr)}}
+
+/* Weight quantization (QuantizeSection) — number line + levels + error. */
+.qz{display:flex;flex-direction:column;gap:14px}
+.qz-controls{display:flex;gap:16px 24px;align-items:center;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.qz-slider{display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--muted)}
+.qz-slider b{color:var(--ink);font-family:var(--mono)}
+.qz-slider code{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.qz-slider input{width:150px;accent-color:var(--accent)}
+.qz-tog{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink);cursor:pointer}
+.qz-line{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.qz-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.055em;color:var(--muted);margin-bottom:8px}
+.qz-svg{width:100%;height:auto;display:block}
+.qz-axis{stroke:var(--muted);stroke-width:1.5}
+.qz-tick{stroke:var(--line);stroke-width:1}
+.qz-fine{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.qz-w{fill:hsl(186 55% 48%)}
+.qz-snap{fill:var(--muted)}
+.qz-err{stroke:hsl(35 75% 55%);stroke-width:1.5}
+.qz-err-big{stroke:hsl(0 62% 55%);stroke-width:2}
+.qz-outlier{fill:hsl(0 62% 55%)}
+.qz-outlbl{fill:hsl(0 62% 55%);font-family:var(--mono);font-size:10px}
+.qz-stats{display:flex;gap:12px;flex-wrap:wrap}
+.qz-stat{flex:1;min-width:130px;text-align:center;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--subtle)}
+.qz-stat b{display:block;font-family:var(--mono);font-size:22px;color:var(--ink)}
+.qz-stat span{font-size:11px;color:var(--muted)}
+.qz-stat.qz-hi{border-color:var(--accent);background:hsl(186 40% 45% / .1)}
+.qz-stat.qz-hi b{color:var(--accent)}
+.qz-verdict{padding:11px 14px;border-radius:9px;font-size:12.5px;line-height:1.55}
+.qz-verdict b{font-family:var(--mono);color:var(--ink)}
+.qz-verdict.qz-good{background:hsl(145 50% 55% / .14);border:1px solid hsl(145 45% 55% / .4);color:hsl(145 45% 30%)}
+.qz-verdict.qz-ok{background:hsl(35 75% 55% / .12);border:1px solid hsl(35 70% 55% / .4);color:hsl(35 55% 38%)}
+.qz-verdict.qz-bad{background:hsl(0 60% 55% / .12);border:1px solid hsl(0 60% 55% / .45);color:hsl(0 62% 45%)}
+.qz-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.qz-foot strong{color:var(--ink)}
+[data-theme="dark"] .qz-verdict.qz-good{color:hsl(145 55% 62%)}
+[data-theme="dark"] .qz-verdict.qz-ok{color:hsl(35 80% 62%)}
+[data-theme="dark"] .qz-verdict.qz-bad{color:hsl(0 70% 68%)}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
