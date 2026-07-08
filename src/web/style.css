@@ -2120,6 +2120,53 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .ovl-foot strong{color:var(--ink)}
 .ovl-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
 @media(max-width:680px){.ovl-cols{grid-template-columns:1fr}}
+
+/* Container bridge networking (BridgeNetSection) — topology + hop trace + NAT. */
+.bnet{display:flex;flex-direction:column;gap:14px}
+.bnet-controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.bnet-seg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted)}
+.bnet-seg code,.bnet-tog code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.bnet-seg button{font-family:var(--mono);font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer}
+.bnet-seg button.on{border-color:var(--accent);background:hsl(186 40% 45% / .14);color:var(--accent)}
+.bnet-tog{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink);cursor:pointer}
+.bnet-topo{display:flex;flex-direction:column;align-items:center;gap:0;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.bnet-cloud{text-align:center;font-size:12px;color:var(--muted);padding:8px 16px;border:1px dashed var(--line);border-radius:10px}
+.bnet-cloud code{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
+.bnet-cloud::after{content:"│";display:block;color:var(--line);margin-top:2px}
+.bnet-host{width:100%;max-width:620px;border:1px solid var(--line);border-radius:10px;padding:11px;background:var(--subtle)}
+.bnet-host-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;flex-wrap:wrap;gap:6px}
+.bnet-host-h code{font-family:var(--mono);font-size:12px;color:var(--ink);font-weight:600}
+.bnet-nic{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:5px}
+.bnet-nic.on{color:hsl(35 85% 50%);background:hsl(35 78% 50% / .14);border:1px solid hsl(35 78% 50% / .4)}
+.bnet-nic.off{color:hsl(0 65% 60%);background:hsl(0 60% 55% / .12);border:1px solid hsl(0 60% 55% / .4)}
+.bnet-bridges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.bnet-bridge{flex:1;min-width:220px;border:1px solid var(--line);border-radius:8px;padding:9px;background:var(--panel)}
+.bnet-bridge.bnet-iso{border-style:dashed;border-color:hsl(0 55% 55% / .5)}
+.bnet-bridge-h{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:8px}
+.bnet-iso .bnet-bridge-h{color:hsl(0 60% 60%)}
+.bnet-ctrs{display:flex;gap:9px;flex-wrap:wrap}
+.bnet-ctr{flex:1;min-width:96px;text-align:center;font-size:11.5px;color:var(--ink);padding:8px 6px;border:1px solid var(--line);border-radius:7px;background:var(--subtle)}
+.bnet-ctr code{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.bnet-ctr.on-b{border-color:hsl(186 40% 45% / .5)}
+.bnet-trace{padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.bnet-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.bnet-hop{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:6px 9px;border:1px solid var(--line);border-radius:7px;margin-bottom:5px;background:var(--subtle)}
+.bnet-hop.bnet-nat{border-color:hsl(35 78% 50% / .5);background:hsl(35 78% 50% / .08)}
+.bnet-where{font-family:var(--mono);font-size:11px;color:var(--ink);min-width:150px}
+.bnet-flow{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.bnet-flow b{color:var(--ink)}
+.bnet-nat .bnet-flow b{color:hsl(35 85% 50%)}
+.bnet-tag{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:4px;color:hsl(35 85% 50%);background:hsl(35 78% 50% / .16);letter-spacing:.05em}
+.bnet-note{font-size:11px;color:var(--muted);font-style:italic}
+.bnet-verdict{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12.5px;line-height:1.5}
+.bnet-verdict.ok{color:hsl(145 55% 34%);background:hsl(145 50% 55% / .14);border:1px solid hsl(145 45% 55% / .4)}
+.bnet-verdict.bad{color:hsl(0 62% 45%);background:hsl(0 60% 55% / .12);border:1px solid hsl(0 60% 55% / .4)}
+.bnet-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.bnet-foot strong{color:var(--ink)}
+.bnet-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+[data-theme="dark"] .bnet-verdict.ok{color:hsl(145 55% 62%)}
+[data-theme="dark"] .bnet-verdict.bad{color:hsl(0 70% 68%)}
+[data-theme="dark"] .bnet-bridge-h{color:hsl(186 55% 55%)}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
