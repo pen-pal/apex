@@ -9,12 +9,11 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-// Load the data module (strip TS types via esbuild so plain node can import it).
-const ts = readFileSync('src/web/langSamples.ts', 'utf8');
-const js = esbuild.transformSync(ts, { loader: 'ts', format: 'esm' }).code;
+// Load the data module: bundle langSamples.ts (it imports the split data + types) into one JS file plain node can import.
+const bundled = await esbuild.build({ entryPoints: ['src/web/langSamples.ts'], bundle: true, format: 'esm', platform: 'node', write: false });
 const work = mkdtempSync(join(tmpdir(), 'apex-codeex-'));
-const modPath = join(work, 'codeExamples.mjs');
-writeFileSync(modPath, js);
+const modPath = join(work, 'langSamples.mjs');
+writeFileSync(modPath, bundled.outputFiles[0].text);
 const { CODE_EXAMPLES } = await import(pathToFileURL(modPath).href);
 
 const have = (bin, args = ['--version']) => { try { execFileSync(bin, args, { stdio: 'ignore' }); return true; } catch { return false; } };

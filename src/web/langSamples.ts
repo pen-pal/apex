@@ -1,23 +1,16 @@
 // Multi-language reference implementations for a section's core idea, shown beside the tested TypeScript model. These
 // are read-only examples (Apex stays a static, offline, no-backend page — it doesn't execute them). They are kept
 // honest instead of plausible-looking: every snippet prints the same `expect` value, and scripts/verify-code-examples.mjs
-// compiles and runs each one (Python/Go/Rust/C/C++) and asserts that output — so a wrong sample fails the check, not the
-// reader. Start small: one section, grown deliberately.
+// compiles and runs each one (Python/Go/Rust/C/C++) and asserts that output. Types live in langSampleTypes.ts; the
+// overflow entries live in langSamplesExtra.ts so neither file exceeds the review size limit.
+import { LANGS, type ExampleSet } from './langSampleTypes';
+import { EXTRA_EXAMPLES } from './langSamplesExtra';
 
-export type Lang = 'python' | 'go' | 'rust' | 'c' | 'cpp';
-export const LANGS: { id: Lang; label: string }[] = [
-  { id: 'python', label: 'Python' }, { id: 'go', label: 'Go' }, { id: 'rust', label: 'Rust' },
-  { id: 'c', label: 'C' }, { id: 'cpp', label: 'C++' },
-];
-
-export interface Snippet { lang: Lang; code: string }
-export interface ExampleSet {
-  intro: string;      // what the snippets compute
-  expect: string;     // the stdout every snippet must print (the verification anchor)
-  snippets: Snippet[];
-}
+export { LANGS };
+export type { Lang, Snippet, ExampleSet } from './langSampleTypes';
 
 export const CODE_EXAMPLES: Record<string, ExampleSet> = {
+
   kadane: {
     intro: 'Kadane’s algorithm — the maximum sum of any contiguous subarray, in one pass. On [-2,1,-3,4,-1,2,1,-5,4] the best run is [4,-1,2,1], summing to 6.',
     expect: '6',
@@ -503,6 +496,7 @@ int main() {
 }` },
     ],
   },
+  ...EXTRA_EXAMPLES,
 };
 
 export const hasExamples = (id: string): boolean => id in CODE_EXAMPLES;
