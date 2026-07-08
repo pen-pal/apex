@@ -72,7 +72,7 @@ export function RaftSection() {
             const p = posOf(node.id);
             return (
               <g key={node.id} onClick={() => timeout(node.id)} style={{ cursor: 'pointer' }}>
-                <circle cx={p.x} cy={p.y} r={26} fill="#fff" stroke={ROLE_COLOR[node.role]} strokeWidth={node.role === 'leader' ? 4 : 2.5} />
+                <circle cx={p.x} cy={p.y} r={26} style={{ fill: 'var(--panel)' }} stroke={ROLE_COLOR[node.role]} strokeWidth={node.role === 'leader' ? 4 : 2.5} />
                 <text x={p.x} y={p.y - 3} className="raft-id" textAnchor="middle">{node.role === 'leader' ? '👑' : ''}N{node.id}</text>
                 <text x={p.x} y={p.y + 10} className="raft-role" textAnchor="middle" fill={ROLE_COLOR[node.role]}>{node.role[0].toUpperCase()}·t{node.term}</text>
               </g>
