@@ -15,7 +15,8 @@
     "typecheck": "tsc --noEmit",
     "stats": "node scripts/stats.mjs",
     "stats:write": "node scripts/stats.mjs --write",
-    "lint:slop": "node scripts/anti-slop.mjs"
+    "lint:slop": "node scripts/anti-slop.mjs",
+    "verify:code": "node scripts/verify-code-examples.mjs"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

@@ -35,6 +35,7 @@ import { OverviewSection } from './OverviewSection';
 import { JourneyBar } from './JourneyBar';
 import { pathById } from './paths';
 import { CodePanel } from './CodePanel';
+import { CodeExamples } from './CodeExamples';
 import './style.css';
 
 const registry = new ProtocolRegistry();
@@ -451,6 +452,7 @@ function App() {
         )}
 
         {section !== 'overview' && <CodePanel id={section} />}
+        {section !== 'overview' && <CodeExamples id={section} />}
       </main>
       {activePath && (
         <JourneyBar

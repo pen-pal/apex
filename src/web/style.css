@@ -11141,6 +11141,26 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .codepanel-pre{margin:0;padding:12px 14px;font-family:var(--mono);font-size:11.5px;line-height:1.55;color:var(--ink);white-space:pre;tab-size:2}
 .codepanel-pre code{color:var(--ink)}
 
+/* Multi-language examples (CodeExamples) — tabbed Go/Python/Rust/C/C++ beside the TS model. */
+.codex{margin-top:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}
+.codex-sum{cursor:pointer;padding:11px 14px;font-size:12.5px;color:var(--ink);list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap;user-select:none}
+.codex-sum::-webkit-details-marker{display:none}
+.codex-icon{color:var(--accent)}
+.codex-langs{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+.codex-hint{font-size:10.5px;color:var(--muted);font-weight:400}
+.codex[open] .codex-sum{border-bottom:1px solid var(--line)}
+.codex-body{padding:0}
+.codex-intro{margin:0;padding:11px 14px;font-size:12px;line-height:1.55;color:var(--muted);border-bottom:1px solid var(--line)}
+.codex-tabs{display:flex;align-items:center;gap:4px;padding:8px 12px;flex-wrap:wrap;border-bottom:1px solid var(--line);background:var(--subtle)}
+.codex-tabs button{font-family:var(--mono);font-size:11.5px;padding:4px 11px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--muted);cursor:pointer}
+.codex-tabs button.on{border-color:var(--accent);background:hsl(186 40% 45% / .14);color:var(--accent)}
+.codex-spacer{flex:1}
+.codex-copy{font-family:var(--mono);font-size:11px;padding:4px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer}
+.codex-code{margin:0;padding:13px 15px;max-height:460px;overflow:auto;font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--ink);white-space:pre;tab-size:4}
+.codex-code code{color:var(--ink)}
+.codex-verified{padding:8px 14px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.codex-verified code{font-family:var(--mono);font-size:10.5px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--accent)}
+
 /* ---- CPU cache ---- */
 .cch{display:flex;flex-direction:column;gap:12px}
 .cch-intro,.cch-foot{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0}
