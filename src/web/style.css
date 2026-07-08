@@ -2167,6 +2167,44 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 [data-theme="dark"] .bnet-verdict.ok{color:hsl(145 55% 62%)}
 [data-theme="dark"] .bnet-verdict.bad{color:hsl(0 70% 68%)}
 [data-theme="dark"] .bnet-bridge-h{color:hsl(186 55% 55%)}
+
+/* SSH tunneling (SshTunnelSection) — -L/-R/-D listener side + hop trace. */
+.ssht{display:flex;flex-direction:column;gap:14px}
+.ssht-controls{display:flex;flex-direction:column;gap:9px;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.ssht-seg{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ssht-seg-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);min-width:38px}
+.ssht-seg button{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer;text-align:left}
+.ssht-seg button.on{border-color:var(--accent);background:hsl(186 40% 45% / .14);color:var(--accent)}
+.ssht-cmd{display:block;font-family:var(--mono);font-size:12.5px;color:var(--ink);padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--subtle);overflow-x:auto;white-space:nowrap}
+.ssht-diagram{display:flex;align-items:stretch;gap:0}
+.ssht-node{flex:1;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--panel);text-align:center}
+.ssht-node.ssht-listen{border-color:var(--accent);box-shadow:0 0 0 3px hsl(186 40% 45% / .1)}
+.ssht-node-h{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.ssht-svc{font-size:11px;color:var(--muted)}
+.ssht-svc code{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
+.ssht-badge{margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--accent);background:hsl(186 40% 45% / .14);border:1px solid hsl(186 40% 45% / .4);border-radius:6px;padding:3px 8px;display:inline-block}
+.ssht-link{flex:0 0 90px;display:flex;align-items:center;justify-content:center;position:relative}
+.ssht-link::before{content:"";position:absolute;left:6px;right:6px;top:50%;height:2px;background:repeating-linear-gradient(90deg,var(--accent) 0 6px,transparent 6px 11px)}
+.ssht-link-lbl{position:relative;font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--bg);padding:2px 4px;text-align:center;line-height:1.3}
+.ssht-trace{padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ssht-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.ssht-hop{display:flex;align-items:center;gap:9px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;margin-bottom:5px;background:var(--subtle);border-left-width:3px}
+.ssht-hop.ssht-laptop{border-left-color:hsl(210 60% 60%)}
+.ssht-hop.ssht-tunnel{border-left-color:var(--accent)}
+.ssht-hop.ssht-server{border-left-color:hsl(35 80% 55%)}
+.ssht-step{font-family:var(--mono);font-size:10px;width:18px;height:18px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--line);color:var(--ink)}
+.ssht-hop-node{font-family:var(--mono);font-size:10px;color:var(--muted);min-width:52px;text-transform:uppercase;letter-spacing:.04em}
+.ssht-hop-text{font-size:12px;color:var(--ink)}
+.ssht-hop-text code{font-family:var(--mono);font-size:11px}
+.ssht-verdict{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12.5px;line-height:1.5}
+.ssht-verdict.ok{color:hsl(145 55% 34%);background:hsl(145 50% 55% / .14);border:1px solid hsl(145 45% 55% / .4)}
+.ssht-verdict.bad{color:hsl(0 62% 45%);background:hsl(0 60% 55% / .12);border:1px solid hsl(0 60% 55% / .4)}
+.ssht-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ssht-foot strong{color:var(--ink)}
+.ssht-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+[data-theme="dark"] .ssht-verdict.ok{color:hsl(145 55% 62%)}
+[data-theme="dark"] .ssht-verdict.bad{color:hsl(0 70% 68%)}
+@media(max-width:640px){.ssht-diagram{flex-direction:column}.ssht-link{flex-basis:36px}.ssht-link::before{left:50%;right:auto;top:6px;bottom:6px;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--accent) 0 6px,transparent 6px 11px)}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
