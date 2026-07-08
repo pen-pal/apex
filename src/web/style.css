@@ -2205,6 +2205,44 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 [data-theme="dark"] .ssht-verdict.ok{color:hsl(145 55% 62%)}
 [data-theme="dark"] .ssht-verdict.bad{color:hsl(0 70% 68%)}
 @media(max-width:640px){.ssht-diagram{flex-direction:column}.ssht-link{flex-basis:36px}.ssht-link::before{left:50%;right:auto;top:6px;bottom:6px;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--accent) 0 6px,transparent 6px 11px)}}
+
+/* Linux capabilities (CapabilitiesSection) — cap toggles + op table + verdict. */
+.lcap{display:flex;flex-direction:column;gap:14px}
+.lcap-presets{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 13px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.lcap-presets-lbl{font-size:12.5px;color:var(--muted)}
+.lcap-presets button{font-family:var(--mono);font-size:11.5px;padding:5px 12px;border:1px solid var(--line);border-radius:6px;background:var(--subtle);color:var(--ink);cursor:pointer}
+.lcap-presets button:hover{border-color:var(--accent);color:var(--accent)}
+.lcap-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.lcap-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lcap-chip{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer;text-align:left;min-width:150px;flex:1}
+.lcap-chip code{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.lcap-chip span{font-size:10.5px;color:var(--muted)}
+.lcap-chip.on{border-color:var(--accent);background:hsl(186 40% 45% / .12)}
+.lcap-chip.on code{color:var(--accent)}
+.lcap-chip.on span{color:var(--ink)}
+.lcap-ops{padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.lcap-op{display:grid;grid-template-columns:20px 1fr auto;grid-template-areas:"res label cap" "res detail cap";gap:1px 10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;background:var(--subtle)}
+.lcap-op-res{grid-area:res;font-size:14px;font-weight:700}
+.lcap-op-label{grid-area:label;font-size:13px;color:var(--ink);font-weight:500}
+.lcap-op-detail{grid-area:detail;font-size:11px;color:var(--muted)}
+.lcap-op-cap{grid-area:cap;font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap}
+.lcap-ok .lcap-op-res{color:hsl(145 55% 40%)}
+.lcap-no{opacity:.62}
+.lcap-no .lcap-op-res{color:hsl(0 62% 55%)}
+.lcap-danger.lcap-ok{border-color:hsl(0 65% 55% / .55);background:hsl(0 62% 55% / .08)}
+.lcap-danger.lcap-ok .lcap-op-label{color:hsl(0 68% 52%)}
+.lcap-skull{font-size:12px}
+.lcap-verdict{padding:11px 14px;border-radius:9px;font-size:12.5px;line-height:1.55}
+.lcap-v-least{color:hsl(145 55% 34%);background:hsl(145 50% 55% / .14);border:1px solid hsl(145 45% 55% / .4)}
+.lcap-v-over{color:hsl(0 62% 45%);background:hsl(0 60% 55% / .12);border:1px solid hsl(0 60% 55% / .45)}
+.lcap-v-broken{color:hsl(35 70% 40%);background:hsl(35 75% 55% / .14);border:1px solid hsl(35 70% 55% / .4)}
+.lcap-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.lcap-foot strong{color:var(--ink)}
+.lcap-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+[data-theme="dark"] .lcap-v-least{color:hsl(145 55% 62%)}
+[data-theme="dark"] .lcap-v-over{color:hsl(0 70% 68%)}
+[data-theme="dark"] .lcap-v-broken{color:hsl(35 80% 62%)}
+[data-theme="dark"] .lcap-danger.lcap-ok .lcap-op-label{color:hsl(0 72% 68%)}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
