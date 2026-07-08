@@ -23,6 +23,7 @@ import { TtSection } from '../TtSection';
 import { EcnSection } from '../EcnSection';
 import { DotxSection } from '../DotxSection';
 import { IpsecSection } from '../IpsecSection';
+import { WireGuardSection } from '../WireGuardSection';
 import { CbSection } from '../CbSection';
 import { EcmpSection } from '../EcmpSection';
 import { RtmSection } from '../RtmSection';
@@ -86,6 +87,7 @@ export const chunk2: Record<string, SectionEntry> = {
   "ecn": { Component: EcnSection, title: <>ECN marking</>, sub: <>How a router signals congestion by marking a packet instead of dropping it. Walk the CE→ECE→CWR signal and compare an ECN flow (marks, zero loss) against a drop-based one — same backoff, no retransmits.</> },
   "dot1x": { Component: DotxSection, title: <>802.1X / EAPOL</>, sub: <>Port-based network access control: a switch port stays blocked until your device passes EAP authentication against a RADIUS server. Step the exchange and watch the authenticator relay EAP and the port flip to authorized.</> },
   "ipsec": { Component: IpsecSection, title: <>IPsec ESP (VPN)</>, sub: <>How a VPN encrypts IP packets. Flip between transport and tunnel mode and watch the ESP wrapping, the encrypted region (opaque, never faked), what an eavesdropper can still read, and how the receiver demuxes by SPI to the right key.</> },
+  "wireguard": { Component: WireGuardSection, title: <>WireGuard — cryptokey routing</>, sub: <>The modern VPN threw out the PKI: a peer is just a Curve25519 public key plus a list of <strong>AllowedIPs</strong>, and that one list does two jobs — it’s the outbound <strong>route</strong> (a destination goes to whichever peer’s AllowedIPs covers it, longest prefix) <em>and</em> the inbound <strong>ACL</strong> (a packet decrypted with a peer’s key is accepted only if its source is in that peer’s AllowedIPs). Send to different destinations and watch them route or drop; receive with different source IPs and watch spoofs get rejected. One list, bound to one key, replacing a routing table and a firewall.</> },
   "causalbcast": { Component: CbSection, title: <>Causal broadcast</>, sub: <>Delivering messages so a reply never appears before the message it answers, even when the network reorders them. Step through a reordered conversation and watch the receiver buffer and release messages to preserve causal order.</> },
   "ecmp": { Component: EcmpSection, title: <>ECMP load spreading</>, sub: <>How a router spreads traffic across equal-cost paths by hashing each flow — keeping flows in order while balancing load. Watch flows scatter, then see the polarization trap when cascaded routers share a hash seed.</> },
   "realtime": { Component: RtmSection, title: <>Realtime: SSE vs WebSocket</>, sub: <>Three ways to push server events to a browser — long-poll, SSE, and WebSocket — compared on one timeline. Drag the network delay and watch long-poll stall events that fire during its reconnect gap.</> },
