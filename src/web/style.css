@@ -2083,6 +2083,43 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .ctlog-sib-k{color:hsl(35 85% 50%)}
 .ctlog-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
 .ctlog-foot strong{color:var(--ink)}
+
+/* OverlayFS (OverlayFsSection) — merged view + layer stack with copy-up / whiteout. */
+.ovl{display:flex;flex-direction:column;gap:14px}
+.ovl-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ovl-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:9px}
+.ovl-lbl code{font-family:var(--mono);color:var(--ink);text-transform:none}
+.ovl-merged,.ovl-stack{padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ovl-file{display:flex;align-items:center;gap:9px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;margin-bottom:5px;background:var(--subtle)}
+.ovl-flash{animation:ovl-pop .5s ease}
+@keyframes ovl-pop{0%{box-shadow:0 0 0 2px hsl(35 85% 55%) inset}100%{box-shadow:none}}
+.ovl-path{font-family:var(--mono);font-size:11.5px;color:var(--ink);flex:1;overflow-x:auto;white-space:nowrap}
+.ovl-src{font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:5px;flex:none;text-transform:uppercase;letter-spacing:.04em}
+.ovl-src.ovl-base{color:var(--muted);background:var(--subtle);border:1px solid var(--line)}
+.ovl-src.ovl-app{color:hsl(210 60% 62%);background:hsl(210 55% 55% / .14)}
+.ovl-src.ovl-upper{color:var(--accent);background:hsl(186 40% 45% / .14)}
+.ovl-acts{display:flex;gap:4px;flex:none}
+.ovl-acts button{font-family:var(--mono);font-size:10.5px;padding:3px 8px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer}
+.ovl-acts button:hover{border-color:var(--accent);color:var(--accent)}
+.ovl-empty,.ovl-nil{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.ovl-stack{display:flex;flex-direction:column}
+.ovl-layer{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:7px}
+.ovl-layer.ovl-base{border-left:3px solid var(--muted)}
+.ovl-layer.ovl-app{border-left:3px solid hsl(210 60% 60%)}
+.ovl-layer.ovl-upper{border-left:3px solid var(--accent);background:hsl(186 40% 45% / .05)}
+.ovl-layer-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.ovl-layer-h code{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.ovl-layer-h span{font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.ovl-layer-files{display:flex;flex-wrap:wrap;gap:5px}
+.ovl-entry{font-family:var(--mono);font-size:10.5px;padding:3px 7px;border-radius:5px;background:var(--subtle);border:1px solid var(--line);color:var(--ink)}
+.ovl-entry.ovl-wh{color:hsl(0 68% 60%);border-color:hsl(0 60% 55% / .4);text-decoration:line-through}
+.ovl-upper .ovl-entry:not(.ovl-wh){border-color:hsl(35 80% 50% / .5);background:hsl(35 78% 50% / .1);color:hsl(35 85% 50%)}
+.ovl-reset{margin-top:4px;align-self:flex-start;font-family:var(--mono);font-size:11px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--subtle);color:var(--accent);cursor:pointer}
+.ovl-note{font-size:12.5px;line-height:1.55;color:var(--ink);padding:10px 13px;border:1px solid var(--line);border-radius:9px;background:hsl(186 40% 45% / .06)}
+.ovl-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ovl-foot strong{color:var(--ink)}
+.ovl-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+@media(max-width:680px){.ovl-cols{grid-template-columns:1fr}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
