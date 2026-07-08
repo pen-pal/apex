@@ -14603,6 +14603,10 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 .crm-btn{width:24px;height:24px;border-radius:5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:var(--mono,monospace)}
 .crm-rv{font-family:var(--mono,monospace);min-width:14px;text-align:center;color:hsl(210 30% 85%)}
 .crm-read{font-family:var(--mono,monospace);color:hsl(150 55% 66%);font-weight:700}
+.crm-break{font-family:var(--mono,monospace);font-size:11.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;margin-left:6px}
+.crm-break.on{border-color:hsl(0 60% 55%);background:hsl(0 60% 55% / .14);color:hsl(0 65% 68%)}
+.crm-collide{fill:hsl(0 68% 64%);font-family:var(--mono,monospace);font-size:13px;font-weight:700}
+.crm-gap{fill:hsl(35 82% 62%);font-family:var(--mono,monospace);font-size:13px;font-weight:700}
 
 /* ── Montgomery ladder story (MontLadderSection) — constant-time exponentiation, side-channel trace ── */
 .mgl-col{fill:hsl(210 16% 60%);font-size:12px;font-family:var(--mono,monospace);text-transform:uppercase;letter-spacing:.03em}
