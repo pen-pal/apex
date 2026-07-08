@@ -5,6 +5,7 @@
 // overflow entries live in langSamplesExtra.ts so neither file exceeds the review size limit.
 import { LANGS, type ExampleSet } from './langSampleTypes';
 import { EXTRA_EXAMPLES } from './langSamplesExtra';
+import { EXTRA2_EXAMPLES } from './langSamplesExtra2';
 
 export { LANGS };
 export type { Lang, Snippet, ExampleSet } from './langSampleTypes';
@@ -497,6 +498,7 @@ int main() {
     ],
   },
   ...EXTRA_EXAMPLES,
+  ...EXTRA2_EXAMPLES,
 };
 
 export const hasExamples = (id: string): boolean => id in CODE_EXAMPLES;
