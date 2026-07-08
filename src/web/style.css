@@ -2243,6 +2243,46 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 [data-theme="dark"] .lcap-v-over{color:hsl(0 70% 68%)}
 [data-theme="dark"] .lcap-v-broken{color:hsl(35 80% 62%)}
 [data-theme="dark"] .lcap-danger.lcap-ok .lcap-op-label{color:hsl(0 72% 68%)}
+
+/* Kubernetes pod scheduling (KubeSchedSection) — pod requests + node cards + verdict. */
+.ksc{display:flex;flex-direction:column;gap:14px}
+.ksc-controls{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.ksc-spec-h{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
+.ksc-slider{display:flex;align-items:center;gap:12px;margin-bottom:9px;font-size:12.5px;color:var(--muted)}
+.ksc-slider span{min-width:150px}
+.ksc-slider b{color:var(--ink);font-family:var(--mono)}
+.ksc-slider input{flex:1;accent-color:var(--accent)}
+.ksc-tog{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink);margin-right:18px;cursor:pointer}
+.ksc-tog code,.ksc-spec code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px;color:var(--ink)}
+.ksc-nodes{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.ksc-node{border:1.5px solid var(--line);border-radius:10px;padding:11px;background:var(--panel);display:flex;flex-direction:column;gap:8px}
+.ksc-node.ksc-chosen{border-color:var(--accent);box-shadow:0 0 0 3px hsl(186 40% 45% / .12)}
+.ksc-node.ksc-filtered{opacity:.6;border-style:dashed}
+.ksc-node-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.ksc-node-h code{font-family:var(--mono);font-size:12.5px;color:var(--ink);font-weight:600}
+.ksc-zone{font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.ksc-taint{color:hsl(35 75% 50%);font-style:normal}
+.ksc-bar{position:relative;height:20px;border-radius:5px;background:var(--subtle);border:1px solid var(--line);overflow:hidden;display:flex}
+.ksc-bar-fill{height:100%}
+.ksc-bar-fill.ksc-used{background:hsl(212 25% 55% / .5)}
+.ksc-bar-fill.ksc-add{background:var(--accent);opacity:.75}
+.ksc-bar-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9.5px;color:var(--ink)}
+.ksc-status{font-size:11px;min-height:15px}
+.ksc-chosen-tag{color:var(--accent);font-family:var(--mono);font-size:10.5px;font-weight:600}
+.ksc-fit{color:hsl(145 50% 42%);font-family:var(--mono);font-size:10.5px}
+.ksc-nofit{color:hsl(0 60% 52%);font-size:10.5px}
+.ksc-verdict{padding:11px 14px;border-radius:9px;font-size:12.5px;line-height:1.55}
+.ksc-verdict b{color:var(--ink)}
+.ksc-verdict.ksc-ok{background:hsl(145 50% 55% / .14);border:1px solid hsl(145 45% 55% / .4);color:hsl(145 45% 30%)}
+.ksc-verdict.ksc-pending{background:hsl(35 75% 55% / .14);border:1px solid hsl(35 70% 55% / .4);color:hsl(35 60% 38%)}
+.ksc-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ksc-foot strong{color:var(--ink)}
+.ksc-foot code{font-family:var(--mono);font-size:11px;background:var(--subtle);padding:1px 5px;border-radius:4px}
+[data-theme="dark"] .ksc-verdict.ksc-ok{color:hsl(145 55% 64%)}
+[data-theme="dark"] .ksc-verdict.ksc-pending{color:hsl(35 80% 64%)}
+[data-theme="dark"] .ksc-fit{color:hsl(145 55% 60%)}
+[data-theme="dark"] .ksc-nofit{color:hsl(0 70% 68%)}
+@media(max-width:720px){.ksc-nodes{grid-template-columns:1fr}}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
