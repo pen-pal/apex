@@ -19,6 +19,7 @@ import { FeistelSection } from '../FeistelSection';
 import { Poly1305Section } from '../Poly1305Section';
 import { HashCollisionSection } from '../HashCollisionSection';
 import { RatchetSection } from '../RatchetSection';
+import { MlsSection } from '../MlsSection';
 import { KerberosSection } from '../KerberosSection';
 import { RevocationSection } from '../RevocationSection';
 import { SshSection } from '../SshSection';
@@ -76,6 +77,7 @@ export const chunk4: Record<string, SectionEntry> = {
   "poly1305": { Component: Poly1305Section, title: <>Poly1305 MAC</>, sub: <>The one-time authenticator paired with ChaCha20 — watch the message accumulate as a polynomial mod 2¹³⁰−5 into a tag, and a tampered byte miss it.</> },
   "hashbreak": { Component: HashCollisionSection, title: <>Broken hashes &amp; the birthday bound</>, sub: <>SHA-1 still computes but is dead (SHAttered) — see the broken-hash family, why collision resistance is only half the bits, and what to use instead.</> },
   "ratchet": { Component: RatchetSection, title: <>Double Ratchet</>, sub: <>Signal's per-message keys — build a conversation, compromise the device, and watch forward secrecy protect the past while a DH ratchet heals the future.</> },
+  "mls": { Component: MlsSection, title: <>MLS / TreeKEM — group key agreement</>, sub: <>The Double Ratchet keeps a two-party chat secure; doing that for a big group pairwise is O(n) work per change. MLS (RFC 9420) puts members at the leaves of a binary <strong>ratchet tree</strong> with the group key at the root, so any change re-keys only one leaf-to-root <strong>path</strong> — O(log n). Click a member to update or remove it and watch just its direct path light up (3 nodes, 3 encryptions in a group of 8, vs 7 pairwise — or 10 vs 1023 at 1024 members), and see a removed member locked out of the new root.</> },
   "kerberos": { Component: KerberosSection, title: <>Kerberos</>, sub: <>Single sign-on without sending a password — step through the AS, TGS and AP exchanges and watch the tickets stay opaque to the client who just relays them.</> },
   "revocation": { Component: RevocationSection, title: <>Revocation &amp; Certificate Transparency</>, sub: <>How a browser distrusts a compromised cert before it expires (CRL/OCSP/stapling), and how Certificate Transparency catches a mis-issued one in public.</> },
   "ssh": { Component: SshSection, title: <>SSH transport</>, sub: <>How SSH builds an encrypted tunnel before any secret — step the handshake to NEWKEYS, then see host-key trust-on-first-use catch a man-in-the-middle.</> },
