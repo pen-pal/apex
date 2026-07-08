@@ -15,5 +15,8 @@ export default defineConfig(({ command }) => ({
     // core/protocol tests are pure logic and need no DOM; view tests can opt into jsdom per-file
     environment: 'node',
     include: ['tests/**/*.test.ts'],
+    // a few property tests fuzz tens of thousands of cases (e.g. bresenham over 50k lines) and run ~10s;
+    // give them headroom above vitest's 5s default so they don't flake on slower runners.
+    testTimeout: 20000,
   },
 }));

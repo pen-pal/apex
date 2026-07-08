@@ -20,22 +20,31 @@ describe('basic lines', () => {
 });
 
 describe('correctness properties over 50000 random lines (all octants)', () => {
+  // Check every property with plain JS and return the first violation (or null). Asserting once at the end instead
+  // of ~100 expect() calls per line keeps all 50k cases but avoids millions of matcher invocations (which dominate
+  // the runtime and were timing the suite out).
+  const check = (x0: number, y0: number, x1: number, y1: number): string | null => {
+    const px = bresenham(x0, y0, x1, y1);
+    const line = `(${x0},${y0})->(${x1},${y1})`;
+    if (px[0].x !== x0 || px[0].y !== y0) return `${line}: start is ${px[0].x},${px[0].y}`;
+    const end = px[px.length - 1];
+    if (end.x !== x1 || end.y !== y1) return `${line}: end is ${end.x},${end.y}`;
+    for (let i = 1; i < px.length; i++) // 8-connected: no gaps
+      if (Math.abs(px[i].x - px[i - 1].x) > 1 || Math.abs(px[i].y - px[i - 1].y) > 1) return `${line}: gap at index ${i}`;
+    const dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+    if (dx >= dy && dx > 0) { // shallow: one pixel per x, y within half a cell of the real line
+      if (new Set(px.map((p) => p.x)).size !== dx + 1) return `${line}: not one pixel per column`;
+      for (const p of px) if (Math.abs(p.y - trueY(p.x, x0, y0, x1, y1)) > 0.5 + 1e-9) return `${line}: (${p.x},${p.y}) is off the true line`;
+    }
+    return null;
+  };
+
   it('endpoints exact, pixels closest to the true line, 8-connected, one per column when shallow', () => {
     let s = 1; const rnd = (n: number) => { s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff; return s % n; };
-    for (let t = 0; t < 50000; t++) {
-      const x0 = rnd(40) - 20, y0 = rnd(40) - 20, x1 = rnd(40) - 20, y1 = rnd(40) - 20;
-      const px = bresenham(x0, y0, x1, y1);
-      expect(px[0]).toMatchObject({ x: x0, y: y0 });
-      expect(px[px.length - 1]).toMatchObject({ x: x1, y: y1 });
-      for (let i = 1; i < px.length; i++) { // 8-connected: no gaps
-        expect(Math.abs(px[i].x - px[i - 1].x)).toBeLessThanOrEqual(1);
-        expect(Math.abs(px[i].y - px[i - 1].y)).toBeLessThanOrEqual(1);
-      }
-      const dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
-      if (dx >= dy && dx > 0) { // shallow: one pixel per x, y within half a cell of the real line
-        expect(new Set(px.map((p) => p.x)).size).toBe(dx + 1);
-        for (const p of px) expect(Math.abs(p.y - trueY(p.x, x0, y0, x1, y1))).toBeLessThanOrEqual(0.5 + 1e-9);
-      }
+    let firstFailure: string | null = null;
+    for (let t = 0; t < 50000 && firstFailure === null; t++) {
+      firstFailure = check(rnd(40) - 20, rnd(40) - 20, rnd(40) - 20, rnd(40) - 20);
     }
+    expect(firstFailure).toBeNull();
   });
 });
