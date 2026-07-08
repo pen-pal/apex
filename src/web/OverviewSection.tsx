@@ -32,7 +32,9 @@ function HeroArt() {
       g.fillStyle = ink;
       for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) { g.beginPath(); g.arc(m + j * sx, m + i * sy, 1.3, 0, 7); g.fill(); }
       const path = [[0, 0], [1, 0], [1, 1], [2, 1], [2, 2], [3, 2], [3, 3], [4, 3], [4, 4], [5, 4], [5, 5]];
-      const T = (now - t0) / 1400, seg = Math.floor(T) % (path.length - 1), k = T % 1, a = path[seg], b = path[seg + 1];
+      // clamp elapsed to >= 0: a ResizeObserver reset of t0 can land after the first frame's timestamp, and a
+      // negative T would make JS's % return a negative index into `path`.
+      const T = Math.max(0, now - t0) / 1400, seg = Math.floor(T) % (path.length - 1), k = T % 1, a = path[seg], b = path[seg + 1];
       const px = m + (a[0] + (b[0] - a[0]) * k) * sx, py = m + (a[1] + (b[1] - a[1]) * k) * sy;
       g.fillStyle = ac; g.beginPath(); g.arc(m, m, 3.5, 0, 7); g.fill();
       g.beginPath(); g.arc(w - m, h - m, 3.5, 0, 7); g.fill();
