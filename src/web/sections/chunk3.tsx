@@ -39,6 +39,7 @@ import { TwoPcSection } from '../TwoPcSection';
 import { ThreePcSection } from '../ThreePcSection';
 import { FragmentSection } from '../FragmentSection';
 import { BgpHijackSection } from '../BgpHijackSection';
+import { RpkiSection } from '../RpkiSection';
 import { MplsSection } from '../MplsSection';
 import { SegRouteSection } from '../SegRouteSection';
 import { NatTraversalSection } from '../NatTraversalSection';
@@ -109,6 +110,7 @@ export const chunk3: Record<string, SectionEntry> = {
   "threepc": { Component: ThreePcSection, title: <>Three-phase commit</>, sub: <>The non-blocking fix for two-phase commit. 2PC leaves participants stuck holding locks if the coordinator crashes after the votes; 3PC's extra pre-commit phase lets the survivors decide on their own. Set the votes and the coordinator crash point, and compare the two protocols side by side — plus why consensus (Paxos/Raft) replaced both.</> },
   "fragment": { Component: FragmentSection, title: <>IP fragmentation &amp; MTU</>, sub: <>Split a datagram to fit the link — offsets, MF flags, reassembly — or set DF and watch Path-MTU Discovery.</> },
   "bgphijack": { Component: BgpHijackSection, title: <>BGP route propagation &amp; hijacking</>, sub: <>Watch a prefix spread across ASes — then a rogue AS hijack it and redirect the internet's traffic.</> },
+  "rpki": { Component: RpkiSection, title: <>RPKI — route origin validation</>, sub: <>The fix for the hijack next door. BGP has no notion of who <em>owns</em> a prefix; RPKI adds one — the owner publishes a signed <strong>ROA</strong> (“AS N may originate this prefix, up to /L”), and routers run <strong>Route Origin Validation</strong>, marking each announcement Valid, Invalid, or NotFound. Pick a legit route, a same-prefix hijack, a sub-prefix hijack, or unsigned space, and toggle ROV: with it on, the hijacks are Invalid and dropped; with it off, the hijack rides through exactly as before. Plus the honest limits — it checks only the origin AS, and only where a ROA exists.</> },
   "mpls": { Component: MplsSection, title: <>MPLS label switching</>, sub: <>Forward on a label, not an address — step a packet down the LSP and watch the label pushed at the ingress, swapped hop by hop, and popped at the penultimate router.</> },
   "segrouting": { Component: SegRouteSection, title: <>Segment routing</>, sub: <>Steer a packet along any path by writing a stack of waypoints ("segments") into its header — no per-flow state in the core the way old RSVP-TE needed. A node segment means "reach router X by the shortest path"; an adjacency segment forces one specific link. Pick a segment list and watch the realized route light up, engineered to detour around a link the shortest path would take.</> },
   "natpunch": { Component: NatTraversalSection, title: <>NAT traversal (STUN / TURN / ICE)</>, sub: <>How two peers behind NATs connect — hole-punch a direct path, or fall back to a relay when a symmetric NAT blocks it.</> },
