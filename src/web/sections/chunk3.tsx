@@ -21,6 +21,7 @@ import { RendezvousSection } from '../RendezvousSection';
 import { LoadBalanceSection } from '../LoadBalanceSection';
 import { BloomSection } from '../BloomSection';
 import { CacheHierarchySection } from '../CacheHierarchySection';
+import { SwCacheSection } from '../SwCacheSection';
 import { QosSection } from '../QosSection';
 import { MerkleSection } from '../MerkleSection';
 import { LamportSigSection } from '../LamportSigSection';
@@ -91,6 +92,7 @@ export const chunk3: Record<string, SectionEntry> = {
   "lb": { Component: LoadBalanceSection, title: <>Load balancing</>, sub: <>Six strategies — round-robin, weighted, least-connections, IP-hash, random, and power-of-two-choices — watch each spread requests differently, and see why sampling just two backends (P2C) nearly eliminates the tail that dooms pure random.</> },
   "bloom": { Component: BloomSection, title: <>Bloom filter</>, sub: <>A few bits and a few hashes that answer “definitely not” or “probably yes” — watch it fill and false-positive.</> },
   "cdn": { Component: CacheHierarchySection, title: <>CDN &amp; caching</>, sub: <>Watch a request cascade browser → edge → origin: cold miss, warm hit, then TTL expiry and revalidation.</> },
+  "swcache": { Component: SwCacheSection, title: <>Service Worker caching strategies</>, sub: <>How a web app works offline and loads instantly. A <strong>Service Worker</strong> intercepts every fetch and answers by a policy you choose, trading off freshness, speed, and availability: <strong>cache-first</strong> (fast + offline, maybe stale), <strong>network-first</strong> (fresh, falls back offline), <strong>stale-while-revalidate</strong> (serve the cached copy now, refresh in the background), network-only, cache-only. Pick a strategy and toggle the network up/down and whether a copy is cached, and watch which source answers, whether it’s fast and fresh, and whether it revalidates — network-only offline breaks, cache-first serves stale, SWR does both.</> },
   "qos": { Component: QosSection, title: <>QoS packet scheduling</>, sub: <>Strict priority vs weighted round robin — watch one starve a class and the other share fairly.</> },
   "merkle": { Component: MerkleSection, title: <>Merkle tree</>, sub: <>One root hash commits to a whole dataset — click a leaf for its proof, edit one and watch its path change.</> },
   "accumulator": { Component: AccumulatorSection, title: <>A whole set in one number (RSA accumulator)</>, sub: <>Where a Merkle tree’s membership proofs grow as log(n), an RSA accumulator commits to a set with a single number and proves membership with a single number — constant size. Map each element to a prime; the accumulator is acc = g^(∏ primes) mod N. A witness for x is g^(∏ of the others); anyone checks w^x ≡ acc. Faking membership needs an x-th root of acc, hard under Strong RSA. Verified in node: witnesses verify for every member, adds update correctly (acc′ = acc^x), and non-members never verify. Powers stateless blockchains, revocation, and anonymous credentials. Prove membership and add elements.</> },
