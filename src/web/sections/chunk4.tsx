@@ -22,6 +22,7 @@ import { RatchetSection } from '../RatchetSection';
 import { KerberosSection } from '../KerberosSection';
 import { RevocationSection } from '../RevocationSection';
 import { SshSection } from '../SshSection';
+import { SshTunnelSection } from '../SshTunnelSection';
 import { CpuSchedSection } from '../CpuSchedSection';
 import { PageWalkSection } from '../PageWalkSection';
 import { MemLayoutSection } from '../MemLayoutSection';
@@ -78,6 +79,7 @@ export const chunk4: Record<string, SectionEntry> = {
   "kerberos": { Component: KerberosSection, title: <>Kerberos</>, sub: <>Single sign-on without sending a password — step through the AS, TGS and AP exchanges and watch the tickets stay opaque to the client who just relays them.</> },
   "revocation": { Component: RevocationSection, title: <>Revocation &amp; Certificate Transparency</>, sub: <>How a browser distrusts a compromised cert before it expires (CRL/OCSP/stapling), and how Certificate Transparency catches a mis-issued one in public.</> },
   "ssh": { Component: SshSection, title: <>SSH transport</>, sub: <>How SSH builds an encrypted tunnel before any secret — step the handshake to NEWKEYS, then see host-key trust-on-first-use catch a man-in-the-middle.</> },
+  "sshtunnel": { Component: SshTunnelSection, title: <>SSH tunneling &amp; port forwarding (-L / -R / -D)</>, sub: <>The tunnel forms everyone confuses. A forward is named for <em>where the listening port opens</em>: <strong>-L</strong> on your machine (the far end makes the last hop — reach a service the server can see but you can’t); <strong>-R</strong> on the server (a reverse tunnel that publishes your local app); <strong>-D</strong> a local SOCKS proxy. Pick a goal and a flag and watch the listener open on one side, the hop path through the encrypted channel, and whether it works — pick the wrong flag and the listener lands on the wrong side.</> },
   "cpusched": { Component: CpuSchedSection, title: <>CPU scheduling</>, sub: <>One job set, every classic policy. Edit arrivals and bursts, then watch the Gantt chart and the turnaround/waiting/response numbers reveal the trade-offs — the convoy effect, SJF/SRTF minimizing waiting, round-robin trading turnaround for responsiveness.</> },
   "pagewalk": { Component: PageWalkSection, title: <>Page-table walk</>, sub: <>Type a virtual address and watch the MMU translate it: split into four 9-bit table indices plus a 12-bit offset, then chase CR3 → PML4 → PDPT → PD → PT to a physical frame — or hit a not-present entry, fault, and demand-page it in.</> },
   "memlayout": { Component: MemLayoutSection, title: <>How a process is laid out in memory</>, sub: <>A program’s memory is one array of bytes, split into regions: code and globals at the bottom, the heap growing up as you allocate, the stack growing down as functions call. Call functions and watch frames pile on — each holding its locals and the saved return address (the value a buffer overflow overwrites) — and malloc to watch the heap climb toward the stack. The map every memory-corruption attack targets.</> },
