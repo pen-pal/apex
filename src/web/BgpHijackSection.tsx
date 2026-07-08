@@ -66,7 +66,7 @@ export function BgpHijackSection() {
             const path = result.prop.best[n]?.asPath ?? [];
             return (
               <g key={n}>
-                <circle cx={POS[n].x} cy={POS[n].y} r={22} fill="#fff" stroke={colorFor(n)} strokeWidth={n === ORIGIN || (attack && n === ROGUE) ? 4 : 2.5} />
+                <circle cx={POS[n].x} cy={POS[n].y} r={22} style={{ fill: 'var(--panel)' }} stroke={colorFor(n)} strokeWidth={n === ORIGIN || (attack && n === ROGUE) ? 4 : 2.5} />
                 <text x={POS[n].x} y={POS[n].y - 1} className="bh-asn" textAnchor="middle">AS{n}</text>
                 <text x={POS[n].x} y={POS[n].y + 11} className="bh-path" textAnchor="middle">{path.join('·')}</text>
                 {n === ORIGIN && <text x={POS[n].x} y={POS[n].y - 30} className="bh-tag origin" textAnchor="middle">prefix owner</text>}
