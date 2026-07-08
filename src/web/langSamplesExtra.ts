@@ -392,4 +392,330 @@ uint32_t crc32(const std::string& data) {
 int main() { printf("%08x\\n", crc32("123456789")); }` },
     ],
   },
+
+  heap: {
+    intro: 'Heapsort — build a binary max-heap in place, then repeatedly swap the largest to the end and sift the root down. O(n log n), no extra memory. [5,2,9,1,5,6,3] sorts to 1 2 3 5 5 6 9.',
+    expect: '1 2 3 5 5 6 9',
+    snippets: [
+      { lang: 'python', code: `def heapsort(a):
+    n = len(a)
+    def sift_down(start, end):
+        root = start
+        while 2*root + 1 <= end:
+            child = 2*root + 1
+            if child + 1 <= end and a[child] < a[child+1]:
+                child += 1
+            if a[root] < a[child]:
+                a[root], a[child] = a[child], a[root]
+                root = child
+            else:
+                return
+    for start in range(n//2 - 1, -1, -1):   # build the heap
+        sift_down(start, n-1)
+    for end in range(n-1, 0, -1):           # repeatedly extract the max
+        a[0], a[end] = a[end], a[0]
+        sift_down(0, end-1)
+    return a
+
+print(" ".join(map(str, heapsort([5, 2, 9, 1, 5, 6, 3]))))` },
+      { lang: 'go', code: `package main
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+func siftDown(a []int, start, end int) {
+	root := start
+	for 2*root+1 <= end {
+		child := 2*root + 1
+		if child+1 <= end && a[child] < a[child+1] {
+			child++
+		}
+		if a[root] < a[child] {
+			a[root], a[child] = a[child], a[root]
+			root = child
+		} else {
+			return
+		}
+	}
+}
+
+func heapsort(a []int) []int {
+	n := len(a)
+	for start := n/2 - 1; start >= 0; start-- {
+		siftDown(a, start, n-1)
+	}
+	for end := n - 1; end > 0; end-- {
+		a[0], a[end] = a[end], a[0]
+		siftDown(a, 0, end-1)
+	}
+	return a
+}
+
+func main() {
+	a := heapsort([]int{5, 2, 9, 1, 5, 6, 3})
+	s := make([]string, len(a))
+	for i, x := range a {
+		s[i] = strconv.Itoa(x)
+	}
+	fmt.Println(strings.Join(s, " "))
+}` },
+      { lang: 'rust', code: `fn sift_down(a: &mut Vec<i64>, start: usize, end: usize) {
+    let mut root = start;
+    while 2*root + 1 <= end {
+        let mut child = 2*root + 1;
+        if child + 1 <= end && a[child] < a[child+1] { child += 1; }
+        if a[root] < a[child] { a.swap(root, child); root = child; } else { return; }
+    }
+}
+
+fn heapsort(mut a: Vec<i64>) -> Vec<i64> {
+    let n = a.len();
+    for start in (0..n/2).rev() { sift_down(&mut a, start, n-1); }
+    for end in (1..n).rev() { a.swap(0, end); sift_down(&mut a, 0, end-1); }
+    a
+}
+
+fn main() {
+    let sorted = heapsort(vec![5, 2, 9, 1, 5, 6, 3]);
+    println!("{}", sorted.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" "));
+}` },
+      { lang: 'c', code: `#include <stdio.h>
+
+void sift_down(int *a, int start, int end) {
+    int root = start;
+    while (2*root + 1 <= end) {
+        int child = 2*root + 1;
+        if (child + 1 <= end && a[child] < a[child+1]) child++;
+        if (a[root] < a[child]) { int t = a[root]; a[root] = a[child]; a[child] = t; root = child; }
+        else return;
+    }
+}
+
+int main(void) {
+    int a[] = {5, 2, 9, 1, 5, 6, 3}, n = 7;
+    for (int start = n/2 - 1; start >= 0; start--) sift_down(a, start, n-1);
+    for (int end = n-1; end > 0; end--) { int t = a[0]; a[0] = a[end]; a[end] = t; sift_down(a, 0, end-1); }
+    for (int i = 0; i < n; i++) printf("%d%s", a[i], i+1 < n ? " " : "\\n");
+}` },
+      { lang: 'cpp', code: `#include <iostream>
+#include <vector>
+
+void sift_down(std::vector<int>& a, int start, int end) {
+    int root = start;
+    while (2*root + 1 <= end) {
+        int child = 2*root + 1;
+        if (child + 1 <= end && a[child] < a[child+1]) child++;
+        if (a[root] < a[child]) { std::swap(a[root], a[child]); root = child; }
+        else return;
+    }
+}
+
+int main() {
+    std::vector<int> a = {5, 2, 9, 1, 5, 6, 3};
+    int n = a.size();
+    for (int start = n/2 - 1; start >= 0; start--) sift_down(a, start, n-1);
+    for (int end = n-1; end > 0; end--) { std::swap(a[0], a[end]); sift_down(a, 0, end-1); }
+    for (int i = 0; i < n; i++) std::cout << a[i] << (i+1 < n ? " " : "\\n");
+}` },
+    ],
+  },
+
+  bellmanford: {
+    intro: 'Bellman-Ford — single-source shortest paths that, unlike Dijkstra, handles negative edge weights by relaxing every edge V-1 times. On the CLRS example graph (which has negative edges) the shortest distance from node 0 to node 3 is 4.',
+    expect: '4',
+    snippets: [
+      { lang: 'python', code: `def bellman_ford(n, edges, src, dst):
+    INF = float("inf")
+    dist = [INF] * n
+    dist[src] = 0
+    for _ in range(n - 1):                    # relax every edge V-1 times
+        for u, v, w in edges:
+            if dist[u] != INF and dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    return dist[dst]
+
+edges = [(0,1,6),(0,2,7),(1,2,8),(1,3,5),(1,4,-4),(2,3,-3),(2,4,9),(3,1,-2),(4,0,2),(4,3,7)]
+print(bellman_ford(5, edges, 0, 3))` },
+      { lang: 'go', code: `package main
+
+import "fmt"
+
+func bellmanFord(n int, edges [][3]int, src, dst int) int {
+	const INF = 1 << 30
+	dist := make([]int, n)
+	for i := range dist {
+		dist[i] = INF
+	}
+	dist[src] = 0
+	for k := 0; k < n-1; k++ {
+		for _, e := range edges {
+			u, v, w := e[0], e[1], e[2]
+			if dist[u] != INF && dist[u]+w < dist[v] {
+				dist[v] = dist[u] + w
+			}
+		}
+	}
+	return dist[dst]
+}
+
+func main() {
+	edges := [][3]int{{0, 1, 6}, {0, 2, 7}, {1, 2, 8}, {1, 3, 5}, {1, 4, -4}, {2, 3, -3}, {2, 4, 9}, {3, 1, -2}, {4, 0, 2}, {4, 3, 7}}
+	fmt.Println(bellmanFord(5, edges, 0, 3))
+}` },
+      { lang: 'rust', code: `fn bellman_ford(n: usize, edges: &[(usize, usize, i64)], src: usize, dst: usize) -> i64 {
+    const INF: i64 = 1 << 30;
+    let mut dist = vec![INF; n];
+    dist[src] = 0;
+    for _ in 0..n - 1 {
+        for &(u, v, w) in edges {
+            if dist[u] != INF && dist[u] + w < dist[v] {
+                dist[v] = dist[u] + w;
+            }
+        }
+    }
+    dist[dst]
+}
+
+fn main() {
+    let edges = [(0,1,6),(0,2,7),(1,2,8),(1,3,5),(1,4,-4),(2,3,-3),(2,4,9),(3,1,-2),(4,0,2),(4,3,7)];
+    println!("{}", bellman_ford(5, &edges, 0, 3));
+}` },
+      { lang: 'c', code: `#include <stdio.h>
+#define INF (1 << 30)
+
+int main(void) {
+    int edges[10][3] = {{0,1,6},{0,2,7},{1,2,8},{1,3,5},{1,4,-4},{2,3,-3},{2,4,9},{3,1,-2},{4,0,2},{4,3,7}};
+    int n = 5, dist[5];
+    for (int i = 0; i < n; i++) dist[i] = INF;
+    dist[0] = 0;
+    for (int k = 0; k < n - 1; k++)
+        for (int e = 0; e < 10; e++) {
+            int u = edges[e][0], v = edges[e][1], w = edges[e][2];
+            if (dist[u] != INF && dist[u] + w < dist[v]) dist[v] = dist[u] + w;
+        }
+    printf("%d\\n", dist[3]);
+}` },
+      { lang: 'cpp', code: `#include <iostream>
+#include <vector>
+#include <array>
+
+int main() {
+    const int INF = 1 << 30;
+    std::vector<std::array<int,3>> edges = {{0,1,6},{0,2,7},{1,2,8},{1,3,5},{1,4,-4},{2,3,-3},{2,4,9},{3,1,-2},{4,0,2},{4,3,7}};
+    int n = 5;
+    std::vector<int> dist(n, INF);
+    dist[0] = 0;
+    for (int k = 0; k < n - 1; k++)
+        for (auto& e : edges)
+            if (dist[e[0]] != INF && dist[e[0]] + e[2] < dist[e[1]]) dist[e[1]] = dist[e[0]] + e[2];
+    std::cout << dist[3] << "\\n";
+}` },
+    ],
+  },
+
+  huffman: {
+    intro: 'Huffman coding cost — repeatedly merge the two least-frequent nodes; each merge adds one bit to every symbol beneath it, so the running sum of merge weights is the total encoded size. For "abracadabra" (a:5 b:2 r:2 c:1 d:1) that total is 23 bits — an invariant even though the specific codes can differ.',
+    expect: '23',
+    snippets: [
+      { lang: 'python', code: `import heapq
+
+def huffman_bits(freqs):
+    heap = list(freqs)
+    heapq.heapify(heap)
+    total = 0
+    while len(heap) > 1:
+        a = heapq.heappop(heap)
+        b = heapq.heappop(heap)
+        total += a + b            # this merge adds a bit to every symbol below it
+        heapq.heappush(heap, a + b)
+    return total
+
+print(huffman_bits([5, 2, 2, 1, 1]))   # letter counts of "abracadabra"` },
+      { lang: 'go', code: `package main
+
+import (
+	"container/heap"
+	"fmt"
+)
+
+type IntHeap []int
+
+func (h IntHeap) Len() int            { return len(h) }
+func (h IntHeap) Less(i, j int) bool  { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *IntHeap) Push(x any)         { *h = append(*h, x.(int)) }
+func (h *IntHeap) Pop() any           { old := *h; n := len(old); x := old[n-1]; *h = old[:n-1]; return x }
+
+func huffmanBits(freqs []int) int {
+	h := IntHeap(append([]int(nil), freqs...))
+	heap.Init(&h)
+	total := 0
+	for h.Len() > 1 {
+		a := heap.Pop(&h).(int)
+		b := heap.Pop(&h).(int)
+		total += a + b
+		heap.Push(&h, a+b)
+	}
+	return total
+}
+
+func main() { fmt.Println(huffmanBits([]int{5, 2, 2, 1, 1})) }` },
+      { lang: 'rust', code: `use std::collections::BinaryHeap;
+use std::cmp::Reverse;
+
+fn huffman_bits(freqs: &[i64]) -> i64 {
+    let mut heap: BinaryHeap<Reverse<i64>> = freqs.iter().map(|&f| Reverse(f)).collect();
+    let mut total = 0;
+    while heap.len() > 1 {
+        let Reverse(a) = heap.pop().unwrap();
+        let Reverse(b) = heap.pop().unwrap();
+        total += a + b;
+        heap.push(Reverse(a + b));
+    }
+    total
+}
+
+fn main() { println!("{}", huffman_bits(&[5, 2, 2, 1, 1])); }` },
+      { lang: 'c', code: `#include <stdio.h>
+
+int extract_min(int *heap, int *size) {   // linear-scan min extraction
+    int mi = 0;
+    for (int i = 1; i < *size; i++) if (heap[i] < heap[mi]) mi = i;
+    int v = heap[mi];
+    heap[mi] = heap[--(*size)];
+    return v;
+}
+
+int main(void) {
+    int heap[] = {5, 2, 2, 1, 1}, size = 5, total = 0;
+    while (size > 1) {
+        int a = extract_min(heap, &size);
+        int b = extract_min(heap, &size);
+        total += a + b;
+        heap[size++] = a + b;
+    }
+    printf("%d\\n", total);
+}` },
+      { lang: 'cpp', code: `#include <iostream>
+#include <queue>
+#include <vector>
+
+int huffman_bits(std::vector<int> freqs) {
+    std::priority_queue<int, std::vector<int>, std::greater<int>> pq(freqs.begin(), freqs.end());
+    int total = 0;
+    while (pq.size() > 1) {
+        int a = pq.top(); pq.pop();
+        int b = pq.top(); pq.pop();
+        total += a + b;
+        pq.push(a + b);
+    }
+    return total;
+}
+
+int main() { std::cout << huffman_bits({5, 2, 2, 1, 1}) << "\\n"; }` },
+    ],
+  },
 };
