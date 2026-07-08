@@ -185,6 +185,7 @@ export const SECTION_META: SectionMeta[] = [
   { id: 'vxlan', label: 'VXLAN overlay', icon: '🪆' },
   { id: 'vrrp', label: 'VRRP redundancy', icon: '🛟' },
   { id: 'ipsec', label: 'IPsec ESP (VPN)', icon: '🔐' },
+  { id: 'wireguard', label: 'WireGuard (cryptokey routing)', icon: '🐉' },
   { id: 'ecmp', label: 'ECMP load spreading', icon: '🔱' },
   { id: 'dnssec', label: 'DNSSEC chain', icon: '🔏' },
   { id: 'kaminsky', label: 'DNS cache poisoning', icon: '☠️' },
@@ -495,7 +496,7 @@ export interface SectionGroup { label: string; icon: string; ids: string[] }
 
 export const GROUPS: SectionGroup[] = [
   { label: 'Network basics', icon: '🌐', ids: ['network', 'switch', 'stptree', 'arp', 'csma', 'dhcp', 'nat', 'natpunch', 'ttlhop', 'traceroute', 'subnet', 'fragment', 'pmtud', 'ipcompare', 'happyeyeballs', 'nagle', 'slaac', 'icmp', 'anycast', 'multicast', 'wpa', 'dot1x', 'vlan', 'ntp', 'gps'] },
-  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'lpm', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgprr', 'routeflap', 'mpls', 'segrouting', 'vxlan', 'vrrp', 'ipsec', 'ecmp', 'dns', 'dnssec', 'kaminsky', 'mdns', 'encdns'] },
+  { label: 'Routing & naming', icon: '🧭', ids: ['routing', 'lpm', 'distvec', 'ospf', 'bgp', 'bgphijack', 'bgprr', 'routeflap', 'mpls', 'segrouting', 'vxlan', 'vrrp', 'ipsec', 'wireguard', 'ecmp', 'dns', 'dnssec', 'kaminsky', 'mdns', 'encdns'] },
   { label: 'Transport & web', icon: '🚀', ids: ['tcphand', 'timewait', 'tfo', 'zerortt', 'congestion', 'cubic', 'bbr', 'flow', 'sws', 'sack', 'arq', 'rto', 'bdp', 'queueing', 'bufferbloat', 'ecn', 'qos', 'h2flow', 'http2', 'quic', 'quicmig', 'http3', 'grpc', 'websocket', 'realtime', 'sctp', 'mptcp', 'cdn', 'conditional', 'ratelimit', 'leakybucket', 'gcra', 'retry'] },
   { label: 'Cryptography', icon: '🔒', ids: ['crypto', 'classical', 'otpad', 'aesround', 'ecbpenguin', 'feistel', 'aead', 'chacha', 'poly1305', 'consttime', 'hashint', 'hashbreak', 'lenext', 'hmac', 'paddingoracle', 'montgomery', 'pubkey', 'rsa', 'millerrabin', 'pollardrho', 'crt', 'xgcd', 'ecc', 'montladder', 'ecdsa', 'tonelli', 'eddsa', 'pedersen', 'blindsig', 'vrf', 'ot', 'garbled', 'oram', 'pir', 'paillier', 'elgamal', 'schnorr', 'bls', 'sumcheck', 'vdf', 'dhkex', 'bsgs', 'dhmitm', 'tlsdowngrade', 'tlsflow', 'pwhash', 'pqc', 'lll', 'ntt', 'bb84', 'shamir', 'envelope', 'feldman', 'threshsig', 'pow', 'ratchet', 'x3dh', 'merkle', 'accumulator', 'lamportsig', 'hashchain'] },
   { label: 'Security & web', icon: '🛡️', ids: ['certs', 'kerberos', 'revocation', 'certtrans', 'ssh', 'sshtunnel', 'identity', 'jwt', 'mailauth', 'totp', 'webauthn', 'cookies', 'cors', 'webinject', 'bufferoverflow', 'nxbit', 'rop', 'aslr', 'stackcanary', 'cfi', 'smuggle', 'ssrf', 'xxe', 'dnsrebind', 'arpspoof', 'tor', 'censorship', 'onionservice', 'mixnet', 'trafficcorr', 'firewall', 'siem', 'seccomp', 'capabilities', 'ebpf', 'honeypot', 'portknock', 'csrf', 'dnstunnel', 'ids', 'clickjack', 'hsts', 'openredirect', 'protopollute', 'hashflood', 'redos', 'subdomain', 'siteisolation', 'sri', 'csp', 'attacks'] },
