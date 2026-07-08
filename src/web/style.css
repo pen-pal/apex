@@ -2791,6 +2791,34 @@ i.hpot-dot{display:inline-block;vertical-align:middle;margin-right:4px}
 [data-theme="dark"] .clm-verdict.clm-good{color:hsl(145 55% 62%)}
 [data-theme="dark"] .clm-verdict.clm-bad{color:hsl(35 80% 62%)}
 @media(max-width:560px){.clm-bar-row{grid-template-columns:96px 1fr;grid-template-rows:auto auto}.clm-bytes{grid-column:2}}
+
+/* Learned index (LearnedIndexSection) — regression scatter + error band. */
+.lix{display:flex;flex-direction:column;gap:14px}
+.lix-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.055em;color:var(--muted)}
+.lix-presets{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.lix-presets button{font-family:var(--mono);font-size:11.5px;padding:5px 12px;border:1px solid var(--line);border-radius:6px;background:var(--subtle);color:var(--ink);cursor:pointer}
+.lix-presets button.on{border-color:var(--accent);background:hsl(186 40% 45% / .14);color:var(--accent)}
+.lix-plot{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.lix-svg{width:100%;height:auto;display:block;margin-top:8px}
+.lix-axis{stroke:var(--line);stroke-width:1.5}
+.lix-axl{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.lix-band{fill:hsl(35 80% 55% / .18);stroke:hsl(35 80% 55% / .4);stroke-width:1}
+.lix-line{stroke:var(--accent);stroke-width:2}
+.lix-pt{fill:hsl(186 55% 48%);stroke:var(--panel);stroke-width:1}
+.lix-stats{display:flex;gap:12px;flex-wrap:wrap}
+.lix-stat{flex:1;min-width:120px;text-align:center;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--subtle)}
+.lix-stat b{display:block;font-family:var(--mono);font-size:21px;color:var(--ink)}
+.lix-stat span{font-size:11px;color:var(--muted)}
+.lix-stat.lix-hi{border-color:var(--accent);background:hsl(186 40% 45% / .1)}
+.lix-stat.lix-hi b{color:var(--accent)}
+.lix-verdict{padding:11px 14px;border-radius:9px;font-size:12.5px;line-height:1.55}
+.lix-verdict b{font-family:var(--mono);color:var(--ink)}
+.lix-verdict.lix-good{background:hsl(145 50% 55% / .14);border:1px solid hsl(145 45% 55% / .4);color:hsl(145 45% 30%)}
+.lix-verdict.lix-bad{background:hsl(35 75% 55% / .12);border:1px solid hsl(35 70% 55% / .4);color:hsl(35 55% 38%)}
+.lix-foot{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.lix-foot strong{color:var(--ink)}
+[data-theme="dark"] .lix-verdict.lix-good{color:hsl(145 55% 62%)}
+[data-theme="dark"] .lix-verdict.lix-bad{color:hsl(35 80% 62%)}
 /* Censorship circumvention (CensorshipSection) */
 .cen{display:flex;flex-direction:column;gap:14px}
 .cen-intro{font-size:13.5px;line-height:1.6;color:var(--ink);max-width:82ch;margin:0}
