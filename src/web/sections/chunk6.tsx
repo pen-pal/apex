@@ -9,6 +9,7 @@ import { RustOwnershipSection } from '../RustOwnershipSection';
 import { ContainerSection } from '../ContainerSection';
 import { OverlayFsSection } from '../OverlayFsSection';
 import { BridgeNetSection } from '../BridgeNetSection';
+import { PlaygroundSection } from '../PlaygroundSection';
 import { DebuggerSection } from '../DebuggerSection';
 import { NewtonSection } from '../NewtonSection';
 import { ConjGradSection } from '../ConjGradSection';
@@ -130,4 +131,5 @@ export const chunk6: Record<string, SectionEntry> = {
   "subdomain": { Component: SubdomainTakeoverSection, title: <>Subdomain takeover</>, sub: <>How a forgotten DNS record hands an attacker a real page on your domain. You point a subdomain at a cloud service, later delete the service, but leave the CNAME dangling — and if the provider lets anyone claim the unused name, an attacker serves their content (and a valid TLS cert) from your subdomain. Toggle each resource live/deleted and watch which ones become takeover-able.</> },
   "bgprr": { Component: BgpRrSection, title: <>BGP route reflectors</>, sub: <>How iBGP scales past a few routers. A full mesh needs n(n-1)/2 sessions — 100 routers is ~5,000. A route reflector collapses that to a hub-and-spoke and relays routes between its clients. Drag the router count to watch the mesh explode, then inject routes to see the RFC 4456 reflection rules.</> },
   "routeflap": { Component: RouteFlapSection, title: <>BGP route flap damping</>, sub: <>How routers protect the internet from an unstable link that keeps flapping (a route repeatedly withdrawn and re-announced). Each route accrues a penalty (+1000 per flap) that decays with a 15-minute half-life; above the suppress threshold the route is withheld, and it returns only after decaying below a lower reuse threshold — a hysteresis gap that stops it oscillating. Pick a route's behaviour and watch the penalty rise, decay, and cross the thresholds.</> },
+  "playground": { Component: PlaygroundSection, title: <>Playground</>, sub: <>Edit JavaScript and run it for real — offline, sandboxed in a Web Worker in your browser, with a timeout. Nothing is sent anywhere. Load a starter (Kadane, UTF-8 bytes, recursion), tweak it, and see the actual console output and return value. The Go / Python / Rust / C / C++ versions of an idea are read-only, compiler-verified examples in each section’s “In other languages” panel — Apex has no backend to run those.</> },
 };
